@@ -1,0 +1,721 @@
+<?php
+
+include_once 'osha.features.inc';
+include_once 'osha.utils.inc';
+
+define('OSHA_ARTICLE_CONTENT_TYPE_ARTICLE', 'article');
+define('OSHA', 'OSHA');
+
+function osha_menu() {
+  $items = array();
+  $items['users/autocomplete/%'] = array(
+    'title' => 'Autocomplete for cities',
+    'page callback' => 'osha_users_autocomplete',
+    'page arguments' => array(2),
+    'access arguments' => array('access user profiles'),
+    'type' => MENU_CALLBACK,
+  );
+
+//  $items['admin/config/regional/osha_language'] = array(
+//    'title' => 'EU-OSHA Languages',
+//    'page callback' => 'drupal_get_form',
+//    'page arguments' => array('osha_admin_languages_form'),
+//    'access arguments' => array('administer site configuration'),
+//    'type' => MENU_CALLBACK,
+//  );
+  return $items;
+}
+
+function osha_users_autocomplete($role_name, $name) {
+  $output = array();
+  $query = db_select('users', 'u')
+    ->fields('u');
+  $query->leftJoin('users_roles', 'ur', 'u.uid = ur.uid');
+  $query->condition('u.status', 1);
+  if (!empty($role_name) || $role_name != 'all') {
+    $role = user_role_load_by_name($role_name);
+    if ($role) {
+      $query->condition('ur.rid', $role->rid);
+    }
+    else {
+      $query->condition('ur.rid', 0);
+    }
+  }
+  $query->condition('u.name', '%' . $name . '%', 'LIKE');
+  $uids = $query->execute()
+    ->fetchAllAssoc('uid');
+  if (!empty($uids)) {
+    $uids = array_keys($uids);
+    $users = user_load_multiple($uids);
+    foreach ($users as $user) {
+      $output[$user->name] = $user->name;
+    }
+  }
+  drupal_json_output($output);
+}
+
+/**
+ * Implements hook_osha_tmgmt_i18n_string_list().
+ */
+function osha_osha_tmgmt_i18n_string_list() {
+  module_load_include('inc', 'osha', 'osha.translate');
+  return osha_get_translatable_strings();
+}
+
+
+/**
+ * Implements hook_schema_alter().
+ */
+function osha_schema_alter(&$schema) {
+  if (isset($schema['taxonomy_term_data'])) {
+    $schema['taxonomy_term_data']['fields']['name'] = array(
+      'type' => 'varchar',
+      'length' => 768,
+      'not null' => TRUE,
+      'default' => '',
+    );
+  }
+
+  if (isset($schema['field_data_name_field'])) {
+    $schema['field_data_name_field']['fields']['name_field_value'] = array(
+      'type' => 'varchar',
+      'length' => 768,
+      'not null' => TRUE,
+      'default' => '',
+    );
+  }
+
+  if (isset($schema['field_revision_name_field'])) {
+    $schema['field_revision_name_field']['fields']['name_field_value'] = array(
+      'type' => 'varchar',
+      'length' => 768,
+      'not null' => TRUE,
+      'default' => '',
+    );
+  }
+
+  if (isset($schema['field_data_title_field'])) {
+    $schema['field_data_title_field']['fields']['title_field_value'] = array(
+      'type' => 'varchar',
+      'length' => 768,
+      'not null' => TRUE,
+      'default' => '',
+    );
+  }
+
+  if (isset($schema['field_revision_title_field'])) {
+    $schema['field_revision_title_field']['fields']['title_field_value'] = array(
+      'type' => 'varchar',
+      'length' => 768,
+      'not null' => TRUE,
+      'default' => '',
+    );
+  }
+
+  if (isset($schema['url_alias'])) {
+    $schema['url_alias']['fields']['alias'] = array(
+      'type' => 'varchar',
+      'length' => 768,
+      'not null' => TRUE,
+      'default' => '',
+    );
+  }
+}
+
+/**
+ * Implements hook_date_format_types().
+ */
+function osha_date_format_types() {
+  return array(
+    'year'  => t('Year'),
+    'short_date_eu'  => t('EU short date'),
+    'osha_day_only'  => t('Day only'),
+    'month' => t('Month: F'),
+    'year_and_month'  => t('Year and Month'),
+  );
+}
+
+/**
+ * Implements hook_date_formats().
+ */
+function osha_date_formats() {
+  $formats = array(
+    array(
+      'type' => 'year', 'format'  => 'Y', 'locales' => array(),
+    ),
+    array(
+      'type' => 'short_date_eu', 'format'  => 'd/m/Y - H:i', 'locales' => array(),
+    ),
+    array(
+      'type' => 'osha_day_only', 'format'  => 'd/m/Y', 'locales' => array(),
+    ),
+    array(
+      'type' => 'month', 'format' => 'F', 'locales' => array(),
+    ),
+    array(
+      'type' => 'year_and_month', 'format' => 'F Y', 'locales' => array(),
+    ),
+  );
+  foreach ($formats as $format) {
+    variable_set('date_format_' . $format['type'], $format['format']);
+  }
+  return $formats;
+}
+
+/**
+ * Configure date and time-zone related settings.
+ */
+function osha_configure_date_settings() {
+  variable_set('date_first_day', '1');
+  variable_set('site_default_country', 'ES');
+  variable_set('date_default_timezone', 'Europe/Madrid');
+  variable_set('configurable_timezones', '0');
+  variable_set('user_default_timezone', '0');
+
+  // Create the format for OSHA date.
+  module_load_include('inc', 'system', 'system.admin');
+  $osha_long_format = 'd/m/Y - H:i';
+  $formats = system_get_date_formats('custom');
+  if (empty($formats) || is_array($formats) && !array_key_exists($osha_long_format, $formats)) {
+    $form_state = array('values' => array('date_format' => $osha_long_format));
+    drupal_form_submit('system_configure_date_formats_form', $form_state);
+  }
+  else {
+    drupal_set_message('OSHA long date format already exists ... skipping', 'warning');
+  }
+  drupal_set_message('Setting short, medium and long date formats to DD/MM/YYYY - HH:MM');
+  variable_set('date_format_long', $osha_long_format);
+  variable_set('date_format_medium', $osha_long_format);
+  variable_set('date_format_short', $osha_long_format);
+}
+
+/**
+ * Set-up language detection to use URL pattern.
+ */
+function osha_configure_language_detection() {
+  module_load_include('inc', 'locale', 'locale.admin');
+  $form_state['values']['language']['enabled']['locale-url'] = 1;
+  $form_state['values']['language']['weight']['locale-url'] = -8;
+  $form_state['values']['language']['enabled']['language-default'] = 1;
+  $form_state['values']['language']['weight']['language-default'] = 10;
+  $form_state['values']['language_content']['enabled']['locale-url'] = 1;
+  $form_state['values']['language_content']['weight']['locale-url'] = -8;
+  $form_state['values']['language_content']['enabled']['language-default'] = 1;
+  $form_state['values']['language_content']['weight']['language-default'] = 10;
+  drupal_form_submit('locale_languages_configure_form', $form_state);
+}
+
+/**
+ * Change field size to 768 characters for Esener questions.
+ *
+ * Applies to the following fields:
+ *  - taxonomy_term_data.name
+ *  - field_data_name_field.name_field_value
+ *  - field_revision_name_field.name_field_value
+ */
+function osha_change_field_size() {
+  $column_size = 768;
+  if (osha_get_mysql_column_size('taxonomy_term_data', 'name') < $column_size) {
+    drupal_set_message("Changing taxonomy_term_data size to $column_size");
+    db_change_field('taxonomy_term_data', 'name', 'name',
+      array('type' => 'varchar','length' => $column_size)
+    );
+  }
+
+  if (osha_get_mysql_column_size('field_data_name_field', 'name_field_value') < $column_size) {
+    drupal_set_message("Changing field_data_name size to $column_size");
+    db_change_field('field_data_name_field', 'name_field_value', 'name_field_value',
+      array('type' => 'varchar', 'length' => $column_size)
+    );
+  }
+
+  if (osha_get_mysql_column_size('field_revision_name_field', 'name_field_value') < $column_size) {
+    drupal_set_message("Changing field_revision_name size to $column_size");
+    db_change_field('field_revision_name_field', 'name_field_value', 'name_field_value',
+      array('type' => 'varchar','length' => $column_size)
+    );
+  }
+
+  if (osha_get_mysql_column_size('field_data_title_field', 'title_field_value') < $column_size) {
+    drupal_set_message("Changing field_data_title_field size to $column_size");
+    db_change_field('field_data_title_field', 'title_field_value', 'title_field_value',
+      array('type' => 'varchar', 'length' => $column_size)
+    );
+  }
+
+  if (osha_get_mysql_column_size('field_revision_title_field', 'title_field_value') < $column_size) {
+    drupal_set_message("Changing field_revision_title_field size to $column_size");
+    db_change_field('field_revision_title_field', 'title_field_value', 'title_field_value',
+      array('type' => 'varchar','length' => $column_size)
+    );
+  }
+
+  if (osha_get_mysql_column_size('url_alias', 'alias') < $column_size) {
+    drupal_set_message("Changing url_alias size to $column_size");
+    db_change_field('url_alias', 'alias', 'alias',
+      array('type' => 'varchar','length' => $column_size)
+    );
+  }
+
+  drupal_set_message("Changing block.delta size to 255");
+  db_change_field('block', 'delta', 'delta',
+    array('type' => 'varchar','length' => 255)
+  );
+
+}
+
+
+/**
+ * Function to retrive the size of a MySQL varchar column from a table.
+ *
+ * @param string $table
+ *   Target database table name
+ * @param string $column
+ *   Target column
+ *
+ * @return int
+ *   Column size in characters
+ */
+function osha_get_mysql_column_size($table, $column) {
+  $result = db_query("
+		SELECT CHARACTER_MAXIMUM_LENGTH
+		FROM information_schema.columns
+		WHERE table_schema = DATABASE()
+			AND table_name = :table AND COLUMN_NAME = :column",
+    array(':table' => $table, ':column' => $column)
+  );
+  return $result->fetchField(0);
+}
+
+/**
+ * Replace the node title with field_tile for page/article. Uses title module.
+ *
+ * Warning: Assuming no content is present
+ */
+function osha_replace_title_field() {
+  if (module_load_include('module', 'title', 'title')) {
+    $types = array('article', 'page');
+    foreach ($types as $bundle) {
+      // Inspired by https://www.drupal.org/files/1801242-title-upgrade.patch
+      title_field_replacement_toggle('node', $bundle, 'title');
+      drupal_set_message(
+        t('Replacing title_field for !bundle', array('!bundle' => $bundle))
+      );
+    }
+  }
+  else {
+    drupal_set_message('osha_replace_title_field: Title module not available', 'warning');
+  }
+}
+
+/**
+ * Enable translation for the basic page entity.
+ */
+function osha_configure_basic_page() {
+  if (module_load_include('inc', 'node', 'content_types')) {
+    $form_state['values']['language_content_type'] = ENTITY_TRANSLATION_ENABLED;
+    $form_state['values']['entity_translation_hide_translation_links'] = 1;
+    $form_state['values']['promote'] = NULL;
+    $form_state['values']['comment'] = 1;
+    $type = node_type_load('page');
+    drupal_form_submit('node_type_form', $form_state, $type);
+    $errors = form_get_errors();
+    if (!empty($errors)) {
+      foreach ($errors as $error) {
+        drupal_set_message(
+          t('Basic page setup error: !error', array('!error' => $error))
+        );
+      }
+    }
+  }
+  else {
+    drupal_set_message('osha_configure_basic_page: content_types module not available', 'warning');
+  }
+}
+
+/**
+ * Enable translation for the tags taxonomy..
+ */
+function osha_configure_tags_taxonomy() {
+  if (module_load_include('inc', 'taxonomy', 'taxonomy.admin')) {
+    $form_state['values']['i18n_mode'] = 1;
+    $form_state['triggering_element']['#value'] = t('Save');
+    $form_state['triggering_element']['#name'] = 'op';
+    $type = taxonomy_vocabulary_machine_name_load('tags');
+    drupal_form_submit('taxonomy_form_vocabulary', $form_state, $type);
+    $errors = form_get_errors();
+    if (!empty($errors)) {
+      foreach ($errors as $error) {
+        drupal_set_message(
+          t('Tags setup error: !error', array('!error' => $error))
+        );
+      }
+    }
+  }
+  else {
+    drupal_set_message('osha_configure_tags_taxonomy: taxonomy module not available', 'warning');
+  }
+}
+
+/**
+ * Make the field_image field translatable.
+ */
+function osha_enable_field_image_translations() {
+  if (module_load_include('inc', 'entity_translation', 'entity_translation.admin')) {
+    $info = field_info_field('field_image');
+    if ($info !== NULL) {
+      drupal_set_message('Making field_image field translatable');
+      $form_state['values']['translatable'] = "0";
+      $form_state['field']['field_name'] = 'field_image';
+      drupal_form_submit('entity_translation_translatable_form', $form_state, 'field_image');
+    }
+    else {
+      drupal_set_message('field_image field not available yet', 'error');
+    }
+  }
+  else {
+    drupal_set_message('osha_configure_basic_page: entity_translation module not available', 'error');
+  }
+}
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function osha_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['osha_slideshow'] = array(
+    'label' => t('Osha Slideshow'),
+    'custom settings' => TRUE,
+  );
+}
+
+function osha_disabled_language_list() {
+  $disabled = array(
+    'ru',
+    'tr',
+    'sq',
+    'bs',
+    'sr',
+    'mk',
+    'sh',
+  );
+  return drupal_map_assoc($disabled);
+}
+
+/**
+ * Get OSHA official language list.
+ *
+ * @param bool $osha_sorted
+ *   if sorted by EU-OSHA specifications.
+ *
+ * @return array
+ *   of language objects.
+ */
+function osha_language_list($osha_sorted = FALSE) {
+  $languages = language_list();
+  $disabled_lang = osha_disabled_language_list();
+  foreach ($languages as $lang => $language) {
+    if (in_array($lang, $disabled_lang)) {
+      unset($languages[$lang]);
+    }
+  }
+  if ($osha_sorted) {
+    $languages = osha_sort_language_list($languages);
+  }
+  return $languages;
+}
+
+function osha_langauge_list_options() {
+  $languages = osha_language_list();
+  $return = array();
+  foreach ($languages as $lang => $language) {
+    $return[$lang] = $language->name;
+  }
+  return $return;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function osha_form_node_form_alter(&$form, &$form_state, $form_id) {
+  if (isset($form['#node'])) {
+    $node = $form['#node'];
+    if (isset($node->nid)) {
+      $jobs = tmgmt_ui_cart_get()->getJobItemsFromCart();
+      foreach ($jobs as $job) {
+        if ($job->plugin == 'entity' && $job->item_id == $node->nid) {
+          drupal_set_message(t('This node is in the translation cart!'), 'warning');
+          break;
+        }
+      }
+    }
+  }
+  if (isset($form['field_tags']['und']['#options'])) {
+    // $form_id has the following template <machine_name>_node_form
+    $machine_name = substr($form_id, 0, -strlen('_node_form'));
+    // $options contains options as $key => $name
+    $options = $form['field_tags']['und']['#options'];
+    unset($options['_none']);
+    // tids of terms from select list
+    $tids = array_keys($options);
+    $terms = taxonomy_term_load_multiple($tids);
+    foreach ($terms as $tid => $term) {
+      if (!empty($term->field_excluded_from)) {
+        $excluded_from = array_map(function($a) {
+          return $a['value'];
+        }, $term->field_excluded_from['und']);
+        if (in_array($machine_name, $excluded_from)) {
+          unset($form['field_tags']['und']['#options'][$tid]);
+        }
+      }
+    }
+  }
+  // CW-931 Hide character count and page count
+  if (isset($form_state['field']['field_page_count'])) {
+    $form['field_page_count']['#access'] = FALSE;
+  }
+  if (isset($form_state['field']['field_character_count'])) {
+    $form['field_character_count']['#access'] = FALSE;
+  }
+  global $user;
+  if (!in_array('administrator', $user->roles)) {
+    $form['field_archived']['#access'] = FALSE;
+  }
+
+  // Hide Delete button
+  unset($form['actions']['delete']);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Order the dropdown options for language list
+ */
+function osha_form_lang_dropdown_form_alter(&$form, &$form_state, $form_id){
+  $options_lang = $form['lang_dropdown_select']['#options'];
+  $form['lang_dropdown_select']['#options'] = array_intersect_key(
+    osha_sort_language_list($options_lang), osha_langauge_list_options());
+}
+
+/**
+ * Implements hook_date_field_formatter_settings_form_alter().
+ *
+ * Enable drop down for date formatter settings to chose a template.
+ */
+function osha_date_field_formatter_settings_form_alter(&$form, &$form_state, $context) {
+  $instance = $context['instance'];
+  $view_mode = $context['view_mode'];
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+  $formatter = $display['type'];
+  if ($formatter == 'date_default') {
+    $form['osha_date_theme'] = array(
+      '#title' => t('Theme:'),
+      '#type' => 'select',
+      '#options' => array(
+        '' => t('Default'),
+        'calendar' => t('Calendar page')),
+      '#default_value' => $settings['osha_date_theme'],
+    );
+  }
+}
+
+/**
+ * Implements hook_field_formatter_info_alter().
+ */
+function osha_field_formatter_info_alter(&$info) {
+  if (isset($info['date_default'])) {
+    $info['date_default']['settings'] += array('osha_date_theme' => '');
+  }
+}
+
+/**
+ * Implements hook_date_field_formatter_settings_summary_alter().
+ */
+function osha_date_field_formatter_settings_summary_alter(&$summary, $context) {
+  $instance = $context['instance'];
+  $view_mode = $context['view_mode'];
+  $display = $instance['display'][$view_mode];
+  $settings = $display['settings'];
+  if (isset($settings['osha_date_theme'])) {
+    $summary[] = t('Show using theme @theme', array('@theme' => $settings['osha_date_theme']));
+  }
+}
+
+/**
+ * Implements hook_node_view().
+ *
+ * {@inheritdoc}
+ */
+function osha_node_view($node, $view_mode, $langcode) {
+    if ($node->type == 'article') {
+      $node->article_type_code = FALSE;
+      if (!empty($node->field_article_type[LANGUAGE_NONE][0]['tid'])) {
+        $term = taxonomy_term_load($node->field_article_type[LANGUAGE_NONE][0]['tid']);
+        $node->article_type_code = $term->field_article_type_code[LANGUAGE_NONE][0]['value'];
+      }
+    }
+  if ($view_mode != 'full') {
+    if (!empty($node->field_archived[LANGUAGE_NONE][0]['value'])) {
+      if (!empty($node->content['title_field'][0]['#markup'])) {
+        $node->content['title_field'][0]['#markup'] .= '<span class="title-archived">' . t('Archived') . '</span>';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_file_view().
+ */
+function osha_file_view($file, $view_mode, $langcode) {
+  // Serve File  directly, not file entity view
+  // For requests with /view skip this.
+  if (!in_array('view', arg()) && $view_mode == 'full') {
+    if ($view_mode == 'full') {
+      $headers = array(
+        'Content-Type'              => $file->filemime,
+        'Content-Disposition'       => 'filename="' . drupal_basename($file->uri) . '"',
+        'Content-Length'            => $file->filesize,
+        'Content-Transfer-Encoding' => 'binary',
+        'Pragma'                    => 'no-cache',
+        'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
+        'Expires'                   => '0',
+        'Accept-Ranges'             => 'bytes',
+      );
+      file_transfer($file->uri, $headers);
+    }
+  }
+}
+
+/**
+ * Implements hook_url_inbound_alter().
+ */
+function osha_url_inbound_alter(&$path, $original_path, $path_language) {
+  // CW-271 - pages with english alias that are requested in other languages
+  // should point to english version, not to 404.
+  $orig_path_source = drupal_lookup_path('source', $original_path);
+  $orig_path_alias = drupal_lookup_path('alias', $original_path);
+  if (empty($orig_path_source) && empty($orig_path_alias)) {
+    $source_en = drupal_lookup_path('source', $original_path, 'en');
+    if (!empty($source_en)) {
+      // Pass the current query params to the redirect.
+      $query = drupal_get_query_parameters();
+      drupal_goto($source_en, array('query' => $query), 301);
+    }
+  }
+  // For images, in migrated content there are images with alias appended
+  // with /image_preview - for those, system should serve the image directly.
+  $args = arg();
+  $orig_path_alias = drupal_lookup_path('alias', $original_path);
+  $orig_path_source = drupal_lookup_path('source', $original_path);
+  if (end($args) == 'image_preview') {
+    // If path exists, don't do anything.
+    if (empty($orig_path_alias) && empty($orig_path_source)) {
+      $url = preg_replace('/\/image_preview/', '', $original_path);
+      $path_source = osha_look_for_path_source($url);
+      if (!empty($path_source)) {
+        if (preg_match("/file\/[\d]{1,99}$/", $path_source)) {
+          $file = menu_get_object('file', 1, $path_source);
+          if ($file->type == 'image') {
+            $path = $path_source;
+          }
+        }
+      }
+    }
+  }
+  else {
+    // If the args ends with /view, system should display the File Entity.
+    if (end($args) == 'view') {
+      // If path exists, don't do anything.
+      if (empty($orig_path_alias) && empty($orig_path_source)) {
+        $url = preg_replace('/\/view/', '', $original_path);
+        $path_source = osha_look_for_path_source($url);
+        if (!empty($path_source)) {
+          if (preg_match("/file\/[\d]{1,99}$/", $path_source)) {
+            $file = menu_get_object('file', 1, $path_source);
+            // Append /view to be used in hook_file_view.
+            $path = $path_source . '/view';
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Returns the system path of an url (if path or redirect or system path).
+ */
+function osha_look_for_path_source($url) {
+  $path_source = drupal_lookup_path('source', $url);
+  // If source empty, the url might be the system path, not alias.
+  if (empty($path_source) && drupal_valid_path($url)) {
+    $path_source = $url;
+    $path_alias = path_load($path_source);
+    // If not alias and not system path, might be a redirect.
+    if (empty($path_alias)) {
+      $redirects = redirect_load_by_source($url, LANGUAGE_NONE);
+      if (!empty($redirects)) {
+        $redirect = is_array($redirects) ? current($redirects) : $redirects;
+        $path_alias = array('source' => $redirect->redirect);
+      }
+    }
+    // If alias or redirect, get the source path.
+    if (!empty($path_alias)) {
+      $path_source = $path_alias['source'];
+    }
+  }
+  return $path_source;
+}
+
+/**
+ * Implements hook_countries_alter().
+ */
+function osha_countries_alter(&$countries) {
+  // EU accepts UK instead of GB.
+  $countries['UK'] = 'United Kingdom';
+  unset($countries['GB']);
+}
+
+/**
+ * Implements hook_library_alter().
+ */
+function osha_library_alter(&$libraries, $module) {
+  if ($module == 'chosen') {
+    if (!empty($libraries['drupal.chosen']['js'][0]['data']['chosen']['options'])) {
+      $options = &$libraries['drupal.chosen']['js'][0]['data']['chosen']['options'];
+      // Pass trough t() the palceholders.
+      $options['placeholder_text_multiple'] = t($options['placeholder_text_multiple']);
+      $options['placeholder_text_single'] = t($options['placeholder_text_single']);
+      $options['no_results_text'] = t($options['no_results_text']);
+    }
+  }
+}
+
+/**
+ * Implements hook_date_formatter_dates_alter().
+ */
+function osha_date_formatter_dates_alter(&$dates, $context) {
+  if (!empty($dates['value'])) {
+    $dates['value']['osha_date_theme'] = $context['display']['settings']['osha_date_theme'];
+  }
+}
+
+/**
+ * Retrieve the decoded name for Activity field attached to a node.
+ *
+ * @param object $node
+ *   Node to get data
+ *
+ * @return string
+ *   The name of the activity or empty string
+ */
+function osha_node_activity_name($node) {
+  if (isset($node->field_activity[LANGUAGE_NONE][0])) {
+    $tid = $node->field_activity[LANGUAGE_NONE][0]['tid'];
+    $term = taxonomy_term_load($tid);
+    $value = field_get_items('taxonomy_term', $term, 'name_field');
+    if (!empty($value)) {
+      return $value[0]['safe_value'];
+    }
+  }
+  return '';
+}

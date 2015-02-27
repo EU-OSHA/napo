@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function osha_install() {
+  osha_configure_language_detection();
+}
+
+function osha_enable() {
+
+  // Allow public to download file_entity files.
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('download any document files'));
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('download any document files'));
+  osha_configure_imce();
+  osha_configure_date_settings();
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('display EU Cookie Compliance popup'));
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('display EU Cookie Compliance popup'));
+  // Give all permissions to administrators.
+  $admin_role = user_role_load_by_name("administrator");
+  user_role_grant_permissions($admin_role->rid, array_keys(module_invoke_all('permission')));
+
+  // Set the variables to prevent errors on install.
+  module_load_include('inc', 'osha', 'osha.strongarm');
+  $export = osha_strongarm();
+  if (!empty($export['entity_translation_entity_types'])) {
+    foreach ($export as $name => $value) {
+      variable_set($name, $value->value);
+    }
+  }
+  variable_set('jquery_update_jquery_admin_version', '1.8');
+  // osha_change_field_size();
+}
+
+/**
+ * Configure IMCE module - Alter User-1 profile & assign to administrator.
+ */
+function osha_configure_imce() {
+  drupal_set_message('Configuring Drupal IMCE module ...');
+  // /admin/config/media/imce
+  if (!module_load_include('inc', 'imce', 'inc/imce.admin')) {
+    throw new Exception('Cannot load inc/imce.admin.inc');
+  }
+
+  // Alter profile User-1.
+  $profiles = variable_get('imce_profiles', array());
+
+  if (isset($profiles[1])) {
+    $profiles[1]['directories'][0]['name'] = ".";
+    $profiles[1]['directories'][0]['subnav'] = "1";
+    variable_set('imce_profiles', $profiles);
+  }
+  else {
+    throw new Exception('Cannot load IMCE profile User-1.');
+  }
+
+  $roles = user_roles();
+
+  if (in_array("administrator", $roles)) {
+    // Role administrator found - assign User-1 profile to administrator.
+    $roles_profiles = variable_get('imce_roles_profiles', array());
+    $admin_role = user_role_load_by_name("administrator");
+
+    $roles_profiles[$admin_role->rid]['public_pid'] = 1;
+    $roles_profiles[$admin_role->rid]['private_pid'] = 1;
+    $roles_profiles[$admin_role->rid]['weight'] = 0;
+
+    variable_set('imce_roles_profiles', $roles_profiles);
+  }
+  else {
+    // Role administrator not found.
+    throw new Exception('Cannot assign IMCE profile User-1 to administrator - role administrator not found.');
+  }
+}

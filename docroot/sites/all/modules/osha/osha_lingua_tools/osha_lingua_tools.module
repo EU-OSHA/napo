@@ -1,0 +1,237 @@
+<?php
+/**
+ * @file
+ * osha_lingua_tools module file
+ */
+ 
+function osha_lingua_tools_menu()
+{
+ 
+  $items['node/%node/linguatools'] = array(
+    'title' => 'Lingua Tools',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('form_lingua_form'),
+    'access callback' => 'linguatools_access',
+    'weight' => 7,
+    'type' => MENU_LOCAL_TASK
+  );
+  
+  return $items;
+}
+
+function osha_lingua_tools_form_alter(&$form, &$form_state, $form_id){
+}
+
+function form_lingua_form($form, &$form_state) {
+	$struri = $_SERVER['REQUEST_URI'];
+	$strurisplit = explode("/",$struri);
+	$lenuri = count($strurisplit) -2;
+	$idnode = $strurisplit[$lenuri];
+	
+	$node = node_load($idnode);
+	$numlen  =count($node->translations->data);
+	
+	if ($numlen == 1){
+		//echo ("There are no translations for this node");
+		$form['header_text'] = array(
+				'#markup' => '<p class="linguaheader">There are no translations for this node.</p>',
+				'#fieldintname' => '0'
+			);	
+		return $form;
+	}	
+	else
+	{
+		//Get the node id, what we want translate.
+		
+		$type = $node->type;
+		$disabled = "";
+		$fields = field_info_instances("node", $type);
+	    $disabled = '';
+		$contfields = 1;
+		$ispublished = $node->workbench_moderation['current']->published;
+		$idrev = $node->workbench_moderation['current']->vid;
+	
+		
+		foreach ($fields as $field) {
+			$fieldname = $field['label'];
+			$fieldname = str_replace(' ','_', $fieldname);
+			$fieldintname = $field['field_name'];
+			$arrayfield = $node->$fieldintname;
+			
+			//TODO Check that the field has data
+			$numdatosfield = count($arrayfield) +1;
+			$fieldid = $field['field_id'];
+			$transfield = istranslatable ($fieldid);
+					
+			$form['header_text'] = array(
+				'#markup' => '<p class="linguaheader">Please, select the fields to spread and press the <strong>spread data</strong> button.</p>',
+				'#fieldintname' => '0'
+			);
+			if ($transfield == 1 && $field['widget']['module'] != 'media' && $field['widget']['module'] != 'file'&& $field['widget']['module'] != 'pdf_to_image' && $numdatosfield > 0){
+				$contfields ++;
+				$form[$fieldname] = array(
+					'#title' => $fieldname,
+					'#type' => 'checkbox',
+					'#fieldintname' => $fieldintname ,
+				);
+			}
+		}
+		
+		$form['url'] = array(
+			'#title' => 'URL',
+			'#type' => 'checkbox',
+		);
+	
+	   $form['submit_button'] = array(
+		'#type' => 'submit',
+		'#value' => t('Spread data'),
+		'#numfields' => $contfields ,
+		'#nodeid' => $idnode ,
+		'#noderevid' => $idrev ,
+		'#ispublished' => $ispublished ,
+	  );
+	return $form;
+  
+	}
+}
+
+
+function linguatools_access() {
+	global $user;
+	$useradmin = 0;
+	
+	foreach ($user->roles as $userrol){
+		if ($userrol=='administrator'){
+			return true;
+		}
+	}	
+	
+	return false;
+
+}
+
+function istranslatable($idfield)  {
+	$result = db_select('field_config','f')
+    ->fields('f',array('translatable'))
+    ->condition('id', $idfield,'=')
+    ->execute()
+    ->fetchAssoc();
+	return $result['translatable'];
+}
+
+function form_lingua_form_validate($form, &$form_state) {
+	
+	foreach ($form_state['values'] as $values) {	
+		
+		if ($values==1)
+		return 1;
+	}
+	drupal_set_message(t("You need to select at least one field for spread!"), 'error');
+	return false;
+}
+
+function form_lingua_form_submit($form, &$form_state) {
+	$intnumfields = $form['submit_button']['#numfields'];	
+	$intnodeid = $form['submit_button']['#nodeid'] ;
+	$intrevid = $form['submit_button']['#noderevid'] ;
+	$ispublished = $form['submit_button']['#ispublished'] ;
+	
+	if ($form_state['values']['url']==1){
+		propage_url($intnodeid);
+	}
+	
+	$intcont = 0;
+	
+	foreach ($form as $fieldchk){
+		$fieldintname = $fieldchk['#fieldintname'];
+		if ($fieldintname <> '0'){ //0 Is the value of the summary field
+			
+			$fieldupdate = $form_state['values'][$fieldchk['#title']];
+			if ($fieldupdate)
+				propage_translation($fieldchk['#title'],$intnodeid,$intrevid,$ispublished,$fieldintname);
+		}	
+		$intcont ++;
+		if ($intcont == $intnumfields){
+			if ($ispublished ==1){
+				drupal_flush_all_caches();
+			}
+			break;
+		}
+	}
+ }
+ 
+ function propage_translation($field_name,$intnodeid,$intrevid,$ispublished,$fieldintname){
+	$node = node_load($intnodeid);
+	
+	if ($field_name == 'body')
+	{
+		$table_name= 'field_data_body';
+		$table_rev_name= 'field_revision_body';
+		$field_name= 'body_value';
+	}else
+	{
+		$table_name= 'field_data_' . $fieldintname;
+		$table_rev_name= 'field_revision_' . $fieldintname;
+		$field_name= $fieldintname .  '_value';
+	}
+	
+	//If the status of the node is published then We get the value to spread from the data field else we get the data from the revision field.
+	If ($ispublished == 1){
+		$result = db_select($table_name, 'f')
+		->fields('f', array($field_name))
+		->condition('entity_id', $intnodeid,'=')
+		->condition('language', 'en','=')
+		->orderBy('revision_id', 'DESC')
+		->execute()
+		->fetchAssoc();
+	}
+	else
+	{
+		$result = db_select($table_rev_name, 'f')
+		->fields('f', array($field_name))
+		->condition('entity_id', $intnodeid,'=')
+		->condition('language', 'en','=')
+		->orderBy('revision_id', 'DESC')
+		->execute()
+		->fetchAssoc();
+	}
+	$propvalue = $result[$field_name];
+
+	
+	if ($propvalue== "" || $propvalue == null){
+		return false;
+	}
+	
+	//update the field_data fields
+	$data = db_update($table_name) 
+        ->fields(array($field_name => $propvalue,
+		))
+        ->condition('entity_id', $intnodeid)
+        ->execute();
+	
+	//update the field_revision fields
+	$data2 = db_update($table_rev_name) 
+        ->fields(array($field_name => $propvalue,
+		))
+        ->condition('entity_id', $intnodeid)
+		->condition('revision_id', $intrevid)
+        ->execute();
+	drupal_set_message(t("Field " . $field_name . " updated"), 'status');
+	
+  }
+
+  
+  function propage_url($intnodeid){
+	$node = node_load($intnodeid);
+	$propvalue = $node->path['alias'];
+	
+	$aliasurl = "node/" . $intnodeid;
+	//update the url field
+	$data = db_update('url_alias') 
+        ->fields(array('alias' => $propvalue,
+		))
+        ->condition('source', $aliasurl)
+        ->execute();
+	
+	drupal_set_message(t("URL Alias updated"), 'status');
+  }

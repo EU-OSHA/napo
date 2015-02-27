@@ -1,0 +1,4 @@
+name = Napo Frontend
+description = This is a sub-theme of theme Bartik, made by John for the web site example.com (red, responsive).
+core = 7.x
+base theme = zen

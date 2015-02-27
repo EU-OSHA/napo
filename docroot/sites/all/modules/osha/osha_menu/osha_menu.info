@@ -1,0 +1,15 @@
+name = Osha Menu
+description = Menu for OSHA
+core = 7.x
+package = OSHA
+version = 7.x-1.4
+project = osha_menu
+dependencies[] = ctools
+dependencies[] = fe_block
+dependencies[] = features
+dependencies[] = menu
+dependencies[] = menu_block
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+mtime = 1418222293

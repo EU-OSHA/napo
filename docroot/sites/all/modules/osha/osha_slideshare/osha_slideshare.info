@@ -1,0 +1,10 @@
+;$Id;
+;;
+name =  Slideshare Field
+description = Create a slideshare field that allows you to add a slidehare link to a content type
+
+core = 7.x
+version = "7.x-1.x-dev"
+package = OSHA
+project = "osha_slideshare"
+dependencies[] = field

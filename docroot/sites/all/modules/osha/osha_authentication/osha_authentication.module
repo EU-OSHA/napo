@@ -1,0 +1,53 @@
+<?php
+
+/**
+ * Wrapper around LDAP server create function.
+ *
+ * @param string $machine_name Unique ID
+ * @param string $op 'add' or 'update'
+ * @parm array $config Custom values to override defaults
+ */
+function osha_authentication_create_ldap_server($machine_name, $op, $config) {
+  ldap_servers_module_load_include('php', 'ldap_servers', 'LdapServerAdmin.class');
+  $server = new LdapServerAdmin($machine_name);
+  $defaults = array(
+    'sid' => $machine_name,
+    'name' => '',
+    'status' => 1, // 0 - disabled
+    'ldap_type' => '', // openldap, ad ...
+    'address' => '',
+    'port' => '389',
+    'tls' => 0, // 1 - enable
+    'followrefs' => 0,
+    'bind_method' => 2, // user credentials, or 1 - service account bind
+    'binddn' => '',
+    'bindpw_new' => '',
+    'user_dn_expression' => '',
+    'basedn' => '',
+    'user_attr' => 'uid',
+    'picture_attr' => 'jpegphoto',
+    'account_name_attr' => '',
+    'mail_attr' => 'mail',
+    'mail_template' => '',
+    'unique_persistent_attr' => 'dn',
+    'unique_persistent_attr_binary' => '',
+    'ldap_to_drupal_user' => '',
+    'testing_drupal_username' => '',
+    'testing_drupal_user_dn' => '',
+    'grp_unused' => 1,
+    'grp_object_cat' => '',
+    'grp_nested' => '',
+    'grp_user_memb_attr_exists' => '',
+    'grp_user_memb_attr' => '',
+    'grp_memb_attr' => '',
+    'grp_memb_attr_match_user_attr' => '',
+    'grp_derive_from_dn' => '',
+    'grp_derive_from_dn_attr' => '',
+    'grp_test_grp_dn' => '',
+    'grp_test_grp_dn_writeable' => '',
+    'search_pagination' => 0,
+    'search_page_size' => '1000',
+  );
+  $defaults = array_merge($defaults, $config);
+  $server->drupalFormSubmit($op, $defaults);
+}

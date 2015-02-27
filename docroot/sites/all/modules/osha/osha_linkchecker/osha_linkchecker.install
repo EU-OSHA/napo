@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function osha_linkchecker_enable() {
+  // Config linkchecker module.
+  $names = node_type_get_names();
+  $names = array_map('check_plain', $names);
+  foreach ($names as $name => $val) {
+    $names[$name] = $name;
+  }
+  variable_set('linkchecker_scan_nodetypes', $names);
+  variable_set('linkchecker_check_links_types', 0);
+  variable_set('linkchecker_extract_from_a', 1);
+  variable_set('linkchecker_check_library', 'core');
+//  variable_set('linkchecker_check_library', 'httprl');
+
+  // Scan for links.
+  if (drupal_is_cli()) {
+    print 'Scanning for links. Please wait...';
+    osha_linkchecker_scan_for_links();
+  }
+}

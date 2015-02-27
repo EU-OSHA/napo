@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="osha-bootstrap.php" colors="true">
+    <testsuites>
+        <testsuite name="osha">
+            <directory suffix="Test.php">./test-web</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <!-- Drupal database connection string -->
+        <var name="UPAL_DB_URL" value="mysql://user:password@127.0.0.1:3306/database"/>
+
+        <!-- URL for the to-be-tested Drupal. Defaults to http://upal -->
+        <var name="UPAL_WEB_URL" value="http://localhost" />
+
+        <!--Hard code a fileystem path to the to-be-tested Drupal. Defaults to cwd.-->
+        <var name="UPAL_ROOT" value="/path/to/drupal/project/docroot" />
+
+        <!-- Temp directory, if not supplied, defaults to sys_get_tmp_dir(). -->
+        <!-- User must have write permissions to this directory. -->
+        <!-- <var name="UPAL_TMP" value="/tmp"/> -->
+
+        <!-- Uncomment the line below if your path to drush differs from `which drush`. Use absolute path. -->
+        <!-- You currently need 'master' branch of drush after 2011.07.21. Drush 4.6 will be OK - http://drupal.org/node/1105514 -->
+        <!-- <var name="UNISH_DRUSH" value="/Users/mw/bin/drush"/> -->
+
+        <!-- Indicate your drupal core version. Defaults to Drupal 8. Not tested with D6 or older.-->
+        <var name="DRUPAL_CORE_VERSION" value="7" />
+
+        <includePath>.</includePath>
+    </php>
+
+    <filter>
+        <whitelist>
+            <!--<directory suffix=".module">/Work/osha/project/docroot/sites/all/modules/osha/</directory>-->
+            <directory suffix=".inc">/Work/osha/project/docroot/sites/all/modules/osha/</directory>
+            <directory suffix=".module">/Work/osha/project/docroot/sites/all/modules/osha/</directory>
+            <exclude>
+                <directory suffix=".module">../docroot/sites/all/modules/osha/osha_taxonomies_uuid</directory>
+                <directory suffix=".inc">../docroot/sites/all/modules/osha/osha_taxonomies_uuid</directory>
+
+                <directory suffix=".module">../docroot/sites/all/modules/osha/osha_migration</directory>
+                <directory suffix=".inc">../docroot/sites/all/modules/osha/osha_migration</directory>
+
+                <!-- Per module exclusions -->
+                <file>../docroot/sites/all/modules/osha/osha/osha_tmgmt.drush.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha/osha.features.filter.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha/osha.features.language.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha/osha.features.user_permission.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha/osha.features.wysiwyg.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha/osha.file_default_displays.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha/osha.linkit_profiles.inc</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_alert_service/osha_alert_service.context.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_alert_service/osha_alert_service_alert_test.drush.inc</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_blocks/osha_blocks.features.fe_block_boxes.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_blocks/osha_blocks.features.fe_block_settings.inc</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_blog/osha_blog.features.fe_block_boxes.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_blog/osha_blog.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_blog/osha_blog.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_blog/osha_blog.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_blog/osha_blog.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_blog/osha_blog.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_blog/osha_blog.views_default.inc</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_breadcrumbs/osha_breadcrumbs.path_breadcrumbs.inc</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_calls/osha_calls.quicktabs.inc</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_events/osha_events.features.user_permission.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_events/osha_events.features.user_role.inc</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_job_vacancies/osha_job_vacancies.quicktabs.inc</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_menu/osha_menu.features.menu_custom.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_menu/osha_menu.module</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_migration/*</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_newsletter/osha_newsletter.entity_collection_bundles_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_newsletter/osha_newsletter.features.fe_block_boxes.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_newsletter/osha_newsletter.features.uuid_term.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_newsletter/osha_newsletter.test</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_press_contact/osha_press_contact.features.uuid_nodequeue_item.inc</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_press_release/osha_press_release.context.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_search/osha_search.facetapi_defaults.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_search/osha_search.features.menu_custom.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_search/osha_search.features.user_permission.inc</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_seminar/osha_seminar.field_group.inc</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_taxonomies_uuid/*</file>
+
+                <file>../docroot/sites/all/modules/osha/osha_workflow/osha_workflow.drush.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_workflow/osha_workflow.entity_collection_bundles_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_workflow/osha_workflow.features.workbench_moderation_states.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_workflow/osha_workflow.features.workbench_moderation_transitions.inc</file>
+
+                <file>../docroot/sites/all/modules/osha/wysiwyg_accordion/wysiwyg_accordion.module</file>
+                <file>../docroot/sites/all/modules/osha/wysiwyg_accordion/plugins/accordion.inc</file>
+
+                <!-- Features -->
+                <file>../docroot/sites/all/modules/osha/osha/osha.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_alert_service/osha_alert_service.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_blocks/osha_blocks.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_calls/osha_calls.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_content/osha_content.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_events/osha_events.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_highlight/osha_highlight.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_homepage/osha_homepage.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_infographics/osha_infographics.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_job_vacancies/osha_job_vacancies.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_legislation/osha_legislation.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_menu/osha_menu.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_news/osha_news.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_newsletter/osha_newsletter.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_press_contact/osha_press_contact.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_press_release/osha_press_release.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_publication/osha_publication.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_search/osha_search.features.fe_block_settings.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_seminar/osha_seminar.features.fe_block_settings.inc</file>
+
+                <!-- osha_content_edw -->
+                <file>../docroot/sites/all/modules/osha/osha_content_edw/osha_content_edw.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_content_edw/osha_content_edw.features.uuid_file_entity.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_content_edw/osha_content_edw.features.uuid_node.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_content_edw/osha_content_edw.module</file>
+
+                <!-- osha.features.inc -->
+                <file>../docroot/sites/all/modules/osha/osha/osha.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha/osha_linkchecker/osha_linkchecker.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha/tmgmt/osha_tmgmt.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_alert_service/osha_alert_service.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_blocks/osha_blocks.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_breadcrumbs/osha_breadcrumbs.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_calls/osha_calls.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_content/osha_content.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_events/osha_events.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_highlight/osha_highlight.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_homepage/osha_homepage.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_infographics/osha_infographics.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_job_vacancies/osha_job_vacancies.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_legislation/osha_legislation.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_menu/osha_menu.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_news/osha_news.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_newsletter/osha_newsletter.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_note_to_editor/osha_note_to_editor.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_press_contact/osha_press_contact.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_press_release/osha_press_release.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_publication/osha_publication.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_resources/osha_resources.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_search/osha_search.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_seminar/osha_seminar.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_taxonomies/osha_taxonomies.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_wiki/osha_wiki.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_workflow/osha_workflow.features.inc</file>
+                <file>../docroot/sites/all/modules/osha/search_and_replace/search_and_replace.features.inc</file>
+
+                <!-- Exclude features views -->
+                <file>../docroot/sites/all/modules/osha/osha/osha.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha/osha_linkchecker/osha_linkchecker.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_alert_service/osha_alert_service.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_calls/osha_calls.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_content/osha_content.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_events/osha_events.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_highlight/osha_highlight.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_homepage/osha_homepage.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_infographics/osha_infographics.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_job_vacancies/osha_job_vacancies.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_legislation/osha_legislation.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_news/osha_news.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_newsletter/osha_newsletter.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_note_to_editor/osha_note_to_editor.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_press_contact/osha_press_contact.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_press_release/osha_press_release.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_publication/osha_publication.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_resources/osha_resources.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_search/osha_search.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_seminar/osha_seminar.views_default.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_workflow/osha_workflow.views_default.inc</file>
+
+                <!-- Exclude features field bases -->
+                <file>../docroot/sites/all/modules/osha/osha/osha.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_calls/osha_calls.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_events/osha_events.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_highlight/osha_highlight.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_homepage/osha_homepage.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_infographics/osha_infographics.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_job_vacancies/osha_job_vacancies.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_legislation/osha_legislation.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_news/osha_news.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_newsletter/osha_newsletter.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_press_contact/osha_press_contact.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_press_release/osha_press_release.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_publication/osha_publication.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_resources/osha_resources.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_seminar/osha_seminar.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_taxonomies/osha_taxonomies.features.field_base.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_wiki/osha_wiki.features.field_base.inc</file>
+
+                <!-- features.field_instance -->
+                <file>../docroot/sites/all/modules/osha/osha/osha.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_calls/osha_calls.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_events/osha_events.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_highlight/osha_highlight.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_homepage/osha_homepage.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_infographics/osha_infographics.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_job_vacancies/osha_job_vacancies.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_legislation/osha_legislation.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_news/osha_news.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_newsletter/osha_newsletter.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_note_to_editor/osha_note_to_editor.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_press_contact/osha_press_contact.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_press_release/osha_press_release.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_publication/osha_publication.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_resources/osha_resources.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_seminar/osha_seminar.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_taxonomies/osha_taxonomies.features.field_instance.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_wiki/osha_wiki.features.field_instance.inc</file>
+
+                <!-- features.strongarm -->
+                <file>../docroot/sites/all/modules/osha/osha/osha.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha/osha_linkchecker/osha_linkchecker.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_alert_service/osha_alert_service.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_calls/osha_calls.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_events/osha_events.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_highlight/osha_highlight.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_homepage/osha_homepage.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_infographics/osha_infographics.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_job_vacancies/osha_job_vacancies.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_legislation/osha_legislation.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_menu/osha_menu.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_news/osha_news.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_newsletter/osha_newsletter.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_note_to_editor/osha_note_to_editor.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_press_contact/osha_press_contact.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_press_release/osha_press_release.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_publication/osha_publication.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_resources/osha_resources.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_search/osha_search.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_seminar/osha_seminar.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_taxonomies/osha_taxonomies.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_wiki/osha_wiki.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_workflow/osha_workflow.strongarm.inc</file>
+                <file>../docroot/sites/all/modules/osha/search_and_replace/search_and_replace.strongarm.inc</file>
+
+                <!-- features.taxonomy -->
+                <file>../docroot/sites/all/modules/osha/osha/osha.features.taxonomy.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_calls/osha_calls.features.taxonomy.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_events/osha_events.features.taxonomy.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_highlight/osha_highlight.features.taxonomy.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_newsletter/osha_newsletter.features.taxonomy.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_publication/osha_publication.features.taxonomy.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_seminar/osha_seminar.features.taxonomy.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_taxonomies/osha_taxonomies.features.taxonomy.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_taxonomies_uuid/osha_taxonomies_uuid.features.taxonomy.inc</file>
+                <file>../docroot/sites/all/modules/osha/osha_wiki/osha_wiki.features.taxonomy.inc</file>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="../results" charset="UTF-8" highlight="false" lowUpperBound="35" highLowerBound="70" />
+        <log type="coverage-clover" target="../results/coverage.xml" />
+        <log type="coverage-php" target="../results/coverage.serialized" />
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false" />
+        <log type="json" target="../results/logfile.json" />
+        <log type="tap" target="../results/logfile.tap" />
+        <log type="junit" target="../results/logfile.xml" logIncompleteSkipped="false" />
+        <log type="testdox-html" target="../results/testdox.html" />
+        <log type="testdox-text" target="../results/testdox.txt" />
+    </logging>
+</phpunit>
