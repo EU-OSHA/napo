@@ -475,6 +475,7 @@ $command_specific['devify'] = array(
     'devel',
     'devel_node_access',
     'stage_file_proxy',
+    'coffee',
   ),
 //  'disable-modules' => array('varnish', 'memcache_admin'),
   'delete-variables' => array('googleanalytics_account'),
