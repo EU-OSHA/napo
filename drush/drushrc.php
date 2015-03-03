@@ -294,6 +294,8 @@ $options['init-modules'] = array(
   'date',
   'migrate',
   'migrate_ui',
+  'migrate_d2d',
+  'migrate_d2d_ui',
   'features',
 
   'field_group',
