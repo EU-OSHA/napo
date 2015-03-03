@@ -1,9 +1,7 @@
-OSHA
+NAPO
 ====
 
-Build scripts and source code for the Osha project
-
-[![Build Status](http://ci.edw.ro/buildStatus/icon?job=osha&dummy=1)](http://ci.edw.ro/job/osha/)
+Build scripts and source code for the NAPO project
 
 ##Pre-requisites
 
@@ -54,8 +52,8 @@ to `config.json` and customize to suit your environment
         },
         "variables": {
             "site_mail": "your.email@domain.org",
-            "site_name": "OSHA",
-            "osha_data_dir": "/home/osha/data",
+            "site_name": "NAPO",
+            "napo_data_dir": "/home/napo/data",
             "file_temporary_path": "/tmp"
         }
     }
@@ -76,19 +74,13 @@ to `config.json` and customize to suit your environment
             }
     ```
 
-3 Create file drush/aliases/aliases.local.php and define your drush local alias (see example in drush/aliases/osha.aliases.drushrc.php)
-  Redefine your osha.staging.sync alias as you need. Default one might not be accessible to you.
+3 Create file drush/aliases/aliases.local.php and define your drush local alias (see example in drush/aliases/napo.aliases.drushrc.php)
+  Redefine your napo.staging alias as you need. Default one might not be accessible to you.
 
 4 Run install_from_staging.sh
+  ex: ./install_from_staging.sh
   ex: ./install_from_staging.sh -b update_s4_before.sh -a update_s4_after.sh
 
-3 (deprecated). Run [install.sh](https://github.com/EU-OSHA/osha-website/blob/master/install.sh) (wrapper around few drush commands)
-
-*Warning*: Running install.sh on an existing instance *will destroy* that instance (database) loosing all customisations
-
-*Note:* You have to pass `--migrate` to install the migrations (taxonomies)
-
-4. (deprecated) (Optional) To run the migration/migration tests see the documentation from [osha_migration](https://github.com/EU-OSHA/osha-website/tree/master/docroot/sites/all/modules/osha_migration) module
 
 Updating an existing instance
 =============================
@@ -96,68 +88,36 @@ Updating an existing instance
 To update an existing instance without reinstalling (and loosing existing content):
 
 * Update the code repository from Github (`git pull [origin develop]`)
-* Run `update.sh` which reverts all features and updates the migrated data
-
-*Note:* You have to pass `--migrate` to update the migrations (taxonomies)
+* Run drush osha_build -y
 
 The output of the console should look like this:
 
-```
-No database updates required                                                                                          [success]
-'all' cache was cleared.                                                                                              [success]
-Finished performing updates.                                                                                          [ok]
-The following modules will be reverted: osha_taxonomies, osha
-Do you really want to continue? (y/n): y
-Reverted osha_taxonomies.field_base.                                                                                  [ok]
-Reverted osha_taxonomies.field_instance.                                                                              [ok]
-Reverted osha_taxonomies.taxonomy.                                                                                    [ok]
-Reverted osha.language.                                                                                               [ok]
-Reverted osha.variable.                                                                                               [ok]
-'all' cache was cleared.                                                                                              [success]
-Built!                                                                                                                [success]
-Updating NACE codes taxonomy
-Processed 996 (0 created, 996 updated, 0 failed, 0 ignored) in 117.9 sec (507/min) - done with 'NaceCodes'            [completed]
-Updating ESENER taxonomy
-Processed 147 (0 created, 147 updated, 0 failed, 0 ignored) in 9.1 sec (967/min) - done with 'EsenerTaxonomy'         [completed]
-Updating Publication types taxonomy
-Processed 9 (0 created, 9 updated, 0 failed, 0 ignored) in 0.6 sec (957/min) - done with 'PublicationTypesTaxonomy'   [completed]
-Updating Multilingual Thesaurus taxonomy
-Processed 1728 (0 created, 1728 updated, 0 failed, 0 ignored) in 185.1 sec (560/min) - done with 'ThesaurusTaxonomy'  [completed]
-'all' cache was cleared.                                                                                              [success]
-```
 
 Running tests
 =============
 
-You can use the test.sh script to launch the set of tests designed for the OSHA project.
-
-Command usage:
-
-* `./test.sh` - Runs all tests from the OSHA group
-* `./test.sh ClassNameTest` - Runs all the test methods from the ClassNameTest test class
-* `./test.sh ClassNameTest testName1,testName2` - Runs only the two tests from the entire class
-
+See tests/readme.md for more details
 
 
 ##Repository Layout##
 Breakdown for what each directory/file is used for. See also readme inside directories.
 
-* [conf](https://github.com/EU-OSHA/osha-website/tree/master/conf)
+* [conf](https://github.com/EU-OSHA/napo/tree/master/conf)
  * Project specific configuration files
-* [docroot](https://github.com/EU-OSHA/osha-website/tree/master/docroot)
+* [docroot](https://github.com/EU-OSHA/napo/tree/master/docroot)
  * Drupal root directory
-* [drush](https://github.com/EU-OSHA/osha-website/tree/master/drush)
+* [drush](https://github.com/EU-OSHA/napo/tree/master/drush)
  * Contains project specific drush commands, aliases, and configurations.
-* [results](https://github.com/EU-OSHA/osha-website/tree/master/results)
+* [results](https://github.com/EU-OSHA/napo/tree/master/results)
  * This directory is just used to export test results to. A good example of this
    is when running drush test-run with the --xml option. You can export the xml
    to this directory for parsing by external tools.
-* [scripts](https://github.com/EU-OSHA/osha-website/tree/master/scripts)
+* [scripts](https://github.com/EU-OSHA/napo/tree/master/scripts)
  * A directory for project-specific scripts.
-* [test](https://github.com/EU-OSHA/osha-website/tree/master/tests)
+* [test](https://github.com/EU-OSHA/napo/tree/master/tests)
  * A directory for external tests. This is great for non drupal specific tests
  such as selenium, qunit, casperjs.
-* [.gitignore](https://github.com/EU-OSHA/osha-website/blob/master/.gitignore)
+* [.gitignore](https://github.com/EU-OSHA/napo/blob/master/.gitignore)
  * Contains the a list of the most common excluded files.
 
 ##Branches##
