@@ -457,6 +457,7 @@ $options['init-modules'] = array(
   'osha_menu',
   'osha_reminders',
   'osha_lingua_tools',
+  'napo_migration',
 
   'linkchecker',
   'osha_linkchecker',

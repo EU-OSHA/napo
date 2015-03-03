@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * Implements hook_requirements().
+ */
+function napo_migration_requirements($phase) {
+  global $databases;
+  if (!isset($databases['osha'])) {
+    drupal_set_message('You must set in settings.php a connection to OSHA database for taxonomy import', 'warning');
+  }
+}
+/**
+ * Implements hook_migrate_api().
+ */
+function napo_migration_migrate_api() {
+  $osha_taxonomies_common_arguments = array(
+    'source_connection' => 'osha',
+    'source_version' => 7,
+    'group_name' => 'osha_taxonomies',
+    'class_name' => 'NapoMultilingualDrupalTerm7Migration',
+  );
+  $api = array(
+    'api' => 2,
+    'groups' => array(
+      'osha_taxonomies' => array(
+        'title' => t('Import taxonomies from OSHA'),
+      ),
+    ),
+    'migrations' => array(
+      'Thesaurus' => array(
+        'source_vocabulary' => 'thesaurus',
+        'destination_vocabulary' => 'thesaurus',
+        'class_name' => 'NapoMultilingualDrupalTerm7Migration',
+        'description' => 'Import Thesaurus Taxonomy from OSHA',
+      ) + $osha_taxonomies_common_arguments,
+      'NaceCodes' => array(
+        'source_vocabulary' => 'nace_codes',
+        'destination_vocabulary' => 'nace_codes',
+        'class_name' => 'NapoMultilingualDrupalTerm7Migration',
+        'description' => 'Import Nace Codes Taxonomy from OSHA',
+      ) + $osha_taxonomies_common_arguments,
+    ),
+  );
+  return $api;
+}
+
+

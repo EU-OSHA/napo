@@ -1,0 +1,12 @@
+name = Napo Migrations
+description = Migrations for Napo
+core = 7.x
+package = NAPO
+version = 7.x-0.1
+
+dependencies[] = migrate
+dependencies[] = migrate_d2d
+
+files[] = taxonomy/napo_migration.taxonomy.migrate.inc
+files[] = taxonomy/napo_migration.taxonomy.thesaurus.inc
+files[] = taxonomy/napo_migration.taxonomy.nace_codes.inc
