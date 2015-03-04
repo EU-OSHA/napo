@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Consortium Partner feature.
+ */
+
+include_once 'napo_consortium_partner.features.inc';

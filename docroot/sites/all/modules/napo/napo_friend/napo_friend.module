@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Napo Friend feature.
+ */
+
+include_once 'napo_friend.features.inc';
