@@ -1,11 +1,11 @@
 <?php
 
 $aliases['napo.staging'] = array(
-  'uri' => '',
+  'uri' => 'napo.edw.ro',
   'db-allows-remote' => TRUE,
-  'remote-host' => '',
-  'remote-user' => '',
-  'root' => '',
+  'remote-host' => 'Implement this in your aliases.local.php',
+  'remote-user' => 'Implement this in your aliases.local.php',
+  'root' => 'Implement this in your aliases.local.php',
   'path-aliases' => array(
     '%files' => 'sites/default/files',
   ),
@@ -16,25 +16,10 @@ $aliases['napo.staging'] = array(
   ),
 );
 
-$aliases['napo.staging.edw'] = array(
-  'uri' => '',
-  'db-allows-remote' => TRUE,
-  'remote-host' => '',
-  'remote-user' => '',
-  'root' => '',
-  'path-aliases' => array(
-    '%files' => 'sites/default/files',
-  ),
-);
-
-// This alias is used in install and update scripts.
-// Rewrite it in your aliases.local.php as you need.
-$aliases['napo.staging.sync'] = $aliases['napo.staging.edw'];
-
 // Example of local setting.
-// $aliases['osha.local'] = array(
-//   'uri' => 'osha.localhost',
-//   'root' => '/home/my_user/osha-website/docroot',
+// $aliases['napo.local'] = array(
+//   'uri' => 'napo.localhost',
+//   'root' => '/home/my_user/napo-website/docroot',
 // );
 
 // Add your local aliases.
