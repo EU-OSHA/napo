@@ -9,6 +9,7 @@ conf/config.json
 .idea
 phpunit.xml
 results/*
+temp
 
 
 # User Generated Content #
