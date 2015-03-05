@@ -460,6 +460,7 @@ $options['init-modules'] = array(
 
   'napo_friend',
   'napo_consortium_partner',
+  'napo_lesson',
 
   'napo_migration',
 
@@ -470,7 +471,7 @@ $options['init-modules'] = array(
 
 
 $options['init-themes'] = array(
-  'zen',
+  'bootstrap',
   'osha_admin',
 );
 
