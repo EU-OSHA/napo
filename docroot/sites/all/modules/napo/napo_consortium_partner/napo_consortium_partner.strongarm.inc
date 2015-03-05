@@ -62,6 +62,52 @@ function napo_consortium_partner_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_comment_filter_consortium_partner';
+  $strongarm->value = 0;
+  $export['entity_translation_comment_filter_consortium_partner'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_consortium_partner';
+  $strongarm->value = 0;
+  $export['entity_translation_hide_translation_links_consortium_partner'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_consortium_partner';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_consortium_partner'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_modes_consortium_partner';
+  $strongarm->value = array(
+    'full' => 'full',
+    'teaser' => 'teaser',
+    'rss' => 0,
+    'search_index' => 0,
+    'search_result' => 0,
+    'diff_standard' => 0,
+    'osha_slideshow' => 0,
+    'print' => 0,
+    'token' => 0,
+    'nodeform' => 0,
+  );
+  $export['exclude_node_title_content_type_modes_consortium_partner'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_value_consortium_partner';
+  $strongarm->value = 'all';
+  $export['exclude_node_title_content_type_value_consortium_partner'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__consortium_partner';
   $strongarm->value = array(
     'view_modes' => array(),
@@ -107,6 +153,13 @@ function napo_consortium_partner_strongarm() {
   $strongarm->name = 'menu_parent_consortium_partner';
   $strongarm->value = 'main-menu:0';
   $export['menu_parent_consortium_partner'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'nodeblock_comment_link_consortium_partner';
+  $strongarm->value = '0';
+  $export['nodeblock_comment_link_consortium_partner'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
