@@ -387,6 +387,20 @@ function napo_lesson_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_lesson_pattern';
+  $strongarm->value = 'using-napo/napo-for-teachers/[node:title]';
+  $export['pathauto_node_lesson_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_lesson_toolkit_pattern';
+  $strongarm->value = 'using-napo/napo-for-teachers/[node:title]';
+  $export['pathauto_node_lesson_toolkit_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_node_type_lesson';
   $strongarm->value = 1;
   $export['workbench_access_node_type_lesson'] = $strongarm;
