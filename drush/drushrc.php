@@ -460,6 +460,7 @@ $options['init-modules'] = array(
 
   'napo_friend',
   'napo_consortium_partner',
+  'napo_lesson',
 
   'napo_migration',
 

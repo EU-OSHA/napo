@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Napo Lesson feature.
+ */
+
+include_once 'napo_lesson.features.inc';
