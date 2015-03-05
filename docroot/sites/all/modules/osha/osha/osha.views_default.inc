@@ -393,30 +393,13 @@ function osha_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
+    'all' => 'all',
     'article' => 'article',
-    'banner' => 'banner',
     'page' => 'page',
-    'blog' => 'blog',
-    'calls' => 'calls',
-    'press_contact' => 'press_contact',
-    'directive' => 'directive',
-    'external_url' => 'external_url',
-    'file' => 'file',
-    'flickr' => 'flickr',
-    'fop_page' => 'fop_page',
-    'guideline' => 'guideline',
-    'highlight' => 'highlight',
-    'infographic' => 'infographic',
-    'job_vacancies' => 'job_vacancies',
-    'news' => 'news',
-    'newsletter_article' => 'newsletter_article',
-    'note_to_editor' => 'note_to_editor',
-    'press_release' => 'press_release',
-    'publication' => 'publication',
-    'seminar' => 'seminar',
-    'slideshare' => 'slideshare',
-    'wiki_page' => 'wiki_page',
-    'youtube' => 'youtube',
+    'consortium_partner' => 'consortium_partner',
+    'lesson' => 'lesson',
+    'lesson_toolkit' => 'lesson_toolkit',
+    'napo_friend' => 'napo_friend',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   $handler->display->display_options['filters']['type']['exposed'] = TRUE;
@@ -434,10 +417,6 @@ function osha_views_default_views() {
     6 => 0,
     7 => 0,
     8 => 0,
-    9 => 0,
-    10 => 0,
-    11 => 0,
-    12 => 0,
   );
   $handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
   /* Filter criterion: User: Name */
