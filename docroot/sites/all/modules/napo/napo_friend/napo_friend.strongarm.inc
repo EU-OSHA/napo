@@ -96,6 +96,31 @@ function napo_friend_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_modes_napo_friend';
+  $strongarm->value = array(
+    'full' => 'full',
+    'teaser' => 'teaser',
+    'rss' => 0,
+    'search_index' => 0,
+    'search_result' => 0,
+    'diff_standard' => 0,
+    'osha_slideshow' => 0,
+    'print' => 0,
+    'token' => 0,
+    'nodeform' => 0,
+  );
+  $export['exclude_node_title_content_type_modes_napo_friend'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'exclude_node_title_content_type_value_napo_friend';
+  $strongarm->value = 'all';
+  $export['exclude_node_title_content_type_value_napo_friend'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__napo_friend';
   $strongarm->value = array(
     'view_modes' => array(),
@@ -167,6 +192,27 @@ function napo_friend_strongarm() {
   $strongarm->name = 'node_submitted_napo_friend';
   $strongarm->value = 0;
   $export['node_submitted_napo_friend'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_napo_friend_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_napo_friend_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'workbench_access_node_type_napo_friend';
+  $strongarm->value = 1;
+  $export['workbench_access_node_type_napo_friend'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'workbench_moderation_default_state_napo_friend';
+  $strongarm->value = 'draft';
+  $export['workbench_moderation_default_state_napo_friend'] = $strongarm;
 
   return $export;
 }

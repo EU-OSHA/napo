@@ -1,6 +1,6 @@
 <?php
 
-$aliases['napo.staging'] = array(
+$aliases['staging'] = array(
   'uri' => 'napo.edw.ro',
   'db-allows-remote' => TRUE,
   'remote-host' => 'Implement this in your aliases.local.php',
@@ -17,7 +17,7 @@ $aliases['napo.staging'] = array(
 );
 
 // Example of local setting.
-// $aliases['napo.local'] = array(
+// $aliases['local'] = array(
 //   'uri' => 'napo.localhost',
 //   'root' => '/home/my_user/napo-website/docroot',
 // );
