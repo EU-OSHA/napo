@@ -471,7 +471,7 @@ $options['init-modules'] = array(
 
 
 $options['init-themes'] = array(
-  'zen',
+  'bootstrap',
   'osha_admin',
 );
 
