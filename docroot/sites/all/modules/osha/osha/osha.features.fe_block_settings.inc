@@ -23,12 +23,6 @@ function osha_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'bootstrap' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bootstrap',
-        'weight' => 0,
-      ),
       'napo_frontend' => array(
         'region' => '',
         'status' => 0,
@@ -57,17 +51,11 @@ function osha_default_fe_block_settings() {
     'pages' => '',
     'roles' => array(),
     'themes' => array(
-      'bootstrap' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'bootstrap',
-        'weight' => 0,
-      ),
       'napo_frontend' => array(
-        'region' => 'header',
+        'region' => 'menu',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => 0,
+        'weight' => -37,
       ),
       'osha_admin' => array(
         'region' => '',
