@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * Implments hook_form_FORM_ID_alter().
+ */
+function napo_common_form_chosen_admin_settings_alter(&$form, $form_state) {
+  // Add options to chosen 30.
+  $form['chosen_minimum_single']['#options']['30'] = '30';
+  $form['chosen_minimum_multiple']['#options']['30'] = '30';
+}
