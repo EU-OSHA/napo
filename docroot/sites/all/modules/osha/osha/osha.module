@@ -390,13 +390,6 @@ function osha_entity_info_alter(&$entity_info) {
 
 function osha_disabled_language_list() {
   $disabled = array(
-    'ru',
-    'tr',
-    'sq',
-    'bs',
-    'sr',
-    'mk',
-    'sh',
   );
   return drupal_map_assoc($disabled);
 }
