@@ -1,0 +1,5 @@
+name = Napo Common Module
+description = Generic functions and hooks for Napo.
+core = 7.x
+package = NAPO
+version = 7.x-0.1

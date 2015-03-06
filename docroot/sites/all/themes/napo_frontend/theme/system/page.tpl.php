@@ -140,9 +140,15 @@
       <?php if (!empty($breadcrumb)): print $breadcrumb; endif;?>
       <a id="main-content"></a>
       <?php print render($title_prefix); ?>
-      <?php if (!empty($title)): ?>
+      <?php if (!empty($title) && !$is_front): ?>
         <h1 class="page-header"><?php print $title; ?></h1>
       <?php endif; ?>
+      <?php
+      // This will remove the 'No front page content has been created yet.'
+      if ($is_front) {
+        $page['content']['system_main']['default_message'] = array();
+      }
+      ?>
       <?php print render($title_suffix); ?>
       <?php print $messages; ?>
       <?php if (!empty($tabs)): ?>
@@ -167,4 +173,7 @@
 </div>
 <footer class="footer container">
   <?php print render($page['footer']); ?>
+  <div class="footer_menu">
+    <?php print render($page['footer_menu']); ?>
+  </div>
 </footer>
