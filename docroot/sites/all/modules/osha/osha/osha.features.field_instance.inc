@@ -1438,11 +1438,11 @@ function osha_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'options',
+      'module' => 'multiple_selects',
       'settings' => array(
         'apply_chosen' => 1,
       ),
-      'type' => 'options_select',
+      'type' => 'multiple_selects',
       'weight' => 9,
     ),
   );
