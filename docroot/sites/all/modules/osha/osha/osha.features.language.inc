@@ -23,6 +23,19 @@ function osha_locale_default_languages() {
     'prefix' => 'bg',
     'weight' => 2,
   );
+  // Exported language: ca.
+  $languages['ca'] = array(
+    'language' => 'ca',
+    'name' => 'Catalan',
+    'native' => 'Català',
+    'direction' => 0,
+    'enabled' => 1,
+    'plurals' => 0,
+    'formula' => '',
+    'domain' => '',
+    'prefix' => 'ca',
+    'weight' => 10,
+  );
   // Exported language: cs.
   $languages['cs'] = array(
     'language' => 'cs',
@@ -302,12 +315,12 @@ function osha_locale_default_languages() {
     'name' => 'Russian',
     'native' => 'Русский',
     'direction' => 0,
-    'enabled' => 0,
+    'enabled' => 1,
     'plurals' => 0,
     'formula' => '',
     'domain' => '',
     'prefix' => 'ru',
-    'weight' => 8,
+    'weight' => 10,
   );
   // Exported language: sk.
   $languages['sk'] = array(
@@ -354,12 +367,12 @@ function osha_locale_default_languages() {
     'name' => 'Turkish',
     'native' => 'Türkçe',
     'direction' => 0,
-    'enabled' => 0,
+    'enabled' => 1,
     'plurals' => 0,
     'formula' => '',
     'domain' => '',
     'prefix' => 'tr',
-    'weight' => 9,
+    'weight' => 10,
   );
   return $languages;
 }

@@ -24,8 +24,8 @@ function osha_alert_service_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => 'sidebar_second',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'napo_frontend',
         'weight' => -28,
       ),

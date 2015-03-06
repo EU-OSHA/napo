@@ -52,10 +52,10 @@ function osha_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'menu',
+        'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => 0,
+        'weight' => -37,
       ),
       'osha_admin' => array(
         'region' => '',
