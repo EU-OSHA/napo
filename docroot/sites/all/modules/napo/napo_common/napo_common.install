@@ -1,0 +1,12 @@
+<?php
+
+/**
+ * Implements hook_enable().
+ */
+function napo_common_enable() {
+  // Remove page content type.
+  $info = node_type_get_type('page');
+  if (!empty($info)) {
+    node_type_delete('page');
+  }
+}

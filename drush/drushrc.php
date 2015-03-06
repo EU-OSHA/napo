@@ -458,6 +458,7 @@ $options['init-modules'] = array(
   'osha_reminders',
   'osha_lingua_tools',
 
+  'napo_common',
   'napo_friend',
   'napo_consortium_partner',
   'napo_lesson',
