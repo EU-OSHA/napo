@@ -434,6 +434,7 @@ $options['init-modules'] = array(
   'entity_collection_db',
 
   'entityqueue',
+  'jcarousel',
 
   // Social share
   'addtoany',
