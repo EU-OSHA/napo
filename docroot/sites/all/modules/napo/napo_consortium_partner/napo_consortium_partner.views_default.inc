@@ -29,7 +29,8 @@ function napo_consortium_partner_views_default_views() {
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'some';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '0';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'jcarousel';
   $handler->display->display_options['style_options']['wrap'] = '0';
   $handler->display->display_options['style_options']['visible'] = '7';
@@ -40,6 +41,15 @@ function napo_consortium_partner_views_default_views() {
   $handler->display->display_options['style_options']['easing'] = '';
   $handler->display->display_options['style_options']['vertical'] = 0;
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Entityqueue: Node Queue */
+  $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
+  $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'node';
+  $handler->display->display_options['relationships']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
+  $handler->display->display_options['relationships']['entityqueue_relationship']['required'] = TRUE;
+  $handler->display->display_options['relationships']['entityqueue_relationship']['limit'] = 1;
+  $handler->display->display_options['relationships']['entityqueue_relationship']['queues'] = array(
+    'consortium_partners' => 'consortium_partners',
+  );
   /* Field: Content: URL */
   $handler->display->display_options['fields']['field_url']['id'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['table'] = 'field_data_field_url';
@@ -88,6 +98,7 @@ function napo_consortium_partner_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('Node Queue'),
     t('Block'),
   );
   $export['consortium_partners'] = $view;
