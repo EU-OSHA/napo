@@ -288,23 +288,8 @@ function workbench_moderation_node_unpublish_form_submit($form, &$form_state) {
   global $user;
   $node = $form['node']['#value'];
 
-  // Remove the moderation record's "published" flag.
-  $query = db_update('workbench_moderation_node_history')
-    ->condition('hid', $node->workbench_moderation['published']->hid)
-    ->fields(array('published' => 0))
-    ->execute();
-
-  // Moderate the revision.
+  // Moderate the revision. This will do the heavy lifting.
   workbench_moderation_moderate($node, $form_state['values']['state']);
-
-  // Make sure the 'current' revision is the 'live' revision -- ie, the revision
-  // in {node}.
-  $live_revision = workbench_moderation_node_current_load($node);
-  $live_revision->status = 0;
-  $live_revision->revision = 0;
-  $live_revision->workbench_moderation['updating_live_revision'] = TRUE;
-  // @TODO: do we trust node_save() here?
-  node_save($live_revision);
 
   drupal_set_message(t('The live revision of this content has been unpublished.'));
   $form_state['redirect'] ="node/{$node->nid}/moderation";
