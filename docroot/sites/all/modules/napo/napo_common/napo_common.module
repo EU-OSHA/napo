@@ -8,3 +8,18 @@ function napo_common_form_chosen_admin_settings_alter(&$form, $form_state) {
   $form['chosen_minimum_single']['#options']['30'] = '30';
   $form['chosen_minimum_multiple']['#options']['30'] = '30';
 }
+
+/**
+ * Implements hook_node_submit().
+ */
+function napo_common_node_submit($node, $form, &$form_state) {
+  // Add default alias for translations as the english alias (if one exists).
+  $entity_trans_form = !empty($form_state['entity_translation']);
+  if ($entity_trans_form && $form_state['entity_translation']['is_translation'] === TRUE
+    && empty($form_state['values']['path']['alias'])) {
+    $path = path_load(array('source' => 'node/' . $node->nid, 'language' => 'en'));
+    if (!empty($path)) {
+      $node->path['alias'] = $path['alias'];
+    }
+  }
+}
