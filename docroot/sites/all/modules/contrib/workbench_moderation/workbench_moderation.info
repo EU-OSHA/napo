@@ -13,6 +13,7 @@ files[] = includes/workbench_moderation_handler_filter_state.inc
 files[] = includes/workbench_moderation_handler_filter_moderated_type.inc
 files[] = includes/workbench_moderation_handler_filter_user_can_moderate.inc
 files[] = workbench_moderation.migrate.inc
+files[] = tests/external_node_update.test
 files[] = tests/workbench_moderation.test
 files[] = tests/workbench_moderation.files.test
 

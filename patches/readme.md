@@ -7,6 +7,11 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* workbench_moderation
+  * Fix saving 2 current statuses for same revision
+  * https://www.drupal.org/files/issues/1436260-workbench_moderation-states-node_save-74.patch
+  * https://www.drupal.org/node/1436260
+
 * spamspan
   * Get default settings from variables
   * https://www.drupal.org/files/issues/spamspan-default-settings-from-variables-2430079_1.patch
