@@ -5,7 +5,14 @@ Build scripts and source code for the NAPO project
 
 ##Pre-requisites
 
-1. Drush (7.0-dev)
+1. Install Drush (7.0-dev):
+
+   * Install composer (```curl -sS https://getcomposer.org/installer | php```) somwhere in the PATH, and rename ```composer.phar``` to ```composer```.
+   * Clone drush repo in your working directory (i.e. ~/Work) - ```git clone git@github.com:drush-ops/drush.git ~/Work/drush```)
+   * ```cd ~/Work/drush```
+   * ```composer install``` - install drush w/composer
+   * ```sudo ln -s ~/Work/drush/drush /usr/bin/``` - add to PATH
+
 2. Virtual host for your Drupal instance that points to the docroot/ directory from this repo
 
 ##Quick start##
