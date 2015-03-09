@@ -204,7 +204,7 @@ function napo_friend_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_node_type_napo_friend';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['workbench_access_node_type_napo_friend'] = $strongarm;
 
   $strongarm = new stdClass();
