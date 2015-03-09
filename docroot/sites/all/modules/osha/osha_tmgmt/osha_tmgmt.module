@@ -995,7 +995,7 @@ function osha_tmgmt_form_tmgmt_entity_ui_translate_form_alter(&$form, &$form_sta
   $status_col_index = 3;
   unset($form['languages']['#header'][$status_col_index]);
   // Remove Operations Column.
-  unset($form['languages']['#header'][5]);
+//  unset($form['languages']['#header'][5]);
   // Remove all previously disabled checkboxes - we override that.
   $languages = language_list();
 
@@ -1004,7 +1004,7 @@ function osha_tmgmt_form_tmgmt_entity_ui_translate_form_alter(&$form, &$form_sta
     unset($form['languages'][$langcode]);
     $form['languages']['#options'][$langcode][$pt_col_index] = t('None');
     // Remove Operations Column.
-    unset($form['languages']['#options'][$langcode][5]);
+//    unset($form['languages']['#options'][$langcode][5]);
 
     if (isset($items[$langcode])) {
       $item = $items[$langcode];
