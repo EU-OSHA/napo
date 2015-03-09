@@ -433,6 +433,8 @@ $options['init-modules'] = array(
   'entity_collection',
   'entity_collection_db',
 
+  'entityqueue',
+
   // Social share
   'addtoany',
   'on_the_web',
