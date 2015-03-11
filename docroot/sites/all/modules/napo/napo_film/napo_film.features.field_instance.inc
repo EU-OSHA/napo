@@ -61,8 +61,8 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_film-field_main_video'
-  $field_instances['node-napo_film-field_main_video'] = array(
+  // Exported field_instance: 'node-napo_film-field_napo_video'
+  $field_instances['node-napo_film-field_napo_video'] = array(
     'bundle' => 'napo_film',
     'default_value' => NULL,
     'deleted' => 0,
@@ -91,7 +91,7 @@ function napo_film_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_main_video',
+    'field_name' => 'field_napo_video',
     'label' => 'Main Video',
     'required' => 0,
     'settings' => array(
