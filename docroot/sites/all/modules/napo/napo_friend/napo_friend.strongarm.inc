@@ -155,13 +155,13 @@ function napo_friend_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '7',
-        ),
-        'path' => array(
           'weight' => '6',
         ),
-        'redirect' => array(
+        'path' => array(
           'weight' => '5',
+        ),
+        'redirect' => array(
+          'weight' => '4',
         ),
         'workbench_access' => array(
           'weight' => '3',
