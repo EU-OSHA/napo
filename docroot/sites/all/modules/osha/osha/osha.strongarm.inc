@@ -1315,7 +1315,8 @@ function osha_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_article';
   $strongarm->value = array(
-    0 => 'revision',
+    0 => 'status',
+    1 => 'revision',
   );
   $export['node_options_article'] = $strongarm;
 

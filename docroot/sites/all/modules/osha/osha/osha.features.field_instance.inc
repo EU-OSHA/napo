@@ -909,52 +909,6 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_flickr_tags'
-  $field_instances['node-article-field_flickr_tags'] = array(
-    'bundle' => 'article',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Grab Flickr photos with these tags only. Comma separated.',
-    'display' => array(
-      'default' => array(
-        'label' => 'inline',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 10,
-      ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 10,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_flickr_tags',
-    'label' => 'Flickr tags',
-    'required' => FALSE,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'taxonomy',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-      ),
-      'type' => 'taxonomy_autocomplete',
-      'weight' => 1,
-    ),
-  );
-
   // Exported field_instance: 'node-article-field_icon'
   $field_instances['node-article-field_icon'] = array(
     'bundle' => 'article',
@@ -1632,8 +1586,6 @@ function osha_field_default_field_instances() {
   t('Character count');
   t('Description');
   t('Expiration date');
-  t('Flickr tags');
-  t('Grab Flickr photos with these tags only. Comma separated.');
   t('Icon');
   t('Image');
   t('Language');
