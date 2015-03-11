@@ -22,7 +22,7 @@ function napo_lesson_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 2,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -69,13 +69,13 @@ function napo_lesson_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -111,8 +111,8 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson-field_napo_video'
-  $field_instances['node-lesson-field_napo_video'] = array(
+  // Exported field_instance: 'node-lesson-field_lesson_video'
+  $field_instances['node-lesson-field_lesson_video'] = array(
     'bundle' => 'lesson',
     'default_value' => NULL,
     'deleted' => 0,
@@ -125,7 +125,7 @@ function napo_lesson_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -141,8 +141,8 @@ function napo_lesson_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_napo_video',
-    'label' => 'Video',
+    'field_name' => 'field_lesson_video',
+    'label' => 'Lesson Video',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -152,7 +152,11 @@ function napo_lesson_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
+        'allow_duplicates' => 0,
         'apply_chosen' => '',
+        'close_modal' => 0,
+        'pass_argument' => 0,
+        'view' => 'entity_references|entityreference_view_widget_1',
       ),
       'type' => 'options_select',
       'weight' => 3,
@@ -167,10 +171,15 @@ function napo_lesson_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
+        'label' => 'hidden',
+        'module' => 'title',
+        'settings' => array(
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => '',
+        ),
+        'type' => 'title_linked',
+        'weight' => 1,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -496,10 +505,10 @@ function napo_lesson_field_default_field_instances() {
   t('Description');
   t('Image');
   t('Lesson Toolkit');
+  t('Lesson Video');
   t('Name');
   t('Target Ages');
   t('Title');
-  t('Video');
 
   return $field_instances;
 }
