@@ -740,7 +740,7 @@ function osha_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_archived',
-    'label' => 'Outdated',
+    'label' => 'Mark as outdated',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1589,8 +1589,8 @@ function osha_field_default_field_instances() {
   t('Icon');
   t('Image');
   t('Language');
+  t('Mark as outdated');
   t('Nace');
-  t('Outdated');
   t('Page count');
   t('Publication date');
   t('Tags');

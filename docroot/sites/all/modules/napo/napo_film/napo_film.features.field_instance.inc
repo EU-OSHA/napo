@@ -94,7 +94,7 @@ function napo_film_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_archived',
-    'label' => 'Outdated',
+    'label' => 'Mark as outdated',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -104,7 +104,7 @@ function napo_film_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'display_label' => 0,
+        'display_label' => 1,
       ),
       'type' => 'options_onoff',
       'weight' => 4,
@@ -316,9 +316,8 @@ function napo_film_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'list',
         'settings' => array(),
-        'type' => 'list_default',
+        'type' => 'hidden',
         'weight' => 9,
       ),
       'osha_slideshow' => array(
@@ -346,7 +345,7 @@ function napo_film_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(
-        'display_label' => 0,
+        'display_label' => 1,
       ),
       'type' => 'options_onoff',
       'weight' => 9,
@@ -825,7 +824,6 @@ function napo_film_field_default_field_instances() {
   t('Main Video');
   t('Mark as outdated');
   t('Napo film');
-  t('Outdated');
   t('Publication date');
   t('Tags');
   t('Title');
