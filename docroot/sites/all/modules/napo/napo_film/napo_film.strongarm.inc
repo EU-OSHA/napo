@@ -305,13 +305,13 @@ function napo_film_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '5',
+          'weight' => '12',
         ),
         'path' => array(
-          'weight' => '3',
+          'weight' => '10',
         ),
         'redirect' => array(
-          'weight' => '4',
+          'weight' => '11',
         ),
         'language' => array(
           'weight' => '2',
