@@ -144,12 +144,13 @@ function napo_lesson_field_default_field_instances() {
     'settings' => array(
       'description_field' => 1,
       'entity_translation_sync' => 0,
-      'file_directory' => 'publications/documents',
+      'file_directory' => 'lessons',
       'file_extensions' => 'pdf doc docx ppt pptx html odp odt txt',
       'max_filesize' => '50 MB',
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'file',
       'settings' => array(
         'progress_indicator' => 'throbber',
