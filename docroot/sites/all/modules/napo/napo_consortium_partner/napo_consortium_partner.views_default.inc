@@ -56,6 +56,8 @@ function napo_consortium_partner_views_default_views() {
   $handler->display->display_options['fields']['field_url']['field'] = 'field_url';
   $handler->display->display_options['fields']['field_url']['label'] = '';
   $handler->display->display_options['fields']['field_url']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_url']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_url']['alter']['text'] = '[field_url-url]';
   $handler->display->display_options['fields']['field_url']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_url']['click_sort_column'] = 'url';
   /* Field: Field: Image */
@@ -65,6 +67,8 @@ function napo_consortium_partner_views_default_views() {
   $handler->display->display_options['fields']['field_image']['label'] = '';
   $handler->display->display_options['fields']['field_image']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['field_image']['alter']['path'] = '[field_url]';
+  $handler->display->display_options['fields']['field_image']['alter']['external'] = TRUE;
+  $handler->display->display_options['fields']['field_image']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
@@ -99,6 +103,7 @@ function napo_consortium_partner_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Node Queue'),
+    t('[field_url-url]'),
     t('Block'),
   );
   $export['consortium_partners'] = $view;
