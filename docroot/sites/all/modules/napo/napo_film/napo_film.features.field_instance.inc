@@ -22,7 +22,7 @@ function napo_film_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -74,10 +74,9 @@ function napo_film_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'list',
         'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 5,
+        'type' => 'hidden',
+        'weight' => 4,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -119,13 +118,14 @@ function napo_film_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'links' => 0,
+          'view_mode' => 'teaser',
         ),
-        'type' => 'entityreference_label',
-        'weight' => 4,
+        'type' => 'entityreference_entity_view',
+        'weight' => 2,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -167,11 +167,11 @@ function napo_film_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -211,10 +211,15 @@ function napo_film_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
+        'label' => 'hidden',
+        'module' => 'title',
+        'settings' => array(
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => 'h1',
+        ),
+        'type' => 'title_linked',
+        'weight' => 0,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -265,6 +270,12 @@ function napo_film_field_default_field_instances() {
         'settings' => array(),
         'type' => 'text_default',
         'weight' => 1,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -320,6 +331,12 @@ function napo_film_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 9,
       ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
       'osha_slideshow' => array(
         'label' => 'above',
         'settings' => array(),
@@ -359,7 +376,7 @@ function napo_film_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
@@ -367,6 +384,12 @@ function napo_film_field_default_field_instances() {
         ),
         'type' => 'image',
         'weight' => 2,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -389,7 +412,7 @@ function napo_film_field_default_field_instances() {
       'alt_field' => 0,
       'default_image' => 0,
       'entity_translation_sync' => 0,
-      'file_directory' => '',
+      'file_directory' => 'napo_films_images',
       'file_extensions' => 'png gif jpg jpeg',
       'image_field_caption' => 0,
       'max_filesize' => '',
@@ -432,12 +455,18 @@ function napo_film_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'link' => 1,
         ),
         'type' => 'entityreference_label',
+        'weight' => 7,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 7,
       ),
       'osha_slideshow' => array(
@@ -479,7 +508,7 @@ function napo_film_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'date',
         'settings' => array(
           'format_type' => 'long',
@@ -491,6 +520,12 @@ function napo_film_field_default_field_instances() {
         ),
         'type' => 'date_default',
         'weight' => 8,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -541,11 +576,17 @@ function napo_film_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
         'weight' => 6,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -584,7 +625,7 @@ function napo_film_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'file_entity',
         'settings' => array(
           'autoplay' => 0,
@@ -597,6 +638,12 @@ function napo_film_field_default_field_instances() {
         ),
         'type' => 'file_video',
         'weight' => 3,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -657,10 +704,16 @@ function napo_film_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'inline',
         'module' => 'i18n_taxonomy',
         'settings' => array(),
         'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 4,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 4,
       ),
       'osha_slideshow' => array(
@@ -703,7 +756,7 @@ function napo_film_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'youtube',
         'settings' => array(
           'youtube_autohide' => FALSE,
@@ -717,6 +770,22 @@ function napo_film_field_default_field_instances() {
         ),
         'type' => 'youtube_video',
         'weight' => 5,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'inline',
+        'module' => 'youtube',
+        'settings' => array(
+          'youtube_autohide' => FALSE,
+          'youtube_autoplay' => FALSE,
+          'youtube_controls' => FALSE,
+          'youtube_height' => NULL,
+          'youtube_iv_load_policy' => FALSE,
+          'youtube_showinfo' => FALSE,
+          'youtube_size' => '420x315',
+          'youtube_width' => NULL,
+        ),
+        'type' => 'youtube_video',
+        'weight' => 0,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -766,15 +835,21 @@ function napo_film_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'title',
         'settings' => array(
           'title_class' => '',
           'title_link' => '',
-          'title_style' => '',
+          'title_style' => 'h1',
         ),
         'type' => 'title_linked',
         'weight' => 0,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
       ),
       'osha_slideshow' => array(
         'label' => 'above',

@@ -5,3 +5,13 @@
  */
 
 include_once 'napo_film.features.inc';
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function napo_film_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['film_main_video_teaser'] = array(
+    'label' => t('Film Video teaser'),
+    'custom settings' => TRUE,
+  );
+}
