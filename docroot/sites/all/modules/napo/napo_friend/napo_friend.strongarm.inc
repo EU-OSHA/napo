@@ -151,6 +151,9 @@ function napo_friend_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'film_main_video_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
