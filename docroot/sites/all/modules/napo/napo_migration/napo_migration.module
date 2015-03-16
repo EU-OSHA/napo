@@ -19,6 +19,7 @@ function napo_migration_migrate_api() {
     'group_name' => 'osha_taxonomies',
     'class_name' => 'NapoMultilingualDrupalTerm7Migration',
   );
+  $data_export_path = napo_migration_get_data_dir();
   $api = array(
     'api' => 2,
     'groups' => array(
@@ -44,4 +45,15 @@ function napo_migration_migrate_api() {
   return $api;
 }
 
-
+function napo_migration_get_data_dir($subdirectory = '') {
+  $ret = variable_get('napo_data_dir', NULL);
+  if (empty($ret)) {
+    drupal_set_message('Please configure the "osha_data_dir" variable to point to your data storage', 'error');
+  }
+  else {
+    if (!empty($subdirectory)) {
+      $ret .= DIRECTORY_SEPARATOR . $subdirectory;
+    }
+  }
+  return $ret;
+}
