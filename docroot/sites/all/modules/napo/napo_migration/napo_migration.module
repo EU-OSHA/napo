@@ -40,6 +40,13 @@ function napo_migration_migrate_api() {
         'class_name' => 'NapoMultilingualDrupalTerm7Migration',
         'description' => 'Import Nace Codes Taxonomy from OSHA',
       ) + $osha_taxonomies_common_arguments,
+      'Pages' => array(
+        'class_name' => 'NapoMigrationPages',
+        'description' => 'Import Napo Pages',
+        'group_name' => 'napo_content',
+        'file_name' => $data_export_path . '/napo_pages.csv',
+        'file_name_whitelist' => $data_export_path . '/napo_pages_whitelist.json',
+      ),
     ),
   );
   return $api;
