@@ -40,6 +40,20 @@ function napo_migration_migrate_api() {
         'class_name' => 'NapoMultilingualDrupalTerm7Migration',
         'description' => 'Import Nace Codes Taxonomy from OSHA',
       ) + $osha_taxonomies_common_arguments,
+      'Films' => array(
+        'class_name' => 'NapoMigrationFilm',
+        'description' => 'Import Napo Films',
+        'group_name' => 'napo_content',
+        'file_name' => $data_export_path . '/napo_films.json',
+        'file_name_youtube' => $data_export_path . '/napo_youtube.csv',
+      ),
+      'Episodes' => array(
+        'class_name' => 'NapoMigrationEpisodes',
+        'description' => 'Import Napo Episodes',
+        'group_name' => 'napo_content',
+        'file_name' => $data_export_path . '/napo_films.json',
+        'file_name_youtube' => $data_export_path . '/napo_youtube.csv',
+      ),
     ),
   );
   return $api;
