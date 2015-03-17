@@ -640,6 +640,33 @@ class MigrationUtil {
     }
   }
 
+  public static function createRedirectsFromAliases($entity, $row) {
+    // Create redirects for additional aliases
+    $languages = array_keys($entity->translations->data);
+    if (isset($row->language) && !in_array($row->language, $languages)) {
+      $languages[] = $row->language;
+    }
+    foreach ($languages as $language) {
+      // Create redirect for all languages, duplicates are handled in createRedirects.
+      if (!empty($row->aliases[$language])) {
+        $aliases = explode(',', $row->aliases[$language]);
+        $aliases = array_map('trim', $aliases);
+        foreach ($aliases as $alias) {
+          if (preg_match('/^\/..\//', $alias)) {
+            // Remove /lg/ and create redirect.
+            MigrationUtil::createRedirects($entity, substr($alias, 4));
+          } else if (substr($alias, 0, 1) == '/') {
+            // Language is not included, remove / and create redirect.
+            MigrationUtil::createRedirects($entity, substr($alias, 1));
+          } else {
+            // Create redirect as it is.
+            MigrationUtil::createRedirects($entity, $alias);
+          }
+        }
+      }
+    }
+  }
+
   /**
    * Find the taxonomy term ID if a taxonomy field value (entity) is provided
    * @param $vocabulary_name
