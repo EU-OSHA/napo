@@ -138,15 +138,106 @@ class NapoMigrationPages extends Migration {
       }
       if (!empty($row->text[$language])) {
         $entity->body[$language] = array();
-        $entity->body[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->text[$language]);
+        $text = MigrationUtil::decodeHTMLText($row->text[$language]);
+        $text = str_replace("\n", '', $text);
+        $tidy = new tidy();
+        $tidy_conf = array(
+          'clean' => TRUE,
+          'drop-empty-paras' => TRUE,
+        );
+        $text = $tidy->repairString($text, $tidy_conf, 'utf8');
+        // Remove first h1 tag because it's the same with title.
+        $text = $this->removeTags($text, 'h1', 0);
+        switch ($row->id) {
+          case 'who-is-napo/who-is-napo':
+            // Remove napo image from text.
+            $text = $this->removeNapoImage($text);
+            break;
+
+          case 'napos-films/napos-films':
+            // Only the first 3 paragraphs are the page content.
+            $text = $this->getFirstParagraphs($text, 3);
+            break;
+
+          case 'rights-and-permissions/rights-and-permissions':
+            // Remove first h3 - the same with title.
+            $text = $this->removeTags($text, 'h3', 0);
+            break;
+        }
+        // Clean again after parsing.
+        $text = $tidy->repairString($text, $tidy_conf, 'utf8');
+        $text = str_replace("\n", '', $text);
+        $entity->body[$language][0]['value'] = $text;
         $entity->body[$language][0]['format'] = 'full_html';
-        // TODO Tidy the html.
         $has_translation = TRUE;
       }
       if ($has_translation) {
         MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
       }
     }
+  }
+
+  /**
+   * Removes the div containing the napo image.
+   */
+  public function removeNapoImage($text) {
+    // Remove the link to old fop pages.
+    $doc = new DOMDocument();
+    $body_html = mb_convert_encoding($text, 'HTML-ENTITIES', "UTF-8");
+    $doc->loadHTML($body_html);
+    $divs = $doc->getElementsByTagName('div');
+    $text_changed = FALSE;
+    if ($divs->length > 0) {
+      foreach ($divs as $key => $elem) {
+        $div = $doc->getElementsByTagName('div')->item($key);
+        foreach ($div->attributes as $attr) {
+          if ($attr->name == 'id' && $attr->value == 'napomain') {
+            $div->parentNode->removeChild($div);
+            $text_changed = TRUE;
+          }
+        }
+      }
+    }
+    if ($text_changed) {
+      $text = $doc->saveHTML();
+    }
+    return $text;
+  }
+
+  /**
+   * Removes from text the $tags_name from position $index.
+   */
+  public function removeTags($text, $tag_name, $index) {
+    $doc = new DOMDocument();
+    $body_html = mb_convert_encoding($text, 'HTML-ENTITIES', "UTF-8");
+    $doc->loadHTML($body_html);
+    $tags = $doc->getElementsByTagName($tag_name);
+    $text_changed = FALSE;
+    if ($tags->length > 0) {
+      $tag = $doc->getElementsByTagName($tag_name)->item($index);
+      $tag->parentNode->removeChild($tag);
+      $text_changed = TRUE;
+    }
+    if ($text_changed) {
+      $text = $doc->saveHTML();
+    }
+    return $text;
+  }
+
+  /**
+   * Returns the first $no paragraphs from text.
+   */
+  public function getFirstParagraphs($text, $no = 1) {
+    $doc = new DOMDocument();
+    $body_html = mb_convert_encoding($text, 'HTML-ENTITIES', "UTF-8");
+    $doc->loadHTML($body_html);
+    if ($doc->getElementsByTagName('p')->length > $no) {
+      $text = '';
+      for ($i = 0; $i < $no; $i++) {
+        $text .= '<p>' . $doc->getElementsByTagName('p')->item($i)->nodeValue . '</p>';
+      }
+    }
+    return $text;
   }
 
 
@@ -176,11 +267,17 @@ class NapoMigrationPages extends Migration {
         path_save($args);
       }
     }
+    // For default pages, redirect the path without the last part.
+    if ($row->is_default_page) {
+      $parts = explode('/', $row->id);
+      array_pop($parts);
+      $section_redirect = implode('/', $parts);
+      if ($row->new_path != $section_redirect) {
+        MigrationUtil::createRedirects($entity, $section_redirect);
+      }
+    }
     // Create redirect from old path.
     if ($row->new_path != $row->id) {
-      // TODO for default_pages redirect also the path without last uri part.
-      // ex: for rights-and-permissions/rights-and-permissions
-      // redirect from rights-and-permissions.
       MigrationUtil::createRedirects($entity, $row->id);
     }
     // Create redirects from aliases.
