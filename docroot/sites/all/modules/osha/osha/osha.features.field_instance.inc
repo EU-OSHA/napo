@@ -404,6 +404,57 @@ function osha_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'file-image-field_is_gallery'
+  $field_instances['file-image-field_is_gallery'] = array(
+    'bundle' => 'image',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 7,
+      ),
+      'preview' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'file',
+    'field_name' => 'field_is_gallery',
+    'label' => 'In gallery',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+      'wysiwyg_override' => 1,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 8,
+    ),
+  );
+
   // Exported field_instance: 'file-image-field_language'
   $field_instances['file-image-field_language'] = array(
     'bundle' => 'image',
@@ -451,7 +502,7 @@ function osha_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 32,
+      'weight' => 10,
     ),
   );
 
@@ -1588,6 +1639,7 @@ function osha_field_default_field_instances() {
   t('Expiration date');
   t('Icon');
   t('Image');
+  t('In gallery');
   t('Language');
   t('Mark as outdated');
   t('Nace');
