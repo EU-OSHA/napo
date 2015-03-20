@@ -30,7 +30,8 @@ function napo_common_node_submit($node, $form, &$form_state) {
 function napo_common_file_update($file) {
   // Move gallery files to gallery.
   if (!empty($file->field_is_gallery[LANGUAGE_NONE][0]['value'])
-    && strpos($file->uri, 'public://gallery') !== 0) {
+    && strpos($file->uri, 'public://gallery') !== 0
+    && strpos($file->uri, 'public://migrated-images') !== 0) {
     $file = file_move($file, 'public://gallery', FILE_EXISTS_RENAME);
   }
 }

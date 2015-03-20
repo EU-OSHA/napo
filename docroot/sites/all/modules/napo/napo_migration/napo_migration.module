@@ -26,6 +26,12 @@ function napo_migration_migrate_api() {
       'osha_taxonomies' => array(
         'title' => t('Import taxonomies from OSHA'),
       ),
+      'napo_content' => array(
+        'title' => t('Import content from NAPO export'),
+      ),
+      'napo_files' => array(
+        'title' => t('Import files from NAPO export'),
+      ),
     ),
     'migrations' => array(
       'Thesaurus' => array(
@@ -46,6 +52,12 @@ function napo_migration_migrate_api() {
         'group_name' => 'napo_content',
         'file_name' => $data_export_path . '/napo_pages.csv',
         'file_name_whitelist' => $data_export_path . '/napo_pages_whitelist.json',
+      ),
+      'Images' => array(
+        'class_name' => 'NapoMigrateImages',
+        'description' => 'Import Napo Images',
+        'group_name' => 'napo_files',
+        'file_name' => $data_export_path . '/napo_images.txt',
       ),
     ),
   );
