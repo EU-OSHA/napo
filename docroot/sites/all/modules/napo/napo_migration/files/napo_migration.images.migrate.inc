@@ -197,14 +197,11 @@ class NapoMigrateImages extends Migration {
     if (!empty($row->aliases)) {
       $aliases = explode(',', $row->aliases);
       foreach ($aliases as $alias) {
-        $redirect = new stdClass();
-        $redirect->source = trim($alias);
-        $redirect->source_options = array();
-        $redirect->redirect = 'file/' . $entity->fid;
-        $redirect->redirect_options = array();
-        $redirect->status_code = 0;
-        $redirect->type = 'redirect';
-        $redirect->language = LANGUAGE_NONE;
+        $source = trim($alias);
+        if (strpos($source, '/') === 0) {
+          $source = substr($source, 1);
+        }
+        MigrationUtil::createRedirects($entity, trim($source));
       }
     }
 
