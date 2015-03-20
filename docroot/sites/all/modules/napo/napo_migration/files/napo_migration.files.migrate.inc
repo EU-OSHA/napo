@@ -110,7 +110,7 @@ class NapoMigrateFiles extends Migration {
     // Existing Path.
     $conditions = array(
       'source' => 'file/' . $entity->fid,
-      'language' => $language,
+      'language' => LANGUAGE_NONE,
     );
     $existing_path = path_load($conditions);
     // New Path.
