@@ -24,7 +24,7 @@ function napo_film_form_napo_video_node_form_alter(&$form, &$form_state) {
   $form['field_napo_film'] += array(
     '#states' => array(
       'visible' => array(
-        'select[name^="field_video_type"]' => array('value' => 2727),
+        'select[name^="field_video_type"]' => array('value' => 2726),
       ),
     ),
   );
