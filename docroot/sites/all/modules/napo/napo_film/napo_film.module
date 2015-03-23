@@ -15,3 +15,17 @@ function napo_film_entity_info_alter(&$entity_info) {
     'custom settings' => TRUE,
   );
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function napo_film_form_napo_video_node_form_alter(&$form, &$form_state) {
+  // Show napo film field only for video type - napo film.
+  $form['field_napo_film'] += array(
+    '#states' => array(
+      'visible' => array(
+        'select[name^="field_video_type"]' => array('value' => 2727),
+      ),
+    ),
+  );
+}
