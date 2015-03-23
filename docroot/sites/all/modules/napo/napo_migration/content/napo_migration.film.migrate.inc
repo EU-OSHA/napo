@@ -1,111 +1,6 @@
 <?php
 
-class NapoMigrationFilm extends Migration {
-  public function __construct($arguments) {
-    parent::__construct($arguments);
-
-    /* Remove limits on time/memory, slower machines will fail */
-    $this->timeLimit = 0;
-    $this->memoryLimit = PHP_INT_MAX;
-
-    $source_file = MigrationUtil::getSourceFile($arguments);
-    $youtube_source = $arguments['file_name_youtube'];
-
-    $this->source = new MigrateSourceList(
-      new NapoFilmMigrateList($source_file, $youtube_source),
-      new NapoFilmMigrateItem());
-
-    $this->map = new MigrateSQLMap($this->machineName,
-      array(
-        'id' => array(
-          'type' => 'varchar',
-          'length' => 200,
-          'not null' => TRUE,
-          'description' => 'Item code',
-        ),
-      ),
-      MigrateDestinationNode::getKeySchema()
-    );
-    $node_options = MigrateDestinationNode::options('en', 'full_html');
-    $this->destination = new MigrateDestinationNode('napo_film', $node_options);
-
-    $this->addFieldMapping('title', 'title');
-    $this->addFieldMapping('title_field', 'title_field');
-//    $this->addFieldMapping('field_tags', 'subject');
-//    $this->addFieldMapping('field_tags:source_type')->defaultValue('tid');
-    $this->addFieldMapping('body', 'description');
-    $this->addFieldMapping('body:format')->defaultValue('full_html');
-    $this->addFieldMapping('created', 'creation_date');
-    $this->addFieldMapping('changed', 'modification_date');
-    $this->addFieldMapping('uid')->defaultValue(1);
-
-    $this->addUnmigratedDestinations(array(
-      'promote',
-      'status',
-      'sticky',
-      'revision',
-      'log',
-      'language',
-      'tnid',
-      'translate',
-      'revision_uid',
-      'is_new',
-      'body:summary',
-      'field_tags:create_term',
-      'field_tags:ignore_case',
-      'field_author:language',
-      'comment',
-    ));
-
-    $this->addUnmigratedSources(array(
-      'path',
-    ));
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function prepareRow($row) {
-    if (empty($row->title)) {
-      return FALSE;
-    }
-    return TRUE;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function prepare($entity, $row) {
-    $migration = Migration::currentMigration();
-    $languages = array_keys(osha_language_list());
-    $entity_type = $migration->getDestination()->getEntityType();
-
-    $translation_handler = entity_translation_get_handler($entity_type, $entity);
-    $entity->translations = $translation_handler->getTranslations();
-
-    foreach ($languages as $language) {
-      $has_translation = FALSE;
-      if (!empty($row->title_field[$language])) {
-        $entity->title_field[$language] = array();
-        $entity->title_field[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->title_field[$language]);
-        $has_translation = TRUE;
-      }
-      if (!empty($row->description[$language])) {
-        $entity->body[$language] = array();
-        $entity->body[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->description[$language]);
-        $entity->body[$language][0]['format'] = 'full_html';
-        $has_translation = TRUE;
-      }
-      if ($has_translation) {
-        MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
-      }
-    }
-  }
-}
-
 class NapoMigrationEpisodes extends Migration {
-
-  public $migrateMapFilms;
 
   /**
    * {@inheritdoc}
@@ -120,7 +15,7 @@ class NapoMigrationEpisodes extends Migration {
     $source_file = MigrationUtil::getSourceFile($arguments);
     $youtube_source = $arguments['file_name_youtube'];
     // Films dependency.
-    $this->dependencies = array('Films');
+//    $this->dependencies = array('Films');
 
     $this->source = new MigrateSourceList(
       new NapoEpisodesMigrateList($source_file, $youtube_source),
@@ -155,6 +50,9 @@ class NapoMigrationEpisodes extends Migration {
     $this->addFieldMapping('field_video:destination_file', 'replaced_file');
     $this->addFieldMapping('field_video:language')->defaultValue('und');
     $this->addFieldMapping('field_video:file_replace')->defaultValue(MigrateFileBase::FILE_EXISTS_REUSE);
+
+    $this->addFieldMapping('field_napo_film', 'film_id')
+      ->sourceMigration(array('Episodes'));
 
     $this->addFieldMapping('body', 'description');
     $this->addFieldMapping('body:format')->defaultValue('full_html');
@@ -228,9 +126,6 @@ class NapoMigrationEpisodes extends Migration {
         $term = current($term);
         $entity->field_video_type[LANGUAGE_NONE][0]['tid'] = $term->tid;
       }
-      if (!empty($row->film_id) && !empty($this->migrateMapFilms[$row->film_id])) {
-        $entity->field_napo_film[LANGUAGE_NONE][0]['target_id'] = $this->migrateMapFilms[$row->film_id];
-      }
     }
 
     foreach ($languages as $language) {
@@ -250,24 +145,52 @@ class NapoMigrationEpisodes extends Migration {
         MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
       }
     }
+    // Store film ref and unset the ref because it gives form validation error
+    // Set the ref on complete.
+    $entity->temp_napo_film = $entity->field_napo_film;
+    unset($entity->field_napo_film);
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function complete($entity, $row) {
-    if ($row->main_video == TRUE) {
-      if (!empty($row->film_id) && !empty($this->migrateMapFilms[$row->film_id])) {
-        // Set the main video on $film.
-        $film = node_load($this->migrateMapFilms[$row->film_id]);
-        $film->field_film_video[LANGUAGE_NONE][0]['target_id'] = $entity->nid;
-        node_save($film);
-      }
+    // Set the ref to napo film.
+    if (!empty($entity->temp_napo_film)) {
+      $entity->field_napo_film = $entity->temp_napo_film;
+      unset($entity->temp_napo_film);
+      node_save($entity);
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function createStub(Migration $migration, array $source_id) {
+    // Create stub for film node.
+    $node = new stdClass();
+    $node->title = t('Stub for @id', array('@id' => $source_id[0]));
+    $node->body[LANGUAGE_NONE][0]['value'] = t('Stub body');
+    $node->type = $this->destination->getBundle();
+    $node->uid = 1;
+    $node->status = 0;
+    node_save($node);
+    if (isset($node->nid)) {
+      return array($node->nid);
+    }
+    else {
+      return FALSE;
     }
   }
 }
 
 /**
- * Class NapoFilmMigrateList
+ * Counts the number of source rows.
+ *
+ * @return int
+ *   Number of rows to be migrated from source
  */
-class NapoFilmMigrateList extends MigrateList {
+class NapoEpisodesMigrateList extends MigrateList {
 
   private $fileURL;
   private $fileYoutubeURL;
@@ -379,29 +302,14 @@ class NapoFilmMigrateList extends MigrateList {
         }
         self::$episodes[$episode_id] = $episode_row;
       }
-
-      // Get main video of the film.
-      $main_video = array();
-      $main_video['language'] = 'en';
-      $main_video['title'] = $film->title_en;
-      $main_video['film_id'] = $film_id;
-      $main_video['title_field']['en'] = $film->title_en;
-      $main_video['main_video'] = TRUE;
-      // Set the image.
-      if (!empty($film->image)) {
-        $main_video['image'] = $film->image;
-      }
-      $this->setVideos($main_video, $film);
-      // Set the youtube link.
+      // Set videos for film.
       if (!empty($youtube_data[$film_id])) {
-        $main_video['youtube'] = $youtube_data[$film_id][self::$csv_youtube_pos];
+        $row['youtube'] = $youtube_data[$film_id][self::$csv_youtube_pos];
       }
-      // Main film video use film id as its id.
-      self::$episodes[$film_id] = $main_video;
-      // Populate film data with current film.
-      self::$films[$film_id] = $row;
+      $this->setVideos($row, $film);
+      $row['main_video'] = TRUE;
+      self::$episodes[$film_id] = $row;
     }
-
     return TRUE;
   }
 
@@ -435,8 +343,8 @@ class NapoFilmMigrateList extends MigrateList {
    * {@inheritdoc}
    */
   public function getIdList() {
-    if (self::$films) {
-      return array_keys(self::$films);
+    if (self::$episodes) {
+      return array_keys(self::$episodes);
     }
     return array();
   }
@@ -448,44 +356,7 @@ class NapoFilmMigrateList extends MigrateList {
    *   Number of rows to be migrated from source
    */
   public function computeCount() {
-    return count(self::$films);
-  }
-}
-
-/**
- * Counts the number of source rows.
- *
- * @return int
- *   Number of rows to be migrated from source
- */
-class NapoEpisodesMigrateList extends NapoFilmMigrateList {
-  public function computeCount() {
     return count(self::$episodes);
-  }
-  /**
-   * {@inheritdoc}
-   */
-  public function getIdList() {
-    if (self::$episodes) {
-      return array_keys(self::$episodes);
-    }
-    return array();
-  }
-}
-
-/**
- * Class NapoFilmMigrateItem
- */
-class NapoFilmMigrateItem extends MigrateItem {
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getItem($item_id) {
-    if (!empty(NapoFilmMigrateList::$films[$item_id])) {
-      return (object) NapoFilmMigrateList::$films[$item_id];
-    }
-    return NULL;
   }
 }
 
