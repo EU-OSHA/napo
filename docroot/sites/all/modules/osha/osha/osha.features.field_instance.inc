@@ -451,7 +451,7 @@ function osha_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 32,
+      'weight' => 10,
     ),
   );
 
