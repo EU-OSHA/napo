@@ -35,4 +35,6 @@ features[variable][] = node_options_napo_image
 features[variable][] = node_preview_napo_image
 features[variable][] = node_submitted_napo_image
 features[variable][] = pathauto_node_napo_image_pattern
-mtime = 1427127353
+features[variable][] = workbench_access_node_type_napo_image
+features[variable][] = workbench_moderation_default_state_napo_image
+mtime = 1427127553

@@ -466,7 +466,7 @@ $options['init-modules'] = array(
   'napo_consortium_partner',
   'napo_lesson',
   'napo_film',
-  'napo_image',
+  'napo_gallery',
 
   'napo_migration',
 
