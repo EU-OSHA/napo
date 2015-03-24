@@ -20,8 +20,9 @@ class NapoMigrateFiles extends Migration {
     $this->destination = new MigrateDestinationFile('document', 'MigrateFileUri');
 
     $source_file = MigrationUtil::getSourceFile($arguments);
+    $white_list_url = $arguments['file_name_whitelist'];
 
-    $this->source = new MigrateSourceList(new NapoMigrateFilesListCSV($source_file),
+    $this->source = new MigrateSourceList(new NapoMigrateFilesListCSV($source_file, $white_list_url),
       new NapoMigrateFilesItemCSV(napo_migration_get_data_dir()), $this->destination->fields());
 
     $this->map = new MigrateSQLMap($this->machineName,
@@ -37,11 +38,11 @@ class NapoMigrateFiles extends Migration {
     );
 
     $this->addFieldMapping('source_dir')->defaultValue(napo_migration_get_data_dir());
-    $this->addFieldMapping('destination_file', 'file');
+//    $this->addFieldMapping('destination_file', 'file');
     $this->addFieldMapping('value', 'file');
     $this->addFieldMapping('destination_dir')->defaultValue('public://migrated-files');
     $this->addFieldMapping('preserve_files')->defaultValue(FALSE);
-    $this->addFieldMapping('file_replace')->defaultValue(FILE_EXISTS_REPLACE);
+    $this->addFieldMapping('file_replace')->defaultValue(MigrateFileBase::FILE_EXISTS_REUSE);
     $this->addFieldMapping('timestamp', 'timestamp');
     $this->addFieldMapping('filename', 'title');
     $this->addFieldMapping('field_file_description', 'description');
@@ -181,8 +182,11 @@ class NapoMigrateFiles extends Migration {
 class NapoMigrateFilesListCSV extends MigrateList {
 
   protected $fileUrl = '';
+  private $whiteListURL;
   protected $multilingualFields;
   public static $csvData;
+  public static $whiteList;
+
 
   /**
    * Populates csvData with parsed information from $file_url.
@@ -190,10 +194,12 @@ class NapoMigrateFilesListCSV extends MigrateList {
    * @param string $file_url
    *   The location of the file with source raw data
    */
-  public function __construct($file_url) {
+  public function __construct($file_url, $white_list_url) {
     parent::__construct();
     $this->fileUrl = $file_url;
+    $this->whiteListURL = $white_list_url;
 
+    self::$whiteList = json_decode(file_get_contents($this->whiteListURL));
     self::$csvData = $this->parseMultilingualCSV($this->fileUrl);
   }
 
@@ -205,6 +211,16 @@ class NapoMigrateFilesListCSV extends MigrateList {
    */
   public function __toString() {
     return $this->fileUrl;
+  }
+
+  public function isWhitelist($id) {
+    $white_list = array_keys(array_flip(self::$whiteList));
+    foreach ($white_list as $pattern) {
+      if (strpos($id, $pattern) !== FALSE) {
+        return TRUE;
+      }
+    }
+    return FALSE;
   }
 
   /**
@@ -228,6 +244,9 @@ class NapoMigrateFilesListCSV extends MigrateList {
     $final = array();
     while (($data = fgetcsv($handle, 100000, ';')) !== FALSE) {
       $row_id = $data[0];
+      if (!$this->isWhitelist($row_id)) {
+        continue;
+      }
       foreach ($fields as $key => $field) {
         $final[$row_id][$field] = $data[$key];
       }
