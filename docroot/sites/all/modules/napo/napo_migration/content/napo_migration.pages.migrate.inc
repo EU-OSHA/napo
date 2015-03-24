@@ -163,6 +163,11 @@ class NapoMigrationPages extends Migration {
             // Remove first h3 - the same with title.
             $text = $this->removeTags($text, 'h3', 0);
             break;
+
+          case 'napo-for-teachers/resources/resource-library':
+            // Remove first h3 - the same with title.
+            $text = $this->removeTags($text, 'h2', 0);
+            break;
         }
         // Clean again after parsing.
         $text = $tidy->repairString($text, $tidy_conf, 'utf8');
