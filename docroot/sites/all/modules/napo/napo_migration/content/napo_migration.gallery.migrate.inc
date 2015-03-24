@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Class NapoMigrationPages migrates page
+ * Class NapoMigrationGallery migrates page
  */
-class NapoMigrationPages extends Migration {
+class NapoMigrationGallery extends Migration {
 
   /**
    * {@inheritdoc}
@@ -16,10 +16,11 @@ class NapoMigrationPages extends Migration {
 
     $source_file = MigrationUtil::getSourceFile($arguments);
     $white_list_url = $arguments['file_name_whitelist'];
+    $data_export_path = napo_migration_get_data_dir();
 
     $this->source = new MigrateSourceList(
-      new NapoPagesMigrateList($source_file, $white_list_url),
-      new NapoPagesMigrateItem(),
+      new NapoGalleryMigrateList($source_file, $white_list_url),
+      new NapoGalleryMigrateItem(),
       array(
         'id' => 'Unique entity path, language independent',
         'path' => 'URL pattern without language',
@@ -43,12 +44,15 @@ class NapoMigrationPages extends Migration {
       MigrateDestinationNode::getKeySchema()
     );
     $node_options = MigrateDestinationNode::options('en', 'full_html');
-    $this->destination = new MigrateDestinationNode('article', $node_options);
+    $this->destination = new MigrateDestinationNode('napo_image', $node_options);
 
     $this->addFieldMapping('title', 'title');
     $this->addFieldMapping('body', 'text');
     $this->addFieldMapping('body:format')->defaultValue('full_html');
-    $this->addFieldMapping('field_publication_date', 'publication_date');
+    $this->addFieldMapping('field_image', 'image');
+    $this->addFieldMapping('field_image:source_dir')->defaultValue($data_export_path . DIRECTORY_SEPARATOR);
+    $this->addFieldMapping('field_image:file_replace')->defaultValue(MigrateFileBase::FILE_EXISTS_REUSE);
+    $this->addFieldMapping('field_image:language')->defaultValue('en');
     $this->addFieldMapping('created', 'creation_date');
     $this->addFieldMapping('changed', 'modification_date');
     $this->addFieldMapping('uid')->defaultValue(1);
@@ -66,6 +70,7 @@ class NapoMigrationPages extends Migration {
       'revision_uid',
       'is_new',
       'body:summary',
+      'field_image:destination_file',
       'field_cover_image',
       'field_nace_codes:create_term',
       'field_nace_codes:ignore_case',
@@ -104,7 +109,6 @@ class NapoMigrationPages extends Migration {
     }
     $row->language = 'en';
     // Format date according to UTC timezone.
-    $row->publication_date = MigrationUtil::getUTCTimestamp($row->publication_date);
     $row->expiration_date = MigrationUtil::getUTCTimestamp($row->expiration_date);
     $row->modification_date = strtotime($row->modification_date);
     return TRUE;
@@ -119,10 +123,7 @@ class NapoMigrationPages extends Migration {
    *   Source row
    */
   public function prepare($entity, $row) {
-    $entity->path['pathauto'] = 0;
-    if (isset($entity->field_publication_date) && empty($entity->field_publication_date[LANGUAGE_NONE][0]['value'])) {
-      unset($entity->field_publication_date[LANGUAGE_NONE]);
-    }
+    $entity->path['pathauto'] = 1;
     $migration = Migration::currentMigration();
     $languages = array_keys(language_list());
     $entity_type = $migration->getDestination()->getEntityType();
@@ -136,43 +137,9 @@ class NapoMigrationPages extends Migration {
         $entity->title_field[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->title_field[$language]);
         $has_translation = TRUE;
       }
-      if (!empty($row->text[$language])) {
-        $entity->body[$language] = array();
-        $text = MigrationUtil::decodeHTMLText($row->text[$language]);
-        $text = str_replace("\n", '', $text);
-        $tidy = new tidy();
-        $tidy_conf = array(
-          'clean' => TRUE,
-          'drop-empty-paras' => TRUE,
-        );
-        $text = $tidy->repairString($text, $tidy_conf, 'utf8');
-        // Remove first h1 tag because it's the same with title.
-        $text = $this->removeTags($text, 'h1', 0);
-        switch ($row->id) {
-          case 'who-is-napo/who-is-napo':
-            // Remove napo image from text.
-            $text = $this->removeNapoImage($text);
-            break;
-
-          case 'napos-films/napos-films':
-            // Only the first 3 paragraphs are the page content.
-            $text = $this->getFirstParagraphs($text, 3);
-            break;
-
-          case 'rights-and-permissions/rights-and-permissions':
-            // Remove first h3 - the same with title.
-            $text = $this->removeTags($text, 'h3', 0);
-            break;
-
-          case 'napo-for-teachers/resources/resource-library':
-            // Remove first h3 - the same with title.
-            $text = $this->removeTags($text, 'h2', 0);
-            break;
-        }
-        // Clean again after parsing.
-        $text = $tidy->repairString($text, $tidy_conf, 'utf8');
-        $text = str_replace("\n", '', $text);
-        $entity->body[$language][0]['value'] = $text;
+      $entity->body[$language] = array();
+      if (!empty($row->description[$language])) {
+        $entity->body[$language][0]['value'] = MigrationUtil::decodeHTMLText($row->description[$language]);
         $entity->body[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
       }
@@ -181,70 +148,6 @@ class NapoMigrationPages extends Migration {
       }
     }
   }
-
-  /**
-   * Removes the div containing the napo image.
-   */
-  public function removeNapoImage($text) {
-    // Remove the link to old fop pages.
-    $doc = new DOMDocument();
-    $body_html = mb_convert_encoding($text, 'HTML-ENTITIES', "UTF-8");
-    $doc->loadHTML($body_html);
-    $divs = $doc->getElementsByTagName('div');
-    $text_changed = FALSE;
-    if ($divs->length > 0) {
-      foreach ($divs as $key => $elem) {
-        $div = $doc->getElementsByTagName('div')->item($key);
-        foreach ($div->attributes as $attr) {
-          if ($attr->name == 'id' && $attr->value == 'napomain') {
-            $div->parentNode->removeChild($div);
-            $text_changed = TRUE;
-          }
-        }
-      }
-    }
-    if ($text_changed) {
-      $text = $doc->saveHTML();
-    }
-    return $text;
-  }
-
-  /**
-   * Removes from text the $tags_name from position $index.
-   */
-  public function removeTags($text, $tag_name, $index) {
-    $doc = new DOMDocument();
-    $body_html = mb_convert_encoding($text, 'HTML-ENTITIES', "UTF-8");
-    $doc->loadHTML($body_html);
-    $tags = $doc->getElementsByTagName($tag_name);
-    $text_changed = FALSE;
-    if ($tags->length > 0) {
-      $tag = $doc->getElementsByTagName($tag_name)->item($index);
-      $tag->parentNode->removeChild($tag);
-      $text_changed = TRUE;
-    }
-    if ($text_changed) {
-      $text = $doc->saveHTML();
-    }
-    return $text;
-  }
-
-  /**
-   * Returns the first $no paragraphs from text.
-   */
-  public function getFirstParagraphs($text, $no = 1) {
-    $doc = new DOMDocument();
-    $body_html = mb_convert_encoding($text, 'HTML-ENTITIES', "UTF-8");
-    $doc->loadHTML($body_html);
-    if ($doc->getElementsByTagName('p')->length > $no) {
-      $text = '';
-      for ($i = 0; $i < $no; $i++) {
-        $text .= '<p>' . $doc->getElementsByTagName('p')->item($i)->nodeValue . '</p>';
-      }
-    }
-    return $text;
-  }
-
 
   /**
    * Sets the node aliases after the migration, nid is available.
@@ -256,33 +159,32 @@ class NapoMigrationPages extends Migration {
    */
   public function complete($entity, $row) {
     $languages = array_keys($entity->translations->data);
-    if (isset($row->language) && !in_array($row->language, $languages)) {
-      $languages[] = $row->language;
-    }
-    // Create alias from new path.
-    foreach ($languages as $language) {
-      $args = array(
-        'source' => 'node/' . $entity->nid,
-        'alias' => $row->new_path,
-        'language' => $language,
-      );
-      // Check if path already exists.
-      $existing_path = path_load($args);
-      if (empty($existing_path)) {
-        path_save($args);
+    $args = array(
+      'source' => 'node/' . $entity->nid,
+      'language' => 'en',
+    );
+    $path_auto = path_load($args);
+    if (!empty($path_auto)) {
+      // Create alias for new path.
+      foreach ($languages as $language) {
+        $args = array(
+          'source' => 'node/' . $entity->nid,
+          'alias' => $path_auto['alias'],
+          'language' => $language,
+        );
+        // Check if path already exists.
+        $existing_path = path_load($args);
+        if (empty($existing_path)) {
+          path_save($args);
+        }
       }
     }
-    // For default pages, redirect the path without the last part.
-    if ($row->is_default_page) {
-      $parts = explode('/', $row->id);
-      array_pop($parts);
-      $section_redirect = implode('/', $parts);
-      if ($row->new_path != $section_redirect) {
-        MigrationUtil::createRedirects($entity, $section_redirect);
+    foreach ($row->path as $path) {
+      if ($path_auto['alias'] != $path) {
+        MigrationUtil::createRedirects($entity, $path);
       }
     }
-    // Create redirect from old path.
-    if ($row->new_path != $row->id) {
+    if ($path_auto['alias'] != $row->id) {
       MigrationUtil::createRedirects($entity, $row->id);
     }
     // Create redirects from aliases.
@@ -291,9 +193,9 @@ class NapoMigrationPages extends Migration {
 }
 
 /**
- * Class PublicationMigrateList
+ * Class NapoGalleryMigrateList
  */
-class NapoPagesMigrateList extends MigrateList {
+class NapoGalleryMigrateList extends MigrateList {
 
   private $fileURL;
   public static $data;
@@ -318,14 +220,6 @@ class NapoPagesMigrateList extends MigrateList {
         )
       );
     }
-    if (!file_exists($this->whiteListURL)) {
-      Migration::displayMessage(
-        t(
-          'Failed to load data file from !fileUrl:',
-          array('!fileUrl' => $this->whiteListURL)
-        )
-      );
-    }
     $this->parseSourceFile();
   }
 
@@ -336,6 +230,12 @@ class NapoPagesMigrateList extends MigrateList {
     return $this->fileURL;
   }
 
+  public function isGalleryPath($path) {
+    if (strpos($path, 'napos-gallery') === 0) {
+      return TRUE;
+    }
+    return FALSE;
+  }
   /**
    * Parse the source file and populate the local cache.
    */
@@ -343,29 +243,20 @@ class NapoPagesMigrateList extends MigrateList {
     if (!is_readable($this->fileURL)) {
       return array();
     }
-
+    if (!is_readable($this->fileURL)) {
+      return array();
+    }
     $handle = fopen($this->fileURL, 'r');
     $fields = $raw_data = fgetcsv($handle, NULL, ';');
-    $work_flow_key = array_search('workflow_state', $fields);
-    $white_list = (array) json_decode(file_get_contents($this->whiteListURL));
-    self::$white_list = $white_list;
-
-    self::$data = array();
+    $final = array();
     while (($raw_data = fgetcsv($handle, NULL, ';')) !== FALSE) {
       $path = MigrationUtil::getIDFromSourceRow($raw_data);
       $language = !empty($raw_data[1]) ? $raw_data[1] : 'en';
 
-      if (!in_array($path, array_keys($white_list))) {
+      if (!$this->isGalleryPath($path)) {
         continue;
       }
-      self::$data[$path]['id'] = $white_list[$path]->path;
-      // Set the new path.
-      self::$data[$path]['new_path'] = $white_list[$path]->path;
-      // Skip the private translations.
-      if (!in_array($raw_data[$work_flow_key],
-        array('published', 'checked', 'to_amend'))) {
-        continue;
-      }
+      self::$data[$path]['id'] = $path;
       foreach ($fields as $key => $field) {
         switch ($field) {
           case 'title':
@@ -375,14 +266,14 @@ class NapoPagesMigrateList extends MigrateList {
             self::$data[$path]['title_field'][$language] = $raw_data[$key];
             break;
 
-          case 'text':
-          case 'aliases':
-            self::$data[$path][$field][$language] = $raw_data[$key];
-            break;
-
           case 'path':
             $path_language = explode('/', $raw_data[$key], 3);
             self::$data[$path][$field][$language] = $path_language[2];
+            break;
+
+          case 'description':
+          case 'aliases':
+            self::$data[$path][$field][$language] = $raw_data[$key];
             break;
 
           default:
@@ -416,16 +307,16 @@ class NapoPagesMigrateList extends MigrateList {
 }
 
 /**
- * Class NapoPagesMigrateItem
+ * Class NapoGalleryMigrateItem
  */
-class NapoPagesMigrateItem extends MigrateItem {
+class NapoGalleryMigrateItem extends MigrateItem {
 
   /**
    * {@inheritdoc}
    */
   public function getItem($item_id) {
-    if (!empty(NapoPagesMigrateList::$data[$item_id])) {
-      return (object) NapoPagesMigrateList::$data[$item_id];
+    if (!empty(NapoGalleryMigrateList::$data[$item_id])) {
+      return (object) NapoGalleryMigrateList::$data[$item_id];
     }
     return NULL;
   }

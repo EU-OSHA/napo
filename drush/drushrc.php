@@ -466,6 +466,7 @@ $options['init-modules'] = array(
   'napo_consortium_partner',
   'napo_lesson',
   'napo_film',
+  'napo_gallery',
 
   'napo_migration',
 
@@ -474,6 +475,10 @@ $options['init-modules'] = array(
 
 );
 
+// Exclude domains symlinks from archive-dump
+$command_specific['archive-dump'] = array(
+  'tar-options' => ' --exclude=sites/default/files'
+);
 
 $options['init-themes'] = array(
   'bootstrap',

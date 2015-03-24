@@ -14,3 +14,6 @@ files[] = taxonomy/napo_migration.taxonomy.nace_codes.inc
 files[] = content/napo_migration.film.migrate.inc
 files[] = content/napo_migration.lesson_videos.migrate.inc
 files[] = content/napo_migration.pages.migrate.inc
+files[] = files/napo_migration.files.migrate.inc
+files[] = files/napo_migration.images.migrate.inc
+files[] = content/napo_migration.gallery.migrate.inc
