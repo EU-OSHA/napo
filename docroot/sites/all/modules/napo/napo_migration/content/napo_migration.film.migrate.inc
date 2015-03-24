@@ -217,7 +217,7 @@ class NapoEpisodesMigrateList extends MigrateList {
   protected $multilingualFields;
   public static $films;
   public static $episodes;
-  public static $formats = array('avi', 'ogv', 'webm', 'wmv');
+  public static $formats = array('avi', 'ogv', 'webm', 'wmv', 'mp4');
   public static $csv_film_id_pos = 0;
   public static $csv_ep_id_pos = 5;
   public static $csv_youtube_pos = 12;
