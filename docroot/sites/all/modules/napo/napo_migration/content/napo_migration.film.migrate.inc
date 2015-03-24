@@ -42,12 +42,10 @@ class NapoMigrationEpisodes extends Migration {
 //    $this->addFieldMapping('field_tags:source_type')->defaultValue('tid');
 
     $this->addFieldMapping('field_image', 'image');
-    $this->addFieldMapping('field_image:destination_file', 'replaced_file');
     $this->addFieldMapping('field_image:file_replace')->defaultValue(MigrateFileBase::FILE_EXISTS_REUSE);
     $this->addFieldMapping('field_image:language')->defaultValue('en');
 
     $this->addFieldMapping('field_video', 'video');
-    $this->addFieldMapping('field_video:destination_file', 'replaced_file');
     $this->addFieldMapping('field_video:language')->defaultValue('und');
     $this->addFieldMapping('field_video:file_replace')->defaultValue(MigrateFileBase::FILE_EXISTS_REUSE);
 
@@ -161,6 +159,28 @@ class NapoMigrationEpisodes extends Migration {
       unset($entity->temp_napo_film);
       node_save($entity);
     }
+    // Save the new alias for translated languages.
+    $languages = array_keys($entity->translations->data);
+    $args = array(
+      'source' => 'node/' . $entity->nid,
+      'language' => 'en',
+    );
+    $path_auto = path_load($args);
+    if (!empty($path_auto)) {
+      // Create alias for new path.
+      foreach ($languages as $language) {
+        $args = array(
+          'source' => 'node/' . $entity->nid,
+          'alias' => $path_auto['alias'],
+          'language' => $language,
+        );
+        // Check if path already exists.
+        $existing_path = path_load($args);
+        if (empty($existing_path)) {
+          path_save($args);
+        }
+      }
+    }
   }
 
   /**
@@ -192,8 +212,8 @@ class NapoMigrationEpisodes extends Migration {
  */
 class NapoEpisodesMigrateList extends MigrateList {
 
-  private $fileURL;
-  private $fileYoutubeURL;
+  protected $fileURL;
+  protected $fileYoutubeURL;
   protected $multilingualFields;
   public static $films;
   public static $episodes;
@@ -241,7 +261,7 @@ class NapoEpisodesMigrateList extends MigrateList {
   /**
    * Sets the title and body from source object to target row.
    */
-  public function setTitleDescription(&$row, $obj, $lang) {
+  public static function setTitleDescription(&$row, $obj, $lang) {
     $row['title'] = $obj->title_en;
     if (!empty($obj->{'title_' . $lang})) {
       $row['title_field'][$lang] = $obj->{'title_' . $lang};
@@ -258,7 +278,7 @@ class NapoEpisodesMigrateList extends MigrateList {
     $row['video'] = array();
     foreach (self::$formats as $format) {
       if (!empty($obj->{'video_' . $format})) {
-        $row['video'][] = $obj->{'video_' . $format};
+        $row['video'][] = urldecode($obj->{'video_' . $format});
       }
     }
   }
@@ -316,7 +336,7 @@ class NapoEpisodesMigrateList extends MigrateList {
   /**
    * Get an array from a csv,indexed by $index_key or $index_key_fallback.
    */
-  public function getCSVFile($file, $index_key, $index_key_fallback) {
+  public static function getCSVFile($file, $index_key, $index_key_fallback) {
     if (!file_exists($file)) {
       Migration::displayMessage(
         t(

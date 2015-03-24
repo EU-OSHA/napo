@@ -47,6 +47,13 @@ function napo_migration_migrate_api() {
         'file_name' => $data_export_path . '/napo_films.json',
         'file_name_youtube' => $data_export_path . '/napo_youtube.csv',
       ),
+      'LessonVideos' => array(
+        'class_name' => 'NapoMigrationLessonVideos',
+        'description' => 'Import Napo Lesson Videos',
+        'group_name' => 'napo_content',
+        'file_name' => $data_export_path . '/napo_external_videos.json',
+        'file_name_youtube' => $data_export_path . '/napo_youtube.csv',
+      ),
       'Pages' => array(
         'class_name' => 'NapoMigrationPages',
         'description' => 'Import Napo Pages',
