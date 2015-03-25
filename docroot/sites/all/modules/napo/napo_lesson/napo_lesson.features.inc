@@ -41,6 +41,14 @@ function napo_lesson_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'lesson_video' => array(
+      'name' => t('Lesson video'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
   );
   drupal_alter('node_info', $items);
   return $items;
