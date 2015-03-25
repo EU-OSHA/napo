@@ -57,7 +57,7 @@ function napo_lesson_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -32,
+        'weight' => 1,
       ),
       'osha_admin' => array(
         'region' => '',
