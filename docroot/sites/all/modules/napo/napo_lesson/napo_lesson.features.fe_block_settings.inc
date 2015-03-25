@@ -66,7 +66,7 @@ function napo_lesson_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => '<none>',
+    'title' => 'Lessons',
     'visibility' => 1,
   );
 
