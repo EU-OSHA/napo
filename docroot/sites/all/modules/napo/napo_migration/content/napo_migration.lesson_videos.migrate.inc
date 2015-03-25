@@ -31,7 +31,7 @@ class NapoMigrationLessonVideos extends NapoMigrationEpisodes {
       MigrateDestinationNode::getKeySchema()
     );
     $node_options = MigrateDestinationNode::options('en', 'full_html');
-    $this->destination = new MigrateDestinationNode('napo_video', $node_options);
+    $this->destination = new MigrateDestinationNode('lesson_video', $node_options);
 
     $this->addFieldMapping('title', 'title');
     $this->addFieldMapping('title_field', 'title_field');
@@ -76,11 +76,6 @@ class NapoMigrationLessonVideos extends NapoMigrationEpisodes {
    */
   public function prepare($entity, $row) {
     parent::prepare($entity, $row);
-    $term = taxonomy_get_term_by_name('Lesson video');
-    if (!empty($term)) {
-      $term = current($term);
-      $entity->field_video_type[LANGUAGE_NONE][0]['tid'] = $term->tid;
-    }
   }
 }
 
