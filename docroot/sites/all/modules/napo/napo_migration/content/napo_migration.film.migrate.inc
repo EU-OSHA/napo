@@ -143,6 +143,10 @@ class NapoMigrationEpisodes extends Migration {
         MigrationUtil::setTranslation($translation_handler, $entity, $row, $language);
       }
     }
+    // Don't create the alias now, create it after assigning the napo film.
+    if (!empty($entity->field_napo_film)) {
+      $entity->path['pathauto'] = 0;
+    }
     // Store film ref and unset the ref because it gives form validation error
     // Set the ref on complete.
     $entity->temp_napo_film = $entity->field_napo_film;
@@ -157,6 +161,7 @@ class NapoMigrationEpisodes extends Migration {
     if (!empty($entity->temp_napo_film)) {
       $entity->field_napo_film = $entity->temp_napo_film;
       unset($entity->temp_napo_film);
+      $entity->path['pathauto'] = 1;
       node_save($entity);
     }
     // Save the new alias for translated languages.
@@ -189,8 +194,7 @@ class NapoMigrationEpisodes extends Migration {
   protected function createStub(Migration $migration, array $source_id) {
     // Create stub for film node.
     $node = new stdClass();
-    $node->title = t('Stub for @id', array('@id' => $source_id[0]));
-    $node->body[LANGUAGE_NONE][0]['value'] = t('Stub body');
+    $node->title = NapoEpisodesMigrateList::$episodes[$source_id[0]]['title'];
     $node->type = $this->destination->getBundle();
     $node->uid = 1;
     $node->status = 0;
