@@ -451,7 +451,7 @@ function napo_film_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_napo_film_pattern';
-  $strongarm->value = 'napos-films/[node:title]';
+  $strongarm->value = 'napos-films/[node:field-napo-film:title]/[node:title]';
   $export['pathauto_node_napo_film_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
