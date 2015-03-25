@@ -17,7 +17,6 @@
 # http://www.frobee.com/robots-txt-check
 
 User-agent: *
-Disallow: /
 Crawl-delay: 10
 # Directories
 Disallow: /includes/
