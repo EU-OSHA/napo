@@ -652,7 +652,6 @@ function napo_lesson_strongarm() {
   $strongarm->name = 'node_options_lesson_toolkit';
   $strongarm->value = array(
     0 => 'status',
-    1 => 'revision',
   );
   $export['node_options_lesson_toolkit'] = $strongarm;
 
@@ -734,6 +733,34 @@ function napo_lesson_strongarm() {
   $strongarm->name = 'pathauto_taxonomy_term_target_ages_pattern';
   $strongarm->value = 'using-napo/napo-for-teachers/[term:name]';
   $export['pathauto_taxonomy_term_target_ages_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'print_html_display_lesson_toolkit';
+  $strongarm->value = 0;
+  $export['print_html_display_lesson_toolkit'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'print_html_display_urllist_lesson_toolkit';
+  $strongarm->value = 0;
+  $export['print_html_display_urllist_lesson_toolkit'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'print_pdf_display_lesson_toolkit';
+  $strongarm->value = 0;
+  $export['print_pdf_display_lesson_toolkit'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'print_pdf_display_urllist_lesson_toolkit';
+  $strongarm->value = 0;
+  $export['print_pdf_display_urllist_lesson_toolkit'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
