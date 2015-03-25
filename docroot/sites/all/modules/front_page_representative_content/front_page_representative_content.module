@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Front Page Representative Content feature.
+ */
+
+include_once 'front_page_representative_content.features.inc';
