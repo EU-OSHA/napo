@@ -401,6 +401,9 @@ $options['init-modules'] = array(
   'flickrfield',
   'chosen',
 
+  // custom video module for html5 videoJS formatter
+  'videojs',
+
   // cookie privacy
   'eu_cookie_compliance',
 
