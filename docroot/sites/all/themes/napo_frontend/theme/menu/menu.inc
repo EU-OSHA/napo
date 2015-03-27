@@ -52,3 +52,44 @@ function napo_frontend_menu_link(array $variables) {
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
 
+/**
+ * Implements theme_menu_link__menu_block().
+ */
+function napo_frontend_menu_link__menu_block($variables) {
+  $element = &$variables['element'];
+  $delta = $element['#bid']['delta'];
+
+  // Add homepage Icon.
+  $element = $variables['element'];
+  $attr = drupal_attributes($element['#attributes']);
+  if (isset($variables['element']['#href']) &&
+    $variables['element']['#href'] == '<front>' &&
+    isset($element['#localized_options']['content']['image'])
+  ) {
+    $path = file_create_url($element['#localized_options']['content']['image']);
+    $link = l('<img src="' . $path . '" />', $element['#href'], array('html' => TRUE));
+    return sprintf("\n<li %s>%s</li>", $attr, $link);
+  }
+
+  // Render or not the Menu Image.
+  // Get the variable provided by osha_menu module.
+  $render_img = variable_get('menu_block_' . $delta . '_' . OSHA_MENU_RENDER_IMG_VAR_NAME, 0);
+  if (!$render_img) {
+    return napo_frontend_menu_link($variables);
+  }
+  // $element['#attributes']['data-image-url'] = $image_url;
+  $output_link = l($element['#title'], $element['#href'], $element['#localized_options']);
+
+  $output_image = "";
+  if (!empty($element['#localized_options']['content']['image'])
+    && $image_url = file_create_url($element['#localized_options']['content']['image'])) {
+    $image = '<img src="' . $image_url . '"/>';
+    $output_image = l($image, $element['#href'], array('html' => TRUE));
+  }
+
+  return '<li' . drupal_attributes($element['#attributes']) . '>
+    <div class="introduction-title">' . $output_link . '</div>
+    <div class="introduction-image">' . $output_image . '</div>
+    </li>';
+}
+
