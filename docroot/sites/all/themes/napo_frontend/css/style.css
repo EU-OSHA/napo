@@ -1,0 +1,25 @@
+/* Header */
+.navbar-header a.logo img {
+    max-width: 100%;
+}
+
+/* Menu dropdown */
+ul.nav li.dropdown:hover ul.dropdown-menu {
+    display: block;
+}
+ul.nav li.dropdown ul.dropdown-menu {
+    margin-top: 0;
+}
+
+/* Consortium partner */
+.view-id-consortium_partners .jcarousel-container-horizontal {
+    height: auto !important;
+}
+
+/* Social media menu */
+.menu-name-menu-social-media-menu .introduction-title {
+    display: none;
+}
+.menu-name-menu-social-media-menu .introduction-image img{
+    max-width: 25px;
+}

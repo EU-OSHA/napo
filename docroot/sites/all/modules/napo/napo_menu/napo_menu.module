@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * Implements hook_block_configure_alter().
+ */
+function napo_menu_menu_block_configure_form_alter(&$form, &$form_state) {
+  // Add prefix and suffix to Menu Block configurations.
+  $form['napo_menu_settings'] = array(
+    '#type' => 'fieldset',
+    '#title' => 'Napo Menu Settings',
+  );
+  $form['napo_menu_settings']['napo_menu_block_text_prefix'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Prefix text',
+    '#default_value' => variable_get('menu_block_' .
+      $form_state['values']['delta'] . '_napo_menu_block_text_prefix'),
+    '#description' => 'Add prefix for this block',
+  );
+  $form['napo_menu_settings']['napo_menu_block_text_suffix'] = array(
+    '#type' => 'textfield',
+    '#title' => 'Suffix text',
+    '#default_value' => variable_get('menu_block_' .
+      $form_state['values']['delta'] . '_napo_menu_block_text_suffix'),
+    '#description' => 'Add suffix for this block.',
+  );
+}
+
+/**
+ * Implements hook_menu_block_block_save().
+ */
+function napo_menu_menu_block_block_save($delta, $form) {
+  variable_set('menu_block_' . $delta . '_napo_menu_block_text_prefix',
+    $form['napo_menu_block_text_prefix']);
+  variable_set('menu_block_' . $delta . '_napo_menu_block_text_suffix',
+    $form['napo_menu_block_text_suffix']);
+}
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function napo_menu_block_view_alter(&$data, $block) {
+  // Add the suffix and prefix saved in configuration for menu blocks.
+  if ($block->module == 'menu_block') {
+    $prefix = variable_get('menu_block_' .
+      $block->delta . '_napo_menu_block_text_prefix');
+    $suffix = variable_get('menu_block_' .
+      $block->delta . '_napo_menu_block_text_suffix');
+    if (!empty($prefix)) {
+      $data['content']['#content']['#prefix'] =
+        '<div class="menu-block-text-prefix">' . t($prefix) . '</div>';
+    }
+    if (!empty($suffix)) {
+      $data['content']['#content']['#suffix'] =
+        '<div class="menu-block-text-suffix">' . t($suffix) . '</div>';
+    }
+  }
+}
+

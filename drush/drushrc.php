@@ -469,6 +469,8 @@ $options['init-modules'] = array(
   'napo_consortium_partner',
   'napo_lesson',
   'napo_film',
+  'napo_gallery',
+  'napo_menu',
 
   'napo_migration',
 
@@ -477,6 +479,10 @@ $options['init-modules'] = array(
 
 );
 
+// Exclude domains symlinks from archive-dump
+$command_specific['archive-dump'] = array(
+  'tar-options' => ' --exclude=sites/default/files'
+);
 
 $options['init-themes'] = array(
   'bootstrap',
@@ -499,7 +505,7 @@ $command_specific['devify'] = array(
     array(
       'reroute_email_enable_message' => TRUE,
       'reroute_email_enable' => TRUE,
-      'stage_file_proxy_origin' => 'http://osha-corp-staging03.mainstrat.com',
+      'stage_file_proxy_origin' => 'http://napo.edw.ro',
       'stage_file_proxy_use_imagecache_root' => TRUE,
       'stage_file_proxy_hotlink' => FALSE,
       'reroute_email_address' => $cfg->variables->site_mail,

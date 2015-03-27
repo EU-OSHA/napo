@@ -200,6 +200,7 @@ function napo_film_strongarm() {
     'search_index' => 0,
     'search_result' => 0,
     'diff_standard' => 0,
+    'film_main_video_teaser' => 0,
     'osha_slideshow' => 0,
     'print' => 0,
     'token' => 0,
@@ -218,6 +219,7 @@ function napo_film_strongarm() {
     'search_index' => 0,
     'search_result' => 0,
     'diff_standard' => 0,
+    'film_main_video_teaser' => 0,
     'osha_slideshow' => 0,
     'print' => 0,
     'token' => 0,
@@ -451,14 +453,14 @@ function napo_film_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_napo_film_pattern';
-  $strongarm->value = 'napos-films/[node:title]';
+  $strongarm->value = 'napos-films/[node:field-napo-film:title]/[node:title]';
   $export['pathauto_node_napo_film_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_napo_video_pattern';
-  $strongarm->value = 'napos-films/episodes[node:title]';
+  $strongarm->value = 'napos-films/[node:field-napo-film:title]/[node:title]';
   $export['pathauto_node_napo_video_pattern'] = $strongarm;
 
   $strongarm = new stdClass();

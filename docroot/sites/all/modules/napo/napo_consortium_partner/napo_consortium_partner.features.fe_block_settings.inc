@@ -24,10 +24,10 @@ function napo_consortium_partner_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => 'content',
+        'region' => 'footer',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => 0,
+        'weight' => -31,
       ),
       'osha_admin' => array(
         'region' => '',

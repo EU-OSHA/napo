@@ -80,7 +80,7 @@ function napo_film_field_default_field_bases() {
     'module' => 'entityreference',
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'handler' => 'base',
+      'handler' => 'views',
       'handler_settings' => array(
         'behaviors' => array(
           'entityqueue' => array(
@@ -90,13 +90,10 @@ function napo_film_field_default_field_bases() {
             'status' => 0,
           ),
         ),
-        'sort' => array(
-          'direction' => 'DESC',
-          'property' => 'changed',
-          'type' => 'property',
-        ),
-        'target_bundles' => array(
-          'napo_film' => 'napo_film',
+        'view' => array(
+          'args' => array(),
+          'display_name' => 'entityreference_3',
+          'view_name' => 'entity_references',
         ),
       ),
       'target_type' => 'node',

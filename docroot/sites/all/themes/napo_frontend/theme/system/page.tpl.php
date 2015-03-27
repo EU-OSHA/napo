@@ -75,7 +75,7 @@
 ?>
 <header id="navbar" class="<?php print $navbar_classes; ?>">
   <div class="container">
-    <div class="navbar-header">
+    <div class="navbar-header col-md-3">
       <?php if ($logo): ?>
       <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Napo'); ?>">
         <img src="<?php print $logo; ?>" alt="<?php print t('Napo'); ?>" />
