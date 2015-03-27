@@ -19,3 +19,6 @@ regions[footer]         = 'Footer'
 regions[footer_menu]    = 'Footer Menu'
 regions[page_top]       = 'Page top'
 regions[page_bottom]    = 'Page bottom'
+
+stylesheets[all][] = css/style.css
+files[] = theme/menu/menu.inc
