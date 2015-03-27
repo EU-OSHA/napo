@@ -24,7 +24,7 @@ function napo_film_entityqueue_default_queues() {
     ),
     'min_size' => '0',
     'max_size' => '0',
-    'act_as_queue' => 0,
+    'act_as_queue' => 1,
   );
   $export['frontpage_video'] = $queue;
 
