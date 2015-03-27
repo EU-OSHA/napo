@@ -1,0 +1,5 @@
+name = Napo Menu
+description = Functions and features for Napo menus
+core = 7.x
+package = NAPO
+version = 7.x-0.1
