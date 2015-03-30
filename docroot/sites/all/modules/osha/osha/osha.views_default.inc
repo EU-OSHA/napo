@@ -395,11 +395,14 @@ function osha_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'all' => 'all',
     'article' => 'article',
-    'page' => 'page',
     'consortium_partner' => 'consortium_partner',
     'lesson' => 'lesson',
     'lesson_toolkit' => 'lesson_toolkit',
+    'lesson_video' => 'lesson_video',
     'napo_friend' => 'napo_friend',
+    'napo_image' => 'napo_image',
+    'napo_video' => 'napo_video',
+    'napo_film' => 'napo_film',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   $handler->display->display_options['filters']['type']['exposed'] = TRUE;
