@@ -35,7 +35,7 @@ function napo_film_views_api($module = NULL, $api = NULL) {
 function napo_film_node_info() {
   $items = array(
     'napo_video' => array(
-      'name' => t('Napo Video'),
+      'name' => t('Napo video'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

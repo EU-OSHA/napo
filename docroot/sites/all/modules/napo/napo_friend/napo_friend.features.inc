@@ -26,7 +26,7 @@ function napo_friend_views_api($module = NULL, $api = NULL) {
 function napo_friend_node_info() {
   $items = array(
     'napo_friend' => array(
-      'name' => t('Napo Friend'),
+      'name' => t('Napo friend'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

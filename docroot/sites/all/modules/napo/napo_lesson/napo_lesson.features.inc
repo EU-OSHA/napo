@@ -34,7 +34,7 @@ function napo_lesson_node_info() {
       'help' => '',
     ),
     'lesson_toolkit' => array(
-      'name' => t('Lesson Toolkit'),
+      'name' => t('Lesson toolkit'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

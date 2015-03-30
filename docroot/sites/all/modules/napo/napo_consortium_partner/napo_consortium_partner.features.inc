@@ -26,7 +26,7 @@ function napo_consortium_partner_views_api($module = NULL, $api = NULL) {
 function napo_consortium_partner_node_info() {
   $items = array(
     'consortium_partner' => array(
-      'name' => t('Consortium Partner'),
+      'name' => t('Consortium partner'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
