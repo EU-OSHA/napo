@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* search_autocomplete
+  * Fix .live function bug, replaced with .on
+  * patches/search_autocomplete/search_autocomplete_jquery_live_funcion.patch
+
 * workbench_moderation
   * Fix saving 2 current statuses for same revision
   * https://www.drupal.org/files/issues/1436260-workbench_moderation-states-node_save-74.patch
