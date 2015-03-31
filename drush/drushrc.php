@@ -388,7 +388,7 @@ $options['init-modules'] = array(
 
   'facetapi',
   'search_api_facetapi',
-//  'search_autocomplete',
+  'search_autocomplete',
   'search_api_et',
   'search_api_et_solr',
   'search_api_views',
@@ -472,6 +472,7 @@ $options['init-modules'] = array(
   'napo_gallery',
   'napo_article',
   'napo_menu',
+  'napo_search',
 
   'napo_migration',
 

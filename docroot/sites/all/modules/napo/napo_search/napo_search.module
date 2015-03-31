@@ -1,0 +1,73 @@
+<?php
+/**
+ * @file
+ * Code for the Napo search feature.
+ */
+
+include_once 'napo_search.features.inc';
+
+
+/**
+ * Implements hook_search_api_solr_query_alter().
+ */
+function napo_search_search_api_solr_query_alter(array &$call_args, SearchApiQueryInterface $query) {
+  // Replace % with * to handle requested widlcard % (non-existing in solr).
+  if (!empty($call_args['query'])) {
+    $call_args['query'] = str_replace('%', '*', $call_args['query']);
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function napo_search_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'search_block_form') {
+    // Overwrite the search page default url.
+    // Unset the form elements - the search view needs just the search param.
+    $form['#action'] = url('search');
+    $form['#method'] = 'get';
+    unset($form['#submit']);
+    unset($form['form_build_id']);
+    unset($form['form_id']);
+  }
+
+  /*
+   * SITUATION: Search forms with facet filters and keywords search.
+   * PROBLEM: When searching for a keyword after using a facet filter, the
+   * facet filter is ignored by Views.
+   * SOLUTION: Add facet filters as hidden form fields to Views exposed forms.
+   */
+
+  // Check if this form is a Search API form. This could be replaced with the
+  // value of a custom Views setting like ie. "Include facets".
+  if (isset($form_state['view']) && $form_state['view']->base_table === 'search_api_index_default_multilingual_node_index') {
+    // Get quary parameters.
+    $query_parameters = drupal_get_query_parameters();
+
+    // If any facet query parameters are provided.
+    if (!empty($query_parameters['f'])) {
+      // Iterate through facet query parameters.
+      foreach ($query_parameters['f'] as $key => $value) {
+        // Add hidden form field for facet parameter.
+        $form['f[' . $key . ']'] = array(
+          '#type' => 'hidden',
+          '#value' => $value,
+          '#weight' => -1,
+        );
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_form_views_exposed_form_alter().
+ */
+function napo_search_form_views_exposed_form_alter(&$form, &$form_state) {
+  // Set default language current language.
+  if (!empty($form['search_api_language'])) {
+    global $language;
+    if ($language->language != LANGUAGE_NONE) {
+      $form['search_api_language']['#default_value'] = $language->language;
+    }
+  }
+}
