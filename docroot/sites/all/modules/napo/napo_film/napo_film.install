@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * Delete napo_film content type.
+ */
+function napo_film_update_7001() {
+  $types = node_type_get_names();
+  if (isset($types['napo_film'])) {
+    node_type_delete('napo_film');
+  }
+}
