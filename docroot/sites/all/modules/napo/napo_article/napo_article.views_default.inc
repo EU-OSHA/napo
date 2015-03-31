@@ -1,28 +1,28 @@
 <?php
 /**
  * @file
- * front_page_representative_content.views_default.inc
+ * napo_article.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function front_page_representative_content_views_default_views() {
+function napo_article_views_default_views() {
   $export = array();
 
   $view = new view();
-  $view->name = 'more_representative';
+  $view->name = 'featured_articles';
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'More Representative';
+  $view->human_name = 'Featured Articles';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'More Representative';
+  $handler->display->display_options['title'] = 'Featured Articles';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -79,11 +79,6 @@ function front_page_representative_content_views_default_views() {
   $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['label'] = '';
   $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
-  /* Sort criterion: Content: Post date */
-  $handler->display->display_options['sorts']['created']['id'] = 'created';
-  $handler->display->display_options['sorts']['created']['table'] = 'node';
-  $handler->display->display_options['sorts']['created']['field'] = 'created';
-  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
   /* Sort criterion: Entityqueue: Node Queue Position */
   $handler->display->display_options['sorts']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['sorts']['entityqueue_relationship']['table'] = 'node';
@@ -105,9 +100,9 @@ function front_page_representative_content_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
-  $translatables['more_representative'] = array(
+  $translatables['featured_articles'] = array(
     t('Master'),
-    t('More Representative'),
+    t('Featured Articles'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -117,7 +112,7 @@ function front_page_representative_content_views_default_views() {
     t('Node Queue'),
     t('Block'),
   );
-  $export['more_representative'] = $view;
+  $export['featured_articles'] = $view;
 
   return $export;
 }

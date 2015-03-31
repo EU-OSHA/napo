@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * front_page_representative_content.features.field_instance.inc
+ * napo_article.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function front_page_representative_content_field_default_field_instances() {
+function napo_article_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance: 'entityqueue_subqueue-more_representative_section-eq_node'

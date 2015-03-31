@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * front_page_representative_content.features.field_base.inc
+ * napo_article.features.field_base.inc
  */
 
 /**
  * Implements hook_field_default_field_bases().
  */
-function front_page_representative_content_field_default_field_bases() {
+function napo_article_field_default_field_bases() {
   $field_bases = array();
 
   // Exported field_base: 'eq_node'

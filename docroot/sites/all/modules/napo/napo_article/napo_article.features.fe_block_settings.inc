@@ -1,21 +1,21 @@
 <?php
 /**
  * @file
- * front_page_representative_content.features.fe_block_settings.inc
+ * napo_article.features.fe_block_settings.inc
  */
 
 /**
  * Implements hook_default_fe_block_settings().
  */
-function front_page_representative_content_default_fe_block_settings() {
+function napo_article_default_fe_block_settings() {
   $export = array();
 
   $export['version'] = '2.0';
 
-  $export['views-more_representative-block'] = array(
+  $export['views-featured_articles-block'] = array(
     'cache' => -1,
     'custom' => 0,
-    'delta' => 'more_representative-block',
+    'delta' => 'featured_articles-block',
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
     'module' => 'views',
@@ -27,7 +27,7 @@ function front_page_representative_content_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -32,
+        'weight' => -34,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -36,7 +36,7 @@ function front_page_representative_content_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
