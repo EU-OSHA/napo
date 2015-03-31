@@ -97,12 +97,12 @@
 
     <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['menu'])): ?>
       <div class="col-md-9 pull-right">
-        <div class="col-md-2 pull-right">
+        <div class="col-md-3 pull-right">
           <?php if (!empty($page['menu'])): ?>
             <?php print render($page['menu']); ?>
           <?php endif; ?>
         </div>
-        <div class="navbar-collapse collapse col-md-9 pull-right">
+        <div class="navbar-collapse collapse col-md-8 pull-right">
           <nav role="navigation">
             <?php if (!empty($primary_nav)): ?>
               <?php print render($primary_nav); ?>
