@@ -20,7 +20,7 @@ function napo_film_entity_info_alter(&$entity_info) {
  * Implements hook_form_FORM_ID_alter().
  */
 function napo_film_form_napo_video_node_form_alter(&$form, &$form_state) {
-  // Show napo film field only for video type - napo film.
+  // Show napo film field only for video type - Napo film - tid 2726.
   $form['field_napo_film'] += array(
     '#states' => array(
       'visible' => array(
