@@ -117,6 +117,12 @@
   </div>
 </header>
 
+<?php if (!empty($page['slider'])): ?>
+  <div class="slider-container" role="slider">
+    <?php print render($page['slider']); ?>
+  </div>
+<?php endif; ?>
+
 <div class="main-container container">
 
   <header role="banner" id="page-header">
