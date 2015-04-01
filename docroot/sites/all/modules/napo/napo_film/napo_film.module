@@ -16,16 +16,59 @@ function napo_film_entity_info_alter(&$entity_info) {
   );
 }
 
+function napo_film_get_video_types_tid() {
+  $types['episode'] = variable_get('napo_film_episode_type_tid', 2726);
+  $types['film'] = variable_get('napo_film_film_type_tid', 2727);
+  return $types;
+}
+
 /**
  * Implements hook_form_FORM_ID_alter().
  */
 function napo_film_form_napo_video_node_form_alter(&$form, &$form_state) {
-  // Show napo film field only for video type - Napo film - tid 2726.
+  // Show napo film field only for video type - Episode video.
+  $types = napo_film_get_video_types_tid();
   $form['field_napo_film'] += array(
     '#states' => array(
       'visible' => array(
-        'select[name^="field_video_type"]' => array('value' => 2726),
+        'select[name^="field_video_type"]' => array('value' => $types['episode']),
       ),
     ),
   );
+  // Show main tag field only for video type - Film video.
+  $form['field_main_tag'] += array(
+    '#states' => array(
+      'visible' => array(
+        'select[name^="field_video_type"]' => array('value' => $types['film']),
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_node_submit().
+ */
+function napo_film_node_submit($node, $form, &$form_state) {
+  $types = napo_film_get_video_types_tid();
+  $type = field_get_items('node', $node, 'field_video_type');
+  if (!empty($type)) {
+    $type = current($type);
+    switch ($type['tid']) {
+      case $types['episode']:
+        // Remove main tag for videos Episodes.
+        if (!empty($node->field_main_tag)) {
+          drupal_set_message('Main Tag removed from Episode (inherited from film)!', 'warning');
+          $node->field_main_tag = array();
+        }
+        break;
+
+      case $types['film']:
+        // Remove film reference if video is type Film.
+        if (!empty($node->field_napo_film)) {
+          drupal_set_message('Napo Film removed from Film. Only episodes can have films.', 'warning');
+          $node->field_napo_film = array();
+        }
+        break;
+    }
+  }
 }
