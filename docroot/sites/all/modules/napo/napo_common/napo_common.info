@@ -1,5 +1,8 @@
-name = Napo Common Module
-description = Generic functions and hooks for Napo.
+name = Napo Common
 core = 7.x
-package = NAPO
-version = 7.x-0.1
+package = Napo
+version = 7.x-1.0
+project = napo_common
+dependencies[] = fe_block
+features[fe_block_settings][] = napo_common-no_translation
+features[features_api][] = api:2
