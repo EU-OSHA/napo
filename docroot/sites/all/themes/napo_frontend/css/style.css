@@ -23,3 +23,16 @@ ul.nav li.dropdown ul.dropdown-menu {
 .menu-name-menu-social-media-menu .introduction-image img{
     max-width: 25px;
 }
+
+.bodysmall{
+    font-size:1.0em;
+}
+
+.bodybig{
+    font-size:1.7em;
+}
+
+.vertical-align {
+    display: flex;
+    flex-direction: row;
+}

@@ -8,6 +8,7 @@ base theme = bootstrap
 ;; Regions
 ;;;;;;;;;;;;;;;;;;;;;
 
+regions[header_top_bar] = 'Header Top Bar'
 regions[menu]           = 'Menu'
 regions[slider]         = 'Slider'
 regions[header]         = 'Top Bar'
@@ -22,4 +23,7 @@ regions[page_top]       = 'Page top'
 regions[page_bottom]    = 'Page bottom'
 
 stylesheets[all][] = css/style.css
+
 files[] = theme/menu/menu.inc
+
+scripts[] = js/body-zoom.js

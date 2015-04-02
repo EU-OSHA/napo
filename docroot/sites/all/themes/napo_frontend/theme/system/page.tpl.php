@@ -73,6 +73,13 @@
  * @ingroup themeable
  */
 ?>
+<?php if (!empty($page['header_top_bar'])): ?>
+  <div class="header_top_bar container">
+    <div class="row vertical-align">
+      <?php print render($page['header_top_bar']); ?>
+    </div>
+  </div>
+<?php endif; ?>
 <header id="navbar" class="<?php print $navbar_classes; ?>">
   <div class="container">
     <div class="navbar-header col-md-3">
