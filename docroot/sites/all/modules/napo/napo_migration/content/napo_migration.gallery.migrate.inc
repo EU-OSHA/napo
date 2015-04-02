@@ -187,6 +187,8 @@ class NapoMigrationGallery extends Migration {
     if ($path_auto['alias'] != $row->id) {
       MigrationUtil::createRedirects($entity, $row->id);
     }
+    MigrationUtil::createRedirects($entity, $row->id . '/view');
+    MigrationUtil::createRedirects($entity, $row->id . '/image_view_fullscreen');
     // Create redirects from aliases.
     MigrationUtil::createRedirectsFromAliases($entity, $row);
   }
