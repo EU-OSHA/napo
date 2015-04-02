@@ -42,6 +42,18 @@ ul.nav li.dropdown ul.dropdown-menu {
     max-width: 25px;
 }
 
+
+/* Homepage */
+.jcarousel-view--featured-articles--block {
+    width: 100% !important;
+}
+.view-featured-articles .jcarousel-skin-default .jcarousel-item {
+    width: 33%;
+    margin: 0;
+}
+
+
+
 /* Video Gallery Detail */
 .node-napo-video.view-mode-full .field-name-film.field-type-ds {
     background: #ddd;
