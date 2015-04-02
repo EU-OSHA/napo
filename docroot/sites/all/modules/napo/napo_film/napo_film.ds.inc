@@ -22,6 +22,11 @@ function napo_film_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
+    'episode_list' => array(
+      'weight' => '2',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'film' => array(
       'weight' => '4',
       'label' => 'inline',
@@ -35,11 +40,6 @@ function napo_film_ds_field_settings_info() {
     ),
     'share' => array(
       'weight' => '5',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'episode_list' => array(
-      'weight' => '2',
       'label' => 'hidden',
       'format' => 'default',
     ),
