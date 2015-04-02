@@ -23,3 +23,85 @@ function napo_common_node_submit($node, $form, &$form_state) {
     }
   }
 }
+
+/**
+ * Implements hook_block_info().
+ */
+function napo_common_block_info() {
+  $blocks = array();
+  $blocks['page_not_found'] = array(
+    'info' => t('Page not found'),
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_configure().
+ */
+function napo_common_block_configure($delta = '') {
+  $form = array();
+
+  switch($delta) {
+    case 'page_not_found' :
+      // Page not found text
+      $form['page_not_found_text'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Page not found text'),
+        '#default_value' => variable_get('page_not_found_text', t("OOPS!<br />Sorry, we can't find what<br />you are looking for")),
+      );
+      break;
+  }
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function napo_common_block_save($delta = '', $edit = array()) {
+  switch($delta) {
+    case 'page_not_found' :
+      // Saving page not found text
+      variable_set('page_not_found_text', $edit['page_not_found_text']);
+      break;
+  }
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function napo_common_block_view($delta = '') {
+  $block = array();
+
+  switch($delta) {
+    case 'page_not_found' :
+      $block['content'] = napo_common_page_not_found_content();
+      break;
+  }
+
+  return $block;
+}
+
+/**
+ * Page not found content
+ */
+function napo_common_page_not_found_content() {
+  // Intro text
+  $content = "<div class = 'page_not_fount_intro'>";
+  $content .= variable_get('page_not_found_text');
+  $content .= '</div>';
+
+  // Search block
+  $content .= "<div class = 'page_not_fount_search'>";
+  $search_block = module_invoke('search', 'block_view');
+  $content .= '<div>'.t('Try one of there instead:').'</div>';
+  $content .= render($search_block);
+  $content .= '</div>';
+
+  // Frontpage link
+  $content .= "<div class = 'page_not_fount_front'>";
+  $content .= t('back to home');
+  $content .= '</div>';
+
+  return $content;
+}
