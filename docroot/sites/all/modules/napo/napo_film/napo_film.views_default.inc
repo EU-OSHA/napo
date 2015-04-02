@@ -194,6 +194,101 @@ function napo_film_views_default_views() {
   $export['entity_references'] = $view;
 
   $view = new view();
+  $view->name = 'episode_list';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Episode List';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Episode list';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['style_plugin'] = 'jcarousel';
+  $handler->display->display_options['style_options']['wrap'] = '0';
+  $handler->display->display_options['style_options']['visible'] = '5';
+  $handler->display->display_options['style_options']['responsive'] = 1;
+  $handler->display->display_options['style_options']['auto'] = '0';
+  $handler->display->display_options['style_options']['autoPause'] = 1;
+  $handler->display->display_options['style_options']['easing'] = '';
+  $handler->display->display_options['style_options']['vertical'] = 0;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
+  /* Field: Field: Image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => 'medium',
+    'image_link' => '',
+  );
+  /* Contextual filter: Content: Napo film (field_napo_film) */
+  $handler->display->display_options['arguments']['field_napo_film_target_id']['id'] = 'field_napo_film_target_id';
+  $handler->display->display_options['arguments']['field_napo_film_target_id']['table'] = 'field_data_field_napo_film';
+  $handler->display->display_options['arguments']['field_napo_film_target_id']['field'] = 'field_napo_film_target_id';
+  $handler->display->display_options['arguments']['field_napo_film_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_napo_film_target_id']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['field_napo_film_target_id']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_napo_film_target_id']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_napo_film_target_id']['summary_options']['items_per_page'] = '25';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'napo_video' => 'napo_video',
+  );
+  /* Filter criterion: Content: Video Type (field_video_type) */
+  $handler->display->display_options['filters']['field_video_type_tid']['id'] = 'field_video_type_tid';
+  $handler->display->display_options['filters']['field_video_type_tid']['table'] = 'field_data_field_video_type';
+  $handler->display->display_options['filters']['field_video_type_tid']['field'] = 'field_video_type_tid';
+  $handler->display->display_options['filters']['field_video_type_tid']['value'] = array(
+    2726 => '2726',
+  );
+  $handler->display->display_options['filters']['field_video_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_video_type_tid']['vocabulary'] = 'video_type';
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block');
+  $translatables['episode_list'] = array(
+    t('Master'),
+    t('Episode list'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('All'),
+    t('Block'),
+  );
+  $export['episode_list'] = $view;
+
+  $view = new view();
   $view->name = 'frontpage_custom_video';
   $view->description = '';
   $view->tag = 'default';

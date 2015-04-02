@@ -22,7 +22,7 @@ function napo_film_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 7,
       ),
       'film_main_video_teaser' => array(
         'label' => 'above',
@@ -82,7 +82,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 24,
       ),
       'film_main_video_teaser' => array(
         'label' => 'above',
@@ -130,13 +130,9 @@ function napo_film_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
-        ),
-        'type' => 'image',
-        'weight' => 2,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 22,
       ),
       'film_main_video_teaser' => array(
         'label' => 'above',
@@ -208,11 +204,10 @@ function napo_film_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'i18n_taxonomy',
+        'label' => 'inline',
         'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 10,
+        'type' => 'hidden',
+        'weight' => 17,
       ),
       'film_main_video_teaser' => array(
         'label' => 'above',
@@ -235,7 +230,7 @@ function napo_film_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_main_tag',
-    'label' => 'Main Tag',
+    'label' => 'Main Category',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -261,12 +256,9 @@ function napo_film_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => 1,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 7,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 19,
       ),
       'film_main_video_teaser' => array(
         'label' => 'above',
@@ -314,17 +306,9 @@ function napo_film_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'osha_date_theme' => '',
-        ),
-        'type' => 'date_default',
-        'weight' => 8,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 20,
       ),
       'film_main_video_teaser' => array(
         'label' => 'above',
@@ -382,10 +366,9 @@ function napo_film_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 6,
+        'type' => 'hidden',
+        'weight' => 18,
       ),
       'film_main_video_teaser' => array(
         'label' => 'above',
@@ -408,7 +391,7 @@ function napo_film_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_tags',
-    'label' => 'Secondary Tags',
+    'label' => 'Categories',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -431,18 +414,9 @@ function napo_film_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'file_entity',
-        'settings' => array(
-          'autoplay' => 0,
-          'controls' => 1,
-          'height' => '',
-          'loop' => 0,
-          'multiple_file_behavior' => 'tags',
-          'muted' => 0,
-          'width' => '',
-        ),
-        'type' => 'file_video',
-        'weight' => 3,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 23,
       ),
       'film_main_video_teaser' => array(
         'label' => 'above',
@@ -510,10 +484,9 @@ function napo_film_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'inline',
-        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 4,
+        'type' => 'hidden',
+        'weight' => 21,
       ),
       'film_main_video_teaser' => array(
         'label' => 'above',
@@ -564,17 +537,17 @@ function napo_film_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'youtube',
         'settings' => array(
-          'youtube_autohide' => FALSE,
-          'youtube_autoplay' => FALSE,
-          'youtube_controls' => FALSE,
-          'youtube_height' => NULL,
-          'youtube_iv_load_policy' => FALSE,
-          'youtube_showinfo' => FALSE,
-          'youtube_size' => '420x315',
-          'youtube_width' => NULL,
+          'youtube_autohide' => 0,
+          'youtube_autoplay' => 0,
+          'youtube_controls' => 0,
+          'youtube_height' => '',
+          'youtube_iv_load_policy' => 1,
+          'youtube_showinfo' => 1,
+          'youtube_size' => 'responsive',
+          'youtube_width' => '',
         ),
         'type' => 'youtube_video',
-        'weight' => 5,
+        'weight' => 1,
       ),
       'film_main_video_teaser' => array(
         'label' => 'inline',
@@ -700,12 +673,12 @@ function napo_film_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
+  t('Categories');
   t('Image');
-  t('Main Tag');
+  t('Main Category');
   t('Mark as outdated');
   t('Napo film');
   t('Publication date');
-  t('Secondary Tags');
   t('Title');
   t('Video');
   t('Video Type');
