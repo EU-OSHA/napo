@@ -125,6 +125,7 @@ function napo_film_theme() {
     ),
     'napo_film_share_widget' => array(
       'variables' => array(
+        'url' => '',
         'node' => array(),
       ),
       'template' => 'theme/napo_film_share_widget',
@@ -272,8 +273,14 @@ function napo_film_preprocess_node(&$vars) {
         }
         // Add share widget ds field.
         if (in_array('share_widget', $vars['preprocess_fields'])) {
+          // Add services javascript.
           drupal_add_js(drupal_get_path('module', 'napo_film') . '/js/share_widget.js');
-          $vars['share_widget'] = theme('napo_film_share_widget', array('node' => $node));
+          // Add facebook app key.
+          $fb_app_key = variable_get('fb_app_key', '');
+          drupal_add_js(array('napo_film' => array('fb_app_key' => $fb_app_key)), 'setting');
+
+          $url = url('/node/' . $node->nid, array('absolute' => TRUE));
+          $vars['share_widget'] = theme('napo_film_share_widget', array('url' => $url, 'node' => $node));
         }
         // Add share widget ds field.
         if (in_array('download_video_form', $vars['preprocess_fields'])) {

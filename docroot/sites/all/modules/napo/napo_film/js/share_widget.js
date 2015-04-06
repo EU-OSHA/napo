@@ -1,6 +1,6 @@
 window.fbAsyncInit = function() {
     FB.init({
-        appId      : '159720897495663',
+        appId      : Drupal.settings.napo_film.fb_app_key,
         xfbml      : true,
         version    : 'v2.3'
     });
