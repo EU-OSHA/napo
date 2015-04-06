@@ -147,57 +147,6 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_video-field_episodes'
-  $field_instances['node-napo_video-field_episodes'] = array(
-    'bundle' => 'napo_video',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 25,
-      ),
-      'episode_full' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 15,
-      ),
-      'film_main_video_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_episodes',
-    'label' => 'Episodes',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'multiple_selects',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'multiple_selects',
-      'weight' => 14,
-    ),
-  );
-
   // Exported field_instance: 'node-napo_video-field_image'
   $field_instances['node-napo_video-field_image'] = array(
     'bundle' => 'napo_video',
@@ -891,7 +840,6 @@ function napo_film_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Categories');
-  t('Episodes');
   t('Image');
   t('Main Category');
   t('Mark as outdated');
