@@ -13,11 +13,11 @@ include_once 'napo_film.formatter.inc';
 function napo_film_entity_info_alter(&$entity_info) {
   $entity_info['node']['view modes']['film_main_video_teaser'] = array(
     'label' => t('Film Video teaser'),
-    'custom settings' => TRUE,
+    'custom settings' => FALSE,
   );
   $entity_info['node']['view modes']['episode_full'] = array(
     'label' => t('Episode full'),
-    'custom settings' => TRUE,
+    'custom settings' => FALSE,
   );
 }
 
@@ -242,6 +242,7 @@ function napo_film_episode_download_form($form, &$form_state, $node, $view_mode)
     '#type' => 'select',
     '#title' => t('Download this film as'),
     '#options' => napo_film_get_films_formats_as_options($node),
+    '#default_value' => 'video/mp4',
   );
   $form['download'] = array(
     '#type' => 'submit',

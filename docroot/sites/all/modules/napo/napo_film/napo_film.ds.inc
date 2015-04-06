@@ -68,7 +68,7 @@ function napo_film_ds_custom_fields_info() {
   $ds_field->entities = array(
     'node' => 'node',
   );
-  $ds_field->ui_limit = 'napo_video|default';
+  $ds_field->ui_limit = 'napo_video|*';
   $ds_field->properties = array();
   $export['combined_tags'] = $ds_field;
 
