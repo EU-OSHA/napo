@@ -5,6 +5,7 @@
  */
 
 include_once 'napo_film.features.inc';
+include_once 'napo_film.formatter.inc';
 
 /**
  * Implements hook_entity_info_alter().
@@ -17,6 +18,62 @@ function napo_film_entity_info_alter(&$entity_info) {
   $entity_info['node']['view modes']['episode_full'] = array(
     'label' => t('Episode full'),
     'custom settings' => TRUE,
+  );
+}
+
+function napo_film_menu() {
+  $items = array();
+
+  $items['napo_film/ajax/episode/%'] = array(
+    'title' => 'Get episode',
+    'page callback' => 'napo_film_render_episode',
+    'page arguments' => array(3),
+    'access callback' => TRUE,
+    'expanded' => TRUE,
+  );
+  return $items;
+}
+
+function napo_film_render_episode($nid) {
+  $node = node_load($nid);
+  $commands = array();
+  if (!empty($node)) {
+    // Unset title not to show in node_view.
+    $node->title = NULL;
+    $render_node = node_view($node, 'episode_full');
+    // Unset the title, use it in template (modal header).
+    unset($render_node['title_field']);
+    $title = field_get_items('node', $node, 'title_field');
+    $title = current($title)['value'];
+    $content = theme('napo_film_ajax_episode', array(
+      'content' => drupal_render($render_node),
+      'title' => $title,
+      'nid' => $nid,
+      )
+    );
+    $commands[] = ajax_command_invoke('.modal', 'modal', array('hide'));
+    $commands[] = ajax_command_remove('#ajax-episode-' . $nid);
+    $commands[] = ajax_command_append('body', $content);
+    $commands[] = ajax_command_invoke('#ajax-episode-' . $nid, 'modal');
+  }
+  drupal_alter('napo_film_render_episode', $commands);
+  $page = array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
+  ajax_deliver($page);
+}
+
+function napo_film_theme() {
+  return array(
+    'napo_film_ajax_episode' => array(
+      'variables' => array(
+        'content' => '',
+        'title' => '',
+        'nid' => '',
+      ),
+      'template' => 'theme/napo_film_ajax_episode',
+    ),
   );
 }
 
@@ -139,5 +196,16 @@ function napo_film_preprocess_node(&$vars) {
       $field_combined = field_view_field('node', $node, 'field_tags', $display_settings);
       // Pass the combined rendered field.
       $vars['combined_tags'] = drupal_render($field_combined);
+
+      if (!empty($vars['preprocess_fields']) && in_array('episode_list_episode', $vars['preprocess_fields'])) {
+        $film = field_get_items('node', $node, 'field_napo_film');
+        if (!empty($film)) {
+          $film = current($film)['target_id'];
+          $fields = ds_get_fields('node');
+          $label = $fields['episode_list_episode']['title'];
+          $vars['episode_list_episode'] = '<div class="episode-list-label">' . $label . '</div>';
+          $vars['episode_list_episode'] .= views_embed_view('episode_list', 'block_1', $film);
+        }
+      }
   }
 }

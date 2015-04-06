@@ -70,7 +70,7 @@ function napo_film_ds_custom_fields_info() {
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
   $ds_field->field = 'episode_list';
-  $ds_field->label = 'Episode List';
+  $ds_field->label = 'Episode list';
   $ds_field->field_type = 6;
   $ds_field->entities = array(
     'node' => 'node',

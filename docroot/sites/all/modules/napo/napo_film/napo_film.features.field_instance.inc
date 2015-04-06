@@ -28,7 +28,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 21,
       ),
       'film_full' => array(
         'label' => 'hidden',
@@ -101,7 +101,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 14,
       ),
       'film_full' => array(
         'label' => 'above',
@@ -147,6 +147,66 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-napo_video-field_episodes'
+  $field_instances['node-napo_video-field_episodes'] = array(
+    'bundle' => 'napo_video',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 25,
+      ),
+      'episode_full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_episodes',
+    'label' => 'Episodes',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'multiple_selects',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'multiple_selects',
+      'weight' => 14,
+    ),
+  );
+
   // Exported field_instance: 'node-napo_video-field_image'
   $field_instances['node-napo_video-field_image'] = array(
     'bundle' => 'napo_video',
@@ -163,7 +223,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 6,
+        'weight' => 18,
       ),
       'film_full' => array(
         'label' => 'hidden',
@@ -250,7 +310,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 16,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -311,9 +371,12 @@ function napo_film_field_default_field_instances() {
       ),
       'episode_full' => array(
         'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 7,
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => 1,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 2,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -375,7 +438,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 15,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -447,7 +510,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 19,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -507,7 +570,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 20,
       ),
       'film_full' => array(
         'label' => 'hidden',
@@ -589,7 +652,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 17,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -659,17 +722,17 @@ function napo_film_field_default_field_instances() {
         'weight' => 1,
       ),
       'episode_full' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'youtube',
         'settings' => array(
-          'youtube_autohide' => FALSE,
-          'youtube_autoplay' => FALSE,
-          'youtube_controls' => FALSE,
-          'youtube_height' => NULL,
-          'youtube_iv_load_policy' => FALSE,
-          'youtube_showinfo' => FALSE,
-          'youtube_size' => '420x315',
-          'youtube_width' => NULL,
+          'youtube_autohide' => 0,
+          'youtube_autoplay' => 0,
+          'youtube_controls' => 0,
+          'youtube_height' => '',
+          'youtube_iv_load_policy' => 1,
+          'youtube_showinfo' => 1,
+          'youtube_size' => 'responsive',
+          'youtube_width' => '',
         ),
         'type' => 'youtube_video',
         'weight' => 1,
@@ -765,12 +828,12 @@ function napo_film_field_default_field_instances() {
         'weight' => 0,
       ),
       'episode_full' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'title',
         'settings' => array(
           'title_class' => '',
           'title_link' => '',
-          'title_style' => '',
+          'title_style' => 'h1',
         ),
         'type' => 'title_linked',
         'weight' => 0,
@@ -837,6 +900,7 @@ function napo_film_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Categories');
+  t('Episodes');
   t('Image');
   t('Main Category');
   t('Mark as outdated');
