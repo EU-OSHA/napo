@@ -74,6 +74,12 @@ function napo_film_theme() {
       ),
       'template' => 'theme/napo_film_ajax_episode',
     ),
+    'napo_film_share_widget' => array(
+      'variables' => array(
+        'node' => array(),
+      ),
+      'template' => 'theme/napo_film_share_widget',
+    ),
   );
 }
 
@@ -166,46 +172,160 @@ function napo_film_node_submit($node, $form, &$form_state) {
  */
 function napo_film_preprocess_node(&$vars) {
   $node = $vars['node'];
+  $view_mode = $vars['view_mode'];
   switch ($node->type) {
     case 'napo_video':
-      // Render the ds preprocess field to combined tags from main_tag and tags.
-      $combined = array();
-      // Merge the tags from both fields.
-      $main_tag = field_get_items('node', $node, 'field_main_tag');
-      if (!empty($main_tag)) {
-        $combined = array_merge($combined, $main_tag);
-      }
-      $tags = field_get_items('node', $node, 'field_tags');
-      if (!empty($tags)) {
-        $combined = array_merge($combined, $tags);
-      }
-      // Set display settings.
-      $display_settings = array(
-        'label' => 'inline',
-        'type' => 'ds_taxonomy_separator_localized',
-        'settings' => array(
-          'taxonomy_term_link' => 0,
-          'taxonomy_term_separator' => ' | ',
-        ),
-      );
-      // Use field_tags to get the rendered combined fields.
-      // Overwrite data from field_tags to be used in field_view_field.
-      $node->field_tags[LANGUAGE_NONE] = $combined;
-      // It uses label of field_tags and data from $combined and settings
-      // from $display_settings.
-      $field_combined = field_view_field('node', $node, 'field_tags', $display_settings);
-      // Pass the combined rendered field.
-      $vars['combined_tags'] = drupal_render($field_combined);
-
-      if (!empty($vars['preprocess_fields']) && in_array('episode_list_episode', $vars['preprocess_fields'])) {
-        $film = field_get_items('node', $node, 'field_napo_film');
-        if (!empty($film)) {
-          $film = current($film)['target_id'];
-          $fields = ds_get_fields('node');
-          $label = $fields['episode_list_episode']['title'];
-          $vars['episode_list_episode'] = '<div class="episode-list-label">' . $label . '</div>';
-          $vars['episode_list_episode'] .= views_embed_view('episode_list', 'block_1', $film);
+      if (!empty($vars['preprocess_fields'])) {
+        if (in_array('combined_tags', $vars['preprocess_fields'])) {
+          // Render the ds preprocess field to combined tags
+          // from main_tag and tags.
+          $combined = array();
+          // Merge the tags from both fields.
+          $main_tag = field_get_items('node', $node, 'field_main_tag');
+          if (!empty($main_tag)) {
+            $combined = array_merge($combined, $main_tag);
+          }
+          $tags = field_get_items('node', $node, 'field_tags');
+          if (!empty($tags)) {
+            $combined = array_merge($combined, $tags);
+          }
+          // Set display settings.
+          $display_settings = array(
+            'label' => 'inline',
+            'type' => 'ds_taxonomy_separator_localized',
+            'settings' => array(
+              'taxonomy_term_link' => 0,
+              'taxonomy_term_separator' => ' | ',
+            ),
+          );
+          // Use field_tags to get the rendered combined fields.
+          // Overwrite data from field_tags to be used in field_view_field.
+          $node->field_tags[LANGUAGE_NONE] = $combined;
+          // It uses label of field_tags and data from $combined and settings
+          // from $display_settings.
+          $field_combined = field_view_field('node', $node, 'field_tags', $display_settings);
+          // Pass the combined rendered field.
+          $vars['combined_tags'] = drupal_render($field_combined);
+        }
+        // Render the ds episode list field from episode detail.
+        if (in_array('episode_list_episode', $vars['preprocess_fields'])) {
+          $film = field_get_items('node', $node, 'field_napo_film');
+          if (!empty($film)) {
+            $film = current($film)['target_id'];
+            $fields = ds_get_fields('node');
+            $label = $fields['episode_list_episode']['title'];
+            $vars['episode_list_episode'] = '<div class="episode-list-label">' . $label . '</div>';
+            $vars['episode_list_episode'] .= views_embed_view('episode_list', 'block_1', $film);
+          }
+        }
+        // Add share widget ds field.
+        if (in_array('share_widget', $vars['preprocess_fields'])) {
+          drupal_add_js(drupal_get_path('module', 'napo_film') . '/js/share_widget.js');
+          $vars['share_widget'] = theme('napo_film_share_widget', array('node' => $node));
+        }
+        // Add share widget ds field.
+        if (in_array('download_form', $vars['preprocess_fields'])) {
+          $form = drupal_get_form('napo_film_episode_download_form', $node, $view_mode);
+          $vars['download_form'] = drupal_render($form);
         }
       }
+  }
+}
+
+/**
+ * Form for downloading a field_video file in available formats.
+ */
+function napo_film_episode_download_form($form, &$form_state, $node, $view_mode) {
+  $form['#prefix'] = '<div class="napo-film-video-download-form">';
+  $form['#suffix'] = '</div>';
+  $form['download_format'] = array(
+    '#type' => 'select',
+    '#title' => t('Download this film as'),
+    '#options' => napo_film_get_films_formats_as_options($node),
+  );
+  $form['download'] = array(
+    '#type' => 'submit',
+    '#value' => t('Download'),
+  );
+  if ($view_mode != 'episode_full') {
+    $form['#prefix'] .= '<span class="napo-film-video-download-form-title">Download</span>';
+    $form['download_format']['#attributes'] = array('onchange' => "form.submit('download_format')");
+    $form['download_format']['#type'] = 'radios';
+    $form['download']['#attributes'] = array('style' => 'display: none;');
+  }
+  return $form;
+}
+
+function napo_film_episode_download_form_validate($form, &$form_state) {
+  $node = $form_state['build_info']['args'][0];
+  $format = $form_state['values']['download_format'];
+  $file = napo_film_get_film_file_by_mimetype($node, $format);
+  if (empty($file)) {
+    drupal_set_message(t('The film is not present in the specified format!'), 'warning');
+    drupal_goto('/');
+  }
+}
+
+/**
+ * Download video form submit callback.
+ */
+function napo_film_episode_download_form_submit($form, &$form_state) {
+  $node = $form_state['build_info']['args'][0];
+  $format = $form_state['values']['download_format'];
+  $file = napo_film_get_film_file_by_mimetype($node, $format);
+  $headers = array(
+    'Content-Type'              => $file->filemime,
+    'Content-Disposition'       => 'attachment; filename="' . drupal_basename($file->uri) . '"',
+    'Content-Length'            => $file->filesize,
+    'Content-Transfer-Encoding' => 'binary',
+    'Pragma'                    => 'no-cache',
+    'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
+    'Expires'                   => '0',
+    'Accept-Ranges'             => 'bytes',
+  );
+  file_transfer($file->uri, $headers);
+}
+
+/**
+ * Get a file obj from a node's field_video by mime type.
+ */
+function napo_film_get_film_file_by_mimetype($node, $mime) {
+  $items = field_get_items('node', $node, 'field_video');
+  foreach ($items as $item) {
+    if ($item['filemime'] == $mime) {
+      return (object) $item;
+    }
+  }
+  return NULL;
+}
+
+/**
+ * Get options array with $node's available video formats.
+ */
+function napo_film_get_films_formats_as_options($node) {
+  $items = field_get_items('node', $node, 'field_video');
+  $options = array();
+  foreach ($items as $item) {
+    $options[$item['filemime']] = napo_film_get_type_label_by_mime($item['filemime']);
+  }
+  return $options;
+}
+
+/**
+ * Get labels for available video formats.
+ */
+function napo_film_get_type_label_by_mime($mime) {
+  $types = array(
+    'video/x-ms-wmv' => 'WMV',
+    'video/x-msvideo' => 'AVI',
+    'video/ogg' => 'OGV',
+    'video/webm' => 'WEBM',
+    'video/mp4' => 'MP4',
+  );
+  if (!empty($types[$mime])) {
+    return $types[$mime];
+  }
+  else {
+    return $mime;
   }
 }

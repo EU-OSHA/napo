@@ -17,8 +17,8 @@ function napo_film_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'napo_video';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
-    'combined_tags' => array(
-      'weight' => '6',
+    'download_form' => array(
+      'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -27,8 +27,18 @@ function napo_film_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'film' => array(
+    'share_widget' => array(
       'weight' => '4',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'combined_tags' => array(
+      'weight' => '6',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'film' => array(
+      'weight' => '3',
       'label' => 'inline',
       'format' => 'default',
       'formatter_settings' => array(
@@ -37,11 +47,6 @@ function napo_film_ds_field_settings_info() {
         'ctools' => 'a:3:{s:4:"conf";a:5:{s:8:"sanitize";i:1;s:7:"context";s:25:"argument_entity_id:node_1";s:14:"override_title";i:0;s:19:"override_title_text";s:0:"";s:22:"override_title_heading";s:2:"h2";}s:4:"type";s:5:"token";s:7:"subtype";s:16:"node:title-field";}',
         'load_terms' => 0,
       ),
-    ),
-    'share' => array(
-      'weight' => '5',
-      'label' => 'hidden',
-      'format' => 'default',
     ),
   );
   $export['node|napo_video|default'] = $ds_fieldsetting;
@@ -110,18 +115,16 @@ function napo_film_ds_custom_fields_info() {
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
-  $ds_field->field = 'share';
-  $ds_field->label = 'Share';
-  $ds_field->field_type = 6;
+  $ds_field->field = 'share_widget';
+  $ds_field->label = 'Share widget';
+  $ds_field->field_type = 3;
   $ds_field->entities = array(
     'node' => 'node',
   );
-  $ds_field->ui_limit = 'napo_video|default';
-  $ds_field->properties = array(
-    'block' => 'addtoany|addtoany_button',
-    'block_render' => '1',
-  );
-  $export['share'] = $ds_field;
+  $ds_field->ui_limit = 'napo_video|default
+napo_video|episode_full';
+  $ds_field->properties = array();
+  $export['share_widget'] = $ds_field;
 
   return $export;
 }
@@ -146,9 +149,10 @@ function napo_film_ds_layout_settings_info() {
         1 => 'field_youtube',
         2 => 'episode_list',
         3 => 'film',
-        4 => 'share',
-        5 => 'combined_tags',
-        6 => 'body',
+        4 => 'share_widget',
+        5 => 'download_form',
+        6 => 'combined_tags',
+        7 => 'body',
       ),
     ),
     'fields' => array(
@@ -156,7 +160,8 @@ function napo_film_ds_layout_settings_info() {
       'field_youtube' => 'ds_content',
       'episode_list' => 'ds_content',
       'film' => 'ds_content',
-      'share' => 'ds_content',
+      'share_widget' => 'ds_content',
+      'download_form' => 'ds_content',
       'combined_tags' => 'ds_content',
       'body' => 'ds_content',
     ),

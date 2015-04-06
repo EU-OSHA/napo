@@ -28,7 +28,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 22,
       ),
       'film_full' => array(
         'label' => 'hidden',
@@ -101,7 +101,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 15,
       ),
       'film_full' => array(
         'label' => 'above',
@@ -156,18 +156,15 @@ function napo_film_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 25,
       ),
       'episode_full' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 13,
+        'weight' => 14,
       ),
       'film_main_video_teaser' => array(
         'label' => 'above',
@@ -223,7 +220,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 19,
       ),
       'film_full' => array(
         'label' => 'hidden',
@@ -310,7 +307,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 17,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -438,7 +435,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 16,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -510,7 +507,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 20,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -570,7 +567,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 21,
       ),
       'film_full' => array(
         'label' => 'hidden',
@@ -652,7 +649,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 18,
       ),
       'film_full' => array(
         'label' => 'inline',

@@ -102,13 +102,15 @@ function napo_film_field_formatter_view($entity_type, $entity, $field, $instance
 
       if (!empty($output) && $settings['title_link'] == 'content') {
         $uri = entity_uri($entity_type, $entity);
-        $attributes['class'] = array(
-          'napo_film_episode_link',
-        );
-        $attributes['data-nid'] = $entity->nid;
+        if (napo_film_video_get_type($entity) == 'episode') {
+          $attributes['class'] = array(
+            'napo_film_episode_link',
+          );
+          drupal_add_library('system', 'drupal.ajax');
+          drupal_add_js(drupal_get_path('module', 'napo_film') . '/js/napo_film.js');
+          $attributes['data-nid'] = $entity->nid;
+        }
         $output = l($output, $uri['path'], array('attributes' => $attributes));
-        drupal_add_library('system', 'drupal.ajax');
-        drupal_add_js(drupal_get_path('module', 'napo_film') . '/js/napo_film.js');
       }
 
       $wrap_tag = empty($settings['title_style']) ? '_none' : $settings['title_style'];
