@@ -439,6 +439,8 @@ $options['init-modules'] = array(
   'entityqueue',
   'jcarousel',
 
+  'cer',
+
   // Social share
   'addtoany',
   'on_the_web',
