@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* jcarousel
+  * Fix console error no item fallback dimensions defined
+  * patches/jcarousel/jcarousel_item_fallback_dimension.patch
+  
 * search_autocomplete
   * Fix .live function bug, replaced with .on
   * patches/search_autocomplete/search_autocomplete_jquery_live_funcion.patch
