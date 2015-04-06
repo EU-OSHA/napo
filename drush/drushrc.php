@@ -440,6 +440,7 @@ $options['init-modules'] = array(
   'jcarousel',
 
   'cer',
+  'draggableviews',
 
   // Social share
   'addtoany',
