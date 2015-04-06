@@ -17,23 +17,18 @@ function napo_film_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'napo_video';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
-    'download_form' => array(
+    'download_video_form' => array(
       'weight' => '5',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'episode_list' => array(
-      'weight' => '2',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'share_widget' => array(
-      'weight' => '4',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'combined_tags' => array(
       'weight' => '6',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'episode_list' => array(
+      'weight' => '2',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -48,8 +43,38 @@ function napo_film_ds_field_settings_info() {
         'load_terms' => 0,
       ),
     ),
+    'share_widget' => array(
+      'weight' => '4',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
   );
   $export['node|napo_video|default'] = $ds_fieldsetting;
+
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|napo_video|episode_full';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'napo_video';
+  $ds_fieldsetting->view_mode = 'episode_full';
+  $ds_fieldsetting->settings = array(
+    'download_video_form' => array(
+      'weight' => '4',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'episode_list_episode' => array(
+      'weight' => '5',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'share_widget' => array(
+      'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|napo_video|episode_full'] = $ds_fieldsetting;
 
   return $export;
 }
@@ -74,6 +99,18 @@ function napo_film_ds_custom_fields_info() {
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
+  $ds_field->field = 'download_video_form';
+  $ds_field->label = 'Download';
+  $ds_field->field_type = 3;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = 'napo_video|*';
+  $ds_field->properties = array();
+  $export['download_video_form'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
   $ds_field->field = 'episode_list';
   $ds_field->label = 'Episode list';
   $ds_field->field_type = 6;
@@ -86,6 +123,18 @@ function napo_film_ds_custom_fields_info() {
     'block_render' => '1',
   );
   $export['episode_list'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'episode_list_episode';
+  $ds_field->label = 'Episodes';
+  $ds_field->field_type = 3;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = 'napo_video|episode_full';
+  $ds_field->properties = array();
+  $export['episode_list_episode'] = $ds_field;
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
@@ -150,7 +199,7 @@ function napo_film_ds_layout_settings_info() {
         2 => 'episode_list',
         3 => 'film',
         4 => 'share_widget',
-        5 => 'download_form',
+        5 => 'download_video_form',
         6 => 'combined_tags',
         7 => 'body',
       ),
@@ -161,7 +210,7 @@ function napo_film_ds_layout_settings_info() {
       'episode_list' => 'ds_content',
       'film' => 'ds_content',
       'share_widget' => 'ds_content',
-      'download_form' => 'ds_content',
+      'download_video_form' => 'ds_content',
       'combined_tags' => 'ds_content',
       'body' => 'ds_content',
     ),
@@ -176,6 +225,44 @@ function napo_film_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['node|napo_video|default'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|napo_video|episode_full';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'napo_video';
+  $ds_layout->view_mode = 'episode_full';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title_field',
+        1 => 'field_youtube',
+        2 => 'field_napo_film',
+        3 => 'share_widget',
+        4 => 'download_video_form',
+        5 => 'episode_list_episode',
+      ),
+    ),
+    'fields' => array(
+      'title_field' => 'ds_content',
+      'field_youtube' => 'ds_content',
+      'field_napo_film' => 'ds_content',
+      'share_widget' => 'ds_content',
+      'download_video_form' => 'ds_content',
+      'episode_list_episode' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|napo_video|episode_full'] = $ds_layout;
 
   return $export;
 }

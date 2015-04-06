@@ -5,23 +5,6 @@
  */
 
 /**
- * Implements hook_default_cer().
- */
-function napo_film_default_cer() {
-  $items = array();
-  $items['node:napo_video:field_napo_film*node:napo_video:field_episodes'] = entity_import('cer', '{
-    "identifier" : "node:napo_video:field_napo_film*node:napo_video:field_episodes",
-    "cer_bidirectional" : { "und" : [ { "value" : "1" } ] },
-    "cer_enabled" : { "und" : [ { "value" : "1" } ] },
-    "cer_weight" : { "und" : [ { "value" : "0" } ] },
-    "cer_left" : { "und" : [ { "path" : "node:napo_video:field_napo_film" } ] },
-    "cer_right" : { "und" : [ { "path" : "node:napo_video:field_episodes" } ] },
-    "rdf_mapping" : []
-  }');
-  return $items;
-}
-
-/**
  * Implements hook_ctools_plugin_api().
  */
 function napo_film_ctools_plugin_api($module = NULL, $api = NULL) {

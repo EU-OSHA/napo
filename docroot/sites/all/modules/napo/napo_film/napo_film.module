@@ -21,9 +21,12 @@ function napo_film_entity_info_alter(&$entity_info) {
   );
 }
 
+/**
+ * Implements hook_menu().
+ */
 function napo_film_menu() {
   $items = array();
-
+  // Episode overlay menu item.
   $items['napo_film/ajax/episode/%'] = array(
     'title' => 'Get episode',
     'page callback' => 'napo_film_render_episode',
@@ -34,6 +37,49 @@ function napo_film_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_menu_alter().
+ */
+function napo_film_menu_alter(&$items) {
+  // Add access callback for Reorder episodes tab.
+  $items['node/%/reorder_episodes']['access callback'] = 'napo_film_reoder_episodes_acess_callback';
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function napo_film_module_implements_alter(&$implementations, $hook) {
+  // Run our hook after the views hook.
+  if ($hook == 'menu_alter') {
+    if (isset($implementations['napo_film'])) {
+      unset($implementations['napo_film']);
+      $implementations['napo_film'] = FALSE;
+    }
+  }
+}
+
+/**
+ * Access callback for Reorder episodes tab.
+ */
+function napo_film_reoder_episodes_acess_callback($options) {
+  // Run the default access callback.
+  $access_callback = $options[0];
+  $access_arguments = $options[1];
+  $access = call_user_func_array($access_callback, $access_arguments);
+  if (!$access) {
+    return FALSE;
+  }
+  // Reorder menu only for films.
+  $node = node_load(arg(1));
+  if ($node && $node->type == 'napo_video' && napo_film_video_get_type($node) == 'film') {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Page callback for ajax call for rendering episode overlay.
+ */
 function napo_film_render_episode($nid) {
   $node = node_load($nid);
   $commands = array();
@@ -64,6 +110,9 @@ function napo_film_render_episode($nid) {
   ajax_deliver($page);
 }
 
+/**
+ * Implements hook_theme().
+ */
 function napo_film_theme() {
   return array(
     'napo_film_ajax_episode' => array(
@@ -83,6 +132,9 @@ function napo_film_theme() {
   );
 }
 
+/**
+ * Get taxonomies ids for video types.
+ */
 function napo_film_get_video_types_tid() {
   $types['episode'] = variable_get('napo_film_episode_type_tid', 2726);
   $types['film'] = variable_get('napo_film_film_type_tid', 2727);
@@ -224,9 +276,9 @@ function napo_film_preprocess_node(&$vars) {
           $vars['share_widget'] = theme('napo_film_share_widget', array('node' => $node));
         }
         // Add share widget ds field.
-        if (in_array('download_form', $vars['preprocess_fields'])) {
+        if (in_array('download_video_form', $vars['preprocess_fields'])) {
           $form = drupal_get_form('napo_film_episode_download_form', $node, $view_mode);
-          $vars['download_form'] = drupal_render($form);
+          $vars['download_video_form'] = drupal_render($form);
         }
       }
   }
@@ -252,6 +304,7 @@ function napo_film_episode_download_form($form, &$form_state, $node, $view_mode)
     $form['#prefix'] .= '<span class="napo-film-video-download-form-title">Download</span>';
     $form['download_format']['#attributes'] = array('onchange' => "form.submit('download_format')");
     $form['download_format']['#type'] = 'radios';
+    unset($form['download_format']['#default_value']);
     $form['download']['#attributes'] = array('style' => 'display: none;');
   }
   return $form;

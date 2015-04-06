@@ -439,7 +439,7 @@ $options['init-modules'] = array(
   'entityqueue',
   'jcarousel',
 
-  'cer',
+//  'cer',
   'draggableviews',
 
   // Social share
