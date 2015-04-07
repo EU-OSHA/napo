@@ -72,7 +72,7 @@ function napo_consortium_partner_views_default_views() {
   $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'thumbnail',
+    'image_style' => 'napo_logo',
     'image_link' => '',
   );
   /* Sort criterion: Entityqueue: Node Queue Position */
