@@ -48,7 +48,7 @@ function napo_common_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'napo_common',
     'node_types' => array(),
-    'pages' => 'node/242',
+    'pages' => 'node/248',
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(

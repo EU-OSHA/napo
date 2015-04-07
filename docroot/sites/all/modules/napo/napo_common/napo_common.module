@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ * Code for the Napo Common feature.
+ */
+
+include_once 'napo_common.features.inc';
 
 /**
  * Implments hook_form_FORM_ID_alter().
