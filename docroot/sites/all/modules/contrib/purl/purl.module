@@ -341,7 +341,7 @@ function purl_generate_rewrite_elements($item) {
 
   $processor = purl_get_processor($method);
   $local_modifiers = purl_modifiers($method);
-    
+
   $provider = $id = NULL;
   foreach ($local_modifiers as $k => $v) {
     if ($v['provider'] == $item['provider']) {
@@ -734,6 +734,27 @@ function purl_form_validate($form) {
   else {
     return TRUE;
   }
+}
+
+/*
+ *  Hook validate and hook submit need to be in the main menu
+*  to work with modules like menu_views and menu_hooks
+*  see issue http://drupal.org/node/1511708
+*/
+
+function purl_item_edit_validate($form, &$form_state) {
+  module_load_include('inc', 'purl', 'purl.admin');
+  _purl_item_edit_validate($form, $form_state);
+}
+
+/*
+ *  Hook validate and hook submit need to be in the main menu
+*  to work with modules like menu_views and menu_hooks
+*  see issue http://drupal.org/node/1511708
+*/
+function purl_item_edit_submit($form, &$form_state) {
+  module_load_include('inc', 'purl', 'purl.admin');
+  _purl_item_edit_submit($form, $form_state);
 }
 
 /**

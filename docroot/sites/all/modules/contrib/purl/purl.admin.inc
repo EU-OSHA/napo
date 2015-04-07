@@ -329,7 +329,7 @@ function _purl_menu_edit_submit_recurse($tree, $behavior) {
  * Doesn't actually validate, but rather moves data to where
  * menu_edit_item_submit() expects it.
  */
-function purl_item_edit_validate($form, &$form_state) {
+function _purl_item_edit_validate($form, &$form_state) {
   $form_state['values']['options']['purl'] = array();
   if (!empty($form_state['values']['purl']['modifier'])) {
     list($provider, $id) = explode(':', $form_state['values']['purl']['modifier']);
@@ -349,6 +349,6 @@ function purl_item_edit_validate($form, &$form_state) {
  * @todo Please document this function.
  * @see http://drupal.org/node/1354
  */
-function purl_item_edit_submit($form, &$form_state) {
+function _purl_item_edit_submit($form, &$form_state) {
   menu_cache_clear($form_state['values']['menu_name']);
 }
