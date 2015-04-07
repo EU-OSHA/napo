@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* jcarousel
+  * Fix console error no item fallback dimensions defined
+  * patches/jcarousel/jcarousel_item_fallback_dimension.patch
+  
 * purl
   * Fixes call to undefined function on saving menus
   * https://www.drupal.org/files/1511708_5_menu_save.patch

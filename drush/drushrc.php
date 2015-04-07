@@ -287,6 +287,9 @@ $options['init-modules'] = array(
   'date_views',
 //  'better_exposed_filters',
 
+  'purl',
+  'views_modes',
+
   'mailsystem',
   'htmlmail',
 
@@ -345,6 +348,7 @@ $options['init-modules'] = array(
   'views_slideshow',
   'views_slideshow_cycle',
   'custom_formatters',
+  'shorten',
 
   'taxonomy_manager',
   'term_reference_tree',
@@ -438,6 +442,9 @@ $options['init-modules'] = array(
 
   'entityqueue',
   'jcarousel',
+
+//  'cer',
+  'draggableviews',
 
   // Social share
   'addtoany',
