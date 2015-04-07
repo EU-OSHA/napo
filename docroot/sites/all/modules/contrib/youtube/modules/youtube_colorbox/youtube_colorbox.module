@@ -89,9 +89,33 @@ function youtube_colorbox_thumbnail_field_formatter_settings(&$element, $instanc
   );
   $element['colorbox']['parameters']['autoplay'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Autoplay video when opened'),
+    '#title' => t('Play video automatically when loaded (autoplay).'),
     '#default_value' => $colorbox['parameters']['autoplay'],
     '#return_value' => 1,
+  );
+  $element['colorbox']['parameters']['showinfo'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Hide video title and uploader info (showinfo).'),
+    '#default_value' => $colorbox['parameters']['showinfo'],
+    '#return_value' => 1,
+  );
+  $element['colorbox']['parameters']['controls'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Always hide video controls (controls).'),
+    '#default_value' => $colorbox['parameters']['controls'],
+    '#return_value' => 1,
+  );
+  $element['colorbox']['parameters']['autohide'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Hide video controls after play begins (autohide).'),
+    '#default_value' => $colorbox['parameters']['autohide'],
+    '#return_value' => 1,
+  );
+  $element['colorbox']['parameters']['iv_load_policy'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Hide video annotations by default (iv_load_policy).'),
+    '#default_value' => $colorbox['parameters']['iv_load_policy'],
+    '#return_value' => 3,
   );
   $element['colorbox']['gallery'] = array(
     '#type' => 'checkbox',
@@ -119,15 +143,47 @@ function youtube_colorbox_element_is_int($element, $form_state, $form) {
  *   The field item's display settings.
  */
 function youtube_colorbox_field_item_uri($item, $settings) {
+  // Field display settings.
+  $parameters = $settings['colorbox']['parameters'];
+
+  // Invert parameters that should be 0 when their options are selected.
+  $parameters['showinfo'] = $parameters['showinfo'] ? 0 : 1;
+  $parameters['controls'] = $parameters['controls'] ? 0 : 1;
+
+  // Global YouTube module configuration.
+  $domain = variable_get('youtube_privacy', FALSE) ? 'youtube-nocookie.com' : 'youtube.com';
+  $player_class = variable_get('youtube_player_class', 'youtube-field-player');
+  if (!variable_get('youtube_suggest', TRUE)) {
+    $parameters['rel'] = '0';
+  }
+  if (variable_get('youtube_modestbranding', FALSE)) {
+    $parameters['modestbranding'] = '1';
+  }
+  if (variable_get('youtube_theme', FALSE)) {
+    $parameters['theme'] = 'light';
+  }
+  if (variable_get('youtube_color', FALSE)) {
+    $parameters['color'] = 'white';
+  }
+  if (variable_get('youtube_enablejsapi', FALSE)) {
+    global $base_url;
+    $parameters['enablejsapi'] = '1';
+    $parameters['origin'] = $base_url;
+  }
+  if (variable_get('youtube_wmode', TRUE)) {
+    $parameters['wmode'] = 'opaque';
+  }
+
   $uri = array(
-    'path' => 'http://youtube.com/embed/' . $item['video_id'],
+    'path' => 'https://' . $domain . '/embed/' . $item['video_id'],
     'options' => array(
       'attributes' => array(
-        'class' => 'colorbox-load',
+        'class' => array('colorbox-load', $player_class),
+        'id' => drupal_html_id($player_class),
       ),
       'html' => TRUE,
       'external' => TRUE,
-      'query' => $settings['colorbox']['parameters'],
+      'query' => $parameters,
     ),
   );
 

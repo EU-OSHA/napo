@@ -66,8 +66,8 @@ function youtube_get_dimensions($size = NULL, $width = NULL, $height = NULL) {
     $dimensions['height'] = '100%';
   }
   elseif ($size == 'custom') {
-    $dimensions['width'] = (int) $width;
-    $dimensions['height'] = (int) $height;
+    $dimensions['width'] = strstr($width, '%') ? (int) $width . '%' : (int) $width;
+    $dimensions['height'] = strstr($height, '%') ? (int) $height . '%' : (int) $height;
   }
   else {
     // Locate the 'x'.
@@ -156,6 +156,31 @@ function youtube_get_remote_image($id = NULL, $force_small = FALSE) {
 }
 
 /**
+ * Submit callback; delete all existing thumbnail image files.
+ *
+ * @see youtube_settings_form()
+ */
+function youtube_thumb_delete_all($form, &$form_state) {
+  $files = variable_get('file_public_path', conf_path() . '/files');
+  $youtube_dir = variable_get('youtube_thumb_dir', 'youtube');
+  $youtube_path = $files . '/' . $youtube_dir;
+
+  $imagestyleflush = t('Derivatives generated with image styles were not
+    deleted. <a href="@imagestyleflush">Image style flush</a> may help with that.',
+    array('@imagestyleflush' => 'https://www.drupal.org/project/imagestyleflush'));
+
+  if (file_prepare_directory($youtube_path) && file_unmanaged_delete_recursive($youtube_path)) {
+    drupal_set_message(t('All YouTube Field thumbnail image files have been
+      deleted and will be redownloaded upon the next page load.'));
+    drupal_set_message($imagestyleflush);
+  }
+  else {
+    drupal_set_message(t('There were no thumbnails to delete.'), 'warning');
+    drupal_set_message($imagestyleflush, 'warning');
+  }
+}
+
+/**
  * Get YouTube image path by building correctly formed URL.
  *
  * @param $video_id
@@ -226,14 +251,44 @@ function youtube_feeds_processor_targets_alter(&$targets, $entity_type, $bundle_
  *   A string identifying the target on the node.
  * @param $value
  *   The value to populate the target with.
+ * @param $mapping
+ *   Associative array of the mapping settings from the per mapping
+ *   configuration form.
  */
 function youtube_set_target($source, $entity, $target, $value, $mapping) {
-  $video_id = youtube_get_video_id($value);
-  if ($video_id) {
-    $entity->{$target}[LANGUAGE_NONE][0] = array(
-      'input' => $value,
-      'video_id' => $video_id,
-    );
+  if (empty($value)) {
+    return;
+  }
+
+  if (!is_array($value)) {
+    $value = array($value);
+  }
+
+  $info = field_info_field($target);
+  $field = isset($entity->$target) ? $entity->$target : array(LANGUAGE_NONE => array());
+
+  // Allow for mappings to a multi-value field on the same target.
+  $delta = count($field[LANGUAGE_NONE]);
+
+  foreach ($value as $v) {
+    if ($info['cardinality'] == $delta) {
+      break;
+    }
+
+    if (is_object($v) && ($v instanceof FeedsElement)) {
+      $v = $v->getValue();
+    }
+
+    if (is_scalar($v)) {
+      $video_id = youtube_get_video_id($v);
+      if ($video_id) {
+        $entity->{$target}[LANGUAGE_NONE][$delta] = array(
+          'input' => $v,
+          'video_id' => $video_id,
+        );
+        $delta++;
+      }
+    }
   }
 }
 
@@ -330,12 +385,12 @@ function youtube_tokens($type, $tokens, array $data = array(), array $options = 
     foreach ($tokens as $name => $original) {
       if (!strpos($name, '__youtube_')) {
         // This isn't a youtube token!
-        return;
+        continue;
       }
 
       $token_pieces = explode('__', $name);
       if (count($token_pieces) != 2) {
-        return;
+        continue;
       }
 
       $field_name = $token_pieces[0];

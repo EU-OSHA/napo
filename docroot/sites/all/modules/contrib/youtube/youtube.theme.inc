@@ -32,9 +32,6 @@ function theme_youtube_video($variables) {
   $privacy = variable_get('youtube_privacy', FALSE);
   $dimensions = youtube_get_dimensions($size, $width, $height);
 
-  // Protocol changes based on current page TODO.
-  $protocol = (isset($_SERVER['HTTPS'])) ? 'https' : 'http';
-
   // Query string changes based on setings.
   $query = array();
   if (!$suggest) {
@@ -52,7 +49,7 @@ function theme_youtube_video($variables) {
   if ($enablejsapi) {
     global $base_url;
     $query['enablejsapi'] = '1';
-    $query['origin'] = parse_url($base_url, PHP_URL_HOST);
+    $query['origin'] = $base_url;
   }
   if ($wmode) {
     $query['wmode'] = 'opaque';
@@ -76,12 +73,17 @@ function theme_youtube_video($variables) {
   // Domain changes based on settings.
   $domain = ($privacy) ? 'youtube-nocookie.com' : 'youtube.com';
 
-  $path = $protocol . '://www.' . $domain . '/embed/' . $id;
+  $path = 'https://www.' . $domain . '/embed/' . $id;
   $src = url($path, array('query' => $query));
+
+  $player_title = t('Embedded video for @entity_title', array(
+    '@entity_title' => $variables['entity_title'],
+  ));
 
   $output = '<iframe id="' . drupal_html_id($player_class) . '" class="' . $player_class . '"
     width="' . $dimensions['width'] . '" height="' . $dimensions['height'] . '"
-    src="' . $src . '" frameborder="0" allowfullscreen></iframe>';
+    src="' . $src . '" title="' . $player_title . '" frameborder="0"
+    allowfullscreen></iframe>';
 
   if ($size == 'responsive') {
     $output = '<div class="youtube-container--responsive">' . $output . '</div>';
@@ -116,13 +118,21 @@ function theme_youtube_thumbnail($variables) {
     }
   }
 
+  $alt = t('Embedded thumbnail for @entity_title', array(
+    '@entity_title' => $variables['entity_title'],
+  ));
+
   if ($style) {
     $uri = 'public://' . $youtube . '/' . $id . '.png';
-    $image = theme('image_style', array('style_name' => $style, 'path' => $uri));
+    $image = theme('image_style', array(
+      'style_name' => $style,
+      'path' => $uri,
+      'alt' => $alt,
+    ));
   }
   else {
     $path = $files . '/' . $youtube . '/' . $id . '.png';
-    $image = theme('image', array('path' => $path));
+    $image = theme('image', array('path' => $path, 'alt' => $alt));
   }
 
   // Check if an url path is provided
