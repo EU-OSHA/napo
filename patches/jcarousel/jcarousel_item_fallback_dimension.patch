@@ -1,0 +1,13 @@
+diff --git a/jcarousel/js/jquery.jcarousel.js b/docroot/sites/all/modules/contrib/jcarousel/js/jquery.jcarousel.js
+index 1704107..7a7221f 100644
+--- a/jcarousel/js/jquery.jcarousel.js
++++ b/jcarousel/js/jquery.jcarousel.js
+@@ -45,7 +45,7 @@
+         buttonPrevEvent: 'click',
+         buttonNextCallback: null,
+         buttonPrevCallback: null,
+-        itemFallbackDimension: null
++        itemFallbackDimension: 300
+     }, windowLoaded = false;
+ 
+     $(window).bind('load.jcarousel', function() { windowLoaded = true; });

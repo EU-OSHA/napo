@@ -52,6 +52,27 @@ ul.nav li.dropdown ul.dropdown-menu {
     margin: 0;
 }
 
+/* Share widget */
+.napo-share-widget {
+    display: inline;
+    color: #fff;
+    background: #000099;
+}
+.napo-share-widget .napo-share-widget-title {
+    cursor: pointer;
+}
+.napo-share-widget > ul {
+    display: none;
+    background: #000099;
+}
+.napo-share-widget:hover > ul {
+    position: absolute;
+    display: block;
+}
+.napo-share-widget:hover > ul >li {
+    cursor: pointer;
+}
+
 
 
 /* Video Gallery Detail */
@@ -59,15 +80,66 @@ ul.nav li.dropdown ul.dropdown-menu {
     background: #ddd;
 }
 
-.node-napo-video.view-mode-full .field-name-share {
+.node-napo-video.view-mode-full .napo-share-widget {
     float: right;
+    position: relative;
     margin-top: -20px;
-    padding: 10px;
     background: #000099;
 }
-.node-napo-video.view-mode-full .field-name-share .block-addtoany {
+
+.napo-film-video-download-form {
+    float: right;
+    position: relative;
+    max-width: 50px;
+    margin-top: -20px;
+    margin-right: 100px;
+}
+.napo-film-video-download-form form{
+    display: none;
+    color: #fff;
+    background: #000099;
+}
+.napo-film-video-download-form:hover form{
+    position: absolute;
+    display: block;
+    width: 80px;
+    height: 200px;
+
+}
+.napo-film-video-download-form-title {
+    color: #fff;
+    background: #000099;
+}
+.napo-film-video-download-form label[for='edit-download-format']{
     display: none;
 }
-.node-napo-video.view-mode-full .field-name-share:hover .block-addtoany{
+
+/* Episode detail overlay */
+.ajax-episode-modal .napo-film-video-download-form {
+    float: right;
+    display: inline-block;
+    position: relative;
+    max-width: 350px;
+    margin: 0;
+}
+.ajax-episode-modal .napo-film-video-download-form form {
     display: block;
+    color: #000;
+    background: none;
+}
+.napo-film-video-download-form:hover form{
+    position: relative;
+    display: block;
+    width: auto;
+    height: auto;
+}
+.ajax-episode-modal .napo-film-video-download-form label{
+    display: inline;
+}
+.ajax-episode-modal .napo-film-video-download-form select{
+    width: auto;
+}
+.ajax-episode-modal .napo-film-video-download-form .form-control,
+.ajax-episode-modal .napo-film-video-download-form .form-group{
+    display: inline-block;
 }
