@@ -565,7 +565,6 @@ function napo_film_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Napo\'s films';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -654,7 +653,6 @@ function napo_film_views_default_views() {
   $handler->display->display_options['mode_name'] = 'Gallery view';
   $translatables['napos_films'] = array(
     t('Master'),
-    t('Napo\'s films'),
     t('more'),
     t('Apply'),
     t('Reset'),
