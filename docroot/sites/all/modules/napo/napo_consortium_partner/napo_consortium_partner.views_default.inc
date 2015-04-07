@@ -75,6 +75,10 @@ function napo_consortium_partner_views_default_views() {
     'image_style' => 'thumbnail',
     'image_link' => '',
   );
+  /* Sort criterion: Entityqueue: Node Queue Position */
+  $handler->display->display_options['sorts']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
+  $handler->display->display_options['sorts']['entityqueue_relationship']['table'] = 'node';
+  $handler->display->display_options['sorts']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
