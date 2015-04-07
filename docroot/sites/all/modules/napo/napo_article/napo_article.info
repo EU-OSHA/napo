@@ -19,4 +19,4 @@ features[views_view][] = featured_articles
 features_exclude[dependencies][ctools] = ctools
 features_exclude[dependencies][entityreference] = entityreference
 features_exclude[dependencies][features] = features
-mtime = 1428410804
+mtime = 1428417248
