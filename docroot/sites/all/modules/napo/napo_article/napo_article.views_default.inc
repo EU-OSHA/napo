@@ -32,12 +32,14 @@ function napo_article_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '3';
   $handler->display->display_options['style_plugin'] = 'jcarousel';
   $handler->display->display_options['style_options']['wrap'] = '0';
-  $handler->display->display_options['style_options']['visible'] = '';
+  $handler->display->display_options['style_options']['visible'] = '3';
+  $handler->display->display_options['style_options']['responsive'] = 1;
   $handler->display->display_options['style_options']['auto'] = '0';
   $handler->display->display_options['style_options']['autoPause'] = 1;
   $handler->display->display_options['style_options']['easing'] = '';
   $handler->display->display_options['style_options']['vertical'] = 0;
   $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
   /* Relationship: Entityqueue: Node Queue */
   $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'node';
@@ -73,6 +75,10 @@ function napo_article_views_default_views() {
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'text_summary_or_trimmed';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_length' => '200',
+  );
   /* Field: Content: Link */
   $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
   $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';

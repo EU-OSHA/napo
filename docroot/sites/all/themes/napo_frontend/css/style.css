@@ -1,3 +1,17 @@
+/* Font resizer */
+.bodysmall{
+    font-size:1.0em;
+}
+
+.bodybig{
+    font-size:1.7em;
+}
+
+.vertical-align {
+    display: flex;
+    flex-direction: row;
+}
+
 /* Header */
 .navbar-header a.logo img {
     max-width: 100%;
@@ -11,8 +25,12 @@ ul.nav li.dropdown ul.dropdown-menu {
     margin-top: 0;
 }
 
-/* Consortium partner */
-.view-id-consortium_partners .jcarousel-container-horizontal {
+/* Carousels */
+.jcarousel-skin-default .jcarousel-item {
+    width: auto;
+    height: auto;
+}
+.jcarousel-container-horizontal {
     height: auto !important;
 }
 
@@ -22,4 +40,34 @@ ul.nav li.dropdown ul.dropdown-menu {
 }
 .menu-name-menu-social-media-menu .introduction-image img{
     max-width: 25px;
+}
+
+
+/* Homepage */
+.jcarousel-view--featured-articles--block {
+    width: 100% !important;
+}
+.view-featured-articles .jcarousel-skin-default .jcarousel-item {
+    width: 33%;
+    margin: 0;
+}
+
+
+
+/* Video Gallery Detail */
+.node-napo-video.view-mode-full .field-name-film.field-type-ds {
+    background: #ddd;
+}
+
+.node-napo-video.view-mode-full .field-name-share {
+    float: right;
+    margin-top: -20px;
+    padding: 10px;
+    background: #000099;
+}
+.node-napo-video.view-mode-full .field-name-share .block-addtoany {
+    display: none;
+}
+.node-napo-video.view-mode-full .field-name-share:hover .block-addtoany{
+    display: block;
 }

@@ -14,18 +14,130 @@ function napo_film_entity_info_alter(&$entity_info) {
     'label' => t('Film Video teaser'),
     'custom settings' => TRUE,
   );
+  $entity_info['node']['view modes']['episode_full'] = array(
+    'label' => t('Episode full'),
+    'custom settings' => TRUE,
+  );
+}
+
+function napo_film_get_video_types_tid() {
+  $types['episode'] = variable_get('napo_film_episode_type_tid', 2726);
+  $types['film'] = variable_get('napo_film_film_type_tid', 2727);
+  return $types;
 }
 
 /**
  * Implements hook_form_FORM_ID_alter().
  */
 function napo_film_form_napo_video_node_form_alter(&$form, &$form_state) {
-  // Show napo film field only for video type - napo film.
+  // Show napo film field only for video type - Episode video.
+  $types = napo_film_get_video_types_tid();
   $form['field_napo_film'] += array(
     '#states' => array(
       'visible' => array(
-        'select[name^="field_video_type"]' => array('value' => 2726),
+        'select[name^="field_video_type"]' => array('value' => $types['episode']),
       ),
     ),
   );
+  // Show main tag field only for video type - Film video.
+  $form['field_main_tag'] += array(
+    '#states' => array(
+      'visible' => array(
+        'select[name^="field_video_type"]' => array('value' => $types['film']),
+      ),
+    ),
+  );
+}
+
+function napo_film_video_get_type($node) {
+  $types = napo_film_get_video_types_tid();
+  $type = field_get_items('node', $node, 'field_video_type');
+  if (!empty($type)) {
+    $type = current($type);
+    switch ($type['tid']) {
+      case $types['episode']:
+        return 'episode';
+
+      case $types['film']:
+        return 'film';
+    }
+  }
+  return NULL;
+}
+
+/**
+ * Implements hook_entity_view_mode_alter().
+ */
+function napo_film_entity_view_mode_alter(&$view_mode, $context) {
+  if ($context['entity_type'] == 'node'
+    && $context['entity']->type == 'napo_video') {
+    $type = napo_film_video_get_type($context['entity']);
+    if ($view_mode == 'full') {
+      switch ($type) {
+        case 'episode':
+          // Change view mode for episode full.
+          $view_mode = 'episode_full';
+          break;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_node_submit().
+ */
+function napo_film_node_submit($node, $form, &$form_state) {
+  $type = napo_film_video_get_type($node);
+  if ($type == 'episode') {
+    // Remove main tag for videos Episodes.
+    if (!empty($node->field_main_tag)) {
+      drupal_set_message('Main Tag removed from Episode (inherited from film)!', 'warning');
+      $node->field_main_tag = array();
+    }
+  }
+  elseif ($type == 'film') {
+    // Remove film reference if video is type Film.
+    if (!empty($node->field_napo_film)) {
+      drupal_set_message('Napo Film removed from Film. Only episodes can have films.', 'warning');
+      $node->field_napo_film = array();
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function napo_film_preprocess_node(&$vars) {
+  $node = $vars['node'];
+  switch ($node->type) {
+    case 'napo_video':
+      // Render the ds preprocess field to combined tags from main_tag and tags.
+      $combined = array();
+      // Merge the tags from both fields.
+      $main_tag = field_get_items('node', $node, 'field_main_tag');
+      if (!empty($main_tag)) {
+        $combined = array_merge($combined, $main_tag);
+      }
+      $tags = field_get_items('node', $node, 'field_tags');
+      if (!empty($tags)) {
+        $combined = array_merge($combined, $tags);
+      }
+      // Set display settings.
+      $display_settings = array(
+        'label' => 'inline',
+        'type' => 'ds_taxonomy_separator_localized',
+        'settings' => array(
+          'taxonomy_term_link' => 0,
+          'taxonomy_term_separator' => ' | ',
+        ),
+      );
+      // Use field_tags to get the rendered combined fields.
+      // Overwrite data from field_tags to be used in field_view_field.
+      $node->field_tags[LANGUAGE_NONE] = $combined;
+      // It uses label of field_tags and data from $combined and settings
+      // from $display_settings.
+      $field_combined = field_view_field('node', $node, 'field_tags', $display_settings);
+      // Pass the combined rendered field.
+      $vars['combined_tags'] = drupal_render($field_combined);
+  }
 }

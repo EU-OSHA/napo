@@ -5,4 +5,6 @@ version = 7.x-1.0
 project = napo_common
 dependencies[] = fe_block
 features[fe_block_settings][] = napo_common-no_translation
+features[fe_block_boxes][] = zoom_options
+features[fe_block_settings][] = block-zoom_options
 features[features_api][] = api:2

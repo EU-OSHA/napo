@@ -326,6 +326,9 @@ class NapoEpisodesMigrateList extends MigrateList {
         }
         self::$episodes[$episode_id] = $episode_row;
       }
+      if (!empty($film->image)) {
+        $row['image'] = $film->image;
+      }
       // Set videos for film.
       if (!empty($youtube_data[$film_id])) {
         $row['youtube'] = $youtube_data[$film_id][self::$csv_youtube_pos];

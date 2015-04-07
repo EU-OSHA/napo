@@ -443,6 +443,10 @@ $options['init-modules'] = array(
   'addtoany',
   'on_the_web',
 
+  // DS
+  'ds',
+  'ds_ui',
+
   // Link content types with main menu items
   'menu_position',
   'r4032login',

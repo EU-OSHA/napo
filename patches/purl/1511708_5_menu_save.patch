@@ -1,0 +1,63 @@
+diff --git a/purl.admin.inc b/purl.admin.inc
+index 923fddb..72112e9 100644
+--- a/purl.admin.inc
++++ b/purl.admin.inc
+@@ -329,7 +329,7 @@ function _purl_menu_edit_submit_recurse($tree, $behavior) {
+  * Doesn't actually validate, but rather moves data to where
+  * menu_edit_item_submit() expects it.
+  */
+-function purl_item_edit_validate($form, &$form_state) {
++function _purl_item_edit_validate($form, &$form_state) {
+   $form_state['values']['options']['purl'] = array();
+   if (!empty($form_state['values']['purl']['modifier'])) {
+     list($provider, $id) = explode(':', $form_state['values']['purl']['modifier']);
+@@ -349,6 +349,6 @@ function purl_item_edit_validate($form, &$form_state) {
+  * @todo Please document this function.
+  * @see http://drupal.org/node/1354
+  */
+-function purl_item_edit_submit($form, &$form_state) {
++function _purl_item_edit_submit($form, &$form_state) {
+   menu_cache_clear($form_state['values']['menu_name']);
+ }
+\ No newline at end of file
+diff --git a/purl.module b/purl.module
+index 426bb88..bacf77d 100644
+--- a/purl.module
++++ b/purl.module
+@@ -344,7 +344,7 @@ function purl_generate_rewrite_elements($item) {
+ 
+   $processor = purl_get_processor($method);
+   $local_modifiers = purl_modifiers($method);
+-    
++
+   $provider = $id = NULL;
+   foreach ($local_modifiers as $k => $v) {
+     if ($v['provider'] == $item['provider']) {
+@@ -739,6 +739,27 @@ function purl_form_validate($form) {
+   }
+ }
+ 
++/*
++ *  Hook validate and hook submit need to be in the main menu
++*  to work with modules like menu_views and menu_hooks
++*  see issue http://drupal.org/node/1511708
++*/
++
++function purl_item_edit_validate($form, &$form_state) {
++  module_load_include('inc', 'purl', 'purl.admin');
++  _purl_item_edit_validate($form, $form_state);
++}
++
++/*
++ *  Hook validate and hook submit need to be in the main menu
++*  to work with modules like menu_views and menu_hooks
++*  see issue http://drupal.org/node/1511708
++*/
++function purl_item_edit_submit($form, &$form_state) {
++  module_load_include('inc', 'purl', 'purl.admin');
++  _purl_item_edit_submit($form, $form_state);
++}
++
+ /**
+  * Helper function, returns form options for modifier types.
+  *
