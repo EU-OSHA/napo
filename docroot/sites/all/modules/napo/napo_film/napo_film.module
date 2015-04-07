@@ -232,33 +232,8 @@ function napo_film_preprocess_node(&$vars) {
         if (in_array('combined_tags', $vars['preprocess_fields'])) {
           // Render the ds preprocess field to combined tags
           // from main_tag and tags.
-          $combined = array();
-          // Merge the tags from both fields.
-          $main_tag = field_get_items('node', $node, 'field_main_tag');
-          if (!empty($main_tag)) {
-            $combined = array_merge($combined, $main_tag);
-          }
-          $tags = field_get_items('node', $node, 'field_tags');
-          if (!empty($tags)) {
-            $combined = array_merge($combined, $tags);
-          }
-          // Set display settings.
-          $display_settings = array(
-            'label' => 'inline',
-            'type' => 'ds_taxonomy_separator_localized',
-            'settings' => array(
-              'taxonomy_term_link' => 0,
-              'taxonomy_term_separator' => ' | ',
-            ),
-          );
-          // Use field_tags to get the rendered combined fields.
-          // Overwrite data from field_tags to be used in field_view_field.
-          $node->field_tags[LANGUAGE_NONE] = $combined;
-          // It uses label of field_tags and data from $combined and settings
-          // from $display_settings.
-          $field_combined = field_view_field('node', $node, 'field_tags', $display_settings);
-          // Pass the combined rendered field.
-          $vars['combined_tags'] = drupal_render($field_combined);
+          $combined_tags = napo_film_combined_tags_view_field($node);
+          $vars['combined_tags'] = drupal_render($combined_tags);
         }
         // Render the ds episode list field from episode detail.
         if (in_array('episode_list_episode', $vars['preprocess_fields'])) {
@@ -309,28 +284,84 @@ function napo_film_preprocess_node(&$vars) {
 }
 
 /**
+ * Function to get combined tags as field renderable array.
+ */
+function napo_film_combined_tags_view_field($node) {
+  $combined = array();
+  // Merge the tags from both fields.
+  $main_tag = field_get_items('node', $node, 'field_main_tag');
+  if (!empty($main_tag)) {
+    $combined = array_merge($combined, $main_tag);
+  }
+  $tags = field_get_items('node', $node, 'field_tags');
+  if (!empty($tags)) {
+    $combined = array_merge($combined, $tags);
+  }
+  // Set display settings.
+  $display_settings = array(
+    'label' => 'inline',
+    'type' => 'ds_taxonomy_separator_localized',
+    'settings' => array(
+      'taxonomy_term_link' => 0,
+      'taxonomy_term_separator' => ' | ',
+    ),
+  );
+  // Use field_tags to get the rendered combined fields.
+  // Overwrite data from field_tags to be used in field_view_field.
+  $field_tags = $node->field_tags;
+  $node->field_tags[LANGUAGE_NONE] = $combined;
+  // It uses label of field_tags and data from $combined and settings
+  // from $display_settings.
+  $field_combined = field_view_field('node', $node, 'field_tags', $display_settings);
+  $node->field_tags = $field_tags;
+  return $field_combined;
+}
+
+/**
+ * Implements hook_forms().
+ */
+function napo_film_forms($form_id) {
+  // Alter download form to be able to render forms in views.
+  if (preg_match('/^napo_film_episode_download_form_\d+$/', $form_id)) {
+    return array(
+      $form_id => array(
+        'callback' => 'napo_film_episode_download_form',
+      ),
+    );
+  }
+}
+
+/**
  * Form for downloading a field_video file in available formats.
  */
-function napo_film_episode_download_form($form, &$form_state, $node, $view_mode) {
+function napo_film_episode_download_form($form, &$form_state, $node, $view_mode = '') {
   $form['#prefix'] = '<div class="napo-film-video-download-form">';
   $form['#suffix'] = '</div>';
   $form['download_format'] = array(
-    '#type' => 'select',
-    '#title' => t('Download this film as'),
+    '#type' => 'radios',
     '#options' => napo_film_get_films_formats_as_options($node),
-    '#default_value' => 'video/mp4',
+    '#attributes' => array(
+      'onchange' => "form.submit('download_format')",
+    ),
   );
   $form['download'] = array(
     '#type' => 'submit',
     '#value' => t('Download'),
+    '#attributes' => array(
+      'style' => 'display: none;',
+    ),
   );
-  if ($view_mode != 'episode_full') {
-    $form['#prefix'] .= '<span class="napo-film-video-download-form-title">Download</span>';
-    $form['download_format']['#attributes'] = array('onchange' => "form.submit('download_format')");
-    $form['download_format']['#type'] = 'radios';
-    unset($form['download_format']['#default_value']);
-    $form['download']['#attributes'] = array('style' => 'display: none;');
+  if ($view_mode == 'episode_full') {
+    $form['download_format']['#type'] = 'select';
+    $form['download_format']['#title'] = t('Download this film as');
+    $form['download_format']['#default_value'] = 'video/mp4';
+    unset($form['download_format']['#attributes']['onchange']);
+    unset($form['download']['#attributes']['style']);
   }
+  else {
+    $form['#prefix'] .= '<span class="napo-film-video-download-form-title">Download</span>';
+  }
+
   return $form;
 }
 
