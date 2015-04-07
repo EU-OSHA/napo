@@ -7,6 +7,11 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* purl
+  * Fixes call to undefined function on saving menus
+  * https://www.drupal.org/files/1511708_5_menu_save.patch
+  * https://www.drupal.org/node/1511708
+
 * search_autocomplete
   * Fix .live function bug, replaced with .on
   * patches/search_autocomplete/search_autocomplete_jquery_live_funcion.patch
@@ -35,7 +40,7 @@ List of patches (most recent first)
   * Fixes cache issue wiht lagnuage
   * https://www.drupal.org/files/issues/348421-129.patch
   * https://www.drupal.org/node/348421
-  
+
 * field_collection
     * Fixes error when deleting node.
     * https://www.drupal.org/files/issues/field_collection-error-deleting-node-null-field-collection-2394875-1.module.patch
