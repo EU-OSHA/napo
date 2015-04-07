@@ -1,11 +1,7 @@
 <?php
 /**
  * @file
-<<<<<<< HEAD
- * napo_commonn.features.fe_block_settings.inc
-=======
  * napo_common.features.fe_block_settings.inc
->>>>>>> develop
  */
 
 /**
