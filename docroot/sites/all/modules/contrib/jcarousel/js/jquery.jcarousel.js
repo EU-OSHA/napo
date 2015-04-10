@@ -45,7 +45,7 @@
         buttonPrevEvent: 'click',
         buttonNextCallback: null,
         buttonPrevCallback: null,
-        itemFallbackDimension: 300
+        itemFallbackDimension: null
     }, windowLoaded = false;
 
     $(window).bind('load.jcarousel', function() { windowLoaded = true; });
