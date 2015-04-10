@@ -65,7 +65,7 @@ function napo_film_default_fe_block_settings() {
       ),
     ),
     'title' => '<none>',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['views-episode_list-block'] = array(
