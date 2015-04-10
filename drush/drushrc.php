@@ -369,6 +369,14 @@ $options['init-modules'] = array(
   'shs',
   'smtp',
 
+  // Enable panels
+  'panels',
+  'panels_mini',
+  'panels_node',
+  'i18n_panels',
+  'page_manager',
+  'views_content',
+
   // Enable last (conflict with rules)
   'uuid',
   'uuid_features',
