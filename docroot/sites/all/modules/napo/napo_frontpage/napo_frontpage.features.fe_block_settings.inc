@@ -40,5 +40,33 @@ function napo_frontpage_default_fe_block_settings() {
     'visibility' => 1,
   );
 
+  $export['views-frontpage_custom_video-block'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'frontpage_custom_video-block',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => '<front>',
+    'roles' => array(),
+    'themes' => array(
+      'napo_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'napo_frontend',
+        'weight' => 1,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 1,
+  );
+
   return $export;
 }
