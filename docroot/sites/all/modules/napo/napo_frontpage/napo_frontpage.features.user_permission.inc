@@ -17,5 +17,19 @@ function napo_frontpage_user_default_permissions() {
     'module' => 'entityqueue',
   );
 
+  // Exported permission: 'update frontpage_video entityqueue'.
+  $permissions['update frontpage_video entityqueue'] = array(
+    'name' => 'update frontpage_video entityqueue',
+    'roles' => array(),
+    'module' => 'entityqueue',
+  );
+
+  // Exported permission: 'update more_representative_section entityqueue'.
+  $permissions['update more_representative_section entityqueue'] = array(
+    'name' => 'update more_representative_section entityqueue',
+    'roles' => array(),
+    'module' => 'entityqueue',
+  );
+
   return $permissions;
 }
