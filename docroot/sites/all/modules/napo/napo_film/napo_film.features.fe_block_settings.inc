@@ -48,7 +48,7 @@ function napo_film_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'nodeblock',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'napos-films',
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
@@ -65,7 +65,7 @@ function napo_film_default_fe_block_settings() {
       ),
     ),
     'title' => '<none>',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['views-episode_list-block'] = array(
