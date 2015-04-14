@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file
+ * Code for the Napo frontpage feature.
+ */
+
+include_once 'napo_frontpage.features.inc';
+
+/**
+ * Implements hook_jcarousel_skin_info().
+ */
+function napo_frontpage_jcarousel_skin_info() {
+  $skins = array();
+  $skins['napo'] = array(
+    'title' => t('Napo'),
+    'file' => 'skins/napo/jcarousel-napo.css',
+  );
+  return $skins;
+}

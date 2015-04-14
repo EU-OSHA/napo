@@ -440,17 +440,15 @@ function napo_film_get_type_label_by_mime($mime) {
 }
 
 /**
- * This hook is called right before the render process.
- *
- * @param $view
- *   The view object about to be processed.
+ * Implements hook_views_pre_render().
  */
 function napo_film_views_pre_render(&$view) {
   if ($view->name == 'napos_films') {
+    // For napo-films, the page is a view and the text is a nodeblock
+    // Use node title as the view page title.
     $node = node_load(23);
     $wrapper = entity_metadata_wrapper('node', $node);
-
     // Override the view's current title.
-    $view->set_title($wrapper->label());
+    drupal_set_title($wrapper->label());
   }
 }
