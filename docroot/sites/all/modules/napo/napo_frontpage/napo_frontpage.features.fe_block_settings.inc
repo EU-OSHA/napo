@@ -20,14 +20,14 @@ function napo_frontpage_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
         'region' => 'header',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => 0,
+        'weight' => -1,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -37,7 +37,7 @@ function napo_frontpage_default_fe_block_settings() {
       ),
     ),
     'title' => '',
-    'visibility' => 0,
+    'visibility' => 1,
   );
 
   $export['views-featured_articles-block'] = array(
@@ -55,7 +55,7 @@ function napo_frontpage_default_fe_block_settings() {
         'region' => 'header',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -41,
+        'weight' => -2,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -83,7 +83,7 @@ function napo_frontpage_default_fe_block_settings() {
         'region' => 'header',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -42,
+        'weight' => -3,
       ),
       'osha_admin' => array(
         'region' => '',
