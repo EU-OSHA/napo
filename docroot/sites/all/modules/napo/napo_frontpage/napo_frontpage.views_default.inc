@@ -238,6 +238,8 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '1';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Relationship: Entityqueue: Node Queue */
   $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
@@ -270,10 +272,10 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['title_field']['alter']['text'] = '[title_field]
 [body]';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title_field']['element_wrapper_class'] = 'col-md-4';
+  $handler->display->display_options['fields']['title_field']['element_wrapper_class'] = 'frontpage-video-title';
   $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
-    'title_style' => 'h3',
+    'title_style' => 'h1',
     'title_link' => 'content',
     'title_class' => '',
   );

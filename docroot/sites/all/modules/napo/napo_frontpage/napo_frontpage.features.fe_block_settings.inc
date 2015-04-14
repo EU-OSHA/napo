@@ -20,14 +20,14 @@ function napo_frontpage_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => '<front>',
+    'pages' => '',
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => 'content',
+        'region' => 'header',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => 3,
+        'weight' => 0,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -36,8 +36,8 @@ function napo_frontpage_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'FEATURED FILMS',
-    'visibility' => 1,
+    'title' => '',
+    'visibility' => 0,
   );
 
   $export['views-featured_articles-block'] = array(
@@ -52,10 +52,10 @@ function napo_frontpage_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => 'content',
+        'region' => 'header',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => 2,
+        'weight' => -41,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -80,10 +80,10 @@ function napo_frontpage_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => 'content',
+        'region' => 'header',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => 1,
+        'weight' => -42,
       ),
       'osha_admin' => array(
         'region' => '',
