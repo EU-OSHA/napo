@@ -1,33 +1,33 @@
 <?php
 /**
  * @file
- * napo_film.features.fe_block_settings.inc
+ * napo_frontpage.features.fe_block_settings.inc
  */
 
 /**
  * Implements hook_default_fe_block_settings().
  */
-function napo_film_default_fe_block_settings() {
+function napo_frontpage_default_fe_block_settings() {
   $export = array();
 
   $export['version'] = '2.0';
 
-  $export['addtoany-addtoany_button'] = array(
-    'cache' => 1,
+  $export['views-0a94fa4cf986aebe241c18b626efc720'] = array(
+    'cache' => -1,
     'custom' => 0,
-    'delta' => 'addtoany_button',
+    'delta' => '0a94fa4cf986aebe241c18b626efc720',
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
-    'module' => 'addtoany',
+    'module' => 'views',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'content',
+        'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -36,26 +36,26 @@ function napo_film_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => '<none>',
-    'visibility' => 0,
+    'title' => 'FEATURED FILMS',
+    'visibility' => 1,
   );
 
-  $export['nodeblock-23'] = array(
-    'cache' => 1,
+  $export['views-featured_articles-block'] = array(
+    'cache' => -1,
     'custom' => 0,
-    'delta' => 23,
+    'delta' => 'featured_articles-block',
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
-    'module' => 'nodeblock',
+    'module' => 'views',
     'node_types' => array(),
-    'pages' => 'napos-films',
+    'pages' => '<front>',
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -41,
+        'weight' => 2,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -66,34 +66,6 @@ function napo_film_default_fe_block_settings() {
     ),
     'title' => '<none>',
     'visibility' => 1,
-  );
-
-  $export['views-episode_list-block'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'episode_list-block',
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'napo_frontend' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'napo_frontend',
-        'weight' => 0,
-      ),
-      'osha_admin' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-    ),
-    'title' => 'View episodes',
-    'visibility' => 0,
   );
 
   $export['views-frontpage_custom_video-block'] = array(
@@ -111,7 +83,7 @@ function napo_film_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -38,
+        'weight' => 1,
       ),
       'osha_admin' => array(
         'region' => '',
