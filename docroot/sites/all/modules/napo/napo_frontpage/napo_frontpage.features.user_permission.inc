@@ -13,21 +13,27 @@ function napo_frontpage_user_default_permissions() {
   // Exported permission: 'update frontpage_carousel_featured entityqueue'.
   $permissions['update frontpage_carousel_featured entityqueue'] = array(
     'name' => 'update frontpage_carousel_featured entityqueue',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'entityqueue',
   );
 
   // Exported permission: 'update frontpage_video entityqueue'.
   $permissions['update frontpage_video entityqueue'] = array(
     'name' => 'update frontpage_video entityqueue',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'entityqueue',
   );
 
   // Exported permission: 'update more_representative_section entityqueue'.
   $permissions['update more_representative_section entityqueue'] = array(
     'name' => 'update more_representative_section entityqueue',
-    'roles' => array(),
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
     'module' => 'entityqueue',
   );
 

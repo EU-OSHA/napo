@@ -24,10 +24,10 @@ function napo_frontpage_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => 'content',
+        'region' => 'header',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => 3,
+        'weight' => 0,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -36,7 +36,7 @@ function napo_frontpage_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'FEATURED FILMS',
+    'title' => 'Featured Films',
     'visibility' => 1,
   );
 
@@ -52,10 +52,10 @@ function napo_frontpage_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => 'content',
+        'region' => 'header',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => 2,
+        'weight' => -41,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -80,10 +80,10 @@ function napo_frontpage_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => 'content',
+        'region' => 'slider',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'osha_admin' => array(
         'region' => '',
