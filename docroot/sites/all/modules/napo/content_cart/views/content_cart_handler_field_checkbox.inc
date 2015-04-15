@@ -36,3 +36,23 @@ class content_cart_handler_field_checkbox extends views_handler_field {
     parent::options_form($form, $form_state);
   }
 }
+
+/**
+ * Filters product nodes .
+ */
+class content_cart_handler_filter_product extends views_handler_filter_boolean_operator {
+
+  /**
+   * Overrides views_handler_field::query().
+   */
+  function query() {
+    $type = $this->query->base_table;
+    $cart = ContentCart::getCurrentCart();
+    $content = $cart->getCartContent();
+    if (!empty($content[$type])) {
+      $ids = array_keys($content[$type]);
+    }
+    $condition = db_and()->condition($this->query->base_field, $ids, 'IN');
+    $this->query->add_where(0, $condition);
+  }
+}

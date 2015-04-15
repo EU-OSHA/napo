@@ -7,6 +7,13 @@
 function content_cart_menu() {
   $items = array();
   // Episode overlay menu item.
+  $items['content_cart/ajax/submit/%'] = array(
+    'title' => 'Submit ajax cart change',
+    'page callback' => 'content_cart_ajax_submit',
+    'page arguments' => array(3),
+    'access callback' => TRUE,
+    'expanded' => TRUE,
+  );
   $items['content_cart/ajax/submit/%/%'] = array(
     'title' => 'Submit ajax cart change',
     'page callback' => 'content_cart_ajax_submit',
@@ -25,13 +32,23 @@ function content_cart_views_data_alter(&$data) {
   foreach (entity_get_info() as $info) {
     if (isset($info['base table']) && isset($data[$info['base table']]['table'])) {
       $data[$info['base table']]['content_cart'] = array(
-        'title' => $data[$info['base table']]['table']['group'],
-        'group' => t('Content Cart Checkbox'),
+        'title' => t('Add to cart Checkbox'),
+        'group' => t('Content Cart'),
         'help' => t('Provide a checkbox to select the row for content cart.'),
         'real field' => $info['entity keys']['id'],
         'field' => array(
           'handler' => 'content_cart_handler_field_checkbox',
           'click sortable' => FALSE,
+        ),
+      );
+      $data[$info['base table']]['content_cart_is_in_cart'] = array(
+        'title' => t('Is in Cart'),
+        'group' => t('Content Cart'),
+        'help' => t('Filters content that is in cart.'),
+        'real field' => $info['entity keys']['id'],
+        'filter' => array(
+          'handler' => 'content_cart_handler_filter_product',
+          'label' => t('Is in cart'),
         ),
       );
     }
@@ -51,7 +68,7 @@ function content_cart_remove_item($type, $id) {
 /**
  * Page callback for ajax call for cart submit..
  */
-function content_cart_ajax_submit($operation, $id) {
+function content_cart_ajax_submit($id, $operation = '') {
   $commands = array();
   $cart = ContentCart::getCurrentCart();
   $identifiers = explode('-', $id);
@@ -67,6 +84,15 @@ function content_cart_ajax_submit($operation, $id) {
 
       case 'remove':
         $cart->removeFromCart($type, $id);
+        break;
+
+      default:
+        if ($cart->hasInCart($type, $id)) {
+          $cart->removeFromCart($type, $id);
+        }
+        else {
+          $cart->addToCart($type, $id, $id);
+        }
         break;
     }
     $content = content_cart_cart_summary_content();
@@ -105,10 +131,9 @@ function content_cart_block_view($delta = '') {
 function content_cart_cart_summary_content() {
   $content = array();
   $cart = ContentCart::getCurrentCart();
-  $items = $cart->getCartContent();
   $content['content_cart_summary'] = array(
     '#prefix' => '<div id="content_cart_summary_container">',
-    '#markup' => t('Cart: @count items', array('@count' => count($items))),
+    '#markup' => t('Cart: @count items', array('@count' => $cart->countItems())),
     '#suffix' => '</div>',
   );
   return $content;
@@ -119,6 +144,7 @@ interface ContentCartInterface {
   public function addToCart($type, $id, $item);
   public function removeFromCart($type, $id);
   public function getCartContent();
+  public function countItems();
 
 }
 
@@ -136,7 +162,6 @@ class ContentCart implements ContentCartInterface {
 
   public function addToCart($type, $id, $item) {
     $_SESSION['drupal_content_cart'][$type][$id] = $item;
-    dpm($_SESSION['drupal_content_cart']);
   }
 
   public function removeFromCart($type, $id) {
@@ -151,5 +176,21 @@ class ContentCart implements ContentCartInterface {
 
   public function hasInCart($type, $id) {
     return !empty($_SESSION['drupal_content_cart'][$type][$id]);
+  }
+
+  public function countItems($type = NULL) {
+    $items = $this->getCartContent();
+    $count = 0;
+    if (!empty($items)) {
+      if (empty($type)) {
+        foreach ($items as $type => $items_of_type) {
+          $count += count($items_of_type);
+        }
+      }
+      elseif (!empty($items[$type])) {
+        $count = count($items[$type]);
+      }
+    }
+    return $count;
   }
 }
