@@ -1,0 +1,6 @@
+name = Content Cart
+core = 7.x
+version = 7.x-1.0
+project = content_cart
+
+files[]= views/content_cart_handler_field_checkbox.inc

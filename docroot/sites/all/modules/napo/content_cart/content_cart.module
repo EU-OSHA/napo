@@ -1,0 +1,155 @@
+<?php
+
+
+/**
+ * Implements hook_menu().
+ */
+function content_cart_menu() {
+  $items = array();
+  // Episode overlay menu item.
+  $items['content_cart/ajax/submit/%/%'] = array(
+    'title' => 'Submit ajax cart change',
+    'page callback' => 'content_cart_ajax_submit',
+    'page arguments' => array(3, 4),
+    'access callback' => TRUE,
+    'expanded' => TRUE,
+  );
+  return $items;
+}
+
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function content_cart_views_data_alter(&$data) {
+  foreach (entity_get_info() as $info) {
+    if (isset($info['base table']) && isset($data[$info['base table']]['table'])) {
+      $data[$info['base table']]['content_cart'] = array(
+        'title' => $data[$info['base table']]['table']['group'],
+        'group' => t('Content Cart Checkbox'),
+        'help' => t('Provide a checkbox to select the row for content cart.'),
+        'real field' => $info['entity keys']['id'],
+        'field' => array(
+          'handler' => 'content_cart_handler_field_checkbox',
+          'click sortable' => FALSE,
+        ),
+      );
+    }
+  }
+}
+
+function content_cart_add_item($type, $id) {
+  $cart = ContentCart::getCurrentCart();
+  $cart->addToCart($type, $id, $id);
+}
+
+function content_cart_remove_item($type, $id) {
+  $cart = ContentCart::getCurrentCart();
+  $cart->removeFromCart($type, $id, $id);
+}
+
+/**
+ * Page callback for ajax call for cart submit..
+ */
+function content_cart_ajax_submit($operation, $id) {
+  $commands = array();
+  $cart = ContentCart::getCurrentCart();
+  $identifiers = explode('-', $id);
+
+  if (count($identifiers) == 2) {
+    // TODO Check for valid entity type and id.
+    $type = $identifiers[0];
+    $id = $identifiers[1];
+    switch ($operation) {
+      case 'add':
+        $cart->addToCart($type, $id, $id);
+        break;
+
+      case 'remove':
+        $cart->removeFromCart($type, $id);
+        break;
+    }
+    $content = content_cart_cart_summary_content();
+    $commands[] = ajax_command_replace('#content_cart_summary_container', render($content));
+  }
+  $page = array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
+  ajax_deliver($page);
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function content_cart_block_info() {
+  $blocks['content_cart_summary'] = array(
+    'info' => t('Content cart summary'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function content_cart_block_view($delta = '') {
+  $block = array();
+  if ($delta == 'content_cart_summary') {
+    $block['content'] = content_cart_cart_summary_content();
+  }
+  return $block;
+}
+
+function content_cart_cart_summary_content() {
+  $content = array();
+  $cart = ContentCart::getCurrentCart();
+  $items = $cart->getCartContent();
+  $content['content_cart_summary'] = array(
+    '#prefix' => '<div id="content_cart_summary_container">',
+    '#markup' => t('Cart: @count items', array('@count' => count($items))),
+    '#suffix' => '</div>',
+  );
+  return $content;
+}
+
+interface ContentCartInterface {
+  public static function getCurrentCart();
+  public function addToCart($type, $id, $item);
+  public function removeFromCart($type, $id);
+  public function getCartContent();
+
+}
+
+class ContentCart implements ContentCartInterface {
+
+  public function __construct() {
+    if (!isset($_SESSION['drupal_content_cart'])) {
+      $_SESSION['drupal_content_cart'] = array();
+    }
+  }
+
+  public static function getCurrentCart() {
+    return new ContentCart();
+  }
+
+  public function addToCart($type, $id, $item) {
+    $_SESSION['drupal_content_cart'][$type][$id] = $item;
+    dpm($_SESSION['drupal_content_cart']);
+  }
+
+  public function removeFromCart($type, $id) {
+    if (!empty($_SESSION['drupal_content_cart'][$type][$id])) {
+      unset($_SESSION['drupal_content_cart'][$type][$id]);
+    }
+  }
+
+  public function getCartContent() {
+    return $_SESSION['drupal_content_cart'];
+  }
+
+  public function hasInCart($type, $id) {
+    return !empty($_SESSION['drupal_content_cart'][$type][$id]);
+  }
+}
