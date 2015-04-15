@@ -28,7 +28,7 @@ function napo_frontpage_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'videojs_height';
-  $strongarm->value = '640';
+  $strongarm->value = '675';
   $export['videojs_height'] = $strongarm;
 
   $strongarm = new stdClass();
