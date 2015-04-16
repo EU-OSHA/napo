@@ -3,4 +3,8 @@ core = 7.x
 version = 7.x-1.0
 project = content_cart
 
+files[]= includes/ContentCart.inc
+
 files[]= views/content_cart_handler_field_checkbox.inc
+files[]= views/content_cart_handler_filter_cart.inc
+files[]= views/content_cart_handler_field_remove_link.inc

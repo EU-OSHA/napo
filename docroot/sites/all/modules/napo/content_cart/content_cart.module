@@ -6,7 +6,7 @@
  */
 function content_cart_menu() {
   $items = array();
-  // Episode overlay menu item.
+  // Ajax submit callbacks.
   $items['content_cart/ajax/submit/%'] = array(
     'title' => 'Submit ajax cart change',
     'page callback' => 'content_cart_ajax_submit',
@@ -21,6 +21,13 @@ function content_cart_menu() {
     'access callback' => TRUE,
     'expanded' => TRUE,
   );
+  $items['content_cart/ajax/submit/%/%/%'] = array(
+    'title' => 'Submit ajax cart change',
+    'page callback' => 'content_cart_ajax_submit',
+    'page arguments' => array(3, 4, 5),
+    'access callback' => TRUE,
+    'expanded' => TRUE,
+  );
   return $items;
 }
 
@@ -32,12 +39,22 @@ function content_cart_views_data_alter(&$data) {
   foreach (entity_get_info() as $info) {
     if (isset($info['base table']) && isset($data[$info['base table']]['table'])) {
       $data[$info['base table']]['content_cart'] = array(
-        'title' => t('Add to cart Checkbox'),
+        'title' => t('Toggle (add/remove) cart checkbox'),
         'group' => t('Content Cart'),
-        'help' => t('Provide a checkbox to select the row for content cart.'),
+        'help' => t('Provide a checkbox to add/remove a content to cart.'),
         'real field' => $info['entity keys']['id'],
         'field' => array(
           'handler' => 'content_cart_handler_field_checkbox',
+          'click sortable' => FALSE,
+        ),
+      );
+      $data[$info['base table']]['content_cart_remove'] = array(
+        'title' => t('Remove from cart link'),
+        'group' => t('Content Cart'),
+        'help' => t('Provide a remove link - for views that filters by Is in Cart.'),
+        'real field' => $info['entity keys']['id'],
+        'field' => array(
+          'handler' => 'content_cart_handler_field_remove_link',
           'click sortable' => FALSE,
         ),
       );
@@ -47,7 +64,7 @@ function content_cart_views_data_alter(&$data) {
         'help' => t('Filters content that is in cart.'),
         'real field' => $info['entity keys']['id'],
         'filter' => array(
-          'handler' => 'content_cart_handler_filter_product',
+          'handler' => 'content_cart_handler_filter_cart',
           'label' => t('Is in cart'),
         ),
       );
@@ -66,37 +83,55 @@ function content_cart_remove_item($type, $id) {
 }
 
 /**
- * Page callback for ajax call for cart submit..
+ * Page callback for ajax call for cart submit.
+ *
+ * @param string $content_id
+ *   The entity_type-entity_id string used identify the content.
+ * @param string $operation
+ *   The operation (add/remove) that should be done on cart for the $id content.
+ * @param string $view
+ *   The view_name-view_display string to identify and refresh cart view.
  */
-function content_cart_ajax_submit($id, $operation = '') {
+function content_cart_ajax_submit($content_id, $operation = '', $view = '') {
   $commands = array();
   $cart = ContentCart::getCurrentCart();
-  $identifiers = explode('-', $id);
+  $identifiers = explode('-', $content_id);
 
   if (count($identifiers) == 2) {
     // TODO Check for valid entity type and id.
     $type = $identifiers[0];
-    $id = $identifiers[1];
+    $content_id = $identifiers[1];
     switch ($operation) {
       case 'add':
-        $cart->addToCart($type, $id, $id);
+        $cart->addToCart($type, $content_id, $content_id);
         break;
 
       case 'remove':
-        $cart->removeFromCart($type, $id);
+        $cart->removeFromCart($type, $content_id);
         break;
 
       default:
-        if ($cart->hasInCart($type, $id)) {
-          $cart->removeFromCart($type, $id);
+        if ($cart->hasInCart($type, $content_id)) {
+          $cart->removeFromCart($type, $content_id);
         }
         else {
-          $cart->addToCart($type, $id, $id);
+          $cart->addToCart($type, $content_id, $content_id);
         }
         break;
     }
     $content = content_cart_cart_summary_content();
     $commands[] = ajax_command_replace('#content_cart_summary_container', render($content));
+    // Replace the view if is a cart view.
+    if (!empty($view)) {
+      $view_identifiers = explode('-', $view);
+      $view_name = $view_identifiers[0];
+      $view_display = $view_identifiers[1];
+      if ($view = views_get_view($view_name)) {
+        $view_content = views_embed_view($view_name, $view_display);
+        $view_dom_class = '.view-id-' . $view_name . '.view-display-id-' . $view_display;
+        $commands[] = ajax_command_replace($view_dom_class, $view_content);
+      }
+    }
   }
   $page = array(
     '#type' => 'ajax',
@@ -128,6 +163,9 @@ function content_cart_block_view($delta = '') {
   return $block;
 }
 
+/**
+ * Get content summary content for cart block.
+ */
 function content_cart_cart_summary_content() {
   $content = array();
   $cart = ContentCart::getCurrentCart();
@@ -137,60 +175,4 @@ function content_cart_cart_summary_content() {
     '#suffix' => '</div>',
   );
   return $content;
-}
-
-interface ContentCartInterface {
-  public static function getCurrentCart();
-  public function addToCart($type, $id, $item);
-  public function removeFromCart($type, $id);
-  public function getCartContent();
-  public function countItems();
-
-}
-
-class ContentCart implements ContentCartInterface {
-
-  public function __construct() {
-    if (!isset($_SESSION['drupal_content_cart'])) {
-      $_SESSION['drupal_content_cart'] = array();
-    }
-  }
-
-  public static function getCurrentCart() {
-    return new ContentCart();
-  }
-
-  public function addToCart($type, $id, $item) {
-    $_SESSION['drupal_content_cart'][$type][$id] = $item;
-  }
-
-  public function removeFromCart($type, $id) {
-    if (!empty($_SESSION['drupal_content_cart'][$type][$id])) {
-      unset($_SESSION['drupal_content_cart'][$type][$id]);
-    }
-  }
-
-  public function getCartContent() {
-    return $_SESSION['drupal_content_cart'];
-  }
-
-  public function hasInCart($type, $id) {
-    return !empty($_SESSION['drupal_content_cart'][$type][$id]);
-  }
-
-  public function countItems($type = NULL) {
-    $items = $this->getCartContent();
-    $count = 0;
-    if (!empty($items)) {
-      if (empty($type)) {
-        foreach ($items as $type => $items_of_type) {
-          $count += count($items_of_type);
-        }
-      }
-      elseif (!empty($items[$type])) {
-        $count = count($items[$type]);
-      }
-    }
-    return $count;
-  }
 }
