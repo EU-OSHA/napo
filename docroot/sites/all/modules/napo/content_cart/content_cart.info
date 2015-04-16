@@ -5,6 +5,7 @@ project = content_cart
 
 files[]= includes/ContentCart.inc
 
+files[]= views/content_cart.views_default.inc
 files[]= views/content_cart_handler_field_checkbox.inc
 files[]= views/content_cart_handler_filter_cart.inc
 files[]= views/content_cart_handler_field_remove_link.inc

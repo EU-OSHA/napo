@@ -26,8 +26,7 @@ function content_cart_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'node';
-  $handler->display->display_options['row_options']['links'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -35,6 +34,12 @@ function content_cart_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content Cart: Remove from cart link */
+  $handler->display->display_options['fields']['content_cart_remove']['id'] = 'content_cart_remove';
+  $handler->display->display_options['fields']['content_cart_remove']['table'] = 'node';
+  $handler->display->display_options['fields']['content_cart_remove']['field'] = 'content_cart_remove';
+  $handler->display->display_options['fields']['content_cart_remove']['label'] = '';
+  $handler->display->display_options['fields']['content_cart_remove']['element_label_colon'] = FALSE;
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';

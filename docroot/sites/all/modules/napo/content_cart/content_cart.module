@@ -31,6 +31,15 @@ function content_cart_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_views_api().
+ */
+function content_cart_views_api() {
+  return array(
+    'api' => 3.0,
+    'path' => drupal_get_path('module', 'content_cart') . '/views',
+  );
+}
 
 /**
  * Implements hook_views_data_alter().
