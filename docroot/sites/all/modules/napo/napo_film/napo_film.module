@@ -634,3 +634,22 @@ function napo_film_preprocess_html(&$vars) {
   }
 }
 
+/**
+ * Implements hook_block_view_alter().
+ */
+function napo_film_block_view_alter(&$data, $block) {
+  if ($block->delta == 'content_cart_summary') {
+    $cart = ContentCart::getCurrentCart();
+    $label = t('Download center');
+    $count = $cart->countItems('node');
+    $html = '<span class="content_cart_summary_label">' . $label . '</span>';
+    $html .= '<span class="content_cart_summary_count">' . $count . '</span>';
+    $link = l($html, 'download-center', array('html' => TRUE));
+    $content['content_cart_summary'] = array(
+      '#prefix' => '<div id="content_cart_summary_container">',
+      '#markup' => $link,
+      '#suffix' => '</div>',
+    );
+    $data['content'] = $content;
+  }
+}

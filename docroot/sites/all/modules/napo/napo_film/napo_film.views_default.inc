@@ -11,6 +11,120 @@ function napo_film_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'download_center';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Download center';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Download center';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'row';
+  $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Field: Image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['element_type'] = 'div';
+  $handler->display->display_options['fields']['field_image']['element_class'] = 'col-md-3';
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => 'medium',
+    'image_link' => 'content',
+  );
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_length' => '600',
+    'trim_type' => 'chars',
+    'trim_suffix' => '...',
+    'more_link' => '0',
+    'more_text' => 'Read more',
+    'summary_handler' => 'full',
+    'trim_options' => array(
+      'text' => 0,
+    ),
+  );
+  /* Field: Content Cart: Remove from cart link */
+  $handler->display->display_options['fields']['content_cart_remove']['id'] = 'content_cart_remove';
+  $handler->display->display_options['fields']['content_cart_remove']['table'] = 'node';
+  $handler->display->display_options['fields']['content_cart_remove']['field'] = 'content_cart_remove';
+  $handler->display->display_options['fields']['content_cart_remove']['label'] = '';
+  $handler->display->display_options['fields']['content_cart_remove']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['content_cart_remove']['element_label_colon'] = FALSE;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[title_field]
+[body]
+[content_cart_remove]
+';
+  $handler->display->display_options['fields']['nothing']['element_type'] = 'div';
+  $handler->display->display_options['fields']['nothing']['element_class'] = 'col-md-9';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content Cart: Is in Cart */
+  $handler->display->display_options['filters']['content_cart_is_in_cart']['id'] = 'content_cart_is_in_cart';
+  $handler->display->display_options['filters']['content_cart_is_in_cart']['table'] = 'node';
+  $handler->display->display_options['filters']['content_cart_is_in_cart']['field'] = 'content_cart_is_in_cart';
+  $handler->display->display_options['filters']['content_cart_is_in_cart']['value'] = '1';
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'download-center';
+  $translatables['download_center'] = array(
+    t('Master'),
+    t('Download center'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('[title_field]
+[body]
+[content_cart_remove]
+'),
+    t('Page'),
+  );
+  $export['download_center'] = $view;
+
+  $view = new view();
   $view->name = 'entity_references';
   $view->description = '';
   $view->tag = 'default';
@@ -1214,6 +1328,19 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['path']['absolute'] = TRUE;
   $handler->display->display_options['path'] = 'napos-films/filmss';
+  /* Field: Content Cart: Toggle (add/remove) cart checkbox */
+  $handler->display->display_options['fields']['content_cart']['id'] = 'content_cart';
+  $handler->display->display_options['fields']['content_cart']['table'] = 'node';
+  $handler->display->display_options['fields']['content_cart']['field'] = 'content_cart';
+  $handler->display->display_options['fields']['content_cart']['label'] = '';
+  $handler->display->display_options['fields']['content_cart']['element_label_colon'] = FALSE;
+  $handler->display->display_options['path'] = 'napos-films';
+  $handler->display->display_options['menu']['type'] = 'normal';
+  $handler->display->display_options['menu']['title'] = 'Napo\'s films';
+  $handler->display->display_options['menu']['weight'] = '0';
+  $handler->display->display_options['menu']['name'] = 'main-menu';
+  $handler->display->display_options['menu']['context'] = 0;
+  $handler->display->display_options['menu']['context_only_inline'] = 0;
 
   /* Display: Gallery view */
   $handler = $view->new_display('mode', 'Gallery view', 'mode_gallery');
