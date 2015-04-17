@@ -84,11 +84,13 @@ function content_cart_views_data_alter(&$data) {
 function content_cart_add_item($type, $id) {
   $cart = ContentCart::getCurrentCart();
   $cart->addToCart($type, $id, $id);
+  module_invoke_all('content_cart_add_item', $type, $id);
 }
 
 function content_cart_remove_item($type, $id) {
   $cart = ContentCart::getCurrentCart();
   $cart->removeFromCart($type, $id, $id);
+  module_invoke_all('content_cart_remove_item', $type, $id);
 }
 
 /**
@@ -112,19 +114,19 @@ function content_cart_ajax_submit($content_id, $operation = '', $view = '') {
     $content_id = $identifiers[1];
     switch ($operation) {
       case 'add':
-        $cart->addToCart($type, $content_id, $content_id);
+        content_cart_add_item($type, $content_id);
         break;
 
       case 'remove':
-        $cart->removeFromCart($type, $content_id);
+        content_cart_remove_item($type, $content_id);
         break;
 
       default:
         if ($cart->hasInCart($type, $content_id)) {
-          $cart->removeFromCart($type, $content_id);
+          content_cart_remove_item($type, $content_id);
         }
         else {
-          $cart->addToCart($type, $content_id, $content_id);
+          content_cart_add_item($type, $content_id);
         }
         break;
     }
@@ -165,11 +167,11 @@ function content_cart_block_info() {
  * Implements hook_block_view().
  */
 function content_cart_block_view($delta = '') {
-  $block = array();
   if ($delta == 'content_cart_summary') {
+    $block = array();
     $block['content'] = content_cart_cart_summary_content();
+    return $block;
   }
-  return $block;
 }
 
 /**
@@ -183,5 +185,6 @@ function content_cart_cart_summary_content() {
     '#markup' => t('Cart: @count items', array('@count' => $cart->countItems())),
     '#suffix' => '</div>',
   );
+  drupal_alter('cart_summary_content', $content);
   return $content;
 }
