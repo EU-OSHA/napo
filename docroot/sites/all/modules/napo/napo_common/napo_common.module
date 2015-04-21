@@ -40,10 +40,10 @@ function napo_common_node_view($node, $view_mode, $langcode) {
   global $language;
 
   // Node Moderation State is not Published
-  /*if (workbench_moderation_node_type_moderated($node->type) &&
+  if (workbench_moderation_node_type_moderated($node->type) &&
     (!isset($node->workbench_moderation['published']) || $node->workbench_moderation['published']->current != 1)) {
     return;
-  }*/
+  }
 
   $redirectId = variable_get('no_translation_nid', '248');
   $exceptions = explode(PHP_EOL, variable_get('no_translation_exceptions'));
