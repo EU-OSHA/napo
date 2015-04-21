@@ -39,14 +39,27 @@ function napo_common_node_submit($node, $form, &$form_state) {
 function napo_common_node_view($node, $view_mode, $langcode) {
   global $language;
 
+  // Node Moderation State is not Published
+  /*if (workbench_moderation_node_type_moderated($node->type) &&
+    (!isset($node->workbench_moderation['published']) || $node->workbench_moderation['published']->current != 1)) {
+    return;
+  }*/
+
   $redirectId = variable_get('no_translation_nid', '248');
   $exceptions = explode(PHP_EOL, variable_get('no_translation_exceptions'));
+  $exceptions_types = explode(PHP_EOL, variable_get('no_translation_type_exceptions'));
 
   array_walk($exceptions, function(&$value, $index) {
     $value = trim($value);
   });
 
-  if ($view_mode == 'full' && !in_array($node->nid, $exceptions)) {
+  array_walk($exceptions_types, function(&$value, $index){
+    $value = trim($value);
+  });
+
+  $no_exception = (!in_array($node->nid, $exceptions) && !in_array($node->type, $exceptions_types));
+
+  if ($view_mode == 'full' && $no_exception && !isset($_GET['orig_lng'])) {
     // If current language does not match content node language.
     if (!empty($node->language) && $node->language != $language->language && $node->nid != $redirectId) {
       // Lookup translations for current node
@@ -55,7 +68,8 @@ function napo_common_node_view($node, $view_mode, $langcode) {
         // in the currently active language.
         $nodeLanguage = $language->language;
         if (!napo_common_has_translation($redirectId, $language)) {
-          $nodeLanguage = 'en';
+          // Uncomment after static page (No translation available) translation
+          //$nodeLanguage = 'en';
         }
         // Redirect to no translation available page.
         drupal_goto(drupal_get_path_alias('node/'.$redirectId, $nodeLanguage),
@@ -67,6 +81,22 @@ function napo_common_node_view($node, $view_mode, $langcode) {
         );
       }
     }
+  }
+}
+
+/**
+ * Implements hook_field_language_alter().
+ * Performs language fallback for requests that have orig_lng as parameter
+ */
+function napo_common_field_language_alter(&$display_language, $context) {
+  $entity = $context['entity'];
+  $entity_type = $context['entity_type'];
+  $fallback_language = 'en';
+  if(isset($_GET['orig_lng'], $entity->nid) && $entity->nid == arg(1) && $entity_type == 'node') {
+    if(preg_match('/[a-z]{2}/', $_GET['orig_lng'])) {
+      $fallback_language = $_GET['orig_lng'];
+    }
+    locale_field_language_fallback($display_language, $entity, $fallback_language);
   }
 }
 
@@ -119,8 +149,14 @@ function napo_common_block_configure($delta = '') {
       $form['no_translation_exceptions'] = array(
         '#type' => 'textarea',
         '#title' => 'Exceptions - node IDs',
-        '#description' => "IDs for which the rule doesn't applies. Enter one node ID per line.",
+        '#description' => "IDs for which the rule doesn't apply. Enter one node ID per line.",
         '#default_value' => variable_get('no_translation_exceptions'),
+      );
+      $form['no_translation_type_exceptions'] = array(
+        '#type' => 'textarea',
+        '#title' => 'Exceptions - content types',
+        '#description' => "Content types for which the rule doesn't apply. Enter one content type per line.",
+        '#default_value' => variable_get('no_translation_type_exceptions'),
       );
       break;
 
@@ -147,6 +183,8 @@ function napo_common_block_save($delta = '', $edit = array()) {
       variable_set('no_translation_nid', $edit['no_translation_nid']);
       // Saving exceptions
       variable_set('no_translation_exceptions', $edit['no_translation_exceptions']);
+      // Saving content types exceptions
+      variable_set('no_translation_type_exceptions', $edit['no_translation_type_exceptions']);
       break;
 
     case 'page_not_found':
@@ -176,7 +214,7 @@ function napo_common_block_view($delta = '') {
 }
 
 function napo_common_no_translation_form($form, &$form_state) {
-  global $base_url;
+  global $base_url, $language;
   $form = $available = array();
   if (empty($_REQUEST['destination'])) {
     return;
@@ -214,14 +252,14 @@ function napo_common_no_translation_form($form, &$form_state) {
   foreach ($available as $lngCode => $lngValue) {
     $form[$lngCode] = array(
       '#type' => 'hidden',
-      '#default_value' => '/' . $lngCode . '/' . drupal_get_path_alias('node/' . $nid),
+      '#default_value' => '/'.$language->language.'/'.drupal_get_path_alias('node/'.$nid).'?orig_lng='.$lngCode,
     );
   }
 
   // URL of the page that has no translation
   $form['no_translation_request'] = array(
     '#type' => 'hidden',
-    '#default_value' => $base_url . '/en/' . drupal_get_path_alias('node/'.$nid),
+    '#default_value' => $base_url.'/en/'.drupal_get_path_alias('node/'.$nid),
   );
 
   // Send mail button
