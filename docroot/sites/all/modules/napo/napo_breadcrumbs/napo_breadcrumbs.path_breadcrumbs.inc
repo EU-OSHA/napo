@@ -12,6 +12,72 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'napo_films_episodes';
+  $path_breadcrumb->name = 'Napo films episodes';
+  $path_breadcrumb->path = 'napos-films/episodes';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '%site:current-page:menu-link:pb-join:name',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '%site:current-page:menu-link:pb-join:url',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['napo_films_episodes'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'napo_gallery';
+  $path_breadcrumb->name = 'Napo Gallery';
+  $path_breadcrumb->path = 'meet-napo/napos-gallery';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '%site:current-page:menu-link:pb-join:name',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '%site:current-page:menu-link:pb-join:url',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['napo_gallery'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'napos_friends';
+  $path_breadcrumb->name = 'Napo Friends';
+  $path_breadcrumb->path = 'meet-napo/napos-friends';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '%site:current-page:menu-link:pb-join:name',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '%site:current-page:menu-link:pb-join:url',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['napos_friends'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'node_breadcrumbs';
   $path_breadcrumb->name = 'Node breadcrumbs';
   $path_breadcrumb->path = 'node/%node';
