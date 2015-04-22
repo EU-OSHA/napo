@@ -88,7 +88,7 @@ function napo_migration_migrate_api() {
 function napo_migration_get_data_dir($subdirectory = '') {
   $ret = variable_get('napo_data_dir', NULL);
   if (empty($ret)) {
-    drupal_set_message('Please configure the "osha_data_dir" variable to point to your data storage', 'error');
+    drupal_set_message('Please configure the "napo_data_dir" variable to point to your data storage', 'error');
   }
   else {
     if (!empty($subdirectory)) {

@@ -332,6 +332,7 @@ $options['init-modules'] = array(
   'strongarm',
   'exclude_node_title',
   'metatag',
+  'metatag_opengraph',
 
 
   'special_menu_items',
