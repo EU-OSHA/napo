@@ -14,7 +14,8 @@ function napo_common_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'no_translation_exceptions';
-  $strongarm->value = '41';
+  $strongarm->value = '41
+23';
   $export['no_translation_exceptions'] = $strongarm;
 
   $strongarm = new stdClass();

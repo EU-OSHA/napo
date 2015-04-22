@@ -332,20 +332,20 @@ function napo_common_webform_pre_build_list_languages() {
  */
 function napo_common_page_not_found_content() {
   // Intro text.
-  $content = "<div class = 'page_not_fount_intro'>";
+  $content = "<div class = 'page_not_found_intro'>";
   $content .= variable_get('page_not_found_text', t("OOPS!<br />Sorry, we can't find what<br />you are looking for"));
   $content .= '</div>';
 
   // Search block.
-  $content .= "<div class = 'page_not_fount_search'>";
+  $content .= "<div class = 'page_not_found_search'>";
   $search_block = module_invoke('search', 'block_view');
   $content .= '<div>' . t('Try one of there instead:') . '</div>';
   $content .= render($search_block);
   $content .= '</div>';
 
   // Frontpage link.
-  $content .= "<div class = 'page_not_fount_front'>";
-  $content .= t('back to home');
+  $content .= "<div class = 'page_not_found_front'>";
+  $content .= l(t('back to home'), '<front>');
   $content .= '</div>';
 
   return $content;
