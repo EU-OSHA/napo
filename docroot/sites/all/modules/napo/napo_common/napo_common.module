@@ -40,8 +40,13 @@ function napo_common_node_view($node, $view_mode, $langcode) {
   global $language;
 
   $redirectId = variable_get('no_translation_nid', '248');
+  $exceptions = explode(PHP_EOL, variable_get('no_translation_exceptions'));
 
-  if ($view_mode == 'full') {
+  array_walk($exceptions, function(&$value, $index) {
+    $value = trim($value);
+  });
+
+  if ($view_mode == 'full' && !in_array($node->nid, $exceptions)) {
     // If current language does not match content node language.
     if (!empty($node->language) && $node->language != $language->language && $node->nid != $redirectId) {
       // Lookup translations for current node
@@ -108,8 +113,14 @@ function napo_common_block_configure($delta = '') {
       // No translation node Id
       $form['no_translation_nid'] = array(
         '#type' => 'textfield',
-        '#title' => t('No translation page nid'),
+        '#title' => 'No translation page nid',
         '#default_value' => variable_get('no_translation_nid', '248'),
+      );
+      $form['no_translation_exceptions'] = array(
+        '#type' => 'textarea',
+        '#title' => 'Exceptions - node IDs',
+        '#description' => "IDs for which the rule doesn't applies. Enter one node ID per line.",
+        '#default_value' => variable_get('no_translation_exceptions'),
       );
       break;
 
@@ -117,7 +128,7 @@ function napo_common_block_configure($delta = '') {
       // Page not found text.
       $form['page_not_found_text'] = array(
         '#type' => 'textfield',
-        '#title' => t('Page not found text'),
+        '#title' => 'Page not found text',
         '#default_value' => variable_get('page_not_found_text',
           t("OOPS!<br />Sorry, we can't find what<br />you are looking for")),
       );
@@ -134,6 +145,8 @@ function napo_common_block_save($delta = '', $edit = array()) {
     case 'no_translation':
       // Saving static page nid.
       variable_set('no_translation_nid', $edit['no_translation_nid']);
+      // Saving exceptions
+      variable_set('no_translation_exceptions', $edit['no_translation_exceptions']);
       break;
 
     case 'page_not_found':
@@ -282,7 +295,7 @@ function napo_common_webform_pre_build_list_languages() {
 function napo_common_page_not_found_content() {
   // Intro text.
   $content = "<div class = 'page_not_fount_intro'>";
-  $content .= variable_get('page_not_found_text');
+  $content .= variable_get('page_not_found_text', t("OOPS!<br />Sorry, we can't find what<br />you are looking for"));
   $content .= '</div>';
 
   // Search block.

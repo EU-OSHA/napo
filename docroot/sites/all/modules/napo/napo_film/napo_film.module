@@ -445,8 +445,13 @@ function napo_film_get_type_label_by_mime($mime) {
 function napo_film_views_pre_render(&$view) {
   global $language;
 
-  if($view->name == 'napos_films' && $view->current_display == 'page_list') {
-    $selected_language = $language->prefix;
-    $view->field['nothing']->options['alter']['text'] = "<a href=\"/".$selected_language."/node/[nid]/view-episodes\">view episodes<a>";
+  if ($view->name == 'napos_films') {
+    // For napo-films, the page is a view and the text is a nodeblock
+    // Use node title as the view page title.
+    $node = node_load(23);
+    $wrapper = entity_metadata_wrapper('node', $node);
+    // Override the view's current title.
+    drupal_set_title($wrapper->label());
   }
 }
+

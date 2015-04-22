@@ -376,6 +376,7 @@ $options['init-modules'] = array(
   'i18n_panels',
   'page_manager',
   'views_content',
+  'subpathauto',
 
   // Enable last (conflict with rules)
   'uuid',
@@ -484,6 +485,7 @@ $options['init-modules'] = array(
   'osha_lingua_tools',
 
   'napo_common',
+  'napo_frontpage',
   'napo_friend',
   'napo_consortium_partner',
   'napo_lesson',
