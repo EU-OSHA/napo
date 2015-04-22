@@ -48,7 +48,7 @@ function napo_film_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'nodeblock',
     'node_types' => array(),
-    'pages' => 'napos-films',
+    'pages' => 'napos-films/films',
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
