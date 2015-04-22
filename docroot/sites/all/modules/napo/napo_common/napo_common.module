@@ -248,6 +248,15 @@ function napo_common_no_translation_form($form, &$form_state) {
     ),
   );
 
+  $form['link_to_home'] = array(
+    '#type' => 'markup',
+    '#markup' =>
+      "<div class = 'page_not_found_front'>".
+      "<label>".t('Try this instead')."</label>".
+      l(t('back to home'), '<front>').
+      "</div>",
+  );
+
   // Redirect node translations.
   foreach ($available as $lngCode => $lngValue) {
     $form[$lngCode] = array(
