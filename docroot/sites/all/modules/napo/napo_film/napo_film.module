@@ -438,3 +438,15 @@ function napo_film_get_type_label_by_mime($mime) {
     return $mime;
   }
 }
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function napo_film_views_pre_render(&$view) {
+  global $language;
+
+  if($view->name == 'napos_films' && $view->current_display == 'page_list') {
+    $selected_language = $language->prefix;
+    $view->field['nothing']->options['alter']['text'] = "<a href=\"/".$selected_language."/node/[nid]/view-episodes\">view episodes<a>";
+  }
+}

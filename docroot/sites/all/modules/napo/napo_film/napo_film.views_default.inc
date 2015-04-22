@@ -783,6 +783,13 @@ function napo_film_views_default_views() {
   /* Display: List view */
   $handler = $view->new_display('page', 'List view', 'page_list');
   $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   /* Field: Field: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
@@ -811,6 +818,13 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['combined_tags']['field'] = 'combined_tags';
   $handler->display->display_options['fields']['combined_tags']['label'] = '';
   $handler->display->display_options['fields']['combined_tags']['element_label_colon'] = FALSE;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="/node/[nid]/view-episodes">view episodes<a>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['path'] = 'napos-films';
   $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Napo\'s films';
@@ -852,6 +866,7 @@ function napo_film_views_default_views() {
     t('last »'),
     t('Download video'),
     t('List view'),
+    t('<a href="/node/[nid]/view-episodes">view episodes<a>'),
     t('Gallery view'),
   );
   $export['napos_films'] = $view;
