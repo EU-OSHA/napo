@@ -723,7 +723,6 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['download_video']['id'] = 'download_video';
   $handler->display->display_options['fields']['download_video']['table'] = 'napo_film';
   $handler->display->display_options['fields']['download_video']['field'] = 'download_video';
-  
   /* Field: Content: Path */
   $handler->display->display_options['fields']['path']['id'] = 'path';
   $handler->display->display_options['fields']['path']['table'] = 'node';
@@ -735,13 +734,6 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['path']['alter']['path'] = '[path]/view-episodes';
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['path']['absolute'] = TRUE;
-  $handler->display->display_options['path'] = 'napos-films';
-  $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Napo\'s films';
-  $handler->display->display_options['menu']['weight'] = '0';
-  $handler->display->display_options['menu']['name'] = 'main-menu';
-  $handler->display->display_options['menu']['context'] = 0;
-  $handler->display->display_options['menu']['context_only_inline'] = 0;
 
   /* Display: Gallery view */
   $handler = $view->new_display('mode', 'Gallery view', 'mode_gallery');

@@ -1,5 +1,5 @@
 name = Napo frontpage
-description = The frontpage featured film carousel
+description = The frontpage featured films, custom player and more representative section.
 core = 7.x
 package = Napo
 version = 7.x-1.0
@@ -37,4 +37,4 @@ features[variable][] = videojs_width
 features[views_view][] = featured_articles
 features[views_view][] = frontpage_carousel_featured
 features[views_view][] = frontpage_custom_video
-mtime = 1428686216
+mtime = 1429108028

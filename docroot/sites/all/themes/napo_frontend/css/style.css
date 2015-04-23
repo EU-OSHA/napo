@@ -43,7 +43,9 @@ ul.nav li.dropdown ul.dropdown-menu {
 }
 
 
-/* Homepage */
+/*
+ *** Homepage ***
+ */
 .jcarousel-view--featured-articles--block {
     width: 100% !important;
 }
@@ -51,6 +53,30 @@ ul.nav li.dropdown ul.dropdown-menu {
     width: 33%;
     margin: 0;
 }
+/* Front page Video */
+.slider-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.slider-container video{
+    width: 100%;
+
+}
+.slider-container .view-content {
+    position: relative;
+}
+.slider-container .frontpage-video-title {
+    position: absolute;
+    top: 30%;
+    left: 30px;
+    padding: 15px;
+    background: #ddd;
+    opacity: 0.8;
+    max-width: 300px;
+    z-index: 1;
+}
+
+
 
 /* Share widget */
 .napo-share-widget {

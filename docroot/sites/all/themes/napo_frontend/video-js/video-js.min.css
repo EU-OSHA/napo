@@ -12,9 +12,10 @@ e.g. <video class="video-js my-skin-name">
 */
 .vjs-default-skin {
     color: #dbdb52;
-    border: 20px solid #575559;
     padding: 10px 40px;
-    border-radius: 25px;
+    /*border-radius: 25px;
+    border: 20px solid #575559;
+    */
 }
 /* Custom Icon Font
 --------------------------------------------------------------------------------
@@ -320,6 +321,7 @@ vjs-default-skin .vjs-mute-control{
 --------------------------------------------------------------------------------
 */
 .vjs-default-skin .vjs-progress-control {
+    display:none;
     margin-left:40px;
     width: 130em;
     font-size: 0.3em;
@@ -337,6 +339,7 @@ vjs-default-skin .vjs-mute-control{
     This simply changes the overall font for the progress bar, and this
     updates both the em-based widths and heights, as wells as the icon font */
 .vjs-default-skin:hover .vjs-progress-control {
+    display:none;
     /* Even though we're not changing the top/height, we need to include them in
         the transition so they're handled correctly. */
 
@@ -348,12 +351,14 @@ vjs-default-skin .vjs-mute-control{
 }
 /* Box containing play and load progresses. Also acts as seek scrubber. */
 .vjs-default-skin .vjs-progress-holder {
+    display:none;
     height:100%;
 }
 /* Progress Bars */
 .vjs-default-skin .vjs-progress-holder .vjs-play-progress,
 .vjs-default-skin .vjs-progress-holder .vjs-load-progress,
 .vjs-default-skin .vjs-progress-holder .vjs-load-progress div {
+    display:none;
     position: absolute;
     display: block;
     height: 100%;
@@ -375,20 +380,23 @@ vjs-default-skin .vjs-mute-control{
       Also using a paralax effect to make the lines move backwards.
         The -50% left position makes that happen.
     */
-
+    display:none;
     background: #dbdb52 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAN0lEQVQYV2NkQAPhYVH/0cVAfEayFOIybeWqZYwoJhKlEJ8iFDcSpZCQIriJRCkkRhHYRGIVAgBr1yQXptEiKAAAAABJRU5ErkJggg==) -50% 0 repeat;
 }
 .vjs-default-skin .vjs-load-progress {
+    display:none;
     background: #646464 /* IE8- Fallback */;
     background: rgba(255, 255, 255, 0.2);
 }
 /* there are child elements of the load progress bar that represent the
    specific time ranges that have been buffered */
 .vjs-default-skin .vjs-load-progress div {
+    display:none;
     background: #787878 /* IE8- Fallback */;
     background: rgba(255, 255, 255, 0.1);
 }
 .vjs-default-skin .vjs-seek-handle {
+    display:none;
 position:absolute;
 width:10px;
 height:10px;
@@ -404,6 +412,7 @@ border-radius:.8em;
 box-shadow:0 2px 4px 0 #000
 }
 .vjs-default-skin .vjs-seek-handle:before {
+    display:none;
     padding-top: 0.1em /* Minor adjustment */;
 
 }
@@ -435,12 +444,14 @@ box-shadow:0 2px 4px 0 #000
     line-height: 0.40em;
 }
 .vjs-default-skin .vjs-current-time {
+    display:none;
     float: right;
     padding-right: 100px;
     margin-top: 2px;
     color: #5b7ca2;
 }
 .vjs-default-skin .vjs-duration {
+    display:none;
     float: right;
     color: #5b7ca2;
     margin-top: 2px;
@@ -452,6 +463,7 @@ box-shadow:0 2px 4px 0 #000
     margin-top: 2px;
 }
 .vjs-time-divider {
+    display:none;
     float: right;
     line-height: 0.4em;
     color: #5b7ca2;
@@ -461,6 +473,7 @@ box-shadow:0 2px 4px 0 #000
 --------------------------------------------------------------------------------
 */
 .vjs-default-skin .vjs-fullscreen-control {
+    display:none;
     width: 8.8em;
     cursor: pointer;
     float: right;
@@ -475,10 +488,12 @@ box-shadow:0 2px 4px 0 #000
 
 }
 .vjs-default-skin .vjs-fullscreen-control:before {
+    display:none;
     content: "\e001";
 }
 /* Switch to the exit icon when the player is in fullscreen */
 .vjs-default-skin.vjs-fullscreen .vjs-fullscreen-control:before {
+    display:none;
     content: "\e00";
 }
 /* Big Play Button (play button at start)
@@ -488,13 +503,14 @@ easily in the skin designer. http://designer.videojs.com/
 */
 .vjs-default-skin .vjs-big-play-button {
     /* Center it horizontally */
+    display:none !important;
     left: 50%;
     margin-left: -1.1em;
     /* Center it vertically */
     top: 50%;
     margin-top: -1.1em;
     font-size: 3em;
-    display: block;
+   /* display: block;*/
     z-index: 2;
     position: absolute;
     width: 2em;
@@ -525,6 +541,7 @@ easily in the skin designer. http://designer.videojs.com/
 /* Optionally center */
 .vjs-default-skin.vjs-big-play-centered .vjs-big-play-button {
     /* Center it horizontally */
+    display:none !important;
     left: 50%;
     margin-left: -1.1em;
     /* Center it vertically */
@@ -533,22 +550,24 @@ easily in the skin designer. http://designer.videojs.com/
 }
 /* Hide if controls are disabled */
 .vjs-default-skin.vjs-controls-disabled .vjs-big-play-button {
-    display: none;
+    display: none !important;
 }
 /* Hide when video starts playing */
 .vjs-default-skin.vjs-has-started .vjs-big-play-button {
-    display: none;
+    display: none !important;
 }
 /* Hide on mobile devices. Remove when we stop using native controls
     by default on mobile  */
 .vjs-default-skin.vjs-using-native-controls .vjs-big-play-button {
-    display: none;
+    display: none !important;
 }
 .video-js.vjs-default-skin.vjs-paused .vjs-big-play-button {
-    display: block !important;
+    display:none !important;
+    /*display: block !important;*/
 }
 .vjs-default-skin:hover .vjs-big-play-button,
 .vjs-default-skin .vjs-big-play-button:focus {
+    display:none !important;
     outline: 0;
     border-color: #fff;
     /* IE8 needs a non-glow hover state */
@@ -565,6 +584,7 @@ easily in the skin designer. http://designer.videojs.com/
     transition: all 0s;
 }
 .vjs-default-skin .vjs-big-play-button:before {
+    display:none !important;
     content: "\e001";
     font-family: VideoJS;
     /* In order to center the play icon vertically we need to set the line height
@@ -579,7 +599,7 @@ easily in the skin designer. http://designer.videojs.com/
     height: 100%;
 }
 .vjs-error .vjs-big-play-button {
-    display: none;
+    display: none !important;
 }
 /* Error Display
 --------------------------------------------------------------------------------
@@ -667,6 +687,7 @@ easily in the skin designer. http://designer.videojs.com/
     animation: none;
 }
 .vjs-default-skin .vjs-loading-spinner:before {
+    display:none;
     content: "\e01e";
     font-family: VideoJS;
     position: absolute;
@@ -848,6 +869,10 @@ control positioning and full window mode. **
 */
 .video-js {
     background-color: #000;
+    /*position: relative;*/
+
+    width:100%;
+    /*z-index: -1;*/
     position: relative;
 
     padding: 0;
@@ -858,7 +883,7 @@ control positioning and full window mode. **
     font-size: 10px;
     /* Allow poster to be vertically aligned. */
 
-    vertical-align: middle;
+    /*vertical-align: middle;*/
     /*  display: table-cell; */
     /*This works in Safari but not Firefox.*/
 

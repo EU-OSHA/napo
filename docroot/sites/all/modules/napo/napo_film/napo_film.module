@@ -439,19 +439,15 @@ function napo_film_get_type_label_by_mime($mime) {
   }
 }
 
-/**
- * Implements hook_views_pre_render().
- */
-function napo_film_views_pre_render(&$view) {
-  global $language;
-
-  if ($view->name == 'napos_films') {
-    // For napo-films, the page is a view and the text is a nodeblock
-    // Use node title as the view page title.
+function napo_film_preprocess_html(&$vars) {
+  // For napo-films, the page is a view and the text is a nodeblock
+  // Use node title as the view page title.
+  // Using metatag module, the drupal_set_title is not working.
+  $view = views_get_page_view();
+  if (!empty($view) && $view->name == 'napos_films') {
     $node = node_load(23);
     $wrapper = entity_metadata_wrapper('node', $node);
-    // Override the view's current title.
-    drupal_set_title($wrapper->label());
+    $vars['head_title'] = $wrapper->label();
   }
 }
 
