@@ -496,21 +496,23 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['combined_tags']['field'] = 'combined_tags';
   $handler->display->display_options['fields']['combined_tags']['label'] = '';
   $handler->display->display_options['fields']['combined_tags']['element_label_colon'] = FALSE;
-  /* Field: Content: Link */
-  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
-  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
-  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
-  $handler->display->display_options['fields']['view_node']['label'] = '';
-  $handler->display->display_options['fields']['view_node']['element_type'] = 'div';
-  $handler->display->display_options['fields']['view_node']['element_class'] = 'episode-page-link';
-  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['view_node']['text'] = 'View';
   /* Field: Napo film: Download video */
   $handler->display->display_options['fields']['download_video']['id'] = 'download_video';
   $handler->display->display_options['fields']['download_video']['table'] = 'napo_film';
   $handler->display->display_options['fields']['download_video']['field'] = 'download_video';
   $handler->display->display_options['fields']['download_video']['label'] = '';
   $handler->display->display_options['fields']['download_video']['element_label_colon'] = FALSE;
+  /* Field: Content: Path */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['label'] = '';
+  $handler->display->display_options['fields']['path']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['path']['alter']['text'] = '<span class="glyphicon glyphicon-play-circle"></span>';
+  $handler->display->display_options['fields']['path']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['path']['alter']['path'] = '[path]';
+  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['path']['absolute'] = TRUE;
   /* Contextual filter: Content: Napo film (field_napo_film) */
   $handler->display->display_options['arguments']['field_napo_film_target_id']['id'] = 'field_napo_film_target_id';
   $handler->display->display_options['arguments']['field_napo_film_target_id']['table'] = 'field_data_field_napo_film';
@@ -585,7 +587,7 @@ function napo_film_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('View'),
+    t('<span class="glyphicon glyphicon-play-circle"></span>'),
     t('All'),
     t('Page'),
     t('Block'),
@@ -658,6 +660,8 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['download_video']['id'] = 'download_video';
   $handler->display->display_options['fields']['download_video']['table'] = 'napo_film';
   $handler->display->display_options['fields']['download_video']['field'] = 'download_video';
+  $handler->display->display_options['fields']['download_video']['label'] = '';
+  $handler->display->display_options['fields']['download_video']['element_label_colon'] = FALSE;
   /* Sort criterion: Content: Publication date (field_publication_date) */
   $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
   $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
@@ -744,13 +748,26 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['download_video']['id'] = 'download_video';
   $handler->display->display_options['fields']['download_video']['table'] = 'napo_film';
   $handler->display->display_options['fields']['download_video']['field'] = 'download_video';
+  $handler->display->display_options['fields']['download_video']['label'] = '';
+  $handler->display->display_options['fields']['download_video']['element_label_colon'] = FALSE;
+  /* Field: Content: Path */
+  $handler->display->display_options['fields']['path_1']['id'] = 'path_1';
+  $handler->display->display_options['fields']['path_1']['table'] = 'node';
+  $handler->display->display_options['fields']['path_1']['field'] = 'path';
+  $handler->display->display_options['fields']['path_1']['label'] = '';
+  $handler->display->display_options['fields']['path_1']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['path_1']['alter']['text'] = '<span class="glyphicon glyphicon-play-circle"></span>';
+  $handler->display->display_options['fields']['path_1']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['path_1']['alter']['path'] = '[path_1]';
+  $handler->display->display_options['fields']['path_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['path_1']['absolute'] = TRUE;
   /* Field: Content: Path */
   $handler->display->display_options['fields']['path']['id'] = 'path';
   $handler->display->display_options['fields']['path']['table'] = 'node';
   $handler->display->display_options['fields']['path']['field'] = 'path';
   $handler->display->display_options['fields']['path']['label'] = '';
   $handler->display->display_options['fields']['path']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['path']['alter']['text'] = 'View episodes';
+  $handler->display->display_options['fields']['path']['alter']['text'] = 'View episodes <span class="glyphicon glyphicon-circle-arrow-right"></span>';
   $handler->display->display_options['fields']['path']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['path']['alter']['path'] = '[path]/view-episodes';
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
@@ -788,9 +805,9 @@ function napo_film_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Download video'),
     t('List view'),
-    t('View episodes'),
+    t('<span class="glyphicon glyphicon-play-circle"></span>'),
+    t('View episodes <span class="glyphicon glyphicon-circle-arrow-right"></span>'),
     t('Gallery view'),
   );
   $export['napos_films'] = $view;

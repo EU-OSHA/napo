@@ -359,7 +359,7 @@ function napo_film_episode_download_form($form, &$form_state, $node, $view_mode 
     unset($form['download']['#attributes']['style']);
   }
   else {
-    $form['#prefix'] .= '<span class="napo-film-video-download-form-title">Download</span>';
+    $form['#prefix'] .= '<span class="napo-film-video-download-form-title"><span class="glyphicon glyphicon-download-alt"></span></span>';
   }
 
   return $form;
