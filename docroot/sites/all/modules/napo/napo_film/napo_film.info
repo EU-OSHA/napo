@@ -1,7 +1,7 @@
 name = Napo Film
 core = 7.x
 package = Napo
-version = 7.x-1.0
+version = 7.x-1.1
 project = napo_film
 dependencies[] = addtoany
 dependencies[] = ctools
@@ -89,4 +89,4 @@ features[views_view][] = entity_references
 features[views_view][] = episode_list
 features[views_view][] = napos_films
 files[] = views/napo_film_handler_download_video.inc
-mtime = 1429289331
+mtime = 1429778208

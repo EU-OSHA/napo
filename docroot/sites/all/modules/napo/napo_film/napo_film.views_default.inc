@@ -566,7 +566,6 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['download_video']['table'] = 'napo_film';
   $handler->display->display_options['fields']['download_video']['field'] = 'download_video';
   $handler->display->display_options['path'] = 'napos-films/films';
-  $handler->display->display_options['menu']['type'] = 'normal';
   $handler->display->display_options['menu']['title'] = 'Napo\'s films';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'main-menu';
