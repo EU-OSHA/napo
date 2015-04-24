@@ -17,23 +17,28 @@ function napo_film_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'napo_video';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
-    'download_video_form' => array(
-      'weight' => '5',
+    'back_button' => array(
+      'weight' => '0',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'combined_tags' => array(
+      'weight' => '7',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'download_video_form' => array(
       'weight' => '6',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'episode_list' => array(
-      'weight' => '2',
+      'weight' => '3',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'film' => array(
-      'weight' => '3',
+      'weight' => '4',
       'label' => 'inline',
       'format' => 'default',
       'formatter_settings' => array(
@@ -44,7 +49,7 @@ function napo_film_ds_field_settings_info() {
       ),
     ),
     'share_widget' => array(
-      'weight' => '4',
+      'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -84,6 +89,24 @@ function napo_film_ds_field_settings_info() {
  */
 function napo_film_ds_custom_fields_info() {
   $export = array();
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'back_button';
+  $ds_field->label = 'Back button';
+  $ds_field->field_type = 5;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = 'napo_video|default';
+  $ds_field->properties = array(
+    'code' => array(
+      'value' => '<p><a href="/napos-films/films">Back to Napo\'s Films</a></p>',
+      'format' => 'full_html',
+    ),
+    'use_token' => 0,
+  );
+  $export['back_button'] = $ds_field;
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
@@ -194,17 +217,19 @@ function napo_film_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'ds_content' => array(
-        0 => 'title_field',
-        1 => 'field_youtube',
-        2 => 'episode_list',
-        3 => 'film',
-        4 => 'share_widget',
-        5 => 'download_video_form',
-        6 => 'combined_tags',
-        7 => 'body',
+        0 => 'back_button',
+        1 => 'title_field',
+        2 => 'field_youtube',
+        3 => 'episode_list',
+        4 => 'film',
+        5 => 'share_widget',
+        6 => 'download_video_form',
+        7 => 'combined_tags',
+        8 => 'body',
       ),
     ),
     'fields' => array(
+      'back_button' => 'ds_content',
       'title_field' => 'ds_content',
       'field_youtube' => 'ds_content',
       'episode_list' => 'ds_content',
