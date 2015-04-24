@@ -14,14 +14,14 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'napo_films_episodes';
   $path_breadcrumb->name = 'Napo films episodes';
-  $path_breadcrumb->path = 'napos-films/episodes';
+  $path_breadcrumb->path = 'napos-films/films';
   $path_breadcrumb->data = array(
     'titles' => array(
-      0 => '%site:current-page:menu-link:pb-join:name',
-      1 => '!page_title',
+      0 => 'Napo\'s films',
+      1 => 'Films',
     ),
     'paths' => array(
-      0 => '%site:current-page:menu-link:pb-join:url',
+      0 => '<none>',
       1 => '<none>',
     ),
     'home' => 1,

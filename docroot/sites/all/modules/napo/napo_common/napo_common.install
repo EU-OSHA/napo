@@ -10,3 +10,15 @@ function napo_common_enable() {
     node_type_delete('page');
   }
 }
+
+/**
+ * Add menu position rules
+ */
+function napo_common_update_7001() {
+  if (module_exists('osha') && module_load_include('inc', 'osha', 'osha.utils')) {
+    // Menu position rule for Press Release content type.
+    $parent_menu = '---- Films';
+    $condition = array('content_type' => array('napo_video' => 'napo_video'));
+    osha_add_menu_position_rule('Films Menu Rule', $parent_menu, $condition);
+  }
+}

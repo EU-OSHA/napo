@@ -15,4 +15,4 @@ features[path_breadcrumbs][] = napo_gallery
 features[path_breadcrumbs][] = napos_friends
 features[path_breadcrumbs][] = node_breadcrumbs
 features[variable][] = path_breadcrumbs_truncate_title_length
-mtime = 1429691497
+mtime = 1429861413
