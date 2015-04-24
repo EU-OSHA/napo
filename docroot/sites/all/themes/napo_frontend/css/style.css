@@ -135,6 +135,7 @@ ul.nav li.dropdown ul.dropdown-menu {
 .napo-film-video-download-form-title {
     color: #fff;
     background: #000099;
+    padding: 10px;
 }
 .napo-film-video-download-form label[for='edit-download-format']{
     display: none;
