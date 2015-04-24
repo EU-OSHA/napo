@@ -26,7 +26,7 @@ function napo_gallery_views_api($module = NULL, $api = NULL) {
 function napo_gallery_node_info() {
   $items = array(
     'napo_album' => array(
-      'name' => t('Napo\'s gallery'),
+      'name' => t('Napo album'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
