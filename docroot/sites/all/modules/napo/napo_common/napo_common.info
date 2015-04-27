@@ -1,7 +1,7 @@
 name = Napo Common
 core = 7.x
 package = Napo
-version = 7.x-1.1
+version = 7.x-1.2
 project = napo_common
 dependencies[] = ctools
 dependencies[] = fe_block
@@ -17,4 +17,5 @@ features[variable][] = no_translation_exceptions
 features[variable][] = no_translation_nid
 features[variable][] = no_translation_type_exceptions
 features[variable][] = site_404
+features[variable][] = theme_napo_frontend_settings
 mtime = 1429713737

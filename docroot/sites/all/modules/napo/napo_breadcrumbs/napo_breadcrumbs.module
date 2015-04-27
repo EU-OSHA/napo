@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NAPO Breadcrumbs feature.
+ */
+
+include_once 'napo_breadcrumbs.features.inc';
