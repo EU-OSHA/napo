@@ -22,6 +22,8 @@ function napo_frontend_back_button(&$vars){
 
     if (empty($referer) || strpos($referer, $base_url) === FALSE) {
       unset($vars['back_button']);
+    }elseif (strpos($referer, 'search') !== FALSE) {
+      $vars['back_button'] = l(t('Back to search results'), $referer);
     }elseif (is_array($breadcrumb) && $breadcrumb) {
       $page_title = array_pop($breadcrumb);
       $previous_crumb = array_pop($breadcrumb);
