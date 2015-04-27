@@ -96,5 +96,33 @@ function napo_common_default_fe_block_settings() {
     'visibility' => 1,
   );
 
+  $export['user-login'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'login',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'user',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'napo_frontend' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'napo_frontend',
+        'weight' => 0,
+      ),
+      'osha_admin' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'osha_admin',
+        'weight' => 10,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
   return $export;
 }
