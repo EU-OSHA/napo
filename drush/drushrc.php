@@ -370,6 +370,15 @@ $options['init-modules'] = array(
   'shs',
   'smtp',
 
+  // Enable panels
+  'panels',
+  'panels_mini',
+  'panels_node',
+  'i18n_panels',
+  'page_manager',
+  'views_content',
+  'subpathauto',
+
   // Enable last (conflict with rules)
   'uuid',
   'uuid_features',
@@ -476,6 +485,7 @@ $options['init-modules'] = array(
   'osha_reminders',
   'osha_lingua_tools',
 
+  'napo_breadcrumbs',
   'napo_common',
   'napo_frontpage',
   'napo_friend',

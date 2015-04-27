@@ -22,7 +22,7 @@ function napo_film_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 7,
+        'weight' => 8,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -95,7 +95,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 24,
+        'weight' => 25,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -157,7 +157,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 22,
+        'weight' => 23,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -244,7 +244,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 18,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -307,7 +307,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 20,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -372,7 +372,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 21,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -444,7 +444,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 19,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -504,7 +504,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 23,
+        'weight' => 24,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -586,7 +586,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 22,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -659,7 +659,7 @@ function napo_film_field_default_field_instances() {
           'youtube_width' => '',
         ),
         'type' => 'youtube_video',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'episode_full' => array(
         'label' => 'hidden',
