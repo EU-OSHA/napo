@@ -3,7 +3,14 @@
 # Go to docroot/
 cd docroot/
 
-drush site-install -y
+# Drop all tables (including non-drupal)
+drush sql-drop -y
+ecode=$?
+if [ ${ecode} != 0 ]; then
+  echo "Error cleaning database"
+  exit ${ecode};
+fi
+
 
 pre_update=  post_update=
 while getopts b:a: opt; do
@@ -18,7 +25,12 @@ while getopts b:a: opt; do
 done
 
 # Sync from edw staging
-drush downsync_sql @napo.staging @napo.local -y -v
+drush downsync_sql @napo.staging @self -y
+ecode=$?
+if [ ${ecode} != 0 ]; then
+  echo "downsync_sql has returned an error"
+  exit ${ecode};
+fi
 
 if [ ! -z "$pre_update" ]; then
 echo "Run pre update"
@@ -27,16 +39,28 @@ fi
 
 # Devify - development settings
 drush devify --yes
+ecode=$?
+if [ ${ecode} != 0 ]; then
+  echo "Devify has returned an error"
+  exit ${ecode};
+fi
+
 drush devify_solr
+ecode=$?
+if [ ${ecode} != 0 ]; then
+  echo "Devify Solr has returned an error"
+  exit ${ecode};
+fi
 
 # Build the site
 drush osha_build -y
-
-drush cc all
+if [ ${ecode} != 0 ]; then
+  echo "osha_build has returned an error"
+  exit ${ecode};
+fi
 
 if [ ! -z "$post_update" ]; then
 echo "Run post update"
-../$post_update
+  ../$post_update
+  drush cc all
 fi
-
-drush cc all
