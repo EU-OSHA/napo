@@ -514,6 +514,10 @@ $options['init-themes'] = array(
   'osha_admin',
 );
 
+$options['disable-modules'] = array(
+  'varnish', 'memcache_storage', 'piwik',
+);
+
 // Add specific settings for development or demo.
 $command_specific['devify'] = array(
   'enable-modules' => array(
@@ -524,7 +528,6 @@ $command_specific['devify'] = array(
     'stage_file_proxy',
     'coffee',
   ),
-//  'disable-modules' => array('varnish', 'memcache_admin'),
   'delete-variables' => array('googleanalytics_account'),
   'reset-variables' => array_merge(
     array(
