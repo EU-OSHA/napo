@@ -92,24 +92,6 @@ function napo_film_ds_custom_fields_info() {
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
-  $ds_field->field = 'back_button';
-  $ds_field->label = 'Back button';
-  $ds_field->field_type = 5;
-  $ds_field->entities = array(
-    'node' => 'node',
-  );
-  $ds_field->ui_limit = 'napo_video|default';
-  $ds_field->properties = array(
-    'code' => array(
-      'value' => '<p><a href="/napos-films/films">Back to Napo\'s Films</a></p>',
-      'format' => 'full_html',
-    ),
-    'use_token' => 0,
-  );
-  $export['back_button'] = $ds_field;
-
-  $ds_field = new stdClass();
-  $ds_field->api_version = 1;
   $ds_field->field = 'combined_tags';
   $ds_field->label = 'Combined tags';
   $ds_field->field_type = 3;
