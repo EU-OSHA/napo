@@ -49,3 +49,10 @@ if [ ${c} == 0 ]; then
   echo "Found overriden features after rebuild, failing ..."
   exit -1
 fi
+
+drush fl | grep -i overridden > /dev/null 2>&1
+c=$?
+if [ ${c} == 0 ]; then
+  echo "Found overriden features after rebuild, failing ..."
+  exit -1
+fi
