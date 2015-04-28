@@ -213,6 +213,23 @@ function napo_common_block_view($delta = '') {
   return $block;
 }
 
+/**
+ * Implements hook_node_access().
+ */
+function napo_common_node_access($node, $op, $account) {
+  // Deny access for content with future published date.
+  if ($op == 'view' && !user_access('view all unpublished content')) {
+    if (!empty($node->field_publication_date)) {
+      $wrapper = entity_metadata_wrapper('node', $node);
+      $publication_date = $wrapper->field_publication_date->value();
+      if ($publication_date > time()) {
+        return NODE_ACCESS_DENY;
+      }
+    }
+  }
+  return NODE_ACCESS_IGNORE;
+}
+
 function napo_common_no_translation_form($form, &$form_state) {
   global $base_url, $language;
   $form = $available = array();
