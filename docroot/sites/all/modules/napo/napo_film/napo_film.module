@@ -130,6 +130,12 @@ function napo_film_theme() {
       ),
       'template' => 'theme/napo_film_share_widget',
     ),
+    'napo_film_recommended_films' => array(
+      'variables' => array(
+        'node' => array(),
+      ),
+      'template' => 'theme/napo_film_recommended_films',
+    ),
   );
 }
 
@@ -279,7 +285,99 @@ function napo_film_preprocess_node(&$vars) {
           $form = drupal_get_form('napo_film_episode_download_form', $node, $view_mode);
           $vars['download_video_form'] = drupal_render($form);
         }
+        // Render the ds recommended films
+        if (in_array('recommended_films', $vars['preprocess_fields'])) {
+          napo_film_recommended_films($vars);
+          $vars['recommended_films'] = theme('napo_film_recommended_films', array(
+              'vars' => $vars,
+            )
+          );
+        }
       }
+  }
+}
+
+/**
+ * Get a number of films with the same field_main_tags or field_tags
+ */
+function napo_film_recommended_films(&$vars) {
+  // Get 3 related films by field_main_tag
+  $tags_tids = array();
+  if (!empty($vars['field_main_tag'])) {
+    $tags_tids = $vars['field_main_tag'][LANGUAGE_NONE];
+  }
+  if (!empty($tags_tids)) {
+    // Query all films with the same field_main_tag
+    $tids = array();
+    foreach ($tags_tids as $tid) {
+      array_push($tids, $tid['tid']);
+    }
+    $query = new EntityFieldQuery();
+    // exclude self
+    $excluded_nids = array();
+    array_push($excluded_nids, $vars['node']->nid);
+    $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'napo_video')
+      ->entityCondition('entity_id', $excluded_nids, 'NOT IN')
+      ->fieldCondition('field_main_tag', 'tid', $tids, 'IN');
+      // Publication date is not mandatory and the empty values are excluded from query
+      //->fieldOrderBy('field_publication_date', 'value', 'DESC');
+    $result = $query->execute();
+    $limit = 3;
+    global $user;
+    $count = 0;
+    if (!empty($result)) {
+      $vars['recommended_films_nodes'] = array();
+      foreach ($result['node'] as $n) {
+        $node = node_load($n->nid);
+        if ($node->status == 0 ) {
+          // add unpublished only for admin, do not include in count
+          if (OshaWorkflowPermissions::userHasRole('administrator', $user)) {
+            $vars['recommended_films_nodes'][] = node_view($node,'recommended_films');
+          }
+        } else {
+          $vars['recommended_films_nodes'][] = node_view($node,'recommended_films');
+          $count++;
+        }
+        if ($count == $limit) {
+          // max 3 related films
+          break;
+        }
+      }
+    }
+
+    // Query all films with the same field_tags if the limit was not touched
+    $secondary_limit = $limit - $count;
+    if ($secondary_limit > 0) {
+      $query = new EntityFieldQuery();
+
+      $query->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'napo_video')
+        ->entityCondition('entity_id', $excluded_nids, 'NOT IN')
+        ->fieldCondition('field_main_tag', 'tid', $tids, 'NOT IN')
+        ->fieldCondition('field_tags', 'tid', $tids, 'IN');
+        //->fieldOrderBy('field_publication_date', 'value', 'DESC');
+      $result = $query->execute();
+      $count = 0;
+      if (!empty($result)) {
+        foreach ($result['node'] as $n) {
+          $node = node_load($n->nid);
+          if ($node->status == 0) {
+            // add unpublished only for admin, do not include in count
+            if (OshaWorkflowPermissions::userHasRole('administrator', $user)) {
+              $vars['recommended_films_nodes'][] = node_view($node, 'recommended_films');
+            }
+          }
+          else {
+            $vars['recommended_films_nodes'][] = node_view($node, 'recommended_films');
+            $count++;
+          }
+          if ($count == $secondary_limit) {
+            break;
+          }
+        }
+      }
+    }
   }
 }
 

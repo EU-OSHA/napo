@@ -773,7 +773,6 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['path']['absolute'] = TRUE;
   $handler->display->display_options['path'] = 'napos-films/films';
-
   /* Display: Gallery view */
   $handler = $view->new_display('mode', 'Gallery view', 'mode_gallery');
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
