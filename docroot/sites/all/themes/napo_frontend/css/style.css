@@ -170,3 +170,15 @@ ul.nav li.dropdown ul.dropdown-menu {
 .ajax-episode-modal .napo-film-video-download-form .form-group{
     display: inline-block;
 }
+
+footer.footer.container section.block-menu-block{
+    text-transform: lowercase;
+}
+
+#block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li > a {
+    padding: 0 10px 0 10px;
+}
+
+#block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li~li {
+    border-left: 1px solid #000000;
+}
