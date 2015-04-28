@@ -22,6 +22,11 @@ function napo_film_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
+    'recommended_films' => array(
+      'weight' => '9',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'combined_tags' => array(
       'weight' => '7',
       'label' => 'hidden',
@@ -226,6 +231,7 @@ function napo_film_ds_layout_settings_info() {
         6 => 'download_video_form',
         7 => 'combined_tags',
         8 => 'body',
+        9 => 'recommended_films',
       ),
     ),
     'fields' => array(
@@ -238,6 +244,7 @@ function napo_film_ds_layout_settings_info() {
       'download_video_form' => 'ds_content',
       'combined_tags' => 'ds_content',
       'body' => 'ds_content',
+      'recommended_films' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
@@ -288,6 +295,24 @@ function napo_film_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['node|napo_video|episode_full'] = $ds_layout;
+
+  return $export;
+}
+
+/**
+ * Implements hook_ds_view_modes_info().
+ */
+function napo_film_ds_view_modes_info() {
+  $export = array();
+
+  $ds_view_mode = new stdClass();
+  $ds_view_mode->api_version = 1;
+  $ds_view_mode->view_mode = 'recommended_films';
+  $ds_view_mode->label = 'Recommended films';
+  $ds_view_mode->entities = array(
+    'node' => 'node',
+  );
+  $export['recommended_films'] = $ds_view_mode;
 
   return $export;
 }
