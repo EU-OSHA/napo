@@ -456,6 +456,8 @@ $options['init-modules'] = array(
 //  'cer',
   'draggableviews',
 
+  'colorbox',
+
   // Social share
   'addtoany',
   'on_the_web',
