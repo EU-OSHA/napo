@@ -3,6 +3,8 @@ NAPO
 
 Build scripts and source code for the NAPO project
 
+[![Build Status](http://ci.edw.ro/buildStatus/icon?job=php-napo)](http://ci.edw.ro/job/php-napo/)
+
 ##Pre-requisites
 
 1. Install Drush (7.0-dev):
