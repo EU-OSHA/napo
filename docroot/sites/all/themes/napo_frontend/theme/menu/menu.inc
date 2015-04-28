@@ -48,6 +48,16 @@ function napo_frontend_menu_link(array $variables) {
   if (($element['#href'] == $_GET['q'] || ($element['#href'] == '<front>' && drupal_is_front_page())) && (empty($element['#localized_options']['language']))) {
     $element['#attributes']['class'][] = 'active';
   }
+
+  // Add image to menu item
+  if (isset($variables['element']['#href']) && isset($element['#localized_options']['content']['image'])) {
+    $path = file_create_url($element['#localized_options']['content']['image']);
+    $link = l('<img src="' . $path . '" />', $element['#href'],
+      array('html' => TRUE, 'attributes' => $element['#localized_options']['attributes'])
+    );
+    return '<li' . drupal_attributes($element['#attributes']) . '>' . $link . "</li>\n";
+  }
+
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
