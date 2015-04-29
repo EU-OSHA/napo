@@ -69,4 +69,3 @@ stylesheets[all][] = css/napo_override.css
 ; Method 2 uses BootstrapCDN, the only thing you might need to provide here
 ; is overrides to Bootstrap theme settings. Copy them here from the base theme
 ; to override.
->>>>>>> 520bcfe030141486c1fd3abb9041d9a235c9f0dc
