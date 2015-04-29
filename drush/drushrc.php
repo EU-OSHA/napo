@@ -417,6 +417,7 @@ $options['init-modules'] = array(
 
   // custom video module for html5 videoJS formatter
   'videojs',
+  'text_resize',
 
   // cookie privacy
   'eu_cookie_compliance',
