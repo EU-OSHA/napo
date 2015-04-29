@@ -12,34 +12,6 @@ function napo_common_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
-  $export['block-zoom_options'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'machine_name' => 'zoom_options',
-    'module' => 'block',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'napo_frontend' => array(
-        'region' => 'header_top_bar',
-        'status' => 1,
-        'theme' => 'napo_frontend',
-        'weight' => 0,
-      ),
-      'osha_admin' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 0,
-  );
-
   $export['napo_common-no_translation'] = array(
     'cache' => 1,
     'custom' => 0,
@@ -94,6 +66,34 @@ function napo_common_default_fe_block_settings() {
     ),
     'title' => '',
     'visibility' => 1,
+  );
+
+  $export['text_resize-0'] = array(
+    'cache' => 4,
+    'custom' => 0,
+    'delta' => 0,
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'text_resize',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'napo_frontend' => array(
+        'region' => 'header_top_bar',
+        'status' => 1,
+        'theme' => 'napo_frontend',
+        'weight' => 0,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 0,
   );
 
   $export['user-login'] = array(

@@ -1,15 +1,18 @@
-/* Font resizer */
-.bodysmall{
-    font-size:1.0em;
+/* Font reseizer */
+a#text_resize_increase {
+    font-size:1.2em;
 }
 
-.bodybig{
-    font-size:1.7em;
+a:hover#text_resize_increase {
+    text-decoration: none;
 }
 
-.vertical-align {
-    display: flex;
-    flex-direction: row;
+a#text_resize_decrease {
+    font-size:0.8em;
+}
+
+a:hover#text_resize_decrease {
+    text-decoration: none;
 }
 
 /* Header */
