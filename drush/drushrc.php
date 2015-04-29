@@ -257,14 +257,22 @@ $options['structure-tables']['common'] = array(
 $json_path = dirname(__FILE__) . '/../conf/config.json';
 
 if(file_exists($json_path)) {
-  $cfg = json_decode(file_get_contents($json_path));
-  $db_url = sprintf('mysql://%s:%s@%s:%s/%s', $cfg->db->username, $cfg->db->password, $cfg->db->host, $cfg->db->port, $cfg->db->database);
-  $command_specific['site-install'] = $command_specific['site-install napo'] = array(
-    'db-url' => $db_url,
-    'account-mail' => $cfg->admin->email, 'account-name' => $cfg->admin->username, 'account-pass' => $cfg->admin->password,
-    'db-su' => $cfg->db->root_username, 'db-su-pw' => $cfg->db->root_password
-  );
+  if ($cfg = json_decode(file_get_contents($json_path))) {
+    $db_url = sprintf('mysql://%s:%s@%s:%s/%s', $cfg->db->username, $cfg->db->password, $cfg->db->host, $cfg->db->port, $cfg->db->database);
+    $command_specific['site-install'] = array(
+      'db-url' => $db_url,
+      'account-mail' => $cfg->admin->email,
+      'account-name' => $cfg->admin->username,
+      'account-pass' => $cfg->admin->password,
+      'db-su' => $cfg->db->root_username,
+      'db-su-pw' => $cfg->db->root_password
+    );
+  }
+  else {
+    drush_set_error('Error detected in config.json, please fix them and try again');
+  }
 }
+
 
 $options['init-modules'] = array(
   'ctools',
