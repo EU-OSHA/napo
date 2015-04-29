@@ -5,3 +5,36 @@
  */
 
 include_once 'napo_lesson.features.inc';
+
+/**
+ * Implements hook_theme().
+ */
+function napo_lesson_theme() {
+  return array(
+    'right_menu' => array(
+      'variables' => array(
+        'node' => array(),
+      ),
+      'template' => 'theme/right_menu',
+    ),
+  );
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function napo_lesson_preprocess_node(&$vars) {
+  $node = $vars['node'];
+
+  if($node->type == 'lesson') {
+    if (!empty($vars['preprocess_fields'])) {
+      if (in_array('right_menu', $vars['preprocess_fields'])) {
+        drupal_add_js(drupal_get_path('module', 'napo_lesson') . '/js/right_menu.js');
+        $vars['right_menu'] = theme('right_menu', array(
+
+          )
+        );;
+      }
+    }
+  }
+}
