@@ -1,5 +1,5 @@
 name = Napo Frontend
-description = This is a sub-theme of theme Bartik, made by John for the web site example.com (red, responsive).
+description = Napo's frontend theme based on bootstrap
 core = 7.x
 base theme = bootstrap
 
