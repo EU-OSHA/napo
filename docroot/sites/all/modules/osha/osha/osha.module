@@ -26,6 +26,35 @@ function osha_menu() {
   return $items;
 }
 
+/**
+ * Implements hook_js_alter().
+ */
+function osha_js_alter(&$javascript) {
+  if (empty($javascript['settings']['data'])) {
+    return;
+  }
+  foreach($javascript['settings']['data'] as $k => &$v) {
+    if (array_key_exists('eu_cookie_compliance', $v)) {
+      $popup_en = variable_get('eu_cookie_compliance_en', array());
+
+      $popup_text_info = str_replace(array("\r", "\n"), '', t($popup_en['popup_info']['value']));
+      $html_info = theme('eu_cookie_compliance_popup_info', array(
+        'message' => check_markup($popup_text_info, $popup_en['popup_info']['format'], FALSE),
+        'agree_button'=> t($popup_en['popup_agree_button_message']),
+        'disagree_button' => t($popup_en['popup_disagree_button_message'])));
+      $popup_text_agreed = str_replace(array("\r", "\n"), '', t($popup_en['popup_agreed']['value']));
+      $html_agreed = theme('eu_cookie_compliance_popup_agreed', array(
+        'message' => check_markup($popup_text_agreed, $popup_en['popup_agreed']['format'], FALSE),
+        'hide_button' => t($popup_en['popup_hide_button_message']),
+        'find_more_button' => t($popup_en['popup_find_more_button_message'])));
+
+      $v['eu_cookie_compliance']['popup_html_info'] = empty($html_info) ? FALSE : $html_info;
+      $v['eu_cookie_compliance']['popup_html_agreed'] = empty($html_agreed) ? FALSE : $html_agreed;
+      break;
+    }
+  }
+}
+
 function osha_users_autocomplete($role_name, $name) {
   $output = array();
   $query = db_select('users', 'u')
