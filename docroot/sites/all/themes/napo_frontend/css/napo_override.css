@@ -1,0 +1,184 @@
+/* Font resizer */
+.bodysmall{
+    font-size:1.0em;
+}
+
+.bodybig{
+    font-size:1.7em;
+}
+
+.vertical-align {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Header */
+.navbar-header a.logo img {
+    max-width: 100%;
+}
+
+/* Menu dropdown */
+ul.nav li.dropdown:hover ul.dropdown-menu {
+    display: block;
+}
+ul.nav li.dropdown ul.dropdown-menu {
+    margin-top: 0;
+}
+
+/* Carousels */
+.jcarousel-skin-default .jcarousel-item {
+    width: auto;
+    height: auto;
+}
+.jcarousel-container-horizontal {
+    height: auto !important;
+}
+
+/* Social media menu */
+.menu-name-menu-social-media-menu .introduction-title {
+    display: none;
+}
+.menu-name-menu-social-media-menu .introduction-image img{
+    max-width: 25px;
+}
+
+
+/*
+ *** Homepage ***
+ */
+.jcarousel-view--featured-articles--block {
+    width: 100% !important;
+}
+.view-featured-articles .jcarousel-skin-default .jcarousel-item {
+    width: 33%;
+    margin: 0;
+}
+/* Front page Video */
+.slider-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.slider-container video{
+    width: 100%;
+
+}
+.slider-container .view-content {
+    position: relative;
+}
+.slider-container .frontpage-video-title {
+    position: absolute;
+    top: 30%;
+    left: 30px;
+    padding: 15px;
+    background: #ddd;
+    opacity: 0.8;
+    max-width: 300px;
+    z-index: 1;
+}
+
+
+
+/* Share widget */
+.napo-share-widget {
+    display: inline;
+    color: #fff;
+    background: #000099;
+}
+.napo-share-widget .napo-share-widget-title {
+    cursor: pointer;
+}
+.napo-share-widget > ul {
+    display: none;
+    background: #000099;
+}
+.napo-share-widget:hover > ul {
+    position: absolute;
+    display: block;
+}
+.napo-share-widget:hover > ul >li {
+    cursor: pointer;
+}
+
+
+
+/* Video Gallery Detail */
+.node-napo-video.view-mode-full .field-name-film.field-type-ds {
+    background: #ddd;
+}
+
+.node-napo-video.view-mode-full .napo-share-widget {
+    float: right;
+    position: relative;
+    margin-top: -20px;
+    background: #000099;
+}
+
+.napo-film-video-download-form {
+    float: right;
+    position: relative;
+    max-width: 50px;
+    margin-top: -20px;
+    margin-right: 100px;
+}
+.napo-film-video-download-form form{
+    display: none;
+    color: #fff;
+    background: #000099;
+}
+.napo-film-video-download-form:hover form{
+    position: absolute;
+    display: block;
+    width: 80px;
+    height: 200px;
+
+}
+.napo-film-video-download-form-title {
+    color: #fff;
+    background: #000099;
+    padding: 10px;
+}
+.napo-film-video-download-form label[for='edit-download-format']{
+    display: none;
+}
+
+/* Episode detail overlay */
+.ajax-episode-modal .napo-film-video-download-form {
+    float: right;
+    display: inline-block;
+    position: relative;
+    max-width: 350px;
+    margin: 0;
+}
+.ajax-episode-modal .napo-film-video-download-form form {
+    display: block;
+    color: #000;
+    background: none;
+}
+.napo-film-video-download-form:hover form{
+    position: relative;
+    display: block;
+    width: auto;
+    height: auto;
+}
+.ajax-episode-modal .napo-film-video-download-form label{
+    display: inline;
+}
+.ajax-episode-modal .napo-film-video-download-form select{
+    width: auto;
+}
+.ajax-episode-modal .napo-film-video-download-form .form-control,
+.ajax-episode-modal .napo-film-video-download-form .form-group{
+    display: inline-block;
+}
+
+footer.footer.container section.block-menu-block{
+    text-transform: lowercase;
+}
+
+#block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li > a {
+    padding: 0 10px 0 10px;
+}
+
+#block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li~li {
+    border-left: 1px solid #000000;
+}
