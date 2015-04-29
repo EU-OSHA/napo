@@ -33,3 +33,10 @@ function napo_frontend_back_button(&$vars){
     }
   }
 }
+
+function napo_frontend_text_resize_block() {
+  $output = t('Set font size ');
+  $output .= '<a href="javascript:;" class="changer" id="text_resize_increase"><sup>&#x2C4</sup>A</a> <a href="javascript:;" class="changer" id="text_resize_decrease"><sup>&#x2C5</sup>A</a> <div id="text_resize_clear"></div>';
+  return $output;
+}
+
