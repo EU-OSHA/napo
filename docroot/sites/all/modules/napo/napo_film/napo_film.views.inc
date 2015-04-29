@@ -21,9 +21,9 @@ function napo_film_views_handlers() {
       'napo_film_handler_add_mime_to_cart' => array(
         'parent' => 'views_handler_field',
       ),
-    ),
-    'content_cart_handler_select_in_cart' => array(
-      'parent' => 'views_handler_field',
+      'content_cart_handler_select_in_cart' => array(
+        'parent' => 'views_handler_field',
+      ),
     ),
   );
 }

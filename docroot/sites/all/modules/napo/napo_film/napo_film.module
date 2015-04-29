@@ -229,6 +229,44 @@ function napo_film_theme() {
 }
 
 /**
+ * Implements hook_block_info().
+ */
+function napo_film_block_info() {
+  $blocks = array();
+  $blocks['download_cart_form'] = array(
+    'info' => t('Download center cart form'),
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function napo_film_block_view($delta = '') {
+  $block = array();
+
+  switch($delta) {
+    case 'download_cart_form':
+      $view = views_get_page_view();
+      if (!empty($view)) {
+        foreach ($view->field as $field) {
+          if (get_class($field) == 'content_cart_handler_select_in_cart') {
+            $form = drupal_get_form('napo_film_cart_download_form');
+            $header = drupal_render($form);
+            $block['content'] = $header;
+          }
+        }
+      }
+      break;
+  }
+
+  return $block;
+}
+
+
+
+/**
  * Get taxonomies ids for video types.
  */
 function napo_film_get_video_types_tid() {
@@ -644,13 +682,5 @@ function napo_film_preprocess_html(&$vars) {
     $wrapper = entity_metadata_wrapper('node', $node);
     $vars['head_title_array']['title'] = $wrapper->label();
     $vars['head_title'] = $wrapper->label() . ' ' . $vars['head_title'];
-  }
-  foreach ($view->field as $field) {
-    if (get_class($field) == 'content_cart_handler_select_in_cart') {
-      $form = drupal_get_form('napo_film_cart_download_form');
-      $header = drupal_render($form);
-//      $view->add_item('default', 'header', 'views', 'area', array('content' => $header, 'format' => 'full_html'));
-      continue;
-    }
   }
 }

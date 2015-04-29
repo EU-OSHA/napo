@@ -49,13 +49,64 @@ function napo_film_default_fe_block_settings() {
     'module' => 'napo_film',
     'node_types' => array(),
     'pages' => 'napos-films/films',
+    'themes' => array(
+      'napo_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'napo_frontend',
+        'weight' => -41,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 1,
+  );
+
+  $export['content_cart-content_cart_summary'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'content_cart_summary',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'content_cart',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'napo_frontend' => array(
+        'region' => 'header_top_bar',
+        'status' => 1,
+        'theme' => 'napo_frontend',
+        'weight' => 0,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 0,
+  );
+
+  $export['napo_film-download_cart_form'] = array(
+    'cache' => 1,
+    'custom' => 0,
+    'delta' => 'download_cart_form',
+    'pages' => 'download-center',
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -40,
+        'weight' => -41,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -83,7 +134,7 @@ function napo_film_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -41,
+        'weight' => -43,
       ),
       'osha_admin' => array(
         'region' => '',
