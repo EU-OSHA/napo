@@ -1,17 +1,3 @@
-/* Font resizer */
-.bodysmall{
-    font-size:1.0em;
-}
-
-.bodybig{
-    font-size:1.7em;
-}
-
-.vertical-align {
-    display: flex;
-    flex-direction: row;
-}
-
 /* Header */
 .navbar-header a.logo img {
     max-width: 100%;
@@ -181,4 +167,20 @@ footer.footer.container section.block-menu-block{
 
 #block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li~li {
     border-left: 1px solid #000000;
+}
+
+a#text_resize_increase {
+    font-size:1.2em;
+}
+
+a:hover#text_resize_increase {
+    text-decoration: none;
+}
+
+a#text_resize_decrease {
+    font-size:0.8em;
+}
+
+a:hover#text_resize_decrease {
+    text-decoration: none;
 }

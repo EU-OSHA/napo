@@ -35,8 +35,37 @@ function napo_frontend_back_button(&$vars){
 }
 
 function napo_frontend_text_resize_block() {
-  $output = t('Set font size ');
-  $output .= '<a href="javascript:;" class="changer" id="text_resize_increase"><sup>&#x2C4</sup>A</a> <a href="javascript:;" class="changer" id="text_resize_decrease"><sup>&#x2C5</sup>A</a> <div id="text_resize_clear"></div>';
-  return $output;
-}
+  // Add js, css, and library
+  $content = array(
+    '#attached' => array(
+      'js' => array(
+        array(
+          'data' => "var text_resize_scope = " . drupal_json_encode(variable_get('text_resize_scope', 'body')) . ";
+          var text_resize_minimum = " . drupal_json_encode(variable_get('text_resize_minimum', '12')) . ";
+          var text_resize_maximum = " . drupal_json_encode(variable_get('text_resize_maximum', '25')) . ";
+          var text_resize_line_height_allow = " . drupal_json_encode(variable_get('text_resize_line_height_allow', FALSE)) . ";
+          var text_resize_line_height_min = " . drupal_json_encode(variable_get('text_resize_line_height_min', 16)) . ";
+          var text_resize_line_height_max = " . drupal_json_encode(variable_get('text_resize_line_height_max', 36)) . ";",
+          'type' => 'inline',
+        ),
+        array(
+          'data' => drupal_get_path('module', 'text_resize') . '/text_resize.js',
+          'type' => 'file',
+        )
+      ),
+      'library' => array(
+        array('system', 'jquery.cookie')
+      ),
+    ),
+  );
 
+  $content['#markup'] = t('Set font size ');
+
+  if (variable_get('text_resize_reset_button', FALSE) == TRUE) {
+    $content['#markup'] .= '<sup>&#x2C4</sup><a href="javascript:;" class="changer" id="text_resize_increase">A</a> <a href="javascript:;" class="changer" id="text_resize_reset">A</a> <sup>&#x2C5</sup><a href="javascript:;" class="changer" id="text_resize_decrease">A</a> <div id="text_resize_clear"></div>';
+  } else {
+    $content['#markup'] .= '<sup>&#x2C4</sup><a href="javascript:;" class="changer" id="text_resize_increase">A</a> <sup>&#x2C5</sup><a href="javascript:;" class="changer" id="text_resize_decrease">A</a> <div id="text_resize_clear"></div>';
+  }
+
+  return render($content);
+}

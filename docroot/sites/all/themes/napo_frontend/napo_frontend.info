@@ -25,5 +25,3 @@ regions[page_bottom]    = 'Page bottom'
 stylesheets[all][] = css/style.css
 
 files[] = theme/menu/menu.inc
-
-scripts[] = js/body-zoom.js
