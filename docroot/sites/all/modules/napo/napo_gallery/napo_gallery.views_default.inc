@@ -245,8 +245,8 @@ function napo_gallery_views_default_views() {
     'colorbox_image_style' => '',
     'colorbox_gallery' => 'page',
     'colorbox_gallery_custom' => '',
-    'colorbox_caption' => 'auto',
-    'colorbox_caption_custom' => '',
+    'colorbox_caption' => 'custom',
+    'colorbox_caption_custom' => '[node:body]',
   );
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
