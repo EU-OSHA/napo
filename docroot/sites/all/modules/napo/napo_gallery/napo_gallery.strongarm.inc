@@ -210,6 +210,9 @@ function napo_gallery_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'recommended_films' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
