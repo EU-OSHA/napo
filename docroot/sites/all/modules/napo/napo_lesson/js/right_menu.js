@@ -1,5 +1,7 @@
 jQuery('document').ready(function() {
     var menu = jQuery('#menu-about-page-menu');
+
+    // Find sections and append to right menu
     jQuery('h3').each(function(idx, el) {
         if(jQuery(el).text() != '') {
             if(typeof jQuery(el).attr('id') == 'undefined') {
@@ -10,14 +12,22 @@ jQuery('document').ready(function() {
         }
     });
 
-    jQuery(document.body).scrollspy({
-        target: '#affix-menu'
+    // Add fields to affix menu
+    jQuery('.group-left').find('.field-name-field-file').each(function(i) {
+        menu.append(jQuery('<li class="">'+jQuery(this).html()+'</li>'));
+        jQuery(this).hide();
     });
 
-    jQuery('#affix-menu').affix({
+    // Spymenu target
+    jQuery('body').scrollspy({
+        target: '.scrollspy'
+    });
+
+    // Affix class to right nav menu
+    jQuery('#menu-about-page-menu').affix({
         offset: {
             top: function () {
-                return (this.top = jQuery('#affix-menu').parent().offset().top - 20);
+                return (this.top = jQuery('#menu-about-page-menu').parent().offset().top - 30);
             },
             bottom: function () {
                 return (this.bottom = jQuery('.footer').outerHeight(true) + 17);
