@@ -72,7 +72,7 @@ function napo_gallery_field_default_field_instances() {
         'module' => 'image',
         'settings' => array(
           'image_link' => '',
-          'image_style' => '',
+          'image_style' => 'napo_cover',
         ),
         'type' => 'image',
         'weight' => 0,
