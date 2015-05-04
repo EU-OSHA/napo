@@ -70,7 +70,7 @@ function napo_frontend_text_resize_block() {
   return render($content);
 }
 
-function napo_preprocess_image_style(&$variables) {
+function napo_frontend_preprocess_image_style(&$variables) {
   if (in_array($variables['style_name'], array('napo_cover', 'napo_thumbnail'))) {
     $variables['attributes']['class'][] = 'img-responsive';
   }
