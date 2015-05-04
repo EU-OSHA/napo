@@ -19,8 +19,9 @@ class napo_film_handler_download_video extends views_handler_field {
 
   function render($data) {
     $output = NULL;
-    if (!empty($data->_field_data['nid']['entity'])) {
-      $node = $data->_field_data['nid']['entity'];
+    $field = current($data->_field_data);
+    if (!empty($field['entity'])) {
+      $node = $field['entity'];
       if ($node->type == 'napo_video') {
         $output = drupal_get_form('napo_film_episode_download_form_' . $node->nid, $node);
       }
