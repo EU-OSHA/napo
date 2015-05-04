@@ -34,6 +34,13 @@ function napo_film_menu() {
     'access callback' => TRUE,
     'expanded' => TRUE,
   );
+  $items['napo_film/set_view_mode/%'] = array(
+    'title' => 'Get episode',
+    'page callback' => 'napo_film_set_view_mode',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'expanded' => TRUE,
+  );
   return $items;
 }
 
@@ -57,6 +64,82 @@ function napo_film_module_implements_alter(&$implementations, $hook) {
     }
   }
 }
+
+/**
+ * Implements hook_block_info().
+ */
+function napo_film_block_info() {
+  // View modes links block.
+  // Add List and Grid links for napo films view.
+  $blocks['napo_films_view_modes'] = array(
+    'info' => t('Napo film view modes'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+
+  return $blocks;
+}
+
+
+/**
+ * Implements hook_block_view().
+ */
+function napo_film_block_view($delta = '') {
+  $block = array();
+  // View modes links block.
+  if ($delta == 'napo_films_view_modes') {
+    $block['subject'] = t('Napo film view modes');
+    $attr = array(
+      'class' => array('napo-film-view-mode-links'),
+      'rel' => 'nofollow',
+    );
+    $attr_grid = $attr;
+    // Set active mode.
+    if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'grid') {
+      $attr_grid['class'][] = "active";
+    }
+    else {
+      $attr['class'][] = "active";
+    }
+    // Get query params to preserve them.
+    $query = drupal_get_query_parameters();
+    $block['content']['list']['#markup'] = l(t('List'), 'napo_film/set_view_mode/list', array('attributes' => $attr, 'query' => $query));
+    $block['content']['grid']['#markup'] = l(t('Grid'), 'napo_film/set_view_mode/grid', array('attributes' => $attr_grid, 'query' => $query));
+  }
+  return $block;
+}
+
+/**
+ * Callback for view modes links.
+ */
+function napo_film_set_view_mode($mode) {
+  // Set the session accordingly.
+  if ($mode == 'grid') {
+    $_SESSION['napo_films_view_mode'] = 'grid';
+  }
+  else {
+    $_SESSION['napo_films_view_mode'] = 'list';
+  }
+  $view = views_get_view('napo_films', TRUE);
+  $url = $view->display['page_list']->display_options['path'];
+  $query = drupal_get_query_parameters();
+  // Redirect to view to reload the page.
+  drupal_goto($url, array('query' => $query));
+}
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function napo_film_views_pre_view( view &$view, &$display_id, &$args) {
+  if ($view->name == 'napo_films') {
+    if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'grid') {
+      $view->set_display('page_grid');
+    }
+    else {
+      $view->set_display('page_list');
+    }
+  }
+}
+
 
 /**
  * Access callback for Reorder episodes tab.
