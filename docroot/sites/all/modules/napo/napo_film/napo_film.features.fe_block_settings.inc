@@ -96,6 +96,27 @@ function napo_film_default_fe_block_settings() {
     'visibility' => 1,
   );
 
+  $export['views--exp-napo_films-page_list'] = array(
+    'cache' => -1,
+    'delta' => '-exp-napo_films-page_list',
+    'module' => 'views',
+    'pages' => 'napos-films/films',
+    'themes' => array(
+      'napo_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'napo_frontend',
+        'weight' => -35,
+      ),
+      'osha_admin' => array(
+        'theme' => 'osha_admin',
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 1,
+  );
+
+
   $export['views-episode_list-block'] = array(
     'cache' => -1,
     'custom' => 0,

@@ -47,6 +47,7 @@ features[ds_layout_settings][] = node|napo_video|episode_full
 features[ds_view_modes][] = recommended_films
 features[fe_block_settings][] = addtoany-addtoany_button
 features[fe_block_settings][] = napo_film-napo_films_view_modes
+features[fe_block_settings][] = views--exp-napo_films-page_list
 features[fe_block_settings][] = nodeblock-23
 features[fe_block_settings][] = views-episode_list-block
 features[features_api][] = api:2
