@@ -58,6 +58,9 @@ function napo_film_content_cart_remove_item($type, $id) {
   if (isset($_SESSION['napo_film_cart_mime'][$id])) {
     unset($_SESSION['napo_film_cart_mime'][$id]);
   }
+  if (isset($_SESSION['napo_film_select_in_cart'][$id])) {
+    unset($_SESSION['napo_film_select_in_cart'][$id]);
+  }
 }
 
 /**
@@ -176,11 +179,12 @@ function napo_film_cart_select_in_cart_count() {
 }
 
 function napo_film_cart_select_in_cart_download_selected($form, $form_state) {
-
+  unset($_SESSION['napo_film_select_in_cart']);
 }
 
 function napo_film_cart_select_in_cart_download_all($form, $form_state) {
-  
+  $cart = ContentCart::getCurrentCart();
+  $films = $cart->getCartContent();
 }
 
 function napo_film_cart_download_form_refresh_callback($form, &$form_state) {
