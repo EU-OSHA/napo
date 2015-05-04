@@ -71,6 +71,39 @@ function napo_lesson_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
+
+  /* Display: Related lessons */
+  $handler = $view->new_display('block', 'Related lessons', 'block_1');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '0';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_lesson_toolkit_target_id']['id'] = 'field_lesson_toolkit_target_id';
+  $handler->display->display_options['relationships']['field_lesson_toolkit_target_id']['table'] = 'field_data_field_lesson_toolkit';
+  $handler->display->display_options['relationships']['field_lesson_toolkit_target_id']['field'] = 'field_lesson_toolkit_target_id';
+  $handler->display->display_options['relationships']['field_lesson_toolkit_target_id']['required'] = TRUE;
+  /* Relationship: Entity Reference: Referencing entity */
+  $handler->display->display_options['relationships']['reverse_field_lesson_toolkit_node']['id'] = 'reverse_field_lesson_toolkit_node';
+  $handler->display->display_options['relationships']['reverse_field_lesson_toolkit_node']['table'] = 'node';
+  $handler->display->display_options['relationships']['reverse_field_lesson_toolkit_node']['field'] = 'reverse_field_lesson_toolkit_node';
+  $handler->display->display_options['relationships']['reverse_field_lesson_toolkit_node']['relationship'] = 'field_lesson_toolkit_target_id';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['relationship'] = 'reverse_field_lesson_toolkit_node';
+  $handler->display->display_options['arguments']['nid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['nid']['validate']['type'] = 'node';
+  $handler->display->display_options['arguments']['nid']['validate_options']['types'] = array(
+    'lesson' => 'lesson',
+  );
   $translatables['lessons'] = array(
     t('Master'),
     t('Lessons'),
@@ -82,6 +115,9 @@ function napo_lesson_views_default_views() {
     t('Desc'),
     t('All'),
     t('Block'),
+    t('Related lessons'),
+    t('Content entity referenced from field_lesson_toolkit'),
+    t('Content referencing Content from field_lesson_toolkit'),
   );
   $export['lessons'] = $view;
 

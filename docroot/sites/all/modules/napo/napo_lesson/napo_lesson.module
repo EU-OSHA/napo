@@ -17,6 +17,13 @@ function napo_lesson_theme() {
       ),
       'template' => 'theme/right_menu',
     ),
+    'top_menu' => array(
+      'variables' => array(
+        'node' => array(),
+        'lessons' => array(),
+      ),
+      'template' => 'theme/top_menu',
+    ),
   );
 }
 
@@ -28,12 +35,19 @@ function napo_lesson_preprocess_node(&$vars) {
 
   if($node->type == 'lesson') {
     if (!empty($vars['preprocess_fields'])) {
+      // Right Menu
       if (in_array('right_menu', $vars['preprocess_fields'])) {
         drupal_add_js(drupal_get_path('module', 'napo_lesson') . '/js/right_menu.js');
-        $vars['right_menu'] = theme('right_menu', array(
-
-          )
-        );;
+        $vars['right_menu'] = theme('right_menu', array());
+      }
+      // Top Menu
+      if (in_array('top_menu', $vars['preprocess_fields'])) {
+        drupal_add_js(drupal_get_path('module', 'napo_lesson') . '/js/top_menu.js');
+        $lessons = views_get_view_result('lessons', 'block_1');
+        $vars['top_menu'] = theme('top_menu', array(
+          'node' => $node,
+          'lessons' => $lessons,
+        ));
       }
     }
   }
