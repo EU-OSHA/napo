@@ -70,6 +70,11 @@ body {
       padding-top: 93px !important;
     }
   }
+
+  .content{
+    font-family: @font-family-nunito;
+  }
+
   div#admin-toolbar {
     z-index: 1600;
   }
@@ -89,24 +94,6 @@ body {
   }
 }
 
-// Default navbar.
-.navbar.container {
-  @media @tablet {
-    max-width: ((@container-sm - 30px));
-  }
-  @media @normal {
-    max-width: ((@container-md - 30px));
-  }
-  @media @wide {
-    max-width: ((@container-lg - 30px));
-  }
-  margin-top: 20px;
-  > .container {
-    margin: 0;
-    padding: 0;
-    width: auto;
-  }
-}
 
 // Adjust z-index of core components.
 #overlay-container,
@@ -187,21 +174,6 @@ p:last-child {
   .block {
     overflow: hidden;
   }
-}
-
-// Search form.
-form#search-block-form {
-  margin: 0;
-}
-.navbar #block-search-form {
-  float: none;
-  margin: 5px 0 5px 5px;
-  @media @normal {
-    float: right;
-  }
-}
-.navbar-search .control-group {
-  margin-bottom:0px;
 }
 
 // Action Links
@@ -648,4 +620,11 @@ table {
 }
 .alert-danger a {
   color: darken(@alert-danger-text, 10%);
+}
+
+
+// Selects dropdown yellow
+
+.lang-dropdown-select-element.form-control.form-select{
+  background-color: @input-bg-yellow;
 }

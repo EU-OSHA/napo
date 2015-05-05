@@ -57,18 +57,19 @@ ul.nav li.dropdown ul.dropdown-menu {
     margin: 0;
 }
 /* Front page Video */
-.slider-container {
+.slider {
     max-width: 1200px;
     margin: 0 auto;
 }
-.slider-container video{
+.slider video{
     width: 100%;
 
 }
-.slider-container .view-content {
+.slider .view-content {
     position: relative;
 }
-.slider-container .frontpage-video-title {
+
+.slider .frontpage-video-title {
     position: absolute;
     top: 30%;
     left: 30px;

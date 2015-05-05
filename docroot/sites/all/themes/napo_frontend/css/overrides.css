@@ -1,3 +1,5 @@
+@import url('//fonts.googleapis.com/css?family=Nunito:400,300,700');
+@import url('//fonts.googleapis.com/css?family=Fredoka+One');
 html.overlay-open .navbar-fixed-top {
   z-index: 400;
 }
@@ -44,6 +46,9 @@ body.admin-menu .navbar-fixed-top {
 body.admin-menu.navbar-is-fixed-top {
   padding-top: 93px !important;
 }
+body .content {
+  font-family: 'Nunito', sans-serif;
+}
 body div#admin-toolbar {
   z-index: 1600;
 }
@@ -62,29 +67,6 @@ body #admin-menu {
 }
 body #admin-menu .dropdown li {
   line-height: normal;
-}
-.navbar.container {
-  margin-top: 20px;
-}
-@media screen and (min-width: 768px) {
-  .navbar.container {
-    max-width: 720px;
-  }
-}
-@media screen and (min-width: 992px) {
-  .navbar.container {
-    max-width: 940px;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .navbar.container {
-    max-width: 1140px;
-  }
-}
-.navbar.container > .container {
-  margin: 0;
-  padding: 0;
-  width: auto;
 }
 #overlay-container,
 .overlay-modal-background,
@@ -149,21 +131,6 @@ p:last-child {
 }
 .region-help .block {
   overflow: hidden;
-}
-form#search-block-form {
-  margin: 0;
-}
-.navbar #block-search-form {
-  float: none;
-  margin: 5px 0 5px 5px;
-}
-@media screen and (min-width: 992px) {
-  .navbar #block-search-form {
-    float: right;
-  }
-}
-.navbar-search .control-group {
-  margin-bottom: 0px;
 }
 ul.action-links {
   margin: 12px 0;
@@ -253,12 +220,12 @@ table tr.error {
 .control-group.error textarea,
 .control-group.error select,
 .control-group.error .uneditable-input {
-  color: #555555;
-  border: 1px solid #cccccc;
+  color: #1f3695;
+  border: 1px solid transparent;
 }
 .control-group.error .help-block,
 .control-group.error .help-inline {
-  color: #333333;
+  color: #000000;
 }
 .list-inline > li.first {
   padding-left: 0;
@@ -296,14 +263,14 @@ ul li.leaf {
   font-weight: bold;
 }
 .password-indicator {
-  background-color: #949494;
+  background-color: #1d338d;
   height: 0.3em;
   width: 100%;
 }
 .password-indicator div {
   height: 100%;
   width: 0%;
-  background-color: #999999;
+  background-color: #1f3695;
 }
 input.password-confirm,
 input.password-field {
@@ -557,7 +524,7 @@ table .checkbox input[type="checkbox"] {
 @media (min-width: 768px) {
   .form-horizontal .form-group label {
     float: left;
-    width: 16.666666666666664%;
+    width: 16.66666667%;
   }
 }
 .alert a {
@@ -574,4 +541,7 @@ table .checkbox input[type="checkbox"] {
 }
 .alert-danger a {
   color: #843534;
+}
+.lang-dropdown-select-element.form-control.form-select {
+  background-color: #f7e235;
 }

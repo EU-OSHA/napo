@@ -74,14 +74,13 @@
  */
 ?>
 <?php if (!empty($page['header_top_bar'])): ?>
-  <div class="header_top_bar container">
-    <div class="row vertical-align">
+  <div class="header_top_bar">
+    <div class="container text-right">
       <?php print render($page['header_top_bar']); ?>
     </div>
   </div>
 <?php endif; ?>
 <header id="navbar" class="<?php print $navbar_classes; ?>">
-  <div class="container">
     <div class="navbar-header col-md-3">
       <?php if ($logo): ?>
       <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Napo'); ?>">
@@ -121,11 +120,10 @@
         </div>
       </div>
     <?php endif; ?>
-  </div>
 </header>
-
+<div class="nav-bar-separate"></div>
 <?php if (!empty($page['slider'])): ?>
-  <div class="slider-container" role="slider">
+  <div class="slider" role="slider">
     <?php print render($page['slider']); ?>
   </div>
 <?php endif; ?>
