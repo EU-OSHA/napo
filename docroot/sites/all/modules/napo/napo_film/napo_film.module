@@ -625,10 +625,11 @@ function napo_film_preprocess_html(&$vars) {
   // Use node title as the view page title.
   // Using metatag module, the drupal_set_title is not working.
   $view = views_get_page_view();
-  if (!empty($view) && $view->name == 'napos_films') {
+  if (!empty($view) && $view->name == 'napo_films') {
     $node = node_load(23);
     $wrapper = entity_metadata_wrapper('node', $node);
-    $vars['head_title'] = $wrapper->label();
+    $vars['head_title_array']['title'] = $wrapper->label();
+    $vars['head_title'] = $wrapper->label() . ' ' . $vars['head_title'];
   }
 }
 
