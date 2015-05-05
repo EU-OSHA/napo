@@ -52,3 +52,12 @@ function napo_lesson_preprocess_node(&$vars) {
     }
   }
 }
+
+/**
+ * Implements hook_js_alter().
+ *
+ * Remove accordion from content
+ */
+function napo_lesson_js_alter(&$javascript) {
+  unset($javascript[drupal_get_path('module', 'wysiwyg_accordion').'/js/wysiwyg_accordion.js']);
+}
