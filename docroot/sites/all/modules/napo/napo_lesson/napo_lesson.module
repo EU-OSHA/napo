@@ -59,5 +59,10 @@ function napo_lesson_preprocess_node(&$vars) {
  * Remove accordion from content
  */
 function napo_lesson_js_alter(&$javascript) {
-  unset($javascript[drupal_get_path('module', 'wysiwyg_accordion').'/js/wysiwyg_accordion.js']);
+  if(arg(0) == 'node') {
+    $node = node_load(arg(1));
+    if($node && $node->type == 'lesson') {
+      unset($javascript[drupal_get_path('module', 'wysiwyg_accordion').'/js/wysiwyg_accordion.js']);
+    }
+  }
 }
