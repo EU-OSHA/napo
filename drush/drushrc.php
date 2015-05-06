@@ -416,11 +416,8 @@ $options['init-modules'] = array(
   'search_api_views',
   'search_api_attachments',
 
-  //Youtube and Flickr field
+  //Youtube field
   'youtube',
-  'flickr',
-  'flickr_block',
-  'flickrfield',
   'chosen',
 
   // custom video module for html5 videoJS formatter
