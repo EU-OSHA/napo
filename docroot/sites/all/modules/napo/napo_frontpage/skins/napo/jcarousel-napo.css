@@ -103,6 +103,7 @@
 .jcarousel-skin-napo .jcarousel-prev-disabled-horizontal:active {
   cursor: default;
   background-position: -96px 0;
+  visibility:hidden;
 }
 
 .jcarousel-skin-napo .jcarousel-next-horizontal {
@@ -122,6 +123,7 @@
 .jcarousel-skin-napo .jcarousel-next-disabled-horizontal:active {
   cursor: default;
   background-position: -96px -32px;
+  visibility:hidden;
 }
 
 /**

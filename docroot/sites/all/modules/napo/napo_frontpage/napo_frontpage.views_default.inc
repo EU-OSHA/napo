@@ -148,7 +148,6 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['style_options']['wrap'] = '0';
   $handler->display->display_options['style_options']['skin'] = 'napo';
   $handler->display->display_options['style_options']['visible'] = '3';
-  $handler->display->display_options['style_options']['responsive'] = 1;
   $handler->display->display_options['style_options']['auto'] = '0';
   $handler->display->display_options['style_options']['autoPause'] = 1;
   $handler->display->display_options['style_options']['easing'] = '';

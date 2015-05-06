@@ -37,4 +37,4 @@ features[variable][] = videojs_width
 features[views_view][] = featured_articles
 features[views_view][] = frontpage_carousel_featured
 features[views_view][] = frontpage_custom_video
-mtime = 1429108028
+mtime = 1429822745
