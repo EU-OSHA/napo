@@ -24,6 +24,9 @@ function napo_lesson_theme() {
       ),
       'template' => 'theme/top_menu',
     ),
+    'napo_lesson_first_lesson_link' => array(
+      'variables' => array('entity' => NULL, 'file' => NULL, 'delta' => NULL),
+    ),
   );
 }
 
@@ -65,4 +68,49 @@ function napo_lesson_js_alter(&$javascript) {
       unset($javascript[drupal_get_path('module', 'wysiwyg_accordion').'/js/wysiwyg_accordion.js']);
     }
   }
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function napo_lesson_field_formatter_info() {
+  $info = array(
+    'first_lesson_link' => array(
+      'label' => t('First Lesson Link'),
+      'field types' => array('text'),
+      'description' => t('Get the link of the first lesson in the lesson kit'),
+    ),
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function napo_lesson_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  switch ($display['type']) {
+    case 'first_lesson_link':
+      foreach ($items as $delta => $item) {
+        $element[$delta] = array(
+          '#theme' => 'napo_lesson_first_lesson_link',
+          '#entity' => $entity,
+          '#file' => $item,
+          '#delta' => $delta,
+        );
+      }
+      break;
+  }
+  return $element;
+}
+
+/*
+* Formats multilanguage file for download
+*/
+function theme_napo_lesson_first_lesson_link($element) {
+  $entity = $element['entity'];
+  $lesson = views_get_view_result('lessons', 'block_2', $entity->nid);
+
+  $output = l($entity->title, 'node/'.$lesson[0]->nid);
+  return $output;
 }
