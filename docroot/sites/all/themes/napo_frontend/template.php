@@ -16,21 +16,19 @@ function napo_frontend_back_button(&$vars){
   global $base_url;
   $node = $vars['node'];
 
-  if($node->type == 'napo_video') {
-    $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-    $breadcrumb = drupal_get_breadcrumb();
+  $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+  $breadcrumb = drupal_get_breadcrumb();
 
-    if (empty($referer) || strpos($referer, $base_url) === FALSE) {
-      unset($vars['back_button']);
-    }elseif (strpos($referer, 'search') !== FALSE) {
-      $vars['back_button'] = l(t('Back to search results'), $referer);
-    }elseif (is_array($breadcrumb) && $breadcrumb) {
-      $page_title = array_pop($breadcrumb);
-      $previous_crumb = array_pop($breadcrumb);
-      $vars['back_button'] = l(t('Back to !link', array('!link' => strip_tags($previous_crumb))), $referer);
-    }else {
-      $vars['back_button'] = l(t('Back'), $referer);
-    }
+  if (empty($referer) || strpos($referer, $base_url) === FALSE) {
+    unset($vars['back_button']);
+  }elseif (strpos($referer, 'search') !== FALSE) {
+    $vars['back_button'] = l(t('Back to search results'), $referer);
+  }elseif (is_array($breadcrumb) && $breadcrumb) {
+    $page_title = array_pop($breadcrumb);
+    $previous_crumb = array_pop($breadcrumb);
+    $vars['back_button'] = l(t('Back to !link', array('!link' => strip_tags($previous_crumb))), $referer);
+  }else {
+    $vars['back_button'] = l(t('Back'), $referer);
   }
 }
 
@@ -68,4 +66,10 @@ function napo_frontend_text_resize_block() {
   }
 
   return render($content);
+}
+
+function napo_frontend_preprocess_image_style(&$variables) {
+  if (in_array($variables['style_name'], array('napo_cover', 'napo_thumbnail'))) {
+    $variables['attributes']['class'][] = 'img-responsive';
+  }
 }
