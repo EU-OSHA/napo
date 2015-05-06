@@ -458,6 +458,7 @@ $options['init-modules'] = array(
 
   'entityqueue',
   'jcarousel',
+  'viewblock_topclass',
 
 //  'cer',
   'draggableviews',
