@@ -138,6 +138,7 @@ function napo_frontpage_views_default_views() {
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Frontpage Carrousel Featured';
   $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['css_class'] = 'napo-homepage-featured-films';
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -149,6 +150,7 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['style_options']['skin'] = 'napo';
   $handler->display->display_options['style_options']['visible'] = '3';
   $handler->display->display_options['style_options']['auto'] = '0';
+  $handler->display->display_options['style_options']['responsive'] = 1;
   $handler->display->display_options['style_options']['autoPause'] = 1;
   $handler->display->display_options['style_options']['easing'] = '';
   $handler->display->display_options['style_options']['vertical'] = 0;
