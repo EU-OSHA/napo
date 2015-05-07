@@ -22,3 +22,15 @@ function napo_common_update_7001() {
     osha_add_menu_position_rule('Films Menu Rule', $parent_menu, $condition);
   }
 }
+
+/**
+ * Add menu position rules
+ */
+function napo_common_update_7002() {
+  if (module_exists('osha') && module_load_include('inc', 'osha', 'osha.utils')) {
+    // Menu position rule for Lesson content type.
+    $parent_menu = '---- Napo for teachers';
+    $condition = array('content_type' => array('lesson' => 'lesson'));
+    osha_add_menu_position_rule('Lessons Menu Rule', $parent_menu, $condition);
+  }
+}

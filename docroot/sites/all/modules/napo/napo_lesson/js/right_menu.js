@@ -1,6 +1,14 @@
 jQuery('document').ready(function() {
     var menu = jQuery('#menu-about-page-menu');
 
+    // Change first tag from h2 to h3 to be like the rest and remove ':'
+    jQuery('.group-right h2').each(function(idx, el) {
+        if(jQuery(el).text() != '') {
+            var new_text = jQuery(el).text().replace(':', '');
+            jQuery(this).replaceWith('<h3>' + new_text + '</h3>');
+        }
+    });
+
     // Find sections and append to right menu
     jQuery('h3').each(function(idx, el) {
         if(jQuery(el).text() != '') {
