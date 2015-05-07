@@ -104,6 +104,58 @@ function napo_lesson_views_default_views() {
   $handler->display->display_options['arguments']['nid']['validate_options']['types'] = array(
     'lesson' => 'lesson',
   );
+
+  /* Display: First Lesson by Toolkit */
+  $handler = $view->new_display('block', 'First Lesson by Toolkit', 'block_2');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  /* Field: Content: Lesson Toolkit */
+  $handler->display->display_options['fields']['field_lesson_toolkit']['id'] = 'field_lesson_toolkit';
+  $handler->display->display_options['fields']['field_lesson_toolkit']['table'] = 'field_data_field_lesson_toolkit';
+  $handler->display->display_options['fields']['field_lesson_toolkit']['field'] = 'field_lesson_toolkit';
+  $handler->display->display_options['fields']['field_lesson_toolkit']['label'] = '';
+  $handler->display->display_options['fields']['field_lesson_toolkit']['alter']['text'] = '<a href="[link_path]">[field_lesson_toolkit]</a>';
+  $handler->display->display_options['fields']['field_lesson_toolkit']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_lesson_toolkit']['settings'] = array(
+    'link' => 0,
+  );
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'lesson' => 'lesson',
+  );
   $translatables['lessons'] = array(
     t('Master'),
     t('Lessons'),
@@ -118,6 +170,8 @@ function napo_lesson_views_default_views() {
     t('Related lessons'),
     t('Content entity referenced from field_lesson_toolkit'),
     t('Content referencing Content from field_lesson_toolkit'),
+    t('First Lesson by Toolkit'),
+    t('<a href="[link_path]">[field_lesson_toolkit]</a>'),
   );
   $export['lessons'] = $view;
 
@@ -142,14 +196,18 @@ function napo_lesson_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '5';
   $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'name_field',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Taxonomy term: Name */
-  $handler->display->display_options['fields']['name_field']['id'] = 'name_field';
-  $handler->display->display_options['fields']['name_field']['table'] = 'field_data_name_field';
-  $handler->display->display_options['fields']['name_field']['field'] = 'name_field';
-  $handler->display->display_options['fields']['name_field']['label'] = '';
-  $handler->display->display_options['fields']['name_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['name_field']['link_to_entity'] = 1;
+  /* Relationship: Taxonomy term: Content using Target Ages */
+  $handler->display->display_options['relationships']['reverse_field_target_ages_node']['id'] = 'reverse_field_target_ages_node';
+  $handler->display->display_options['relationships']['reverse_field_target_ages_node']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['relationships']['reverse_field_target_ages_node']['field'] = 'reverse_field_target_ages_node';
   /* Field: Field: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
@@ -166,8 +224,29 @@ function napo_lesson_views_default_views() {
   $handler->display->display_options['fields']['description_field']['table'] = 'field_data_description_field';
   $handler->display->display_options['fields']['description_field']['field'] = 'description_field';
   $handler->display->display_options['fields']['description_field']['label'] = '';
+  $handler->display->display_options['fields']['description_field']['exclude'] = TRUE;
   $handler->display->display_options['fields']['description_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['description_field']['link_to_entity'] = 0;
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name_field']['id'] = 'name_field';
+  $handler->display->display_options['fields']['name_field']['table'] = 'field_data_name_field';
+  $handler->display->display_options['fields']['name_field']['field'] = 'name_field';
+  $handler->display->display_options['fields']['name_field']['label'] = '';
+  $handler->display->display_options['fields']['name_field']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['name_field']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['name_field']['alter']['text'] = '[name_field]
+[description_field]';
+  $handler->display->display_options['fields']['name_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name_field']['link_to_entity'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['relationship'] = 'reverse_field_target_ages_node';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['type'] = 'first_lesson_link';
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
   /* Filter criterion: Taxonomy vocabulary: Machine name */
   $handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
   $handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
@@ -178,6 +257,50 @@ function napo_lesson_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
+  $handler->display->display_options['defaults']['query'] = FALSE;
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Field: Image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => 'medium',
+    'image_link' => 'content',
+  );
+  /* Field: Taxonomy term: Description */
+  $handler->display->display_options['fields']['description_field']['id'] = 'description_field';
+  $handler->display->display_options['fields']['description_field']['table'] = 'field_data_description_field';
+  $handler->display->display_options['fields']['description_field']['field'] = 'description_field';
+  $handler->display->display_options['fields']['description_field']['label'] = '';
+  $handler->display->display_options['fields']['description_field']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['description_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['description_field']['link_to_entity'] = 0;
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name_field']['id'] = 'name_field';
+  $handler->display->display_options['fields']['name_field']['table'] = 'field_data_name_field';
+  $handler->display->display_options['fields']['name_field']['field'] = 'name_field';
+  $handler->display->display_options['fields']['name_field']['label'] = '';
+  $handler->display->display_options['fields']['name_field']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['name_field']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['name_field']['alter']['text'] = '<div class="lesson_by_age_name">[name_field]</div>
+<div class="lesson_by_age_image">[field_image]</div>
+<div class="lesson_by_age_description">[description_field]</div>';
+  $handler->display->display_options['fields']['name_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name_field']['link_to_entity'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['relationship'] = 'reverse_field_target_ages_node';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['type'] = 'first_lesson_link';
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
   $translatables['napo_target_ages'] = array(
     t('Master'),
     t('Napo target ages'),
@@ -187,7 +310,13 @@ function napo_lesson_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('field_target_ages'),
+    t('[name_field]
+[description_field]'),
     t('Block'),
+    t('<div class="lesson_by_age_name">[name_field]</div>
+<div class="lesson_by_age_image">[field_image]</div>
+<div class="lesson_by_age_description">[description_field]</div>'),
   );
   $export['napo_target_ages'] = $view;
 
