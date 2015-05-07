@@ -17,12 +17,12 @@ function napo_lesson_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'lesson';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
-    'top_menu' => array(
+    'right_menu' => array(
       'weight' => '0',
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'right_menu' => array(
+    'top_menu' => array(
       'weight' => '0',
       'label' => 'hidden',
       'format' => 'default',

@@ -115,9 +115,11 @@ function napo_lesson_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'file',
-        'settings' => array(),
-        'type' => 'file_default',
+        'module' => 'file_entity',
+        'settings' => array(
+          'text' => 'Detailed lesson plan',
+        ),
+        'type' => 'file_download_link',
         'weight' => 1,
       ),
       'osha_slideshow' => array(
