@@ -137,8 +137,8 @@ function napo_frontpage_views_default_views() {
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
   $handler->display->display_options['title'] = 'Frontpage Carrousel Featured';
-  $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['css_class'] = 'napo-homepage-featured-films';
+  $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
@@ -149,8 +149,8 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['style_options']['wrap'] = '0';
   $handler->display->display_options['style_options']['skin'] = 'napo';
   $handler->display->display_options['style_options']['visible'] = '3';
-  $handler->display->display_options['style_options']['auto'] = '0';
   $handler->display->display_options['style_options']['responsive'] = 1;
+  $handler->display->display_options['style_options']['auto'] = '0';
   $handler->display->display_options['style_options']['autoPause'] = 1;
   $handler->display->display_options['style_options']['easing'] = '';
   $handler->display->display_options['style_options']['vertical'] = 0;
@@ -193,6 +193,12 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['title_field']['element_class'] = 'napo_video_title';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = '';
+  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   /* Sort criterion: Entityqueue: Node Queue Position */
   $handler->display->display_options['sorts']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['sorts']['entityqueue_relationship']['table'] = 'node';
