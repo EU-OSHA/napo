@@ -19,7 +19,7 @@ class NapoTagsTermMigration extends Migration {
     );
 
     // Create a MigrateSource object.
-    $this->source = new MigrateSourceCSV($arguments['file_name'], array(), array('header_rows' => 1));
+    $this->source = new MigrateSourceCSV($arguments['file_name'], array(), array('header_rows' => 1, 'delimiter' => '|'));
     $language = 'en';
     $text_format = 'full_html';
     $term_options = MigrateDestinationTerm::options($language, $text_format);
