@@ -80,7 +80,7 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '130',
     'trim_type' => 'chars',
-    'trim_suffix' => '...',
+    'trim_suffix' => '&hellip;',
     'more_link' => '1',
     'more_text' => 'see more',
     'summary_handler' => 'trim',
