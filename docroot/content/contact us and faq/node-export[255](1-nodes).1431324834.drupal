@@ -1,0 +1,129 @@
+array(
+  (object) array(
+      'vid' => '655',
+      'uid' => '5',
+      'title' => 'is this the first test question?',
+      'log' => '',
+      'status' => '1',
+      'comment' => '2',
+      'promote' => '0',
+      'sticky' => '0',
+      'vuuid' => 'f19bf36e-85e1-458e-b07d-56ca96e98067',
+      'nid' => '255',
+      'type' => 'faq',
+      'language' => 'en',
+      'created' => '1431324793',
+      'changed' => '1431324793',
+      'tnid' => '0',
+      'translate' => '0',
+      'uuid' => '5ba0d8ed-768c-4ba1-9aa1-bd13505ed7b6',
+      'revision_timestamp' => '1431324793',
+      'revision_uid' => '5',
+      'body' => array(
+        'en' => array(
+          array(
+            'value' => "<p id=\"tmgmt-1\">Yes, this is the first test question and this is it's unusually long answer in order to test the expanding answer functionality.<span> <span style=\"font-size: small; line-height: 14px; text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></span></p>\n",
+            'summary' => '',
+            'format' => 'full_html',
+            'safe_value' => "<p id=\"tmgmt-1\">Yes, this is the first test question and this is it's unusually long answer in order to test the expanding answer functionality.<span> <span style=\"font-size: small; line-height: 14px; text-align: justify;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></span></p>\n",
+            'safe_summary' => '',
+          ),
+        ),
+      ),
+      'field_detailed_question' => array(),
+      'metatags' => array(),
+      'rdf_mapping' => array(
+        'rdftype' => array(
+          'sioc:Item',
+          'foaf:Document',
+        ),
+        'title' => array(
+          'predicates' => array(
+            'dc:title',
+          ),
+        ),
+        'created' => array(
+          'predicates' => array(
+            'dc:date',
+            'dc:created',
+          ),
+          'datatype' => 'xsd:dateTime',
+          'callback' => 'date_iso8601',
+        ),
+        'changed' => array(
+          'predicates' => array(
+            'dc:modified',
+          ),
+          'datatype' => 'xsd:dateTime',
+          'callback' => 'date_iso8601',
+        ),
+        'body' => array(
+          'predicates' => array(
+            'content:encoded',
+          ),
+        ),
+        'uid' => array(
+          'predicates' => array(
+            'sioc:has_creator',
+          ),
+          'type' => 'rel',
+        ),
+        'name' => array(
+          'predicates' => array(
+            'foaf:name',
+          ),
+        ),
+        'comment_count' => array(
+          'predicates' => array(
+            'sioc:num_replies',
+          ),
+          'datatype' => 'xsd:integer',
+        ),
+        'last_activity' => array(
+          'predicates' => array(
+            'sioc:last_activity_date',
+          ),
+          'datatype' => 'xsd:dateTime',
+          'callback' => 'date_iso8601',
+        ),
+      ),
+      'translations' => (object) array(
+          'original' => 'en',
+          'data' => array(
+            'en' => array(
+              'entity_type' => 'node',
+              'entity_id' => '255',
+              'language' => 'en',
+              'source' => '',
+              'uid' => '5',
+              'status' => '1',
+              'translate' => '0',
+              'created' => '1431324793',
+              'changed' => '1431324793',
+            ),
+          ),
+        ),
+      'cid' => '0',
+      'last_comment_timestamp' => '1431324793',
+      'last_comment_name' => NULL,
+      'last_comment_uid' => '5',
+      'comment_count' => '0',
+      'name' => 'sorin',
+      'picture' => '0',
+      'data' => 'a:2:{s:7:"contact";i:1;s:18:"htmlmail_plaintext";i:0;}',
+      'workbench_access' => array(
+        1296 => '1296',
+      ),
+      'print_html_display' => 0,
+      'print_html_display_comment' => 0,
+      'print_html_display_urllist' => 0,
+      'print_pdf_display' => 0,
+      'print_pdf_display_comment' => 0,
+      'print_pdf_display_urllist' => 0,
+      'print_pdf_size' => NULL,
+      'print_pdf_orientation' => NULL,
+      'path' => FALSE,
+      'menu' => NULL,
+      'node_export_drupal_version' => '7',
+    ),
+)
