@@ -35,7 +35,6 @@ features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[ds_field_settings][] = node|napo_video|default
 features[ds_field_settings][] = node|napo_video|episode_full
-features[ds_fields][] = back_button
 features[ds_fields][] = combined_tags
 features[ds_fields][] = download_video_form
 features[ds_fields][] = episode_list

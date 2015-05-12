@@ -38,6 +38,7 @@ function napo_frontpage_entityqueue_default_queues() {
   $queue->target_type = 'node';
   $queue->settings = array(
     'target_bundles' => array(
+      'home_video' => 'home_video',
       'napo_video' => 'napo_video',
     ),
     'min_size' => '0',
