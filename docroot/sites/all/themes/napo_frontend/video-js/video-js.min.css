@@ -32,6 +32,39 @@ The control icons are from a custom font. Each icon corresponds to a character
 /* Base UI Component Classes
 --------------------------------------------------------------------------------
 */
+
+/* Fading sytles, used to fade control bar. */
+.vjs-fade-in {
+  visibility: visible !important; /* Needed to make sure things hide in older browsers too. */
+  opacity: 1 !important;
+
+  -webkit-transition: visibility 0s linear 0s, opacity 0.3s linear;
+  -moz-transition: visibility 0s linear 0s, opacity 0.3s linear;
+  -ms-transition: visibility 0s linear 0s, opacity 0.3s linear;
+  -o-transition: visibility 0s linear 0s, opacity 0.3s linear;
+  transition: visibility 0s linear 0s, opacity 0.3s linear;
+}
+.vjs-fade-out {
+display: block;
+  visibility: hidden;
+  opacity: 0;
+
+  -webkit-transition: visibility 1.5s, opacity 1.5s;
+     -moz-transition: visibility 1.5s, opacity 1.5s;
+      -ms-transition: visibility 1.5s, opacity 1.5s;
+       -o-transition: visibility 1.5s, opacity 1.5s;
+          transition: visibility 1.5s, opacity 1.5s;
+
+  /* Wait a moment before fading out the control bar */
+  -webkit-transition-delay: 2s;
+     -moz-transition-delay: 2s;
+      -ms-transition-delay: 2s;
+       -o-transition-delay: 2s;
+          transition-delay: 2s;
+
+  }
+
+
 /* Slider - used for Volume bar and Seek bar */
 .vjs-default-skin .vjs-slider {
     /* Replace browser focus highlight with handle highlight */
@@ -107,7 +140,7 @@ The default control bar that is a container for most of the controls.
 }
 /* Hide the control bar when the video is playing and the user is inactive  */
 .vjs-default-skin.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
-    display: none;
+    display: block;
     visibility: hidden;
     opacity: 0;
     /* transition */
@@ -146,10 +179,10 @@ fonts to show/hide properly.
 /* The default control bar. Created by bar.js */
 .vjs-default-skin .vjs-controls {
     position: absolute;
-    bottom: 0; /* Distance from the bottom of the box/video. Keep 0. Use height to add more bottom margin. */
+    bottom: 60px; /* Distance from the bottom of the box/video. Keep 0. Use height to add more bottom margin. */
     left: 0; right: 0; /* 100% width of div */
     margin: 0; padding: 0; /* Controls are absolutely position, so no padding necessary */
-    height: 2.6em; /* Including any margin you want above or below control items */
+    /*height: 2.6em; /* Including any margin you want above or below control items */
 
 
 
@@ -251,7 +284,7 @@ fonts to show/hide properly.
 vjs-default-skin .vjs-mute-control{
     width:3.8em;
     cursor:pointer!important;
-    float:right
+    float:left;
 }
 .vjs-default-skin .vjs-mute-control div{
     width:22px;
@@ -269,7 +302,7 @@ vjs-default-skin .vjs-mute-control{
     background:url('video-js.png') -50px -25px
 }
 .vjs-default-skin .vjs-volume-control{
-    width:5em;float:right
+    width:5em;float:left;
 }
 .vjs-default-skin .vjs-volume-bar{
     position:relative;
@@ -321,9 +354,9 @@ vjs-default-skin .vjs-mute-control{
 --------------------------------------------------------------------------------
 */
 .vjs-default-skin .vjs-progress-control {
-    display:none;
-    margin-left:40px;
-    width: 130em;
+    /*display:none;*/
+    margin-left:0px;
+    width: 100%;
     font-size: 0.3em;
     height: 3em;
     /* Set above the rest of the controls. */
@@ -339,7 +372,7 @@ vjs-default-skin .vjs-mute-control{
     This simply changes the overall font for the progress bar, and this
     updates both the em-based widths and heights, as wells as the icon font */
 .vjs-default-skin:hover .vjs-progress-control {
-    display:none;
+    /*display:none;*/
     /* Even though we're not changing the top/height, we need to include them in
         the transition so they're handled correctly. */
 
@@ -351,14 +384,14 @@ vjs-default-skin .vjs-mute-control{
 }
 /* Box containing play and load progresses. Also acts as seek scrubber. */
 .vjs-default-skin .vjs-progress-holder {
-    display:none;
+   /*display:none;*/
     height:100%;
 }
 /* Progress Bars */
 .vjs-default-skin .vjs-progress-holder .vjs-play-progress,
 .vjs-default-skin .vjs-progress-holder .vjs-load-progress,
 .vjs-default-skin .vjs-progress-holder .vjs-load-progress div {
-    display:none;
+    /*display:none;*/
     position: absolute;
     display: block;
     height: 100%;
@@ -380,23 +413,23 @@ vjs-default-skin .vjs-mute-control{
       Also using a paralax effect to make the lines move backwards.
         The -50% left position makes that happen.
     */
-    display:none;
+    /*display:none;*/
     background: #dbdb52 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAN0lEQVQYV2NkQAPhYVH/0cVAfEayFOIybeWqZYwoJhKlEJ8iFDcSpZCQIriJRCkkRhHYRGIVAgBr1yQXptEiKAAAAABJRU5ErkJggg==) -50% 0 repeat;
 }
 .vjs-default-skin .vjs-load-progress {
-    display:none;
+    /*display:none;*/
     background: #646464 /* IE8- Fallback */;
     background: rgba(255, 255, 255, 0.2);
 }
 /* there are child elements of the load progress bar that represent the
    specific time ranges that have been buffered */
 .vjs-default-skin .vjs-load-progress div {
-    display:none;
+    /*display:none;*/
     background: #787878 /* IE8- Fallback */;
     background: rgba(255, 255, 255, 0.1);
 }
 .vjs-default-skin .vjs-seek-handle {
-    display:none;
+    /*display:none;*/
 position:absolute;
 width:10px;
 height:10px;
@@ -412,7 +445,7 @@ border-radius:.8em;
 box-shadow:0 2px 4px 0 #000
 }
 .vjs-default-skin .vjs-seek-handle:before {
-    display:none;
+    /*display:none;*/
     padding-top: 0.1em /* Minor adjustment */;
 
 }
@@ -422,7 +455,7 @@ box-shadow:0 2px 4px 0 #000
 .vjs-default-skin.vjs-live .vjs-time-controls,
 .vjs-default-skin.vjs-live .vjs-time-divider,
 .vjs-default-skin.vjs-live .vjs-progress-control {
-    display: none;
+   /*display:none;*/
 }
 .vjs-default-skin.vjs-live .vjs-live-display {
     display: block;
@@ -431,7 +464,7 @@ box-shadow:0 2px 4px 0 #000
 --------------------------------------------------------------------------------
 */
 .vjs-default-skin .vjs-live-display {
-    display: none;
+    /*display:none;*/
     font-size: 1em;
     line-height: 3em;
 }
@@ -442,25 +475,30 @@ box-shadow:0 2px 4px 0 #000
     font-size: 1.em;
     /* Align vertically by making the line height the same as the control bar */
     line-height: 0.40em;
+	bottom:0;
 }
 .vjs-default-skin .vjs-current-time {
-    display:none;
+    /*display:none;*/
     float: right;
-    padding-right: 100px;
-    margin-top: 2px;
+    /*padding-right: 100px;
+    margin-top: 2px;*/
     color: #5b7ca2;
+	top:50px;
 }
 .vjs-default-skin .vjs-duration {
-    display:none;
+   /*display:none;*/
     float: right;
     color: #5b7ca2;
-    margin-top: 2px;
+    /*margin-top: 2px;*/
+	top:50px;
+	
 }
 /* Remaining time is in the HTML, but not included in default design */
 .vjs-default-skin .vjs-remaining-time {
-    display: none;
+    display:none;
     float: left;
-    margin-top: 2px;
+    /*margin-top: 2px;*/
+	top:50px;
 }
 .vjs-time-divider {
     display:none;
@@ -468,6 +506,7 @@ box-shadow:0 2px 4px 0 #000
     line-height: 0.4em;
     color: #5b7ca2;
     margin-top: 2px;
+	
 }
 /* Fullscreen
 --------------------------------------------------------------------------------
@@ -503,7 +542,7 @@ easily in the skin designer. http://designer.videojs.com/
 */
 .vjs-default-skin .vjs-big-play-button {
     /* Center it horizontally */
-    display:none !important;
+    /*display:none !important;*/
     left: 50%;
     margin-left: -1.1em;
     /* Center it vertically */
@@ -541,7 +580,7 @@ easily in the skin designer. http://designer.videojs.com/
 /* Optionally center */
 .vjs-default-skin.vjs-big-play-centered .vjs-big-play-button {
     /* Center it horizontally */
-    display:none !important;
+    /*display:none !important;*/
     left: 50%;
     margin-left: -1.1em;
     /* Center it vertically */
@@ -562,12 +601,12 @@ easily in the skin designer. http://designer.videojs.com/
     display: none !important;
 }
 .video-js.vjs-default-skin.vjs-paused .vjs-big-play-button {
-    display:none !important;
-    /*display: block !important;*/
+    /*display:none !important;*/
+    display: block !important;
 }
 .vjs-default-skin:hover .vjs-big-play-button,
 .vjs-default-skin .vjs-big-play-button:focus {
-    display:none !important;
+    /*display:none !important;*/
     outline: 0;
     border-color: #fff;
     /* IE8 needs a non-glow hover state */
@@ -584,7 +623,7 @@ easily in the skin designer. http://designer.videojs.com/
     transition: all 0s;
 }
 .vjs-default-skin .vjs-big-play-button:before {
-    display:none !important;
+    /*display:none !important;*/
     content: "\e001";
     font-family: VideoJS;
     /* In order to center the play icon vertically we need to set the line height
