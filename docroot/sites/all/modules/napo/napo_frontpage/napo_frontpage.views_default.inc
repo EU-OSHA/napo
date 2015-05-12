@@ -82,7 +82,7 @@ function napo_frontpage_views_default_views() {
     'trim_type' => 'chars',
     'trim_suffix' => '&hellip;',
     'more_link' => '1',
-    'more_text' => 'see more',
+    'more_text' => 'see more <span class="icon"></span>',
     'summary_handler' => 'trim',
     'trim_options' => array(
       'text' => 'text',
