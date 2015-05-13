@@ -103,15 +103,6 @@ function napo_film_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'lesson_video' => 'lesson_video',
   );
-  /* Filter criterion: Content: Video Type (field_video_type) */
-  $handler->display->display_options['filters']['field_video_type_tid']['id'] = 'field_video_type_tid';
-  $handler->display->display_options['filters']['field_video_type_tid']['table'] = 'field_data_field_video_type';
-  $handler->display->display_options['filters']['field_video_type_tid']['field'] = 'field_video_type_tid';
-  $handler->display->display_options['filters']['field_video_type_tid']['value'] = array(
-    2728 => '2728',
-  );
-  $handler->display->display_options['filters']['field_video_type_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_video_type_tid']['vocabulary'] = 'video_type';
 
   /* Display: Episode video List */
   $handler = $view->new_display('entityreference', 'Episode video List', 'entityreference_2');
@@ -773,6 +764,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['path']['absolute'] = TRUE;
   $handler->display->display_options['path'] = 'napos-films/films';
+
   /* Display: Gallery view */
   $handler = $view->new_display('mode', 'Gallery view', 'mode_gallery');
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;

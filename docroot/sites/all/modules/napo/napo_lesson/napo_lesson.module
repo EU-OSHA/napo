@@ -27,6 +27,12 @@ function napo_lesson_theme() {
     'napo_lesson_first_lesson_link' => array(
       'variables' => array('entity' => NULL, 'file' => NULL, 'delta' => NULL),
     ),
+    'download_whole_lesson' => array(
+      'variables' => array(
+        'video_id' => array(),
+      ),
+      'template' => 'theme/download_whole_lesson',
+    ),
   );
 }
 
@@ -50,6 +56,12 @@ function napo_lesson_preprocess_node(&$vars) {
         $vars['top_menu'] = theme('top_menu', array(
           'node' => $node,
           'lessons' => $lessons,
+        ));
+      }
+      // Download whole lesson
+      if (in_array('download_whole_lesson', $vars['preprocess_fields'])) {
+        $vars['download_whole_lesson'] = theme('download_whole_lesson', array(
+          'video_id' => $vars['field_lesson_video'][0]['target_id'],
         ));
       }
     }
