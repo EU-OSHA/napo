@@ -17,18 +17,23 @@ function napo_lesson_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'lesson';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
+    'back_button' => array(
+      'weight' => '1',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'download_whole_lesson' => array(
-      'weight' => '2',
+      'weight' => '4',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'right_menu' => array(
-      'weight' => '0',
+      'weight' => '2',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'top_menu' => array(
-      'weight' => '3',
+      'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -95,36 +100,42 @@ function napo_lesson_ds_layout_settings_info() {
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'lesson';
   $ds_layout->view_mode = 'default';
-  $ds_layout->layout = 'ds_2col';
+  $ds_layout->layout = 'ds_2col_stacked';
   $ds_layout->settings = array(
     'regions' => array(
+      'header' => array(
+        0 => 'title_field',
+        1 => 'back_button',
+      ),
       'left' => array(
-        0 => 'right_menu',
-        1 => 'field_file',
-        2 => 'download_whole_lesson',
+        2 => 'right_menu',
+        3 => 'field_file',
+        4 => 'download_whole_lesson',
       ),
       'right' => array(
-        3 => 'top_menu',
-        4 => 'title_field',
-        5 => 'field_lesson_toolkit',
-        6 => 'body',
-        7 => 'field_lesson_video',
+        5 => 'top_menu',
+        6 => 'field_lesson_toolkit',
+        7 => 'body',
+        8 => 'field_lesson_video',
       ),
     ),
     'fields' => array(
+      'title_field' => 'header',
+      'back_button' => 'header',
       'right_menu' => 'left',
       'field_file' => 'left',
       'download_whole_lesson' => 'left',
       'top_menu' => 'right',
-      'title_field' => 'right',
       'field_lesson_toolkit' => 'right',
       'body' => 'right',
       'field_lesson_video' => 'right',
     ),
     'classes' => array(),
     'wrappers' => array(
+      'header' => 'div',
       'left' => 'div',
       'right' => 'div',
+      'footer' => 'div',
     ),
     'layout_wrapper' => 'div',
     'layout_attributes' => '',
