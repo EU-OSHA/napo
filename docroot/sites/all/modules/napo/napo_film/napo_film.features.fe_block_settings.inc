@@ -55,7 +55,7 @@ function napo_film_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -33,
+        'weight' => -40,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -83,7 +83,7 @@ function napo_film_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -34,
+        'weight' => -41,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -111,7 +111,7 @@ function napo_film_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -35,
+        'weight' => -42,
       ),
       'osha_admin' => array(
         'region' => '',

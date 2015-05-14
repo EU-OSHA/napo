@@ -46,11 +46,15 @@ class napo_film_handler_combined_tags extends views_handler_field {
 
   function render($data) {
     $output = NULL;
-    if (!empty($data->_field_data['nid']['entity'])) {
-      $node = $data->_field_data['nid']['entity'];
-
+    $field = current($data->_field_data);
+    if (!empty($field['entity'])) {
+      $node = $field['entity'];
       if ($node->type == 'napo_video') {
-        $output = napo_film_combined_tags_view_field($node);
+        $settings = array();
+        if (empty($this->options['label'])) {
+          $settings['label'] = 'hidden';
+        }
+        $output = napo_film_combined_tags_view_field($node, $settings);
       }
     }
     return $output;

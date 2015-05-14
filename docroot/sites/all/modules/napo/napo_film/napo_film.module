@@ -467,7 +467,7 @@ function napo_film_recommended_films(&$vars) {
 /**
  * Function to get combined tags as field renderable array.
  */
-function napo_film_combined_tags_view_field($node) {
+function napo_film_combined_tags_view_field($node, $settings = array()) {
   $combined = array();
   // Merge the tags from both fields.
   $main_tag = field_get_items('node', $node, 'field_main_tag');
@@ -487,6 +487,7 @@ function napo_film_combined_tags_view_field($node) {
       'taxonomy_term_separator' => ' | ',
     ),
   );
+  $display_settings = array_merge($display_settings, $settings);
   // Use field_tags to get the rendered combined fields.
   // Overwrite data from field_tags to be used in field_view_field.
   $field_tags = $node->field_tags;
