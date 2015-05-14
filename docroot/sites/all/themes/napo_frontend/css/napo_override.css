@@ -185,3 +185,8 @@ footer.footer.container section.block-menu-block{
 #block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li~li {
     border-left: 1px solid #000000;
 }
+
+.views-slideshow-controls-top .views-slideshow-pager-field-item {
+    float: left;
+    margin: 25px 80px 25px 0;
+}
