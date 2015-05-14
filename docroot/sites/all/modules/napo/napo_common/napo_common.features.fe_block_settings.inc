@@ -27,7 +27,7 @@ function napo_common_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -34,
+        'weight' => -29,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -55,7 +55,7 @@ function napo_common_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -34,
+        'weight' => -30,
       ),
       'osha_admin' => array(
         'region' => '',
