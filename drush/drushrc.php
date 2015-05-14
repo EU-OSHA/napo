@@ -458,6 +458,7 @@ $options['init-modules'] = array(
 
   'entityqueue',
   'jcarousel',
+  'viewblock_topclass',
 
 //  'cer',
   'draggableviews',
@@ -509,6 +510,11 @@ $options['init-modules'] = array(
 
   'linkchecker',
   'osha_linkchecker',
+
+  //Contact Us and FAQ
+  'faq',
+  'webform',
+  'napo_contact',
 
 );
 

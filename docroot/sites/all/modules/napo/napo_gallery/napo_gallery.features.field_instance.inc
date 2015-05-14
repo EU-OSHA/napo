@@ -22,7 +22,7 @@ function napo_gallery_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -75,7 +75,7 @@ function napo_gallery_field_default_field_instances() {
           'image_style' => 'napo_cover',
         ),
         'type' => 'image',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -144,7 +144,7 @@ function napo_gallery_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 13,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -187,7 +187,7 @@ function napo_gallery_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 2,
+        'weight' => 12,
       ),
       'osha_slideshow' => array(
         'label' => 'above',

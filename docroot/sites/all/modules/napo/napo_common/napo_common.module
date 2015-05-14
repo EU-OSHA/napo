@@ -129,6 +129,13 @@ function napo_common_block_info() {
     'info' => t('Page not found'),
   );
 
+  $blocks['napo_print_friendly'] = array(
+    'info' => t('Print friendly'),
+    'status' => 1,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'region' => 'header_top_bar',
+  );
+
   return $blocks;
 }
 
@@ -207,6 +214,11 @@ function napo_common_block_view($delta = '') {
 
     case 'page_not_found' :
       $block['content'] = napo_common_page_not_found_content();
+      break;
+
+    case 'napo_print_friendly' :
+      $block['subject'] = "<none>";
+      $block['content'] = theme('napo_print_friendly_block');
       break;
   }
 
@@ -395,6 +407,35 @@ function napo_common_page_not_found_content() {
   $content .= '</div>';
 
   return $content;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function napo_common_theme() {
+  return array(
+    'napo_print_friendly_block' => array(),
+  );
+}
+
+// Create a theme function that can be overridden by other theme developers.
+function theme_napo_print_friendly_block() {
+  // Add js and css
+  $content = array(
+    '#attached' => array(
+      'js' => array(
+        array(
+          'data' => drupal_get_path('module', 'napo_common') . '/js/napo_print_friendly.js',
+          'type' => 'file',
+        )
+      ),
+    ),
+  );
+
+  $content['#markup'] = t('Print friendly:');
+  $content['#markup'] .= '&nbsp;<a href="javascript:if(window.print)window.print();"><span class="glyphicon glyphicon-print"></span></a>';
+
+  return render($content);
 }
 
 /**
