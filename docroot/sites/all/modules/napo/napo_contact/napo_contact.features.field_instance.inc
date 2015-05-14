@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * contact_us_and_faq.features.field_instance.inc
+ * napo_contact.features.field_instance.inc
  */
 
 /**
  * Implements hook_field_default_field_instances().
  */
-function contact_us_and_faq_field_default_field_instances() {
+function napo_contact_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance: 'comment-comment_node_faq-comment_body'

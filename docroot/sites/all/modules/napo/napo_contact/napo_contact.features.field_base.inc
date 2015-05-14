@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * contact_us_and_faq.features.field_base.inc
+ * napo_contact.features.field_base.inc
  */
 
 /**
  * Implements hook_field_default_field_bases().
  */
-function contact_us_and_faq_field_default_field_bases() {
+function napo_contact_field_default_field_bases() {
   $field_bases = array();
 
   // Exported field_base: 'comment_body'

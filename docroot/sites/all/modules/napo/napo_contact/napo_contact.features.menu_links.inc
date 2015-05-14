@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * contact_us_and_faq.features.menu_links.inc
+ * napo_contact.features.menu_links.inc
  */
 
 /**
  * Implements hook_menu_default_menu_links().
  */
-function contact_us_and_faq_menu_default_menu_links() {
+function napo_contact_menu_default_menu_links() {
   $menu_links = array();
 
   // Exported menu link: menu-footer-menu_contact-us--faq:faq-page

@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * contact_us_and_faq.features.user_permission.inc
+ * napo_contact.features.user_permission.inc
  */
 
 /**
  * Implements hook_user_default_permissions().
  */
-function contact_us_and_faq_user_default_permissions() {
+function napo_contact_user_default_permissions() {
   $permissions = array();
 
   // Exported permission: 'administer faq'.

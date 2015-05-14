@@ -514,7 +514,7 @@ $options['init-modules'] = array(
   //Contact Us and FAQ
   'faq',
   'webform',
-  'contact_us_and_faq',
+  'napo_contact',
 
 );
 

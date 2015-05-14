@@ -1,9 +1,9 @@
-name = Contact Us and FAQ
-description = Contact Us form and FAQ page
+name = Napo Contact Us and FAQ
+description = Napo Contact Us form and FAQ page
 core = 7.x
 package = Napo
 version = 7.x-1.0
-project = contact_us_and_faq
+project = napo_contact
 dependencies[] = ctools
 dependencies[] = faq
 dependencies[] = fe_block

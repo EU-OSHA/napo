@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * contact_us_and_faq.strongarm.inc
+ * napo_contact.strongarm.inc
  */
 
 /**
  * Implements hook_strongarm().
  */
-function contact_us_and_faq_strongarm() {
+function napo_contact_strongarm() {
   $export = array();
 
   $strongarm = new stdClass();

@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * contact_us_and_faq.features.menu_custom.inc
+ * napo_contact.features.menu_custom.inc
  */
 
 /**
  * Implements hook_menu_default_menu_custom().
  */
-function contact_us_and_faq_menu_default_menu_custom() {
+function napo_contact_menu_default_menu_custom() {
   $menus = array();
 
   // Exported menu: menu-footer-menu.
