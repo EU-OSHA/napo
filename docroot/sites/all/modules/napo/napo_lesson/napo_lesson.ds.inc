@@ -17,13 +17,23 @@ function napo_lesson_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'lesson';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
+    'back_button' => array(
+      'weight' => '1',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'download_whole_lesson' => array(
+      'weight' => '4',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'right_menu' => array(
-      'weight' => '0',
+      'weight' => '2',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'top_menu' => array(
-      'weight' => '0',
+      'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -38,6 +48,18 @@ function napo_lesson_ds_field_settings_info() {
  */
 function napo_lesson_ds_custom_fields_info() {
   $export = array();
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'download_whole_lesson';
+  $ds_field->label = 'Download whole lesson';
+  $ds_field->field_type = 3;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = 'lesson|default';
+  $ds_field->properties = array();
+  $export['download_whole_lesson'] = $ds_field;
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
@@ -78,34 +100,42 @@ function napo_lesson_ds_layout_settings_info() {
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'lesson';
   $ds_layout->view_mode = 'default';
-  $ds_layout->layout = 'ds_2col';
+  $ds_layout->layout = 'ds_2col_stacked';
   $ds_layout->settings = array(
     'regions' => array(
+      'header' => array(
+        0 => 'title_field',
+        1 => 'back_button',
+      ),
       'left' => array(
-        0 => 'right_menu',
-        2 => 'field_file',
+        2 => 'right_menu',
+        3 => 'field_file',
+        4 => 'download_whole_lesson',
       ),
       'right' => array(
-        1 => 'top_menu',
-        3 => 'title_field',
-        4 => 'field_lesson_toolkit',
-        5 => 'body',
-        6 => 'field_lesson_video',
+        5 => 'top_menu',
+        6 => 'field_lesson_toolkit',
+        7 => 'body',
+        8 => 'field_lesson_video',
       ),
     ),
     'fields' => array(
+      'title_field' => 'header',
+      'back_button' => 'header',
       'right_menu' => 'left',
-      'top_menu' => 'right',
       'field_file' => 'left',
-      'title_field' => 'right',
+      'download_whole_lesson' => 'left',
+      'top_menu' => 'right',
       'field_lesson_toolkit' => 'right',
       'body' => 'right',
       'field_lesson_video' => 'right',
     ),
     'classes' => array(),
     'wrappers' => array(
+      'header' => 'div',
       'left' => 'div',
       'right' => 'div',
+      'footer' => 'div',
     ),
     'layout_wrapper' => 'div',
     'layout_attributes' => '',

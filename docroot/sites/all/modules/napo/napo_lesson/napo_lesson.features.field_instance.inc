@@ -22,7 +22,7 @@ function napo_lesson_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 4,
+        'weight' => 7,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -73,7 +73,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 18,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -120,7 +120,7 @@ function napo_lesson_field_default_field_instances() {
           'text' => 'Detailed lesson plan',
         ),
         'type' => 'file_download_link',
-        'weight' => 1,
+        'weight' => 3,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -173,7 +173,7 @@ function napo_lesson_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 3,
+        'weight' => 6,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -225,7 +225,7 @@ function napo_lesson_field_default_field_instances() {
           'view_mode' => 'teaser',
         ),
         'type' => 'entityreference_entity_view',
-        'weight' => 5,
+        'weight' => 8,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -279,7 +279,7 @@ function napo_lesson_field_default_field_instances() {
           'title_style' => 'h1',
         ),
         'type' => 'title_linked',
-        'weight' => 2,
+        'weight' => 0,
       ),
       'osha_slideshow' => array(
         'label' => 'above',

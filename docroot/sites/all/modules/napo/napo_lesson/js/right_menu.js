@@ -21,10 +21,8 @@ jQuery('document').ready(function() {
     });
 
     // Add fields to affix menu
-    jQuery('.node-lesson .col-md-3').find('.field-name-field-file').each(function(i) {
-        menu.append(jQuery('<li class="">'+jQuery(this).html()+'</li>'));
-        jQuery(this).hide();
-    });
+    add_fields_to_right_menu(menu, '.field-name-field-file');
+    add_fields_to_right_menu(menu, '.download_whole_lesson');
 
     // Spymenu target
     jQuery('body').scrollspy({
@@ -55,3 +53,10 @@ jQuery('document').ready(function() {
         }
     });
 });
+
+function add_fields_to_right_menu(menu, field){
+    jQuery('.node-lesson .col-md-3').find(field).each(function(i) {
+        menu.append(jQuery('<li class="">'+jQuery(this).html()+'</li>'));
+        jQuery(this).hide();
+    });
+}
