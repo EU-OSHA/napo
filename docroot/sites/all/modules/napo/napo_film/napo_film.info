@@ -29,6 +29,10 @@ dependencies[] = videojs
 dependencies[] = views
 dependencies[] = views_modes
 dependencies[] = youtube
+<<<<<<< HEAD
+features[fe_block_settings][] = napo_film-napo_films_view_modes
+>>>>>>> Added block with download form in cart and other fixes
+features[fe_block_settings][] = nodeblock-23
 features[ctools][] = ds:ds:1
 features[ctools][] = entityqueue:entityqueue_default:1
 features[ctools][] = page_manager:pages_default:1
@@ -46,13 +50,8 @@ features[ds_layout_settings][] = node|napo_video|default
 features[ds_layout_settings][] = node|napo_video|episode_full
 features[ds_view_modes][] = recommended_films
 features[fe_block_settings][] = addtoany-addtoany_button
-<<<<<<< HEAD
-features[fe_block_settings][] = napo_film-napo_films_view_modes
-=======
 features[fe_block_settings][] = content_cart-content_cart_summary
 features[fe_block_settings][] = napo_film-download_cart_form
->>>>>>> Added block with download form in cart and other fixes
-features[fe_block_settings][] = nodeblock-23
 features[fe_block_settings][] = views--exp-napo_films-page_list
 features[fe_block_settings][] = views-episode_list-block
 features[features_api][] = api:2
@@ -110,4 +109,4 @@ files[] = views/napo_film_handler_download_video.inc
 files[] = views/napo_film_handler_view_episodes_link.inc
 files[] = views/napo_film_handler_add_mime_to_cart.inc
 files[] = views/napo_film_handler_select_in_cart.inc
-mtime = 1430320538
+mtime = 1431697838
