@@ -15,6 +15,9 @@ function napo_film_views_handlers() {
       'napo_film_handler_combined_tags' => array(
         'parent' => 'views_handler_field',
       ),
+      'napo_film_handler_view_episodes_link' => array(
+        'parent' => 'views_handler_field',
+      ),
     ),
   );
 }
@@ -43,6 +46,13 @@ function napo_film_views_data() {
     'help' => t('Provides a combined field_tags and field_main_tag output.'),
     'field' => array(
       'handler' => 'napo_film_handler_combined_tags',
+    ),
+  );
+  $data['napo_film']['view_episodes_link'] = array(
+    'title' => t('View episodes link'),
+    'help' => t('Provides a link to view episodes mode of a film.'),
+    'field' => array(
+      'handler' => 'napo_film_handler_view_episodes_link',
     ),
   );
   return $data;

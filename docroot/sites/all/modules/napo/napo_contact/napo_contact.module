@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Contact Us and FAQ feature.
+ */
+
+include_once 'napo_contact.features.inc';

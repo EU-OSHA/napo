@@ -384,6 +384,15 @@ function napo_lesson_strongarm() {
       'film_main_video_teaser' => array(
         'custom_settings' => FALSE,
       ),
+      'episode_full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'recommended_films' => array(
+        'custom_settings' => FALSE,
+      ),
+      'revision' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

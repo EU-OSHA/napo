@@ -511,6 +511,11 @@ $options['init-modules'] = array(
   'linkchecker',
   'osha_linkchecker',
 
+  //Contact Us and FAQ
+  'faq',
+  'webform',
+  'napo_contact',
+
 );
 
 // Exclude domains symlinks from archive-dump
