@@ -16,9 +16,9 @@ class content_cart_handler_field_remove_link extends views_handler_field {
     drupal_add_js(drupal_get_path('module', 'content_cart') . '/js/content_cart.js');
     $view_name = $this->view->name . '-' . $this->view->current_display;
     // TODO add settings for views field (label, classes, wrapper etc.)
-    return '<span class="content_cart_remove"
+    return '<button class="btn content_cart_remove"
       data-value="' . $entity_type . '-' . $entity_id . '"
-      data-view="' . $view_name . '">' . t('Remove') . '</span>';
+      data-view="' . $view_name . '">' . t('Remove') . '</button>';
   }
 
   function option_definition() {

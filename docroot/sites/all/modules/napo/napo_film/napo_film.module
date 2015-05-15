@@ -129,16 +129,6 @@ function napo_film_block_view($delta = '') {
 }
 
 /**
- * Implements hook_content_cart_ajax_submit_alter().
- */
-function napo_film_content_cart_ajax_submit_alter(&$commands, $input_value) {
-  // Refresh the download block when changing the cart.
-  $form = drupal_get_form('napo_film_cart_download_form');
-  $header = drupal_render($form);
-  $commands[] = ajax_command_replace('#napo_film_cart_download_form_container', $header);
-}
-
-/**
  * Callback for view modes links.
  */
 function napo_film_set_view_mode($mode) {

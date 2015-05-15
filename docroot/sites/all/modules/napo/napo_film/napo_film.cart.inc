@@ -89,6 +89,14 @@ function napo_film_cart_add_mime_form($form, &$form_state, $node) {
   return $form;
 }
 
+/**
+ * Implements hook_content_cart_ajax_submit_alter().
+ */
+function napo_film_content_cart_ajax_submit_alter(&$commands, $input_value) {
+  // Refresh the download block when changing the cart.
+  $commands[] = ajax_command_invoke("[id^='edit-refresh']", 'mousedown');
+}
+
 
 function napo_film_cart_download_form($form, &$form_state) {
   $count = napo_film_cart_select_in_cart_count();
