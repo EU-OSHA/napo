@@ -193,6 +193,75 @@ function napo_film_cart_select_in_cart_download_selected($form, $form_state) {
 function napo_film_cart_select_in_cart_download_all($form, $form_state) {
   $cart = ContentCart::getCurrentCart();
   $films = $cart->getCartContent();
+
+  if (!empty($films['node'])) {
+    $mime_types = $_SESSION['napo_film_cart_mime'];
+    $nids = $films['node'];
+    $nodes = node_load_multiple($nids);
+    $download_files = array();
+    foreach ($nodes as $node) {
+      $mime = $mime_types[$node->nid];
+      if (empty($mime_types)) {
+        $mime = 'video/mp4';
+      }
+      $video = napo_film_cart_node_get_video_by_mime($node, $mime);
+      if (!empty($video)) {
+        $download_files[] = $video;
+      }
+    }
+    $file_path = napo_cart_download_videos($download_files);
+    if (!empty($file_path)) {
+      // Download the Archive.
+      header("Content-Type: application/octet-stream");
+      header('Content-Description: File Transfer');
+      header('Content-Disposition: attachment; filename=' . drupal_basename($file_path));
+      readfile(drupal_realpath($file_path));
+      exit();
+    }
+  }
+}
+
+function napo_film_cart_node_get_video_by_mime($node, $mime) {
+  $file = NULL;
+  $node_wrapper = entity_metadata_wrapper('node', $node);
+  $videos = $node_wrapper->field_video->value();
+  foreach ($videos as $video) {
+    if ($video['filemime'] == $mime) {
+      return $video;
+    }
+  }
+  return $file;
+}
+
+function napo_cart_download_videos($files) {
+  if (!empty($files)) {
+    $dir_path = drupal_realpath('public://napo_films_download_center');
+    if (!file_prepare_directory($dir_path)) {
+      drupal_set_message(t('There was an error creating the archive!'), 'error');
+      return NULL;
+    }
+    $dir_path = drupal_realpath($dir_path);
+    $archive = new ZipArchive();
+    $archive_id = napo_cart_get_archive_name_id();
+    $archive_name = 'napo_films_download_' . $archive_id;
+    $archive_path = $dir_path . '/' . $archive_name . '.zip';
+    $archive->open($archive_path, ZIPARCHIVE::CREATE);
+    foreach ($files as $file) {
+      $file_path = drupal_realpath($file['uri']);
+      $archive->addFile($file_path, drupal_basename($file_path));
+    }
+    $archive->close();
+    return $archive_path;
+  }
+  return NULL;
+}
+
+function napo_cart_get_archive_name_id() {
+  global $user;
+  $file_id = str_shuffle($user->sid);
+  $file_id = substr($file_id, rand(0, 30), 5);
+  $file_id .= time();
+  return $file_id;
 }
 
 function napo_film_cart_download_form_refresh_callback($form, &$form_state) {
