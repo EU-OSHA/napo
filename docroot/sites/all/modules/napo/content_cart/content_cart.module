@@ -57,7 +57,16 @@ function content_cart_views_data_alter(&$data) {
           'click sortable' => FALSE,
         ),
       );
-      $data[$info['base table']]['content_cart_remove'] = array(
+      $data['content_cart']['content_add_to_cart'] = array(
+        'title' => t('Add to cart button'),
+        'group' => t('Content Cart'),
+        'help' => t('Provide a button Add to cart'),
+        'field' => array(
+          'handler' => 'content_cart_handler_add_to_cart',
+          'click sortable' => FALSE,
+        ),
+      );
+      $data['content_cart']['content_cart_remove'] = array(
         'title' => t('Remove from cart link'),
         'group' => t('Content Cart'),
         'help' => t('Provide a remove link - for views that filters by Is in Cart.'),
@@ -79,6 +88,17 @@ function content_cart_views_data_alter(&$data) {
       );
     }
   }
+  foreach (search_api_index_load_multiple(FALSE) as $index) {
+    // Fill in base data.
+    $key = 'search_api_index_' . $index->machine_name;
+    $table = &$data[$key];
+    $table['content_cart']['group'] = t('Content Cart');
+    $table['content_cart']['title'] = t('Add to cart');
+    $table['content_cart']['help'] = t('Content cart add to cart button');
+    $table['content_cart']['real field'] = 'id';
+    $table['content_cart']['field']['type'] = 'text';
+    $table['content_cart']['field']['handler'] = 'content_cart_handler_add_to_cart';
+  }
 }
 
 function content_cart_add_item($type, $id) {
@@ -96,17 +116,17 @@ function content_cart_remove_item($type, $id) {
 /**
  * Page callback for ajax call for cart submit.
  *
- * @param string $content_id
+ * @param string $input_value
  *   The entity_type-entity_id string used identify the content.
  * @param string $operation
  *   The operation (add/remove) that should be done on cart for the $id content.
  * @param string $view
  *   The view_name-view_display string to identify and refresh cart view.
  */
-function content_cart_ajax_submit($content_id, $operation = '', $view = '') {
+function content_cart_ajax_submit($input_value, $operation = '', $view = '') {
   $commands = array();
   $cart = ContentCart::getCurrentCart();
-  $identifiers = explode('-', $content_id);
+  $identifiers = explode('-', $input_value);
 
   if (count($identifiers) == 2) {
     // TODO Check for valid entity type and id.
@@ -115,10 +135,12 @@ function content_cart_ajax_submit($content_id, $operation = '', $view = '') {
     switch ($operation) {
       case 'add':
         content_cart_add_item($type, $content_id);
+        $commands[] = ajax_command_invoke('button[data-value="' . $input_value . '"]', 'attr', array('disabled', 'disabled'));
         break;
 
       case 'remove':
         content_cart_remove_item($type, $content_id);
+        $commands[] = ajax_command_invoke('button[data-value="' . $input_value . '"]', 'removeAttr', array('disabled'));
         break;
 
       default:

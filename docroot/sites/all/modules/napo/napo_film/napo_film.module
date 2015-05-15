@@ -82,6 +82,11 @@ function napo_film_block_info() {
     'cache' => DRUPAL_CACHE_GLOBAL,
   );
 
+  $blocks['download_cart_form'] = array(
+    'info' => t('Download center cart form'),
+  );
+
+
   return $blocks;
 }
 
@@ -91,25 +96,41 @@ function napo_film_block_info() {
  */
 function napo_film_block_view($delta = '') {
   $block = array();
-  // View modes links block.
-  if ($delta == 'napo_films_view_modes') {
-    $block['subject'] = t('Napo film view modes');
-    $attr = array(
-      'class' => array('napo-film-view-mode-links'),
-      'rel' => 'nofollow',
-    );
-    $attr_grid = $attr;
-    // Set active mode.
-    if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'grid') {
-      $attr_grid['class'][] = "active";
-    }
-    else {
-      $attr['class'][] = "active";
-    }
-    // Get query params to preserve them.
-    $query = drupal_get_query_parameters();
-    $block['content']['list']['#markup'] = l(t('List'), 'napo_film/set_view_mode/list', array('attributes' => $attr, 'query' => $query));
-    $block['content']['grid']['#markup'] = l(t('Grid'), 'napo_film/set_view_mode/grid', array('attributes' => $attr_grid, 'query' => $query));
+  switch($delta) {
+    case 'download_cart_form':
+      $view = views_get_page_view();
+      if (!empty($view)) {
+        foreach ($view->field as $field) {
+          if (get_class($field) == 'content_cart_handler_select_in_cart') {
+            $form = drupal_get_form('napo_film_cart_download_form');
+            $header = drupal_render($form);
+            $block['content'] = $header;
+          }
+        }
+      }
+      break;
+
+    case 'napo_films_view_modes':
+      // View modes links block.
+      $block['subject'] = t('Napo film view modes');
+      $attr = array(
+        'class' => array('napo-film-view-mode-links'),
+        'rel' => 'nofollow',
+      );
+      $attr_grid = $attr;
+      // Set active mode.
+      if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'grid') {
+        $attr_grid['class'][] = "active";
+      }
+      else {
+        $attr['class'][] = "active";
+      }
+      // Get query params to preserve them.
+      $query = drupal_get_query_parameters();
+      $block['content']['list']['#markup'] = l(t('List'), 'napo_film/set_view_mode/list', array('attributes' => $attr, 'query' => $query));
+      $block['content']['grid']['#markup'] = l(t('Grid'), 'napo_film/set_view_mode/grid', array('attributes' => $attr_grid, 'query' => $query));
+      break;
+
   }
   return $block;
 }
@@ -227,44 +248,6 @@ function napo_film_theme() {
     ),
   );
 }
-
-/**
- * Implements hook_block_info().
- */
-function napo_film_block_info() {
-  $blocks = array();
-  $blocks['download_cart_form'] = array(
-    'info' => t('Download center cart form'),
-  );
-
-  return $blocks;
-}
-
-/**
- * Implements hook_block_view().
- */
-function napo_film_block_view($delta = '') {
-  $block = array();
-
-  switch($delta) {
-    case 'download_cart_form':
-      $view = views_get_page_view();
-      if (!empty($view)) {
-        foreach ($view->field as $field) {
-          if (get_class($field) == 'content_cart_handler_select_in_cart') {
-            $form = drupal_get_form('napo_film_cart_download_form');
-            $header = drupal_render($form);
-            $block['content'] = $header;
-          }
-        }
-      }
-      break;
-  }
-
-  return $block;
-}
-
-
 
 /**
  * Get taxonomies ids for video types.
