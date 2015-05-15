@@ -57,7 +57,7 @@ function content_cart_views_data_alter(&$data) {
           'click sortable' => FALSE,
         ),
       );
-      $data['content_cart']['content_add_to_cart'] = array(
+      $data[$info['base table']]['content_add_to_cart'] = array(
         'title' => t('Add to cart button'),
         'group' => t('Content Cart'),
         'help' => t('Provide a button Add to cart'),
@@ -66,7 +66,7 @@ function content_cart_views_data_alter(&$data) {
           'click sortable' => FALSE,
         ),
       );
-      $data['content_cart']['content_cart_remove'] = array(
+      $data[$info['base table']]['content_cart_remove'] = array(
         'title' => t('Remove from cart link'),
         'group' => t('Content Cart'),
         'help' => t('Provide a remove link - for views that filters by Is in Cart.'),
@@ -166,6 +166,7 @@ function content_cart_ajax_submit($input_value, $operation = '', $view = '') {
       }
     }
   }
+  drupal_alter('content_cart_ajax_submit', $commands, $input_value);
   $page = array(
     '#type' => 'ajax',
     '#commands' => $commands,

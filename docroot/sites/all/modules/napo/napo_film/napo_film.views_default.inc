@@ -78,7 +78,7 @@ function napo_film_views_default_views() {
       'text' => 0,
     ),
   );
-  /* Field: Broken/missing handler */
+  /* Field: Content Cart: Remove from cart link */
   $handler->display->display_options['fields']['content_cart_remove']['id'] = 'content_cart_remove';
   $handler->display->display_options['fields']['content_cart_remove']['table'] = 'node';
   $handler->display->display_options['fields']['content_cart_remove']['field'] = 'content_cart_remove';

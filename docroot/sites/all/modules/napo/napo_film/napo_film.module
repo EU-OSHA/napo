@@ -96,18 +96,11 @@ function napo_film_block_info() {
  */
 function napo_film_block_view($delta = '') {
   $block = array();
-  switch($delta) {
+  switch ($delta) {
     case 'download_cart_form':
-      $view = views_get_page_view();
-      if (!empty($view)) {
-        foreach ($view->field as $field) {
-          if (get_class($field) == 'content_cart_handler_select_in_cart') {
-            $form = drupal_get_form('napo_film_cart_download_form');
-            $header = drupal_render($form);
-            $block['content'] = $header;
-          }
-        }
-      }
+      $form = drupal_get_form('napo_film_cart_download_form');
+      $header = drupal_render($form);
+      $block['content'] = $header;
       break;
 
     case 'napo_films_view_modes':
@@ -133,6 +126,16 @@ function napo_film_block_view($delta = '') {
 
   }
   return $block;
+}
+
+/**
+ * Implements hook_content_cart_ajax_submit_alter().
+ */
+function napo_film_content_cart_ajax_submit_alter(&$commands, $input_value) {
+  // Refresh the download block when changing the cart.
+  $form = drupal_get_form('napo_film_cart_download_form');
+  $header = drupal_render($form);
+  $commands[] = ajax_command_replace('#napo_film_cart_download_form_container', $header);
 }
 
 /**

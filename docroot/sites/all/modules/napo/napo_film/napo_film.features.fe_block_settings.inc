@@ -40,33 +40,6 @@ function napo_film_default_fe_block_settings() {
     'visibility' => 0,
   );
 
-  $export['napo_film-napo_films_view_modes'] = array(
-    'cache' => 8,
-    'custom' => 0,
-    'delta' => 'napo_films_view_modes',
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'module' => 'napo_film',
-    'node_types' => array(),
-    'pages' => 'napos-films/films',
-    'themes' => array(
-      'napo_frontend' => array(
-        'region' => 'content',
-        'status' => 1,
-        'theme' => 'napo_frontend',
-        'weight' => -41,
-      ),
-      'osha_admin' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '<none>',
-    'visibility' => 1,
-  );
-
   $export['content_cart-content_cart_summary'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -99,7 +72,39 @@ function napo_film_default_fe_block_settings() {
     'cache' => 1,
     'custom' => 0,
     'delta' => 'download_cart_form',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'napo_film',
+    'node_types' => array(),
     'pages' => 'download-center',
+    'roles' => array(),
+    'themes' => array(
+      'napo_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'napo_frontend',
+        'weight' => -40,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 1,
+  );
+
+  $export['napo_film-napo_films_view_modes'] = array(
+    'cache' => 8,
+    'custom' => 0,
+    'delta' => 'napo_films_view_modes',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'napo_film',
+    'node_types' => array(),
+    'pages' => 'napos-films/films',
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
@@ -134,7 +139,7 @@ function napo_film_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -42,
+        'weight' => -43,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -162,7 +167,7 @@ function napo_film_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -43,
+        'weight' => -42,
       ),
       'osha_admin' => array(
         'region' => '',
