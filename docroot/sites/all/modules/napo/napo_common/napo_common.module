@@ -485,8 +485,10 @@ function napo_common_get_users_by_role ($role_name){
 function napo_common_preprocess_node(&$vars) {
   $node = $vars['node'];
   // Add share widget ds field.
-  if (in_array('share_widget', $vars['preprocess_fields'])) {
-    $vars['share_widget'] = napo_common_get_share_widget($node);
+  if (!empty($vars['preprocess_fields'])) {
+    if (in_array('share_widget', $vars['preprocess_fields'])) {
+      $vars['share_widget'] = napo_common_get_share_widget($node);
+    }
   }
 }
 
