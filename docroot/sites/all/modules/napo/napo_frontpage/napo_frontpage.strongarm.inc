@@ -141,7 +141,7 @@ function napo_frontpage_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'videojs_autoplay';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['videojs_autoplay'] = $strongarm;
 
   $strongarm = new stdClass();
