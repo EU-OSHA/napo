@@ -640,6 +640,10 @@ function napo_film_views_default_views() {
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
     'body:value' => 'body:value',
+    'field_main_tag:name' => 'field_main_tag:name',
+    'field_main_tag:name_field' => 'field_main_tag:name_field',
+    'field_tags:name' => 'field_tags:name',
+    'field_tags:name_field' => 'field_tags:name_field',
     'title' => 'title',
     'title_field' => 'title_field',
   );
