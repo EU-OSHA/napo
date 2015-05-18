@@ -185,3 +185,88 @@ footer.footer.container section.block-menu-block{
 #block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li~li {
     border-left: 1px solid #000000;
 }
+
+/* Views Slideshow */
+
+.view .skin-default {
+    margin: 0 auto;
+    position: relative;
+    width: 1024px;
+}
+
+.view .skin-default .views-slideshow-controls-text {
+    display: none;
+}
+
+.view .skin-default:hover .views-slideshow-controls-text {
+    display: block;
+}
+
+.view-napo-and-friends .views-slideshow-pager-field-item.active {
+    background-position: 0 -22px;
+    background-color: #000066;
+}
+
+.view-napo-and-friends .views-slideshow-cycle-main-frame-row-item {
+    background-color: #f5f5f5;
+    padding: 30px;
+}
+
+.view-napo-and-friends .views-slideshow-cycle-main-frame-row-item .views-field .views-field-title-field {
+    float: left;
+}
+
+.view-napo-and-friends .views-slideshow-cycle-main-frame-row-item .views-field .views-field-body {
+    float: left;
+}
+
+.view-napo-and-friends .views-slideshow-controls-text span {
+    position: absolute;
+    top: 300px;
+    z-index: 900;
+}
+
+.view-napo-and-friends .views-slideshow-controls-text-previous {
+    left: 15px; /* LTR */
+}
+
+.view-napo-and-friends .views-slideshow-controls-text-pause {
+    display: none;
+}
+
+.view-napo-and-friends .views-slideshow-controls-text-next {
+    right: 15px; /* LTR */
+}
+
+.view-napo-and-friends .views-slideshow-controls-text-previous,
+.view-napo-and-friends .views-slideshow-controls-text-next {
+    background: url("../images/arrows.png") no-repeat;
+    background-color: red;
+    height: 30px;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 30px;
+}
+
+.view-napo-and-friends .views-slideshow-controls-text-next {
+    background-position: -30px 0; /* LTR */
+}
+
+.view-napo-and-friends .views-slideshow-controls-top .views-slideshow-pager-field-item {
+    float: left;
+    margin: 25px 10px 25px 0;
+}
+
+.view-napo-and-friends .views-slideshow-pager-fields {
+    /*line-height: 1;*/
+    /*margin-top: 10px;*/
+    text-align: center;
+    /*background-color: red;*/
+}
+
+.view-napo-and-friends .views-slideshow-pager-field-item {
+    /*cursor: pointer;*/
+    /*display: inline-block;*/
+    /*height: 250px;*/
+    /*width: 250px;*/
+}

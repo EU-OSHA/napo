@@ -62,4 +62,3 @@ features[views_view][] = frontpage_custom_video
 features_exclude[dependencies][file] = file
 features_exclude[dependencies][image] = image
 features_exclude[dependencies][media] = media
-mtime = 1431502270

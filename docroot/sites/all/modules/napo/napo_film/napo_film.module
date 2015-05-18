@@ -384,6 +384,9 @@ function napo_film_preprocess_node(&$vars) {
  * Get a number of films with the same field_main_tags or field_tags
  */
 function napo_film_recommended_films(&$vars) {
+  $term = taxonomy_get_term_by_name('Film video');
+  $term = !empty($term)? current($term): '';
+
   // Get 3 related films by field_main_tag
   $tags_tids = array();
   if (!empty($vars['field_main_tag'])) {
@@ -402,7 +405,8 @@ function napo_film_recommended_films(&$vars) {
     $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'napo_video')
       ->entityCondition('entity_id', $excluded_nids, 'NOT IN')
-      ->fieldCondition('field_main_tag', 'tid', $tids, 'IN');
+      ->fieldCondition('field_main_tag', 'tid', $tids, 'IN')
+      ->fieldCondition('field_video_type', 'tid', $term->tid, '=');
       // Publication date is not mandatory and the empty values are excluded from query
       //->fieldOrderBy('field_publication_date', 'value', 'DESC');
     $result = $query->execute();
@@ -438,8 +442,10 @@ function napo_film_recommended_films(&$vars) {
         ->entityCondition('bundle', 'napo_video')
         ->entityCondition('entity_id', $excluded_nids, 'NOT IN')
         ->fieldCondition('field_main_tag', 'tid', $tids, 'NOT IN')
-        ->fieldCondition('field_tags', 'tid', $tids, 'IN');
+        ->fieldCondition('field_tags', 'tid', $tids, 'IN')
+        ->fieldCondition('field_video_type', 'tid', $term->tid, '=');
         //->fieldOrderBy('field_publication_date', 'value', 'DESC');
+
       $result = $query->execute();
       $count = 0;
       if (!empty($result)) {
