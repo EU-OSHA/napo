@@ -58,7 +58,7 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'napos_friends';
   $path_breadcrumb->name = 'Napo Friends';
-  $path_breadcrumb->path = 'meet-napo/napos-friends';
+  $path_breadcrumb->path = 'meet-napo/napo-and-friends';
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => '%site:current-page:menu-link:pb-join:name',
