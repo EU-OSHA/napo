@@ -34,6 +34,13 @@ function napo_film_menu() {
     'access callback' => TRUE,
     'expanded' => TRUE,
   );
+  $items['napo_film/set_view_mode/%'] = array(
+    'title' => 'Get episode',
+    'page callback' => 'napo_film_set_view_mode',
+    'page arguments' => array(2),
+    'access callback' => TRUE,
+    'expanded' => TRUE,
+  );
   return $items;
 }
 
@@ -57,6 +64,82 @@ function napo_film_module_implements_alter(&$implementations, $hook) {
     }
   }
 }
+
+/**
+ * Implements hook_block_info().
+ */
+function napo_film_block_info() {
+  // View modes links block.
+  // Add List and Grid links for napo films view.
+  $blocks['napo_films_view_modes'] = array(
+    'info' => t('Napo film view modes'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+
+  return $blocks;
+}
+
+
+/**
+ * Implements hook_block_view().
+ */
+function napo_film_block_view($delta = '') {
+  $block = array();
+  // View modes links block.
+  if ($delta == 'napo_films_view_modes') {
+    $block['subject'] = t('Napo film view modes');
+    $attr = array(
+      'class' => array('napo-film-view-mode-links'),
+      'rel' => 'nofollow',
+    );
+    $attr_grid = $attr;
+    // Set active mode.
+    if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'grid') {
+      $attr_grid['class'][] = "active";
+    }
+    else {
+      $attr['class'][] = "active";
+    }
+    // Get query params to preserve them.
+    $query = drupal_get_query_parameters();
+    $block['content']['list']['#markup'] = l(t('List'), 'napo_film/set_view_mode/list', array('attributes' => $attr, 'query' => $query));
+    $block['content']['grid']['#markup'] = l(t('Grid'), 'napo_film/set_view_mode/grid', array('attributes' => $attr_grid, 'query' => $query));
+  }
+  return $block;
+}
+
+/**
+ * Callback for view modes links.
+ */
+function napo_film_set_view_mode($mode) {
+  // Set the session accordingly.
+  if ($mode == 'grid') {
+    $_SESSION['napo_films_view_mode'] = 'grid';
+  }
+  else {
+    $_SESSION['napo_films_view_mode'] = 'list';
+  }
+  $view = views_get_view('napo_films', TRUE);
+  $url = $view->display['page_list']->display_options['path'];
+  $query = drupal_get_query_parameters();
+  // Redirect to view to reload the page.
+  drupal_goto($url, array('query' => $query));
+}
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function napo_film_views_pre_view( view &$view, &$display_id, &$args) {
+  if ($view->name == 'napo_films') {
+    if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'grid') {
+      $view->set_display('page_grid');
+    }
+    else {
+      $view->set_display('page_list');
+    }
+  }
+}
+
 
 /**
  * Access callback for Reorder episodes tab.
@@ -301,6 +384,9 @@ function napo_film_preprocess_node(&$vars) {
  * Get a number of films with the same field_main_tags or field_tags
  */
 function napo_film_recommended_films(&$vars) {
+  $term = taxonomy_get_term_by_name('Film video');
+  $term = !empty($term)? current($term): '';
+
   // Get 3 related films by field_main_tag
   $tags_tids = array();
   if (!empty($vars['field_main_tag'])) {
@@ -319,7 +405,8 @@ function napo_film_recommended_films(&$vars) {
     $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'napo_video')
       ->entityCondition('entity_id', $excluded_nids, 'NOT IN')
-      ->fieldCondition('field_main_tag', 'tid', $tids, 'IN');
+      ->fieldCondition('field_main_tag', 'tid', $tids, 'IN')
+      ->fieldCondition('field_video_type', 'tid', $term->tid, '=');
       // Publication date is not mandatory and the empty values are excluded from query
       //->fieldOrderBy('field_publication_date', 'value', 'DESC');
     $result = $query->execute();
@@ -355,8 +442,10 @@ function napo_film_recommended_films(&$vars) {
         ->entityCondition('bundle', 'napo_video')
         ->entityCondition('entity_id', $excluded_nids, 'NOT IN')
         ->fieldCondition('field_main_tag', 'tid', $tids, 'NOT IN')
-        ->fieldCondition('field_tags', 'tid', $tids, 'IN');
+        ->fieldCondition('field_tags', 'tid', $tids, 'IN')
+        ->fieldCondition('field_video_type', 'tid', $term->tid, '=');
         //->fieldOrderBy('field_publication_date', 'value', 'DESC');
+
       $result = $query->execute();
       $count = 0;
       if (!empty($result)) {
@@ -384,7 +473,7 @@ function napo_film_recommended_films(&$vars) {
 /**
  * Function to get combined tags as field renderable array.
  */
-function napo_film_combined_tags_view_field($node) {
+function napo_film_combined_tags_view_field($node, $settings = array()) {
   $combined = array();
   // Merge the tags from both fields.
   $main_tag = field_get_items('node', $node, 'field_main_tag');
@@ -404,6 +493,7 @@ function napo_film_combined_tags_view_field($node) {
       'taxonomy_term_separator' => ' | ',
     ),
   );
+  $display_settings = array_merge($display_settings, $settings);
   // Use field_tags to get the rendered combined fields.
   // Overwrite data from field_tags to be used in field_view_field.
   $field_tags = $node->field_tags;
@@ -542,10 +632,11 @@ function napo_film_preprocess_html(&$vars) {
   // Use node title as the view page title.
   // Using metatag module, the drupal_set_title is not working.
   $view = views_get_page_view();
-  if (!empty($view) && $view->name == 'napos_films') {
+  if (!empty($view) && $view->name == 'napo_films') {
     $node = node_load(23);
     $wrapper = entity_metadata_wrapper('node', $node);
-    $vars['head_title'] = $wrapper->label();
+    $vars['head_title_array']['title'] = $wrapper->label();
+    $vars['head_title'] = $wrapper->label() . ' ' . $vars['head_title'];
   }
 }
 

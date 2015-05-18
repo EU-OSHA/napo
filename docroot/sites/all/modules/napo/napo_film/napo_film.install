@@ -9,3 +9,25 @@ function napo_film_update_7001() {
     node_type_delete('napo_film');
   }
 }
+
+/**
+ * Add aliases to napo film node and remove node block.
+ */
+//function napo_film_update_7002() {
+//  $node = node_load(23);
+//  $languages = array_keys($node->translations->data);
+//  foreach ($languages as $language) {
+//    $args = array(
+//      'source' => 'node/23',
+//      'alias' => 'napos-films/films',
+//      'language' => $language,
+//    );
+//    // Check if path already exists.
+//    $existing_path = path_load($args);
+//    if (empty($existing_path)) {
+//      path_save($args);
+//    }
+//  }
+//  $node->nodeblock['enabled'] = 0;
+//  node_save($node);
+//}

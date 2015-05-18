@@ -4,4 +4,4 @@
  * Code for the Contact Us and FAQ feature.
  */
 
-include_once 'contact_us_and_faq.features.inc';
+include_once 'napo_contact.features.inc';

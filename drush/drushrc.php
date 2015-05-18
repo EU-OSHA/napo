@@ -512,9 +512,9 @@ $options['init-modules'] = array(
   'osha_linkchecker',
 
   //Contact Us and FAQ
-  'faq',
+  'views_accordion',
   'webform',
-  'contact_us_and_faq',
+  'napo_contact',
 
 );
 
