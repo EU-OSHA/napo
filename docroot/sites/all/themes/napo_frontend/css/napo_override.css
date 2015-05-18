@@ -83,6 +83,7 @@ ul.nav li.dropdown ul.dropdown-menu {
 
 /* Share widget */
 .napo-share-widget {
+    position: relative;
     display: inline;
     color: #fff;
     background: #000099;
@@ -97,6 +98,7 @@ ul.nav li.dropdown ul.dropdown-menu {
 .napo-share-widget:hover > ul {
     position: absolute;
     display: block;
+    z-index: 1;
 }
 .napo-share-widget:hover > ul >li {
     cursor: pointer;
