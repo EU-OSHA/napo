@@ -176,6 +176,67 @@ function napo_gallery_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-napo_album-field_publication_date'
+  $field_instances['node-napo_album-field_publication_date'] = array(
+    'bundle' => 'napo_album',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'date',
+        'settings' => array(
+          'format_type' => 'long',
+          'fromto' => 'both',
+          'multiple_from' => '',
+          'multiple_number' => '',
+          'multiple_to' => '',
+          'osha_date_theme' => '',
+        ),
+        'type' => 'date_default',
+        'weight' => 14,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_publication_date',
+    'label' => 'Publication date',
+    'required' => 0,
+    'settings' => array(
+      'default_value' => 'now',
+      'default_value2' => 'same',
+      'default_value_code' => '',
+      'default_value_code2' => '',
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'date',
+      'settings' => array(
+        'increment' => 15,
+        'input_format' => 'd/m/Y - H:i:s',
+        'input_format_custom' => '',
+        'label_position' => 'above',
+        'text_parts' => array(),
+        'year_range' => '-3:+3',
+      ),
+      'type' => 'date_select',
+      'weight' => 10,
+    ),
+  );
+
   // Exported field_instance: 'node-napo_album-title_field'
   $field_instances['node-napo_album-title_field'] = array(
     'bundle' => 'napo_album',
@@ -405,6 +466,7 @@ function napo_gallery_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Image');
+  t('Publication date');
   t('Title');
   t('napo_image');
 
