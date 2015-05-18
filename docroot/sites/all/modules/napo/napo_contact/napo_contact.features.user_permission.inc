@@ -10,30 +10,41 @@
 function napo_contact_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: 'administer faq'.
-  $permissions['administer faq'] = array(
-    'name' => 'administer faq',
+  // Exported permission: 'administer CAPTCHA settings'.
+  $permissions['administer CAPTCHA settings'] = array(
+    'name' => 'administer CAPTCHA settings',
     'roles' => array(
       'administrator' => 'administrator',
     ),
-    'module' => 'faq',
+    'module' => 'captcha',
   );
 
-  // Exported permission: 'administer faq order'.
-  $permissions['administer faq order'] = array(
-    'name' => 'administer faq order',
+  // Exported permission: 'administer recaptcha'.
+  $permissions['administer recaptcha'] = array(
+    'name' => 'administer recaptcha',
     'roles' => array(
-      'Content Validator' => 'Content Validator',
-      'Layout Validator' => 'Layout Validator',
-      'Project Manager' => 'Project Manager',
       'administrator' => 'administrator',
     ),
-    'module' => 'faq',
+    'module' => 'recaptcha',
+  );
+
+  // Exported permission: 'create contact_us_faq content'.
+  $permissions['create contact_us_faq content'] = array(
+    'name' => 'create contact_us_faq content',
+    'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: 'create faq content'.
   $permissions['create faq content'] = array(
     'name' => 'create faq content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'delete any contact_us_faq content'.
+  $permissions['delete any contact_us_faq content'] = array(
+    'name' => 'delete any contact_us_faq content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -45,9 +56,23 @@ function napo_contact_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'delete own contact_us_faq content'.
+  $permissions['delete own contact_us_faq content'] = array(
+    'name' => 'delete own contact_us_faq content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'delete own faq content'.
   $permissions['delete own faq content'] = array(
     'name' => 'delete own faq content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
+  // Exported permission: 'edit any contact_us_faq content'.
+  $permissions['edit any contact_us_faq content'] = array(
+    'name' => 'edit any contact_us_faq content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -59,6 +84,13 @@ function napo_contact_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit own contact_us_faq content'.
+  $permissions['edit own contact_us_faq content'] = array(
+    'name' => 'edit own contact_us_faq content',
+    'roles' => array(),
+    'module' => 'node',
+  );
+
   // Exported permission: 'edit own faq content'.
   $permissions['edit own faq content'] = array(
     'name' => 'edit own faq content',
@@ -66,15 +98,13 @@ function napo_contact_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'view faq page'.
-  $permissions['view faq page'] = array(
-    'name' => 'view faq page',
+  // Exported permission: 'skip CAPTCHA'.
+  $permissions['skip CAPTCHA'] = array(
+    'name' => 'skip CAPTCHA',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
     ),
-    'module' => 'faq',
+    'module' => 'captcha',
   );
 
   return $permissions;
