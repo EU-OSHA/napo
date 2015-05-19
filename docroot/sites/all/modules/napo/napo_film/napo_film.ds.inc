@@ -174,16 +174,15 @@ function napo_film_ds_custom_fields_info() {
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
-  $ds_field->field = 'share_widget';
-  $ds_field->label = 'Share widget';
+  $ds_field->field = 'recommended_films';
+  $ds_field->label = 'Recommended films';
   $ds_field->field_type = 3;
   $ds_field->entities = array(
     'node' => 'node',
   );
-  $ds_field->ui_limit = 'napo_video|default
-napo_video|episode_full';
+  $ds_field->ui_limit = 'napo_video|default';
   $ds_field->properties = array();
-  $export['share_widget'] = $ds_field;
+  $export['recommended_films'] = $ds_field;
 
   return $export;
 }

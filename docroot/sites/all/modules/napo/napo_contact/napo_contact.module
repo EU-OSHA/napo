@@ -5,3 +5,31 @@
  */
 
 include_once 'napo_contact.features.inc';
+
+/**
+ * Implements hook_menu_alter().
+ */
+function napo_contact_menu_alter(&$items) {
+  // Add access callback for Reorder episodes tab.
+  $items['node/%/reorder-faqs']['access callback'] = 'napo_contact_reoder_faq_access_callback';
+}
+
+/**
+ * Access callback for Reorder episodes tab.
+ */
+function napo_contact_reoder_faq_access_callback($options) {
+  // Run the default access callback.
+  $access_callback = $options[0];
+  $access_arguments = $options[1];
+  $access = call_user_func_array($access_callback, $access_arguments);
+  if (!$access) {
+    return FALSE;
+  }
+  // Reorder menu only for films.
+  $contact_nid = variable_get('napo_contact_page_nid', 253);
+  $node = node_load(arg(1));
+  if ($node && $node->nid == $contact_nid) {
+    return TRUE;
+  }
+  return FALSE;
+}

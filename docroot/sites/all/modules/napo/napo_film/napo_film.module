@@ -356,34 +356,6 @@ function napo_film_preprocess_node(&$vars) {
           }
         }
         // Add share widget ds field.
-        if (in_array('share_widget', $vars['preprocess_fields'])) {
-          // Add services javascript.
-          drupal_add_js(drupal_get_path('module', 'napo_film') . '/js/share_widget.js');
-          // Add facebook app key.
-          $fb_app_key = variable_get('fb_app_key', '');
-          drupal_add_js(array('napo_film' => array('fb_app_key' => $fb_app_key)), 'setting');
-
-          $url = url('/node/' . $node->nid, array('absolute' => TRUE));
-          $title = field_get_items('node', $node, 'title_field');
-          $title = current($title)['value'];
-          $site_name = variable_get('site_name', '');
-          // Construct the tweet.
-          $twitter_text = $title . ' | ' . $site_name;
-          $tweet_url = url('https://twitter.com/intent/tweet', array(
-            'query' => array(
-              'original_referer' => $url,
-              'text' => $twitter_text,
-              'url' => shorten_url($url),
-            ),
-          ));
-          $vars['share_widget'] = theme('napo_film_share_widget', array(
-            'url' => $url,
-            'tweet_url' => $tweet_url,
-            'node' => $node,
-            )
-          );
-        }
-        // Add share widget ds field.
         if (in_array('download_video_form', $vars['preprocess_fields'])) {
           $form = drupal_get_form('napo_film_episode_download_form', $node, $view_mode);
           $vars['download_video_form'] = drupal_render($form);
@@ -404,6 +376,9 @@ function napo_film_preprocess_node(&$vars) {
  * Get a number of films with the same field_main_tags or field_tags
  */
 function napo_film_recommended_films(&$vars) {
+  $term = taxonomy_get_term_by_name('Film video');
+  $term = !empty($term)? current($term): '';
+
   // Get 3 related films by field_main_tag
   $tags_tids = array();
   if (!empty($vars['field_main_tag'])) {
@@ -422,7 +397,8 @@ function napo_film_recommended_films(&$vars) {
     $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'napo_video')
       ->entityCondition('entity_id', $excluded_nids, 'NOT IN')
-      ->fieldCondition('field_main_tag', 'tid', $tids, 'IN');
+      ->fieldCondition('field_main_tag', 'tid', $tids, 'IN')
+      ->fieldCondition('field_video_type', 'tid', $term->tid, '=');
       // Publication date is not mandatory and the empty values are excluded from query
       //->fieldOrderBy('field_publication_date', 'value', 'DESC');
     $result = $query->execute();
@@ -458,8 +434,10 @@ function napo_film_recommended_films(&$vars) {
         ->entityCondition('bundle', 'napo_video')
         ->entityCondition('entity_id', $excluded_nids, 'NOT IN')
         ->fieldCondition('field_main_tag', 'tid', $tids, 'NOT IN')
-        ->fieldCondition('field_tags', 'tid', $tids, 'IN');
+        ->fieldCondition('field_tags', 'tid', $tids, 'IN')
+        ->fieldCondition('field_video_type', 'tid', $term->tid, '=');
         //->fieldOrderBy('field_publication_date', 'value', 'DESC');
+
       $result = $query->execute();
       $count = 0;
       if (!empty($result)) {

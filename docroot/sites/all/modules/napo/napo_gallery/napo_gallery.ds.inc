@@ -17,6 +17,11 @@ function napo_gallery_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'napo_album';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
+    'share_widget' => array(
+      'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'back_button' => array(
       'weight' => '0',
       'label' => 'hidden',
@@ -47,12 +52,14 @@ function napo_gallery_ds_layout_settings_info() {
         0 => 'back_button',
         1 => 'field_image',
         2 => 'body',
+        3 => 'share_widget',
       ),
     ),
     'fields' => array(
       'back_button' => 'ds_content',
       'field_image' => 'ds_content',
       'body' => 'ds_content',
+      'share_widget' => 'ds_content',
     ),
     'classes' => array(),
     'wrappers' => array(
