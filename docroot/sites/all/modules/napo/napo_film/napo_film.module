@@ -239,6 +239,12 @@ function napo_film_theme() {
       ),
       'template' => 'theme/napo_film_recommended_films',
     ),
+    'napo_film_download_cart_complete' => array(
+      'variables' => array(
+        'file_path' => NULL,
+      ),
+      'template' => 'theme/napo_film_download_cart_complete',
+    ),
   );
 }
 

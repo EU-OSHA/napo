@@ -25,6 +25,14 @@ function napo_film_cart_select_all(item) {
     else {
         checkBoxes.prop("checked", false);
     }
-
-
 }
+
+(function($) {
+    $.fn.napo_film_refresh_download_center = function() {
+        // Calling this function will refresh the view, content cart block summary and content form.
+        var ajax_settings = {};
+        ajax_settings.url = '/content_cart/ajax/submit/none/none/download_center-page';
+        ajax_settings.event = 'napo_film_refresh_download_center';
+        new Drupal.ajax(null, $('body'), ajax_settings).eventResponse();
+    };
+})(jQuery);

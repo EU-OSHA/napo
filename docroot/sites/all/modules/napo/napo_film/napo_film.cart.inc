@@ -101,9 +101,18 @@ function napo_film_content_cart_ajax_submit_alter(&$commands, $input_value) {
 function napo_film_cart_download_form($form, &$form_state) {
   $count = napo_film_cart_select_in_cart_count();
   $html_count = '<span class="napo_film_cart_select_count">' . $count . '</span>';
+  $cart = ContentCart::getCurrentCart();
 
   $form['#prefix'] = '<div id="napo_film_cart_download_form_container">';
   $form['#suffix'] = '</div>';
+
+  // Show no results message.
+  if ($cart->countItems('node') == 0) {
+    $form['no_results'] = array(
+      '#markup' => '<p class="cart-no-result-message">' . t('There is no content in the Download center') . '</p>',
+    );
+    return $form;
+  }
   $form['select_all'] = array(
     '#title' => t('Select all'),
     '#type' => 'checkbox',
@@ -116,20 +125,25 @@ function napo_film_cart_download_form($form, &$form_state) {
       'method' => 'replace',
     ),
   );
-  $cart = ContentCart::getCurrentCart();
   $form['select_all']['#default_value'] = $cart->countItems('node') == napo_film_cart_select_in_cart_count();
   $form_state['input']['select_all'] = $form['select_all']['#default_value'];
 
+  // The form will be submitted with ajax.
+  // The file is created on the disk and callbacks returns a link to it.
   $form['download_selected'] = array(
     '#type' => 'submit',
     '#value' => t('Download selected') . $html_count,
-    '#submit' => array('napo_film_cart_select_in_cart_download_selected'),
+    '#ajax' => array(
+      'callback' => 'napo_film_cart_select_in_cart_download_selected',
+    ),
   );
 
   $form['download_all'] = array(
     '#type' => 'submit',
     '#value' => t('Download all'),
-    '#submit' => array('napo_film_cart_select_in_cart_download_all'),
+    '#ajax' => array(
+      'callback' => 'napo_film_cart_select_in_cart_download_all',
+    ),
   );
 
   $form['refresh'] = array(
@@ -186,39 +200,63 @@ function napo_film_cart_select_in_cart_count() {
   return $count;
 }
 
+
+/**
+ * Callback for ajax submit of Download selected button.
+ */
 function napo_film_cart_select_in_cart_download_selected($form, $form_state) {
   unset($_SESSION['napo_film_select_in_cart']);
 }
 
-function napo_film_cart_select_in_cart_download_all($form, $form_state) {
+/**
+ * Callback for ajax submit of Download all button.
+ */
+function napo_film_cart_select_in_cart_download_all($form, &$form_state) {
   $cart = ContentCart::getCurrentCart();
   $films = $cart->getCartContent();
+  $commands = array();
 
   if (!empty($films['node'])) {
-    $mime_types = $_SESSION['napo_film_cart_mime'];
+    // Get the nodes videos by the mime types selected in cart.
+    $mime_types = array();
+    if (!empty($_SESSION['napo_film_cart_mime'])) {
+      $mime_types = $_SESSION['napo_film_cart_mime'];
+    }
     $nids = $films['node'];
     $nodes = node_load_multiple($nids);
     $download_files = array();
     foreach ($nodes as $node) {
-      $mime = $mime_types[$node->nid];
-      if (empty($mime_types)) {
+      // Default to video/mp4
+      if (empty($mime_types[$node->nid])) {
         $mime = 'video/mp4';
+      }
+      else {
+        $mime = $mime_types[$node->nid];
       }
       $video = napo_film_cart_node_get_video_by_mime($node, $mime);
       if (!empty($video)) {
         $download_files[] = $video;
       }
     }
+    // Get the archive drupal scheme path.
     $file_path = napo_cart_download_videos($download_files);
     if (!empty($file_path)) {
-      // Download the Archive.
-      header("Content-Type: application/octet-stream");
-      header('Content-Description: File Transfer');
-      header('Content-Disposition: attachment; filename=' . drupal_basename($file_path));
-      readfile(drupal_realpath($file_path));
-      exit();
+      // Empty the cart, the selection and mime types.
+      $cart->removeFromCart('node');
+      unset($_SESSION['napo_film_select_in_cart']);
+      unset($_SESSION['napo_film_cart_mime']);
+      $message = theme('napo_film_download_cart_complete', array('file_path' => file_create_url($file_path)));
+      // Return the success message and
+      // Refresh the download center: view, cart summary block and cart form.
+      $commands[] = ajax_command_prepend('#block-napo-film-download-cart-form', $message);
+      $commands[] = ajax_command_invoke('body', 'napo_film_refresh_download_center');
     }
   }
+  $page = array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
+  return $page;
 }
 
 function napo_film_cart_node_get_video_by_mime($node, $mime) {
@@ -233,25 +271,37 @@ function napo_film_cart_node_get_video_by_mime($node, $mime) {
   return $file;
 }
 
+/**
+ * Get an archive of files for download center.
+ *
+ * @param array $files
+ *   Files objects
+ *
+ * @return null|string
+ *   Archive path (drupal scheme) | NULL if archive was not created
+ */
 function napo_cart_download_videos($files) {
   if (!empty($files)) {
-    $dir_path = drupal_realpath('public://napo_films_download_center');
-    if (!file_prepare_directory($dir_path)) {
+    $drupal_dir_path = 'public://napo_films_download_center';
+    $dir_path = drupal_realpath($drupal_dir_path);
+    // Return if dir don't exists.
+    if (!file_prepare_directory($drupal_dir_path)) {
       drupal_set_message(t('There was an error creating the archive!'), 'error');
       return NULL;
     }
-    $dir_path = drupal_realpath($dir_path);
+    // Open the archive.
     $archive = new ZipArchive();
-    $archive_id = napo_cart_get_archive_name_id();
-    $archive_name = 'napo_films_download_' . $archive_id;
-    $archive_path = $dir_path . '/' . $archive_name . '.zip';
+    $archive_path = tempnam($dir_path, 'napo_download_') . '.zip';
     $archive->open($archive_path, ZIPARCHIVE::CREATE);
     foreach ($files as $file) {
       $file_path = drupal_realpath($file['uri']);
       $archive->addFile($file_path, drupal_basename($file_path));
     }
     $archive->close();
-    return $archive_path;
+    // Return drupal scheme file path.
+    $archive_name = drupal_basename($archive_path);
+    $archive_drupal_path = $drupal_dir_path . '/' . $archive_name;
+    return $archive_drupal_path;
   }
   return NULL;
 }
