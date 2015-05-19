@@ -39,6 +39,6 @@
 </style>
 <div class="scrollspy">
   <ul id="menu-about-page-menu" class="nav nav-right-menu nav-stacked">
-    <li>Lessons</li>
+    <li class="headings">Lessons</li>
   </ul>
 </div>
