@@ -152,18 +152,18 @@ function content_cart_ajax_submit($input_value, $operation = '', $view = '') {
         }
         break;
     }
-    $content = content_cart_cart_summary_content();
-    $commands[] = ajax_command_replace('#content_cart_summary_container', render($content));
-    // Replace the view if is a cart view.
-    if (!empty($view)) {
-      $view_identifiers = explode('-', $view);
-      $view_name = $view_identifiers[0];
-      $view_display = $view_identifiers[1];
-      if ($view = views_get_view($view_name)) {
-        $view_content = views_embed_view($view_name, $view_display);
-        $view_dom_class = '.view-id-' . $view_name . '.view-display-id-' . $view_display;
-        $commands[] = ajax_command_replace($view_dom_class, $view_content);
-      }
+  }
+  $content = content_cart_cart_summary_content();
+  $commands[] = ajax_command_replace('#content_cart_summary_container', render($content));
+  // Replace the view if is a cart view.
+  if (!empty($view)) {
+    $view_identifiers = explode('-', $view);
+    $view_name = $view_identifiers[0];
+    $view_display = $view_identifiers[1];
+    if ($view = views_get_view($view_name)) {
+      $view_content = views_embed_view($view_name, $view_display);
+      $view_dom_class = '.view-id-' . $view_name . '.view-display-id-' . $view_display;
+      $commands[] = ajax_command_replace($view_dom_class, $view_content);
     }
   }
   drupal_alter('content_cart_ajax_submit', $commands, $input_value);

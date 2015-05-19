@@ -25,8 +25,11 @@ class ContentCart implements ContentCartInterface {
     $_SESSION['drupal_content_cart'][$type][$id] = $item;
   }
 
-  public function removeFromCart($type, $id) {
-    if (!empty($_SESSION['drupal_content_cart'][$type][$id])) {
+  public function removeFromCart($type, $id = NULL) {
+    if (empty($id) && !empty($_SESSION['drupal_content_cart'][$type])) {
+      unset($_SESSION['drupal_content_cart'][$type]);
+    }
+    elseif (!empty($_SESSION['drupal_content_cart'][$type][$id])) {
       unset($_SESSION['drupal_content_cart'][$type][$id]);
     }
   }
