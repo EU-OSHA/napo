@@ -1014,7 +1014,6 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['counter']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['counter']['alter']['text'] = 'Episode [counter]';
   $handler->display->display_options['fields']['counter']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['counter']['empty'] = 'Film [counter]';
   $handler->display->display_options['fields']['counter']['counter_start'] = '1';
   $handler->display->display_options['fields']['counter']['reverse'] = 0;
   /* Field: Content: Title */
@@ -1155,7 +1154,6 @@ function napo_film_views_default_views() {
     t('All'),
     t('Page'),
     t('Episode [counter]'),
-    t('Film [counter]'),
     t('[counter]: [title_field]'),
     t('[field_publication_date]&nbsp;&nbsp;[combined_tags]'),
     t('<div class="col-md-8">
