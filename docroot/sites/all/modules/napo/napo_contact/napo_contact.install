@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * Set napo_contact's weight over views module.
+ */
+function napo_contact_update_7001() {
+  db_update('system')
+    ->fields(array('weight' => 11))
+    ->condition('name', 'napo_contact')
+    ->execute();
+}

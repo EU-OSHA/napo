@@ -30,11 +30,8 @@ jQuery('document').ready(function() {
     });
 
     // Affix class to right nav menu
-    jQuery('#menu-about-page-menu').affix({
+    jQuery('#lesson-left-menu-wrapper').affix({
         offset: {
-            top: function () {
-                return (this.top = jQuery('#menu-about-page-menu').parent().offset().top - 30);
-            },
             bottom: function () {
                 return (this.bottom = jQuery('.footer').outerHeight(true) + 17);
             }

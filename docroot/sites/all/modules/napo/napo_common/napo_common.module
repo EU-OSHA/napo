@@ -478,3 +478,44 @@ function napo_common_get_users_by_role ($role_name){
 
   return $users;
 }
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function napo_common_preprocess_node(&$vars) {
+  $node = $vars['node'];
+  // Add share widget ds field.
+  if (!empty($vars['preprocess_fields'])) {
+    if (in_array('share_widget', $vars['preprocess_fields'])) {
+      $vars['share_widget'] = napo_common_get_share_widget($node);
+    }
+  }
+}
+
+function napo_common_get_share_widget($node) {
+  // Add services javascript.
+  drupal_add_js(drupal_get_path('module', 'napo_common') . '/js/share_widget.js');
+  // Add facebook app key.
+  $fb_app_key = variable_get('fb_app_key', '');
+  drupal_add_js(array('napo_common' => array('fb_app_key' => $fb_app_key)), 'setting');
+
+  $url = url('/node/' . $node->nid, array('absolute' => TRUE));
+  $title = field_get_items('node', $node, 'title_field');
+  $title = current($title)['value'];
+  $site_name = variable_get('site_name', '');
+  // Construct the tweet.
+  $twitter_text = $title . ' | ' . $site_name;
+  $tweet_url = url('https://twitter.com/intent/tweet', array(
+    'query' => array(
+      'original_referer' => $url,
+      'text' => $twitter_text,
+      'url' => shorten_url($url),
+    ),
+  ));
+  return theme('napo_film_share_widget', array(
+      'url' => $url,
+      'tweet_url' => $tweet_url,
+      'node' => $node,
+    )
+  );
+}

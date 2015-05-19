@@ -12,50 +12,22 @@ function napo_contact_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
-  $export['faq-faq_categories'] = array(
-    'cache' => 1,
+  $export['views-faqs-block'] = array(
+    'cache' => -1,
     'custom' => 0,
-    'delta' => 'faq_categories',
+    'delta' => 'faqs-block',
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
-    'module' => 'faq',
+    'module' => 'views',
     'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'napo_frontend' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'napo_frontend',
-        'weight' => 0,
-      ),
-      'osha_admin' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 0,
-  );
-
-  $export['nodeblock-254'] = array(
-    'cache' => 1,
-    'custom' => 0,
-    'delta' => 254,
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'module' => 'nodeblock',
-    'node_types' => array(),
-    'pages' => 'faq-page',
+    'pages' => 'node/253',
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -37,
+        'weight' => 0,
       ),
       'osha_admin' => array(
         'region' => '',
@@ -68,76 +40,20 @@ function napo_contact_default_fe_block_settings() {
     'visibility' => 1,
   );
 
-  $export['views-faq-faq_random'] = array(
+  $export['webform-client-block-255'] = array(
     'cache' => -1,
     'custom' => 0,
-    'delta' => 'faq-faq_random',
+    'delta' => 'client-block-255',
     'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'napo_frontend' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'napo_frontend',
-        'weight' => 0,
-      ),
-      'osha_admin' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 0,
-  );
-
-  $export['views-faq-faq_recent'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'faq-faq_recent',
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
-    'module' => 'views',
-    'node_types' => array(),
-    'pages' => '',
-    'roles' => array(),
-    'themes' => array(
-      'napo_frontend' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'napo_frontend',
-        'weight' => 0,
-      ),
-      'osha_admin' => array(
-        'region' => '',
-        'status' => 0,
-        'theme' => 'osha_admin',
-        'weight' => 0,
-      ),
-    ),
-    'title' => '',
-    'visibility' => 0,
-  );
-
-  $export['webform-client-block-253'] = array(
-    'cache' => -1,
-    'custom' => 0,
-    'delta' => 'client-block-253',
-    'i18n_block_language' => array(),
-    'i18n_mode' => 0,
+    'i18n_mode' => 1,
     'module' => 'webform',
     'node_types' => array(),
-    'pages' => '',
+    'pages' => 'node/253',
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => '',
-        'status' => 0,
+        'region' => 'contact_form_widget',
+        'status' => 1,
         'theme' => 'napo_frontend',
         'weight' => 0,
       ),
@@ -148,8 +64,8 @@ function napo_contact_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => '',
-    'visibility' => 0,
+    'title' => '<none>',
+    'visibility' => 1,
   );
 
   return $export;
