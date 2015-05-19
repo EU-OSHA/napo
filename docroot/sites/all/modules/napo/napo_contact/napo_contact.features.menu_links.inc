@@ -10,31 +10,32 @@
 function napo_contact_menu_default_menu_links() {
   $menu_links = array();
 
-  // Exported menu link: menu-footer-menu_contact-us--faq:faq-page
-  $menu_links['menu-footer-menu_contact-us--faq:faq-page'] = array(
+  // Exported menu link: menu-footer-menu_contact-us--faq:node/262
+  $menu_links['menu-footer-menu_contact-us--faq:node/262'] = array(
     'menu_name' => 'menu-footer-menu',
-    'link_path' => 'faq-page',
-    'router_path' => 'faq-page',
+    'link_path' => 'node/262',
+    'router_path' => 'node/%',
     'link_title' => 'Contact Us & FAQ',
     'options' => array(
-      'alter' => TRUE,
       'attributes' => array(),
       'item_attributes' => array(
         'id' => '',
         'class' => '',
         'style' => '',
       ),
-      'identifier' => 'menu-footer-menu_contact-us--faq:faq-page',
+      'alter' => TRUE,
+      'identifier' => 'menu-footer-menu_contact-us--faq:node/262',
     ),
     'module' => 'menu',
     'hidden' => 0,
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -50,
+    'weight' => 0,
     'customized' => 1,
     'language' => 'und',
     'menu_links_customized' => 1,
+    'item_uuid' => 'f1e23f9a-89c7-40fd-aff4-f32f41be6db7',
   );
   // Translatables
   // Included for use with string extractors like potx.
