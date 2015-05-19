@@ -20,7 +20,7 @@ function napo_contact_default_fe_block_settings() {
     'i18n_mode' => 0,
     'module' => 'views',
     'node_types' => array(),
-    'pages' => 'node/262',
+    'pages' => 'node/253',
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
@@ -48,7 +48,7 @@ function napo_contact_default_fe_block_settings() {
     'i18n_mode' => 1,
     'module' => 'webform',
     'node_types' => array(),
-    'pages' => 'node/262',
+    'pages' => 'node/253',
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
