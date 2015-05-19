@@ -78,15 +78,17 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
   $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_link' => '0',
     'trim_length' => '130',
     'trim_type' => 'chars',
     'trim_suffix' => '&hellip;',
     'more_link' => '1',
-    'more_text' => 'see more <span class="icon-more"></span>',
+    'more_text' => 'see more',
     'summary_handler' => 'trim',
     'trim_options' => array(
       'text' => 'text',
     ),
+    'trim_preserve_tags' => '',
   );
   /* Sort criterion: Entityqueue: Node Queue Position */
   $handler->display->display_options['sorts']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
