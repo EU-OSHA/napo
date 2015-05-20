@@ -696,7 +696,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['url']['label'] = '';
   $handler->display->display_options['fields']['url']['exclude'] = TRUE;
   $handler->display->display_options['fields']['url']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['url']['alter']['text'] = '<span class="glyphicon glyphicon-play-circle"></span>';
+  $handler->display->display_options['fields']['url']['alter']['text'] = '<span class="glyphicon glyphicon-play-circle view-film-details-icon"></span>';
   $handler->display->display_options['fields']['url']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['url']['alter']['path'] = '[url]';
   $handler->display->display_options['fields']['url']['element_label_colon'] = FALSE;
@@ -899,7 +899,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['url']['label'] = '';
   $handler->display->display_options['fields']['url']['exclude'] = TRUE;
   $handler->display->display_options['fields']['url']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['url']['alter']['text'] = '<span class="glyphicon glyphicon-play-circle"></span>';
+  $handler->display->display_options['fields']['url']['alter']['text'] = '<span class="glyphicon glyphicon-play-circle view-film-details-icon"></span>';
   $handler->display->display_options['fields']['url']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['url']['alter']['path'] = '[url]';
   $handler->display->display_options['fields']['url']['alter']['link_class'] = 'napo-film-view-link';
@@ -1021,7 +1021,7 @@ function napo_film_views_default_views() {
     t('Film [counter]'),
     t('<h3 class="title-field">[counter]: [title_field]</h3>'),
     t('[field_image][view_episodes_link]'),
-    t('<span class="glyphicon glyphicon-play-circle"></span>'),
+    t('<span class="glyphicon glyphicon-play-circle view-film-details-icon"></span>'),
     t('<div class="napo-film-list-details-container">[combined_tags][view_episodes_link][url][download_video]</div>'),
     t('[title_field][body][nothing_2][content_cart]'),
     t('List'),
