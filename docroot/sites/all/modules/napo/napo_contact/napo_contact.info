@@ -6,6 +6,7 @@ version = 7.x-1.0
 project = napo_contact
 dependencies[] = captcha
 dependencies[] = ctools
+dependencies[] = faq
 dependencies[] = features
 dependencies[] = menu
 dependencies[] = metatag
