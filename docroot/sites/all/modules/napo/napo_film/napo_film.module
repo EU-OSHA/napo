@@ -153,11 +153,11 @@ function napo_film_block_view($delta = '') {
  */
 function napo_film_set_view_mode($mode) {
   // Set the session accordingly.
-  if ($mode == 'grid') {
-    $_SESSION['napo_films_view_mode'] = 'grid';
+  if ($mode == 'list') {
+    $_SESSION['napo_films_view_mode'] = 'list';
   }
   else {
-    $_SESSION['napo_films_view_mode'] = 'list';
+    $_SESSION['napo_films_view_mode'] = 'grid';
   }
   $view = views_get_view('napo_films', TRUE);
   $url = $view->display['page_list']->display_options['path'];
@@ -171,11 +171,11 @@ function napo_film_set_view_mode($mode) {
  */
 function napo_film_views_pre_view( view &$view, &$display_id, &$args) {
   if ($view->name == 'napo_films') {
-    if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'grid') {
-      $view->set_display('page_grid');
+    if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'list') {
+      $view->set_display('page_list');
     }
     else {
-      $view->set_display('page_list');
+      $view->set_display('page_grid');
     }
   }
 }
