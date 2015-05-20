@@ -137,10 +137,9 @@ function napo_film_block_view($delta = '') {
       }
       // Get query params to preserve them.
       $query = drupal_get_query_parameters();
-      $block['content']['list']['#markup'] = l(t('List'), 'napo_film/set_view_mode/list', array('attributes' => $attr, 'query' => $query));
-      $block['content']['grid']['#markup'] = l(t('Grid'), 'napo_film/set_view_mode/grid', array('attributes' => $attr_grid, 'query' => $query));
+      $block['content']['list']['#markup'] = l(t('List view'), 'napo_film/set_view_mode/list', array('attributes' => $attr, 'query' => $query));
+      $block['content']['grid']['#markup'] = l(t('Grid view'), 'napo_film/set_view_mode/grid', array('attributes' => $attr_grid, 'query' => $query));
       break;
-
   }
   return $block;
 }
