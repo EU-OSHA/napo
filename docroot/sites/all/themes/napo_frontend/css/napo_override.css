@@ -273,6 +273,15 @@ footer.footer.container section.block-menu-block{
     /*width: 250px;*/
 }
 
+/* Download center */
+.download-center-waiting {
+    display: none;
+}
+.download-center-submit-all.progress-disabled + .download-center-waiting,
+.download-center-submit-selected.progress-disabled + .download-center-submit-all + .download-center-waiting {
+    display: block;
+}
+
 
 @media (max-width: 768px){
     /* Download lesson */
