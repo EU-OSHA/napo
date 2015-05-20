@@ -343,17 +343,31 @@ function napo_film_entity_view_mode_alter(&$view_mode, $context) {
 function napo_film_node_submit($node, $form, &$form_state) {
   $type = napo_film_video_get_type($node);
   if ($type == 'episode') {
-    // Remove main tag for videos Episodes.
-    if (!empty($node->field_main_tag)) {
-      drupal_set_message('Main Tag removed from Episode (inherited from film)!', 'warning');
-      $node->field_main_tag = array();
+    if (!empty($node->field_napo_film[LANGUAGE_NONE][0]['target_id'])) {
+      $film = node_load($node->field_napo_film[LANGUAGE_NONE][0]['target_id']);
+      $main_tag = field_get_items('node', $film, 'field_main_tag');
+      drupal_set_message('Main Tag synced with episode\'s film!', 'warning');
+      $node->field_main_tag[LANGUAGE_NONE] = $main_tag;
     }
   }
   elseif ($type == 'film') {
     // Remove film reference if video is type Film.
-    if (!empty($node->field_napo_film)) {
-      drupal_set_message('Napo Film removed from Film. Only episodes can have films.', 'warning');
+    if (!empty($node->field_napo_film[LANGUAGE_NONE])) {
+      drupal_set_message('Napo film removed from film. Only episodes can have films.', 'warning');
       $node->field_napo_film = array();
+    }
+  }
+}
+
+/**
+ * Implements hook_node_validate().
+ */
+function napo_film_node_validate($node, $form, &$form_state) {
+  $type = napo_film_video_get_type($node);
+  if ($type == 'film') {
+    // For films. main category is required.
+    if (empty($node->field_main_tag[LANGUAGE_NONE][0]['tid'])) {
+      form_set_error('field_main_tag', t('Main category field is required!'));
     }
   }
 }
