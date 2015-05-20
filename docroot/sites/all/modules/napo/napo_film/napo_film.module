@@ -22,6 +22,10 @@ function napo_film_entity_info_alter(&$entity_info) {
     'label' => t('Episode full'),
     'custom settings' => FALSE,
   );
+  $entity_info['node']['view modes']['episode_popup'] = array(
+    'label' => t('Episode popup'),
+    'custom settings' => FALSE,
+  );
 }
 
 /**
@@ -205,7 +209,7 @@ function napo_film_render_episode($nid) {
   if (!empty($node)) {
     // Unset title not to show in node_view.
     $node->title = NULL;
-    $render_node = node_view($node, 'episode_full');
+    $render_node = node_view($node, 'episode_popup');
     // Unset the title, use it in template (modal header).
     unset($render_node['title_field']);
     $title = field_get_items('node', $node, 'title_field');
@@ -581,16 +585,7 @@ function napo_film_episode_download_form($form, &$form_state, $node, $view_mode 
       'style' => 'display: none;',
     ),
   );
-  if ($view_mode == 'episode_full') {
-    $form['download_format']['#type'] = 'select';
-    $form['download_format']['#title'] = t('Download this film as');
-    $form['download_format']['#default_value'] = 'video/mp4';
-    unset($form['download_format']['#attributes']['onchange']);
-    unset($form['download']['#attributes']['style']);
-  }
-  else {
-    $form['#prefix'] .= '<span class="napo-film-video-download-form-title"><span class="glyphicon glyphicon-download-alt"></span></span>';
-  }
+  $form['#prefix'] .= '<span class="napo-film-video-download-form-title"><span class="glyphicon glyphicon-download-alt"></span></span>';
 
   return $form;
 }

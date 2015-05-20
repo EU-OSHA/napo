@@ -113,13 +113,14 @@ function napo_film_strongarm() {
   $strongarm->value = array(
     'full' => 'full',
     'teaser' => 'teaser',
+    'episode_full' => 'episode_full',
+    'episode_popup' => 'episode_popup',
     'recommended_films' => 'recommended_films',
     'rss' => 0,
     'search_index' => 0,
     'search_result' => 0,
     'diff_standard' => 0,
     'film_main_video_teaser' => 0,
-    'episode_full' => 0,
     'osha_slideshow' => 0,
     'print' => 0,
     'token' => 0,
@@ -178,6 +179,9 @@ function napo_film_strongarm() {
         'custom_settings' => TRUE,
       ),
       'recommended_films' => array(
+        'custom_settings' => TRUE,
+      ),
+      'episode_popup' => array(
         'custom_settings' => TRUE,
       ),
     ),
