@@ -8,6 +8,8 @@ include_once 'napo_film.features.inc';
 include_once 'napo_film.formatter.inc';
 include_once 'napo_film.cart.inc';
 
+define('NAPO_FILM_DOWN_CENTER_PATH', 'public://napo_films_download_center');
+
 /**
  * Implements hook_entity_info_alter().
  */
@@ -67,6 +69,21 @@ function napo_film_module_implements_alter(&$implementations, $hook) {
     if (isset($implementations['napo_film'])) {
       unset($implementations['napo_film']);
       $implementations['napo_film'] = FALSE;
+    }
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function napo_film_cron() {
+  // Remove old zips created for download center.
+  $zips = file_scan_directory(NAPO_FILM_DOWN_CENTER_PATH, '/.*\.zip$/');
+  if (!empty($zips)) {
+    foreach (array_keys($zips) as $zip) {
+      if (filemtime(drupal_realpath($zip)) < strtotime("-1 week")) {
+        drupal_unlink($zip);
+      }
     }
   }
 }

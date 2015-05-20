@@ -380,7 +380,7 @@ function napo_cart_download_films($nodes, $mime_types = array()) {
  */
 function napo_cart_download_videos($files) {
   if (!empty($files)) {
-    $drupal_dir_path = 'public://napo_films_download_center';
+    $drupal_dir_path = NAPO_FILM_DOWN_CENTER_PATH;
     $dir_path = drupal_realpath($drupal_dir_path);
     // Return if dir don't exists.
     if (!file_prepare_directory($drupal_dir_path)) {
