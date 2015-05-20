@@ -616,11 +616,11 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['title_field']['label'] = '';
   $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title_field']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['text'] = '[counter]: [title_field]';
+  $handler->display->display_options['fields']['title_field']['alter']['text'] = '<h3 class="title-field">[counter]: [title_field]</h3>';
   $handler->display->display_options['fields']['title_field']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['title_field']['alter']['path'] = 'node/[nid]';
-  $handler->display->display_options['fields']['title_field']['element_type'] = 'h3';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['element_wrapper_type'] = 'h3';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
     'title_style' => 'h3',
     'title_link' => 'content',
@@ -1019,13 +1019,11 @@ function napo_film_views_default_views() {
     t('last »'),
     t('.'),
     t('Film [counter]'),
-    t('[counter]: [title_field]'),
+    t('<h3 class="title-field">[counter]: [title_field]</h3>'),
     t('[field_image][view_episodes_link]'),
     t('<span class="glyphicon glyphicon-play-circle"></span>'),
     t('<div class="napo-film-list-details-container">[combined_tags][view_episodes_link][url][download_video]</div>'),
     t('[title_field][body][nothing_2][content_cart]'),
-    t('Search'),
-    t('[title_field][body][nothing_2]'),
     t('List'),
     t('Grid'),
     t('[title_field][download_video]'),
