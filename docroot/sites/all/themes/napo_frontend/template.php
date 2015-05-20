@@ -18,17 +18,22 @@ function napo_frontend_back_button(&$vars){
 
   $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
   $breadcrumb = drupal_get_breadcrumb();
+  $options = array(
+    'attributes' => array(
+      'class' => 'back_button',
+    ),
+  );
 
   if (empty($referer) || strpos($referer, $base_url) === FALSE) {
     unset($vars['back_button']);
   }elseif (strpos($referer, 'search') !== FALSE) {
-    $vars['back_button'] = l(t('Back to search results'), $referer);
+    $vars['back_button'] = l(t('Back to search results'), $referer, $options);
   }elseif (is_array($breadcrumb) && $breadcrumb) {
     $page_title = array_pop($breadcrumb);
     $previous_crumb = array_pop($breadcrumb);
-    $vars['back_button'] = l(t('Back to !link', array('!link' => strip_tags($previous_crumb))), $referer);
+    $vars['back_button'] = l(t('Back to !link', array('!link' => strip_tags($previous_crumb))), $referer, $options);
   }else {
-    $vars['back_button'] = l(t('Back'), $referer);
+    $vars['back_button'] = l(t('Back'), $referer, $options);
   }
 }
 
