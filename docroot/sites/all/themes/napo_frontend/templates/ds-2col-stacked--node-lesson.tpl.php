@@ -15,13 +15,13 @@
     <?php print $header; ?>
   </<?php print $header_wrapper ?>>
 
-<<?php print $right_wrapper ?> id="lesson-right-container" class="col-md-9 col-md-offset-3">
-<?php print $right; ?>
-</<?php print $right_wrapper ?>>
-
-<<?php print $left_wrapper ?> id="lesson-left-menu-wrapper" class="col-md-3">
+<<?php print $left_wrapper ?> id="group-left" class="col-md-3">
 <?php print $left; ?>
 </<?php print $left_wrapper ?>>
+
+<<?php print $right_wrapper ?> id="group-right" class="col-md-9">
+<?php print $right; ?>
+</<?php print $right_wrapper ?>>
 
 
   <<?php print $footer_wrapper ?> class="group-footer<?php print $footer_classes; ?>">
