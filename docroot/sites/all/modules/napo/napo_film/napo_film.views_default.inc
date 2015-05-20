@@ -883,6 +883,7 @@ function napo_film_views_default_views() {
     t('<div class="napo-film-list-details-container">[combined_tags][view_episodes_link][url][download_video]</div>'),
     t('[title_field][body][nothing_2]'),
     t('List'),
+    t('<span class="glyphicon glyphicon-play-circle view-film-img"></span>'),
     t('Grid'),
     t('[title_field][download_video]'),
     t('[body][combined_tags][url][view_episodes_link]'),
