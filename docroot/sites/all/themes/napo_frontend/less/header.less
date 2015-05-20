@@ -29,6 +29,11 @@
 
 
 // Default navbar.
+
+.navbar.container.navbar-default .col-md-9.pull-right{
+	margin-top: 10px;
+}
+
 .navbar.container {
   margin-top: 20px;
   > .container {
@@ -40,6 +45,7 @@
 
 .menu.nav.navbar-nav {
   background-color: @navbar-default-bg;
+  font-weight: bold;
 }
 
 .menu.nav.navbar-nav .expanded.dropdown{
@@ -53,6 +59,11 @@
 
 .menu.nav.navbar-nav .dropdown-menu{
   padding:0px;
+  font-weight: bold;
+}
+
+.menu.nav.navbar-nav .dropdown-menu li a{
+  font-weight: bold;
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
@@ -99,8 +110,14 @@ form#search-block-form {
   	margin-top: -16px;
 }
 
+
+.form-search.content-search .ui-theme-basic-green.ui-autocomplete-input{
+	background-image:none;
+}
+
 .form-search.content-search .input-group{
 	width:139px;
+  font-weight: bold;
 }
 
 .form-search.content-search .btn-default{
@@ -113,10 +130,15 @@ form#search-block-form {
 	border-radius: 0px;
 }
 
+.form-control:focus{
+  box-shadow: none;
+}
+
 .lang_dropdown_form.language_content .lang-dropdown-select-element.form-control.form-select{
-	height:31px;
+	height:33px;
 	margin-top: 2px;
 	border-radius: 0px;
+  font-weight: bold;
 }
 
 .form-search.content-search  .input-group-btn .btn.btn-default{

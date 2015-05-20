@@ -75,9 +75,13 @@ ul.nav li.dropdown ul.dropdown-menu {
     left: 30px;
     padding: 15px;
     background: #ddd;
-    opacity: 0.8;
     max-width: 300px;
     z-index: 1;
+    background:url('../images/background-slider-home.png');
+}
+
+.slider .frontpage-video-title h3 a{
+    color:#fff;
 }
 
 
@@ -103,48 +107,6 @@ ul.nav li.dropdown ul.dropdown-menu {
     cursor: pointer;
 }
 
-
-
-/* Video Gallery Detail */
-.node-napo-video.view-mode-full .field-name-film.field-type-ds {
-    background: #ddd;
-}
-
-.node-napo-video.view-mode-full .napo-share-widget {
-    float: right;
-    position: relative;
-    margin-top: -20px;
-    background: #000099;
-}
-
-.napo-film-video-download-form {
-    float: right;
-    position: relative;
-    max-width: 50px;
-    margin-top: -20px;
-    margin-right: 100px;
-}
-.napo-film-video-download-form form{
-    display: none;
-    color: #fff;
-    background: #000099;
-}
-.napo-film-video-download-form:hover form{
-    position: absolute;
-    display: block;
-    width: 80px;
-    height: 200px;
-
-}
-.napo-film-video-download-form-title {
-    color: #fff;
-    background: #000099;
-    padding: 10px;
-}
-.napo-film-video-download-form label[for='edit-download-format']{
-    display: none;
-}
-
 /* Episode detail overlay */
 .ajax-episode-modal .napo-film-video-download-form {
     float: right;
@@ -158,12 +120,7 @@ ul.nav li.dropdown ul.dropdown-menu {
     color: #000;
     background: none;
 }
-.napo-film-video-download-form:hover form{
-    position: relative;
-    display: block;
-    width: auto;
-    height: auto;
-}
+
 .ajax-episode-modal .napo-film-video-download-form label{
     display: inline;
 }
@@ -184,5 +141,9 @@ footer.footer.container section.block-menu-block{
 }
 
 #block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li~li {
-    border-left: 1px solid #000000;
+    border-left: 1px solid #585759;
+}
+
+#block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li~li:hover {
+    border-left: 1px solid #585759;
 }

@@ -3,30 +3,429 @@
 // Bootstrap variables.
 @import 'variables.less';
 
+//general styles
+
+h1{
+	color:@h1-color;
+	background:@h1-color-bg;
+	padding: 0.5em 0.5em 0.5em 1em; 
+	margin-top: 0px;
+}
+
+
 //content home
 
 #block-views-featured-articles-block{
 	margin-top: -85px;
 }
 
+.view-featured-articles .views-row{
+	margin:0;
+	padding: 0 0.3em 0 0;
+}
+
 .field-content.featured-article-header{
-	background-color: @color-yellow-napo;
+	background: url('../images/background-yellow.png') repeat-x;
 	height:59px;
+    padding-top: 0.7em;
 }
 
 .field-content.featured-article-header:hover{
 	border-bottom: 5px solid @color-blue-napo;
-}
+} 
 
 .field-content.featured-article-header a{
 	font-size: @clickable-text-big;
+    padding-bottom: 1em;
+    padding-left: 2.5em;
+    font-weight: bold;	
 }
+
 
 .field-content.featured-article-body{
 	background-color:#f2f1f2;
+	line-height: 2em;
+	padding:0.5em 3em;
+	min-height: 153px;
 }
 
 .more-link{
-	background: url('../images/see-more-links.png') no-repeat 100% 40% ;
-	padding-right: 2.5em;
+	  background: url('../images/see-more-links.png') no-repeat 99% 40%;
+	  padding-right: 2.8em;
+	  display: block;
+	  clear: both;
+	  text-align: right;
+	  line-height: 2em;
+}
+
+.video-js.vjs-default-skin.vjs-paused .vjs-big-play-button{
+	background: url('../images/play-video-big.png') no-repeat 99% 40%;
+	width: 4em;
+  	height: 4em;
+  	border:0;
+  	box-shadow:none;
+  	-webkit-box-shadow:none;
+  	margin-left: -2.1em;
+  	margin-top: -2.1em;
+}
+
+.vjs-default-skin .vjs-big-play-button:before{
+	content:none;
+}
+
+.vjs-default-skin .vjs-progress-control{
+	margin-top: -19em;
+}
+
+.vjs-current-time.vjs-time-controls.vjs-control .vjs-current-time-display{
+	margin-top: -7.4em;
+}
+
+.vjs-default-skin .vjs-duration .vjs-duration-display{
+	margin-top: -7.4em;
+}
+
+.vjs-volume-control.vjs-control{
+	margin-top: -9em;
+}
+
+.vjs-mute-control.vjs-control{
+	margin-top: -9em;
+	margin-left: 5em;
+}
+
+
+
+//content home - FEATURED FILMS
+
+.napo-homepage-featured-films-container{
+	background:@color-blue-napo;
+}
+
+.napo-homepage-featured-films-container h2{
+	color:@color-yellow-napo;
+	padding-left: 2.5em;
+}
+
+.napo-homepage-featured-films .jcarousel-container-horizontal{
+	border:0px;
+	border-radius: 0px;
+	background:none;	
+}
+
+.jcarousel-skin-napo {
+    text-align: left;
+}
+
+.napo-homepage-featured-films .jcarousel-view--frontpage-carousel-featured--block{
+	float: none;
+}
+
+.napo-homepage-featured-films .jcarousel-view--frontpage-carousel-featured--block > li {
+	float: none;
+	display: inline;
+	background:@color-blue-napo;
+	width: 343px;
+	height: 126px;
+	border:0px;
+}
+
+.napo-homepage-featured-films .jcarousel-view--frontpage-carousel-featured--block > li > a {
+	display: inline-block;
+}
+
+.napo-homepage-featured-films .jcarousel-view--frontpage-carousel-featured--block .views-field-field-image {
+	float:left;
+}
+
+.napo-homepage-featured-films .jcarousel-view--frontpage-carousel-featured--block .views-field-field-image img{
+	width:170px; //style wrong ------- drupal must do it
+	padding-right: 1em;
+}
+
+.napo-homepage-featured-films .jcarousel-view--frontpage-carousel-featured--block .views-field-title-field{
+	float:left;
+}
+
+.napo-homepage-featured-films .jcarousel-view--frontpage-carousel-featured--block .views-field-title-field .napo_video_title{
+	width: 162px;
+	display:block;
+}
+
+.napo-homepage-featured-films .jcarousel-view--frontpage-carousel-featured--block .views-field.views-field-body{
+    color: #fff;
+    height: 44px;
+    overflow: hidden;
+    padding: 0;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    width: 168px;
+}
+/*
+.napo-homepage-featured-films .jcarousel-view--frontpage-carousel-featured--block .views-field.views-field-body #tmgmt-1{
+    color: #fff;
+    height: 44px;
+    overflow: hidden;
+    padding: 0;
+    width: 168px;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+*/
+
+.napo-homepage-featured-films .jcarousel-view--frontpage-carousel-featured--block .views-field.views-field-body #tmgmt-1{
+    display: block;
+    display: -webkit-box;
+    max-width: 400px;
+    height: 109.2px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.4;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+
+.napo-homepage-featured-films .jcarousel-view--frontpage-carousel-featured--block .views-field-title-field a{
+	color:@color-yellow-napo;
+	font-size: @font-size-base;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+//breadcrumb
+
+.breadcrumb{
+	margin-bottom: 0px;
+
+	a{
+		font-weight: bold;
+	}
+}
+
+
+//pagination
+
+.pagination a{
+	font-weight: bold;
+}
+
+.pagination .active a{
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.pagination .prev.first , .pagination .next.last{
+	text-transform: uppercase;
+}
+
+//list-view - gallery ---- selector view buttons
+
+.block-napo-film{
+	background: @color-napo-bg-gray-1;
+	padding: 0.3em 0em 0.3em 0;
+	margin-bottom: 1em;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.block-napo-film a[href*='list']{ //We need this style because when you are logged, drupal put <a> "configure"
+	background:url('../images/last-view-ico.png') no-repeat 17px 4px @color-blue-light-napo;
+	padding: 6px 18px 6px 4em;
+}
+
+.block-napo-film a[href*='list'].active{
+	background:url('../images/last-view-ico.png') no-repeat 17px 4px @color-yellow-napo;
+	padding: 6px 18px 6px 4em;
+}
+
+.block-napo-film a[href*='grid'] {
+	background:url('../images/gallery-view-ico.png')no-repeat 17px 4px @color-blue-light-napo;
+	padding: 6px 18px 6px 4em;
+}
+
+.block-napo-film a[href*='grid'].active {
+	background:url('../images/gallery-view-ico.png')no-repeat 17px 4px @color-yellow-napo;
+	padding: 6px 18px 6px 4em;
+}
+
+/* Video Gallery Detail */
+
+.napo-film-list-view-container{
+	float:right;
+	z-index: 9;
+}
+
+.view-napo-films {
+	h3 {
+		background:url('../images/background-blue.png') repeat-x;
+		color:#FFF;
+		height:73px;
+		margin-bottom: 0;
+		padding-left: 1em;
+		padding-top: 8px;
+	}
+
+	h3 a{
+		color: #fff;
+	    display: block;
+	    width: 70%;
+	}
+
+	.views-field-nothing.napo-film-content-container {
+		display:none;
+	}
+
+
+	.row div:hover > .views-field-nothing.napo-film-content-container {
+		color: #fff;
+		display: block;
+		margin-top: -212px; //responsive need this height
+		padding: 1em;
+		position: absolute;
+	}
+
+	.row div:hover > .views-field.views-field-field-image{
+		background:url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
+
+		img{
+			visibility:hidden;
+		}
+	}
+
+	.napo-film-video-download-form{
+		float: right;
+		margin-right: 50px;
+		margin-top: -46px;
+		max-width: 50px;
+		position: relative;
+	}
+/*
+	//h3 hover to display the text
+	.views-field.napo-film-title-container:hover ~ .views-field.views-field-field-image ~ .views-field-nothing.napo-film-content-container {
+		color: #fff;
+		display: block;
+		margin-top: -212px; //responsive need this height
+		padding: 1em;
+		position: absolute;
+	}
+
+	.views-field.napo-film-title-container:hover ~ .views-field.views-field-field-image{
+		background:url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
+
+		img{
+			visibility:hidden;
+		}
+	}
+
+*/
+
+}
+
+
+
+
+.field-name-field-tags{
+	color:@color-yellow-napo;
+	margin-bottom: 1em;
+}
+
+.napo-film-view-link{
+	background:url('../images/napo-film-view-link.png') no-repeat;
+	color:transparent;
+	padding-bottom: 1em;
+	padding-left: 2em;
+}
+
+.napo-film-view-link .glyphicon-play-circle:before{
+	content:none;
+
+}
+
+.napo-film-view-episodes-link{
+	color:@color-blue-napo;
+	background:@color-yellow-napo;
+	font-weight: bold;
+	padding: 4px 0.5em 0.5em;
+}
+
+
+.napo-film-list-view-container .views-widget-filter-search_api_views_fulltext input{
+	margin-top: 10px;
+}
+
+.napo-film-list-view-container .views-submit-button{
+	margin-left: -18px;
+    margin-top: -12px;
+}
+
+.napo-film-list-view-container .views-submit-button button{
+    color:transparent;
+    border-color:@color-blue-light-napo;
+   	background:url('../images/search.png') no-repeat 10px 5px @color-blue-light-napo;
+}
+
+
+.node-napo-video.view-mode-full .field-name-film.field-type-ds {
+    background: #ddd;
+}
+
+.node-napo-video.view-mode-full .napo-share-widget {
+    float: right;
+    position: relative;
+    margin-top: -20px;
+    background: #000099;
+}
+
+.napo-film-video-download-form {
+    float: right;
+    position: relative;
+    max-width: 50px;
+    margin-top: -20px;
+    margin-right: 100px;
+}
+.napo-film-video-download-form form{
+    display: none;
+    color: #fff;
+    background: #000099;
+}
+.napo-film-video-download-form:hover form{
+    position: absolute;
+    display: block;
+    width: 84px;
+    height: 156px;
+    background:@color-blue-light-napo;
+    color: @color-blue-napo;
+    z-index: 9;
+    
+}
+
+.napo-film-video-download-form:hover .form-type-radio{
+	margin-top: 10px;
+}
+
+.napo-film-video-download-form:hover form input{
+    margin-left: -8px;
+}
+
+.napo-film-video-download-form:hover form label{
+   font-weight: bold;
+   padding-left: 10px;
+}
+
+.form-type-radio.form-item-download-format.form-item.radio:hover{
+	background:@color-yellow-napo;
+}
+
+.napo-film-video-download-form-title {
+    color: @color-yellow-napo;
+    background: @color-blue-napo;
+    padding: 10px;
+}
+.napo-film-video-download-form label[for='edit-download-format']{
+    display: none;
 }
