@@ -12,8 +12,10 @@ class content_cart_handler_add_to_cart extends views_handler_field {
     if (!empty($values->_field_data) && !empty($values)) {
       reset($values->_field_data);
       $field = current($values->_field_data);
-      $entity_id = $values->entity;
       $entity_type = $field['entity_type'];
+      $info = entity_get_info($entity_type);
+      $key = $info['entity keys']['id'];
+      $entity_id = $field['entity']->{$key};
 
       drupal_add_library('system', 'drupal.ajax');
       drupal_add_js(drupal_get_path('module', 'content_cart') . '/js/content_cart.js');
