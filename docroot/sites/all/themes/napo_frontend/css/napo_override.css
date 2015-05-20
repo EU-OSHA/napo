@@ -273,7 +273,6 @@ footer.footer.container section.block-menu-block{
     /*width: 250px;*/
 }
 
-<<<<<<< HEAD
 /* Lesson menu begin */
 ul.nav-right-menu{
     width: 300px;
@@ -308,9 +307,11 @@ ul.nav-right-menu li:last-child a{
 ul.nav-right-menu.affix{
     top: 30px; /* Set the top position of pinned element */
 }
-.node-lesson .group-right{
+.node-lesson .group-right {
     float: right;
-=======
+}
+/* Lesson menu end */
+
 /* Download center */
 .download-center-waiting {
     display: none;
@@ -320,13 +321,9 @@ ul.nav-right-menu.affix{
     display: block;
 }
 
-
-@media (max-width: 768px){
-    /* Download lesson */
-    #lesson-left-menu-wrapper {
-        position: relative !important;
-        top: 0 !important;
-    }
->>>>>>> origin/develop
+/* Download lesson */
+#lesson-left-menu-wrapper {
+    position: relative !important;
+    top: 0 !important;
 }
-/* Lesson menu end */
+
