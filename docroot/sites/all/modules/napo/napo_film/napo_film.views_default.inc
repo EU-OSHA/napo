@@ -1244,6 +1244,14 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['path']['alter']['path'] = '[path]';
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['path']['absolute'] = TRUE;
+  /* Field: Content Cart: Add to cart button */
+  $handler->display->display_options['fields']['content_add_to_cart']['id'] = 'content_add_to_cart';
+  $handler->display->display_options['fields']['content_add_to_cart']['table'] = 'node';
+  $handler->display->display_options['fields']['content_add_to_cart']['field'] = 'content_add_to_cart';
+  $handler->display->display_options['fields']['content_add_to_cart']['label'] = '';
+  $handler->display->display_options['fields']['content_add_to_cart']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['content_add_to_cart']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['content_add_to_cart']['contant_add_to_cart_button_label'] = 'Add to download center';
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -1254,6 +1262,7 @@ function napo_film_views_default_views() {
 <div class="episode-list-details-container">
 [combined_tags]
 [download_video][path]
+[content_add_to_cart]
 </div>';
   $handler->display->display_options['fields']['nothing']['element_type'] = '0';
   $handler->display->display_options['fields']['nothing']['element_label_type'] = '0';
@@ -1320,6 +1329,7 @@ function napo_film_views_default_views() {
 <div class="episode-list-details-container">
 [combined_tags]
 [download_video][path]
+[content_add_to_cart]
 </div>'),
     t('Block'),
   );
