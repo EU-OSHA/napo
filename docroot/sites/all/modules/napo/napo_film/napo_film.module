@@ -301,6 +301,7 @@ function napo_film_form_napo_video_node_form_alter(&$form, &$form_state) {
       ),
     ),
   );
+//  $form['#validate'][] = 'napo_film_add_node_form_validate';
 }
 
 function napo_film_video_get_type($node) {
@@ -368,6 +369,9 @@ function napo_film_node_validate($node, $form, &$form_state) {
     // For films. main category is required.
     if (empty($node->field_main_tag[LANGUAGE_NONE][0]['tid'])) {
       form_set_error('field_main_tag', t('Main category field is required!'));
+    }
+    if (sizeof($form_state['values']['field_video'][LANGUAGE_NONE])<=1) {
+      form_set_error('field_video',t('Video field is required for Video Type: \'Film Video\'.'));
     }
   }
 }
