@@ -76,3 +76,9 @@ function napo_frontend_text_resize_block() {
 function napo_frontend_preprocess_image_style(&$variables) {
   $variables['attributes']['class'][] = 'img-responsive';
 }
+
+function napo_frontend_form_alter(&$form, &$form_state, $form_id) {
+  if($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-napo-films-page-list') {
+    $form['search_api_views_fulltext']['#attributes']['placeholder'] = t('Search');
+  }
+}
