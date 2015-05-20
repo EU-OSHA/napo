@@ -482,6 +482,8 @@ $options['init-modules'] = array(
   'diff',
   'update',
 
+  'content_cart',
+
   'osha_taxonomies',
   'osha',
   'osha_tmgmt',
