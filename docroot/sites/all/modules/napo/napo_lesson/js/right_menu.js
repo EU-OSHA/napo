@@ -41,7 +41,7 @@ jQuery('document').ready(function() {
         }
     });
 
-    // Affix class to right nav menu
+    // Affix class to top nav menu
     jQuery('#top_menu_lessons').affix({
         offset: {
             top: function () {
