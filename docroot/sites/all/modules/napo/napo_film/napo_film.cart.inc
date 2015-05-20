@@ -383,7 +383,7 @@ function napo_cart_download_videos($files) {
     $drupal_dir_path = NAPO_FILM_DOWN_CENTER_PATH;
     $dir_path = drupal_realpath($drupal_dir_path);
     // Return if dir don't exists.
-    if (!file_prepare_directory($drupal_dir_path)) {
+    if (!file_prepare_directory($drupal_dir_path, FILE_CREATE_DIRECTORY)) {
       watchdog('napo_film', 'The directory !dir could not be accessed!', array('!dir' => $drupal_dir_path), WATCHDOG_ERROR);
       return NULL;
     }
