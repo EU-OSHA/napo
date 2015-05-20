@@ -7121,3 +7121,14 @@ table .checkbox input[type="checkbox"] {
 .alert-danger a {
   color: #843534;
 }
+
+/* Download center */
+.content_cart_summary_label:after {
+    content: ": ";
+}
+.content_cart_summary_count:after {
+    content: ")"
+}
+.content_cart_summary_count:before {
+    content: "("
+}

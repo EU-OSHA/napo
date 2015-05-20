@@ -21,8 +21,8 @@ jQuery('document').ready(function() {
     });
 
     // Add fields to affix menu
-    add_fields_to_right_menu(menu, '.field-name-field-file');
-    add_fields_to_right_menu(menu, '.download_whole_lesson');
+    napo_lesson_add_fields_to_right_menu(menu, '.field-name-field-file');
+    napo_lesson_add_fields_to_right_menu(menu, '.download_whole_lesson');
 
     // Spymenu target
     jQuery('body').scrollspy({
@@ -54,22 +54,22 @@ jQuery('document').ready(function() {
     });
 
     // Execute on load
-    check_width();
+    napo_lesson_menu_check_width();
 
     // Execute on resize
     jQuery(window).resize(function(){
-        check_width();
+        napo_lesson_menu_check_width();
     });
 });
 
-function add_fields_to_right_menu(menu, field){
+function napo_lesson_add_fields_to_right_menu(menu, field){
     jQuery('.node-lesson .col-md-3').find(field).each(function(i) {
         menu.append(jQuery('<li class="">'+jQuery(this).html()+'</li>'));
         jQuery(this).hide();
     });
 }
 
-function check_width() {
+function napo_lesson_menu_check_width() {
     if(jQuery(window).width() < 768) {
         jQuery('.headings').hide();
         jQuery('#group-left').find('.scrollspy').each(function(i) {

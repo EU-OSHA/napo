@@ -273,6 +273,7 @@ footer.footer.container section.block-menu-block{
     /*width: 250px;*/
 }
 
+<<<<<<< HEAD
 /* Lesson menu begin */
 ul.nav-right-menu{
     width: 300px;
@@ -309,5 +310,23 @@ ul.nav-right-menu.affix{
 }
 .node-lesson .group-right{
     float: right;
+=======
+/* Download center */
+.download-center-waiting {
+    display: none;
+}
+.download-center-submit-all.progress-disabled + .download-center-waiting,
+.download-center-submit-selected.progress-disabled + .download-center-submit-all + .download-center-waiting {
+    display: block;
+}
+
+
+@media (max-width: 768px){
+    /* Download lesson */
+    #lesson-left-menu-wrapper {
+        position: relative !important;
+        top: 0 !important;
+    }
+>>>>>>> origin/develop
 }
 /* Lesson menu end */
