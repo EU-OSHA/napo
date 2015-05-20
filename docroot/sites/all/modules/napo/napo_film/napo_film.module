@@ -301,7 +301,6 @@ function napo_film_form_napo_video_node_form_alter(&$form, &$form_state) {
       ),
     ),
   );
-//  $form['#validate'][] = 'napo_film_add_node_form_validate';
 }
 
 function napo_film_video_get_type($node) {
