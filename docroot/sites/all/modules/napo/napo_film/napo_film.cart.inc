@@ -387,8 +387,16 @@ function napo_cart_download_videos($files) {
       watchdog('napo_film', 'The directory !dir could not be accessed!', array('!dir' => $drupal_dir_path), WATCHDOG_ERROR);
       return NULL;
     }
-    // Open the archive.
+    $files_size = 0;
+    foreach ($files as $file) {
+      $files_size += $file['filesize'];
+      if (disk_free_space($dir_path) < $files_size) {
+        watchdog('napo_film', 'There is not enough space to create a zip with !size MB', array('!size' => $files_size / pow(1024, 2)), WATCHDOG_ERROR);
+        return NULL;
+      }
+    }
     $archive = new ZipArchive();
+    // Open the archive.
     $archive_path = tempnam($dir_path, 'napo_download_') . '.zip';
     $archive->open($archive_path, ZIPARCHIVE::CREATE);
     foreach ($files as $file) {
