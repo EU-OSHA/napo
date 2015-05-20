@@ -29,8 +29,15 @@ class ContentCart implements ContentCartInterface {
     if (empty($id) && !empty($_SESSION['drupal_content_cart'][$type])) {
       unset($_SESSION['drupal_content_cart'][$type]);
     }
-    elseif (!empty($_SESSION['drupal_content_cart'][$type][$id])) {
+    elseif (is_int($id) && !empty($_SESSION['drupal_content_cart'][$type][$id])) {
       unset($_SESSION['drupal_content_cart'][$type][$id]);
+    }
+    elseif (is_array($id) && !empty($_SESSION['drupal_content_cart'][$type])) {
+      foreach ($id as $identifier) {
+        if (!empty($_SESSION['drupal_content_cart'][$type][$identifier])) {
+          unset($_SESSION['drupal_content_cart'][$type][$identifier]);
+        }
+      }
     }
   }
 

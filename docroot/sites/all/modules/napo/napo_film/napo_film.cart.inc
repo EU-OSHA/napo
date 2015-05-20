@@ -97,7 +97,9 @@ function napo_film_content_cart_ajax_submit_alter(&$commands, $input_value) {
   $commands[] = ajax_command_invoke("[id^='edit-refresh']", 'mousedown');
 }
 
-
+/**
+ * Download selected/all form for download center page.
+ */
 function napo_film_cart_download_form($form, &$form_state) {
   $count = napo_film_cart_select_in_cart_count();
   $html_count = '<span class="napo_film_cart_select_count">' . $count . '</span>';
@@ -136,7 +138,13 @@ function napo_film_cart_download_form($form, &$form_state) {
     '#ajax' => array(
       'callback' => 'napo_film_cart_select_in_cart_download_selected',
     ),
+    '#attributes' => array(
+      'class' => array('download-center-submit-selected'),
+    ),
   );
+  if ($count == 0) {
+    $form['download_selected']['#attributes']['disabled'] = "disabled";
+  }
 
   $form['download_all'] = array(
     '#type' => 'submit',
@@ -144,6 +152,14 @@ function napo_film_cart_download_form($form, &$form_state) {
     '#ajax' => array(
       'callback' => 'napo_film_cart_select_in_cart_download_all',
     ),
+    '#attributes' => array(
+      'class' => array('download-center-submit-all'),
+    ),
+  );
+
+  $form['loading'] = array(
+    '#type' => 'markup',
+    '#markup' => '<p class="download-center-waiting">' . t('Please wait while we create the download archive...') . '</p>',
   );
 
   $form['refresh'] = array(
@@ -205,7 +221,36 @@ function napo_film_cart_select_in_cart_count() {
  * Callback for ajax submit of Download selected button.
  */
 function napo_film_cart_select_in_cart_download_selected($form, $form_state) {
-  unset($_SESSION['napo_film_select_in_cart']);
+  $commands = array();
+  if (!empty($_SESSION['napo_film_select_in_cart'])) {
+    $selected_nids = $_SESSION['napo_film_select_in_cart'];
+    $cart = ContentCart::getCurrentCart();
+    // Get the nodes videos by the mime types selected in cart.
+    $mime_types = array();
+    if (!empty($_SESSION['napo_film_cart_mime'])) {
+      $mime_types = $_SESSION['napo_film_cart_mime'];
+    }
+    $nodes = node_load_multiple($selected_nids);
+    $file_path = napo_cart_download_films($nodes, $mime_types);
+    // Get the archive drupal scheme path.
+    if (empty($file_path)) {
+      napo_film_cart_download_error_commands($commands);
+    }
+    else {
+      // Remove from cart selected nodes..
+      $cart->removeFromCart('node', $selected_nids);
+      foreach ($selected_nids as $nid) {
+        unset($_SESSION['napo_film_cart_mime'][$nid]);
+      }
+      unset($_SESSION['napo_film_select_in_cart']);
+      napo_film_cart_download_success_commands($commands, $file_path);
+    }
+  }
+  $page = array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
+  return $page;
 }
 
 /**
@@ -224,32 +269,17 @@ function napo_film_cart_select_in_cart_download_all($form, &$form_state) {
     }
     $nids = $films['node'];
     $nodes = node_load_multiple($nids);
-    $download_files = array();
-    foreach ($nodes as $node) {
-      // Default to video/mp4
-      if (empty($mime_types[$node->nid])) {
-        $mime = 'video/mp4';
-      }
-      else {
-        $mime = $mime_types[$node->nid];
-      }
-      $video = napo_film_cart_node_get_video_by_mime($node, $mime);
-      if (!empty($video)) {
-        $download_files[] = $video;
-      }
-    }
+    $file_path = napo_cart_download_films($nodes, $mime_types);
     // Get the archive drupal scheme path.
-    $file_path = napo_cart_download_videos($download_files);
-    if (!empty($file_path)) {
+    if (empty($file_path)) {
+      napo_film_cart_download_error_commands($commands);
+    }
+    else {
       // Empty the cart, the selection and mime types.
       $cart->removeFromCart('node');
       unset($_SESSION['napo_film_select_in_cart']);
       unset($_SESSION['napo_film_cart_mime']);
-      $message = theme('napo_film_download_cart_complete', array('file_path' => file_create_url($file_path)));
-      // Return the success message and
-      // Refresh the download center: view, cart summary block and cart form.
-      $commands[] = ajax_command_prepend('#block-napo-film-download-cart-form', $message);
-      $commands[] = ajax_command_invoke('body', 'napo_film_refresh_download_center');
+      napo_film_cart_download_success_commands($commands, $file_path);
     }
   }
   $page = array(
@@ -259,6 +289,44 @@ function napo_film_cart_select_in_cart_download_all($form, &$form_state) {
   return $page;
 }
 
+/**
+ * Add ajax commands when creating the archive is success.
+ */
+function napo_film_cart_download_success_commands(&$commands, $file_path) {
+  $text = variable_get('napo_film_download_center_success_message',
+    'Click here to download your selected videos!');
+  $message = theme('napo_film_download_cart_complete', array(
+      'file_path' => file_create_url($file_path),
+      'message' => t($text),
+    )
+  );
+  // Return the success message and
+  // Refresh the download center: view, cart summary block and cart form.
+  $commands[] = ajax_command_prepend('#block-napo-film-download-cart-form', $message);
+  $commands[] = ajax_command_invoke('body', 'napo_film_refresh_download_center');
+}
+
+/**
+ * Add ajax commands when creating the archive has error.
+ */
+function napo_film_cart_download_error_commands(&$commands) {
+  $error = t('There was an error creating the archive!');
+  $message = theme('napo_film_download_cart_error', array('error' => $error));
+  $commands[] = ajax_command_remove('.download-center-error', $message);
+  $commands[] = ajax_command_prepend('#block-napo-film-download-cart-form', $message);
+}
+
+/**
+ * Get the file of a mime type from node's field_video.
+ *
+ * @param stdClass $node
+ * @param string $mime
+ *   The requested mime type of a file from field_video
+ *
+ * @return array|null
+ *   File entity as an array| If not found - NULL.
+ *
+ */
 function napo_film_cart_node_get_video_by_mime($node, $mime) {
   $file = NULL;
   $node_wrapper = entity_metadata_wrapper('node', $node);
@@ -272,7 +340,37 @@ function napo_film_cart_node_get_video_by_mime($node, $mime) {
 }
 
 /**
- * Get an archive of files for download center.
+ * Get the archive of videos from a collection of nodes.
+ *
+ * @param array $nodes
+ *   Array of nodes
+ * @param array $mime_types
+ *   Array of mime types of videos to be added to archive keyed by nid.
+ *
+ * @return null|string
+ *   Archive path (drupal scheme) | NULL if archive was not created.
+ */
+function napo_cart_download_films($nodes, $mime_types = array()) {
+  $download_files = array();
+  foreach ($nodes as $node) {
+    // Default to video/mp4
+    if (empty($mime_types[$node->nid])) {
+      $mime = 'video/mp4';
+    }
+    else {
+      $mime = $mime_types[$node->nid];
+    }
+    $video = napo_film_cart_node_get_video_by_mime($node, $mime);
+    if (!empty($video)) {
+      $download_files[] = $video;
+    }
+  }
+  // Get the archive drupal scheme path.
+  return napo_cart_download_videos($download_files);
+}
+
+/**
+ * Get the archive of a collection of files.
  *
  * @param array $files
  *   Files objects
@@ -286,7 +384,7 @@ function napo_cart_download_videos($files) {
     $dir_path = drupal_realpath($drupal_dir_path);
     // Return if dir don't exists.
     if (!file_prepare_directory($drupal_dir_path)) {
-      drupal_set_message(t('There was an error creating the archive!'), 'error');
+      watchdog('napo_film', 'The directory !dir could not be accessed!', array('!dir' => $drupal_dir_path), WATCHDOG_ERROR);
       return NULL;
     }
     // Open the archive.
