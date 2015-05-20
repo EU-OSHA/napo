@@ -482,6 +482,8 @@ $options['init-modules'] = array(
   'diff',
   'update',
 
+  'content_cart',
+
   'osha_taxonomies',
   'osha',
   'osha_tmgmt',
@@ -512,7 +514,7 @@ $options['init-modules'] = array(
   'osha_linkchecker',
 
   //Contact Us and FAQ
-  'faq',
+  'views_accordion',
   'webform',
   'napo_contact',
 

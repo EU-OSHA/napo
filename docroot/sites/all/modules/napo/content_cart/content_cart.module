@@ -1,0 +1,213 @@
+<?php
+
+
+/**
+ * Implements hook_menu().
+ */
+function content_cart_menu() {
+  $items = array();
+  // Ajax submit callbacks.
+  $items['content_cart/ajax/submit/%'] = array(
+    'title' => 'Submit ajax cart change',
+    'page callback' => 'content_cart_ajax_submit',
+    'page arguments' => array(3),
+    'access callback' => TRUE,
+    'expanded' => TRUE,
+  );
+  $items['content_cart/ajax/submit/%/%'] = array(
+    'title' => 'Submit ajax cart change',
+    'page callback' => 'content_cart_ajax_submit',
+    'page arguments' => array(3, 4),
+    'access callback' => TRUE,
+    'expanded' => TRUE,
+  );
+  $items['content_cart/ajax/submit/%/%/%'] = array(
+    'title' => 'Submit ajax cart change',
+    'page callback' => 'content_cart_ajax_submit',
+    'page arguments' => array(3, 4, 5),
+    'access callback' => TRUE,
+    'expanded' => TRUE,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function content_cart_views_api() {
+  return array(
+    'api' => 3.0,
+    'path' => drupal_get_path('module', 'content_cart') . '/views',
+  );
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function content_cart_views_data_alter(&$data) {
+  foreach (entity_get_info() as $info) {
+    if (isset($info['base table']) && isset($data[$info['base table']]['table'])) {
+      $data[$info['base table']]['content_cart'] = array(
+        'title' => t('Toggle (add/remove) cart checkbox'),
+        'group' => t('Content Cart'),
+        'help' => t('Provide a checkbox to add/remove a content to cart.'),
+        'real field' => $info['entity keys']['id'],
+        'field' => array(
+          'handler' => 'content_cart_handler_field_checkbox',
+          'click sortable' => FALSE,
+        ),
+      );
+      $data[$info['base table']]['content_add_to_cart'] = array(
+        'title' => t('Add to cart button'),
+        'group' => t('Content Cart'),
+        'help' => t('Provide a button Add to cart'),
+        'field' => array(
+          'handler' => 'content_cart_handler_add_to_cart',
+          'click sortable' => FALSE,
+        ),
+      );
+      $data[$info['base table']]['content_cart_remove'] = array(
+        'title' => t('Remove from cart link'),
+        'group' => t('Content Cart'),
+        'help' => t('Provide a remove link - for views that filters by Is in Cart.'),
+        'real field' => $info['entity keys']['id'],
+        'field' => array(
+          'handler' => 'content_cart_handler_field_remove_link',
+          'click sortable' => FALSE,
+        ),
+      );
+      $data[$info['base table']]['content_cart_is_in_cart'] = array(
+        'title' => t('Is in Cart'),
+        'group' => t('Content Cart'),
+        'help' => t('Filters content that is in cart.'),
+        'real field' => $info['entity keys']['id'],
+        'filter' => array(
+          'handler' => 'content_cart_handler_filter_cart',
+          'label' => t('Is in cart'),
+        ),
+      );
+    }
+  }
+  foreach (search_api_index_load_multiple(FALSE) as $index) {
+    // Fill in base data.
+    $key = 'search_api_index_' . $index->machine_name;
+    $table = &$data[$key];
+    $table['content_cart']['group'] = t('Content Cart');
+    $table['content_cart']['title'] = t('Add to cart');
+    $table['content_cart']['help'] = t('Content cart add to cart button');
+    $table['content_cart']['real field'] = 'id';
+    $table['content_cart']['field']['type'] = 'text';
+    $table['content_cart']['field']['handler'] = 'content_cart_handler_add_to_cart';
+  }
+}
+
+function content_cart_add_item($type, $id) {
+  $cart = ContentCart::getCurrentCart();
+  $cart->addToCart($type, $id, $id);
+  module_invoke_all('content_cart_add_item', $type, $id);
+}
+
+function content_cart_remove_item($type, $id) {
+  $cart = ContentCart::getCurrentCart();
+  $cart->removeFromCart($type, $id, $id);
+  module_invoke_all('content_cart_remove_item', $type, $id);
+}
+
+/**
+ * Page callback for ajax call for cart submit.
+ *
+ * @param string $input_value
+ *   The entity_type-entity_id string used identify the content.
+ * @param string $operation
+ *   The operation (add/remove) that should be done on cart for the $id content.
+ * @param string $view
+ *   The view_name-view_display string to identify and refresh cart view.
+ */
+function content_cart_ajax_submit($input_value, $operation = '', $view = '') {
+  $commands = array();
+  $cart = ContentCart::getCurrentCart();
+  $identifiers = explode('-', $input_value);
+
+  if (count($identifiers) == 2) {
+    // TODO Check for valid entity type and id.
+    $type = $identifiers[0];
+    $content_id = $identifiers[1];
+    switch ($operation) {
+      case 'add':
+        content_cart_add_item($type, $content_id);
+        $commands[] = ajax_command_invoke('button[data-value="' . $input_value . '"]', 'attr', array('disabled', 'disabled'));
+        break;
+
+      case 'remove':
+        content_cart_remove_item($type, $content_id);
+        $commands[] = ajax_command_invoke('button[data-value="' . $input_value . '"]', 'removeAttr', array('disabled'));
+        break;
+
+      default:
+        if ($cart->hasInCart($type, $content_id)) {
+          content_cart_remove_item($type, $content_id);
+        }
+        else {
+          content_cart_add_item($type, $content_id);
+        }
+        break;
+    }
+  }
+  $content = content_cart_cart_summary_content();
+  $commands[] = ajax_command_replace('#content_cart_summary_container', render($content));
+  // Replace the view if is a cart view.
+  if (!empty($view)) {
+    $view_identifiers = explode('-', $view);
+    $view_name = $view_identifiers[0];
+    $view_display = $view_identifiers[1];
+    if ($view = views_get_view($view_name)) {
+      $view_content = views_embed_view($view_name, $view_display);
+      $view_dom_class = '.view-id-' . $view_name . '.view-display-id-' . $view_display;
+      $commands[] = ajax_command_replace($view_dom_class, $view_content);
+    }
+  }
+  drupal_alter('content_cart_ajax_submit', $commands, $input_value);
+  $page = array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
+  ajax_deliver($page);
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function content_cart_block_info() {
+  $blocks['content_cart_summary'] = array(
+    'info' => t('Content cart summary'),
+    'cache' => DRUPAL_NO_CACHE,
+  );
+
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function content_cart_block_view($delta = '') {
+  if ($delta == 'content_cart_summary') {
+    $block = array();
+    $block['content'] = content_cart_cart_summary_content();
+    return $block;
+  }
+}
+
+/**
+ * Get content summary content for cart block.
+ */
+function content_cart_cart_summary_content() {
+  $content = array();
+  $cart = ContentCart::getCurrentCart();
+  $content['content_cart_summary'] = array(
+    '#prefix' => '<div id="content_cart_summary_container">',
+    '#markup' => t('Cart: @count items', array('@count' => $cart->countItems())),
+    '#suffix' => '</div>',
+  );
+  drupal_alter('cart_summary_content', $content);
+  return $content;
+}

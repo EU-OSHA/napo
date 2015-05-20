@@ -56,6 +56,67 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'napo_s_film_episodes_panel';
+  $path_breadcrumb->name = 'Napo\'s film episodes - panel';
+  $path_breadcrumb->path = 'node/%node/view-episodes';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '%site:current-page:menu-link:pb-join:name',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '%site:current-page:menu-link:pb-join:url',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'entity_bundle:node',
+          'settings' => array(
+            'type' => array(
+              'napo_video' => 'napo_video',
+            ),
+          ),
+          'context' => 'node',
+          'not' => FALSE,
+        ),
+        1 => array(
+          'name' => 'entity_field_value:node:napo_video:field_video_type',
+          'settings' => array(
+            'field_video_type' => array(
+              'und' => array(
+                0 => array(
+                  'tid' => '2727',
+                ),
+              ),
+            ),
+            'field_video_type_tid' => array(
+              0 => '2727',
+            ),
+          ),
+          'context' => 'node',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['napo_s_film_episodes_panel'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'napos_friends';
   $path_breadcrumb->name = 'Napo Friends';
   $path_breadcrumb->path = 'meet-napo/napo-and-friends';
