@@ -539,7 +539,7 @@ function napo_film_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_tags',
     'label' => 'Categories',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
@@ -812,7 +812,7 @@ function napo_film_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_youtube',
     'label' => 'Youtube',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
