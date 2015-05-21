@@ -73,7 +73,8 @@ function napo_lesson_preprocess_node(&$vars) {
         ));
       }
       // Download whole lesson
-      if (in_array('download_whole_lesson', $vars['preprocess_fields'])) {
+      if (in_array('download_whole_lesson', $vars['preprocess_fields'])
+       && !empty($vars['field_lesson_video'][0]['target_id'])) {
         $vars['download_whole_lesson'] = theme('download_whole_lesson', array(
           'video_id' => $vars['field_lesson_video'][0]['target_id'],
         ));
