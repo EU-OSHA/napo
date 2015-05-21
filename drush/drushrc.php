@@ -466,7 +466,6 @@ $options['init-modules'] = array(
   'colorbox',
 
   // Social share
-  'addtoany',
   'on_the_web',
 
   // DS
