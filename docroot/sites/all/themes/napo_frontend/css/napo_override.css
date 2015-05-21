@@ -84,27 +84,8 @@ ul.nav li.dropdown ul.dropdown-menu {
     color:#fff;
 }
 
-
-
-/* Share widget */
-.napo-share-widget {
-    display: inline;
-    color: #fff;
-    background: #000099;
-}
-.napo-share-widget .napo-share-widget-title {
-    cursor: pointer;
-}
-.napo-share-widget > ul {
-    display: none;
-    background: #000099;
-}
-.napo-share-widget:hover > ul {
-    position: absolute;
-    display: block;
-}
-.napo-share-widget:hover > ul >li {
-    cursor: pointer;
+.slider .frontpage-video-title p{
+    color:#fff;
 }
 
 /* Episode detail overlay */
