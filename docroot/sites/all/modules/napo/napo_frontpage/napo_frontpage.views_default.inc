@@ -349,7 +349,14 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title_field']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['title_field']['alter']['path'] = '[field_url]';
+  $handler->display->display_options['fields']['title_field']['alter']['prefix'] = '<h3>';
+  $handler->display->display_options['fields']['title_field']['alter']['suffix'] = '</h3>';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'title_style' => '_none',
+    'title_link' => '',
+    'title_class' => '',
+  );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
