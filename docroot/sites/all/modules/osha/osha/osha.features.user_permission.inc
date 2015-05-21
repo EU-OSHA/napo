@@ -10,17 +10,6 @@
 function osha_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: 'access PDF version'.
-  $permissions['access PDF version'] = array(
-    'name' => 'access PDF version',
-    'roles' => array(
-      'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
-      'authenticated user' => 'authenticated user',
-    ),
-    'module' => 'print_pdf',
-  );
-
   // Exported permission: 'access news feeds'.
   $permissions['access news feeds'] = array(
     'name' => 'access news feeds',

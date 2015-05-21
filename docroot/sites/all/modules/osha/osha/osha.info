@@ -36,7 +36,6 @@ dependencies[] = on_the_web
 dependencies[] = options
 dependencies[] = osha_taxonomies
 dependencies[] = pathologic
-dependencies[] = print_pdf
 dependencies[] = search_api
 dependencies[] = strongarm
 dependencies[] = taxonomy

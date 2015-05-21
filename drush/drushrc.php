@@ -402,12 +402,6 @@ $options['init-modules'] = array(
   'workbench_access',
   'workbench_moderation',
 
-  // print and generate pdf - per node action
-  'print',
-  'print_ui',
-  'print_pdf_tcpdf',
-  'print_pdf',
-
   'facetapi',
   'search_api_facetapi',
   'search_autocomplete',
