@@ -7,6 +7,20 @@
 include_once 'napo_lesson.features.inc';
 
 /**
+ * Implements hook_menu().
+ */
+function napo_lesson_menu() {
+  $items = array();
+  $items['using-napo/napo-for-teachers/download_video/%'] = array(
+    'title' => 'Download lesson video',
+    'page callback' => 'napo_lesson_download_video',
+    'page arguments' => array(3),
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+/**
  * Implements hook_theme().
  */
 function napo_lesson_theme() {
@@ -125,4 +139,31 @@ function theme_napo_lesson_first_lesson_link($element) {
 
   $output = l($entity->title, 'node/'.$lesson[0]->nid);
   return $output;
+}
+
+/**
+ * Callback for Download whole lesson button.
+ */
+function napo_lesson_download_video($nid) {
+  $node = node_load($nid);
+  if (!empty($node)) {
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $file = $wrapper->field_video->value();
+    if (!empty($file)) {
+      $file = current($file);
+      $headers = array(
+        'Content-Type'              => $file['filemime'],
+        'Content-Disposition'       => 'attachment; filename="' . drupal_basename($file['uri']) . '"',
+        'Content-Length'            => $file['filesize'],
+        'Content-Transfer-Encoding' => 'binary',
+        'Pragma'                    => 'no-cache',
+        'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
+        'Expires'                   => '0',
+        'Accept-Ranges'             => 'bytes',
+      );
+      file_transfer($file['uri'], $headers);
+    }
+  }
+  drupal_set_message(t("There was an error downloading the lesson's video!"), 'error');
+  drupal_goto('/');
 }
