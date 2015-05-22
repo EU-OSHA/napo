@@ -316,7 +316,7 @@ h1{
 	.row div:hover > .views-field-nothing.napo-film-content-container {
 		color: #fff;
 		display: block;
-		margin-top: -212px; //responsive need this height
+		margin-top: -52%; //responsive need this height
 		padding: 1em;
 		position: absolute;
 	}
@@ -372,13 +372,13 @@ h1{
 }
 
 .napo-film-list-view-container .views-widget-filter-search_api_views_fulltext input{
-	margin-top: 10px;
+	margin-top: -2px;
 	font-weight: bold;
 }
 
 .napo-film-list-view-container .views-submit-button{
 	margin-left: -18px;
-    margin-top: -12px;
+    margin-top: -24px;
 }
 
 .napo-film-list-view-container .views-submit-button button{
@@ -690,6 +690,8 @@ h1{
 	background:@color-blue-napo;
 	margin-top: 2em;
   	padding: 1em;
+  	height:1%;
+  	overflow:hidden;
 
 	.recommended_films_head{
 		color:@color-yellow-napo;
@@ -697,4 +699,42 @@ h1{
 		font-weight: bold;
 		text-transform: uppercase;
 	}
+
+	h5 a{
+		color:@color-yellow-napo;
+	}
+}
+
+//Episode List 
+
+.view-napo-s-film-episodes{
+	.views-row{
+		margin-bottom: 1em;
+		clear: both;
+		background:@color-napo-bg-gray-1;
+	}
+
+	.views-row div{
+		margin: 0;
+		padding: 0;
+		
+	}
+
+	h3{
+		background:@color-blue-napo;
+		margin: 0;
+  		padding: 10px;	
+		a{
+			color:#FFF;
+			font-size: 15px;
+		}
+	}
+
+	.field-name-field-tags{
+		color: @color-blue-napo;
+		font-weight: bold;
+		padding:1em!important;
+	}
+
+
 }

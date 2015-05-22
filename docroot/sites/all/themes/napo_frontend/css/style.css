@@ -461,7 +461,7 @@ h2,
 }
 h3,
 .h3 {
-  font-size: 24px;
+  font-size: 15px;
 }
 h4,
 .h4 {
@@ -7080,7 +7080,6 @@ table .checkbox input[type="checkbox"] {
 .alert-danger a {
   color: #843534;
 }
-<<<<<<< HEAD
 .lang-dropdown-select-element.form-control.form-select {
   background-color: #f7e235;
 }
@@ -7434,7 +7433,7 @@ h1 {
 .view-napo-films .row div:hover > .views-field-nothing.napo-film-content-container {
   color: #fff;
   display: block;
-  margin-top: -212px;
+  margin-top: -52%;
   padding: 1em;
   position: absolute;
 }
@@ -7478,12 +7477,12 @@ h1 {
   float: left;
 }
 .napo-film-list-view-container .views-widget-filter-search_api_views_fulltext input {
-  margin-top: 10px;
+  margin-top: -2px;
   font-weight: bold;
 }
 .napo-film-list-view-container .views-submit-button {
   margin-left: -18px;
-  margin-top: -12px;
+  margin-top: -24px;
 }
 .napo-film-list-view-container .views-submit-button button {
   color: transparent;
@@ -7731,12 +7730,40 @@ h1 {
   background: #1f3695;
   margin-top: 2em;
   padding: 1em;
+  height: 1%;
+  overflow: hidden;
 }
 #recommended_films .recommended_films_head {
   color: #f7e235;
   font-size: 17px;
   font-weight: bold;
   text-transform: uppercase;
+}
+#recommended_films h5 a {
+  color: #f7e235;
+}
+.view-napo-s-film-episodes .views-row {
+  margin-bottom: 1em;
+  clear: both;
+  background: #f2f1f2;
+}
+.view-napo-s-film-episodes .views-row div {
+  margin: 0;
+  padding: 0;
+}
+.view-napo-s-film-episodes h3 {
+  background: #1f3695;
+  margin: 0;
+  padding: 10px;
+}
+.view-napo-s-film-episodes h3 a {
+  color: #FFF;
+  font-size: 15px;
+}
+.view-napo-s-film-episodes .field-name-field-tags {
+  color: #1f3695;
+  font-weight: bold;
+  padding: 1em!important;
 }
 .footer {
   border: 0px;
@@ -7818,15 +7845,4 @@ footer .jcarousel-skin-default .jcarousel-container-horizontal {
 footer .jcarousel-skin-default .jcarousel-item {
   text-align: center;
   width: 141px !important;
-}
-
-/* Download center */
-.content_cart_summary_label:after {
-    content: ": ";
-}
-.content_cart_summary_count:after {
-    content: ")"
-}
-.content_cart_summary_count:before {
-    content: "("
 }

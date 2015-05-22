@@ -32,6 +32,7 @@ ul.nav li.dropdown ul.dropdown-menu {
 .jcarousel-skin-default .jcarousel-item {
     width: auto;
     height: auto;
+    background:transparent;
 }
 .jcarousel-container-horizontal {
     height: auto !important;
