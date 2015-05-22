@@ -128,3 +128,9 @@ footer.footer.container section.block-menu-block{
 #block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li~li:hover {
     border-left: 1px solid #585759;
 }
+
+/*view episodes - video detail*/
+
+.jcarousel-skin-default .jcarousel-item {
+    background:transparent;
+}
