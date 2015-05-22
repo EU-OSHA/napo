@@ -7080,6 +7080,7 @@ table .checkbox input[type="checkbox"] {
 .alert-danger a {
   color: #843534;
 }
+<<<<<<< HEAD
 .lang-dropdown-select-element.form-control.form-select {
   background-color: #f7e235;
 }
@@ -7817,4 +7818,15 @@ footer .jcarousel-skin-default .jcarousel-container-horizontal {
 footer .jcarousel-skin-default .jcarousel-item {
   text-align: center;
   width: 141px !important;
+}
+
+/* Download center */
+.content_cart_summary_label:after {
+    content: ": ";
+}
+.content_cart_summary_count:after {
+    content: ")"
+}
+.content_cart_summary_count:before {
+    content: "("
 }

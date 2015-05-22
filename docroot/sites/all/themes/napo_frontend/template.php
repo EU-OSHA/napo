@@ -18,17 +18,22 @@ function napo_frontend_back_button(&$vars){
 
   $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
   $breadcrumb = drupal_get_breadcrumb();
+  $options = array(
+    'attributes' => array(
+      'class' => 'back_button',
+    ),
+  );
 
   if (empty($referer) || strpos($referer, $base_url) === FALSE) {
     unset($vars['back_button']);
   }elseif (strpos($referer, 'search') !== FALSE) {
-    $vars['back_button'] = l(t('Back to search results'), $referer);
+    $vars['back_button'] = l(t('Back to search results'), $referer, $options);
   }elseif (is_array($breadcrumb) && $breadcrumb) {
     $page_title = array_pop($breadcrumb);
     $previous_crumb = array_pop($breadcrumb);
-    $vars['back_button'] = l(t('Back to !link', array('!link' => strip_tags($previous_crumb))), $referer);
+    $vars['back_button'] = l(t('Back to !link', array('!link' => strip_tags($previous_crumb))), $referer, $options);
   }else {
-    $vars['back_button'] = l(t('Back'), $referer);
+    $vars['back_button'] = l(t('Back'), $referer, $options);
   }
 }
 
@@ -69,7 +74,11 @@ function napo_frontend_text_resize_block() {
 }
 
 function napo_frontend_preprocess_image_style(&$variables) {
-  if (in_array($variables['style_name'], array('napo_cover', 'napo_thumbnail'))) {
-    $variables['attributes']['class'][] = 'img-responsive';
+  $variables['attributes']['class'][] = 'img-responsive';
+}
+
+function napo_frontend_form_alter(&$form, &$form_state, $form_id) {
+  if($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-napo-films-page-list') {
+    $form['search_api_views_fulltext']['#attributes']['placeholder'] = t('Search');
   }
 }

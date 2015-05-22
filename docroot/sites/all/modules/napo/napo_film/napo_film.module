@@ -6,6 +6,9 @@
 
 include_once 'napo_film.features.inc';
 include_once 'napo_film.formatter.inc';
+include_once 'napo_film.cart.inc';
+
+define('NAPO_FILM_DOWN_CENTER_PATH', 'public://napo_films_download_center');
 
 /**
  * Implements hook_entity_info_alter().
@@ -17,6 +20,10 @@ function napo_film_entity_info_alter(&$entity_info) {
   );
   $entity_info['node']['view modes']['episode_full'] = array(
     'label' => t('Episode full'),
+    'custom settings' => FALSE,
+  );
+  $entity_info['node']['view modes']['episode_popup'] = array(
+    'label' => t('Episode popup'),
     'custom settings' => FALSE,
   );
 }
@@ -31,6 +38,18 @@ function napo_film_menu() {
     'title' => 'Get episode',
     'page callback' => 'napo_film_render_episode',
     'page arguments' => array(3),
+    'access callback' => TRUE,
+  );
+  $items['napo_film/ajax/select_in_cart/%'] = array(
+    'title' => 'Select in cart',
+    'page callback' => 'napo_film_cart_select_in_cart_callback',
+    'page arguments' => array(3),
+    'access callback' => TRUE,
+  );
+  $items['napo_film/set_view_mode/%'] = array(
+    'title' => 'Get episode',
+    'page callback' => 'napo_film_set_view_mode',
+    'page arguments' => array(2),
     'access callback' => TRUE,
     'expanded' => TRUE,
   );
@@ -57,6 +76,110 @@ function napo_film_module_implements_alter(&$implementations, $hook) {
     }
   }
 }
+
+/**
+ * Implements hook_cron().
+ */
+function napo_film_cron() {
+  // Remove old zips created for download center.
+  $zips = file_scan_directory(NAPO_FILM_DOWN_CENTER_PATH, '/.*\.zip$/');
+  if (!empty($zips)) {
+    foreach (array_keys($zips) as $zip) {
+      if (filemtime(drupal_realpath($zip)) < strtotime("-1 week")) {
+        drupal_unlink($zip);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function napo_film_block_info() {
+  // View modes links block.
+  // Add List and Grid links for napo films view.
+  $blocks['napo_films_view_modes'] = array(
+    'info' => t('Napo film view modes'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+
+  $blocks['download_cart_form'] = array(
+    'info' => t('Download center cart form'),
+  );
+
+
+  return $blocks;
+}
+
+
+/**
+ * Implements hook_block_view().
+ */
+function napo_film_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'download_cart_form':
+      $form = drupal_get_form('napo_film_cart_download_form');
+      $header = drupal_render($form);
+      $block['content'] = $header;
+      break;
+
+    case 'napo_films_view_modes':
+      // View modes links block.
+      $block['subject'] = t('Napo film view modes');
+      $attr = array(
+        'class' => array('napo-film-view-mode-links'),
+        'rel' => 'nofollow',
+      );
+      $attr_grid = $attr;
+      // Set active mode.
+      if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'grid') {
+        $attr_grid['class'][] = "active";
+      }
+      else {
+        $attr['class'][] = "active";
+      }
+      // Get query params to preserve them.
+      $query = drupal_get_query_parameters();
+      $block['content']['list']['#markup'] = l(t('List view'), 'napo_film/set_view_mode/list', array('attributes' => $attr, 'query' => $query));
+      $block['content']['grid']['#markup'] = l(t('Grid view'), 'napo_film/set_view_mode/grid', array('attributes' => $attr_grid, 'query' => $query));
+      break;
+  }
+  return $block;
+}
+
+/**
+ * Callback for view modes links.
+ */
+function napo_film_set_view_mode($mode) {
+  // Set the session accordingly.
+  if ($mode == 'list') {
+    $_SESSION['napo_films_view_mode'] = 'list';
+  }
+  else {
+    $_SESSION['napo_films_view_mode'] = 'grid';
+  }
+  $view = views_get_view('napo_films', TRUE);
+  $url = $view->display['page_list']->display_options['path'];
+  $query = drupal_get_query_parameters();
+  // Redirect to view to reload the page.
+  drupal_goto($url, array('query' => $query));
+}
+
+/**
+ * Implements hook_views_pre_view().
+ */
+function napo_film_views_pre_view( view &$view, &$display_id, &$args) {
+  if ($view->name == 'napo_films') {
+    if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'list') {
+      $view->set_display('page_list');
+    }
+    else {
+      $view->set_display('page_grid');
+    }
+  }
+}
+
 
 /**
  * Access callback for Reorder episodes tab.
@@ -86,7 +209,7 @@ function napo_film_render_episode($nid) {
   if (!empty($node)) {
     // Unset title not to show in node_view.
     $node->title = NULL;
-    $render_node = node_view($node, 'episode_full');
+    $render_node = node_view($node, 'episode_popup');
     // Unset the title, use it in template (modal header).
     unset($render_node['title_field']);
     $title = field_get_items('node', $node, 'title_field');
@@ -135,6 +258,19 @@ function napo_film_theme() {
         'node' => array(),
       ),
       'template' => 'theme/napo_film_recommended_films',
+    ),
+    'napo_film_download_cart_complete' => array(
+      'variables' => array(
+        'file_path' => '',
+        'message' => '',
+      ),
+      'template' => 'theme/napo_film_download_cart_complete',
+    ),
+    'napo_film_download_cart_error' => array(
+      'variables' => array(
+        'error' => '',
+      ),
+      'template' => 'theme/napo_film_download_cart_error',
     ),
   );
 }
@@ -211,17 +347,34 @@ function napo_film_entity_view_mode_alter(&$view_mode, $context) {
 function napo_film_node_submit($node, $form, &$form_state) {
   $type = napo_film_video_get_type($node);
   if ($type == 'episode') {
-    // Remove main tag for videos Episodes.
-    if (!empty($node->field_main_tag)) {
-      drupal_set_message('Main Tag removed from Episode (inherited from film)!', 'warning');
-      $node->field_main_tag = array();
+    if (!empty($node->field_napo_film[LANGUAGE_NONE][0]['target_id'])) {
+      $film = node_load($node->field_napo_film[LANGUAGE_NONE][0]['target_id']);
+      $main_tag = field_get_items('node', $film, 'field_main_tag');
+      drupal_set_message('Main Tag synced with episode\'s film!', 'warning');
+      $node->field_main_tag[LANGUAGE_NONE] = $main_tag;
     }
   }
   elseif ($type == 'film') {
     // Remove film reference if video is type Film.
-    if (!empty($node->field_napo_film)) {
-      drupal_set_message('Napo Film removed from Film. Only episodes can have films.', 'warning');
+    if (!empty($node->field_napo_film[LANGUAGE_NONE])) {
+      drupal_set_message('Napo film removed from film. Only episodes can have films.', 'warning');
       $node->field_napo_film = array();
+    }
+  }
+}
+
+/**
+ * Implements hook_node_validate().
+ */
+function napo_film_node_validate($node, $form, &$form_state) {
+  $type = napo_film_video_get_type($node);
+  if ($type == 'film') {
+    // For films. main category is required.
+    if (empty($node->field_main_tag[LANGUAGE_NONE][0]['tid'])) {
+      form_set_error('field_main_tag', t('Main category field is required!'));
+    }
+    if (sizeof($form_state['values']['field_video'][LANGUAGE_NONE])<=1) {
+      form_set_error('field_video',t('Video field is required for Video Type: \'Film Video\'.'));
     }
   }
 }
@@ -253,34 +406,6 @@ function napo_film_preprocess_node(&$vars) {
           }
         }
         // Add share widget ds field.
-        if (in_array('share_widget', $vars['preprocess_fields'])) {
-          // Add services javascript.
-          drupal_add_js(drupal_get_path('module', 'napo_film') . '/js/share_widget.js');
-          // Add facebook app key.
-          $fb_app_key = variable_get('fb_app_key', '');
-          drupal_add_js(array('napo_film' => array('fb_app_key' => $fb_app_key)), 'setting');
-
-          $url = url('/node/' . $node->nid, array('absolute' => TRUE));
-          $title = field_get_items('node', $node, 'title_field');
-          $title = current($title)['value'];
-          $site_name = variable_get('site_name', '');
-          // Construct the tweet.
-          $twitter_text = $title . ' | ' . $site_name;
-          $tweet_url = url('https://twitter.com/intent/tweet', array(
-            'query' => array(
-              'original_referer' => $url,
-              'text' => $twitter_text,
-              'url' => shorten_url($url),
-            ),
-          ));
-          $vars['share_widget'] = theme('napo_film_share_widget', array(
-            'url' => $url,
-            'tweet_url' => $tweet_url,
-            'node' => $node,
-            )
-          );
-        }
-        // Add share widget ds field.
         if (in_array('download_video_form', $vars['preprocess_fields'])) {
           $form = drupal_get_form('napo_film_episode_download_form', $node, $view_mode);
           $vars['download_video_form'] = drupal_render($form);
@@ -301,6 +426,9 @@ function napo_film_preprocess_node(&$vars) {
  * Get a number of films with the same field_main_tags or field_tags
  */
 function napo_film_recommended_films(&$vars) {
+  $term = taxonomy_get_term_by_name('Film video');
+  $term = !empty($term)? current($term): '';
+
   // Get 3 related films by field_main_tag
   $tags_tids = array();
   if (!empty($vars['field_main_tag'])) {
@@ -319,7 +447,8 @@ function napo_film_recommended_films(&$vars) {
     $query->entityCondition('entity_type', 'node')
       ->entityCondition('bundle', 'napo_video')
       ->entityCondition('entity_id', $excluded_nids, 'NOT IN')
-      ->fieldCondition('field_main_tag', 'tid', $tids, 'IN');
+      ->fieldCondition('field_main_tag', 'tid', $tids, 'IN')
+      ->fieldCondition('field_video_type', 'tid', $term->tid, '=');
       // Publication date is not mandatory and the empty values are excluded from query
       //->fieldOrderBy('field_publication_date', 'value', 'DESC');
     $result = $query->execute();
@@ -355,8 +484,10 @@ function napo_film_recommended_films(&$vars) {
         ->entityCondition('bundle', 'napo_video')
         ->entityCondition('entity_id', $excluded_nids, 'NOT IN')
         ->fieldCondition('field_main_tag', 'tid', $tids, 'NOT IN')
-        ->fieldCondition('field_tags', 'tid', $tids, 'IN');
+        ->fieldCondition('field_tags', 'tid', $tids, 'IN')
+        ->fieldCondition('field_video_type', 'tid', $term->tid, '=');
         //->fieldOrderBy('field_publication_date', 'value', 'DESC');
+
       $result = $query->execute();
       $count = 0;
       if (!empty($result)) {
@@ -384,7 +515,7 @@ function napo_film_recommended_films(&$vars) {
 /**
  * Function to get combined tags as field renderable array.
  */
-function napo_film_combined_tags_view_field($node) {
+function napo_film_combined_tags_view_field($node, $settings = array()) {
   $combined = array();
   // Merge the tags from both fields.
   $main_tag = field_get_items('node', $node, 'field_main_tag');
@@ -404,6 +535,7 @@ function napo_film_combined_tags_view_field($node) {
       'taxonomy_term_separator' => ' | ',
     ),
   );
+  $display_settings = array_merge($display_settings, $settings);
   // Use field_tags to get the rendered combined fields.
   // Overwrite data from field_tags to be used in field_view_field.
   $field_tags = $node->field_tags;
@@ -424,6 +556,13 @@ function napo_film_forms($form_id) {
     return array(
       $form_id => array(
         'callback' => 'napo_film_episode_download_form',
+      ),
+    );
+  }
+  if (preg_match('/^napo_film_cart_add_mime_form_\d+$/', $form_id)) {
+    return array(
+      $form_id => array(
+        'callback' => 'napo_film_cart_add_mime_form',
       ),
     );
   }
@@ -449,16 +588,7 @@ function napo_film_episode_download_form($form, &$form_state, $node, $view_mode 
       'style' => 'display: none;',
     ),
   );
-  if ($view_mode == 'episode_full') {
-    $form['download_format']['#type'] = 'select';
-    $form['download_format']['#title'] = t('Download this film as');
-    $form['download_format']['#default_value'] = 'video/mp4';
-    unset($form['download_format']['#attributes']['onchange']);
-    unset($form['download']['#attributes']['style']);
-  }
-  else {
-    $form['#prefix'] .= '<span class="napo-film-video-download-form-title"><span class="glyphicon glyphicon-download-alt"></span></span>';
-  }
+  $form['#prefix'] .= '<span class="napo-film-video-download-form-title"><span class="glyphicon glyphicon-download-alt"></span></span>';
 
   return $form;
 }
@@ -511,10 +641,13 @@ function napo_film_get_film_file_by_mimetype($node, $mime) {
  */
 function napo_film_get_films_formats_as_options($node) {
   $items = field_get_items('node', $node, 'field_video');
+  $mimes = napo_film_get_video_mimes();
   $options = array();
   foreach ($items as $item) {
     $options[$item['filemime']] = napo_film_get_type_label_by_mime($item['filemime']);
   }
+  // Sert options with default mimes order.
+  $options = array_intersect_key($mimes, $options);
   return $options;
 }
 
@@ -522,13 +655,7 @@ function napo_film_get_films_formats_as_options($node) {
  * Get labels for available video formats.
  */
 function napo_film_get_type_label_by_mime($mime) {
-  $types = array(
-    'video/x-ms-wmv' => 'WMV',
-    'video/x-msvideo' => 'AVI',
-    'video/ogg' => 'OGV',
-    'video/webm' => 'WEBM',
-    'video/mp4' => 'MP4',
-  );
+  $types = napo_film_get_video_mimes();
   if (!empty($types[$mime])) {
     return $types[$mime];
   }
@@ -537,15 +664,25 @@ function napo_film_get_type_label_by_mime($mime) {
   }
 }
 
+function napo_film_get_video_mimes() {
+  return array(
+    'video/mp4' => 'MP4',
+    'video/x-msvideo' => 'AVI',
+    'video/x-ms-wmv' => 'WMV',
+    'video/ogg' => 'OGV',
+    'video/webm' => 'WEBM',
+  );
+}
+
 function napo_film_preprocess_html(&$vars) {
   // For napo-films, the page is a view and the text is a nodeblock
   // Use node title as the view page title.
   // Using metatag module, the drupal_set_title is not working.
   $view = views_get_page_view();
-  if (!empty($view) && $view->name == 'napos_films') {
+  if (!empty($view) && $view->name == 'napo_films') {
     $node = node_load(23);
     $wrapper = entity_metadata_wrapper('node', $node);
-    $vars['head_title'] = $wrapper->label();
+    $vars['head_title_array']['title'] = $wrapper->label();
+    $vars['head_title'] = $wrapper->label() . ' ' . $vars['head_title'];
   }
 }
-

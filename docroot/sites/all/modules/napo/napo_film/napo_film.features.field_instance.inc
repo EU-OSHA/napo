@@ -26,9 +26,26 @@ function napo_film_field_default_field_instances() {
       ),
       'episode_full' => array(
         'label' => 'above',
+        'module' => 'smart_trim',
+        'settings' => array(
+          'more_link' => FALSE,
+          'more_text' => 'Read more',
+          'summary_handler' => 'full',
+          'trim_length' => 300,
+          'trim_link' => FALSE,
+          'trim_options' => array(),
+          'trim_preserve_tags' => '',
+          'trim_suffix' => '...',
+          'trim_type' => 'chars',
+        ),
+        'type' => 'smart_trim_format',
+        'weight' => 6,
+      ),
+      'episode_popup' => array(
+        'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 23,
+        'weight' => 22,
       ),
       'film_full' => array(
         'label' => 'hidden',
@@ -57,14 +74,16 @@ function napo_film_field_default_field_instances() {
           'more_text' => 'Read more',
           'summary_handler' => 'full',
           'trim_length' => 50,
+          'trim_link' => FALSE,
           'trim_options' => array(
             'text' => 0,
           ),
+          'trim_preserve_tags' => '',
           'trim_suffix' => '...',
           'trim_type' => 'chars',
         ),
         'type' => 'smart_trim_format',
-        'weight' => 1,
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -119,6 +138,12 @@ function napo_film_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 16,
+      ),
+      'episode_popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 15,
       ),
       'film_full' => array(
         'label' => 'above',
@@ -188,6 +213,12 @@ function napo_film_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 20,
       ),
+      'episode_popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 19,
+      ),
       'film_full' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -214,7 +245,7 @@ function napo_film_field_default_field_instances() {
           'image_style' => 'medium',
         ),
         'type' => 'image',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -284,6 +315,12 @@ function napo_film_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 18,
+      ),
+      'episode_popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 17,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -355,7 +392,13 @@ function napo_film_field_default_field_instances() {
           'link' => 1,
         ),
         'type' => 'entityreference_label',
-        'weight' => 2,
+        'weight' => 5,
+      ),
+      'episode_popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 14,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -424,6 +467,12 @@ function napo_film_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 17,
+      ),
+      'episode_popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 16,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -503,6 +552,12 @@ function napo_film_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 21,
       ),
+      'episode_popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 20,
+      ),
       'film_full' => array(
         'label' => 'inline',
         'settings' => array(),
@@ -537,7 +592,7 @@ function napo_film_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_tags',
     'label' => 'Categories',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
@@ -568,6 +623,12 @@ function napo_film_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 22,
+      ),
+      'episode_popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 21,
       ),
       'film_full' => array(
         'label' => 'hidden',
@@ -656,6 +717,12 @@ function napo_film_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 19,
+      ),
+      'episode_popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 18,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -746,6 +813,22 @@ function napo_film_field_default_field_instances() {
         'type' => 'youtube_video',
         'weight' => 1,
       ),
+      'episode_popup' => array(
+        'label' => 'hidden',
+        'module' => 'youtube',
+        'settings' => array(
+          'youtube_autohide' => 0,
+          'youtube_autoplay' => 0,
+          'youtube_controls' => 0,
+          'youtube_height' => '',
+          'youtube_iv_load_policy' => 1,
+          'youtube_showinfo' => 1,
+          'youtube_size' => 'responsive',
+          'youtube_width' => '',
+        ),
+        'type' => 'youtube_video',
+        'weight' => 1,
+      ),
       'film_full' => array(
         'label' => 'hidden',
         'module' => 'youtube',
@@ -810,7 +893,7 @@ function napo_film_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_youtube',
     'label' => 'Youtube',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
@@ -853,6 +936,17 @@ function napo_film_field_default_field_instances() {
         'type' => 'title_linked',
         'weight' => 0,
       ),
+      'episode_popup' => array(
+        'label' => 'hidden',
+        'module' => 'title',
+        'settings' => array(
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => 'h1',
+        ),
+        'type' => 'title_linked',
+        'weight' => 0,
+      ),
       'film_full' => array(
         'label' => 'hidden',
         'module' => 'title',
@@ -878,9 +972,14 @@ function napo_film_field_default_field_instances() {
       ),
       'recommended_films' => array(
         'label' => 'hidden',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
+        'module' => 'title',
+        'settings' => array(
+          'title_class' => '',
+          'title_link' => 'content',
+          'title_style' => 'h5',
+        ),
+        'type' => 'title_linked',
+        'weight' => 0,
       ),
       'teaser' => array(
         'label' => 'hidden',

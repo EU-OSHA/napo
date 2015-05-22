@@ -1,0 +1,13 @@
+diff --git a/docroot/sites/all/modules/contrib/file_entity/file_entity.field.inc b/docroot/sites/all/modules/contrib/file_entity/file_entity.field.inc
+index f0b3e10..673ce03 100644
+--- a/docroot/sites/all/modules/contrib/file_entity/file_entity.field.inc
++++ b/docroot/sites/all/modules/contrib/file_entity/file_entity.field.inc
+@@ -320,7 +320,7 @@ function file_entity_field_formatter_view($entity_type, $entity, $field, $instan
+         $element[$delta] = array(
+           '#theme' => 'file_entity_download_link',
+           '#file' => $file,
+-          '#text' => $settings['text'],
++          '#text' => t($settings['text']),
+         );
+       }
+     }

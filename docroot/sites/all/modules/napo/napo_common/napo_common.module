@@ -129,6 +129,13 @@ function napo_common_block_info() {
     'info' => t('Page not found'),
   );
 
+  $blocks['napo_print_friendly'] = array(
+    'info' => t('Print friendly'),
+    'status' => 1,
+    'visibility' => BLOCK_VISIBILITY_NOTLISTED,
+    'region' => 'header_top_bar',
+  );
+
   return $blocks;
 }
 
@@ -207,6 +214,11 @@ function napo_common_block_view($delta = '') {
 
     case 'page_not_found' :
       $block['content'] = napo_common_page_not_found_content();
+      break;
+
+    case 'napo_print_friendly' :
+      $block['subject'] = "<none>";
+      $block['content'] = theme('napo_print_friendly_block');
       break;
   }
 
@@ -398,6 +410,35 @@ function napo_common_page_not_found_content() {
 }
 
 /**
+ * Implements hook_theme().
+ */
+function napo_common_theme() {
+  return array(
+    'napo_print_friendly_block' => array(),
+  );
+}
+
+// Create a theme function that can be overridden by other theme developers.
+function theme_napo_print_friendly_block() {
+  // Add js and css
+  $content = array(
+    '#attached' => array(
+      'js' => array(
+        array(
+          'data' => drupal_get_path('module', 'napo_common') . '/js/napo_print_friendly.js',
+          'type' => 'file',
+        )
+      ),
+    ),
+  );
+
+  $content['#markup'] = t('Print friendly:');
+  $content['#markup'] .= '&nbsp;<a href="javascript:if(window.print)window.print();"><span class="glyphicon glyphicon-print"></span></a>';
+
+  return render($content);
+}
+
+/**
  * Implements hook_node_insert().
  *
  * {@inheritdoc}
@@ -436,4 +477,45 @@ function napo_common_get_users_by_role ($role_name){
   $users = user_load_multiple($uids);
 
   return $users;
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function napo_common_preprocess_node(&$vars) {
+  $node = $vars['node'];
+  // Add share widget ds field.
+  if (!empty($vars['preprocess_fields'])) {
+    if (in_array('share_widget', $vars['preprocess_fields'])) {
+      $vars['share_widget'] = napo_common_get_share_widget($node);
+    }
+  }
+}
+
+function napo_common_get_share_widget($node) {
+  // Add services javascript.
+  drupal_add_js(drupal_get_path('module', 'napo_common') . '/js/share_widget.js');
+  // Add facebook app key.
+  $fb_app_key = variable_get('fb_app_key', '');
+  drupal_add_js(array('napo_common' => array('fb_app_key' => $fb_app_key)), 'setting');
+
+  $url = url('/node/' . $node->nid, array('absolute' => TRUE));
+  $title = field_get_items('node', $node, 'title_field');
+  $title = current($title)['value'];
+  $site_name = variable_get('site_name', '');
+  // Construct the tweet.
+  $twitter_text = $title . ' | ' . $site_name;
+  $tweet_url = url('https://twitter.com/intent/tweet', array(
+    'query' => array(
+      'original_referer' => $url,
+      'text' => $twitter_text,
+      'url' => shorten_url($url),
+    ),
+  ));
+  return theme('napo_film_share_widget', array(
+      'url' => $url,
+      'tweet_url' => $tweet_url,
+      'node' => $node,
+    )
+  );
 }

@@ -5,3 +5,166 @@
  */
 
 include_once 'napo_lesson.features.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function napo_lesson_menu() {
+  $items = array();
+  $items['using-napo/napo-for-teachers/download_video/%'] = array(
+    'title' => 'Download lesson video',
+    'page callback' => 'napo_lesson_download_video',
+    'page arguments' => array(3),
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function napo_lesson_theme() {
+  return array(
+    'right_menu' => array(
+      'variables' => array(
+        'node' => array(),
+      ),
+      'template' => 'theme/right_menu',
+    ),
+    'top_menu' => array(
+      'variables' => array(
+        'node' => array(),
+        'lessons' => array(),
+      ),
+      'template' => 'theme/top_menu',
+    ),
+    'napo_lesson_first_lesson_link' => array(
+      'variables' => array('entity' => NULL, 'file' => NULL, 'delta' => NULL),
+    ),
+    'download_whole_lesson' => array(
+      'variables' => array(
+        'video_id' => array(),
+      ),
+      'template' => 'theme/download_whole_lesson',
+    ),
+  );
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function napo_lesson_preprocess_node(&$vars) {
+  $node = $vars['node'];
+
+  if($node->type == 'lesson') {
+    if (!empty($vars['preprocess_fields'])) {
+      // Right Menu
+      if (in_array('right_menu', $vars['preprocess_fields'])) {
+        drupal_add_js(drupal_get_path('module', 'napo_lesson') . '/js/right_menu.js');
+        $vars['right_menu'] = theme('right_menu', array());
+      }
+      // Top Menu
+      if (in_array('top_menu', $vars['preprocess_fields'])) {
+        drupal_add_js(drupal_get_path('module', 'napo_lesson') . '/js/top_menu.js');
+        $lessons = views_get_view_result('lessons', 'block_1');
+        $vars['top_menu'] = theme('top_menu', array(
+          'node' => $node,
+          'lessons' => $lessons,
+        ));
+      }
+      // Download whole lesson
+      if (in_array('download_whole_lesson', $vars['preprocess_fields'])
+       && !empty($vars['field_lesson_video'][0]['target_id'])) {
+        $vars['download_whole_lesson'] = theme('download_whole_lesson', array(
+          'video_id' => $vars['field_lesson_video'][0]['target_id'],
+        ));
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_js_alter().
+ *
+ * Remove accordion from content
+ */
+function napo_lesson_js_alter(&$javascript) {
+  if(arg(0) == 'node') {
+    $node = node_load(arg(1));
+    if($node && $node->type == 'lesson') {
+      unset($javascript[drupal_get_path('module', 'wysiwyg_accordion').'/js/wysiwyg_accordion.js']);
+    }
+  }
+}
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function napo_lesson_field_formatter_info() {
+  $info = array(
+    'first_lesson_link' => array(
+      'label' => t('First Lesson Link'),
+      'field types' => array('text'),
+      'description' => t('Get the link of the first lesson in the lesson kit'),
+    ),
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function napo_lesson_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+  switch ($display['type']) {
+    case 'first_lesson_link':
+      foreach ($items as $delta => $item) {
+        $element[$delta] = array(
+          '#theme' => 'napo_lesson_first_lesson_link',
+          '#entity' => $entity,
+          '#file' => $item,
+          '#delta' => $delta,
+        );
+      }
+      break;
+  }
+  return $element;
+}
+
+/*
+* Formats multilanguage file for download
+*/
+function theme_napo_lesson_first_lesson_link($element) {
+  $entity = $element['entity'];
+  $lesson = views_get_view_result('lessons', 'block_2', $entity->nid);
+
+  $output = l($entity->title, 'node/'.$lesson[0]->nid);
+  return $output;
+}
+
+/**
+ * Callback for Download whole lesson button.
+ */
+function napo_lesson_download_video($nid) {
+  $node = node_load($nid);
+  if (!empty($node)) {
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $file = $wrapper->field_video->value();
+    if (!empty($file)) {
+      $file = current($file);
+      $headers = array(
+        'Content-Type'              => $file['filemime'],
+        'Content-Disposition'       => 'attachment; filename="' . drupal_basename($file['uri']) . '"',
+        'Content-Length'            => $file['filesize'],
+        'Content-Transfer-Encoding' => 'binary',
+        'Pragma'                    => 'no-cache',
+        'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
+        'Expires'                   => '0',
+        'Accept-Ranges'             => 'bytes',
+      );
+      file_transfer($file['uri'], $headers);
+    }
+  }
+  drupal_set_message(t("There was an error downloading the lesson's video!"), 'error');
+  drupal_goto('/');
+}

@@ -22,7 +22,7 @@ function napo_lesson_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 7,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -73,7 +73,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 18,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -115,9 +115,11 @@ function napo_lesson_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'file',
-        'settings' => array(),
-        'type' => 'file_default',
+        'module' => 'file_entity',
+        'settings' => array(
+          'text' => 'Detailed lesson plan',
+        ),
+        'type' => 'file_download_link',
         'weight' => 3,
       ),
       'osha_slideshow' => array(
@@ -168,10 +170,11 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'links' => 0,
+          'view_mode' => 'teaser',
         ),
-        'type' => 'entityreference_label',
-        'weight' => 1,
+        'type' => 'entityreference_entity_view',
+        'weight' => 6,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -223,7 +226,7 @@ function napo_lesson_field_default_field_instances() {
           'view_mode' => 'teaser',
         ),
         'type' => 'entityreference_entity_view',
-        'weight' => 4,
+        'weight' => 8,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -343,10 +346,8 @@ function napo_lesson_field_default_field_instances() {
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(
-          'trim_length' => 600,
-        ),
-        'type' => 'text_summary_or_trimmed',
+        'settings' => array(),
+        'type' => 'text_default',
         'weight' => 1,
       ),
     ),
@@ -492,13 +493,9 @@ function napo_lesson_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'title',
-        'settings' => array(
-          'title_class' => '',
-          'title_link' => 'content',
-          'title_style' => '_none',
-        ),
-        'type' => 'title_linked',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_plain',
         'weight' => 0,
       ),
     ),
@@ -878,7 +875,9 @@ function napo_lesson_field_default_field_instances() {
           'more_text' => 'Read more',
           'summary_handler' => 'full',
           'trim_length' => 300,
+          'trim_link' => FALSE,
           'trim_options' => array(),
+          'trim_preserve_tags' => '',
           'trim_suffix' => '...',
           'trim_type' => 'chars',
         ),

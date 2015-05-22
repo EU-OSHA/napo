@@ -80,8 +80,53 @@ ul.nav li.dropdown ul.dropdown-menu {
     background:url('../images/background-slider-home.png');
 }
 
+
 .slider .frontpage-video-title h3 a{
     color:#fff;
+
+/* Share widget */
+.napo-share-widget {
+    position: relative;
+    display: inline;
+    color: #fff;
+    background: #000099;
+}
+.napo-share-widget .napo-share-widget-title {
+    cursor: pointer;
+}
+.napo-share-widget > ul {
+    display: none;
+    background: #000099;
+}
+.napo-share-widget:hover > ul {
+    position: absolute;
+    display: block;
+    z-index: 1;
+}
+.napo-share-widget:hover > ul >li {
+    cursor: pointer;
+}
+
+
+
+/* Video Gallery Detail */
+.node-napo-video.view-mode-full .field-name-film.field-type-ds {
+    background: #ddd;
+}
+
+.node-napo-video.view-mode-full .napo-share-widget {
+    float: right;
+    position: relative;
+    margin-top: -20px;
+    background: #000099;
+}
+
+.napo-film-video-download-form {
+    float: right;
+    position: relative;
+    max-width: 50px;
+    margin-top: -20px;
+    margin-right: 100px;
 }
 
 .slider .frontpage-video-title p{
@@ -133,4 +178,143 @@ footer.footer.container section.block-menu-block{
 
 .jcarousel-skin-default .jcarousel-item {
     background:transparent;
+}
+
+/* Views Slideshow */
+
+.view .skin-default {
+    margin: 0 auto;
+    position: relative;
+    width: 1024px;
+}
+
+.view .skin-default .views-slideshow-controls-text {
+    display: none;
+}
+
+.view .skin-default:hover .views-slideshow-controls-text {
+    display: block;
+}
+
+.view-napo-and-friends .views-slideshow-pager-field-item.active {
+    background-position: 0 -22px;
+    background-color: #000066;
+}
+
+.view-napo-and-friends .views-slideshow-cycle-main-frame-row-item {
+    background-color: #f5f5f5;
+    padding: 30px;
+}
+
+.view-napo-and-friends .views-slideshow-cycle-main-frame-row-item .views-field .views-field-title-field {
+    float: left;
+}
+
+.view-napo-and-friends .views-slideshow-cycle-main-frame-row-item .views-field .views-field-body {
+    float: left;
+}
+
+.view-napo-and-friends .views-slideshow-controls-text span {
+    position: absolute;
+    top: 300px;
+    z-index: 900;
+}
+
+.view-napo-and-friends .views-slideshow-controls-text-previous {
+    left: 15px; /* LTR */
+}
+
+.view-napo-and-friends .views-slideshow-controls-text-pause {
+    display: none;
+}
+
+.view-napo-and-friends .views-slideshow-controls-text-next {
+    right: 15px; /* LTR */
+}
+
+.view-napo-and-friends .views-slideshow-controls-text-previous,
+.view-napo-and-friends .views-slideshow-controls-text-next {
+    background: url("../images/arrows.png") no-repeat;
+    background-color: red;
+    height: 30px;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 30px;
+}
+
+.view-napo-and-friends .views-slideshow-controls-text-next {
+    background-position: -30px 0; /* LTR */
+}
+
+.view-napo-and-friends .views-slideshow-controls-top .views-slideshow-pager-field-item {
+    float: left;
+    margin: 25px 10px 25px 0;
+}
+
+.view-napo-and-friends .views-slideshow-pager-fields {
+    /*line-height: 1;*/
+    /*margin-top: 10px;*/
+    text-align: center;
+    /*background-color: red;*/
+}
+
+.view-napo-and-friends .views-slideshow-pager-field-item {
+    /*cursor: pointer;*/
+    /*display: inline-block;*/
+    /*height: 250px;*/
+    /*width: 250px;*/
+}
+
+/* Lesson menu begin */
+ul.nav-right-menu{
+    width: 300px;
+    margin-top: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+}
+ul.nav-right-menu li{
+    margin: 0;
+    border-top: 1px solid #ddd;
+}
+ul.nav-right-menu li:first-child{
+    border-top: none;
+}
+ul.nav-right-menu li a{
+    margin: 0;
+    padding: 8px 16px;
+    border-radius: 0;
+}
+ul.nav-right-menu li.active a, ul.nav-right-menu li.active a:hover{
+    color: #fff;
+    background: #0088cc;
+    border: 1px solid #0088cc;
+}
+ul.nav-right-menu li:first-child a{
+    border-radius: 4px 4px 0 0;
+}
+ul.nav-right-menu li:last-child a{
+    border-radius: 0 0 4px 4px;
+}
+ul.nav-right-menu.affix{
+    top: 30px; /* Set the top position of pinned element */
+}
+.node-lesson .group-right {
+    float: right;
+}
+/* Lesson menu end */
+
+/* Download center */
+.download-center-waiting {
+    display: none;
+}
+.download-center-submit-all.progress-disabled + .download-center-waiting,
+.download-center-submit-selected.progress-disabled + .download-center-submit-all + .download-center-waiting {
+    display: block;
+}
+
+/* Download lesson */
+#lesson-left-menu-wrapper {
+    position: relative !important;
+    top: 0 !important;
 }

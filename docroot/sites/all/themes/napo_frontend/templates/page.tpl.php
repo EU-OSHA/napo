@@ -190,3 +190,9 @@
     <?php print render($page['footer_menu']); ?>
   </div>
 </footer>
+
+<?php if (!empty($page['contact_form_widget'])): ?>
+  <div class="contact-form-widget-container">
+    <?php print render($page['contact_form_widget']); ?>
+  </div>
+<?php endif; ?>

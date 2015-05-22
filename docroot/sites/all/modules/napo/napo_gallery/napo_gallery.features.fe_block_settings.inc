@@ -29,7 +29,7 @@ function napo_gallery_default_fe_block_settings() {
         'region' => 'content',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -39,
+        'weight' => -30,
       ),
       'osha_admin' => array(
         'region' => '',
