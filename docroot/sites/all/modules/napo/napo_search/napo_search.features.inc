@@ -51,6 +51,7 @@ function napo_search_default_search_api_index() {
         "comment_count" : { "type" : "integer" },
         "created" : { "type" : "date" },
         "field_archived" : { "type" : "boolean" },
+        "field_combined_tags" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_expiration_date" : { "type" : "date" },
         "field_film_video" : { "type" : "integer", "entity_type" : "node" },
         "field_lesson_toolkit" : { "type" : "integer", "entity_type" : "node" },
