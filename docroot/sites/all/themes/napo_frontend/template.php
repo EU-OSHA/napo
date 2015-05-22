@@ -82,3 +82,14 @@ function napo_frontend_form_alter(&$form, &$form_state, $form_id) {
     $form['search_api_views_fulltext']['#attributes']['placeholder'] = t('Search');
   }
 }
+
+function napo_frontend_napo_film_tag_facet_link($variables) {
+  $icon = '<span class="glyphicon glyphicon-remove"></span>';
+  $options = array(
+    'attributes' => array(
+      'class' => array('napo-film-search-tag-filter'),
+    ),
+    'html' => TRUE,
+  );
+  return l($icon . $variables['name'], $variables['link'], $options);
+}
