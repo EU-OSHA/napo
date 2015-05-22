@@ -22,7 +22,7 @@ function napo_film_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 9,
+        'weight' => 8,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -45,7 +45,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 22,
+        'weight' => 13,
       ),
       'film_full' => array(
         'label' => 'hidden',
@@ -131,7 +131,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 27,
+        'weight' => 26,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -143,7 +143,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 15,
+        'weight' => 16,
       ),
       'film_full' => array(
         'label' => 'above',
@@ -222,7 +222,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 15,
       ),
       'film_main_video_teaser' => array(
         'label' => 'above',
@@ -272,7 +272,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 25,
+        'weight' => 24,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -284,7 +284,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 20,
       ),
       'film_full' => array(
         'label' => 'hidden',
@@ -375,7 +375,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 19,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -387,7 +387,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 18,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -450,7 +450,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 22,
+        'weight' => 21,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -465,7 +465,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 14,
+        'weight' => 12,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -527,7 +527,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 23,
+        'weight' => 22,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -539,7 +539,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 17,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -611,7 +611,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 20,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -623,7 +623,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 21,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -683,7 +683,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 26,
+        'weight' => 25,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -695,7 +695,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 22,
       ),
       'film_full' => array(
         'label' => 'hidden',
@@ -777,7 +777,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'inline',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 24,
+        'weight' => 23,
       ),
       'episode_full' => array(
         'label' => 'above',
@@ -789,7 +789,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 19,
       ),
       'film_full' => array(
         'label' => 'inline',
@@ -894,7 +894,7 @@ function napo_film_field_default_field_instances() {
           'youtube_width' => '',
         ),
         'type' => 'youtube_video',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'film_full' => array(
         'label' => 'hidden',
@@ -1005,14 +1005,9 @@ function napo_film_field_default_field_instances() {
       ),
       'episode_popup' => array(
         'label' => 'hidden',
-        'module' => 'title',
-        'settings' => array(
-          'title_class' => '',
-          'title_link' => '',
-          'title_style' => 'h1',
-        ),
-        'type' => 'title_linked',
-        'weight' => 0,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 14,
       ),
       'film_full' => array(
         'label' => 'hidden',

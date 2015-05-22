@@ -17,13 +17,13 @@ function napo_film_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'napo_video';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
-    'back_button' => array(
-      'weight' => '0',
+    'share_widget' => array(
+      'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'share_widget' => array(
-      'weight' => '5',
+    'back_button' => array(
+      'weight' => '0',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -49,7 +49,7 @@ function napo_film_ds_field_settings_info() {
       ),
     ),
     'recommended_films' => array(
-      'weight' => '10',
+      'weight' => '9',
       'label' => 'hidden',
       'format' => 'default',
     ),
