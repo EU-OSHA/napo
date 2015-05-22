@@ -1317,17 +1317,22 @@ print t(\'Film @no\', array(\'@no\' => sprintf(\'%02d\', $key + 1)));
     'image_style' => 'large',
     'image_link' => 'content',
   );
-  /* Field: Global: View result counter */
-  $handler->display->display_options['fields']['counter']['id'] = 'counter';
-  $handler->display->display_options['fields']['counter']['table'] = 'views';
-  $handler->display->display_options['fields']['counter']['field'] = 'counter';
-  $handler->display->display_options['fields']['counter']['label'] = '';
-  $handler->display->display_options['fields']['counter']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['counter']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['counter']['alter']['text'] = 'Episode [counter]';
-  $handler->display->display_options['fields']['counter']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['counter']['counter_start'] = '1';
-  $handler->display->display_options['fields']['counter']['reverse'] = 0;
+  /* Field: Global: PHP */
+  $handler->display->display_options['fields']['php']['id'] = 'php';
+  $handler->display->display_options['fields']['php']['table'] = 'views';
+  $handler->display->display_options['fields']['php']['field'] = 'php';
+  $handler->display->display_options['fields']['php']['label'] = '';
+  $handler->display->display_options['fields']['php']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['php']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
+  $handler->display->display_options['fields']['php']['php_output'] = '<?php
+$nid = $data->nid;
+$nids = array_map(function ($result) { return $result->nid; }, $view->result);
+$key = array_search($nid, $nids);
+print t(\'Episode @no\', array(\'@no\' => sprintf(\'%02d\', $key + 1)));
+?>';
+  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
+  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
@@ -1335,7 +1340,7 @@ print t(\'Film @no\', array(\'@no\' => sprintf(\'%02d\', $key + 1)));
   $handler->display->display_options['fields']['title_field']['label'] = '';
   $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title_field']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['text'] = '[counter]: [title_field]';
+  $handler->display->display_options['fields']['title_field']['alter']['text'] = '[php]: [title_field]';
   $handler->display->display_options['fields']['title_field']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['title_field']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
@@ -1468,8 +1473,7 @@ print t(\'Film @no\', array(\'@no\' => sprintf(\'%02d\', $key + 1)));
     t('<span class="glyphicon glyphicon-play-circle"></span>'),
     t('All'),
     t('Page'),
-    t('Episode [counter]'),
-    t('[counter]: [title_field]'),
+    t('[php]: [title_field]'),
     t('[field_publication_date]&nbsp;&nbsp;[combined_tags]'),
     t('<h3>[title_field]</h3>
 [field_publication_date]
