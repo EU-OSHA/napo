@@ -894,6 +894,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['combined_tags']['label'] = '';
   $handler->display->display_options['fields']['combined_tags']['exclude'] = TRUE;
   $handler->display->display_options['fields']['combined_tags']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['combined_tags']['search_link'] = 'napos-films/films';
   /* Field: Napo film: Download video */
   $handler->display->display_options['fields']['download_video']['id'] = 'download_video';
   $handler->display->display_options['fields']['download_video']['table'] = 'napo_film';
@@ -1035,13 +1036,6 @@ function napo_film_views_default_views() {
       'text' => 0,
     ),
   );
-  /* Field: Napo film: Combined tags */
-  $handler->display->display_options['fields']['combined_tags']['id'] = 'combined_tags';
-  $handler->display->display_options['fields']['combined_tags']['table'] = 'napo_film';
-  $handler->display->display_options['fields']['combined_tags']['field'] = 'combined_tags';
-  $handler->display->display_options['fields']['combined_tags']['label'] = '';
-  $handler->display->display_options['fields']['combined_tags']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['combined_tags']['element_label_colon'] = FALSE;
   /* Field: Indexed Multilingual Node: URL */
   $handler->display->display_options['fields']['url']['id'] = 'url';
   $handler->display->display_options['fields']['url']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -1056,6 +1050,14 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['url']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['url']['display_as_link'] = FALSE;
   $handler->display->display_options['fields']['url']['link_to_entity'] = 0;
+  /* Field: Napo film: Combined tags */
+  $handler->display->display_options['fields']['combined_tags']['id'] = 'combined_tags';
+  $handler->display->display_options['fields']['combined_tags']['table'] = 'napo_film';
+  $handler->display->display_options['fields']['combined_tags']['field'] = 'combined_tags';
+  $handler->display->display_options['fields']['combined_tags']['label'] = '';
+  $handler->display->display_options['fields']['combined_tags']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['combined_tags']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['combined_tags']['search_link'] = 'napos-films/films';
   /* Field: Napo film: View episodes link */
   $handler->display->display_options['fields']['view_episodes_link']['id'] = 'view_episodes_link';
   $handler->display->display_options['fields']['view_episodes_link']['table'] = 'napo_film';
@@ -1351,16 +1353,6 @@ function napo_film_views_default_views() {
     'multiple_to' => '',
     'osha_date_theme' => '',
   );
-  /* Field: Napo film: Combined tags */
-  $handler->display->display_options['fields']['combined_tags']['id'] = 'combined_tags';
-  $handler->display->display_options['fields']['combined_tags']['table'] = 'napo_film';
-  $handler->display->display_options['fields']['combined_tags']['field'] = 'combined_tags';
-  $handler->display->display_options['fields']['combined_tags']['label'] = '';
-  $handler->display->display_options['fields']['combined_tags']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['combined_tags']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['combined_tags']['alter']['text'] = '[field_publication_date]&nbsp;&nbsp;[combined_tags]';
-  $handler->display->display_options['fields']['combined_tags']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['combined_tags']['element_default_classes'] = FALSE;
   /* Field: Napo film: Download video */
   $handler->display->display_options['fields']['download_video']['id'] = 'download_video';
   $handler->display->display_options['fields']['download_video']['table'] = 'napo_film';
@@ -1388,6 +1380,19 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['content_add_to_cart']['exclude'] = TRUE;
   $handler->display->display_options['fields']['content_add_to_cart']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['content_add_to_cart']['contant_add_to_cart_button_label'] = 'Add to download center';
+  /* Field: Content: Combined tags */
+  $handler->display->display_options['fields']['field_combined_tags']['id'] = 'field_combined_tags';
+  $handler->display->display_options['fields']['field_combined_tags']['table'] = 'field_data_field_combined_tags';
+  $handler->display->display_options['fields']['field_combined_tags']['field'] = 'field_combined_tags';
+  $handler->display->display_options['fields']['field_combined_tags']['label'] = '';
+  $handler->display->display_options['fields']['field_combined_tags']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_combined_tags']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_combined_tags']['type'] = 'napo_film_taxonomy_term_facet_link';
+  $handler->display->display_options['fields']['field_combined_tags']['settings'] = array(
+    'taxonomy_term_separator' => ' | ',
+    'search_link' => 'napos-films/films',
+  );
+  $handler->display->display_options['fields']['field_combined_tags']['delta_offset'] = '0';
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -1396,7 +1401,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<h3>[title_field]</h3>
 [field_publication_date]
 <div class="episode-list-details-container">
-[combined_tags]
+[field_combined_tags]
 [download_video][path]
 [content_add_to_cart]
 </div>';
@@ -1459,11 +1464,10 @@ function napo_film_views_default_views() {
     t('Page'),
     t('Episode [counter]'),
     t('[counter]: [title_field]'),
-    t('[field_publication_date]&nbsp;&nbsp;[combined_tags]'),
     t('<h3>[title_field]</h3>
 [field_publication_date]
 <div class="episode-list-details-container">
-[combined_tags]
+[field_combined_tags]
 [download_video][path]
 [content_add_to_cart]
 </div>'),

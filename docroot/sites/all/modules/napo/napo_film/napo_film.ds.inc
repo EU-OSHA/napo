@@ -27,11 +27,6 @@ function napo_film_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'combined_tags' => array(
-      'weight' => '7',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
     'download_video_form' => array(
       'weight' => '6',
       'label' => 'hidden',
@@ -54,7 +49,7 @@ function napo_film_ds_field_settings_info() {
       ),
     ),
     'recommended_films' => array(
-      'weight' => '9',
+      'weight' => '10',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -94,18 +89,6 @@ function napo_film_ds_field_settings_info() {
  */
 function napo_film_ds_custom_fields_info() {
   $export = array();
-
-  $ds_field = new stdClass();
-  $ds_field->api_version = 1;
-  $ds_field->field = 'combined_tags';
-  $ds_field->label = 'Combined tags';
-  $ds_field->field_type = 3;
-  $ds_field->entities = array(
-    'node' => 'node',
-  );
-  $ds_field->ui_limit = 'napo_video|*';
-  $ds_field->properties = array();
-  $export['combined_tags'] = $ds_field;
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
@@ -211,7 +194,7 @@ function napo_film_ds_layout_settings_info() {
         4 => 'film',
         5 => 'share_widget',
         6 => 'download_video_form',
-        7 => 'combined_tags',
+        7 => 'field_combined_tags',
         8 => 'body',
         9 => 'recommended_films',
       ),
@@ -224,7 +207,7 @@ function napo_film_ds_layout_settings_info() {
       'film' => 'ds_content',
       'share_widget' => 'ds_content',
       'download_video_form' => 'ds_content',
-      'combined_tags' => 'ds_content',
+      'field_combined_tags' => 'ds_content',
       'body' => 'ds_content',
       'recommended_films' => 'ds_content',
     ),

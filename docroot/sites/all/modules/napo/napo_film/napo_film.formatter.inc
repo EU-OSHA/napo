@@ -10,6 +10,14 @@ function napo_film_field_formatter_info() {
       'field types' => array('text'),
       'settings' => array('title_style' => '', 'title_link' => '', 'title_class' => ''),
     ),
+    'napo_film_taxonomy_term_facet_link' => array(
+      'label' => t('Link with facet'),
+      'field types' => array('taxonomy_term_reference', 'text'),
+      'settings'    => array(
+        'taxonomy_term_separator' => ' | ',
+        'search_link' => 'search',
+      ),
+    ),
   );
   return $info;
 }
@@ -20,43 +28,61 @@ function napo_film_field_formatter_info() {
 function napo_film_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
   $settings = $instance['display'][$view_mode]['settings'];
   $element = array();
+  switch ($instance['display'][$view_mode]['type']) {
+    case 'napo_film_episode_title_linked':
+      $wrap_tags = array(
+        '_none' => t('- None -'),
+        'div' => t('DIV'),
+        'h1' => t('H1'),
+        'h2' => t('H2'),
+        'h3' => t('H3'),
+        'h4' => t('H4'),
+        'h5' => t('H5'),
+        'h6' => t('H6'),
+        'span' => t('SPAN'),
+      );
+      $element['title_style'] = array(
+        '#title' => t('Wrap title in tag'),
+        '#type' => 'select',
+        '#default_value' => !empty($settings['title_style']) ? $settings['title_style'] : '_none',
+        '#options' => $wrap_tags,
+      );
 
-  $wrap_tags = array(
-    '_none' => t('- None -'),
-    'div' => t('DIV'),
-    'h1' => t('H1'),
-    'h2' => t('H2'),
-    'h3' => t('H3'),
-    'h4' => t('H4'),
-    'h5' => t('H5'),
-    'h6' => t('H6'),
-    'span' => t('SPAN'),
-  );
-  $element['title_style'] = array(
-    '#title' => t('Wrap title in tag'),
-    '#type' => 'select',
-    '#default_value' => !empty($settings['title_style']) ? $settings['title_style'] : '_none',
-    '#options' => $wrap_tags,
-  );
+      $link_types = array(
+        'content' => t('Content'),
+      );
+      $element['title_link'] = array(
+        '#title' => t('Link title to'),
+        '#type' => 'select',
+        '#default_value' => $settings['title_link'],
+        '#empty_option' => t('Nothing'),
+        '#options' => $link_types,
+      );
 
-  $link_types = array(
-    'content' => t('Content'),
-  );
-  $element['title_link'] = array(
-    '#title' => t('Link title to'),
-    '#type' => 'select',
-    '#default_value' => $settings['title_link'],
-    '#empty_option' => t('Nothing'),
-    '#options' => $link_types,
-  );
+      $element['title_class'] = array(
+        '#title' => t('Tag classes'),
+        '#type' => 'textfield',
+        '#description' => t('A CSS class to use in the wrapper tag for the title.'),
+        '#default_value' => $settings['title_class'],
+        '#element_validate' => array('_title_validate_class'),
+      );
+      break;
 
-  $element['title_class'] = array(
-    '#title' => t('Tag classes'),
-    '#type' => 'textfield',
-    '#description' => t('A CSS class to use in the wrapper tag for the title.'),
-    '#default_value' => $settings['title_class'],
-    '#element_validate' => array('_title_validate_class'),
-  );
+    case 'napo_film_taxonomy_term_facet_link':
+      $element['taxonomy_term_separator'] = array(
+        '#title' => t('Separator'),
+        '#type' => 'textfield',
+        '#description' => t('A separator for multiple fields.'),
+        '#default_value' => $settings['taxonomy_term_separator'],
+      );
+      $element['search_link'] = array(
+        '#title' => t('Search path'),
+        '#type' => 'textfield',
+        '#description' => t('A path to a search page to which to append the fitlers.'),
+        '#default_value' => $settings['search_link'],
+      );
+      break;
+  }
 
   return $element;
 }
@@ -71,22 +97,35 @@ function napo_film_field_formatter_settings_summary($field, $instance, $view_mod
   if (empty($settings)) {
     return;
   }
-  $tag = isset($settings['title_style']) && $settings['title_style'] != '' && $settings['title_style'] != '_none' ? $settings['title_style'] : t('- None -');
-  $summary[] = t('Title wrap tag: @tag', array('@tag' => $tag));
 
-  $link_types = array(
-    'content' => t('Linked to content'),
-  );
-  // Display this setting only if field is linked.
-  if (isset($link_types[$settings['title_link']])) {
-    $summary[] = $link_types[$settings['title_link']];
+  switch ($instance['display'][$view_mode]['type']) {
+    case 'napo_film_episode_title_linked':
+      $tag = isset($settings['title_style']) && $settings['title_style'] != '' && $settings['title_style'] != '_none' ? $settings['title_style'] : t('- None -');
+      $summary[] = t('Title wrap tag: @tag', array('@tag' => $tag));
+
+      $link_types = array(
+        'content' => t('Linked to content'),
+      );
+      // Display this setting only if field is linked.
+      if (isset($link_types[$settings['title_link']])) {
+        $summary[] = $link_types[$settings['title_link']];
+      }
+
+      // Display this setting only if wrapper has a class.
+      if (isset($settings['title_class']) && $settings['title_class'] != '_none' && $settings['title_class'] != '') {
+        $summary[] = t('Wrap tag classes: @classes', array('@classes' => $settings['title_class']));
+      }
+      break;
+
+    case 'napo_film_taxonomy_term_facet_link':
+      if (!empty($settings['search_link'])) {
+        $summary[] = 'Search path: ' . $settings['search_link'];
+      }
+      if (!empty($settings['taxonomy_term_separator'])) {
+        $summary[] = 'Separator: ' . $settings['taxonomy_term_separator'];
+      }
+      break;
   }
-
-  // Display this setting only if wrapper has a class.
-  if (isset($settings['title_class']) && $settings['title_class'] != '_none' && $settings['title_class'] != '') {
-    $summary[] = t('Wrap tag classes: @classes', array('@classes' => $settings['title_class']));
-  }
-
   return implode('<br />', $summary);
 }
 
@@ -95,9 +134,9 @@ function napo_film_field_formatter_settings_summary($field, $instance, $view_mod
  */
 function napo_film_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array();
+  $settings = $display['settings'];
   switch ($display['type']) {
     case 'napo_film_episode_title_linked':
-      $settings = $display['settings'];
       $output = isset($items[0]) ? $items[0]['safe_value'] : '';
 
       if (!empty($output) && $settings['title_link'] == 'content') {
@@ -135,6 +174,25 @@ function napo_film_field_formatter_view($entity_type, $entity, $field, $instance
           '#markup' => $output,
         ),
       );
+      break;
+
+    case 'napo_film_taxonomy_term_facet_link':
+      $links = array();
+      foreach ($items as $tid) {
+        $term = taxonomy_term_load($tid['tid']);
+        $query = array(
+          'f' => array(
+            $field['field_name'] . ':' . $term->tid,
+          ),
+        );
+        $links[] = l($term->name, $settings['search_link'], array('query' => $query));
+      }
+      $element = array(
+        array(
+          '#markup' => implode($settings['taxonomy_term_separator'], $links),
+        ),
+      );
+      break;
   }
   return $element;
 }
