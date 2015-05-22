@@ -11,23 +11,29 @@ function napo_film_update_7001() {
 }
 
 /**
- * Add aliases to napo film node and remove node block.
+ * Fill combined tags field for exiting napo films and episodes.
  */
-//function napo_film_update_7002() {
-//  $node = node_load(23);
-//  $languages = array_keys($node->translations->data);
-//  foreach ($languages as $language) {
-//    $args = array(
-//      'source' => 'node/23',
-//      'alias' => 'napos-films/films',
-//      'language' => $language,
-//    );
-//    // Check if path already exists.
-//    $existing_path = path_load($args);
-//    if (empty($existing_path)) {
-//      path_save($args);
-//    }
-//  }
-//  $node->nodeblock['enabled'] = 0;
-//  node_save($node);
-//}
+function napo_film_update_7003() {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'napo_video');
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $nids = array_keys($result['node']);
+    $videos = entity_load('node', $nids);
+    foreach ($videos as $node) {
+      $combined_tags = array();
+      if (!empty($node->field_main_tag[LANGUAGE_NONE])) {
+        $combined_tags = array_merge($combined_tags, $node->field_main_tag[LANGUAGE_NONE]);
+      }
+      if (!empty($node->field_tags[LANGUAGE_NONE])) {
+        $combined_tags = array_merge($combined_tags, $node->field_tags[LANGUAGE_NONE]);
+      }
+      if (!empty($combined_tags)) {
+        $node->field_combined_tags[LANGUAGE_NONE] = $combined_tags;
+        node_save($node);
+      }
+    }
+  }
+}
