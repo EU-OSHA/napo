@@ -205,9 +205,14 @@ function osha_strongarm() {
     'search_index' => 0,
     'search_result' => 0,
     'diff_standard' => 0,
+    'film_main_video_teaser' => 0,
+    'episode_full' => 0,
+    'episode_popup' => 0,
     'osha_slideshow' => 0,
     'print' => 0,
     'token' => 0,
+    'recommended_films' => 0,
+    'revision' => 0,
     'nodeform' => 0,
   );
   $export['exclude_node_title_content_type_modes_article'] = $strongarm;
