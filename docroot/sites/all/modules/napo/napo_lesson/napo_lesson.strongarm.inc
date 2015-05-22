@@ -745,34 +745,6 @@ function napo_lesson_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'print_html_display_lesson_toolkit';
-  $strongarm->value = 0;
-  $export['print_html_display_lesson_toolkit'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'print_html_display_urllist_lesson_toolkit';
-  $strongarm->value = 0;
-  $export['print_html_display_urllist_lesson_toolkit'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'print_pdf_display_lesson_toolkit';
-  $strongarm->value = 0;
-  $export['print_pdf_display_lesson_toolkit'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'print_pdf_display_urllist_lesson_toolkit';
-  $strongarm->value = 0;
-  $export['print_pdf_display_urllist_lesson_toolkit'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'workbench_access_node_type_lesson';
   $strongarm->value = 0;
   $export['workbench_access_node_type_lesson'] = $strongarm;
