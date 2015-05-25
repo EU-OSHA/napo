@@ -147,6 +147,20 @@ function napo_gallery_views_default_views() {
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_link' => '0',
+    'trim_length' => '20',
+    'trim_type' => 'words',
+    'trim_suffix' => '...',
+    'more_link' => '0',
+    'more_text' => 'Read more',
+    'summary_handler' => 'ignore',
+    'trim_options' => array(
+      'text' => 0,
+    ),
+    'trim_preserve_tags' => '',
+  );
   $handler->display->display_options['path'] = 'meet-napo/napos-gallery';
 
   /* Display: Attachment */
@@ -274,7 +288,7 @@ function napo_gallery_views_default_views() {
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['exclude'] = TRUE;
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  /* Field: Napo common: Napo share widget */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['share_widget']['id'] = 'share_widget';
   $handler->display->display_options['fields']['share_widget']['table'] = 'napo_common';
   $handler->display->display_options['fields']['share_widget']['field'] = 'share_widget';
