@@ -83,7 +83,7 @@ function napo_common_default_fe_block_settings() {
         'region' => 'header_top_bar',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => 0,
+        'weight' => -1,
       ),
       'osha_admin' => array(
         'region' => '',
