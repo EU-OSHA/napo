@@ -390,9 +390,6 @@ function napo_film_node_validate($node, $form, &$form_state) {
     if (empty($node->field_main_tag[LANGUAGE_NONE][0]['tid'])) {
       form_set_error('field_main_tag', t('Main category field is required!'));
     }
-    if (sizeof($form_state['values']['field_video'][LANGUAGE_NONE])<=1) {
-      form_set_error('field_video',t('Video field is required for Video Type: \'Film Video\'.'));
-    }
   }
 }
 
