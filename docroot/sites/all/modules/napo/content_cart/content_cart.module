@@ -109,7 +109,7 @@ function content_cart_add_item($type, $id) {
 
 function content_cart_remove_item($type, $id) {
   $cart = ContentCart::getCurrentCart();
-  $cart->removeFromCart($type, $id, $id);
+  $cart->removeFromCart($type, $id);
   module_invoke_all('content_cart_remove_item', $type, $id);
 }
 
