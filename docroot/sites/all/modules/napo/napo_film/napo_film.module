@@ -409,8 +409,18 @@ function napo_film_preprocess_node(&$vars) {
             $film = current($film)['target_id'];
             $fields = ds_get_fields('node');
             $label = $fields['episode_list_episode']['title'];
-            $vars['episode_list_episode'] = '<div class="episode-list-label">' . $label . '</div>';
-            $vars['episode_list_episode'] .= views_embed_view('episode_list', 'block_1', $film);
+            if ($view_mode == 'episode_full') {
+              $film_node = node_load($film);
+              $film_wrapper = entity_metadata_wrapper('node', $film_node);
+              $film_title = l($film_wrapper->title->value(), 'node/' . $film_node->nid);
+              $label = t('View other episodes of film !film', array('!film' => $film_title));
+              $vars['episode_list_episode'] = '<div class="episode-list-label">' . $label . '</div>';
+              $vars['episode_list_episode'] .= views_embed_view('episode_list', 'block_2', $film);
+            }
+            else {
+              $vars['episode_list_episode'] = '<div class="episode-list-label">' . $label . '</div>';
+              $vars['episode_list_episode'] .= views_embed_view('episode_list', 'block_1', $film);
+            }
           }
         }
         // Add share widget ds field.
@@ -418,7 +428,7 @@ function napo_film_preprocess_node(&$vars) {
           $form = drupal_get_form('napo_film_episode_download_form', $node, $view_mode);
           $vars['download_video_form'] = drupal_render($form);
         }
-        // Render the ds recommended films
+        // Render the ds recommended films.
         if (in_array('recommended_films', $vars['preprocess_fields'])) {
           napo_film_recommended_films($vars);
           $vars['recommended_films'] = theme('napo_film_recommended_films', array(
@@ -426,8 +436,47 @@ function napo_film_preprocess_node(&$vars) {
             )
           );
         }
+        if (in_array('episode', $vars['preprocess_fields'])) {
+          $weight = napo_film_get_episode_number($node) + 1;
+          dpm($weight);
+          if ($weight > 0) {
+            $label = t('Episode @no', array('@no' => sprintf('%02d', $weight)));
+          }
+          else {
+            $label = t('Episode');
+          }
+          $field = array(
+            '#type' => 'item',
+            '#title' => $label,
+            '#markup' => $node->title,
+            '#prefix' => '<div class="napo-episode-title-full-view">',
+            '#suffix' => '</div>',
+          );
+          $vars['episode'] = drupal_render($field);
+        }
       }
   }
+}
+
+/**
+ * Get the weight of an episode form draggable views.
+ */
+function napo_film_get_episode_number($node) {
+  $film = field_get_items('node', $node, 'field_napo_film');
+  $weight = -1;
+  if (!empty($film)) {
+    $film = current($film)['target_id'];
+    $result = db_select('draggableviews_structure', 'dws')
+      ->fields('dws', array('weight'))
+      ->condition('entity_id', $node->nid)
+      ->condition('args', '["' . $film . '"]')
+      ->execute()
+      ->fetchAllKeyed(0, 0);
+    if (!empty($result)) {
+      $weight = current($result);
+    }
+  }
+  return $weight;
 }
 
 /**

@@ -25,7 +25,7 @@ function napo_film_field_default_field_instances() {
         'weight' => 8,
       ),
       'episode_full' => array(
-        'label' => 'above',
+        'label' => 'hidden',
         'module' => 'smart_trim',
         'settings' => array(
           'more_link' => FALSE,
@@ -137,7 +137,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 16,
+        'weight' => 17,
       ),
       'episode_popup' => array(
         'label' => 'above',
@@ -213,10 +213,14 @@ function napo_film_field_default_field_instances() {
         'weight' => 7,
       ),
       'episode_full' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
+        'label' => 'inline',
+        'module' => 'napo_film',
+        'settings' => array(
+          'search_link' => 'napos-films/films',
+          'taxonomy_term_separator' => ' | ',
+        ),
+        'type' => 'napo_film_taxonomy_term_facet_link',
+        'weight' => 5,
       ),
       'episode_popup' => array(
         'label' => 'above',
@@ -245,7 +249,7 @@ function napo_film_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_combined_tags',
-    'label' => 'Combined tags',
+    'label' => 'Categories',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -278,7 +282,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 21,
       ),
       'episode_popup' => array(
         'label' => 'above',
@@ -381,7 +385,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 18,
+        'weight' => 19,
       ),
       'episode_popup' => array(
         'label' => 'above',
@@ -453,13 +457,10 @@ function napo_film_field_default_field_instances() {
         'weight' => 21,
       ),
       'episode_full' => array(
-        'label' => 'above',
-        'module' => 'entityreference',
-        'settings' => array(
-          'link' => 1,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 5,
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 16,
       ),
       'episode_popup' => array(
         'label' => 'above',
@@ -533,7 +534,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 17,
+        'weight' => 18,
       ),
       'episode_popup' => array(
         'label' => 'above',
@@ -617,7 +618,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 22,
       ),
       'episode_popup' => array(
         'label' => 'above',
@@ -689,7 +690,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 22,
+        'weight' => 23,
       ),
       'episode_popup' => array(
         'label' => 'above',
@@ -783,7 +784,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 19,
+        'weight' => 20,
       ),
       'episode_popup' => array(
         'label' => 'above',
@@ -1082,7 +1083,6 @@ function napo_film_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Categories');
-  t('Combined tags');
   t('Image');
   t('Main Category');
   t('Mark as outdated');

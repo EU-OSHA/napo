@@ -18,7 +18,7 @@ function napo_common_menu() {
     'page arguments' => array(1),
     'access callback' => 'napo_common_download_video_access',
     'access arguments' => array(1),
-    'type' => MENU_LOCAL_TASK,
+    'type' => MENU_CALLBACK,
     'weight' => 4,
   );
   return $items;
