@@ -290,7 +290,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #121f56;
+  color: #1f3695;
   text-decoration: underline;
 }
 a:focus {
@@ -2524,7 +2524,7 @@ fieldset[disabled] .btn-link {
 }
 .btn-link:hover,
 .btn-link:focus {
-  color: #121f56;
+  color: #1f3695;
   text-decoration: underline;
   background-color: transparent;
 }
@@ -4639,7 +4639,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pagination > li > span:hover,
 .pagination > li > a:focus,
 .pagination > li > span:focus {
-  color: #121f56;
+  color: #1f3695;
   background-color: #ffffff;
   border-color: #ffffff;
 }
@@ -7198,6 +7198,7 @@ h1 {
   padding: 0.2em 0em 0.2em 0.5em;
   margin-top: 0px;
   margin-bottom: 10px;
+  height: 52px;
 }
 .views-widget-filter-search_api_views_fulltext {
   width: 60%;
@@ -7214,11 +7215,17 @@ h1 {
   background: url('../images/arrow-button-back.png') no-repeat 115px 12px #1f3695;
   float: right;
   color: #FFF;
-  height: 45px;
+  height: 52px;
   padding-top: 14px;
   padding-left: 18px;
   padding-right: 44px;
   font-weight: bold;
+}
+.back_button:hover {
+  color: #FFF;
+}
+.node .content .field-name-body.field-type-text-with-summary {
+  padding: 1em;
 }
 #block-views-featured-articles-block {
   margin-top: -85px;
@@ -7286,6 +7293,46 @@ h1 {
 .vjs-mute-control.vjs-control {
   margin-top: -9em;
   margin-left: 5em;
+}
+.header_top_bar .container.text-right {
+  padding: 0.3em;
+}
+.block-text-resize {
+  float: right;
+  padding-right: 1em;
+  padding-left: 1em;
+  border-right: 2px solid #FFF;
+  font-weight: bold;
+}
+#block-napo-common-napo-print-friendly {
+  float: right;
+  padding-right: 1em;
+  padding-left: 1em;
+  border-right: 2px solid #FFF;
+  font-weight: bold;
+  height: 24px;
+}
+#block-napo-common-napo-print-friendly h2 {
+  margin: 3px 0 0 0;
+  padding: 0;
+}
+#block-content-cart-content-cart-summary {
+  background: url('../images/donwload-center-header.png') no-repeat 100% 40%;
+  float: right;
+  padding-right: 2em;
+  padding-left: 1em;
+  font-weight: bold;
+  margin-top: 3px;
+}
+#block-content-cart-content-cart-summary .content_cart_summary_count {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+#block-content-cart-content-cart-summary .content_cart_summary_count:before {
+  content: "( ";
+}
+#block-content-cart-content-cart-summary .content_cart_summary_count:after {
+  content: " )";
 }
 .napo-homepage-featured-films-container {
   background: #1f3695;
@@ -7359,8 +7406,25 @@ h1 {
   text-transform: uppercase;
   font-weight: bold;
 }
+.jcarousel-skin-napo .jcarousel-prev-horizontal {
+  background: url("../images/carousel-left.png") no-repeat;
+  height: 43px;
+  overflow: hidden;
+  text-indent: -9999px;
+  width: 30px;
+  margin-top: -15px;
+}
+.jcarousel-skin-napo .jcarousel-next-horizontal {
+  background: url("../images/carousel-right.png") no-repeat;
+  height: 43px;
+  overflow: hidden;
+  text-indent: -9999px;
+  width: 30px;
+  margin-top: -15px;
+}
 .breadcrumb {
   margin-bottom: 0px;
+  padding: 10px 15px 10px 16px;
 }
 .breadcrumb a {
   font-weight: bold;
@@ -7381,10 +7445,11 @@ h1 {
   background: transparent;
   color: #1f3695;
   margin-top: 0px;
+  font-size: 21px;
 }
 .view-display-id-page_list .napo-film-video-download-form-title {
   margin-left: -2px;
-  margin-top: -8px;
+  margin-top: 19px;
 }
 .block-napo-film {
   background: #f2f1f2;
@@ -7421,6 +7486,7 @@ h1 {
   padding-left: 1em;
   padding-top: 8px;
   margin-top: 1.5em;
+  font-size: 21px;
 }
 .view-display-id-page_grid h3 a {
   color: #fff;
@@ -7433,29 +7499,40 @@ h1 {
 .view-napo-films .row div:hover > .views-field-nothing.napo-film-content-container {
   color: #fff;
   display: block;
-  margin-top: -52%;
   padding: 1em;
-  position: absolute;
+  background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
+  height: 315px;
+  max-width: 555px;
+}
+.view-napo-films .row div:hover > .views-field-nothing.napo-film-content-container img {
+  display: none;
 }
 .view-napo-films .row div:hover > .views-field.views-field-field-image {
   background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
 }
 .view-napo-films .row div:hover > .views-field.views-field-field-image img {
-  visibility: hidden;
+  display: none;
 }
 .view-napo-films .napo-film-video-download-form {
   float: right;
   margin-right: 50px;
-  margin-top: -46px;
+  margin-top: -57px;
   max-width: 50px;
   position: relative;
 }
 .view-napo-films.view-display-id-page_grid .views-field-nothing.napo-film-content-container {
   display: none;
 }
-.field-name-field-tags {
+.field-name-field-combined-tags {
+  margin-bottom: 1em;
+}
+.field-name-field-combined-tags a {
   color: #f7e235;
   margin-bottom: 1em;
+  font-weight: bold;
+}
+.field-name-field-combined-tags .field-item {
+  color: #f7e235;
 }
 .napo-film-view-link {
   background: url('../images/napo-film-view-link.png') no-repeat;
@@ -7476,25 +7553,35 @@ h1 {
   display: block;
   float: left;
 }
+.content-cart-add-to-cart-btn {
+  color: #1f3695;
+  background: #f7e235;
+  font-weight: bold;
+  padding: 4px 0.5em 5px 0.5em;
+  margin-top: -2px;
+  display: block;
+  float: left;
+  border-radius: 0px;
+  margin-left: 1em;
+}
+.content-cart-add-to-cart-btn:hover {
+  text-decoration: underline;
+}
 .napo-film-list-view-container .views-widget-filter-search_api_views_fulltext input {
   margin-top: -2px;
   font-weight: bold;
 }
 .napo-film-list-view-container .views-submit-button {
   margin-left: -18px;
-  margin-top: -24px;
+  margin-top: -25px;
 }
 .napo-film-list-view-container .views-submit-button button {
   color: transparent;
   border-color: #bbc2df;
   background: url('../images/search.png') no-repeat 10px 5px #bbc2df;
 }
-.napo-film-video-download-form {
-  float: right;
-  position: relative;
-  max-width: 50px;
-  margin-top: -20px;
-  margin-right: 100px;
+.views-exposed-form .views-exposed-widget .form-submit {
+  margin-top: 23px;
 }
 .napo-film-video-download-form form {
   display: none;
@@ -7509,7 +7596,7 @@ h1 {
   background: #bbc2df;
   color: #1f3695;
   z-index: 9;
-  margin-left: 33px;
+  margin-left: 0px;
 }
 .napo-film-video-download-form:hover .form-type-radio {
   margin-top: 10px;
@@ -7537,9 +7624,13 @@ h1 {
 .napo-film-list-view .views-row {
   margin-bottom: 2em;
 }
-.napo-film-list-view .field-name-field-tags {
+.napo-film-list-view .field-name-field-combined-tags a {
   color: #1f3695;
-  float: left;
+  padding-right: 1em;
+  font-weight: bold;
+}
+.napo-film-list-view .field-name-field-combined-tags .field-item {
+  color: #1f3695;
   padding-right: 1em;
   font-weight: bold;
 }
@@ -7547,7 +7638,8 @@ h1 {
   color: #FFF;
   font-weight: bold;
   padding: 9px 43px 8px 10px;
-  margin-top: -8px;
+  margin-top: 20px;
+  margin-left: -8px;
   display: block;
   float: left;
   background: url('../images/arrow-button-yellow.png') no-repeat 93% 6px #1f3695;
@@ -7585,14 +7677,14 @@ h1 {
   float: left;
   width: 49px;
   height: 37px;
-  margin-top: -9px;
+  margin-top: 18px;
   margin-left: 14px;
 }
 .napo-film-list-view .content-cart-add-to-cart-btn {
   color: #FFF;
   font-weight: bold;
   padding: 6px 43px 8px 8px;
-  margin-top: -37px;
+  margin-top: -43px;
   display: block;
   float: right;
   background: url('../images/arrow-button-yellow.png') no-repeat 93% 6px #1f3695;
@@ -7641,11 +7733,12 @@ h1 {
   font-weight: bold;
   text-transform: uppercase;
   font-size: 17px;
+  margin-top: 1.5em;
 }
 .node-napo-video .field-name-film .field-label {
   padding-left: 2.7em;
 }
-.node-napo-video .field-name-field-tags {
+.node-napo-video .field-name-field-combined-tags {
   color: #1f3695;
   padding-left: 1em;
   padding-top: 1em;
@@ -7653,6 +7746,12 @@ h1 {
   background: #f2f1f2;
   margin-bottom: 0px;
   padding-bottom: 1em;
+}
+.node-napo-video .field-name-field-combined-tags a {
+  color: #1f3695;
+}
+.node-napo-video .field-name-field-combined-tags .field-item {
+  color: #1f3695;
 }
 .node-napo-video .field-name-body {
   padding-left: 1em;
@@ -7760,10 +7859,318 @@ h1 {
   color: #FFF;
   font-size: 15px;
 }
-.view-napo-s-film-episodes .field-name-field-tags {
+.view-napo-s-film-episodes .episode-list-details-container {
+  padding: 1em!important;
+}
+.view-napo-s-film-episodes .episode-list-details-container a {
   color: #1f3695;
   font-weight: bold;
-  padding: 1em!important;
+}
+.view-napo-s-film-episodes .content-cart-add-to-cart-btn {
+  float: none;
+  margin-top: 10px;
+  margin-left: 0px;
+}
+#block-napo-common-page-not-found {
+  background: url('../images/page-not-found.png') no-repeat;
+  text-align: center;
+  padding-left: 5em;
+}
+#block-napo-common-page-not-found .form-search {
+  margin-top: 1em;
+}
+#block-napo-common-page-not-found .form-search.content-search .input-group {
+  margin: 0 auto;
+}
+.page_not_found_intro {
+  font-size: 36px;
+  color: #1f3695;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+.page_not_found_search div {
+  color: #1f3695;
+  font-weight: bold;
+}
+.page_not_found_front {
+  margin-top: 1em;
+}
+.page_not_found_front a {
+  padding: 10px 36px 6px 12px;
+  color: #FFF;
+  font-weight: bold;
+  background: url('../images/home-page-not-found.png') no-repeat 98% 1px #1f3695;
+}
+.node.node-napo-video .napo-film-video-download-form {
+  margin-top: 8px;
+}
+.node.node-napo-video .napo-share-widget {
+  margin-top: 8px;
+  margin-right: 1em;
+}
+.node.node-napo-video .episode-list-label {
+  color: #585759;
+  background: url('../images/ico-view-episodes.png') no-repeat 23px 15px #e0e1e1;
+  padding: 14px 10px 1em 3em;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 17px;
+}
+.node.node-napo-video .field-name-field-napo-film .field-label {
+  color: #585759;
+  background: url('../images/ico-view-episodes.png') no-repeat 23px 15px #e0e1e1;
+  padding: 14px 10px 1em 3em;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 17px;
+}
+.node.node-napo-video .view-episode-list {
+  background: #e0e1e1;
+}
+.node.node-napo-video .field-name-field-napo-film .field-items {
+  padding: 2em;
+}
+.node.node-napo-video .jcarousel-item:hover .views-field-title-field {
+  display: block;
+}
+.node.node-napo-video .views-field-title-field {
+  position: absolute;
+  width: 220px;
+  display: none;
+  background: url('../images/background-blue.png') repeat-x;
+  height: 46px;
+  margin-top: 20px;
+}
+.node.node-napo-video .napo_film_episode_link {
+  text-align: left;
+  padding-left: 1em;
+  margin-top: 10px;
+}
+.node.node-napo-video .napo_film_episode_link a {
+  color: #FFF;
+  background: url('../images/arrow-button-yellow.png') no-repeat 95% 8px transparent;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: block;
+  margin-top: -8px;
+  padding-top: 11px;
+  padding-bottom: 12px;
+  padding-left: 0px;
+}
+.modal .modal-header {
+  background: #1f3695;
+  color: #f7e235;
+}
+.modal .close {
+  color: #f7e235;
+}
+.modal .form-radios {
+  display: none;
+}
+.modal .napo-film-video-download-form:hover .form-radios {
+  display: block;
+  background: #bbc2df;
+  color: #1f3695;
+  margin-top: -10px;
+}
+.modal .jcarousel-item:hover .napo_film_episode_link {
+  color: transparent;
+  background: transparent;
+}
+.modal .jcarousel-item:hover .views-field-title-field {
+  background: transparent;
+  width: 85px;
+}
+.modal .jcarousel-item:hover .views-field.views-field-nothing img {
+  visibility: hidden;
+}
+.modal .jcarousel-item:hover .views-field.views-field-nothing {
+  background: url('../images/background-modal-play.png') repeat-x;
+}
+.modal .jcarousel-skin-default .jcarousel-next {
+  margin-top: -37px;
+}
+.modal .jcarousel-skin-default .jcarousel-prev {
+  margin-top: -37px;
+}
+.modal-dialog .modal-header {
+  background: #1f3695;
+  color: #f7e235;
+}
+.modal-dialog .close {
+  color: #f7e235;
+  opacity: 1;
+}
+.modal-dialog .form-radios {
+  display: none;
+}
+.modal-dialog .napo-film-video-download-form:hover .form-radios {
+  display: block;
+  background: #bbc2df;
+  color: #1f3695;
+  margin-top: -10px;
+}
+.modal-dialog .jcarousel-item:hover .napo_film_episode_link {
+  color: transparent;
+  background: transparent;
+}
+.modal-dialog .jcarousel-item:hover .views-field-title-field {
+  background: transparent;
+  width: 85px;
+}
+.modal-dialog .jcarousel-item:hover .views-field.views-field-nothing {
+  background: url('../images/background-modal-play.png') repeat-x;
+  height: 49px;
+  margin-top: 20px;
+}
+.modal-dialog .jcarousel-skin-default .jcarousel-next {
+  margin-top: -37px;
+}
+.modal-dialog .jcarousel-skin-default .jcarousel-prev {
+  margin-top: -37px;
+}
+#block-views-napo-target-ages-block h2.block-title {
+  color: #585759;
+  background: #f2f1f2;
+  padding: 1.2em 0em 0.2em 1em;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  height: 58px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.view-napo-target-ages .lessons_by_age {
+  background: #f2f1f2;
+  min-height: 167px;
+}
+.view-napo-target-ages .lesson_by_age_name {
+  background: #1f3695;
+  color: #FFF;
+  padding: 0.7em 0.7em 0.7em 1.4em;
+  font-weight: bold;
+  margin-top: 2em;
+}
+.view-napo-target-ages .lesson_by_age_description {
+  padding-top: 1em;
+  padding-left: 0.5em;
+}
+.view-napo-target-ages .lesson_by_age_image {
+  float: left;
+  padding-right: 1em;
+}
+.view-napo-target-ages .views-row {
+  padding-left: 0.5em;
+}
+.view-napos-gallery .views-field-nothing.napo-gallery-title-container {
+  background: url('../images/background-blue.png') repeat-x;
+  color: #FFF;
+  height: 57px;
+  margin-bottom: 0;
+  padding-left: 1em;
+  padding-top: 14px;
+  font-size: 21px;
+}
+.view-napos-gallery .views-field-nothing.napo-gallery-title-container a {
+  color: #FFF;
+  background: url('../images/arrow-button-yellow.png') 100% 0px no-repeat;
+  padding: 1px 34px 1px 1px;
+}
+.view-napos-gallery .views-field-nothing.napo-gallery-title-container .date-display-single {
+  float: right;
+  padding-right: 16px;
+  font-size: 14px;
+  padding-top: 5px;
+}
+.node-napo-album .back_button {
+  margin-top: -72px;
+  background: url('../images/arrow-button-back.png') no-repeat 125px 12px #1f3695;
+}
+.node-napo-album .field.field-name-body {
+  padding: 1em 0em 1em 0em;
+}
+.node-napo-album .napo-share-widget {
+  float: right;
+}
+.node-napo-album .napo-share-widget .napo-share-widget-title {
+  display: none;
+}
+.node-napo-album .napo-share-widget ul {
+  display: block;
+  list-style: none;
+}
+.node-napo-album .napo-share-widget ul > li {
+  float: left;
+}
+.node-napo-album .napo-share-widget #fb-share-button-249 {
+  background: url('../images/facebook.png') no-repeat;
+  width: 54px;
+  height: 40px;
+  color: transparent;
+}
+.node-napo-album .napo-share-widget #fb-share-button-249 a {
+  color: transparent;
+  padding-bottom: 18px;
+}
+.node-napo-album .napo-share-widget #twitter-share-button-249 {
+  background: url('../images/twitter.png') no-repeat;
+  width: 54px;
+  height: 40px;
+}
+.node-napo-album .napo-share-widget #twitter-share-button-249 a {
+  color: transparent;
+  padding-bottom: 18px;
+}
+.node-napo-album .napo-share-widget #gplus-share-button-249 {
+  background: url('../images/google.png') no-repeat;
+  width: 54px;
+  height: 40px;
+}
+.node-napo-album .napo-share-widget #gplus-share-button-249 a {
+  color: transparent;
+  padding-bottom: 18px;
+}
+.node-napo-album .napo-share-widget .napo-share-widget > ul {
+  display: none;
+  background: #000099;
+}
+.views-field-body-1 {
+  padding: 1em 0em 1em 0em;
+}
+.view-napo-and-friends .views-slideshow-cycle-main-frame.views_slideshow_cycle_teaser_section {
+  background: #f2f1f2;
+}
+.view-napo-and-friends .views-slideshow-controls-top .views-slideshow-pager-field-item {
+  width: 139px;
+  height: 115px;
+  margin: 20px 7px 25px 0;
+}
+.view-napo-and-friends .views-field-title {
+  color: #1f3695;
+  background: url('../images/background-yellow.png') repeat-x;
+  padding-left: 17px;
+  font-weight: bold;
+  height: 29px;
+  padding-top: 2px;
+  font-size: 17px;
+}
+.view-napo-and-friends .views-content-title {
+  width: 117px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.view-napo-and-friends .views-field-title:hover {
+  border-bottom: 5px solid #1f3695;
+}
+.view-napo-and-friends .views-field-field-image-1 {
+  float: left;
+  padding-right: 1em;
+}
+.view-napo-and-friends .views-field-title-field {
+  color: #1f3695;
+  padding-bottom: 1em;
+  font-size: 17px;
+  font-weight: bold;
 }
 .footer {
   border: 0px;

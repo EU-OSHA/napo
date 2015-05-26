@@ -84,43 +84,16 @@ ul.nav li.dropdown ul.dropdown-menu {
 
 .slider .frontpage-video-title h3 a{
     color:#fff;
-
-/* Share widget */
-.napo-share-widget {
-    position: relative;
-    display: inline;
-    color: #fff;
-    background: #000099;
-}
-.napo-share-widget .napo-share-widget-title {
-    cursor: pointer;
-}
-.napo-share-widget > ul {
-    display: none;
-    background: #000099;
-}
-.napo-share-widget:hover > ul {
-    position: absolute;
-    display: block;
-    z-index: 1;
-}
-.napo-share-widget:hover > ul >li {
-    cursor: pointer;
+    font-size:24px;
+    font-weight: bold;
 }
 
+.slider .frontpage-video-title p{
+        color:#FFF;
+}
 
 
 /* Video Gallery Detail */
-.node-napo-video.view-mode-full .field-name-film.field-type-ds {
-    background: #ddd;
-}
-
-.node-napo-video.view-mode-full .napo-share-widget {
-    float: right;
-    position: relative;
-    margin-top: -20px;
-    background: #000099;
-}
 
 .napo-film-video-download-form {
     float: right;
@@ -197,14 +170,8 @@ footer.footer.container section.block-menu-block{
     display: block;
 }
 
-.view-napo-and-friends .views-slideshow-pager-field-item.active {
-    background-position: 0 -22px;
-    background-color: #000066;
-}
-
 .view-napo-and-friends .views-slideshow-cycle-main-frame-row-item {
-    background-color: #f5f5f5;
-    padding: 30px;
+    padding: 50px;
 }
 
 .view-napo-and-friends .views-slideshow-cycle-main-frame-row-item .views-field .views-field-title-field {
@@ -233,30 +200,26 @@ footer.footer.container section.block-menu-block{
     right: 15px; /* LTR */
 }
 
-.view-napo-and-friends .views-slideshow-controls-text-previous,
-.view-napo-and-friends .views-slideshow-controls-text-next {
-    background: url("../images/arrows.png") no-repeat;
-    background-color: red;
-    height: 30px;
+.view-napo-and-friends .views-slideshow-controls-text-previous{
+    background: url("../images/carousel-left.png") no-repeat;
+    height: 43px;
     overflow: hidden;
     text-indent: -9999px;
     width: 30px;
 }
 
 .view-napo-and-friends .views-slideshow-controls-text-next {
-    background-position: -30px 0; /* LTR */
+    background: url("../images/carousel-right.png") no-repeat;
+    height: 43px;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 30px;
 }
+
 
 .view-napo-and-friends .views-slideshow-controls-top .views-slideshow-pager-field-item {
     float: left;
-    margin: 25px 10px 25px 0;
-}
 
-.view-napo-and-friends .views-slideshow-pager-fields {
-    /*line-height: 1;*/
-    /*margin-top: 10px;*/
-    text-align: center;
-    /*background-color: red;*/
 }
 
 .view-napo-and-friends .views-slideshow-pager-field-item {
