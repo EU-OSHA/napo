@@ -24,8 +24,12 @@ function napo_film_cart_summary_content_alter(&$content) {
   $cart = ContentCart::getCurrentCart();
   $label = t('Download center');
   $count = $cart->countItems('node');
-  $html = '<span class="content_cart_summary_label">' . $label . '</span>';
-  $html .= '<span class="content_cart_summary_count">' . $count . '</span>';
+  $active_class = '';
+  if ($count > 0) {
+    $active_class = "contet-cart-has-items";
+  }
+  $html = '<span class="content_cart_summary_label ' . $active_class . '">' . $label . '</span>';
+  $html .= '<span class="content_cart_summary_count ' . $active_class . '">' . $count . '</span>';
   $link = l($html, 'download-center', array('html' => TRUE));
   $content['content_cart_summary'] = array(
     '#prefix' => '<div id="content_cart_summary_container">',
