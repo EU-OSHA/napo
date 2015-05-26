@@ -142,7 +142,7 @@ function napo_film_block_view($delta = '') {
       // Get query params to preserve them.
       $query = drupal_get_query_parameters();
       $block['content']['list']['#markup'] = l(t('List view'), 'napo_film/set_view_mode/list', array('attributes' => $attr, 'query' => $query));
-      $block['content']['grid']['#markup'] = l(t('Grid view'), 'napo_film/set_view_mode/grid', array('attributes' => $attr_grid, 'query' => $query));
+      $block['content']['grid']['#markup'] = l(t('Gallery view'), 'napo_film/set_view_mode/grid', array('attributes' => $attr_grid, 'query' => $query));
       break;
   }
   return $block;
@@ -272,6 +272,12 @@ function napo_film_theme() {
       ),
       'template' => 'theme/napo_film_download_cart_error',
     ),
+    'napo_film_tag_facet_link' => array(
+      'variables' => array(
+        'name' => '',
+        'link' => '',
+      ),
+    ),
   );
 }
 
@@ -290,6 +296,7 @@ function napo_film_get_video_types_tid() {
 function napo_film_form_napo_video_node_form_alter(&$form, &$form_state) {
   // Show napo film field only for video type - Episode video.
   $types = napo_film_get_video_types_tid();
+  $form['field_combined_tags']['#access'] = FALSE;
   $form['field_napo_film'] += array(
     '#states' => array(
       'visible' => array(
@@ -361,6 +368,16 @@ function napo_film_node_submit($node, $form, &$form_state) {
       $node->field_napo_film = array();
     }
   }
+  $combined_tags = array();
+  if (!empty($node->field_main_tag[LANGUAGE_NONE])) {
+    $combined_tags = array_merge($combined_tags, $node->field_main_tag[LANGUAGE_NONE]);
+  }
+  if (!empty($node->field_tags[LANGUAGE_NONE])) {
+    $combined_tags = array_merge($combined_tags, $node->field_tags[LANGUAGE_NONE]);
+  }
+  if (!empty($combined_tags)) {
+    $node->field_combined_tags[LANGUAGE_NONE] = $combined_tags;
+  }
 }
 
 /**
@@ -372,9 +389,6 @@ function napo_film_node_validate($node, $form, &$form_state) {
     // For films. main category is required.
     if (empty($node->field_main_tag[LANGUAGE_NONE][0]['tid'])) {
       form_set_error('field_main_tag', t('Main category field is required!'));
-    }
-    if (sizeof($form_state['values']['field_video'][LANGUAGE_NONE])<=1) {
-      form_set_error('field_video',t('Video field is required for Video Type: \'Film Video\'.'));
     }
   }
 }
@@ -388,12 +402,6 @@ function napo_film_preprocess_node(&$vars) {
   switch ($node->type) {
     case 'napo_video':
       if (!empty($vars['preprocess_fields'])) {
-        if (in_array('combined_tags', $vars['preprocess_fields'])) {
-          // Render the ds preprocess field to combined tags
-          // from main_tag and tags.
-          $combined_tags = napo_film_combined_tags_view_field($node);
-          $vars['combined_tags'] = drupal_render($combined_tags);
-        }
         // Render the ds episode list field from episode detail.
         if (in_array('episode_list_episode', $vars['preprocess_fields'])) {
           $film = field_get_items('node', $node, 'field_napo_film');
@@ -401,8 +409,18 @@ function napo_film_preprocess_node(&$vars) {
             $film = current($film)['target_id'];
             $fields = ds_get_fields('node');
             $label = $fields['episode_list_episode']['title'];
-            $vars['episode_list_episode'] = '<div class="episode-list-label">' . $label . '</div>';
-            $vars['episode_list_episode'] .= views_embed_view('episode_list', 'block_1', $film);
+            if ($view_mode == 'episode_full') {
+              $film_node = node_load($film);
+              $film_wrapper = entity_metadata_wrapper('node', $film_node);
+              $film_title = l($film_wrapper->title->value(), 'node/' . $film_node->nid);
+              $label = t('View other episodes of film !film', array('!film' => $film_title));
+              $vars['episode_list_episode'] = '<div class="episode-list-label">' . $label . '</div>';
+              $vars['episode_list_episode'] .= views_embed_view('episode_list', 'block_2', $film);
+            }
+            else {
+              $vars['episode_list_episode'] = '<div class="episode-list-label">' . $label . '</div>';
+              $vars['episode_list_episode'] .= views_embed_view('episode_list', 'block_1', $film);
+            }
           }
         }
         // Add share widget ds field.
@@ -410,7 +428,7 @@ function napo_film_preprocess_node(&$vars) {
           $form = drupal_get_form('napo_film_episode_download_form', $node, $view_mode);
           $vars['download_video_form'] = drupal_render($form);
         }
-        // Render the ds recommended films
+        // Render the ds recommended films.
         if (in_array('recommended_films', $vars['preprocess_fields'])) {
           napo_film_recommended_films($vars);
           $vars['recommended_films'] = theme('napo_film_recommended_films', array(
@@ -418,8 +436,46 @@ function napo_film_preprocess_node(&$vars) {
             )
           );
         }
+        if (in_array('episode', $vars['preprocess_fields'])) {
+          $weight = napo_film_get_episode_number($node) + 1;
+          if ($weight > 0) {
+            $label = t('Episode @no', array('@no' => sprintf('%02d', $weight)));
+          }
+          else {
+            $label = t('Episode');
+          }
+          $field = array(
+            '#type' => 'item',
+            '#title' => $label,
+            '#markup' => $node->title,
+            '#prefix' => '<div class="napo-episode-title-full-view">',
+            '#suffix' => '</div>',
+          );
+          $vars['episode'] = drupal_render($field);
+        }
       }
   }
+}
+
+/**
+ * Get the weight of an episode form draggable views.
+ */
+function napo_film_get_episode_number($node) {
+  $film = field_get_items('node', $node, 'field_napo_film');
+  $weight = -1;
+  if (!empty($film)) {
+    $film = current($film)['target_id'];
+    $result = db_select('draggableviews_structure', 'dws')
+      ->fields('dws', array('weight'))
+      ->condition('entity_id', $node->nid)
+      ->condition('args', '["' . $film . '"]')
+      ->execute()
+      ->fetchAllKeyed(0, 0);
+    if (!empty($result)) {
+      $weight = current($result);
+    }
+  }
+  return $weight;
 }
 
 /**
@@ -518,33 +574,26 @@ function napo_film_recommended_films(&$vars) {
 function napo_film_combined_tags_view_field($node, $settings = array()) {
   $combined = array();
   // Merge the tags from both fields.
-  $main_tag = field_get_items('node', $node, 'field_main_tag');
-  if (!empty($main_tag)) {
-    $combined = array_merge($combined, $main_tag);
+  $tags = field_get_items('node', $node, 'field_combined_tags');
+  if (!empty($tags)) {
+    $combined = array_merge($combined, $tags);
   }
   $tags = field_get_items('node', $node, 'field_tags');
   if (!empty($tags)) {
     $combined = array_merge($combined, $tags);
   }
-  // Set display settings.
-  $display_settings = array(
-    'label' => 'inline',
-    'type' => 'ds_taxonomy_separator_localized',
-    'settings' => array(
-      'taxonomy_term_link' => 0,
-      'taxonomy_term_separator' => ' | ',
-    ),
-  );
-  $display_settings = array_merge($display_settings, $settings);
-  // Use field_tags to get the rendered combined fields.
-  // Overwrite data from field_tags to be used in field_view_field.
-  $field_tags = $node->field_tags;
-  $node->field_tags[LANGUAGE_NONE] = $combined;
-  // It uses label of field_tags and data from $combined and settings
-  // from $display_settings.
-  $field_combined = field_view_field('node', $node, 'field_tags', $display_settings);
-  $node->field_tags = $field_tags;
-  return $field_combined;
+
+  $links = array();
+  foreach ($combined as $tid) {
+    $term = taxonomy_term_load($tid['tid']);
+    $query = array('f' => array(
+        'field_main_tag:' . $term->tid,
+        'field_tags:' . $term->tid,
+      ),
+    );
+    $links[] = l($term->name, 'napos-films/films', array('query' => $query));
+  }
+  return implode(' | ', $links);
 }
 
 /**
@@ -685,4 +734,36 @@ function napo_film_preprocess_html(&$vars) {
     $vars['head_title_array']['title'] = $wrapper->label();
     $vars['head_title'] = $wrapper->label() . ' ' . $vars['head_title'];
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function napo_film_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
+  if ($form['#id'] == 'views-exposed-form-napo-films-page-list') {
+    if (!empty($form['search_api_views_fulltext'])) {
+      $query_params = drupal_get_query_parameters();
+      if (!empty($query_params['f'])) {
+        $f_params = $query_params['f'];
+
+        foreach ($f_params as $f_param) {
+          if (strpos($f_param, 'field_combined_tags:') !== FALSE) {
+            $tid = explode(':', $f_param)[1];
+            $term = taxonomy_term_load($tid);
+            $form['#prefix'] = theme('napo_film_tag_facet_link',
+              array(
+                'name' => $term->name,
+                'link' => drupal_get_path_alias(),
+              )
+            );
+            break;
+          }
+        }
+      }
+    }
+  }
+}
+
+function theme_napo_film_tag_facet_link($variables) {
+  return l('X ' . $variables['name'], $variables['link']);
 }

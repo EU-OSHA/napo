@@ -33,11 +33,23 @@ class napo_film_handler_download_video extends views_handler_field {
 class napo_film_handler_combined_tags extends views_handler_field {
   function option_definition() {
     $options = parent::option_definition();
+    $options['search_link'] = array('default' => 'search');
+    $options['taxonomy_term_separator'] = array('default' => ' | ');
     return $options;
   }
 
   function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
+    $form['search_link'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Search link'),
+      '#default_value' => $this->options['search_link'],
+    );
+    $form['taxonomy_term_separator'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Term separator'),
+      '#default_value' => $this->options['taxonomy_term_separator'],
+    );
   }
 
   function query() {
@@ -47,15 +59,19 @@ class napo_film_handler_combined_tags extends views_handler_field {
   function render($data) {
     $output = NULL;
     $field = current($data->_field_data);
+    $options = $this->options;
     if (!empty($field['entity'])) {
       $node = $field['entity'];
-      if ($node->type == 'napo_video') {
-        $settings = array();
-        if (empty($this->options['label'])) {
-          $settings['label'] = 'hidden';
-        }
-        $output = napo_film_combined_tags_view_field($node, $settings);
-      }
+      // Set display settings.
+      $display_settings = array(
+        'label' => 'hidden',
+        'type' => 'napo_film_taxonomy_term_facet_link',
+        'settings' => array(
+          'search_link' => $options['search_link'],
+          'taxonomy_term_separator' => $options['taxonomy_term_separator'],
+        ),
+      );
+      $output = field_view_field('node', $node, 'field_combined_tags', $display_settings);
     }
     return $output;
   }

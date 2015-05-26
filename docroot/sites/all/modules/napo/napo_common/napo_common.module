@@ -5,6 +5,95 @@
  */
 
 include_once 'napo_common.features.inc';
+include_once 'napo_common.views.inc';
+
+/**
+ * Implements hook_menu().
+ */
+function napo_common_menu() {
+  $items = array();
+  $items['node/%node/download_video'] = array(
+    'title' => 'Download video',
+    'page callback' => 'napo_common_download_video_callback',
+    'page arguments' => array(1),
+    'access callback' => 'napo_common_download_video_access',
+    'access arguments' => array(1),
+    'type' => MENU_CALLBACK,
+    'weight' => 4,
+  );
+  return $items;
+}
+
+/**
+ * Menu callback for "Download video" tab.
+ */
+function napo_common_download_video_callback($node) {
+  napo_common_download_video($node);
+}
+
+/**
+ * Access callback for "Download video" tab.
+ */
+function napo_common_download_video_access($node) {
+  if (!empty($node) && isset($node->field_video)) {
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $files = $wrapper->field_video->value();
+    if (!empty($files)) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Alter the node form to add other redirects (i.e node/%node/download).
+ */
+function napo_common_form_node_form_alter(&$form, &$form_state, $form_id) {
+  if (!empty($form['redirect'])) {
+    $node = $form['#node'];
+    $redirects = redirect_load_multiple(array(), array('redirect' => 'node/' . $node->nid . '/download'));
+    $header = array('source', 'status_code', 'language', 'count', 'access', 'operations', 'redirect');
+    $list = redirect_list_table($redirects, $header);
+    $form['redirect']['napo-list'] = $list['list'];
+  }
+}
+
+
+/**
+ * Downloads video file from field_video of a node.
+ */
+function napo_common_download_video($node) {
+  if (!empty($node) && isset($node->field_video)) {
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $files = $wrapper->field_video->value();
+    if (!empty($files)) {
+      $file = array();
+      // Try finding mp4 format.
+      foreach ($files as $video) {
+        if ($video['filemime'] == 'video/mp4') {
+          $file = $video;
+          break;
+        }
+      }
+      if (empty($files)) {
+        $file = current($file);
+      }
+      $headers = array(
+        'Content-Type'              => $file['filemime'],
+        'Content-Disposition'       => 'attachment; filename="' . drupal_basename($file['uri']) . '"',
+        'Content-Length'            => $file['filesize'],
+        'Content-Transfer-Encoding' => 'binary',
+        'Pragma'                    => 'no-cache',
+        'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
+        'Expires'                   => '0',
+        'Accept-Ranges'             => 'bytes',
+      );
+      file_transfer($file['uri'], $headers);
+    }
+  }
+  drupal_set_message(t("There was an error downloading the lesson's video!"), 'error');
+  drupal_not_found();
+}
 
 /**
  * Implments hook_form_FORM_ID_alter().

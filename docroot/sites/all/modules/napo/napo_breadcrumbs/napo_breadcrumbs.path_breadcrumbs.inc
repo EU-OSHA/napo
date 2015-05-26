@@ -12,6 +12,26 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'download_center';
+  $path_breadcrumb->name = 'Download center';
+  $path_breadcrumb->path = 'download-center';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = -95;
+  $export['download_center'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'napo_films_episodes';
   $path_breadcrumb->name = 'Napo films episodes';
   $path_breadcrumb->path = 'napos-films/films';
@@ -29,8 +49,47 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
     'arguments' => array(),
     'access' => array(),
   );
-  $path_breadcrumb->weight = 0;
+  $path_breadcrumb->weight = -98;
   $export['napo_films_episodes'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'napo_for_teachers';
+  $path_breadcrumb->name = 'Napo for teachers';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '%site:current-page:menu-link:pb-join:name',
+      1 => '%site:current-page:menu-link:title',
+    ),
+    'paths' => array(
+      0 => '%site:current-page:menu-link:pb-join:url',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'path_visibility',
+          'settings' => array(
+            'visibility_setting' => '1',
+            'paths' => 'using-napo/napo-for-teachers',
+          ),
+          'context' => 'empty',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = -96;
+  $export['napo_for_teachers'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
@@ -40,7 +99,7 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => '%site:current-page:menu-link:pb-join:name',
-      1 => '!page_title',
+      1 => '%site:current-page:menu-link:title',
     ),
     'paths' => array(
       0 => '%site:current-page:menu-link:pb-join:url',
@@ -51,7 +110,7 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
     'arguments' => array(),
     'access' => array(),
   );
-  $path_breadcrumb->weight = 0;
+  $path_breadcrumb->weight = -97;
   $export['napo_gallery'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
@@ -112,7 +171,7 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
       'logic' => 'and',
     ),
   );
-  $path_breadcrumb->weight = 0;
+  $path_breadcrumb->weight = -100;
   $export['napo_s_film_episodes_panel'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
@@ -134,7 +193,7 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
     'arguments' => array(),
     'access' => array(),
   );
-  $path_breadcrumb->weight = 0;
+  $path_breadcrumb->weight = -99;
   $export['napos_friends'] = $path_breadcrumb;
 
   $path_breadcrumb = new stdClass();
@@ -167,7 +226,7 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
       'logic' => 'and',
     ),
   );
-  $path_breadcrumb->weight = 100;
+  $path_breadcrumb->weight = -94;
   $export['node_breadcrumbs'] = $path_breadcrumb;
 
   return $export;

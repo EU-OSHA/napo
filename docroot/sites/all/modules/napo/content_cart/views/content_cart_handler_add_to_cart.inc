@@ -7,8 +7,6 @@ class content_cart_handler_add_to_cart extends views_handler_field {
   var $revision = FALSE;
 
   function render($values) {
-//    $entity_id = $values->{$this->view->base_field};
-//    $entity_type = $this->view->base_table;
     if (!empty($values->_field_data) && !empty($values)) {
       reset($values->_field_data);
       $field = current($values->_field_data);
@@ -46,6 +44,7 @@ class content_cart_handler_add_to_cart extends views_handler_field {
     $form['contant_add_to_cart_button_label'] = array(
       '#type' => 'textfield',
       '#title' => t('Button text'),
+      '#default_value' => $this->options['contant_add_to_cart_button_label'],
     );
   }
 }

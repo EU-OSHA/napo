@@ -6,7 +6,7 @@
 function napo_common_views_handlers() {
   return array(
     'info' => array(
-      'path' => drupal_get_path('module', 'napo_film'),
+      'path' => drupal_get_path('module', 'napo_common'),
     ),
     'handlers' => array(
       'napo_common_views_handler_share_widget' => array(

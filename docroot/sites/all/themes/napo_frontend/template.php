@@ -31,7 +31,13 @@ function napo_frontend_back_button(&$vars){
   }elseif (is_array($breadcrumb) && $breadcrumb) {
     $page_title = array_pop($breadcrumb);
     $previous_crumb = array_pop($breadcrumb);
-    $vars['back_button'] = l(t('Back to !link', array('!link' => strip_tags($previous_crumb))), $referer, $options);
+
+    $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
+    if(preg_match("/$regexp/siU", $previous_crumb, $matches)) {
+      $vars['back_button'] = l(t('Back to !link', array('!link' => $matches[3])), $base_url.$matches[2], $options);
+    }else{
+      $vars['back_button'] = l(t('Back to !link', array('!link' => strip_tags($previous_crumb))), $referer, $options);
+    }
   }else {
     $vars['back_button'] = l(t('Back'), $referer, $options);
   }
@@ -81,4 +87,15 @@ function napo_frontend_form_alter(&$form, &$form_state, $form_id) {
   if($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-napo-films-page-list') {
     $form['search_api_views_fulltext']['#attributes']['placeholder'] = t('Search');
   }
+}
+
+function napo_frontend_napo_film_tag_facet_link($variables) {
+  $icon = '<span class="glyphicon glyphicon-remove"></span>';
+  $options = array(
+    'attributes' => array(
+      'class' => array('napo-film-search-tag-filter'),
+    ),
+    'html' => TRUE,
+  );
+  return l($icon . $variables['name'], $variables['link'], $options);
 }
