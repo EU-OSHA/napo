@@ -543,7 +543,7 @@ function napo_common_archived_content_block_view() {
 }
 
 function napo_common_field_formatter_info_alter(&$info) {
-  $info['title_linked']['module'] = 'napo_common';
+  $info['title_linked']['module'] = 'napo_common_title';
   $info['title_linked']['settings']['title_archived_label'] = FALSE;
 }
 

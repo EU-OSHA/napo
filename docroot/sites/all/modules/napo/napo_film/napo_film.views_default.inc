@@ -947,10 +947,12 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['title_field']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['element_wrapper_type'] = 'h3';
+  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
-    'title_style' => 'h3',
-    'title_link' => 'content',
+    'title_style' => '_none',
+    'title_link' => '',
     'title_class' => 'title',
+    'title_archived_label' => 1,
   );
   /* Field: Indexed Multilingual Node: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
@@ -1099,10 +1101,12 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['title_field']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['title_field']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
-    'title_style' => 'h3',
-    'title_link' => 'content',
+    'title_style' => '_none',
+    'title_link' => '',
     'title_class' => 'title',
+    'title_archived_label' => 1,
   );
   /* Field: Napo film: Download video */
   $handler->display->display_options['fields']['download_video']['id'] = 'download_video';
@@ -1452,10 +1456,12 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['title_field']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['title_field']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
     'title_style' => '_none',
-    'title_link' => 'content',
+    'title_link' => '',
     'title_class' => '',
+    'title_archived_label' => 1,
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
   /* Field: Content: Publication date */
