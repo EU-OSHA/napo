@@ -346,39 +346,22 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Draggableviews: Weight */
-  $handler->display->display_options['fields']['weight']['id'] = 'weight';
-  $handler->display->display_options['fields']['weight']['table'] = 'draggableviews_structure';
-  $handler->display->display_options['fields']['weight']['field'] = 'weight';
-  $handler->display->display_options['fields']['weight']['label'] = '';
-  $handler->display->display_options['fields']['weight']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['weight']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['weight']['separator'] = '';
-  /* Field: Global: PHP */
-  $handler->display->display_options['fields']['php']['id'] = 'php';
-  $handler->display->display_options['fields']['php']['table'] = 'views';
-  $handler->display->display_options['fields']['php']['field'] = 'php';
-  $handler->display->display_options['fields']['php']['label'] = '';
-  $handler->display->display_options['fields']['php']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['php']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php']['php_output'] = '<?php print sprintf(\'%02d\', $row->weight + 1); ?>';
-  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
-  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['label'] = '';
-  $handler->display->display_options['fields']['title_field']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['text'] = 'Episode [php]: [title_field]';
   $handler->display->display_options['fields']['title_field']['element_class'] = 'napo_film_episode_link';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title_field']['type'] = 'napo_film_episode_title_linked';
+  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
     'title_style' => '_none',
     'title_link' => 'content',
     'title_class' => '',
+    'title_archived_label' => 1,
+    'napo_film_title_include_type' => 1,
+    'napo_film_title_include_episode_count' => 1,
+    'napo_film_title_link_episode_popup' => 1,
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
   /* Field: Field: Image */
@@ -576,38 +559,21 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Draggableviews: Weight */
-  $handler->display->display_options['fields']['weight']['id'] = 'weight';
-  $handler->display->display_options['fields']['weight']['table'] = 'draggableviews_structure';
-  $handler->display->display_options['fields']['weight']['field'] = 'weight';
-  $handler->display->display_options['fields']['weight']['label'] = '';
-  $handler->display->display_options['fields']['weight']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['weight']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['weight']['separator'] = '';
-  /* Field: Global: PHP */
-  $handler->display->display_options['fields']['php']['id'] = 'php';
-  $handler->display->display_options['fields']['php']['table'] = 'views';
-  $handler->display->display_options['fields']['php']['field'] = 'php';
-  $handler->display->display_options['fields']['php']['label'] = '';
-  $handler->display->display_options['fields']['php']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['php']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php']['php_output'] = '<?php print sprintf(\'%02d\', $row->weight + 1); ?>';
-  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
-  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['label'] = '';
-  $handler->display->display_options['fields']['title_field']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['text'] = 'Episode [php]: [title_field]';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
     'title_style' => '_none',
     'title_link' => 'content',
     'title_class' => '',
+    'title_archived_label' => 1,
+    'napo_film_title_include_type' => 1,
+    'napo_film_title_include_episode_count' => 1,
+    'napo_film_title_link_episode_popup' => 0,
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
   /* Field: Field: Image */
@@ -659,8 +625,6 @@ function napo_film_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('.'),
-    t('Episode [php]: [title_field]'),
     t('<a href="[path]" class="napo_film_episode_link" data-nid="[nid]">[field_image]</a>'),
     t('All'),
     t('Block'),
@@ -930,17 +894,18 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['label'] = '';
   $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['text'] = '<h3>Film [title_field]</h3>';
-  $handler->display->display_options['fields']['title_field']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['element_wrapper_type'] = 'h3';
   $handler->display->display_options['fields']['title_field']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
-    'title_style' => '_none',
-    'title_link' => '',
+    'title_style' => 'h3',
+    'title_link' => 'content',
+    'title_class' => '',
+    'title_archived_label' => 1,
+    'napo_film_title_include_type' => 1,
+    'napo_film_title_include_episode_count' => 0,
+    'napo_film_title_link_episode_popup' => 0,
   );
   /* Field: Indexed Multilingual Node: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
@@ -1073,17 +1038,16 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['label'] = '';
   $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['text'] = 'Film [title_field]';
-  $handler->display->display_options['fields']['title_field']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
-    'title_style' => '_none',
-    'title_link' => '',
+    'title_style' => 'h3',
+    'title_link' => 'content',
     'title_class' => 'title',
     'title_archived_label' => 1,
+    'napo_film_title_include_type' => 1,
+    'napo_film_title_include_episode_count' => 0,
+    'napo_film_title_link_episode_popup' => 0,
   );
   /* Field: Napo film: Download video */
   $handler->display->display_options['fields']['download_video']['id'] = 'download_video';
@@ -1272,9 +1236,7 @@ function napo_film_views_default_views() {
     t('<div class="napo-film-list-details-container">[combined_tags][view_episodes_link][url][download_video]</div>'),
     t('[title_field][body][nothing_2][content_cart]'),
     t('List'),
-    t('<h3>Film [title_field]</h3>'),
     t('Grid'),
-    t('Film [title_field]'),
     t('<h3>[title_field]</h3>[download_video]'),
     t('[body][combined_tags][url][view_episodes_link][content_cart]'),
   );
@@ -1404,42 +1366,22 @@ function napo_film_views_default_views() {
     'image_style' => 'large',
     'image_link' => 'content',
   );
-  /* Field: Draggableviews: Weight */
-  $handler->display->display_options['fields']['weight']['id'] = 'weight';
-  $handler->display->display_options['fields']['weight']['table'] = 'draggableviews_structure';
-  $handler->display->display_options['fields']['weight']['field'] = 'weight';
-  $handler->display->display_options['fields']['weight']['label'] = '';
-  $handler->display->display_options['fields']['weight']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['weight']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['weight']['separator'] = '';
-  /* Field: Global: PHP */
-  $handler->display->display_options['fields']['php']['id'] = 'php';
-  $handler->display->display_options['fields']['php']['table'] = 'views';
-  $handler->display->display_options['fields']['php']['field'] = 'php';
-  $handler->display->display_options['fields']['php']['label'] = '';
-  $handler->display->display_options['fields']['php']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['php']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['php']['use_php_setup'] = 0;
-  $handler->display->display_options['fields']['php']['php_output'] = '<?php print sprintf(\'%02d\', $row->weight + 1); ?>';
-  $handler->display->display_options['fields']['php']['use_php_click_sortable'] = '0';
-  $handler->display->display_options['fields']['php']['php_click_sortable'] = '';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['label'] = '';
   $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['text'] = 'Episode [php]: [title_field]';
-  $handler->display->display_options['fields']['title_field']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
-    'title_style' => '_none',
-    'title_link' => '',
+    'title_style' => 'h3',
+    'title_link' => 'content',
     'title_class' => '',
     'title_archived_label' => 1,
+    'napo_film_title_include_type' => 1,
+    'napo_film_title_include_episode_count' => 1,
+    'napo_film_title_link_episode_popup' => 0,
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
   /* Field: Content: Publication date */
@@ -1568,8 +1510,6 @@ function napo_film_views_default_views() {
     t('<span class="glyphicon glyphicon-play-circle"></span>'),
     t('All'),
     t('Page'),
-    t('.'),
-    t('Episode [php]: [title_field]'),
     t('<h3>[title_field]</h3>
 [field_publication_date]
 <div class="episode-list-details-container">

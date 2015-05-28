@@ -17,8 +17,8 @@ function napo_film_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'napo_video';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
-    'share_widget' => array(
-      'weight' => '5',
+    'napo_film_title' => array(
+      'weight' => '4',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -27,8 +27,13 @@ function napo_film_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'download_video_form' => array(
+    'share_widget' => array(
       'weight' => '6',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'download_video_form' => array(
+      'weight' => '7',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -38,7 +43,7 @@ function napo_film_ds_field_settings_info() {
       'format' => 'default',
     ),
     'film' => array(
-      'weight' => '4',
+      'weight' => '5',
       'label' => 'inline',
       'format' => 'default',
       'formatter_settings' => array(
@@ -49,7 +54,7 @@ function napo_film_ds_field_settings_info() {
       ),
     ),
     'recommended_films' => array(
-      'weight' => '9',
+      'weight' => '10',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -63,23 +68,28 @@ function napo_film_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'napo_video';
   $ds_fieldsetting->view_mode = 'episode_full';
   $ds_fieldsetting->settings = array(
+    'napo_film_title' => array(
+      'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'share_widget' => array(
+      'weight' => '5',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'download_video_form' => array(
+      'weight' => '4',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'episode' => array(
       'weight' => '2',
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'share_widget' => array(
-      'weight' => '4',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
-    'download_video_form' => array(
-      'weight' => '3',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
     'episode_list_episode' => array(
-      'weight' => '7',
+      'weight' => '8',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -134,18 +144,6 @@ function napo_film_ds_custom_fields_info() {
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
-  $ds_field->field = 'episode';
-  $ds_field->label = 'Episode';
-  $ds_field->field_type = 3;
-  $ds_field->entities = array(
-    'node' => 'node',
-  );
-  $ds_field->ui_limit = 'napo_video|episode_full';
-  $ds_field->properties = array();
-  $export['episode'] = $ds_field;
-
-  $ds_field = new stdClass();
-  $ds_field->api_version = 1;
   $ds_field->field = 'episode_list';
   $ds_field->label = 'Episode list';
   $ds_field->field_type = 6;
@@ -174,29 +172,16 @@ napo_video|episode_popup';
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
-  $ds_field->field = 'film';
-  $ds_field->label = 'Film';
-  $ds_field->field_type = 7;
+  $ds_field->field = 'napo_film_title';
+  $ds_field->label = 'Napo Film Title (second title)';
+  $ds_field->field_type = 3;
   $ds_field->entities = array(
     'node' => 'node',
   );
-  $ds_field->ui_limit = 'napo_video|default';
-  $ds_field->properties = array(
-    'default' => array(),
-    'settings' => array(
-      'show_title' => array(
-        'type' => 'checkbox',
-      ),
-      'title_wrapper' => array(
-        'type' => 'textfield',
-        'description' => 'Eg: h1, h2, p',
-      ),
-      'ctools' => array(
-        'type' => 'ctools',
-      ),
-    ),
-  );
-  $export['film'] = $ds_field;
+  $ds_field->ui_limit = 'napo_video|default
+napo_video|episode_full';
+  $ds_field->properties = array();
+  $export['napo_film_title'] = $ds_field;
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
@@ -233,12 +218,13 @@ function napo_film_ds_layout_settings_info() {
         1 => 'title_field',
         2 => 'field_youtube',
         3 => 'episode_list',
-        4 => 'film',
-        5 => 'share_widget',
-        6 => 'download_video_form',
-        7 => 'field_combined_tags',
-        8 => 'body',
-        9 => 'recommended_films',
+        4 => 'napo_film_title',
+        5 => 'film',
+        6 => 'share_widget',
+        7 => 'download_video_form',
+        8 => 'field_combined_tags',
+        9 => 'body',
+        10 => 'recommended_films',
       ),
     ),
     'fields' => array(
@@ -246,6 +232,7 @@ function napo_film_ds_layout_settings_info() {
       'title_field' => 'ds_content',
       'field_youtube' => 'ds_content',
       'episode_list' => 'ds_content',
+      'napo_film_title' => 'ds_content',
       'film' => 'ds_content',
       'share_widget' => 'ds_content',
       'download_video_form' => 'ds_content',
@@ -278,17 +265,19 @@ function napo_film_ds_layout_settings_info() {
         0 => 'title_field',
         1 => 'field_youtube',
         2 => 'episode',
-        3 => 'download_video_form',
-        4 => 'share_widget',
-        5 => 'field_combined_tags',
-        6 => 'body',
-        7 => 'episode_list_episode',
+        3 => 'napo_film_title',
+        4 => 'download_video_form',
+        5 => 'share_widget',
+        6 => 'field_combined_tags',
+        7 => 'body',
+        8 => 'episode_list_episode',
       ),
     ),
     'fields' => array(
       'title_field' => 'ds_content',
       'field_youtube' => 'ds_content',
       'episode' => 'ds_content',
+      'napo_film_title' => 'ds_content',
       'download_video_form' => 'ds_content',
       'share_widget' => 'ds_content',
       'field_combined_tags' => 'ds_content',

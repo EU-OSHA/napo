@@ -542,11 +542,21 @@ function napo_common_archived_content_block_view() {
   return '';
 }
 
+/**
+ * Implements hook_field_formatter_info_alter().
+ */
 function napo_common_field_formatter_info_alter(&$info) {
-  $info['title_linked']['module'] = 'napo_common_title';
+  // Alter the title_linked formatter by assing this module to it.
+  $info['title_linked']['module'] = 'napo_common';
+  // Add custom settings default.
   $info['title_linked']['settings']['title_archived_label'] = FALSE;
 }
 
+/**
+ * Implements hook_field_formatter_settings_form().
+ *
+ * Alter the settings form of title_linked formatter.
+ */
 function napo_common_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
   $form = title_field_formatter_settings_form($field, $instance, $view_mode, $form, $form_state);
   $settings = $instance['display'][$view_mode]['settings'];
@@ -555,6 +565,9 @@ function napo_common_field_formatter_settings_form($field, $instance, $view_mode
     '#title' => t('Include archived label'),
     '#default_value' => $settings['title_archived_label'],
   );
+
+  // Let other napo modules to interact with this form.
+  drupal_alter('napo_common_field_formatter_settings_form', $field, $instance, $view_mode, $form, $form_state);
   return $form;
 }
 
@@ -562,8 +575,17 @@ function napo_common_field_formatter_settings_summary($field, $instance, $view_m
   return title_field_formatter_settings_summary($field, $instance, $view_mode);
 }
 
+/**
+ * Implements hook_field_formatter_view().
+ */
 function napo_common_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
-  $element = title_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display);
+  // If is film/episode, use custom formatter.
+  if ($entity_type == 'node' && $entity->type == 'napo_video') {
+    $element = napo_film_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display);
+  }
+  else {
+    $element = title_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display);
+  }
   $settings = $display['settings'];
   if (!empty($settings['title_archived_label']) && napo_common_node_is_archived($entity)) {
     $element[0]['#markup'] .= '<span class="title-archived"> ' . t('Archived') . '</span>';
@@ -571,6 +593,9 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
   return $element;
 }
 
+/**
+ * If node is mark as outdated or not.
+ */
 function napo_common_node_is_archived($node) {
   if (isset($node->field_archived[LANGUAGE_NONE][0]['value']) &&
     $node->field_archived[LANGUAGE_NONE][0]['value'] == 1) {

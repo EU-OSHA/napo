@@ -436,22 +436,19 @@ function napo_film_preprocess_node(&$vars) {
             )
           );
         }
-        if (in_array('episode', $vars['preprocess_fields'])) {
-          $weight = napo_film_get_episode_number($node) + 1;
-          if ($weight > 0) {
-            $label = t('Episode @no', array('@no' => sprintf('%02d', $weight)));
-          }
-          else {
-            $label = t('Episode');
-          }
-          $field = array(
-            '#type' => 'item',
-            '#title' => $label,
-            '#markup' => $node->title,
-            '#prefix' => '<div class="napo-episode-title-full-view">',
-            '#suffix' => '</div>',
+        // This is the second title used in full view modes.
+        if (in_array('napo_film_title', $vars['preprocess_fields'])) {
+          // Set formatter settings.
+          $display_settings = array(
+            'label' => 'hidden',
+            'type' => 'title_linked',
+            'settings' => array(
+              'napo_film_title_include_type' => 1,
+              'napo_film_title_include_episode_count' => 1,
+            ),
           );
-          $vars['episode'] = drupal_render($field);
+          $title_episode = field_view_field('node', $node, 'title_field', $display_settings);
+          $vars['napo_film_title'] = drupal_render($title_episode);
         }
       }
   }
