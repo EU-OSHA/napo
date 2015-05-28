@@ -288,7 +288,7 @@ function napo_gallery_views_default_views() {
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['exclude'] = TRUE;
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  /* Field: Broken/missing handler */
+  /* Field: Napo common: Napo share widget */
   $handler->display->display_options['fields']['share_widget']['id'] = 'share_widget';
   $handler->display->display_options['fields']['share_widget']['table'] = 'napo_common';
   $handler->display->display_options['fields']['share_widget']['field'] = 'share_widget';
