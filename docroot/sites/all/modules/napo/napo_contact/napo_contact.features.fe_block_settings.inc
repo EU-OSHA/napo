@@ -64,7 +64,7 @@ function napo_contact_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => '<none>',
+    'title' => 'Haven\'t found your answer? CONTACT US',
     'visibility' => 1,
   );
 

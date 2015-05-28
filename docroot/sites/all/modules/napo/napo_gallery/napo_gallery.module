@@ -5,3 +5,16 @@
  */
 
 include_once 'napo_gallery.features.inc';
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function napo_gallery_preprocess_node(&$vars) {
+  $node = $vars['node'];
+  if ($node->type == 'napo_album') {
+    $params = drupal_get_query_parameters();
+    if (isset($params['page'])) {
+      hide($vars['content']['field_image']);
+    }
+  }
+}

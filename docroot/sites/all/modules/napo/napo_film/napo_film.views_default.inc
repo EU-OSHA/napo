@@ -924,17 +924,6 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nid']['separator'] = '';
   $handler->display->display_options['fields']['nid']['link_to_entity'] = 0;
-  /* Field: Global: View result counter */
-  $handler->display->display_options['fields']['counter']['id'] = 'counter';
-  $handler->display->display_options['fields']['counter']['table'] = 'views';
-  $handler->display->display_options['fields']['counter']['field'] = 'counter';
-  $handler->display->display_options['fields']['counter']['label'] = '';
-  $handler->display->display_options['fields']['counter']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['counter']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['counter']['alter']['text'] = 'Film [counter]';
-  $handler->display->display_options['fields']['counter']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['counter']['counter_start'] = '1';
-  $handler->display->display_options['fields']['counter']['reverse'] = 0;
   /* Field: Indexed Multilingual Node: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -942,17 +931,16 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['title_field']['label'] = '';
   $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title_field']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['text'] = '<h3 class="title-field">[counter]: [title_field]</h3>';
+  $handler->display->display_options['fields']['title_field']['alter']['text'] = '<h3>Film [title_field]</h3>';
   $handler->display->display_options['fields']['title_field']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['title_field']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['element_wrapper_type'] = 'h3';
+  $handler->display->display_options['fields']['title_field']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
     'title_style' => '_none',
     'title_link' => '',
-    'title_class' => 'title',
-    'title_archived_label' => 1,
   );
   /* Field: Indexed Multilingual Node: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
@@ -1079,17 +1067,6 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nid']['separator'] = '';
   $handler->display->display_options['fields']['nid']['link_to_entity'] = 0;
-  /* Field: Global: View result counter */
-  $handler->display->display_options['fields']['counter']['id'] = 'counter';
-  $handler->display->display_options['fields']['counter']['table'] = 'views';
-  $handler->display->display_options['fields']['counter']['field'] = 'counter';
-  $handler->display->display_options['fields']['counter']['label'] = '';
-  $handler->display->display_options['fields']['counter']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['counter']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['counter']['alter']['text'] = 'Film [counter]';
-  $handler->display->display_options['fields']['counter']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['counter']['counter_start'] = '1';
-  $handler->display->display_options['fields']['counter']['reverse'] = 0;
   /* Field: Indexed Multilingual Node: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -1097,7 +1074,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['title_field']['label'] = '';
   $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title_field']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title_field']['alter']['text'] = '[counter]: [title_field]';
+  $handler->display->display_options['fields']['title_field']['alter']['text'] = 'Film [title_field]';
   $handler->display->display_options['fields']['title_field']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['title_field']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
@@ -1295,8 +1272,9 @@ function napo_film_views_default_views() {
     t('<div class="napo-film-list-details-container">[combined_tags][view_episodes_link][url][download_video]</div>'),
     t('[title_field][body][nothing_2][content_cart]'),
     t('List'),
+    t('<h3>Film [title_field]</h3>'),
     t('Grid'),
-    t('[counter]: [title_field]'),
+    t('Film [title_field]'),
     t('<h3>[title_field]</h3>[download_video]'),
     t('[body][combined_tags][url][view_episodes_link][content_cart]'),
   );
