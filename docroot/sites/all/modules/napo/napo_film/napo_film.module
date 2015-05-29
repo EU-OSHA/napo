@@ -177,6 +177,20 @@ function napo_film_views_pre_view( view &$view, &$display_id, &$args) {
     else {
       $view->set_display('page_grid');
     }
+
+    // When searching (word or tag) in Film page, episode should be included.
+    // Alter the filter to include films and episodes video type.
+    $params = drupal_get_query_parameters();
+    if (!empty($params['search_api_views_fulltext'])
+      || !empty($params['f'])) {
+      $view_filters = $view->display_handler->get_option('filters');
+      $view_filters['field_video_type']['value'] = drupal_map_assoc(napo_film_get_video_types_tid());
+      $overrides = array();
+      $overrides['filters'] = $view_filters;
+      foreach ($overrides as $option => $definition) {
+        $view->display_handler->override_option($option, $definition);
+      }
+    }
   }
 }
 
