@@ -1489,8 +1489,12 @@ function osha_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'hidden',
-        'module' => 'title',
+        'module' => 'napo_common',
         'settings' => array(
+          'napo_film_title_include_episode_count' => FALSE,
+          'napo_film_title_include_type' => FALSE,
+          'napo_film_title_link_episode_popup' => FALSE,
+          'title_archived_label' => FALSE,
           'title_class' => '',
           'title_link' => '',
           'title_style' => 'h1',
@@ -1500,8 +1504,12 @@ function osha_field_default_field_instances() {
       ),
       'highlights_item' => array(
         'label' => 'hidden',
-        'module' => 'title',
+        'module' => 'napo_common',
         'settings' => array(
+          'napo_film_title_include_episode_count' => FALSE,
+          'napo_film_title_include_type' => FALSE,
+          'napo_film_title_link_episode_popup' => FALSE,
+          'title_archived_label' => FALSE,
           'title_class' => '',
           'title_link' => '',
           'title_style' => '',
@@ -1511,8 +1519,12 @@ function osha_field_default_field_instances() {
       ),
       'newsletter_item' => array(
         'label' => 'hidden',
-        'module' => 'title',
+        'module' => 'napo_common',
         'settings' => array(
+          'napo_film_title_include_episode_count' => FALSE,
+          'napo_film_title_include_type' => FALSE,
+          'napo_film_title_link_episode_popup' => FALSE,
+          'title_archived_label' => FALSE,
           'title_class' => '',
           'title_link' => '',
           'title_style' => '',
@@ -1522,8 +1534,12 @@ function osha_field_default_field_instances() {
       ),
       'osha_resources' => array(
         'label' => 'hidden',
-        'module' => 'title',
+        'module' => 'napo_common',
         'settings' => array(
+          'napo_film_title_include_episode_count' => FALSE,
+          'napo_film_title_include_type' => FALSE,
+          'napo_film_title_link_episode_popup' => FALSE,
+          'title_archived_label' => FALSE,
           'title_class' => '',
           'title_link' => 'content',
           'title_style' => '_none',
