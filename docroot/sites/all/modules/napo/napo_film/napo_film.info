@@ -16,7 +16,6 @@ dependencies[] = jcarousel
 dependencies[] = media
 dependencies[] = multiple_selects
 dependencies[] = napo_common
-dependencies[] = napo_common_title
 dependencies[] = nodeblock
 dependencies[] = options
 dependencies[] = osha
