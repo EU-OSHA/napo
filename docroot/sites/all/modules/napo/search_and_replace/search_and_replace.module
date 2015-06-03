@@ -1,0 +1,377 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function search_and_replace_menu() {
+
+  $items['admin/content/search_replace'] = array(
+    'title' => 'Search and Replace',
+    'description' => 'Find (and replace) keywords in all your content.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('search_and_replace_form'),
+    'type' => MENU_LOCAL_TASK,
+    'access arguments' => array('perform search and replace'),
+  );
+  $items['admin/content/search_replace/search'] = array(
+    'title' => 'Search',
+    'access arguments' => array('perform search and replace'),
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+
+  $items['node/%node/search_replace'] = array(
+    'title' => 'Search and Replace',
+    'description' => 'Find (and replace) keywords in all your content.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('search_and_replace_form', 1),
+    'type' => MENU_LOCAL_TASK,
+    'access arguments' => array('perform search and replace'),
+  );
+
+  return $items;
+}
+
+function search_and_replace_form($form, &$form_state, $node = array()) {
+  if (!empty($node)) {
+    $form['#node'] = $node;
+  }
+
+  if (isset($form_state['storage']['confirm'])) {
+    return search_and_replace_form_confirm($form, $form_state);
+  }
+
+  $form['search'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Step 1: Search for'),
+    '#maxlength' => 256,
+  );
+
+  $form['submit_search'] = array(
+    '#type' => 'submit',
+    '#value' => t('Search'),
+  );
+
+  $form['replace'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Step 2: Replace with'),
+    '#maxlength' => 256,
+  );
+  $form['submit_replace'] = array(
+    '#type' => 'submit',
+    '#value' => t('Replace'),
+    '#validate' => array('search_and_replace_form_replace_validate'),
+    '#submit' => array('search_and_replace_form_replace_submit'),
+  );
+
+  $form['options'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Search Options'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  );
+
+  $form['options']['surrounding'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Surrounding Text'),
+    '#collapsible' => FALSE,
+    '#description' => t('You can limit matches by providing the text that should appear immediately before or after the search text. Remember to account for spaces.  Note: Case sensitivity and regular expression options will all apply here, too. Whole word is not recommended.'),
+  );
+
+  $form['options']['surrounding']['preceded'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Preceded by'),
+    '#maxlength' => 256,
+  );
+
+  $form['options']['surrounding']['followed'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Followed by'),
+    '#maxlength' => 256,
+  );
+
+  $form['options']['mode'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Case sensitive search'),
+    '#default_value' => 0,
+    '#description' => t("Check this if the search should only return results that exactly match the capitalization of your search terms."),
+  );
+
+  $form['options']['wholeword'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Match whole word'),
+    '#default_value' => 1,
+    '#description' => t("Check this if you don't want the search to match any partial words. For instance, if you search for 'run', a whole word search will <em>not</em> match 'running'."),
+  );
+
+  $form['options']['regex'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use regular expressions in search'),
+    '#default_value' => 0,
+    '#description' => t('Check this if you want to use regular expressions in your search terms.'),
+  );
+
+  $form['options']['published'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Published nodes only'),
+    '#default_value' => 1,
+    '#description' => t('Check this if you only want your search and replace to affect fields in nodes that are published.'),
+  );
+
+  return $form;
+}
+
+function search_and_replace_form_validate($form, &$form_state) {
+  if (empty($form_state['values']['search'])) {
+    form_set_error('search', t('Please enter some keywords.'));
+  }
+}
+
+function search_and_replace_form_submit($form, &$form_state) {
+  search_and_replace_perform_search($form_state['values']);
+}
+
+function search_and_replace_form_replace_validate($form, &$form_state) {
+  if (empty($form_state['values']['search'])) {
+    form_set_error('search', t('Please enter some keywords.'));
+  }
+
+  if (empty($form_state['values']['replace'])) {
+    form_set_error('replace', t('Please enter some keywords.'));
+  }
+}
+
+function search_and_replace_form_replace_submit($form, &$form_state) {
+  if (!isset($form_state['storage']['confirm'])) {
+    $form_state['storage']['confirm'] = TRUE;
+    $form_state['rebuild'] = TRUE;
+  }
+  else {
+    dpm($form['#values']);
+  }
+}
+
+function search_and_replace_form_confirm($form, &$form_state) {
+  $values = $form_state['values'];
+  $description = '<p>' . t('You are about to replace "@search" with "@replace"',
+    array(
+      '@search' => $values['search'],
+      '@replace' => $values['replace'],
+    ));
+  // TODO - add to description other sar settings info from form.
+  $form['#values'] = $form_state['values'];
+  $form = confirm_form($form, t('Are you sure?'), current_path(), $description);
+  $form['actions']['submit']['#submit'] = array('search_and_replace_form_replace_submit');
+  return $form;
+}
+
+function search_and_replace_perform_search($settings) {
+  $flag = NULL;
+  if (!$settings['mode']) {
+    $flag = 'i';
+  }
+
+  $preceded = $settings['preceded'];
+  $regex = $settings['regex'];
+
+  $preceded_php = '';
+  if (!empty($preceded)) {
+    if (!$regex) {
+      $preceded = addcslashes($preceded, SCANNER_REGEX_CHARS);
+    }
+    $preceded_php = '(?<=' . $preceded . ')';
+  }
+
+  $followed = $settings['followed'];
+  $followed_php = '';
+  if (!empty($followed)) {
+    if (!$regex) {
+      $followed = addcslashes($followed, SCANNER_REGEX_CHARS);
+    }
+    $followed_php = '(?=' . $followed . ')';
+  }
+
+  $search = $settings['search'];
+  $whole_word = $settings['wholeword'];
+  if ($whole_word && $regex) {
+    $where = "[[:<:]]" . $search . "[[:>:]]";
+    $search_db = $preceded . $search . $followed;
+    $search_php = '\b' . $preceded_php . $search . $followed_php . '\b';
+  }
+  elseif ($whole_word && !$regex) {
+    $where = "[[:<:]]" . $search . "[[:>:]]";
+    $search_db = $preceded . addcslashes($search, SCANNER_REGEX_CHARS) . $followed;
+    $search_php = '\b' . $preceded_php . addcslashes($search, SCANNER_REGEX_CHARS) . $followed_php . '\b';
+  }
+  elseif (!$whole_word && $regex) {
+    $where = $search;
+    $search_db = $preceded . $search . $followed;
+    $search_php = $preceded_php . $search . $followed_php;
+  }
+  else {
+    // !whole word and !regex.
+    $where = $search;
+    $search_db = $preceded . addcslashes($search, SCANNER_REGEX_CHARS) . $followed;
+    $search_php = $preceded_php . addcslashes($search, SCANNER_REGEX_CHARS) . $followed_php;
+  }
+
+  $tables = _scanner_get_selected_tables_map();
+//  $tables = array('field_data_title_field', 'field_data_body');
+
+  //if terms selected, then put together extra join and where clause:
+  /*$join = '';
+  if (is_array($terms) && count($terms)) {
+    $terms_where = array();
+    $terms_params = array();
+    foreach ($terms as $term) {
+      $terms_where[] = 'tn.tid = %d';
+      $terms_params[] = $term;
+    }
+    $join = 'INNER JOIN {taxonomy_term_node} tn ON t.nid = tn.nid';
+    $where .= ' AND (' . implode(' OR ', $terms_where) . ')';
+  }*/
+
+  $settings['flag'] = $flag;
+  $settings['search_db'] = $search_db;
+  $settings['search_php'] = $search_php;
+
+  $batch = array(
+    'operations' => array(
+      array('search_and_replace_batch_operation_search', array($tables, $settings)),
+    ),
+    'finished' => 'search_and_replace_batch_search_finished',
+    'title' => t('Processing Example Batch'),
+    'init_message' => t('Search Batch is starting.'),
+    'progress_message' => t('Processed @current out of @total.'),
+    'error_message' => t('Example Batch has encountered an error.'),
+    'file' => drupal_get_path('module', 'batch_example') . '/batch_example.inc',
+  );
+  batch_set($batch);
+
+  batch_process();
+}
+
+function search_and_replace_batch_operation_search($tables, $settings, &$context) {
+  if (!isset($context['sandbox']['progress'])) {
+    $context['sandbox']['progress'] = 0;
+    $context['sandbox']['current_table'] = 0;
+    $context['sandbox']['max'] = count($tables);
+    $context['results']['settings'] = $settings;
+  }
+
+  $search_db = $settings['search_db'];
+
+  $limit = 2;
+  $to_process = array_slice($tables, $context['sandbox']['current_table'], $limit);
+  foreach ($to_process as $table) {
+    $table_name = $table['table'];
+    $field = $table['field'];
+    $type = $table['type'];
+    $query = db_select($table_name, 't');
+    if ($table_name == 'node_revision') {
+      $nid = 'nid';
+      $vid = 'vid';
+    }
+    else {
+      $field = $field . '_value';
+      $nid = 'entity_id';
+      $vid = 'revision_id';
+    }
+    $query->join('node', 'n', 't.' . $vid . ' = n.vid');
+    $query->addField('t', $field, 'content');
+    $query->fields('n', array('nid', 'title'));
+    $query->condition('n.type', $type, '=');
+    if ($settings['mode']) {
+      $query->condition('t.' . $field, $search_db, 'REGEXP BINARY');
+    }
+    else {
+      $query->condition('t.' . $field, $search_db, 'REGEXP');
+    }
+    if ($settings['published']) {
+      $query->condition('n.status', '1', '=');
+    }
+    $result = $query->execute();
+
+    foreach ($result as $row) {
+      if (!isset($context['results'][$row->nid])) {
+        $context['results'][$row->nid] = array(
+          'content' => array($field => $row->content),
+          'nid' => $row->nid,
+          'title' => $row->title,
+          'type' => $row->type,
+        );
+      }
+      else {
+        $context['results']['results'][$row->nid]['content'][$field] = $row->content;
+      }
+    }
+
+    // Update our progress information.
+    $context['sandbox']['progress']++;
+    $context['sandbox']['current_table']++;
+    $context['message'] = t('Now processing %table', array('%table' => $table));
+  }
+
+  // Inform the batch engine that we are not finished,
+  // and provide an estimation of the completion level we reached.
+  if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+    $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+  }
+}
+
+/**
+ * Batch 'finished' callback.
+ */
+function search_and_replace_batch_search_finished($success, $results, $operations) {
+  if ($success) {
+    // Here we do something meaningful with the results.
+    $message = t('@count nodes found:', array('@count' => count($results['results'])));
+    $items = search_and_replace_parse_search_results($results['results'], $results['settings']);
+    $message .= theme('scanner_results', array('results' => $items));
+    drupal_set_message($message);
+  }
+  else {
+    // An error occurred.
+    // $operations contains the operations that remained unprocessed.
+    $error_operation = reset($operations);
+    $message = t('An error occurred while processing %error_operation with arguments: @arguments', array('%error_operation' => $error_operation[0], '@arguments' => print_r($error_operation[1], TRUE)));
+    drupal_set_message($message, 'error');
+  }
+}
+
+function search_and_replace_parse_search_results($results, $settings) {
+  $items = array();
+  $search_php = $settings['search_php'];
+  $flag = $settings['flag'];
+  $regexstr = "/(.{0,130}?)($search_php)(.{0,130})/$flag";
+  foreach ($results as $result) {
+    $hits = 0;
+    $text = '';
+    foreach ($result->content as $field => $content) {
+      $current_hits = preg_match_all($regexstr, $content, $matches, PREG_SET_ORDER);
+      if ($hits > 0) {
+        $hits += $current_hits;
+        foreach ($matches as $match) {
+          if ($match[1]) {
+            $text .= '...' . htmlentities($match[1], ENT_COMPAT, 'UTF-8');
+          }
+          $text .= '<strong>' . htmlentities($match[2], ENT_COMPAT, 'UTF-8') . '</strong>';
+          if ($match[3]) {
+            $text .= htmlentities($match[3], ENT_COMPAT, 'UTF-8') . '...';
+          }
+        }
+      }
+      else {
+        $text .= "<div class='warning'>" . t("Can't display search result due to conflict between search term and internal preg_match_all function.") . '</div>';
+      }
+    }
+    $items[] = array(
+      'title' => $result->title,
+      'type' => $result->$type,
+      'count' => $hits,
+      'field' => $field,
+      'nid' => $result->nid,
+      'text' => $text,
+    );
+  }
+  return $items;
+}
