@@ -5,6 +5,22 @@
 
 //== Colors
 //
+
+// Napo colors
+
+@color-gray-napo-footer: #585759;
+@color-blue-napo:		 #1F3695;
+@color-yellow-napo:		 #F7E235;
+@color-blue-light-napo:  #BBC2DF;
+@color-napo-gray-5:      #585759;
+
+@color-napo-bg-gray-1: #F2F1F2;
+@color-napo-bg-gray-2: #E0E1E1;
+@color-napo-bg-gray-3: #B1B3B4;
+@color-napo-bg-gray-4: #79797B;
+@color-napo-bg-gray-5: #585759;
+
+
 //## Gray and brand colors for use across Bootstrap.
 
 @gray-base:              #000;
@@ -25,16 +41,16 @@
 //
 //## Settings for some of the most global styles.
 
-//** Background color for `<body>`.
+// Background color for `<body>`.
 @body-bg:               #fff;
-//** Global text color on `<body>`.
-@text-color:            @gray-dark;
+// Global text color on `<body>`.
+@text-color:            #000;
 
-//** Global textual link color.
-@link-color:            @brand-primary;
-//** Link hover color set via `darken()` function.
-@link-hover-color:      darken(@link-color, 15%);
-//** Link hover decoration.
+// Global textual link color.
+@link-color:    		#1F3695;
+// Link hover color set via `darken()` function.
+@link-hover-color:      #1F3695;
+// Link hover decoration.
 @link-hover-decoration: underline;
 
 
@@ -42,22 +58,35 @@
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
-@font-family-serif:       Georgia, "Times New Roman", Times, serif;
-//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+@import url('//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic&subset=cyrillic,cyrillic-ext,latin,greek-ext,greek,latin-ext');
+
+@font-family-ubuntu:	 'Ubuntu', cursive;
+
+@font-family-base:        @font-family-ubuntu;
+
+// Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
-@font-family-base:        @font-family-sans-serif;
+
 
 @font-size-base:          14px;
+
+@clickable-text-big:	  17px;
+
 @font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
 @font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
 
-@font-size-h1:            floor((@font-size-base * 2.6)); // ~36px
-@font-size-h2:            floor((@font-size-base * 2.15)); // ~30px
-@font-size-h3:            ceil((@font-size-base * 1.7)); // ~24px
+@font-size-h1:            30px;
+@font-size-h2:            17px;
+@font-size-h3:            15px;
 @font-size-h4:            ceil((@font-size-base * 1.25)); // ~18px
 @font-size-h5:            @font-size-base;
 @font-size-h6:            ceil((@font-size-base * 0.85)); // ~12px
+
+@font-size-page-not-found: 36px;
+
+@h1-color:				  #1F3695;
+@h1-color-bg: 			  #F2F1F2;
+
 
 //** Unit-less `line-height` for use in components like buttons.
 @line-height-base:        1.428571429; // 20/14
@@ -144,13 +173,14 @@
 
 @btn-font-weight:                normal;
 
+@btn-blue-napo-color:			 #1F3695;
 @btn-default-color:              #333;
 @btn-default-bg:                 #fff;
-@btn-default-border:             #ccc;
+@btn-default-border:             transparent;
 
 @btn-primary-color:              #fff;
 @btn-primary-bg:                 @brand-primary;
-@btn-primary-border:             darken(@btn-primary-bg, 5%);
+@btn-primary-border:             transparent;
 
 @btn-success-color:              #fff;
 @btn-success-bg:                 @brand-success;
@@ -176,14 +206,15 @@
 //##
 
 //** `<input>` background color
-@input-bg:                       #fff;
+@input-bg:                       #BBC2DF;
+@input-bg-yellow:				 #F7E235;
 //** `<input disabled>` background color
-@input-bg-disabled:              @gray-lighter;
+@input-bg-disabled:              #1F3695;
 
 //** Text color for `<input>`s
-@input-color:                    @gray;
+@input-color:                    #1F3695;
 //** `<input>` border color
-@input-border:                   #ccc;
+@input-border:                   transparent;
 
 // TODO: Rename `@input-border-radius` to `@input-border-radius-base` in v4
 //** Default `.form-control` border radius
@@ -195,10 +226,10 @@
 @input-border-radius-small:      @border-radius-small;
 
 //** Border color for inputs on focus
-@input-border-focus:             #66afe9;
+@input-border-focus:             transparent;
 
 //** Placeholder text color
-@input-color-placeholder:        #999;
+@input-color-placeholder:        @color-blue-napo;
 
 //** Default `.form-control` height
 @input-height-base:              (@line-height-computed + (@padding-base-vertical * 2) + 2);
@@ -227,31 +258,31 @@
 //## Dropdown menu container and contents.
 
 //** Background for the dropdown menu.
-@dropdown-bg:                    #fff;
+@dropdown-bg:                    #1F3695;
 //** Dropdown menu `border-color`.
-@dropdown-border:                rgba(0,0,0,.15);
+@dropdown-border:                transparent;
 //** Dropdown menu `border-color` **for IE8**.
-@dropdown-fallback-border:       #ccc;
+@dropdown-fallback-border:       transparent;
 //** Divider color for between dropdown items.
 @dropdown-divider-bg:            #e5e5e5;
 
 //** Dropdown link text color.
-@dropdown-link-color:            @gray-dark;
+@dropdown-link-color:            #FFF;
 //** Hover color for dropdown links.
-@dropdown-link-hover-color:      darken(@gray-dark, 5%);
+@dropdown-link-hover-color:      #1F3695;
 //** Hover background for dropdown links.
-@dropdown-link-hover-bg:         #f5f5f5;
+@dropdown-link-hover-bg:         #F7E235;
 
 //** Active dropdown menu item text color.
-@dropdown-link-active-color:     @component-active-color;
+@dropdown-link-active-color:     #FFF;
 //** Active dropdown menu item background color.
-@dropdown-link-active-bg:        @component-active-bg;
+@dropdown-link-active-bg:        #1F3695;
 
 //** Disabled dropdown menu item background color.
 @dropdown-link-disabled-color:   @gray-light;
 
 //** Text color for headers within dropdown menus.
-@dropdown-header-color:          @gray-light;
+@dropdown-header-color:          #BBC2DF;
 
 //** Deprecated `@dropdown-caret-color` as of v3.1.0
 @dropdown-caret-color:           #000;
@@ -352,15 +383,15 @@
 //##
 
 // Basics of a navbar
-@navbar-height:                    50px;
+@navbar-height:                    59px;
 @navbar-margin-bottom:             @line-height-computed;
 @navbar-border-radius:             @border-radius-base;
 @navbar-padding-horizontal:        floor((@grid-gutter-width / 2));
 @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
 @navbar-collapse-max-height:       340px;
 
-@navbar-default-color:             #777;
-@navbar-default-bg:                #f8f8f8;
+@navbar-default-color:             #eff0f0;
+@navbar-default-bg:                #eff0f0;
 @navbar-default-border:            darken(@navbar-default-bg, 6.5%);
 
 // Navbar links
@@ -444,15 +475,15 @@
 
 @pagination-color:                     @link-color;
 @pagination-bg:                        #fff;
-@pagination-border:                    #ddd;
+@pagination-border:                    #fff;
 
 @pagination-hover-color:               @link-hover-color;
-@pagination-hover-bg:                  @gray-lighter;
-@pagination-hover-border:              #ddd;
+@pagination-hover-bg:                  #fff;
+@pagination-hover-border:              #fff;
 
-@pagination-active-color:              #fff;
-@pagination-active-bg:                 @brand-primary;
-@pagination-active-border:             @brand-primary;
+@pagination-active-color:              @link-color;
+@pagination-active-bg:                 #fff;
+@pagination-active-border:             #fff;
 
 @pagination-disabled-color:            @gray-light;
 @pagination-disabled-bg:               #fff;
@@ -463,13 +494,13 @@
 //
 //##
 
-@pager-bg:                             @pagination-bg;
-@pager-border:                         @pagination-border;
+@pager-bg:                             @color-gray-napo-footer;
+@pager-border:                         none;
 @pager-border-radius:                  15px;
 
-@pager-hover-bg:                       @pagination-hover-bg;
+@pager-hover-bg:                       none;
 
-@pager-active-bg:                      @pagination-active-bg;
+@pager-active-bg:                      none;
 @pager-active-color:                   @pagination-active-color;
 
 @pager-disabled-color:                 @pagination-disabled-color;
@@ -784,7 +815,7 @@
 @breadcrumb-padding-vertical:   8px;
 @breadcrumb-padding-horizontal: 15px;
 //** Breadcrumb background color
-@breadcrumb-bg:                 #f5f5f5;
+@breadcrumb-bg:                 #fff;
 //** Breadcrumb text color
 @breadcrumb-color:              #ccc;
 //** Text color of current page in the breadcrumb
