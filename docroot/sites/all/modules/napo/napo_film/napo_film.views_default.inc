@@ -915,6 +915,14 @@ function napo_film_views_default_views() {
     'napo_film_title_include_episode_count' => 0,
     'napo_film_title_link_episode_popup' => 0,
   );
+  /* Field: Content Cart: Add to cart */
+  $handler->display->display_options['fields']['content_cart']['id'] = 'content_cart';
+  $handler->display->display_options['fields']['content_cart']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['content_cart']['field'] = 'content_cart';
+  $handler->display->display_options['fields']['content_cart']['label'] = '';
+  $handler->display->display_options['fields']['content_cart']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['content_cart']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['content_cart']['contant_add_to_cart_button_label'] = 'Add to download center';
   /* Field: Indexed Multilingual Node: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -939,7 +947,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
   $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing_1']['label'] = '';
-  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '[field_image]';
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '[content_cart][field_image]';
   $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing_1']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['nothing_1']['element_wrapper_class'] = 'col-md-4 napo-film-image-container';
@@ -999,20 +1007,12 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nothing_2']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nothing_2']['alter']['text'] = '<div class="napo-film-list-details-container">[combined_tags][view_episodes_link][url][download_video]</div>';
   $handler->display->display_options['fields']['nothing_2']['element_label_colon'] = FALSE;
-  /* Field: Content Cart: Add to cart */
-  $handler->display->display_options['fields']['content_cart']['id'] = 'content_cart';
-  $handler->display->display_options['fields']['content_cart']['table'] = 'search_api_index_default_multilingual_node_index';
-  $handler->display->display_options['fields']['content_cart']['field'] = 'content_cart';
-  $handler->display->display_options['fields']['content_cart']['label'] = '';
-  $handler->display->display_options['fields']['content_cart']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['content_cart']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['content_cart']['contant_add_to_cart_button_label'] = 'Add to download center';
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[title_field][body][nothing_2][content_cart]';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[title_field][body][nothing_2]';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['nothing']['element_wrapper_class'] = 'col-md-8 napo-film-content-container';
@@ -1244,7 +1244,8 @@ function napo_film_views_default_views() {
     t('<div class="napo-film-list-details-container">[combined_tags][view_episodes_link][url][download_video]</div>'),
     t('[title_field][body][nothing_2][content_cart]'),
     t('List'),
-    t('[field_image]'),
+    t('[content_cart][field_image]'),
+    t('[title_field][body][nothing_2]'),
     t('Grid'),
     t('<h3>[title_field]</h3>[download_video]'),
     t('[body][combined_tags][url][view_episodes_link][content_cart]'),
