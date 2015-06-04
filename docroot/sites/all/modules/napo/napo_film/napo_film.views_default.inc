@@ -1069,7 +1069,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['table'] = 'views';
   $handler->display->display_options['fields']['nothing_1']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing_1']['label'] = '';
-  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '<h3>[title_field]</h3>[download_video]';
+  $handler->display->display_options['fields']['nothing_1']['alter']['text'] = '[title_field][download_video]';
   $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing_1']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['nothing_1']['element_wrapper_class'] = 'napo-film-title-container';
@@ -1247,7 +1247,7 @@ function napo_film_views_default_views() {
     t('[content_cart][field_image]'),
     t('[title_field][body][nothing_2]'),
     t('Grid'),
-    t('<h3>[title_field]</h3>[download_video]'),
+    t('[title_field][download_video]'),
     t('[body][combined_tags][url][view_episodes_link][content_cart]'),
   );
   $export['napo_films'] = $view;
