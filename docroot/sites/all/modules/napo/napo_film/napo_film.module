@@ -177,6 +177,20 @@ function napo_film_views_pre_view( view &$view, &$display_id, &$args) {
     else {
       $view->set_display('page_grid');
     }
+
+    // When searching (word or tag) in Film page, episode should be included.
+    // Alter the filter to include films and episodes video type.
+    $params = drupal_get_query_parameters();
+    if (!empty($params['search_api_views_fulltext'])
+      || !empty($params['f'])) {
+      $view_filters = $view->display_handler->get_option('filters');
+      $view_filters['field_video_type']['value'] = drupal_map_assoc(napo_film_get_video_types_tid());
+      $overrides = array();
+      $overrides['filters'] = $view_filters;
+      foreach ($overrides as $option => $definition) {
+        $view->display_handler->override_option($option, $definition);
+      }
+    }
   }
 }
 
@@ -436,22 +450,19 @@ function napo_film_preprocess_node(&$vars) {
             )
           );
         }
-        if (in_array('episode', $vars['preprocess_fields'])) {
-          $weight = napo_film_get_episode_number($node) + 1;
-          if ($weight > 0) {
-            $label = t('Episode @no', array('@no' => sprintf('%02d', $weight)));
-          }
-          else {
-            $label = t('Episode');
-          }
-          $field = array(
-            '#type' => 'item',
-            '#title' => $label,
-            '#markup' => $node->title,
-            '#prefix' => '<div class="napo-episode-title-full-view">',
-            '#suffix' => '</div>',
+        // This is the second title used in full view modes.
+        if (in_array('napo_film_title', $vars['preprocess_fields'])) {
+          // Set formatter settings.
+          $display_settings = array(
+            'label' => 'hidden',
+            'type' => 'title_linked',
+            'settings' => array(
+              'napo_film_title_include_type' => 1,
+              'napo_film_title_include_episode_count' => 1,
+            ),
           );
-          $vars['episode'] = drupal_render($field);
+          $title_episode = field_view_field('node', $node, 'title_field', $display_settings);
+          $vars['napo_film_title'] = drupal_render($title_episode);
         }
       }
   }

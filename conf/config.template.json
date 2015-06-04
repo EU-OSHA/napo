@@ -125,6 +125,7 @@
         "sa_admin_helper": "0",
         "recaptcha_site_key": "6LcXAAMTAAAAAEWI40tcd74UjD_ThJ7p015LKx5J",
         "recaptcha_private_key": "6LcXAAMTAAAAADF8klzSWwx1yjlo3Zq2BrKJadmw",
+        "fb_app_key": "159720897495663",
         "smtp_on": 1,
         "smtp_queue": 0,
         "smtp_host": "some.smtp.server",

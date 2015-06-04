@@ -171,6 +171,15 @@ function napo_common_node_view($node, $view_mode, $langcode) {
       }
     }
   }
+
+  $full_mode_views = array('full', 'episode_full');
+  if (!in_array($view_mode, $full_mode_views)) {
+    if (!empty($node->field_archived[LANGUAGE_NONE][0]['value'])) {
+      if (!empty($node->content['title_field'][0]['#markup'])) {
+        $node->content['title_field'][0]['#markup'] .= '<span class="title-archived">' . t('Archived') . '</span>';
+      }
+    }
+  }
 }
 
 /**
@@ -223,6 +232,11 @@ function napo_common_block_info() {
     'status' => 1,
     'visibility' => BLOCK_VISIBILITY_NOTLISTED,
     'region' => 'header_top_bar',
+  );
+
+  $blocks['osha_archived_content'] = array(
+    'info' => t('Node archived info block'),
+    'cache' => DRUPAL_CACHE_PER_PAGE,
   );
 
   return $blocks;
@@ -305,9 +319,14 @@ function napo_common_block_view($delta = '') {
       $block['content'] = napo_common_page_not_found_content();
       break;
 
-    case 'napo_print_friendly' :
+    case 'napo_print_friendly':
       $block['subject'] = "<none>";
       $block['content'] = theme('napo_print_friendly_block');
+      break;
+
+    case 'osha_archived_content':
+      $block['subject'] = t('NAPO archived content');
+      $block['content'] = napo_common_archived_content_block_view();
       break;
   }
 
@@ -504,7 +523,85 @@ function napo_common_page_not_found_content() {
 function napo_common_theme() {
   return array(
     'napo_print_friendly_block' => array(),
+
+    'napo_common_archived_content' => array(
+      'variables' => array(),
+      'template' => 'theme/napo_common_archived_content'
+    ),
   );
+}
+
+/**
+ * Callback for archived content block view.
+ */
+function napo_common_archived_content_block_view() {
+  $node = menu_get_object();
+  if (!empty($node) && napo_common_node_is_archived($node)) {
+    return theme('napo_common_archived_content', array());
+  }
+  return '';
+}
+
+/**
+ * Implements hook_field_formatter_info_alter().
+ */
+function napo_common_field_formatter_info_alter(&$info) {
+  // Alter the title_linked formatter by assing this module to it.
+  $info['title_linked']['module'] = 'napo_common';
+  // Add custom settings default.
+  $info['title_linked']['settings']['title_archived_label'] = FALSE;
+}
+
+/**
+ * Implements hook_field_formatter_settings_form().
+ *
+ * Alter the settings form of title_linked formatter.
+ */
+function napo_common_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
+  $form = title_field_formatter_settings_form($field, $instance, $view_mode, $form, $form_state);
+  $settings = $instance['display'][$view_mode]['settings'];
+  $form['title_archived_label'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Include archived label'),
+    '#default_value' => $settings['title_archived_label'],
+  );
+
+  // Let other napo modules to interact with this form.
+  drupal_alter('napo_common_field_formatter_settings_form', $field, $instance, $view_mode, $form, $form_state);
+  return $form;
+}
+
+function napo_common_field_formatter_settings_summary($field, $instance, $view_mode) {
+  return title_field_formatter_settings_summary($field, $instance, $view_mode);
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function napo_common_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  // If is film/episode, use custom formatter.
+  if ($entity_type == 'node' && $entity->type == 'napo_video') {
+    $element = napo_film_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display);
+  }
+  else {
+    $element = title_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display);
+  }
+  $settings = $display['settings'];
+  if (!empty($settings['title_archived_label']) && napo_common_node_is_archived($entity)) {
+    $element[0]['#markup'] .= '<span class="title-archived"> ' . t('Archived') . '</span>';
+  }
+  return $element;
+}
+
+/**
+ * If node is mark as outdated or not.
+ */
+function napo_common_node_is_archived($node) {
+  if (isset($node->field_archived[LANGUAGE_NONE][0]['value']) &&
+    $node->field_archived[LANGUAGE_NONE][0]['value'] == 1) {
+    return TRUE;
+  }
+  return FALSE;
 }
 
 // Create a theme function that can be overridden by other theme developers.

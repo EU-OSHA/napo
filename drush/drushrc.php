@@ -489,6 +489,8 @@ $options['init-modules'] = array(
   'osha_reminders',
   'osha_lingua_tools',
 
+  'osh_image_gallery',
+
   'napo_breadcrumbs',
   'napo_common',
   'napo_frontpage',

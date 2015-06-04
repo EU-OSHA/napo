@@ -40,6 +40,34 @@ function napo_common_default_fe_block_settings() {
     'visibility' => 1,
   );
 
+  $export['napo_common-osha_archived_content'] = array(
+    'cache' => 4,
+    'custom' => 0,
+    'delta' => 'osha_archived_content',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'napo_common',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'napo_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'napo_frontend',
+        'weight' => -37,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 0,
+  );
+
   $export['napo_common-page_not_found'] = array(
     'cache' => 1,
     'custom' => 0,

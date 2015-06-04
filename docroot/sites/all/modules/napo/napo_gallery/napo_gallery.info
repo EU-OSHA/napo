@@ -1,7 +1,7 @@
 name = Napo's Gallery
 core = 7.x
 package = Napo
-version = 7.x-1.2
+version = 7.x-1.3
 project = napo_gallery
 dependencies[] = ctools
 dependencies[] = date
@@ -79,4 +79,4 @@ features[views_view][] = napos_gallery
 features_exclude[dependencies][entityreference] = entityreference
 features_exclude[dependencies][media] = media
 features_exclude[dependencies][multiple_selects] = multiple_selects
-mtime = 1432021029
+mtime = 1432822411
