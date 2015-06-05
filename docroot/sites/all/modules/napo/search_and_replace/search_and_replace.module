@@ -1,5 +1,7 @@
 <?php
 
+require_once 'search_and_replace.theme.inc';
+
 /**
  * Implements hook_menu().
  */
@@ -28,7 +30,41 @@ function search_and_replace_menu() {
     'access arguments' => array('perform search and replace'),
   );
 
+  $items['admin/content/search_replace/settings'] = array(
+    'title' => 'Settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('search_and_replace_settings_form'),
+    'access arguments' => array('administer scanner settings'),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 1,
+  );
+
   return $items;
+}
+
+function search_and_replace_theme() {
+  return array(
+    'search_and_replace_results' => array(
+      'variables' => array(
+        'results' => NULL,
+      ),
+    ),
+    'search_and_replace_item' => array(
+      'variables' => array(
+        'item' => NULL,
+      ),
+    ),
+    'search_and_replace_replace_results' => array(
+      'variables' => array(
+        'results' => NULL,
+      ),
+    ),
+    'search_and_replace_replace_item' => array(
+      'variables' => array(
+        'item' => NULL,
+      ),
+    ),
+  );
 }
 
 function search_and_replace_form($form, &$form_state, $node = array()) {
@@ -69,6 +105,19 @@ function search_and_replace_form($form, &$form_state, $node = array()) {
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
   );
+
+  if (empty($node)) {
+    $options = array();
+    foreach (field_info_bundles('node') as $bundle_name => $bundle) {
+      $options[$bundle_name] = $bundle['label'];
+    }
+    $form['options']['bundles'] = array(
+      '#type' => 'checkboxes',
+      '#title' => 'Bundles',
+      '#options' => $options,
+      '#default_value' => variable_get('search_and_replace_bundles', array()),
+    );
+  }
 
   $form['options']['surrounding'] = array(
     '#type' => 'fieldset',
@@ -120,6 +169,25 @@ function search_and_replace_form($form, &$form_state, $node = array()) {
   return $form;
 }
 
+/**
+ * Settings for for module.
+ */
+function search_and_replace_settings_form($form, &$form_state) {
+  $form = array();
+  $text_fields = _search_and_replace_get_text_fields();
+  $options = drupal_map_assoc(array_keys($text_fields));
+  $form['search_and_replace_fields'] = array(
+    '#type' => 'checkboxes',
+    '#title' => 'Fields to search into',
+    '#options' => $options,
+    '#default_value' => variable_get('search_and_replace_fields', array()),
+  );
+  return system_settings_form($form);
+}
+
+/**
+ * Validate callback for search submit.
+ */
 function search_and_replace_form_validate($form, &$form_state) {
   if (empty($form_state['values']['search'])) {
     form_set_error('search', t('Please enter some keywords.'));
@@ -127,9 +195,22 @@ function search_and_replace_form_validate($form, &$form_state) {
 }
 
 function search_and_replace_form_submit($form, &$form_state) {
-  search_and_replace_perform_search($form_state['values']);
+  // Store last search bundles.
+  $settings = $form_state['values'];
+  if (empty($form['#node'])) {
+    $bundles = array_filter($form_state['values']['bundles']);
+    variable_set('search_and_replace_bundles', $bundles);
+    $settings['bundles'] = $bundles;
+  }
+  else {
+    $settings['node'] = $form['#node'];
+  }
+  search_and_replace_perform_search($settings);
 }
 
+/**
+ * Validate callback for replace submit.
+ */
 function search_and_replace_form_replace_validate($form, &$form_state) {
   if (empty($form_state['values']['search'])) {
     form_set_error('search', t('Please enter some keywords.'));
@@ -140,13 +221,15 @@ function search_and_replace_form_replace_validate($form, &$form_state) {
   }
 }
 
+/**
+ * Submit callback for replace submit.
+ */
 function search_and_replace_form_replace_submit($form, &$form_state) {
   if (!isset($form_state['storage']['confirm'])) {
     $form_state['storage']['confirm'] = TRUE;
     $form_state['rebuild'] = TRUE;
   }
   else {
-    dpm($form['#values']);
   }
 }
 
@@ -169,10 +252,47 @@ function search_and_replace_perform_search($settings) {
   if (!$settings['mode']) {
     $flag = 'i';
   }
+  $settings['flag'] = $flag;
 
+  $search_exp = search_and_replace_get_search_expression($settings);
+  if (!empty($form['#node'])) {
+    $settings['nid'] = $form['#node']->nid;
+  }
+  $settings['search_fields'] = _search_and_replace_get_set_fields();
+
+  $settings['search_db'] = $search_exp['search_db'];
+  $settings['search_php'] = $search_exp['search_php'];
+
+  $batch = array(
+    'operations' => array(
+      array('search_and_replace_batch_operation_search', array($settings)),
+    ),
+    'finished' => 'search_and_replace_batch_search_finished',
+    'title' => t('Processing Example Batch'),
+    'init_message' => t('Search Batch is starting.'),
+    'progress_message' => t('Processed @current out of @total.'),
+    'error_message' => t('Example Batch has encountered an error.'),
+    'file' => drupal_get_path('module', 'batch_example') . '/batch_example.inc',
+  );
+  batch_set($batch);
+  batch_process();
+}
+
+/**
+ * Get search words for DB and PHP based on search settings.
+ *
+ * @param array $settings
+ *   Search settings.
+ *
+ * @return array
+ *   search_db - search word to be used in db regex query for any text field.
+ *   search_php -
+ */
+function search_and_replace_get_search_expression(array $settings) {
   $preceded = $settings['preceded'];
   $regex = $settings['regex'];
 
+  // Prepare the prefix and suffix words to be concatenated to search string.
   $preceded_php = '';
   if (!empty($preceded)) {
     if (!$regex) {
@@ -192,123 +312,113 @@ function search_and_replace_perform_search($settings) {
 
   $search = $settings['search'];
   $whole_word = $settings['wholeword'];
+
+  // Prepare search string for different scenarios.
   if ($whole_word && $regex) {
-    $where = "[[:<:]]" . $search . "[[:>:]]";
-    $search_db = $preceded . $search . $followed;
+    $search_db = $preceded . "[[:<:]]" . $search . "[[:>:]]" . $followed;
     $search_php = '\b' . $preceded_php . $search . $followed_php . '\b';
   }
   elseif ($whole_word && !$regex) {
-    $where = "[[:<:]]" . $search . "[[:>:]]";
-    $search_db = $preceded . addcslashes($search, SCANNER_REGEX_CHARS) . $followed;
+    $search_db = "[[:<:]]" . $preceded . addcslashes($search, SCANNER_REGEX_CHARS) . $followed . "[[:>:]]";
     $search_php = '\b' . $preceded_php . addcslashes($search, SCANNER_REGEX_CHARS) . $followed_php . '\b';
   }
   elseif (!$whole_word && $regex) {
-    $where = $search;
     $search_db = $preceded . $search . $followed;
     $search_php = $preceded_php . $search . $followed_php;
   }
   else {
-    // !whole word and !regex.
-    $where = $search;
+    // !whole word && !regex
     $search_db = $preceded . addcslashes($search, SCANNER_REGEX_CHARS) . $followed;
     $search_php = $preceded_php . addcslashes($search, SCANNER_REGEX_CHARS) . $followed_php;
   }
-
-  $tables = _scanner_get_selected_tables_map();
-//  $tables = array('field_data_title_field', 'field_data_body');
-
-  //if terms selected, then put together extra join and where clause:
-  /*$join = '';
-  if (is_array($terms) && count($terms)) {
-    $terms_where = array();
-    $terms_params = array();
-    foreach ($terms as $term) {
-      $terms_where[] = 'tn.tid = %d';
-      $terms_params[] = $term;
-    }
-    $join = 'INNER JOIN {taxonomy_term_node} tn ON t.nid = tn.nid';
-    $where .= ' AND (' . implode(' OR ', $terms_where) . ')';
-  }*/
-
-  $settings['flag'] = $flag;
-  $settings['search_db'] = $search_db;
-  $settings['search_php'] = $search_php;
-
-  $batch = array(
-    'operations' => array(
-      array('search_and_replace_batch_operation_search', array($tables, $settings)),
-    ),
-    'finished' => 'search_and_replace_batch_search_finished',
-    'title' => t('Processing Example Batch'),
-    'init_message' => t('Search Batch is starting.'),
-    'progress_message' => t('Processed @current out of @total.'),
-    'error_message' => t('Example Batch has encountered an error.'),
-    'file' => drupal_get_path('module', 'batch_example') . '/batch_example.inc',
+  // Return search string to be used in db query and php regex.
+  return array(
+    'search_db' => $search_db,
+    'search_php' => $search_php,
   );
-  batch_set($batch);
-
-  batch_process();
 }
 
-function search_and_replace_batch_operation_search($tables, $settings, &$context) {
+/**
+ * Get a select query for searching in a field.
+ *
+ * @param string $field_name
+ *   name of the field to search into.
+ * @param string $search_db
+ *   search string for db
+ * @param array $settings
+ *   Search settings
+ *
+ * @return \SelectQuery
+ */
+function search_and_replace_get_search_query($field_name, $search_db, array $settings) {
+  $bundles = $settings['bundles'];
+  $db_field = $field_name . '_value';
+
+  $query = db_select('field_revision_' . $field_name, 't');
+  $query->fields('n', array('nid', 'title', 'type'));
+  $query->join('node', 'n', 't.revision_id = n.vid');
+  $query->addField('t', $db_field, 'content');
+  $query->addField('t', 'language');
+  if (!empty($bundles)) {
+    $query->condition('n.type', $bundles, 'IN');
+  }
+  if ($settings['mode']) {
+    $query->condition('t.' . $db_field, $search_db, 'REGEXP BINARY');
+  }
+  else {
+    $query->condition('t.' . $db_field, $search_db, 'REGEXP');
+  }
+  if ($settings['published']) {
+    $query->condition('n.status', '1', '=');
+  }
+  if (isset($settings['node'])) {
+    $query->condition('n.nid', $settings['node']->nid);
+  }
+  $query->orderBy('n.type');
+  $query->orderBy('n.title');
+
+  return $query;
+}
+
+/**
+ * Batch operation for searching.
+ */
+function search_and_replace_batch_operation_search($settings, &$context) {
+  $fields = $settings['search_fields'];
   if (!isset($context['sandbox']['progress'])) {
     $context['sandbox']['progress'] = 0;
     $context['sandbox']['current_table'] = 0;
-    $context['sandbox']['max'] = count($tables);
+    $context['sandbox']['max'] = count($fields);
     $context['results']['settings'] = $settings;
+    $context['results']['results'] = array();
   }
 
   $search_db = $settings['search_db'];
 
-  $limit = 2;
-  $to_process = array_slice($tables, $context['sandbox']['current_table'], $limit);
-  foreach ($to_process as $table) {
-    $table_name = $table['table'];
-    $field = $table['field'];
-    $type = $table['type'];
-    $query = db_select($table_name, 't');
-    if ($table_name == 'node_revision') {
-      $nid = 'nid';
-      $vid = 'vid';
-    }
-    else {
-      $field = $field . '_value';
-      $nid = 'entity_id';
-      $vid = 'revision_id';
-    }
-    $query->join('node', 'n', 't.' . $vid . ' = n.vid');
-    $query->addField('t', $field, 'content');
-    $query->fields('n', array('nid', 'title'));
-    $query->condition('n.type', $type, '=');
-    if ($settings['mode']) {
-      $query->condition('t.' . $field, $search_db, 'REGEXP BINARY');
-    }
-    else {
-      $query->condition('t.' . $field, $search_db, 'REGEXP');
-    }
-    if ($settings['published']) {
-      $query->condition('n.status', '1', '=');
-    }
-    $result = $query->execute();
+  $limit = 1;
+  $to_process = array_slice($fields, $context['sandbox']['current_table'], $limit);
 
-    foreach ($result as $row) {
-      if (!isset($context['results'][$row->nid])) {
-        $context['results'][$row->nid] = array(
-          'content' => array($field => $row->content),
+  foreach ($to_process as $field_name => $field) {
+    $query = search_and_replace_get_search_query($field_name, $search_db, $settings);
+    $result = $query->execute();
+    while ($row = $result->fetchAssoc()) {
+      $row = (object) $row;
+      if (!isset($context['results']['results'][$row->nid])) {
+        $context['results']['results'][$row->nid] = array(
+          'content' => array($field_name => array($row->language => $row->content)),
           'nid' => $row->nid,
           'title' => $row->title,
           'type' => $row->type,
         );
       }
       else {
-        $context['results']['results'][$row->nid]['content'][$field] = $row->content;
+        $context['results']['results'][$row->nid]['content'][$field_name][$row->language] = $row->content;
       }
     }
-
     // Update our progress information.
     $context['sandbox']['progress']++;
     $context['sandbox']['current_table']++;
-    $context['message'] = t('Now processing %table', array('%table' => $table));
+    $context['message'] = t('Now processing %table', array('%table' => $field_name));
   }
 
   // Inform the batch engine that we are not finished,
@@ -319,14 +429,14 @@ function search_and_replace_batch_operation_search($tables, $settings, &$context
 }
 
 /**
- * Batch 'finished' callback.
+ * Batch 'finished' callback for searching.
  */
 function search_and_replace_batch_search_finished($success, $results, $operations) {
   if ($success) {
     // Here we do something meaningful with the results.
     $message = t('@count nodes found:', array('@count' => count($results['results'])));
     $items = search_and_replace_parse_search_results($results['results'], $results['settings']);
-    $message .= theme('scanner_results', array('results' => $items));
+    $message .= theme('search_and_replace_results', array('results' => $items));
     drupal_set_message($message);
   }
   else {
@@ -338,40 +448,128 @@ function search_and_replace_batch_search_finished($success, $results, $operation
   }
 }
 
+/**
+ * Prepare batch results array for theme + adds snippet of each node.
+ */
 function search_and_replace_parse_search_results($results, $settings) {
   $items = array();
   $search_php = $settings['search_php'];
   $flag = $settings['flag'];
   $regexstr = "/(.{0,130}?)($search_php)(.{0,130})/$flag";
+
   foreach ($results as $result) {
+    $text = array();
     $hits = 0;
-    $text = '';
-    foreach ($result->content as $field => $content) {
+    // Content is grouped per field per language.
+    foreach ($result['content'] as $field => $content) {
+      $text[$field] = '';
+      $item = array(
+        'title' => $result['title'],
+        'type' => $result['type'],
+        'nid' => $result['nid'],
+      );
+
+      // If search word found in multiple languages, show just text from one.
+      $languages = drupal_map_assoc(array_keys($content));
+      $lang = current($languages);
+      // If english is available, show english.
+      if (!empty($languages['en'])) {
+        $lang = 'en';
+      }
+      $content = $content[$lang];
+      // Unset shown language.
+      unset($languages[$lang]);
+
+      // Extract the snippet.
       $current_hits = preg_match_all($regexstr, $content, $matches, PREG_SET_ORDER);
-      if ($hits > 0) {
+      if ($current_hits > 0) {
         $hits += $current_hits;
         foreach ($matches as $match) {
           if ($match[1]) {
-            $text .= '...' . htmlentities($match[1], ENT_COMPAT, 'UTF-8');
+            $text[$field] .= '...' . htmlentities($match[1], ENT_COMPAT, 'UTF-8');
           }
-          $text .= '<strong>' . htmlentities($match[2], ENT_COMPAT, 'UTF-8') . '</strong>';
+          $text[$field] .= '<strong>' . htmlentities($match[2], ENT_COMPAT, 'UTF-8') . '</strong>';
           if ($match[3]) {
-            $text .= htmlentities($match[3], ENT_COMPAT, 'UTF-8') . '...';
+            $text[$field] .= htmlentities($match[3], ENT_COMPAT, 'UTF-8') . '...';
           }
+        }
+        // Add info about other languages.
+        if (!empty($languages)) {
+          $text[$field] .= '<div>Also found in: ' . implode(', ', $languages) . '</div>';
         }
       }
       else {
-        $text .= "<div class='warning'>" . t("Can't display search result due to conflict between search term and internal preg_match_all function.") . '</div>';
+        $text[$field] .= "<div>" . t("Can't display search result due to conflict between search term and internal preg_match_all function.") . '</div>';
       }
     }
-    $items[] = array(
-      'title' => $result->title,
-      'type' => $result->$type,
-      'count' => $hits,
-      'field' => $field,
-      'nid' => $result->nid,
-      'text' => $text,
-    );
+
+    $item['count'] = $hits;
+    $item['text'] = $text;
+    $items[] = $item;
   }
   return $items;
 }
+
+
+function search_and_replace_perform_replace($settings) {
+  $flag = NULL;
+  if (!$settings['mode']) {
+    $flag = 'i';
+  }
+  $settings['flag'] = $flag;
+
+  $search_exp = search_and_replace_get_search_expression($settings);
+  if (!empty($form['#node'])) {
+    $settings['node'] = $form['#node'];
+  }
+  $settings['search_fields'] = _search_and_replace_get_set_fields();
+
+  $settings['search_db'] = $search_exp['search_db'];
+  $settings['search_php'] = $search_exp['search_php'];
+
+  $batch = array(
+    'operations' => array(
+      array('search_and_replace_batch_operation_search', array($settings)),
+    ),
+    'finished' => 'search_and_replace_batch_search_finished',
+    'title' => t('Processing Example Batch'),
+    'init_message' => t('Search Batch is starting.'),
+    'progress_message' => t('Processed @current out of @total.'),
+    'error_message' => t('Example Batch has encountered an error.'),
+    'file' => drupal_get_path('module', 'batch_example') . '/batch_example.inc',
+  );
+  batch_set($batch);
+  batch_process();
+}
+
+/**
+ * Get all the info fields selected in module's settings form.
+ */
+function _search_and_replace_get_set_fields() {
+  $setting = variable_get('search_and_replace_fields', array());
+  $set_fields = array();
+  if (!empty($setting)) {
+    $fields = _search_and_replace_get_text_fields();
+    foreach ($setting as $field_name) {
+      $set_fields[$field_name] = $fields[$field_name];
+    }
+  }
+  return $set_fields;
+}
+
+/**
+ * Get all info fields of type text and text with summary.
+ */
+function _search_and_replace_get_text_fields() {
+  $fields = field_info_fields();
+  $text_fields = array();
+  foreach ($fields as $field_name => $field) {
+    $is_text = $field['type'] == 'text' || $field['type'] == 'text_with_summary';
+    $is_for_nodes = !empty($field['bundles']['node']);
+    if ($is_for_nodes && $is_text) {
+      $text_fields[$field_name] = $field;
+    }
+  }
+  return $text_fields;
+}
+
