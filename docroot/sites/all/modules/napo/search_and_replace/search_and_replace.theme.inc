@@ -3,34 +3,36 @@
 /**
  * The the search results.
  */
-function theme_search_and_replace_results($variables) {
-  $results = $variables['results'];
+function theme_search_and_replace_results($results) {
+  $header = array('Title', 'Type', 'Snippet', 'Count', 'Languages');
+  $rows = array();
   $output = NULL;
-  if (is_array($results)) {
+  if (!empty($results)) {
     $total = count($results);
-    $output = '<p>Found matches in ' . $total . ' nodes:</p>';
-    $output .= '<ol class="search-and-replace-results scanner-search-results">';
+    drupal_set_message('<p>Found matches in ' . $total . ' nodes. <a href="#search-and-replace-results">See results</a></p>');
     foreach ($results as $item) {
-      $output .= theme('search_and_replace_item', array('item' => $item));
+      $row = array(
+        l($item['title'], 'node/' . $item['nid']),
+        $item['type'],
+      );
+      $output = '';
+      foreach ($item['text'] as $field_name => $text) {
+        $output .= '<span class="scanner-info">[One or more matches in <strong>' . $field_name . '</strong>:]</span><br />';
+        $output .= '<span class="scanner-text">' . $text . '</span>';
+      }
+      $row[] = $output;
+      $row[] = $item['count'];
+      $row[] = implode(', ', $item['languages']);
+      $rows[] = $row;
     }
-    $output .= '</ol>';
   }
   else {
     drupal_set_message(t('Sorry, we found no matches.'));
   }
-
-  return $output;
-}
-
-function theme_search_and_replace_item($variables) {
-  $output = '';
-  $item = $variables['item'];
-  $output .= '<li class="scanner-result">';
-  $output .=   '<span class="scanner-title">' . l($item['title'], 'node/' . $item['nid']) . '</span><br />';
-  foreach ($item['text'] as $field_name => $text) {
-    $output .= '<span class="scanner-info">[One or more matches in <strong>' . $item['type'] . ' ' . $field_name . '</strong>:]</span><br />';
-    $output .= '<span class="scanner-text">' . $text . '</span>';
-  }
-  $output .= '</li>';
-  return $output;
+  $vars = array(
+    'header' => $header,
+    'rows' => $rows,
+    'attributes' => array('id' => 'search-and-replace-results'),
+  );
+  return theme('table', $vars);
 }
