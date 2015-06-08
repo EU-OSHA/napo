@@ -278,6 +278,9 @@ $options['init-modules'] = array(
   'ctools',
   'entity',
   'aggregator',
+  'memcache_storage',
+  'varnish',
+//  'elysia_cron',
 
   'locale',
   'entity_translation',
