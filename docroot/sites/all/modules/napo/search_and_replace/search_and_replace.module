@@ -40,31 +40,6 @@ function search_and_replace_menu() {
   return $items;
 }
 
-function search_and_replace_theme() {
-  return array(
-    'search_and_replace_results' => array(
-      'variables' => array(
-        'results' => NULL,
-      ),
-    ),
-    'search_and_replace_item' => array(
-      'variables' => array(
-        'item' => NULL,
-      ),
-    ),
-    'search_and_replace_replace_results' => array(
-      'variables' => array(
-        'results' => NULL,
-      ),
-    ),
-    'search_and_replace_replace_item' => array(
-      'variables' => array(
-        'item' => NULL,
-      ),
-    ),
-  );
-}
-
 function search_and_replace_form($form, &$form_state, $node = array()) {
   // If search is in node context, store the node on the form.
   if (!empty($node)) {
@@ -117,6 +92,17 @@ function search_and_replace_form($form, &$form_state, $node = array()) {
     );
   }
 
+  $form['options']['version'] = array(
+    '#type' => 'radios',
+    '#title' => t('Version'),
+    '#options' => array(
+      'published' => 'Published',
+      'draft' => 'Current draft',
+    ),
+    '#default_value' => 'published',
+    '#description' => t('Select the versions of the nodes on which you want to perform the search.'),
+  );
+
   $form['options']['surrounding'] = array(
     '#type' => 'fieldset',
     '#title' => t('Surrounding Text'),
@@ -157,21 +143,17 @@ function search_and_replace_form($form, &$form_state, $node = array()) {
     '#description' => t('Check this if you want to use regular expressions in your search terms.'),
   );
 
-  $form['options']['version'] = array(
-    '#type' => 'radios',
-    '#title' => t('Version'),
-    '#options' => array(
-      'published' => 'Published',
-      'draft' => 'Current draft',
-    ),
-    '#default_value' => 'published',
-    '#description' => t('Select the versions of the nodes on which you want to perform the search.'),
-  );
-
   // If a search was performed, #results will be available.
   // Render the Step 2 - Replace inputs + Search results.
   if (!empty($form_state['#results'])) {
     $form['options']['#collapsed'] = TRUE;
+    // Make readonly the search options fields.
+    $disable_inputs = array(&$form['search'], &$form['options']['languages'],
+      &$form['options']['bundles'], &$form['options']['surrounding']['preceded'],
+      &$form['options']['surrounding']['followed']);
+    _search_and_replace_readonly($disable_inputs);
+
+    // Add replace inputs.
     $form['replace'] = array(
       '#type' => 'textfield',
       '#title' => t('Step 2: Replace with'),
@@ -183,8 +165,10 @@ function search_and_replace_form($form, &$form_state, $node = array()) {
       '#value' => t('Replace'),
       '#validate' => array('search_and_replace_form_replace_validate'),
       '#submit' => array('search_and_replace_form_replace_submit'),
+      '#suffix' => l(t('Cancel'), current_path()),
     );
 
+    // Format the results table.
     $header = array('Title', 'Type', 'Snippet', 'Count', 'Languages');
     $rows = array();
     $results = &$form_state['#results'];
@@ -500,7 +484,7 @@ function search_and_replace_get_search_query($field_name, $search_db, array $set
 }
 
 /**
- * Batch 'finished' callback for searching.
+ * Batch 'finished' callback for replace..
  */
 function search_and_replace_batch_replace_finished($success, $results, $operations) {
   if ($success) {
@@ -575,7 +559,7 @@ function search_and_replace_parse_search_results($results, $settings) {
 }
 
 /**
- * Batch operation for searching.
+ * Batch operation for replacing.
  */
 function search_and_replace_batch_operation_replace($nids, $settings, &$context) {
   if (!isset($context['sandbox']['progress'])) {
@@ -627,7 +611,7 @@ function search_and_replace_batch_operation_replace($nids, $settings, &$context)
         $node->title = $node->title_field[$node->language][0]['value'];
       }
       $node->revision = TRUE;
-      $node->log = strtr('Search and Replace: @search with @replace', array('@search' => $search_php . '/' . $flag, '@replace' => $replace));
+      $node->log = _search_and_replace_settings_to_text($settings);
       // Module workbench_moderation.
       if ($moderate) {
         if (workbench_moderation_node_moderated($node)) {
@@ -635,8 +619,9 @@ function search_and_replace_batch_operation_replace($nids, $settings, &$context)
             $node->workbench_moderation_state_new = $node->workbench_moderation['current']->state;
           }
           else {
-//            $node->revision = FALSE;
             $node->workbench_moderation_state_new = 'published';
+            // If editing the published version, the current draft will be lost
+            // So we have to revert it after saving the node.
             if ($node->vid != $node->workbench_moderation['current']->vid) {
               $reset_current = $node->workbench_moderation['current'];
             }
@@ -645,15 +630,14 @@ function search_and_replace_batch_operation_replace($nids, $settings, &$context)
       }
       node_save($node);
       $context['results']['results'][$node->nid] = $node->title;
-      // TODO When editing published version, if also has draft, the draft is lost
-      // TODO current version is set to new published revision that we've created.
-//      if (!empty($reset_current)) {
-//        $current_version = node_load($node->nid, $reset_current->vid, TRUE);
-//        $current_version->workbench_moderation_state_new = $current_version->workbench_moderation['current']->state;
-//        $node->revision = 1;
-//        node_save($current_version);
-//        db_update()
-//      }
+      // If it was a current draft, now it's lost and we have to revert it.
+      if (!empty($reset_current)) {
+        $current_version = node_load($node->nid, $reset_current->vid, TRUE);
+        $current_version->workbench_moderation_state_new = $reset_current->state;
+        $current_version->revision = 1;
+        $current_version->log = t('Copy of the existing draft that was before search and replace the published version');
+        node_save($current_version);
+      }
     }
     // Update our progress information.
     $context['sandbox']['progress']++;
@@ -666,6 +650,57 @@ function search_and_replace_batch_operation_replace($nids, $settings, &$context)
   if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
     $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
   }
+}
+
+/**
+ * Marks form elements as readonly.
+ *
+ * @param array $elements
+ *   array of references to form elements.
+ */
+function _search_and_replace_readonly(array $elements) {
+  foreach ($elements as &$element) {
+    $element['#attributes']['readonly'] = 'readonly';
+  }
+}
+
+/**
+ * Text message for version log info based on settings.
+ */
+function _search_and_replace_settings_to_text($settings) {
+  $search_parts = array();
+  if (!empty($settings['version'])) {
+    $search_parts[] = t('on version @version', array('@version' => $settings['version']));
+  }
+  if (!empty($settings['mode'])) {
+    $search_parts[] = t('case sensitive');
+  }
+  if (!empty($settings['wholeword'])) {
+    $search_parts[] = t('matching hole word');
+  }
+  if (!empty($settings['regex'])) {
+    $search_parts[] = t('using regex');
+  }
+  if (!empty($settings['preceded'])) {
+    $search_parts[] = t('followed by @followed', array('@followed' => $settings['preceded']));
+  }
+  if (!empty($settings['followed'])) {
+    $search_parts[] = t('followed by @followed', array('@followed' => $settings['followed']));
+  }
+  if (!empty($settings['languages']) && !empty($settings['languages'][0])) {
+    $search_parts[] = t('on languages @languages', array('@languages' => implode(', ', $settings['languages'])));
+  }
+  else {
+    $search_parts[] = t('on all languages');
+  }
+  $message = t('Searching "@search" and replacing it with "@replace" with following options: @options',
+    array(
+      '@search' => $settings['search'],
+      '@replace' => $settings['replace'],
+      '@options' => implode('; ', $search_parts),
+    )
+  );
+  return $message;
 }
 
 /**
