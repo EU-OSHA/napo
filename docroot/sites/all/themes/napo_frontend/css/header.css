@@ -1,0 +1,110 @@
+@import url('//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic&subset=cyrillic,cyrillic-ext,latin,greek-ext,greek,latin-ext');
+.header_top_bar {
+  background-color: #1f3695;
+  color: #FFF;
+}
+.header_top_bar a {
+  color: #FFF;
+}
+.navbar-default {
+  background-color: #FFF;
+  border-color: #FFF;
+}
+.nav-bar-separate {
+  background-image: url('../images/nav-bar-border.png');
+  background-repeat: repeat-x;
+  background-position: 30px;
+  height: 18px;
+  width: 100%;
+}
+.navbar.container.navbar-default .col-md-9.pull-right {
+  margin-top: 10px;
+}
+.navbar.container {
+  margin-top: 20px;
+}
+.navbar.container > .container {
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+.menu.nav.navbar-nav {
+  background-color: #eff0f0;
+  font-weight: bold;
+}
+.menu.nav.navbar-nav .expanded.dropdown {
+  height: 62px;
+  vertical-align: middle;
+  color: #1f3695;
+  border-left: 3px solid #FFF;
+  display: block;
+  padding: 1.5em 1em 1em;
+}
+.menu.nav.navbar-nav .dropdown-menu {
+  padding: 0px;
+  font-weight: bold;
+}
+.menu.nav.navbar-nav .dropdown-menu li a {
+  font-weight: bold;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  background-color: #eff0f0;
+}
+.menu.nav.navbar-nav .expanded.dropdown:hover {
+  background-color: #1f3695;
+  color: #FFF;
+}
+.navbar-collapse.collapse.col-md-8 {
+  padding-right: 0px;
+}
+.navbar.container.navbar-default .col-md-3 {
+  padding-left: 3px;
+}
+.dropdown-menu > li > a:hover::before {
+  content: '> ';
+}
+.navbar-search .control-group {
+  margin-bottom: 0px;
+}
+form#search-block-form {
+  margin: 0;
+}
+.navbar #block-search-form {
+  float: none;
+  margin: 0px;
+}
+.glyphicon-search:before {
+  color: #1f3695;
+  position: absolute;
+  margin-top: -16px;
+}
+.form-search.content-search .ui-theme-basic-green.ui-autocomplete-input {
+  background-image: none;
+}
+.form-search.content-search .input-group {
+  width: 139px;
+  font-weight: bold;
+}
+.form-search.content-search .btn-default {
+  background-color: #bbc2df;
+}
+.form-search.content-search .form-control {
+  height: 28px;
+  padding: 0px 16px;
+  border-radius: 0px;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+.lang_dropdown_form.language_content .lang-dropdown-select-element.form-control.form-select {
+  height: 33px;
+  margin-top: 2px;
+  border-radius: 0px;
+  font-weight: bold;
+}
+.form-search.content-search .input-group-btn .btn.btn-default {
+  height: 28px;
+  border-radius: 0px;
+}
