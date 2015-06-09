@@ -36,7 +36,7 @@ function napo_frontpage_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'FEATURED FILMS',
+    'title' => 'Featured films',
     'visibility' => 1,
   );
 
