@@ -60,6 +60,7 @@ function search_and_replace_undo_form($form, &$form_state, $id) {
 }
 
 function search_and_replace_undo_form_submit($form, &$form_state) {
+  dpm($form_state['#undo_data']);
   $batch = array(
     'operations' => array(
       array('search_and_replace_batch_operation_undo', array($form_state['#undo_data'], $form_state['#operation'])),
@@ -89,6 +90,7 @@ function search_and_replace_batch_operation_undo($results, $operation, &$context
   $to_process = array_slice($results, $context['sandbox']['current_node'], $limit);
 
   foreach ($to_process as $result) {
+    $reset_current = array();
     $node = node_load($result['nid'], $result['vid']);
     $node->revision = TRUE;
     $node->log = t('Search and replace undo operation - reverting to version @vid', array('@vid' => $result['vid']));
@@ -101,7 +103,7 @@ function search_and_replace_batch_operation_undo($results, $operation, &$context
     }
     node_save($node);
     if (!empty($reset_current)) {
-      $current_version = node_load($node->nid, $reset_current->vid, TRUE);
+      $current_version = node_load($reset_current->nid, $reset_current->vid);
       $current_version->workbench_moderation_state_new = $reset_current->state;
       $current_version->revision = 1;
       $current_version->log = t('Copy of the existing draft that was before undo the search for the published version');

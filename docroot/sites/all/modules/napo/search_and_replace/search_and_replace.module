@@ -1,6 +1,9 @@
 <?php
 
 require_once 'search_and_replace.undo.inc';
+
+define('SEARCH_AND_REPLACE_REGEX_CHARS', '.\/+*?[^]$() {}=!<>|:');
+
 /**
  * Implements hook_menu().
  */
@@ -12,11 +15,11 @@ function search_and_replace_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('search_and_replace_form'),
     'type' => MENU_LOCAL_TASK,
-    'access arguments' => array('perform search and replace'),
+    'access arguments' => array('use search and replace'),
   );
   $items['admin/content/search_replace/search'] = array(
     'title' => 'Search',
-    'access arguments' => array('perform search and replace'),
+    'access arguments' => array('use search and replace'),
     'type' => MENU_DEFAULT_LOCAL_TASK,
   );
 
@@ -26,7 +29,7 @@ function search_and_replace_menu() {
     'page callback' => 'drupal_get_form',
     'page arguments' => array('search_and_replace_form', 1),
     'type' => MENU_LOCAL_TASK,
-    'access arguments' => array('perform search and replace'),
+    'access arguments' => array('use search and replace'),
     'theme callback' => 'variable_get',
     'theme arguments' => array('admin_theme'),
   );
@@ -35,7 +38,7 @@ function search_and_replace_menu() {
     'title' => 'Settings',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('search_and_replace_settings_form'),
-    'access arguments' => array('administer scanner settings'),
+    'access arguments' => array('administer search and replace settings'),
     'type' => MENU_LOCAL_TASK,
     'weight' => 1,
   );
@@ -43,7 +46,7 @@ function search_and_replace_menu() {
   $items['admin/content/search_replace/undo'] = array(
     'title' => 'Undo',
     'page callback' => 'search_and_replace_undo_page',
-    'access arguments' => array('administer scanner settings'),
+    'access arguments' => array('undo search and replace'),
     'type' => MENU_LOCAL_TASK,
     'weight' => 1,
   );
@@ -52,12 +55,30 @@ function search_and_replace_menu() {
     'title' => 'Undo',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('search_and_replace_undo_form', 4),
-    'access arguments' => array('administer scanner settings'),
+    'access arguments' => array('undo search and replace'),
     'type' => MENU_CALLBACK,
     'weight' => 1,
   );
 
   return $items;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function search_and_replace_permission() {
+  $permissions = array();
+  $permissions['administer search and replace settings'] = array(
+    'title' => t("Who can administer search and replace settings"),
+  );
+  $permissions['use search and replace'] = array(
+    'title' => t("Who can use search and replace form"),
+  );
+  $permissions['undo search and replace'] = array(
+    'title' => t("Who can undo search and replace"),
+  );
+
+  return $permissions;
 }
 
 function search_and_replace_form($form, &$form_state, $node = array()) {
@@ -272,8 +293,8 @@ function search_and_replace_form($form, &$form_state, $node = array()) {
         $output = '';
         foreach ($item['text'] as $field_name => $text) {
           $output .= '<div>';
-          $output .= '<span class="scanner-info">[One or more matches in <strong>' . $field_name . '</strong>:]</span><br />';
-          $output .= '<span class="scanner-text">' . $text . '</span>';
+          $output .= '<span class="search-and-replace-info">[One or more matches in <strong>' . $field_name . '</strong>:]</span><br />';
+          $output .= '<span class="search-and-replace-text">' . $text . '</span>';
           $output .= '</div>';
         }
         $row['snippet'] = $output;
@@ -482,7 +503,7 @@ function search_and_replace_get_search_expression(array $settings) {
   $preceded_php = '';
   if (!empty($preceded)) {
     if (!$regex) {
-      $preceded = addcslashes($preceded, SCANNER_REGEX_CHARS);
+      $preceded = addcslashes($preceded, SEARCH_AND_REPLACE_REGEX_CHARS);
     }
     $preceded_php = '(?<=' . $preceded . ')';
   }
@@ -491,7 +512,7 @@ function search_and_replace_get_search_expression(array $settings) {
   $followed_php = '';
   if (!empty($followed)) {
     if (!$regex) {
-      $followed = addcslashes($followed, SCANNER_REGEX_CHARS);
+      $followed = addcslashes($followed, SEARCH_AND_REPLACE_REGEX_CHARS);
     }
     $followed_php = '(?=' . $followed . ')';
   }
@@ -505,8 +526,8 @@ function search_and_replace_get_search_expression(array $settings) {
     $search_php = '\b' . $preceded_php . $search . $followed_php . '\b';
   }
   elseif ($whole_word && !$regex) {
-    $search_db = "[[:<:]]" . $preceded . addcslashes($search, SCANNER_REGEX_CHARS) . $followed . "[[:>:]]";
-    $search_php = '\b' . $preceded_php . addcslashes($search, SCANNER_REGEX_CHARS) . $followed_php . '\b';
+    $search_db = "[[:<:]]" . $preceded . addcslashes($search, SEARCH_AND_REPLACE_REGEX_CHARS) . $followed . "[[:>:]]";
+    $search_php = '\b' . $preceded_php . addcslashes($search, SEARCH_AND_REPLACE_REGEX_CHARS) . $followed_php . '\b';
   }
   elseif (!$whole_word && $regex) {
     $search_db = $preceded . $search . $followed;
@@ -514,8 +535,8 @@ function search_and_replace_get_search_expression(array $settings) {
   }
   else {
     // !whole word && !regex
-    $search_db = $preceded . addcslashes($search, SCANNER_REGEX_CHARS) . $followed;
-    $search_php = $preceded_php . addcslashes($search, SCANNER_REGEX_CHARS) . $followed_php;
+    $search_db = $preceded . addcslashes($search, SEARCH_AND_REPLACE_REGEX_CHARS) . $followed;
+    $search_php = $preceded_php . addcslashes($search, SEARCH_AND_REPLACE_REGEX_CHARS) . $followed_php;
   }
   // Return search string to be used in db query and php regex.
   return array(
@@ -705,6 +726,7 @@ function search_and_replace_batch_operation_replace($nids, $settings, &$context)
 
   foreach ($to_process as $nid) {
     $node = node_load($nid);
+    $reset_current = array();
     if ($moderate && $edit_draft) {
       if (workbench_moderation_node_moderated($node)) {
         $node = workbench_moderation_node_current_load($node);
