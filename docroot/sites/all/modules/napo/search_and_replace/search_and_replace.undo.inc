@@ -1,0 +1,136 @@
+<?php
+
+function search_and_replace_undo_page() {
+  $page = array();
+  $results = db_select('search_and_replace', 'sr')
+    ->fields('sr')
+    ->extend('PagerDefault')
+    ->limit(2)
+    ->orderBy('sr.id', 'desc')
+    ->execute();
+
+  $header = array('Search', 'Replace', 'Settings', 'User', 'Date', 'Operations');
+  $table_rows = array();
+  while ($row = $results->fetchAssoc()) {
+    $author = user_load($row['uid']);
+    $table_rows[$row['id']] = array(
+      $row['search'],
+      $row['replaced'],
+      _search_and_replace_settings_to_text((array) json_decode($row['options'])),
+      $author->name,
+      date('d-m-Y H:i', $row['created']),
+    );
+    if (empty($row['undone'])) {
+      $table_rows[$row['id']][] = l('Undo revisions', 'admin/content/search_replace/undo/' . $row['id'])
+      . ' | ' . l('Reverse search', 'admin/content/search_replace', array('query' => array('undo_id' => $row['id'])));
+    }
+  }
+
+  $page['table'] = array(
+    '#markup' => theme('table', array('header' => $header, 'rows' => $table_rows)),
+  );
+  $page['pagination'] = array(
+    '#markup' => theme('pager'),
+  );
+  return $page;
+}
+
+function search_and_replace_load_operation($id) {
+  $result = db_select('search_and_replace', 'sr')
+    ->fields('sr')
+    ->condition('id', $id)
+    ->execute()
+    ->fetchAssoc();
+  return $result;
+}
+
+function search_and_replace_undo_form($form, &$form_state, $id) {
+  $operation = search_and_replace_load_operation($id);
+  $undo_data = json_decode($operation['undo_data'], true);
+  $form_state['#undo_data'] = $undo_data;
+  $form_state['#operation'] = $operation;
+  $form = confirm_form($form, t('Undo revisions of search and replace operation'),
+    current_path(),
+    t('Are you sure you want to revert @count nodes to their previous revisions?', array('@count' => count($undo_data)))
+  );
+  $form['actions']['cancel']['#href'] = 'admin/content/search_replace/undo';
+  return $form;
+}
+
+function search_and_replace_undo_form_submit($form, &$form_state) {
+  $batch = array(
+    'operations' => array(
+      array('search_and_replace_batch_operation_undo', array($form_state['#undo_data'])),
+    ),
+    'finished' => 'search_and_replace_batch_undo_finished',
+    'title' => t('Processing Replace Batch'),
+    'init_message' => t('Replace Batch is starting.'),
+    'progress_message' => t('Processed @current out of @total.'),
+    'error_message' => t('Replace Batch has encountered an error.'),
+  );
+  batch_set($batch);
+  batch_process('admin/content/search_replace/undo');
+}
+
+/**
+ * Batch operation for replacing.
+ */
+function search_and_replace_batch_operation_undo($results, &$context) {
+  if (!isset($context['sandbox']['progress'])) {
+    $context['sandbox']['progress'] = 0;
+    $context['sandbox']['current_node'] = 0;
+    $context['sandbox']['max'] = count($results);
+    $context['results'] = array();
+  }
+  $limit = 3;
+  $to_process = array_slice($results, $context['sandbox']['current_node'], $limit);
+
+  foreach ($to_process as $result) {
+    $node = node_load($result['nid'], $result['vid']);
+    $node->revision = TRUE;
+    $node->log = t('Search and replace undo operation - reverting to version @vid', array('@vid' => $result['vid']));
+    $node->status = $result['st'];
+    if (!empty($result['moderation_state'])) {
+      $node->workbench_moderation_state_new = $result['moderation_state'];
+      if ($node->vid != $node->workbench_moderation['current']->vid) {
+        $reset_current = $node->workbench_moderation['current'];
+      }
+    }
+    node_save($node);
+    if (!empty($reset_current)) {
+      $current_version = node_load($node->nid, $reset_current->vid, TRUE);
+      $current_version->workbench_moderation_state_new = $reset_current->state;
+      $current_version->revision = 1;
+      $current_version->log = t('Copy of the existing draft that was before undo the search for the published version');
+      node_save($current_version);
+    }
+
+    // Update our progress information.
+    $context['results'][$node->nid] = $node->title;
+    $context['sandbox']['progress']++;
+    $context['sandbox']['current_node']++;
+    $context['message'] = t('Now processing %node', array('%node' => $node->title));
+  }
+
+  // Inform the batch engine that we are not finished,
+  // and provide an estimation of the completion level we reached.
+  if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
+    $context['finished'] = $context['sandbox']['progress'] / $context['sandbox']['max'];
+  }
+}
+
+/**
+ * Batch 'finished' callback for replace..
+ */
+function search_and_replace_batch_undo_finished($success, $results, $operations) {
+  if ($success) {
+    drupal_set_message(t('@count nodes processed.', array('@count' => count ($results))));
+  }
+  else {
+    $error_operation = reset($operations);
+    drupal_set_message(t('An error occurred while processing @operation with arguments : @args', array(
+      '@operation' => $error_operation[0],
+      '@args' => print_r($error_operation[0], TRUE),
+    )));
+  }
+}
