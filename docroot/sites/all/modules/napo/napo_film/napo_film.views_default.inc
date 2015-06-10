@@ -1385,7 +1385,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
   $handler->display->display_options['fields']['title_field']['settings'] = array(
-    'title_style' => 'h3',
+    'title_style' => '_none',
     'title_link' => 'content',
     'title_class' => '',
     'title_archived_label' => 1,
