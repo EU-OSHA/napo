@@ -5,11 +5,11 @@ function search_and_replace_undo_page() {
   $results = db_select('search_and_replace', 'sr')
     ->fields('sr')
     ->extend('PagerDefault')
-    ->limit(2)
+    ->limit(25)
     ->orderBy('sr.id', 'desc')
     ->execute();
 
-  $header = array('Search', 'Replace', 'Settings', 'User', 'Date', 'Operations');
+  $header = array('Search', 'Replace', 'Settings', 'User', 'Date', 'Undone', 'Operations');
   $table_rows = array();
   while ($row = $results->fetchAssoc()) {
     $author = user_load($row['uid']);
@@ -20,6 +20,8 @@ function search_and_replace_undo_page() {
       $author->name,
       date('d-m-Y H:i', $row['created']),
     );
+    $table_rows[$row['id']][] = empty($row['undone']) ? 'No' : 'Yes';
+
     if (empty($row['undone'])) {
       $table_rows[$row['id']][] = l('Undo revisions', 'admin/content/search_replace/undo/' . $row['id'])
       . ' | ' . l('Reverse search', 'admin/content/search_replace', array('query' => array('undo_id' => $row['id'])));
@@ -46,9 +48,9 @@ function search_and_replace_load_operation($id) {
 
 function search_and_replace_undo_form($form, &$form_state, $id) {
   $operation = search_and_replace_load_operation($id);
+  $form_state['#operation'] = $operation;
   $undo_data = json_decode($operation['undo_data'], true);
   $form_state['#undo_data'] = $undo_data;
-  $form_state['#operation'] = $operation;
   $form = confirm_form($form, t('Undo revisions of search and replace operation'),
     current_path(),
     t('Are you sure you want to revert @count nodes to their previous revisions?', array('@count' => count($undo_data)))
@@ -60,7 +62,7 @@ function search_and_replace_undo_form($form, &$form_state, $id) {
 function search_and_replace_undo_form_submit($form, &$form_state) {
   $batch = array(
     'operations' => array(
-      array('search_and_replace_batch_operation_undo', array($form_state['#undo_data'])),
+      array('search_and_replace_batch_operation_undo', array($form_state['#undo_data'], $form_state['#operation'])),
     ),
     'finished' => 'search_and_replace_batch_undo_finished',
     'title' => t('Processing Replace Batch'),
@@ -75,12 +77,13 @@ function search_and_replace_undo_form_submit($form, &$form_state) {
 /**
  * Batch operation for replacing.
  */
-function search_and_replace_batch_operation_undo($results, &$context) {
+function search_and_replace_batch_operation_undo($results, $operation, &$context) {
   if (!isset($context['sandbox']['progress'])) {
     $context['sandbox']['progress'] = 0;
     $context['sandbox']['current_node'] = 0;
     $context['sandbox']['max'] = count($results);
-    $context['results'] = array();
+    $context['results']['results'] = array();
+    $context['results']['operation'] = $operation;
   }
   $limit = 3;
   $to_process = array_slice($results, $context['sandbox']['current_node'], $limit);
@@ -106,7 +109,7 @@ function search_and_replace_batch_operation_undo($results, &$context) {
     }
 
     // Update our progress information.
-    $context['results'][$node->nid] = $node->title;
+    $context['results']['results'][$node->nid] = $node->title;
     $context['sandbox']['progress']++;
     $context['sandbox']['current_node']++;
     $context['message'] = t('Now processing %node', array('%node' => $node->title));
@@ -124,7 +127,12 @@ function search_and_replace_batch_operation_undo($results, &$context) {
  */
 function search_and_replace_batch_undo_finished($success, $results, $operations) {
   if ($success) {
-    drupal_set_message(t('@count nodes processed.', array('@count' => count ($results))));
+    drupal_set_message(t('@count nodes processed.', array('@count' => count ($results['results']))));
+    if (!empty($results['operation'])) {
+      $search_op = $results['operation'];
+      $search_op['undone'] = 1;
+      drupal_write_record('search_and_replace', $search_op, array('id'));
+    }
   }
   else {
     $error_operation = reset($operations);
