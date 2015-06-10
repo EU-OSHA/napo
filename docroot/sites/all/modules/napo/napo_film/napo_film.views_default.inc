@@ -1369,7 +1369,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['field_image']['label'] = '';
   $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_image']['element_wrapper_type'] = 'div';
-  $handler->display->display_options['fields']['field_image']['element_wrapper_class'] = 'col-sm-4';
+  $handler->display->display_options['fields']['field_image']['element_wrapper_class'] = 'col-sm-3';
   $handler->display->display_options['fields']['field_image']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
@@ -1467,7 +1467,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nothing']['element_label_type'] = '0';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
-  $handler->display->display_options['fields']['nothing']['element_wrapper_class'] = 'col-sm-8';
+  $handler->display->display_options['fields']['nothing']['element_wrapper_class'] = 'col-sm-9';
   $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
