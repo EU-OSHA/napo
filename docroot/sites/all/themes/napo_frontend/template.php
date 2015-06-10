@@ -22,6 +22,7 @@ function napo_frontend_back_button(&$vars){
     'attributes' => array(
       'class' => 'back_button',
     ),
+    'html' => TRUE,
   );
 
   if (empty($referer) || strpos($referer, $base_url) === FALSE) {
