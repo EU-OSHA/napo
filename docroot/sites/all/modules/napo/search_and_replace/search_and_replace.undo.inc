@@ -60,7 +60,6 @@ function search_and_replace_undo_form($form, &$form_state, $id) {
 }
 
 function search_and_replace_undo_form_submit($form, &$form_state) {
-  dpm($form_state['#undo_data']);
   $batch = array(
     'operations' => array(
       array('search_and_replace_batch_operation_undo', array($form_state['#undo_data'], $form_state['#operation'])),
