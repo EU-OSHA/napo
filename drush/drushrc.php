@@ -368,7 +368,7 @@ $options['init-modules'] = array(
   'mpac',
   'linkit',
   'pathologic',
-  'scanner',
+  'search_and_replace',
   'nodeblock',
   'quicktabs',
   'context',
