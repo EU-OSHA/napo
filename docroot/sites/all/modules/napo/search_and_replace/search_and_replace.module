@@ -65,6 +65,10 @@ function search_and_replace_form($form, &$form_state, $node = array()) {
   if (!empty($node)) {
     $form['#node'] = $node;
   }
+  $form['#attached']['css'] = array(
+    drupal_get_path('module', 'search_and_replace') . '/search_and_replace.css',
+  );
+
 
   // If Replace confirmation, return confirmation form.
   if (isset($form_state['storage']['confirm'])) {
@@ -240,17 +244,30 @@ function search_and_replace_form($form, &$form_state, $node = array()) {
     );
 
     // Format the results table.
-    $header = array('Title', 'Type', 'Snippet', 'Count', 'Languages');
+    $header = array(
+      'title' => 'Title',
+      'type' => 'Type',
+      'snippet' => 'Snippet',
+      'count' => 'Count',
+      'languages' => 'Languages',
+    );
     $rows = array();
     $results = &$form_state['#results'];
     if (!empty($results)) {
       $total = count($results);
+
       drupal_set_message('<p>Found matches in ' . $total . ' nodes. <a href="#search-and-replace-results">See results</a></p>');
+
+      $tmgmt = FALSE;
+      if (function_exists('tmgmt_job_item_load')) {
+        $tmgmt = TRUE;
+      }
+
       $output = NULL;
       foreach ($results as $item) {
         $row = array(
-          l($item['title'], 'node/' . $item['nid']),
-          $item['type'],
+          'title' => l($item['title'], 'node/' . $item['nid']),
+          'type' => $item['type'],
         );
         $output = '';
         foreach ($item['text'] as $field_name => $text) {
@@ -259,9 +276,15 @@ function search_and_replace_form($form, &$form_state, $node = array()) {
           $output .= '<span class="scanner-text">' . $text . '</span>';
           $output .= '</div>';
         }
-        $row[] = $output;
-        $row[] = $item['count'];
-        $row[] = implode(', ', $item['languages']);
+        $row['snippet'] = $output;
+        $row['count'] = $item['count'];
+        $row['languages'] = implode(', ', $item['languages']);
+
+        $class = array();
+        if ($tmgmt && _search_and_replace_node_in_trasnlation($item['nid'])) {
+          $class[] = 'node-in-translation';
+        }
+        $row['#attributes'] = array('class' => $class);
         $rows[$item['nid']] = $row;
       }
     }
@@ -270,6 +293,10 @@ function search_and_replace_form($form, &$form_state, $node = array()) {
       '#type' => 'tableselect',
       '#options' => $rows,
       '#attributes' => array('id' => 'search-and-replace-results'),
+    );
+    $form['search_results_legend'] = array(
+      '#type' => 'item',
+      '#markup' => '<span class="legend-span node-in-translation"></span> In active translation job',
     );
   }
 
@@ -840,4 +867,20 @@ function _search_and_replace_get_text_fields() {
     }
   }
   return $text_fields;
+}
+
+function _search_and_replace_node_in_trasnlation($nid) {
+  if (db_table_exists('tmgmt_job')) {
+    $query = db_select('tmgmt_job', 'tj');
+    $query->join('tmgmt_job_item', 'tji', 'tj.tjid = tji.tjid');
+    $query->fields('tj');
+    $query->condition('tj.state', array(0, 1), 'IN')
+      ->condition('tji.plugin', 'entity')
+      ->condition('tji.item_id', $nid);
+    $count = $query->execute()->rowCount();
+    if ($count > 0) {
+      return TRUE;
+    }
+  }
+  return FALSE;
 }
