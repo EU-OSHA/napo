@@ -37,3 +37,29 @@ function napo_film_update_7003() {
     }
   }
 }
+
+/**
+ * Fill publication date of episodes.
+ */
+function napo_film_update_7004() {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'napo_video')
+    ->fieldCondition('field_video_type', 'tid', 2726);
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $nids = array_keys($result['node']);
+    $videos = entity_load('node', $nids);
+    foreach ($videos as $node) {
+      if (!empty($node->field_napo_film[LANGUAGE_NONE][0]['target_id'])) {
+        $film = node_load($node->field_napo_film[LANGUAGE_NONE][0]['target_id']);
+        $publ_date = field_get_items('node', $film, 'field_publication_date');
+        if (!empty($publ_date)) {
+          $node->field_publication_date[LANGUAGE_NONE] = $publ_date;
+          node_save($node);
+        }
+      }
+    }
+  }
+}

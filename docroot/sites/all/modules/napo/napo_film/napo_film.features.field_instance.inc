@@ -1007,6 +1007,8 @@ function napo_film_field_default_field_instances() {
           'napo_film_title_include_episode_count' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
+          'napo_film_title_link_with_film' => TRUE,
+          'napo_film_title_link_with_film_value' => '!episode from the film !film',
           'title_archived_label' => FALSE,
           'title_class' => '',
           'title_link' => '',
