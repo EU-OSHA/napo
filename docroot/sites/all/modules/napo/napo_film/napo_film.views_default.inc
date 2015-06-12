@@ -377,7 +377,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['field_image']['element_wrapper_class'] = 'napo_film_episode_link';
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'medium',
+    'image_style' => 'medium2',
     'image_link' => '',
   );
   /* Field: Content: Path */
@@ -589,7 +589,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['field_image']['element_wrapper_class'] = 'napo_film_episode_link';
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'medium',
+    'image_style' => 'medium2',
     'image_link' => '',
   );
   /* Field: Content: Path */

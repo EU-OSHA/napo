@@ -282,3 +282,25 @@ ul.nav-right-menu.affix{
     position: relative !important;
     top: 0 !important;
 }
+
+/* episode carousel fix */
+/* TODO @Ivan adapt this fix to your less */
+.view-episode-list .jcarousel-item {
+    position: relative;
+}
+
+.view-episode-list .views-field-title-field {
+    width: auto !important;
+    height: auto !important;
+    left: 0;
+    right: 0;
+    padding: 0 !important;
+}
+.view-episode-list .views-field-title-field a {
+    margin: 0 !important;
+    background: url('../images/arrow-button-yellow.png') no-repeat center right !important;
+    padding: 15px 0px !important;
+}
+.view-episode-list .views-field-title-field .field-content {
+    padding: 0 10px !important;
+}
