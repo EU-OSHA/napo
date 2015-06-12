@@ -17,11 +17,6 @@ function napo_film_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'napo_video';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
-    'napo_film_title' => array(
-      'weight' => '4',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
     'back_button' => array(
       'weight' => '0',
       'label' => 'hidden',
@@ -42,16 +37,10 @@ function napo_film_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'film' => array(
-      'weight' => '5',
-      'label' => 'inline',
+    'napo_film_title' => array(
+      'weight' => '4',
+      'label' => 'hidden',
       'format' => 'default',
-      'formatter_settings' => array(
-        'show_title' => 0,
-        'title_wrapper' => '',
-        'ctools' => 'a:3:{s:4:"conf";a:5:{s:8:"sanitize";i:1;s:7:"context";s:25:"argument_entity_id:node_1";s:14:"override_title";i:0;s:19:"override_title_text";s:0:"";s:22:"override_title_heading";s:2:"h2";}s:4:"type";s:5:"token";s:7:"subtype";s:16:"node:title-field";}',
-        'load_terms' => 0,
-      ),
     ),
     'recommended_films' => array(
       'weight' => '10',
@@ -219,12 +208,11 @@ function napo_film_ds_layout_settings_info() {
         2 => 'field_youtube',
         3 => 'episode_list',
         4 => 'napo_film_title',
-        5 => 'film',
-        6 => 'share_widget',
-        7 => 'download_video_form',
-        8 => 'field_combined_tags',
-        9 => 'body',
-        10 => 'recommended_films',
+        5 => 'share_widget',
+        6 => 'download_video_form',
+        7 => 'field_combined_tags',
+        8 => 'body',
+        9 => 'recommended_films',
       ),
     ),
     'fields' => array(
@@ -233,7 +221,6 @@ function napo_film_ds_layout_settings_info() {
       'field_youtube' => 'ds_content',
       'episode_list' => 'ds_content',
       'napo_film_title' => 'ds_content',
-      'film' => 'ds_content',
       'share_widget' => 'ds_content',
       'download_video_form' => 'ds_content',
       'field_combined_tags' => 'ds_content',

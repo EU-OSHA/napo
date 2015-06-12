@@ -190,7 +190,7 @@ function napo_film_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'hidden',
+        'label' => 'inline',
         'module' => 'napo_film',
         'settings' => array(
           'search_link' => 'napos-films/films',
