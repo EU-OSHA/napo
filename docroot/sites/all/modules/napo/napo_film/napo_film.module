@@ -226,11 +226,19 @@ function napo_film_render_episode($nid) {
     $render_node = node_view($node, 'episode_popup');
     // Unset the title, use it in template (modal header).
     unset($render_node['title_field']);
-    $title = field_get_items('node', $node, 'title_field');
-    $title = current($title)['value'];
+    $display_settings = array(
+      'label' => 'hidden',
+      'type' => 'title_linked',
+      'settings' => array(
+        'napo_film_title_include_type' => 1,
+        'napo_film_title_include_episode_count' => 1,
+        'title_style' => 'div',
+      ),
+    );
+    $title_episode = field_view_field('node', $node, 'title_field', $display_settings);
     $content = theme('napo_film_ajax_episode', array(
       'content' => drupal_render($render_node),
-      'title' => $title,
+      'title' => render($title_episode),
       'nid' => $nid,
       )
     );
