@@ -334,6 +334,14 @@ function napo_film_form_napo_video_node_form_alter(&$form, &$form_state) {
       ),
     ),
   );
+  // Show publication date only for episodes.
+  $form['field_publication_date'] += array(
+    '#states' => array(
+      'visible' => array(
+        'select[name^="field_video_type"]' => array('value' => $types['film']),
+      ),
+    ),
+  );
 }
 
 function napo_film_video_get_type($node) {
@@ -379,8 +387,14 @@ function napo_film_node_submit($node, $form, &$form_state) {
     if (!empty($node->field_napo_film[LANGUAGE_NONE][0]['target_id'])) {
       $film = node_load($node->field_napo_film[LANGUAGE_NONE][0]['target_id']);
       $main_tag = field_get_items('node', $film, 'field_main_tag');
-      drupal_set_message('Main Tag synced with episode\'s film!', 'warning');
+      drupal_set_message("Main Tag synced with episode's film!", 'warning');
       $node->field_main_tag[LANGUAGE_NONE] = $main_tag;
+
+      $publ_date = field_get_items('node', $film, 'field_publication_date');
+      if (!empty($publ_date)) {
+        $node->field_publication_date[LANGUAGE_NONE] = $publ_date;
+        drupal_set_message("Publication date synced with episode's film!", 'warning');
+      }
     }
   }
   elseif ($type == 'film') {

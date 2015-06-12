@@ -1140,12 +1140,27 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['view_episodes_link']['label'] = '';
   $handler->display->display_options['fields']['view_episodes_link']['exclude'] = TRUE;
   $handler->display->display_options['fields']['view_episodes_link']['element_label_colon'] = FALSE;
+  /* Field: Indexed Multilingual Node: Publication date */
+  $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
+  $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
+  $handler->display->display_options['fields']['field_publication_date']['label'] = '';
+  $handler->display->display_options['fields']['field_publication_date']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_publication_date']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
+    'format_type' => 'year',
+    'fromto' => 'both',
+    'multiple_number' => '',
+    'multiple_from' => '',
+    'multiple_to' => '',
+    'osha_date_theme' => '',
+  );
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[body][combined_tags][url][view_episodes_link]';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_publication_date][body][combined_tags][url][view_episodes_link]';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['nothing']['element_wrapper_class'] = 'napo-film-content-container';
@@ -1248,7 +1263,7 @@ function napo_film_views_default_views() {
     t('[title_field][body][nothing_2]'),
     t('Grid'),
     t('[title_field][content_cart][download_video]'),
-    t('[body][combined_tags][url][view_episodes_link]'),
+    t('[field_publication_date][body][combined_tags][url][view_episodes_link]'),
   );
   $export['napo_films'] = $view;
 
@@ -1411,7 +1426,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['field_publication_date']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_publication_date']['element_default_classes'] = FALSE;
   $handler->display->display_options['fields']['field_publication_date']['settings'] = array(
-    'format_type' => 'osha_day_only',
+    'format_type' => 'year',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
