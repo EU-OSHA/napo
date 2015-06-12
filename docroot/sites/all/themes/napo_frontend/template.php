@@ -100,3 +100,15 @@ function napo_frontend_napo_film_tag_facet_link($variables) {
   );
   return l($icon . $variables['name'], $variables['link'], $options);
 }
+
+/**
++ * Implements theme_pager().
++ */
+function napo_frontend_pager($variables) {
+  // Overwrite pager links.
+  $variables['tags'][0] = '«';
+  $variables['tags'][1] = '‹';
+  $variables['tags'][3] = '›';
+  $variables['tags'][4] = '»';
+  return theme_pager($variables);
+}
