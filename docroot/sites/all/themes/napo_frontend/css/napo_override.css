@@ -74,8 +74,7 @@ ul.nav li.dropdown ul.dropdown-menu {
     position: absolute;
     top: 30%;
     left: 30px;
-    padding: 15px;
-    background: #ddd;
+    padding: 0px 30px 30px 30px;
     max-width: 300px;
     z-index: 1;
     background:url('../images/background-slider-home.png');
@@ -229,45 +228,6 @@ footer.footer.container section.block-menu-block{
     /*width: 250px;*/
 }
 
-/* Lesson menu begin */
-ul.nav-right-menu{
-    width: 300px;
-    margin-top: 20px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
-}
-ul.nav-right-menu li{
-    margin: 0;
-    border-top: 1px solid #ddd;
-}
-ul.nav-right-menu li:first-child{
-    border-top: none;
-}
-ul.nav-right-menu li a{
-    margin: 0;
-    padding: 8px 16px;
-    border-radius: 0;
-}
-ul.nav-right-menu li.active a, ul.nav-right-menu li.active a:hover{
-    color: #fff;
-    background: #0088cc;
-    border: 1px solid #0088cc;
-}
-ul.nav-right-menu li:first-child a{
-    border-radius: 4px 4px 0 0;
-}
-ul.nav-right-menu li:last-child a{
-    border-radius: 0 0 4px 4px;
-}
-ul.nav-right-menu.affix{
-    top: 30px; /* Set the top position of pinned element */
-}
-.node-lesson .group-right {
-    float: right;
-}
-/* Lesson menu end */
-
 /* Download center */
 .download-center-waiting {
     display: none;
@@ -281,4 +241,27 @@ ul.nav-right-menu.affix{
 #lesson-left-menu-wrapper {
     position: relative !important;
     top: 0 !important;
+}
+
+
+/* episode carousel fix */
+/* TODO @Ivan adapt this fix to your less */
+.view-episode-list .jcarousel-item {
+    position: relative;
+}
+
+.view-episode-list .views-field-title-field {
+    width: auto !important;
+    height: auto !important;
+    left: 0;
+    right: 0;
+    padding: 0 !important;
+}
+.view-episode-list .views-field-title-field a {
+    margin: 0 !important;
+    background: url('../images/arrow-button-yellow.png') no-repeat center right !important;
+    padding: 15px 0px !important;
+}
+.view-episode-list .views-field-title-field .field-content {
+    padding: 0 10px !important;
 }
