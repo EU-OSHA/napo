@@ -996,7 +996,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['url']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['url']['alter']['text'] = '<span class="glyphicon glyphicon-play-circle view-film-details-icon"></span>';
   $handler->display->display_options['fields']['url']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['url']['alter']['path'] = '[url]';
+  $handler->display->display_options['fields']['url']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['url']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['url']['link_to_entity'] = 0;
   /* Field: Global: Custom text */
@@ -1120,7 +1120,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['url']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['url']['alter']['text'] = '<span class="glyphicon glyphicon-play-circle view-film-details-icon"></span>';
   $handler->display->display_options['fields']['url']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['url']['alter']['path'] = '[url]';
+  $handler->display->display_options['fields']['url']['alter']['path'] = 'node/[nid]';
   $handler->display->display_options['fields']['url']['alter']['link_class'] = 'napo-film-view-link';
   $handler->display->display_options['fields']['url']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['url']['display_as_link'] = FALSE;
