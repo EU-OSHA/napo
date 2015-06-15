@@ -593,11 +593,6 @@ function osha_workflow_views_default_views() {
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
   $handler->display->display_options['fields']['type']['field'] = 'type';
-  /* Field: Content: Activity */
-  $handler->display->display_options['fields']['field_activity']['id'] = 'field_activity';
-  $handler->display->display_options['fields']['field_activity']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['fields']['field_activity']['field'] = 'field_activity';
-  $handler->display->display_options['fields']['field_activity']['type'] = 'taxonomy_term_reference_plain';
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -739,7 +734,6 @@ function osha_workflow_views_default_views() {
     t('My Content'),
     t('My Content Non-Moderated'),
     t('revision user'),
-    t('Activity'),
   );
   $export['osh_workflow_admin'] = $view;
 

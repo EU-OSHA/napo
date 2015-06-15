@@ -698,6 +698,7 @@ class OshaWorkflowNotifications {
   public static function notifyOnChangeFromDraftOrFinalDraftToBeReviewed($node) {
     $users = osha_workflow_get_node_rm($node);
     $users[] = osha_workflow_get_project_manager($node->nid);
+    dpm($users);
 
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
@@ -766,7 +767,7 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyNodeIsReadyToPublish($node) {
-    $review_managers = osha_workflow_get_node_rm($node);
+    $review_managers = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
     OshaWorkflowNotifications::sendEmail($review_managers, array('node' => $node), 'osha_workflow');
 
     $translation_managers = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER);
@@ -782,8 +783,8 @@ class OshaWorkflowNotifications {
       'from' => $from_state,
       'to' => $to_state,
     );
-    $users = osha_workflow_get_node_rm($node);
-    OshaWorkflowNotifications::sendEmail($users, $params, 'osha_workflow', 'osha_workflow_notification_admin');
+    $review_managers = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+    OshaWorkflowNotifications::sendEmail($review_managers, $params, 'osha_workflow', 'osha_workflow_notification_admin');
   }
 
   /**
