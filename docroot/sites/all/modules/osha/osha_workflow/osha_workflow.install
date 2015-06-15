@@ -198,6 +198,36 @@ function osha_workflow_schema() {
     ),
   );
 
+  $schema['osha_workflow_access_rm'] = array(
+    'description' => 'Maps Review Managers access to sections',
+    'fields' => array(
+      'uid' => array(
+        'description' => 'The user identifier. Foreign key to {users}.',
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'access_id' => array(
+        'description' => 'The section identifier. Foreign key to {workbench_access}.',
+        'type' => 'varchar',
+        'length' => '80',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'access_scheme' => array(
+        'description' => 'The module responsbile for this access system.',
+        'type' => 'varchar',
+        'length' => '40',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('uid', 'access_id', 'access_scheme'),
+    'foreign keys' => array(
+      'section_id' => array('workbench_access' => array('access_id', 'access_scheme')),
+      'uid' => array('users' => 'uid'),
+    ),
+  );
+
   $schema['osha_workflow_sections_review'] = array(
     'description' => 'Base table for section review messages.',
     'fields' => array(
@@ -208,7 +238,7 @@ function osha_workflow_schema() {
         'not null' => TRUE,
       ),
       'access_id' => array(
-        'description' => 'Section reviewd.',
+        'description' => 'Section reviewed.',
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
@@ -421,4 +451,124 @@ function osha_workflow_update_7003() {
   // Give new permissions to Review Manager.
   $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER);
   user_role_grant_permissions($role->rid, osha_workflow_permissions_role_project_manager());
+}
+
+/**
+ * Add 'assign workbench access' permission to Review manager role
+ */
+function osha_workflow_update_7004() {
+  $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+  user_role_grant_permissions($role->rid, array('assign workbench access'));
+}
+
+/**
+ * Assign extra permissions for Review Manager (CW-1598).
+ */
+function osha_workflow_update_7005() {
+  $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+  user_role_grant_permissions($role->rid, array(
+    'administer nodes',
+    'bypass workbench moderation',
+    'administer files',
+    'access site in maintenance mode',
+    'administer taxonomy',
+    'create translation jobs',
+    'submit translation jobs',
+    'accept translation jobs',
+  ));
+}
+
+/**
+ * Move workflow sections to taxonomy.
+ */
+function osha_workflow_update_7006() {
+  module_load_include('inc', 'workbench_access', 'workbench_access.admin');
+
+  $form_state['values']['workbench_access'] = 'taxonomy';
+  $form_state['values']['workbench_access_taxonomy'] = array('section' => 'section');
+  $form_state['values']['workbench_access_menu'] = array();
+  $form_state['values']['op'] = t('Save configuration');
+  drupal_form_submit('workbench_access_settings_form', $form_state);
+
+  $file = drupal_get_path('module', 'osha_workflow') . '/mapping_sections.csv';
+  if (!is_readable($file)) {
+    throw new DrupalUpdateException('Cannot read file ' . $file);
+  }
+  $mappings = array();
+  $handle = fopen($file, 'r');
+  $fields = $raw_data = fgetcsv($handle);
+  while (($raw_data = fgetcsv($handle)) !== FALSE) {
+    $mappings[$raw_data[0]] = array_combine($fields, $raw_data);
+  }
+  $voc = taxonomy_vocabulary_machine_name_load('section');
+  foreach ($mappings as $access_id => $mapping) {
+    $term = taxonomy_get_term_by_name($mapping['LDAP description']);
+    $term = current($term);
+    if (empty($term) && !empty($mapping['LDAP description'])) {
+      $term = new stdClass();
+      $term->vid = $voc->vid;
+      $term->bundle = 'section';
+      $term->name = $mapping['LDAP description'];
+      $term->field_ldap_section_code[LANGUAGE_NONE][0]['value'] = $mapping['LDAP code'];
+      taxonomy_term_save($term);
+    }
+    if (!empty($term->tid) && !empty($mapping['access_id'])) {
+      db_update('workbench_access_node')
+        ->fields(array(
+            'access_id' => $term->tid,
+            'access_scheme' => 'taxonomy',
+          )
+        )
+        ->condition('access_id', $mapping['access_id'])
+        ->execute();
+    }
+    else {
+      $msg = strtr('Section was not created @name (old_access_id: @id)', array('@name' => $term->name, '@id' => $mapping['access_id']));
+      drupal_set_message($msg, 'warning');
+    }
+  }
+  // Update the nids not covered by the previous loop.
+  db_update('workbench_access_node')
+    ->fields(array(
+        'access_id' => 'section',
+        'access_scheme' => 'taxonomy',
+      )
+    )
+    ->condition('access_scheme', 'menu')
+    ->execute();
+
+  // Add admin, PM, RM to access by role for root section.
+  db_delete('workbench_access_role')
+    ->execute();
+  $roles = array(3, 5, 6);
+  foreach ($roles as $rid) {
+    $role = array(
+      'rid' => $rid,
+      'access_id' => 'section',
+      'access_scheme' => 'taxonomy',
+    );
+    drupal_write_record('workbench_access_role', $role);
+  }
+}
+
+/**
+ * Create osha_workflow_access_rm table.
+ */
+function osha_workflow_update_7007() {
+  if (!db_table_exists('osha_workflow_access_rm')) {
+    $schema = osha_workflow_schema();
+    db_create_table(
+      'osha_workflow_access_rm',
+      $schema['osha_workflow_access_rm']
+    );
+  }
+}
+
+/**
+ * Assign workflow permissions to roles.
+ */
+function osha_workflow_update_7008() {
+  require_once 'osha_workflow.permissions.inc';
+  $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+  user_role_grant_permissions($role->rid, osha_workflow_permissions_role_review_manager());
 }

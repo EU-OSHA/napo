@@ -329,6 +329,11 @@ function osha_workflow_views_default_views() {
     7 => 0,
   );
   $handler->display->display_options['filters']['state']['expose']['reduce'] = TRUE;
+  /* Filter criterion: Osha workflow: If section in rm section */
+  $handler->display->display_options['filters']['section_in_rm_section']['id'] = 'section_in_rm_section';
+  $handler->display->display_options['filters']['section_in_rm_section']['table'] = 'osha_workflow';
+  $handler->display->display_options['filters']['section_in_rm_section']['field'] = 'section_in_rm_section';
+  $handler->display->display_options['filters']['section_in_rm_section']['value'] = '1';
   $handler->display->display_options['path'] = 'admin/workbench/review-manager';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Needs RM Review';
@@ -588,10 +593,11 @@ function osha_workflow_views_default_views() {
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
   $handler->display->display_options['fields']['type']['field'] = 'type';
-  /* Field: Broken/missing handler */
+  /* Field: Content: Activity */
   $handler->display->display_options['fields']['field_activity']['id'] = 'field_activity';
   $handler->display->display_options['fields']['field_activity']['table'] = 'field_data_field_activity';
   $handler->display->display_options['fields']['field_activity']['field'] = 'field_activity';
+  $handler->display->display_options['fields']['field_activity']['type'] = 'taxonomy_term_reference_plain';
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -733,7 +739,7 @@ function osha_workflow_views_default_views() {
     t('My Content'),
     t('My Content Non-Moderated'),
     t('revision user'),
-    t('Broken handler field_data_field_activity.field_activity'),
+    t('Activity'),
   );
   $export['osh_workflow_admin'] = $view;
 
