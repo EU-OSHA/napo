@@ -46,7 +46,7 @@ class osha_tmgmt_handler_field_tmgmt_progress_items extends views_handler_field_
       $title[] = $state . ': @' . $key;
     }
     $title = implode(', ', $title);
-    $title = t($title, $counts);
+    $title = strtr($title, $counts);
     return sprintf('<span title="%s">%s</span>', $title, implode('/', $counts));
   }
 
