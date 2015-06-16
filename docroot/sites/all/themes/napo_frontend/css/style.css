@@ -7503,6 +7503,14 @@ img {
   background: transparent;
   border: 0px;
   font-weight: bold;
+  padding-top: 8px;
+}
+.pager li > a:hover,
+.pager li > a:focus {
+  background: transparent;
+}
+.pager {
+  background: #f2f1f2;
 }
 .pager .pager-current {
   font-weight: bold;
@@ -7510,9 +7518,53 @@ img {
   color: #1f3695;
   padding: 5px 14px;
 }
-.pager li > a:hover,
-.pager li > a:focus {
-  background: transparent;
+.pager .pager-first a {
+  text-indent: -9999px;
+}
+.pager .pager-first a::before {
+  background: url("../images/pagination-first.png") no-repeat;
+  content: " ";
+  width: 25px;
+  height: 25px;
+  display: block;
+  float: left;
+  margin-top: -2px;
+}
+.pager .pager-previous a {
+  text-indent: -9999px;
+}
+.pager .pager-previous a::before {
+  background: url("../images/pagination-previous.png") no-repeat;
+  content: " ";
+  width: 25px;
+  height: 25px;
+  display: block;
+  float: left;
+  margin-top: -2px;
+}
+.pager .pager-next a {
+  text-indent: -9999px;
+}
+.pager .pager-next a::before {
+  background: url("../images/pagination-next.png") no-repeat;
+  content: " ";
+  width: 25px;
+  height: 25px;
+  display: block;
+  float: left;
+  margin-top: -2px;
+}
+.pager .pager-last a {
+  text-indent: -9999px;
+}
+.pager .pager-last a::before {
+  background: url("../images/pagination-last.png") no-repeat;
+  content: " ";
+  width: 25px;
+  height: 25px;
+  display: block;
+  float: left;
+  margin-top: -2px;
 }
 .pagination a {
   font-weight: bold;
@@ -7539,7 +7591,7 @@ img {
 .block-napo-film {
   background: #f2f1f2;
   padding: 0.3em 0em 0.3em 0;
-  margin-bottom: 3em;
+  margin-bottom: 0.5em;
   font-weight: bold;
   font-size: 13px;
 }
@@ -7576,6 +7628,7 @@ img {
 }
 .napo-film-list-view .views-row {
   margin-bottom: 2.5em;
+  margin-top: 2em;
 }
 .napo-film-list-view .field-name-field-combined-tags a {
   color: #1f3695;
@@ -7704,7 +7757,7 @@ img {
   display: block;
   padding: 1em;
   background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
-  height: 315px;
+  height: 284px;
   max-width: 555px;
 }
 .view-napo-films .row div:hover > .views-field-nothing.napo-film-content-container img {
@@ -7722,6 +7775,14 @@ img {
   margin-top: -57px;
   max-width: 50px;
   position: relative;
+}
+.view-napo-films .date-display-single {
+  color: #f7e235;
+  font-weight: bold;
+}
+.napo-film-grid-view .views-field-field-image {
+  max-height: 285px;
+  overflow: hidden;
 }
 .view-napo-films.view-display-id-page_grid .views-field-nothing.napo-film-content-container {
   display: none;
@@ -7779,7 +7840,7 @@ img {
   content: " ";
 }
 .napo-film-list-view-container .views-submit-button {
-  margin-left: -18px;
+  margin-left: -40px;
   margin-top: -25px;
 }
 .napo-film-list-view-container .views-submit-button button {
@@ -7835,13 +7896,17 @@ img {
   margin-right: 12px;
   float: right;
 }
+.col-md-6 .views-item-columns-container {
+  padding-left: 5%;
+  padding-right: 5%;
+}
 .field-name-episode-list {
   background: #e0e1e1;
 }
 .field-name-episode-list h2 {
   color: #585759;
   background: url('../images/ico-view-episodes.png') no-repeat 23px 15px;
-  padding: 1em 1em 1em 3em;
+  padding: 1em 1em 0em 3em;
   font-weight: bold;
 }
 .field-name-episode-list .jcarousel-item:hover .views-field-title-field {
@@ -7849,7 +7914,7 @@ img {
 }
 .field-name-episode-list .views-field-title-field {
   position: absolute;
-  width: 220px;
+  width: auto;
   display: none;
   background: url('../images/background-blue.png') repeat-x;
   height: 46px;
@@ -8013,7 +8078,14 @@ img {
 .view-napo-s-film-episodes .views-row {
   margin-bottom: 1em;
   clear: both;
+  padding-left: 4em;
+}
+.view-napo-s-film-episodes .views-row .date-display-single {
   background: #f2f1f2;
+  color: #1f3695;
+  font-weight: bold;
+  padding: 1em;
+  display: block;
 }
 .view-napo-s-film-episodes .views-row div {
   margin: 0;
@@ -8050,6 +8122,8 @@ img {
 }
 .view-napo-s-film-episodes .episode-list-details-container {
   padding: 1em!important;
+  background: #f2f1f2;
+  height: 64px;
 }
 .view-napo-s-film-episodes .episode-list-details-container a {
   color: #1f3695;
@@ -8057,9 +8131,9 @@ img {
 }
 .view-napo-s-film-episodes .content-cart-add-to-cart-btn {
   float: right;
-  margin-top: 0px;
-  margin-left: 0px;
-  position: relative;
+  margin-top: -7px;
+  margin-left: 28px;
+  position: absolute;
 }
 .view-napo-s-film-episodes .glyphicon.glyphicon-play-circle {
   background: url('../images/napo-film-view-link-blue.png') no-repeat 10px 10px;
@@ -8108,6 +8182,15 @@ img {
 .view-mode-episode_full .field-name-title-field .napo-film-title-2 {
   margin-top: -1px;
 }
+.view-mode-episode_full .film-title a {
+  text-decoration: underline;
+}
+.view-mode-episode_full .film-title a:hover {
+  text-decoration: none;
+}
+.node.node-napo-video .field-name-field-publication-date {
+  display: none;
+}
 .node.node-napo-video .napo-film-video-download-form {
   margin-top: -54px;
   margin-right: 60px;
@@ -8154,7 +8237,7 @@ img {
 }
 .node.node-napo-video .views-field-title-field {
   position: absolute;
-  width: 220px;
+  width: 320px;
   display: none;
   background: url('../images/background-blue.png') repeat-x;
   height: 46px;
@@ -8165,11 +8248,17 @@ img {
 }
 .node.node-napo-video .views-field-title-field a {
   color: #FFF;
-  background: url('../images/arrow-button-yellow.png') no-repeat 95% 17px transparent;
+  background: url('../images/arrow-button-yellow.png') no-repeat 95% 11px transparent;
   font-weight: bold;
   display: block;
   margin-top: -11px;
   padding: 11px 35px 12px 0px;
+}
+.node.node-napo-video .views-field-title-field img {
+  margin-right: 0px;
+}
+.node.node-napo-video .jcarousel-skin-default .jcarousel-container-horizontal {
+  padding-top: 0px;
 }
 .modal .modal-header {
   background: #1f3695;
@@ -8211,6 +8300,9 @@ img {
   background: #1f3695;
   color: #f7e235;
 }
+.modal-dialog .napo-film-video-type:after {
+  content: ":";
+}
 .modal-dialog .close {
   color: #f7e235;
   opacity: 1;
@@ -8239,10 +8331,10 @@ img {
   margin-top: 0px;
 }
 .modal-dialog .jcarousel-skin-default .jcarousel-next {
-  margin-top: -55px;
+  margin-top: -75px;
 }
 .modal-dialog .jcarousel-skin-default .jcarousel-prev {
-  margin-top: -55px;
+  margin-top: -75px;
 }
 .modal-dialog .napo-film-video-download-form:hover form {
   margin-left: 0px;

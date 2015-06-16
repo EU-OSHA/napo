@@ -112,8 +112,23 @@ ul.nav li.dropdown ul.dropdown-menu {
     display: inline-block;
     position: relative;
     max-width: 350px;
-    margin: 0;
+    margin-top: -11px!important;
+    margin-right: 57px!important;
 }
+
+.view-mode-episode_popup{
+    background-color:#F2F1F2;
+}
+
+.ajax-episode-modal .napo-share-widget {
+    margin-top: 0px!important;
+    margin-right: -109px!important;
+}
+
+.ajax-episode-modal .episode-list-label{
+    margin-top: 42px;
+}
+
 .ajax-episode-modal .napo-film-video-download-form form {
     display: block;
     color: #000;
@@ -246,20 +261,22 @@ footer.footer.container section.block-menu-block{
 
 /* episode carousel fix */
 /* TODO @Ivan adapt this fix to your less */
+
+
+
 .view-episode-list .jcarousel-item {
     position: relative;
 }
 
 .view-episode-list .views-field-title-field {
-    width: auto !important;
-    height: auto !important;
+    /*width: auto !important;
+    height: auto !important;*/
     left: 0;
     right: 0;
     padding: 0 !important;
 }
 .view-episode-list .views-field-title-field a {
     margin: 0 !important;
-    background: url('../images/arrow-button-yellow.png') no-repeat center right !important;
     padding: 15px 0px !important;
 }
 .view-episode-list .views-field-title-field .field-content {
