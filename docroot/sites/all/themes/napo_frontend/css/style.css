@@ -7784,6 +7784,10 @@ img {
   max-height: 285px;
   overflow: hidden;
 }
+.napo-film-grid-view .napo-film-video-download-form:hover form {
+  margin-top: 40px;
+  margin-left: -3px;
+}
 .view-napo-films.view-display-id-page_grid .views-field-nothing.napo-film-content-container {
   display: none;
 }
