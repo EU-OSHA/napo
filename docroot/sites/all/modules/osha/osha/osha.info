@@ -43,7 +43,6 @@ dependencies[] = taxonomy
 dependencies[] = text
 dependencies[] = title
 dependencies[] = variable
-dependencies[] = varnish
 dependencies[] = views
 dependencies[] = views_json
 dependencies[] = wysiwyg
