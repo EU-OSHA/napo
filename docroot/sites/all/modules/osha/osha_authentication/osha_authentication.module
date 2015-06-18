@@ -69,11 +69,11 @@ function osha_authentication_user_login(&$edit, $user) {
 
     // Update user section assignment if user has roles: Editor, Project Manager or Review Manager
     // Remove user from all sections before rebuilding it
-    workbench_access_rebuild_user($user->uid, array());
-    osha_workflow_rebuild_pm_sections($user->uid, array());
-    osha_workflow_rebuild_rm_sections($user->uid, array());
+//    workbench_access_rebuild_user($user->uid, array());
+//    osha_workflow_rebuild_pm_sections($user->uid, array());
+//    osha_workflow_rebuild_rm_sections($user->uid, array());
 
-    foreach($authorization as $role => $sections) {
+    /*foreach($authorization as $role => $sections) {
       switch($role) {
         case 'Editor':
           workbench_access_rebuild_user($user->uid, $sections);
@@ -88,10 +88,10 @@ function osha_authentication_user_login(&$edit, $user) {
           break;
           break;
       }
-    }
+    }*/
     // LDAP_APPRV_US_01 - Assign Approver to the default list of approvers
-    $is_approver = in_array('Approver', $roles);
-    osha_authentication_user_login_approver($user, $is_approver);
+//    $is_approver = in_array('Approver', $roles);
+//    osha_authentication_user_login_approver($user, $is_approver);
 
     // Configure translator skills
     $user->tmgmt_translation_skills[LANGUAGE_NONE] = array();
@@ -134,7 +134,7 @@ function osha_authentication_build_user_from_ldap($user, $ldap_server) {
   $language_list = language_list();
   foreach($user->ldap_groups as $dn) {
     list($role_name, $section_id, $language) = osha_authentication_get_role_and_section_from_dn($dn);
-    if (!empty($section_id)) {
+    /*if (!empty($section_id)) {
       if ($section_id == 'section') {
         $section = $section_id;
       }
@@ -145,7 +145,7 @@ function osha_authentication_build_user_from_ldap($user, $ldap_server) {
       if ($section) {
         $authorizations[$role_name][] = $section;
       }
-    }
+    }*/
     if (!array_key_exists($role_name, $authorizations)) {
       $authorizations[$role_name] = array();
     }
