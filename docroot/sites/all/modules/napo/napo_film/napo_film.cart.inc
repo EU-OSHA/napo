@@ -22,7 +22,7 @@ function napo_film_block_view_alter(&$data, $block) {
 
 function napo_film_cart_summary_content_alter(&$content) {
   $cart = ContentCart::getCurrentCart();
-  $label = t('Download center');
+  $label = t('Download centre');
   $count = $cart->countItems('node');
   $active_class = '';
   if ($count > 0) {
@@ -120,7 +120,7 @@ function napo_film_cart_download_form($form, &$form_state) {
   // Show no results message.
   if ($cart->countItems('node') == 0) {
     $form['no_results'] = array(
-      '#markup' => '<p class="cart-no-result-message">' . t('There is no content in the Download center') . '</p>',
+      '#markup' => '<p class="cart-no-result-message">' . t('There is no content in the Download centre') . '</p>',
     );
     return $form;
   }
