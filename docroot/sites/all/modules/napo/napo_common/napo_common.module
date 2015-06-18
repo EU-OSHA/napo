@@ -521,7 +521,7 @@ function napo_common_page_not_found_content() {
   // Search block.
   $content .= "<div class = 'page_not_found_search'>";
   $search_block = module_invoke('search', 'block_view');
-  $content .= '<div>' . t('Try one of there instead:') . '</div>';
+  $content .= '<div>' . t('Try one of these instead:') . '</div>';
   $content .= render($search_block);
   $content .= '</div>';
 
