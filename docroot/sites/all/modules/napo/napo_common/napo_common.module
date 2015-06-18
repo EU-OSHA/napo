@@ -256,6 +256,13 @@ function napo_common_block_configure($delta = '') {
         '#title' => 'No translation page nid',
         '#default_value' => variable_get('no_translation_nid', '248'),
       );
+
+      $form['no_translation_text'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Page content',
+        '#description' => "Content of the no translation available page",
+        '#default_value' => variable_get('no_translation_text', 'OOPS!<br />Translation not available.<br />What do you want to do next?'),
+      );
       $form['no_translation_exceptions'] = array(
         '#type' => 'textarea',
         '#title' => 'Exceptions - node IDs',
@@ -291,6 +298,8 @@ function napo_common_block_save($delta = '', $edit = array()) {
     case 'no_translation':
       // Saving static page nid.
       variable_set('no_translation_nid', $edit['no_translation_nid']);
+      // Saving content
+      variable_set('no_translation_text', $edit['no_translation_text']);
       // Saving exceptions
       variable_set('no_translation_exceptions', $edit['no_translation_exceptions']);
       // Saving content types exceptions
@@ -373,6 +382,13 @@ function napo_common_no_translation_form($form, &$form_state) {
       $available[$lng] = $installed[$lng]->native;
     }
   }
+
+  $form['page_content'] = array(
+    '#type' => 'markup',
+    '#markup' => '<div class="no_translation_page_content">'.
+      variable_get('no_translation_text', 'OOPS!<br />Translation not available.<br />What do you want to do next?')
+      .'</div>',
+  );
 
   // Available translations
   $form['available_languages'] = array(
