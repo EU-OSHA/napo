@@ -6,12 +6,14 @@ jQuery(document).ready(function () {
 			event.preventDefault();
 			if (hiddenContent.is(":visible")){
 				hiddenContent.slideUp();
-				jQuery(".contact-form-widget-container h2").css("bottom","-2%");
+				jQuery(".contact-form-widget-container h2").css("bottom","-10px");
 				jQuery(".contact-form-widget-container h2").removeClass("desplegado");
+				jQuery(".imagen_disabled").removeClass("imagen_disabled");
 			} else {
 				hiddenContent.slideDown();
-				jQuery(".contact-form-widget-container h2").css("bottom","64%");
+				jQuery(".contact-form-widget-container h2").css("bottom","515px");
 				jQuery(".contact-form-widget-container h2").addClass("desplegado");
+				jQuery( "body" ).append( "<div class='imagen_disabled'></div>" );
 			}
 		}
 	);

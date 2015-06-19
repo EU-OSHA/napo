@@ -7219,6 +7219,21 @@ h1 {
   margin-bottom: 10px;
   height: 52px;
 }
+h2 {
+  color: #1f3695;
+  font-size: 17px;
+  font-weight: bold;
+}
+h3 {
+  color: #1f3695;
+  font-size: 15px;
+  font-weight: bold;
+}
+h4 {
+  color: #1f3695;
+  font-size: 15px;
+  font-weight: bold;
+}
 .views-widget-filter-search_api_views_fulltext {
   width: 60%;
 }
@@ -7473,7 +7488,6 @@ img {
   font-weight: bold;
 }
 .jcarousel-skin-napo .jcarousel-prev-horizontal {
-  background: url("../images/carousel-left.png") no-repeat;
   height: 43px;
   overflow: hidden;
   text-indent: -9999px;
@@ -7481,12 +7495,17 @@ img {
   margin-top: -15px;
 }
 .jcarousel-skin-napo .jcarousel-next-horizontal {
-  background: url("../images/carousel-right.png") no-repeat;
   height: 43px;
   overflow: hidden;
   text-indent: -9999px;
   width: 30px;
   margin-top: -15px;
+}
+.view-frontpage-carousel-featured .jcarousel-prev-horizontal {
+  background: url("../images/previous-pop-up.png") no-repeat;
+}
+.view-frontpage-carousel-featured .jcarousel-next-horizontal {
+  background: url("../images/next-pop-up.png") no-repeat;
 }
 .napo-homepage-featured-films .jcarousel-skin-napo .jcarousel-container-horizontal {
   padding: 10px 36px;
@@ -7630,6 +7649,9 @@ img {
   margin-bottom: 2.5em;
   margin-top: 2em;
 }
+.napo-film-list-view .date-display-single {
+  color: #1f3695 !important;
+}
 .napo-film-list-view .field-name-field-combined-tags a {
   color: #1f3695;
   padding-right: 0em;
@@ -7757,7 +7779,7 @@ img {
   display: block;
   padding: 1em;
   background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
-  height: 284px;
+  height: 281px;
   max-width: 555px;
 }
 .view-napo-films .row div:hover > .views-field-nothing.napo-film-content-container img {
@@ -7839,9 +7861,13 @@ img {
   margin-top: 10px;
   display: block;
   padding-right: 30px;
+  width: 270px;
 }
 .napo-film-list-view-container .napo-film-search-tag-filter ::before {
   content: " ";
+}
+.napo-film-list-view-container form {
+  margin-left: 155px;
 }
 .napo-film-list-view-container .views-submit-button {
   margin-left: -40px;
@@ -7854,7 +7880,6 @@ img {
 }
 .views-exposed-form {
   margin-right: -105px;
-  margin-left: 75px;
 }
 .views-exposed-form .views-exposed-widget .form-submit {
   margin-top: 28px;
@@ -8184,7 +8209,7 @@ img {
   background: url('../images/home-page-not-found.png') no-repeat 98% 1px #1f3695;
 }
 #block-napo-common-no-translation {
-  background: url('../images/translation-not-available-left.png') no-repeat 0% -14%, url('../images/translation-not-available-right.png') no-repeat 100% 0%;
+  background: url('../images/translation-not-available-left.png') no-repeat 5px -14%, url('../images/translation-not-available-right.png') no-repeat 100% 0%;
   text-align: center;
   padding-left: 5em;
   padding-bottom: 1em;
@@ -8197,6 +8222,13 @@ img {
 }
 #block-napo-common-no-translation .form-search {
   margin-top: 1em;
+}
+#block-napo-common-no-translation .no_translation_page_content {
+  font-size: 36px;
+  color: #1f3695;
+  font-weight: bold;
+  margin-bottom: 1em;
+  margin-left: -5em;
 }
 #block-napo-common-no-translation .form-search.content-search .input-group {
   margin: 0 auto;
@@ -8663,6 +8695,14 @@ img {
   padding: 0px;
   border-bottom: 5px solid #1f3695;
 }
+#napo_film_cart_download_form_container .content-cart-add-to-cart-btn,
+#napo_film_cart_download_form_container .btn[disabled] {
+  text-indent: 0px;
+  width: auto;
+}
+#napo_film_cart_download_form_container .cart-no-result-message {
+  padding: 1em;
+}
 #napo_film_cart_download_form_container .form-item-select-all {
   float: left;
   padding-left: 36px;
@@ -8748,6 +8788,9 @@ img {
 .view-download-center .views-field-nothing .col-md-9 .form-type-radios .form-radios input {
   display: none;
 }
+.view-download-center .views-field-nothing .col-md-9 .form-type-radios .form-radios input:checked + label {
+  background: #f7e235;
+}
 .view-download-center .views-field-nothing .col-md-9 .form-type-radios .form-radios .form-radio.ajax-processed {
   background: #f7e235;
 }
@@ -8769,6 +8812,10 @@ img {
   /* Lesson menu begin */
   /* Lesson menu end */
 }
+.node-lesson h3,
+.node-lesson h4 {
+  clear: both;
+}
 .node-lesson .back_button {
   margin-top: -62px;
 }
@@ -8787,6 +8834,10 @@ img {
   margin: 0;
   padding: 8px 16px;
   border-radius: 0;
+}
+.node-lesson ul.nav-right-menu li a:hover {
+  text-decoration: underline;
+  background: transparent;
 }
 .node-lesson #menu-about-page-menu.nav-right-menu.affix {
   top: -20px;
@@ -8811,6 +8862,9 @@ img {
 .node-lesson ul li.headings a {
   color: #1f3695;
   text-transform: none;
+}
+.node-lesson ul li.headings a:hover {
+  text-transform: underline;
 }
 .node-lesson ul li div div {
   font-weight: bold;
@@ -8889,6 +8943,14 @@ img {
   padding-left: 31px;
   float: right;
 }
+.imagen_disabled {
+  background: url('../images/background-slider-home.png') repeat !important;
+  height: 6000px;
+  width: 6000px;
+  position: fixed;
+  top: 0px;
+  z-index: 9;
+}
 .view-faqs .ui-state-default,
 .view-faqs .ui-widget-content .ui-state-default,
 .view-faqs .ui-widget-header .ui-state-default {
@@ -8929,10 +8991,11 @@ img {
   font-weight: bold;
   text-align: left;
   padding-left: 17px;
-  bottom: -2%;
+  bottom: -10px;
   right: 8%;
   padding-top: 16px;
   cursor: pointer;
+  z-index: 99;
 }
 .contact-form-widget-container h2::before {
   background: url('../images/contact-us-button.png') 23% 5px no-repeat;
@@ -8955,11 +9018,18 @@ img {
 .webform-client-form {
   width: 410px;
   position: fixed;
-  bottom: 1%;
+  bottom: -10px;
   right: 8%;
   background: #FFF;
   padding: 1em;
-  z-index: 9;
+  z-index: 99;
+}
+.webform-client-form div div {
+  margin-bottom: 10px;
+}
+.webform-client-form div div label {
+  margin-bottom: 5px;
+  display: block;
 }
 .webform-client-form .form-control {
   background: #f2f1f2;
@@ -8975,6 +9045,16 @@ img {
   background: #f7e235;
   font-weight: bold;
   float: right;
+}
+.taxonomy-term.vocabulary-target-ages .field-name-field-image {
+  float: left;
+  margin-bottom: 10px;
+}
+.node-lesson-toolkit .field-name-title-field {
+  color: #1f3695;
+  font-size: 15px;
+  font-weight: bold;
+  clear: both;
 }
 .footer {
   border: 0px;

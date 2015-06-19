@@ -12,6 +12,24 @@ h1{
 	height:52px;
 }
 
+h2{
+	color:@h2-color;
+	font-size:@font-size-h2;
+	font-weight: bold; 
+}
+
+h3{
+	color:@h3-color;
+	font-size: @font-size-h3; 
+	font-weight: bold;
+}
+
+h4{
+	color:@h3-color;
+	font-size: @font-size-h3; 
+	font-weight: bold;
+}
+
 .views-widget-filter-search_api_views_fulltext{  //search in h1
 	width:60%;
 }
@@ -321,7 +339,6 @@ p:last-child {
 }
 
 .jcarousel-skin-napo .jcarousel-prev-horizontal{
-	background: url("../images/carousel-left.png") no-repeat;
 	height: 43px;
 	overflow: hidden;
 	text-indent: -9999px;
@@ -330,13 +347,21 @@ p:last-child {
 }
 
 .jcarousel-skin-napo .jcarousel-next-horizontal{
-	background: url("../images/carousel-right.png") no-repeat;
 	height: 43px;
 	overflow: hidden;
 	text-indent: -9999px;
 	width: 30px;
 	margin-top:-15px;
 }
+
+.view-frontpage-carousel-featured .jcarousel-prev-horizontal{
+	background: url("../images/previous-pop-up.png") no-repeat;
+}
+
+.view-frontpage-carousel-featured .jcarousel-next-horizontal{
+	background: url("../images/next-pop-up.png") no-repeat;
+}
+
 
 .napo-homepage-featured-films .jcarousel-skin-napo .jcarousel-container-horizontal{
 	  padding: 10px 36px;
@@ -519,6 +544,10 @@ p:last-child {
 		margin-top:2em;
 	}
 
+	.date-display-single{
+		color:@color-blue-napo!important;
+	}
+
 	.field-name-field-combined-tags a{
 		color:@color-blue-napo;
   		padding-right: 0em;
@@ -674,7 +703,7 @@ p:last-child {
 		//margin-top: -52%; //responsive need this height
 		padding: 1em;
 		background:url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
-		height: 284px;
+		height: 281px;
   		max-width: 555px;
 
 		img{
@@ -779,12 +808,15 @@ p:last-child {
 	margin-top: 10px;
 	display: block;
 	padding-right: 30px;
+	width:270px;
 	::before{
 		content:" ";
 	}
 }
 
-
+.napo-film-list-view-container form{
+	  margin-left: 155px;
+}
 
 .napo-film-list-view-container .views-submit-button{
 	margin-left: -40px;
@@ -799,7 +831,6 @@ p:last-child {
 
 .views-exposed-form{
 	margin-right: -105px;
-	margin-left: 75px;
 }
 
 .views-exposed-form .views-exposed-widget .form-submit{
@@ -1214,7 +1245,7 @@ p:last-child {
 //Translation not found
 
 #block-napo-common-no-translation{
-	  background: url('../images/translation-not-available-left.png')  no-repeat 0% -14% , url('../images/translation-not-available-right.png') no-repeat 100% 0% ;
+	  background: url('../images/translation-not-available-left.png')  no-repeat 5px -14% , url('../images/translation-not-available-right.png') no-repeat 100% 0% ;
 	  text-align: center;
 	  padding-left: 5em;
 	  padding-bottom: 1em;
@@ -1228,6 +1259,14 @@ p:last-child {
 
 	.form-search{
 		margin-top: 1em;
+	}
+
+	.no_translation_page_content{
+		font-size: 36px;
+		color: @color-blue-napo;
+		font-weight: bold;
+		margin-bottom: 1em;
+		margin-left: -5em;
 	}
 
 	.form-search.content-search .input-group{
@@ -1839,6 +1878,16 @@ p:last-child {
 }
 
 #napo_film_cart_download_form_container {
+
+	.content-cart-add-to-cart-btn, .btn[disabled]{
+		text-indent: 0px; 
+		width:auto;
+	}
+
+	.cart-no-result-message{
+		padding:1em;
+	}
+
 	.form-item-select-all{
 		float:left;
 		padding-left: 36px;
@@ -1872,6 +1921,7 @@ p:last-child {
 			padding:0 5px 0 5px;
 			font-weight: bold;
 		}
+
 		.napo_film_cart_select_count::before{
 			content: '( ';
 		}
@@ -1937,6 +1987,11 @@ p:last-child {
 			input{
 				display:none;
 			}
+
+			input:checked + label{
+				background:@color-yellow-napo;
+			}
+
 			.form-radio.ajax-processed{
 				background:@color-yellow-napo;
 			}
@@ -1963,6 +2018,12 @@ p:last-child {
 //Napo for teachers , Lessons Tabs
 
 .node-lesson {
+
+	h3 , h4 {
+		clear:both;
+	}
+
+
 	.back_button{
 		margin-top: -62px;
 	}
@@ -1983,6 +2044,10 @@ p:last-child {
 	    margin: 0;
 	    padding: 8px 16px;
 	    border-radius: 0;
+	    &:hover{
+	    	text-decoration: underline;
+	    	background:transparent;
+	    }
 	}
 	#menu-about-page-menu.nav-right-menu.affix{
 	    top: -20px; /* Set the top position of pinned element */
@@ -2006,6 +2071,9 @@ p:last-child {
   		a{
   			color:@color-blue-napo;
   			text-transform: none;
+  		}
+  		a:hover{
+  			text-transform: underline;
   		}
 	}
 
@@ -2106,6 +2174,15 @@ p:last-child {
 
 //Contact us
 
+.imagen_disabled{
+	  background: url('../images/background-slider-home.png') repeat !important;
+	  height: 6000px;
+	  width: 6000px;
+	  position: fixed;
+	  top: 0px;
+	  z-index: 9;
+}
+
 .view-faqs{
 
 	.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
@@ -2155,10 +2232,11 @@ p:last-child {
 	  font-weight: bold;
 	  text-align: left;
 	  padding-left: 17px;
-	  bottom: -2%;
+	  bottom: -10px;
 	  right: 8%;
 	  padding-top: 16px;
 	  cursor:pointer;
+	  z-index: 99;
 }
 
 .contact-form-widget-container h2::before{
@@ -2186,11 +2264,20 @@ p:last-child {
 .webform-client-form{
 	width: 410px;
   	position: fixed;
-  	bottom: 1%;
+  	bottom: -10px;
   	right: 8%;
   	background:#FFF;
   	padding: 1em;
-  	z-index: 9;
+  	z-index: 99;
+
+  	div div{
+  		margin-bottom:10px;
+
+  		label{
+  			margin-bottom:5px;
+  			display:block;	
+  		}
+  	}
 
   	.form-control{
   		background:@color-napo-bg-gray-1;
@@ -2209,4 +2296,20 @@ p:last-child {
   		font-weight: bold;
   		float:right;
   	}
+}
+
+//lesson toolkit
+
+.taxonomy-term.vocabulary-target-ages .field-name-field-image{
+		float:left;
+		margin-bottom:10px;
+}
+
+.node-lesson-toolkit{
+	.field-name-title-field{
+		color:@color-blue-napo;
+		font-size: @font-size-h3;
+		font-weight: bold;
+		clear:both;
+	}
 }
