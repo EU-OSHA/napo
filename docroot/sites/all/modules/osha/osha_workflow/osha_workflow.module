@@ -313,6 +313,8 @@ function osha_workflow_node_access($node, $operation, $user) {
     return NODE_ACCESS_IGNORE;
   }
 
+  return NODE_ACCESS_IGNORE;
+
   $is_approver = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_APPROVER, $user);
   $is_events_coordinator = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EVENTS_COORDINATOR, $user);
   $is_events_editor = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EVENTS_EDITOR, $user);
@@ -869,6 +871,7 @@ function osha_workflow_workbench_moderation_access_alter(&$access, $op, $node) {
   }
 
   if ($op == 'update') {
+    return NULL;
     $is_rm = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user);
     $is_pm = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER, $user);
     $is_editor = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_EDITOR, $user);
