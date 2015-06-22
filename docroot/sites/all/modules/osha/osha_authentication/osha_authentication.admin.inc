@@ -177,8 +177,8 @@ function osha_authentication_block_disabled_ldap_accounts($ldap_server, $ldap_ac
 
           // Remove blocked user from all sections
           workbench_access_rebuild_user($account->uid, array());
-          osha_workflow_rebuild_pm_sections($account->uid, array());
-          osha_workflow_rebuild_rm_sections($account->uid, array());
+//          osha_workflow_rebuild_pm_sections($account->uid, array());
+//          osha_workflow_rebuild_rm_sections($account->uid, array());
 
           // Remove user roles
           db_delete('users_roles')->condition('uid', $account->uid)->execute();
@@ -311,7 +311,7 @@ function osha_authentication_sync_ldap_sections($ldap_server, $test = FALSE) {
  */
 function osha_authentication_ldap_sync($ldap_server) {
   // Synchronize LDAP sections with Drupal sections
-  osha_authentication_sync_ldap_sections($ldap_server);
+//  osha_authentication_sync_ldap_sections($ldap_server);
 
   // Handle LDAP accounts synchronization
   $accounts = osha_authentication_ldap_get_site_users($ldap_server);

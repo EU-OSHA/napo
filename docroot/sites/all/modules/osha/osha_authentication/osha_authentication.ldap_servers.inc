@@ -37,8 +37,8 @@ function osha_authentication_default_ldap_servers() {
   $ldap_servers_conf->unique_persistent_attr_binary = FALSE;
   $ldap_servers_conf->user_dn_expression = '';
   $ldap_servers_conf->ldap_to_drupal_user = '';
-  $ldap_servers_conf->testing_drupal_username = 'CRomanescu';
-  $ldap_servers_conf->testing_drupal_user_dn = 'uid=CRomanescu,ou=Contractors,ou=people,dc=osha,dc=europa,dc=eu';
+  $ldap_servers_conf->testing_drupal_username = 'DDumitrescu';
+  $ldap_servers_conf->testing_drupal_user_dn = 'uid=DDumitrescu,ou=Contractors,ou=people,dc=osha,dc=europa,dc=eu';
   $ldap_servers_conf->grp_unused = FALSE;
   $ldap_servers_conf->grp_object_cat = 'posixgroup';
   $ldap_servers_conf->grp_nested = FALSE;
@@ -48,8 +48,8 @@ function osha_authentication_default_ldap_servers() {
   $ldap_servers_conf->grp_memb_attr_match_user_attr = 'uid';
   $ldap_servers_conf->grp_derive_from_dn = FALSE;
   $ldap_servers_conf->grp_derive_from_dn_attr = '';
-  $ldap_servers_conf->grp_test_grp_dn = 'cn=ACCESS_EDT,ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu';
-  $ldap_servers_conf->grp_test_grp_dn_writeable = 'cn=TEST,ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu';
+  $ldap_servers_conf->grp_test_grp_dn = 'cn=RVMN,ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu';
+  $ldap_servers_conf->grp_test_grp_dn_writeable = 'cn=RVMN,ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu';
   $ldap_servers_conf->search_pagination = FALSE;
   $ldap_servers_conf->search_page_size = 1000;
   $ldap_servers_conf->weight = 0;
