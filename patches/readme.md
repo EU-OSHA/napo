@@ -7,6 +7,19 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* ldap_user
+  * Disable the watchdog successful messages
+  * /patches/ldap/ldap_user/disable-watchdg.patch
+  
+* ldap_server
+  * DN is not correctly parsed
+  * /patches/ldap/ldap_servers/dn_parsing_bug.patch
+  
+* ldap_authentication
+  * Entrypt password when updating account
+  * https://www.drupal.org/node/2037887
+  * ldap_authentication-check_password_against_LDAP-2037887-10.patch
+
 * jcarousel
   * Fix console error no item fallback dimensions defined
   * patches/jcarousel/jcarousel_item_fallback_dimension.patch
