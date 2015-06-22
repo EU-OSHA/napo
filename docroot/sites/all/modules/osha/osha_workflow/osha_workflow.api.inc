@@ -698,7 +698,6 @@ class OshaWorkflowNotifications {
   public static function notifyOnChangeFromDraftOrFinalDraftToBeReviewed($node) {
     $users = osha_workflow_get_node_rm($node);
     $users[] = osha_workflow_get_project_manager($node->nid);
-    dpm($users);
 
     OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
   }
@@ -757,6 +756,20 @@ class OshaWorkflowNotifications {
   }
 
   /**
+   * Notification sent when the node is published
+   *
+   * (Approved => FinalDraft)
+   *
+   * @param object $node
+   *   Affected node
+   */
+  public static function notifyNodeIsPublished($node) {
+    // Notify PM.
+    $project_manager = osha_workflow_get_project_manager($node->nid);
+    OshaWorkflowNotifications::sendEmail($project_manager, array('node' => $node), 'osha_workflow');
+  }
+
+  /**
    * Notification sent when the node is ready to be published.
    *
    * Notify Administrators (web team) that PM set in ReadyToPublish
@@ -767,8 +780,9 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyNodeIsReadyToPublish($node) {
-    $review_managers = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
-    OshaWorkflowNotifications::sendEmail($review_managers, array('node' => $node), 'osha_workflow');
+    $project_manager = osha_workflow_get_project_manager($node->nid);
+    OshaWorkflowNotifications::sendEmail($project_manager, array('node' => $node), 'osha_workflow');
+//    $review_managers = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
 
     $translation_managers = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER);
     OshaWorkflowNotifications::sendEmail($translation_managers, array('node' => $node), 'osha_tmgmt', 'notifyNodeIsReadyToPublish');

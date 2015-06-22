@@ -828,6 +828,10 @@ function osha_workflow_workbench_moderation_transition($node, $old, $new) {
     OshaWorkflowNotifications::notifyNodeIsReadyToPublish($node);
     $rm_notified = TRUE;
   }
+  if ($new == OSHA_WORKFLOW_STATE_PUBLISHED) {
+    OshaWorkflowNotifications::notifyNodeIsPublished($node);
+    $rm_notified = TRUE;
+  }
 
   if (!$rm_notified) {
     OshaWorkflowNotifications::notifyWebTeamStatusChanged($node, $old, $new);

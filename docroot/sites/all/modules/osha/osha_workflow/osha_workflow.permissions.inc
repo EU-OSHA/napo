@@ -187,8 +187,6 @@ function osha_workflow_permissions_role_project_manager() {
     array(
       'view osh project manager needs review tab',
       'mark access section as reviewed',
-      'edit any content in needs_review',
-      'moderate content from needs_review to ready_to_publish',
     ),
     osha_workflow_permissions_common(),
     osha_workflow_permissions_manage_content(),
