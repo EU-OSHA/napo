@@ -155,6 +155,7 @@ function osha_workflow_menu_alter(&$items) {
  *   Access permission to the screen.
  */
 function osha_workflow_node_approval_access($node) {
+  return FALSE;
   return OshaWorkflowPermissions::userCanAccessApprovalScreen($node);
 }
 
@@ -1058,12 +1059,16 @@ function osha_workflow_form_node_form_alter(&$form, $form_state) {
   if (isset($form['#node']->workbench_moderation['current']->state)) {
     global $user;
     $node = $form['#node'];
-    $state = $form['#node']->workbench_moderation['current']->state;
+    $project_manager = osha_workflow_get_project_manager($node->nid);
+    if (empty($project_manager)) {
+      drupal_set_message(t('There is no project manager set for this node.'), 'warning');
+    }
+    /*$state = $form['#node']->workbench_moderation['current']->state;
     if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
       if (osha_workflow_is_next_approver($node->nid) && OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_APPROVER, $user)) {
         $form['revision_information']['workbench_moderation_state_new']['#access'] = FALSE;
       }
-    }
+    }*/
   }
 }
 
