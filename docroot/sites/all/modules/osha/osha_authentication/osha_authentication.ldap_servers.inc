@@ -26,7 +26,7 @@ function osha_authentication_default_ldap_servers() {
   $ldap_servers_conf->bindpw = 'wsU1KJJ3boh0elfQugjk8AmEeCw=';
   $ldap_servers_conf->basedn = array(
     0 => 'ou=people,dc=osha,dc=europa,dc=eu',
-    1 => 'ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu',
+    1 => 'ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu',
   );
   $ldap_servers_conf->user_attr = 'uid';
   $ldap_servers_conf->account_name_attr = '';
@@ -48,8 +48,8 @@ function osha_authentication_default_ldap_servers() {
   $ldap_servers_conf->grp_memb_attr_match_user_attr = 'uid';
   $ldap_servers_conf->grp_derive_from_dn = FALSE;
   $ldap_servers_conf->grp_derive_from_dn_attr = '';
-  $ldap_servers_conf->grp_test_grp_dn = 'cn=ACCESS_EDT,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
-  $ldap_servers_conf->grp_test_grp_dn_writeable = 'cn=TEST,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
+  $ldap_servers_conf->grp_test_grp_dn = 'cn=ACCESS_EDT,ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu';
+  $ldap_servers_conf->grp_test_grp_dn_writeable = 'cn=TEST,ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu';
   $ldap_servers_conf->search_pagination = FALSE;
   $ldap_servers_conf->search_page_size = 1000;
   $ldap_servers_conf->weight = 0;
@@ -90,8 +90,8 @@ function osha_authentication_default_ldap_servers() {
   $ldap_servers_conf->grp_memb_attr_match_user_attr = 'uid';
   $ldap_servers_conf->grp_derive_from_dn = FALSE;
   $ldap_servers_conf->grp_derive_from_dn_attr = '';
-  $ldap_servers_conf->grp_test_grp_dn = 'cn=ACCESS_EDT,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
-  $ldap_servers_conf->grp_test_grp_dn_writeable = 'cn=TEST,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu';
+  $ldap_servers_conf->grp_test_grp_dn = 'cn=ACCESS_EDT,ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu';
+  $ldap_servers_conf->grp_test_grp_dn_writeable = 'cn=TEST,ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu';
   $ldap_servers_conf->search_pagination = FALSE;
   $ldap_servers_conf->search_page_size = 1000;
   $ldap_servers_conf->weight = 0;

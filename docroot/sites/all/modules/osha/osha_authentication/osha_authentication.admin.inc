@@ -77,8 +77,8 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
     'RVMN' => 'Review Manager',
   );
   // LDAP group DN patterns:
-  // * cn=SECTION_ROLE,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
-  // * cn=ROLE,ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
+  // * cn=SECTION_ROLE,ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu
+  // * cn=ROLE,ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu
   if (preg_match('/[A-Z\d\_]*/i', $group_dn, $ldap_group_cn, 0, 3) && count($ldap_group_cn) == 1) {
     $section_id = NULL;
     $role = NULL;
@@ -114,7 +114,7 @@ function osha_authentication_get_role_and_section_from_dn($group_dn) {
 function osha_authentication_ldap_fetch_user_groups($username, $ldap_server) {
   $ret = array();
   /** @var LDAPServer $ldap_server */
-  $ldap_groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'memberUid=' . $username);
+  $ldap_groups = $ldap_server->search('ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu', 'memberUid=' . $username);
   if (!$ldap_groups) {
     return $ret;
   }
@@ -128,7 +128,7 @@ function osha_authentication_ldap_fetch_user_groups($username, $ldap_server) {
 function osha_authentication_retrieve_ldap_sections($ldap_server) {
   $ret = array();
   /** @var LDAPServer $ldap_server */
-  $ldap_groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*');
+  $ldap_groups = $ldap_server->search('ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*');
   if (!$ldap_groups) {
     return $ret;
   }
@@ -168,7 +168,7 @@ function osha_authentication_block_disabled_ldap_accounts($ldap_server, $ldap_ac
     foreach ($local_accounts as $account) {
       // Do not touch 'admin' accounts NOT coming from LDAP
       if ($account->uid > 1 && !empty($account->data['ldap_user']['init']['sid'])) {
-        // Block LDAP accounts no longer member of any group from ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu
+        // Block LDAP accounts no longer member of any group from ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu
         // Unblock users which are added again
         $status = array_key_exists($account->name, $ldap_accounts) ? 1 : 0;
         if (!$status) {
@@ -207,7 +207,7 @@ function osha_authentication_block_disabled_ldap_accounts($ldap_server, $ldap_ac
 }
 
 /**
- * Querying all cn=MainSite groups and extract unique memberUid to build the
+ * Querying all cn=NAPO groups and extract unique memberUid to build the
  * list of website users
  *
  * @param stdClass $ldap_server
@@ -218,7 +218,7 @@ function osha_authentication_block_disabled_ldap_accounts($ldap_server, $ldap_ac
 function osha_authentication_ldap_get_site_users($ldap_server) {
   $ret = array();
   /** @var LDAPServer $ldap_server */
-  $ldap_groups = $ldap_server->search('ou=MainSite,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*', array('dn', 'memberUid', 'cn'));
+  $ldap_groups = $ldap_server->search('ou=NAPO,ou=Sites,dc=osha,dc=europa,dc=eu', 'cn=*', array('dn', 'memberUid', 'cn'));
   if (!$ldap_groups) {
     return $ret;
   }
