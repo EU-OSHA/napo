@@ -34,6 +34,10 @@
 
 // Default navbar.
 
+.nav .caret{
+    display:none;
+}
+
 .navbar.container.navbar-default .col-md-9.pull-right{
 	margin-top: 10px;
   margin-right:-9%;
@@ -53,6 +57,14 @@
   font-weight: bold;
 }
 
+.menu.nav.navbar-nav li.first{
+  margin-right: 0px;
+}
+
+.menu.nav.navbar-nav li img{
+  margin-right: 0px;
+}
+
 .menu.nav.navbar-nav .expanded.dropdown{
   height:62px;
   vertical-align: middle;
@@ -60,17 +72,24 @@
   border-left: 3px solid #FFF;
   display: block;
   padding: 1.5em 1em 1em;
+  min-width: 130px;
+  max-width: 130px;
 }
 
 .menu.nav.navbar-nav .dropdown-menu{
   padding:0px;
   font-weight: bold;
   border-top: 2px solid transparent;
+  max-width: 129px;
+  min-width: 129px;
+  left: -1px;
 }
 
 .menu.nav.navbar-nav .dropdown-menu li{
   border-bottom: 2px solid #FFF;
 }
+
+
 
 .menu.nav.navbar-nav .dropdown-menu li a{
   font-weight: bold;
@@ -92,6 +111,10 @@
 
 .navbar.container.navbar-default .col-md-3{
    padding-left: 3px;
+}
+
+.dropdown-menu>li>a{
+    white-space: inherit;
 }
 
 .dropdown-menu > li > a:hover::before{

@@ -7104,6 +7104,9 @@ table .checkbox input[type="checkbox"] {
 .glyphicon-print:before {
   padding-left: 5px;
 }
+.nav .caret {
+  display: none;
+}
 .navbar.container.navbar-default .col-md-9.pull-right {
   margin-top: 10px;
   margin-right: -9%;
@@ -7120,6 +7123,12 @@ table .checkbox input[type="checkbox"] {
   background-color: #eff0f0;
   font-weight: bold;
 }
+.menu.nav.navbar-nav li.first {
+  margin-right: 0px;
+}
+.menu.nav.navbar-nav li img {
+  margin-right: 0px;
+}
 .menu.nav.navbar-nav .expanded.dropdown {
   height: 62px;
   vertical-align: middle;
@@ -7127,11 +7136,16 @@ table .checkbox input[type="checkbox"] {
   border-left: 3px solid #FFF;
   display: block;
   padding: 1.5em 1em 1em;
+  min-width: 130px;
+  max-width: 130px;
 }
 .menu.nav.navbar-nav .dropdown-menu {
   padding: 0px;
   font-weight: bold;
   border-top: 2px solid transparent;
+  max-width: 129px;
+  min-width: 129px;
+  left: -1px;
 }
 .menu.nav.navbar-nav .dropdown-menu li {
   border-bottom: 2px solid #FFF;
@@ -7153,6 +7167,9 @@ table .checkbox input[type="checkbox"] {
 }
 .navbar.container.navbar-default .col-md-3 {
   padding-left: 3px;
+}
+.dropdown-menu > li > a {
+  white-space: inherit;
 }
 .dropdown-menu > li > a:hover::before {
   content: '> ';
@@ -7217,7 +7234,6 @@ h1 {
   padding: 0.2em 0em 0.2em 0.5em;
   margin-top: 0px;
   margin-bottom: 10px;
-  height: 52px;
 }
 h2 {
   color: #1f3695;
@@ -7234,6 +7250,9 @@ h4 {
   font-size: 15px;
   font-weight: bold;
 }
+h4.modal-title {
+  color: #f7e235;
+}
 .views-widget-filter-search_api_views_fulltext {
   width: 60%;
 }
@@ -7247,11 +7266,11 @@ h4 {
   margin-top: 4px;
 }
 .back_button {
-  background: url('../images/arrow-button-back.png') no-repeat 96% 12px #1f3695;
+  background: url('../images/arrow-button-back.png') no-repeat 96% 8px #1f3695;
   float: right;
   color: #FFF;
-  height: 52px;
-  padding-top: 14px;
+  height: 45px;
+  padding-top: 12px;
   padding-left: 18px;
   padding-right: 44px;
   font-weight: bold;
@@ -7276,6 +7295,27 @@ p:last-child {
 }
 .napo-film-video-type {
   padding-right: 5px;
+}
+.title-archived {
+  display: block;
+  float: left;
+  margin-right: 5px;
+  color: #cc2114;
+  font-weight: bold;
+}
+.osha-archived-content {
+  padding: 1em;
+  background: #f2dede;
+  margin-bottom: 1em;
+  border-radius: 5px;
+  border: 1px solid #ebccd1;
+}
+.osha-archived-content .osha-archived-content-title {
+  display: block;
+  float: left;
+  margin-right: 5px;
+  color: #cc2114;
+  font-weight: bold;
 }
 #block-views-featured-articles-block {
   margin-top: -85px;
@@ -7634,7 +7674,7 @@ img {
   background: #f2f1f2;
   padding-top: 10px;
   height: 59px;
-  display: inline-block;
+  display: block;
   width: 100%;
   position: absolute;
   top: 133px;
@@ -7774,6 +7814,12 @@ img {
   float: right;
   margin-right: 12px;
 }
+.view-display-id-page_grid .title-archived {
+  display: inherit;
+  font-weight: bold;
+  position: absolute;
+  right: 55px;
+}
 .view-napo-films .row div:hover > .views-field-nothing.napo-film-content-container {
   color: #fff;
   display: block;
@@ -7848,7 +7894,7 @@ img {
   text-decoration: underline;
 }
 .napo-film-list-view-container .views-widget-filter-search_api_views_fulltext input {
-  margin-top: 3px;
+  margin-top: -1px;
   font-weight: bold;
   border-radius: 0px;
 }
@@ -7858,7 +7904,7 @@ img {
   padding-top: 5px;
   font-weight: bold;
   border-radius: 0px;
-  margin-top: 10px;
+  margin-top: 6px;
   display: block;
   padding-right: 30px;
   width: 270px;
@@ -7882,7 +7928,7 @@ img {
   margin-right: -105px;
 }
 .views-exposed-form .views-exposed-widget .form-submit {
-  margin-top: 28px;
+  margin-top: 24px;
   border-radius: 0px;
 }
 .napo-film-video-download-form form {
@@ -8424,7 +8470,7 @@ img {
 }
 .modal-dialog .jcarousel-item:hover .views-field.views-field-nothing {
   background: url('../images/background-modal-play.png') repeat-x;
-  height: 49px;
+  height: 48px;
   margin-top: 0px;
 }
 .modal-dialog .jcarousel-skin-default .jcarousel-next {
@@ -8522,7 +8568,7 @@ img {
   margin-bottom: 1.5em;
 }
 .node-napo-album .back_button {
-  margin-top: -72px;
+  margin-top: -67px;
 }
 .node-napo-album .field.field-name-body {
   padding: 1em 0em 1em 0em;
@@ -8817,7 +8863,7 @@ img {
   clear: both;
 }
 .node-lesson .back_button {
-  margin-top: -62px;
+  margin-top: -55px;
 }
 .node-lesson ul.nav-right-menu {
   width: 100%;
@@ -8938,6 +8984,10 @@ img {
 }
 .node-lesson ul li:last-child a {
   color: #FFF;
+}
+.node-lesson ul li:last-child a:focus {
+  background: transparent;
+  outline: none;
 }
 .node-lesson #group-right {
   padding-left: 31px;

@@ -117,7 +117,11 @@ ul.nav li.dropdown ul.dropdown-menu {
 }
 
 .view-mode-episode_popup{
-    background-color:#F2F1F2;
+    background-color:#e0e1e1;
+}
+
+.ajax-episode-modal .field-name-field-youtube{
+      border-bottom: 20px solid #F2F1F2;
 }
 
 .ajax-episode-modal .napo-share-widget {
@@ -127,6 +131,11 @@ ul.nav li.dropdown ul.dropdown-menu {
 
 .ajax-episode-modal .episode-list-label{
     margin-top: 42px;
+    background-color:#F2F1F2!important;
+}
+
+.ajax-episode-modal .view-episode-list{
+    background-color:#F2F1F2!important;
 }
 
 .ajax-episode-modal .napo-film-video-download-form form {

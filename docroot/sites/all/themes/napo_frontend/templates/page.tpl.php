@@ -74,7 +74,7 @@
  */
 ?>
 <?php if (!empty($page['header_top_bar'])): ?>
-  <div class="header_top_bar">
+  <div class="header_top_bar hidden-xs">
     <div class="container text-right">
       <?php print render($page['header_top_bar']); ?>
     </div>
