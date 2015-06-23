@@ -1460,7 +1460,7 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
   //    @todo: so there are 2 views loaded for the same task.
   $form['job_items_wrapper']['items']['#markup']
     = views_embed_view('osha_job_overview_job_items', 'job_job_items', NULL,
-        $filter_state, $filter_activity, $filter_target_lang);
+        $filter_state, $filter_target_lang);
 
   $form['job_items_wrapper']['#attributes'] = array('class' => array('container-inline'));
 
@@ -1473,7 +1473,7 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
     '#default_value' => $filter_target_lang,
   );
 
-  $activity_terms = taxonomy_allowed_values(field_info_field('field_activity'));
+  /*$activity_terms = taxonomy_allowed_values(field_info_field('field_activity'));
   $form['job_items_wrapper']['filter_activity'] = array(
     '#type' => 'select',
     '#title' => t('Activity'),
@@ -1481,7 +1481,7 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
     '#weight' => -3,
     '#options' => array('any' => '- Any -') + $activity_terms,
     '#default_value' => $filter_activity,
-  );
+  );*/
 
   $form_state['filter_state'] = '';
   $form['job_items_wrapper']['filter_state'] = array(

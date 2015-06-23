@@ -159,13 +159,11 @@ function osha_workflow_permissions_role_review_manager() {
       'submit translation jobs',
 
       'edit any content in draft',
-      'edit any content in needs_review',
       'edit any content in ready_to_publish',
       'edit any content in published',
 
       'moderate content from draft to ready_to_publish',
       'moderate content from draft to published',
-      'moderate content from needs_review to draft',
       'moderate content from ready_to_publish to published',
     ),
     osha_workflow_permissions_common(),
