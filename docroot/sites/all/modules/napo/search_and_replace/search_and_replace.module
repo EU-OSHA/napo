@@ -867,6 +867,7 @@ function _search_and_replace_settings_to_text($settings) {
  */
 function _search_and_replace_get_set_fields() {
   $setting = variable_get('search_and_replace_fields', array());
+  $setting = array_filter($setting);
   if (empty($setting)) {
     drupal_set_message(t('Please select some fields in the !link',
       array('!link' => l(t('configuration form'), 'admin/content/search_replace/settings'))),
