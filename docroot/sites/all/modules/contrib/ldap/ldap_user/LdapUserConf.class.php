@@ -743,7 +743,7 @@ class LdapUserConf {
     );
 
     if ($result) {
-      watchdog('ldap_user', 'LDAP entry on server %sid synched dn=%dn. username=%username, uid=%uid', $tokens, WATCHDOG_INFO);
+      // watchdog('ldap_user', 'LDAP entry on server %sid synched dn=%dn. username=%username, uid=%uid', $tokens, WATCHDOG_INFO);
     }
     else {
       watchdog('ldap_user', 'LDAP entry on server %sid not synched because error. username=%username, uid=%uid', $tokens, WATCHDOG_ERROR);
