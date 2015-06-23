@@ -22,7 +22,7 @@ function napo_film_block_view_alter(&$data, $block) {
 
 function napo_film_cart_summary_content_alter(&$content) {
   $cart = ContentCart::getCurrentCart();
-  $label = t('Download center');
+  $label = t('Download centre');
   $count = $cart->countItems('node');
   $active_class = '';
   if ($count > 0) {
@@ -73,6 +73,7 @@ function napo_film_content_cart_remove_item($type, $id) {
 function napo_film_cart_add_mime_form($form, &$form_state, $node) {
 
   $mimes = napo_film_get_films_formats_as_options($node);
+  $type = napo_film_video_get_type($node);
   $form['mime_type_select'] = array(
     '#title' => t('Download this film as'),
     '#type' => 'radios',
@@ -81,6 +82,10 @@ function napo_film_cart_add_mime_form($form, &$form_state, $node) {
       'callback' => 'napo_film_cart_add_mime_callback',
     ),
   );
+  if ($type == 'episode') {
+    $form['mime_type_select']['#title'] = t('Download this episode as');
+  }
+
   if ($default_mime = napo_film_cart_get_stored_mime($node->nid)) {
     $form['mime_type_select']['#default_value'] = $default_mime;
   }
@@ -115,7 +120,7 @@ function napo_film_cart_download_form($form, &$form_state) {
   // Show no results message.
   if ($cart->countItems('node') == 0) {
     $form['no_results'] = array(
-      '#markup' => '<p class="cart-no-result-message">' . t('There is no content in the Download center') . '</p>',
+      '#markup' => '<p class="cart-no-result-message">' . t('There is no content in the Download centre') . '</p>',
     );
     return $form;
   }
