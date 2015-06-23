@@ -347,6 +347,10 @@ function search_and_replace_form_validate($form, &$form_state) {
   if (empty($form_state['values']['search'])) {
     form_set_error('search', t('Please enter some keywords.'));
   }
+  $length = 3;
+  if (!empty($form_state['values']['search']) && strlen($form_state['values']['search']) < $length) {
+    form_set_error('search', t('Please enter at least @length characters', array('@length' => $length)));
+  }
 }
 
 function search_and_replace_form_submit($form, &$form_state) {
@@ -696,6 +700,9 @@ function search_and_replace_parse_search_results($results, $settings) {
     $item['languages'] = $all_lang;
     $items[] = $item;
   }
+  uasort($items, function($a, $b) {
+    return strcmp($a['type'], $b['type']);
+  });
   return $items;
 }
 

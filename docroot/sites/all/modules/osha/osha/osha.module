@@ -911,15 +911,17 @@ function osha_expire_node_page($node) {
  *   Absolute path (ex. path/to/view) - no prefix slash!
  */
 function osha_expire_view_page($path) {
-  global $base_root;
-  $host = _varnish_get_host();
-  /* Explicit expire of affected pages in cache_page */
-  // http://my.domain.com/LANG/path/to/page
-  foreach(language_list() as $language => $ob) {
-    cache_clear_all($base_root . '/' . $language . '/' . $path, 'cache_page');
+  if (module_exists('varnish')) {
+    global $base_root;
+    $host = _varnish_get_host();
+    /* Explicit expire of affected pages in cache_page */
+    // http://my.domain.com/LANG/path/to/page
+    foreach(language_list() as $language => $ob) {
+      cache_clear_all($base_root . '/' . $language . '/' . $path, 'cache_page');
+    }
+    // path/to/page
+    varnish_purge($host, $path);
   }
-  // path/to/page
-  varnish_purge($host, $path);
 }
 
 /**
@@ -929,11 +931,13 @@ function osha_expire_view_page($path) {
  *   Absolute path (ex. /fr/node/1234)
  */
 function osha_expire_page($path) {
-  global $base_root;
-  $host = _varnish_get_host();
-  /* Explicit expire of affected pages in cache_page */
-  // http://my.domain.com/path/to/page
-  cache_clear_all($base_root . $path, 'cache_page');
-  // /path/to/page
-  varnish_purge($host, $path);
+  if (module_exists('varnish')) {
+    global $base_root;
+    $host = _varnish_get_host();
+    /* Explicit expire of affected pages in cache_page */
+    // http://my.domain.com/path/to/page
+    cache_clear_all($base_root . $path, 'cache_page');
+    // /path/to/page
+    varnish_purge($host, $path);
+  }
 }
