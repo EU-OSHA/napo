@@ -198,10 +198,9 @@ function osha_workflow_views_default_views() {
   $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['state']['field'] = 'state';
   $handler->display->display_options['filters']['state']['value'] = array(
-    'to_be_approved' => 'to_be_approved',
+    'ready_to_publish' => 'ready_to_publish',
   );
   $handler->display->display_options['path'] = 'admin/workbench/approve';
-  $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Needs Approval';
   $handler->display->display_options['menu']['weight'] = '5';
   $handler->display->display_options['menu']['context'] = 0;
@@ -249,31 +248,6 @@ function osha_workflow_views_default_views() {
   $handler->display->display_options['filters']['current']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['current']['field'] = 'current';
   $handler->display->display_options['filters']['current']['value'] = '1';
-  /* Filter criterion: Workbench Moderation: State */
-  $handler->display->display_options['filters']['state']['id'] = 'state';
-  $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
-  $handler->display->display_options['filters']['state']['field'] = 'state';
-  $handler->display->display_options['filters']['state']['value'] = array(
-    'rejected' => 'rejected',
-    'approved' => 'approved',
-    'needs_review' => 'needs_review',
-  );
-  $handler->display->display_options['filters']['state']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['state']['expose']['operator_id'] = 'state_op';
-  $handler->display->display_options['filters']['state']['expose']['label'] = 'State';
-  $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
-  $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
-  $handler->display->display_options['filters']['state']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['state']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-  );
-  $handler->display->display_options['filters']['state']['expose']['reduce'] = TRUE;
   $handler->display->display_options['path'] = 'admin/workbench/manager';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Needs PM Review';
@@ -312,7 +286,6 @@ function osha_workflow_views_default_views() {
   $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['state']['field'] = 'state';
   $handler->display->display_options['filters']['state']['value'] = array(
-    'final_draft' => 'final_draft',
     'ready_to_publish' => 'ready_to_publish',
   );
   $handler->display->display_options['filters']['state']['expose']['operator_id'] = 'state_op';
@@ -329,11 +302,6 @@ function osha_workflow_views_default_views() {
     7 => 0,
   );
   $handler->display->display_options['filters']['state']['expose']['reduce'] = TRUE;
-  /* Filter criterion: Osha workflow: If section in rm section */
-  $handler->display->display_options['filters']['section_in_rm_section']['id'] = 'section_in_rm_section';
-  $handler->display->display_options['filters']['section_in_rm_section']['table'] = 'osha_workflow';
-  $handler->display->display_options['filters']['section_in_rm_section']['field'] = 'section_in_rm_section';
-  $handler->display->display_options['filters']['section_in_rm_section']['value'] = '1';
   $handler->display->display_options['path'] = 'admin/workbench/review-manager';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Needs RM Review';

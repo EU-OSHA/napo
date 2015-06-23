@@ -45,8 +45,9 @@ function osha_workflow_menu() {
     'description' => 'Assignment of project managers for each website section.',
     'page callback' => 'osha_workflow_workbench_project_managers',
     'page arguments' => array(),
-    'access callback' => array('osha_workflow_user_has_role_access_callback'),
-    'access arguments' => array(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER),
+//    'access callback' => array('osha_workflow_user_has_role_access_callback'),
+//    'access arguments' => array(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER),
+    'access callback' => FALSE,
     'type' => MENU_LOCAL_TASK,
     'weight' => -12,
     'file' => 'osha_workflow.admin.inc',
@@ -57,7 +58,8 @@ function osha_workflow_menu() {
     'description' => 'Assignment of review managers for each website section.',
     'page callback' => 'osha_workflow_workbench_review_managers',
     'page arguments' => array(),
-    'access arguments' => array('assign workbench access'),
+    'access callback' => FALSE,
+//    'access arguments' => array('assign workbench access'),
     'type' => MENU_LOCAL_TASK,
     'weight' => -12,
     'file' => 'osha_workflow.review_manager.inc',
@@ -68,8 +70,9 @@ function osha_workflow_menu() {
     'description' => 'Assignment of project managers for each website section.',
     'page callback' => 'drupal_goto',
     'page arguments' => array('admin/config/workbench/access/managers'),
-    'access callback' => array('osha_workflow_user_has_role_access_callback'),
-    'access arguments' => array(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER),
+    'access callback' => FALSE,
+//    'access callback' => array('osha_workflow_user_has_role_access_callback'),
+//    'access arguments' => array(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER),
     'type' => MENU_LOCAL_TASK,
     'weight' => -12,
     'file' => 'osha_workflow.admin.inc',
@@ -80,7 +83,8 @@ function osha_workflow_menu() {
     'description' => 'Mark section as Reviewed.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('osha_workflow_access_section_review_form'),
-    'access arguments' => array('view workbench access information'),
+    'access callback' => FALSE,
+//    'access arguments' => array('view workbench access information'),
     'file' => 'osha_workflow.admin.inc',
   );
 
@@ -89,7 +93,8 @@ function osha_workflow_menu() {
     'description' => 'Define the list of default approvers',
     'page callback' => 'drupal_goto',
     'page arguments' => array('entity-collection/approvers/content'),
-    'access arguments' => array('manage content in moderators_group entity collections'),
+    'access callback' => FALSE,
+//    'access arguments' => array('manage content in moderators_group entity collections'),
     'type' => MENU_LOCAL_TASK,
     'weight' => -13,
   );
@@ -100,8 +105,8 @@ function osha_workflow_menu() {
     'type' => MENU_LOCAL_TASK,
     'page callback' => 'drupal_get_form',
     'page arguments' => array('osha_workflow_node_approval_form', 1),
-    'access callback' => 'osha_workflow_node_approval_access',
-    'access arguments' => array(1),
+//    'access callback' => 'osha_workflow_node_approval_access',
+//    'access arguments' => array(1),
     'file' => 'osha_workflow.admin.inc',
     'weight' => 10,
   );
@@ -155,7 +160,6 @@ function osha_workflow_menu_alter(&$items) {
  *   Access permission to the screen.
  */
 function osha_workflow_node_approval_access($node) {
-  return FALSE;
   return OshaWorkflowPermissions::userCanAccessApprovalScreen($node);
 }
 
