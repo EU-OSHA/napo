@@ -1139,6 +1139,11 @@ function osha_tmgmt_form_tmgmt_ui_entity_translation_review_form_alter(&$form, &
     foreach ($values as $value) {
       $form['review'][$field][$value]['actions']['#access'] = $user_can_edit;
       $form['review'][$field][$value]['translation']['#disabled'] = !$user_can_edit;
+      // Set english text if is editing in extra language.
+      if (osha_tmgmt_job_item_in_extra_language($job_item)
+        && empty($form['review'][$field][$value]['translation']['#default_value'])) {
+        $form['review'][$field][$value]['translation']['#default_value'] = $form['review'][$field][$value]['source']['#default_value'];
+      }
     }
   }
   // Fix State Label.
@@ -1260,6 +1265,16 @@ function osha_tmgmt_form_tmgmt_ui_entity_translation_review_form_alter(&$form, &
           '#validate' => array('osha_tmgmt_layout_validator_approve_validate'),
           '#access' => user_access('set job item to translated state'),
         );
+        if (osha_tmgmt_job_item_in_extra_language($job_item)) {
+          hide($form['actions']['accept_layout']);
+          $form['actions']['require_content_validation'] = array(
+            '#type' => 'submit',
+            '#value' => t('Require Content Validation'),
+            '#submit' => array('osha_tmgmt_require_content_validation_submit'),
+            '#validate' => array('osha_tmgmt_require_content_validation_validate'),
+            '#access' => user_access('set job item to require content validation state'),
+          );
+        }
         break;
 
       case TMGMT_JOB_ITEM_STATE_REVIEW:
@@ -2017,7 +2032,16 @@ function osha_tmgmt_tmgmt_ui_cart_content_submit($form, &$form_state) {
       $job->priority = $values['priority'];
       OshaTMGMTStatistics::computeJobStatistics($job);
       $job->save();
-      OshaWorkflowNotifications::notifyTranslationJobCreated($job);
+
+      $target_lang = $form_state['values']['target_language'];
+      $extra_lang = osha_extra_language_list();
+      if (count(array_intersect($extra_lang, $target_lang))) {
+        // Notify translation manager to make action on this job.
+        OshaWorkflowNotifications::notifyTranslationManager($job);
+      }
+      else {
+        OshaWorkflowNotifications::notifyTranslationJobCreated($job);
+      }
 
       // This whole block replaces tmgmt_ui_job_checkout_and_redirect().
       $redirects = tmgmt_ui_job_checkout_multiple(array($job));
@@ -2321,6 +2345,9 @@ function osha_tmgmt_mail($key, &$message, $params) {
   $message['body'][] = token_replace($body, $params);
 }
 
+function osha_tmgmt_job_item_in_extra_language($job_item) {
+  return in_array($job_item->target_language, osha_extra_language_list());
+}
 
 class OshaTMGMTStatistics {
 

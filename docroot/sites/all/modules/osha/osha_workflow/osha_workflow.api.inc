@@ -886,6 +886,17 @@ class OshaWorkflowNotifications {
   }
 
   /**
+   * Notify Translation Manager the job needs his attention.
+   *
+   * @param TMGMTJobItem|OshaTMGMTJobItem $tmgmt_job_item
+   *   Job created
+   */
+  public static function notifyTranslationManager($tmgmt_job_item) {
+    $users = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER);
+    OshaWorkflowNotifications::sendEmail($users, array('tmgmt_job_item' => $tmgmt_job_item), 'osha_tmgmt');
+  }
+
+  /**
    * Notify Next Translation Content Validator the content needs validation..
    *
    * @param TMGMTJobItem|OshaTMGMTJobItem $tmgmt_job_item
