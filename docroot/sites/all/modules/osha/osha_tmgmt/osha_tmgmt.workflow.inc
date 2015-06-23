@@ -832,21 +832,31 @@ function osha_tmgmt_file_translation_upload_submit($form, &$form_state) {
       elseif ($validated_job->tjid != $job->tjid) {
         $uri = $validated_job->uri();
         $label = $validated_job->label();
-        $job->addMessage('Import file is from job <a href="@url">@label</a>, import aborted.', array('@url' => url($uri['path']), '@label' => $label));
+        $job->addMessage('Import file is from job <a href="@url">@label</a>, import aborted.', array('@url' => url($uri['path']), '@label' => $label), 'error');
       }
       else {
         try {
           // Validation successful, start import.
           $job->addTranslatedData($controller->import($file->uri));
-          $job->addMessage('Successfully imported file.');
+          $job->addMessage('Successfully imported file.'.$file->uri);
           OshaWorkflowNotifications::notifyTranslationUploadedFile($form_state['tmgmt_job']);
           $job->has_file_uploaded = 1;
           $job->save();
+
+          // CW-1299 https://eu-osha.bilbomatica.es:5433/browse/CW-1299?focusedCommentId=12616&page=com.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-12616
+          // For non-nodes (literals, menu links and taxonomy terms) accept automatically the translations.
+          foreach($job->getItems() as $job_item) {
+            if ($job_item->item_type != 'node') {
+              $job_item->acceptTranslationIntoEntity();
+            }
+          }
         } catch (Exception $e) {
           $job->addMessage('File import failed with the following message: @message', array('@message' => $e->getMessage()), 'error');
         }
       }
     }
+    // Remove the XML after upload.
+    file_delete($file);
   }
   foreach ($job->getMessagesSince() as $message) {
     // Ignore debug messages.

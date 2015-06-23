@@ -451,35 +451,6 @@ function napo_common_no_translation_form_submit($form, &$form_state) {
 */
 
 /**
- * Implements hook_mail().
- *
- * {@inheritdoc}
- */
-function napo_common_mail($key, &$message, $params) {
-  global $base_url;
-
-  switch($key) {
-    case 'no_translation':
-      $message['subject'] = t('No translation report');
-      $message['body'][] = 'The following page does not have all the translations created: '.$params['values']['no_translation_request'];
-      break;
-  }
-
-  if (isset($params['node'])) {
-    $node = $params['node'];
-    $subject = 'A node was updated';
-    if ($node->is_new) {
-      $subject = 'A new node was created';
-    }
-    $body = 'Dear [user:name],<br />
-      The following node was created/updated: <a href = "'.url('node/'.$node->nid, array('absolute' => TRUE)).'">'.$node->title.'</a><br />
-      Thank you,';
-    $message['subject'] = token_replace($subject, $params);
-    $message['body'][] = token_replace($body, $params);
-  }
-}
-
-/**
  * Implements hook_webform_select_options_info().
  *
  * See webform/webform.api.php for further information on
@@ -638,32 +609,6 @@ function theme_napo_print_friendly_block() {
   $content['#markup'] .= '&nbsp;<a href="javascript:if(window.print)window.print();"><span class="glyphicon glyphicon-print"></span></a>';
 
   return render($content);
-}
-
-/**
- * Implements hook_node_insert().
- *
- * {@inheritdoc}
- */
-function napo_common_node_insert($node) {
-  napo_common_content_send_mail($node);
-}
-
-/**
- * Implements hook_node_update().
- *
- * {@inheritdoc}
- */
-function napo_common_node_update($node) {
-  napo_common_content_send_mail($node);
-}
-
-/**
- * Send email notification to all admin users
- */
-function napo_common_content_send_mail($node) {
-  $users = napo_common_get_users_by_role('administrator');
-  OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'napo_common', 'osha_workflow_notification');
 }
 
 /**

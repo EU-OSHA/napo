@@ -466,6 +466,13 @@ function osha_disabled_language_list() {
   return drupal_map_assoc($disabled);
 }
 
+function osha_extra_language_list() {
+  $disabled = array(
+    'tr', 'ru', 'ca',
+  );
+  return drupal_map_assoc($disabled);
+}
+
 /**
  * Get OSHA official language list.
  *

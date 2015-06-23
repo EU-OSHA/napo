@@ -70,4 +70,41 @@ function osha_workflow_views_data_alter(&$data) {
     'handler' => 'views_handler_filter_user_current',
     'real field' => 'uid',
   );
+
+  // Define group.
+  $data['osha_workflow']['table']['group'] = t('Osha workflow');
+  $data['osha_workflow']['table']['join'] = array(
+    // #global is a special flag which let's a table appear all the time.
+    '#global' => array(),
+  );
+  // Filters nodes that are in current users RM section.
+  $data['osha_workflow']['section_in_rm_section'] = array(
+    'title' => t('If section in rm section'),
+    'help' => t('If section in rm section'),
+    'filter' => array(
+      'label' => t('Section in RM section'),
+      'handler' => 'osha_workflow_handler_filter_section_in_rm_section',
+    ),
+  );
+}
+
+
+/**
+ * Filters nodes that are in current users RM sections.
+ */
+class osha_workflow_handler_filter_section_in_rm_section extends views_handler_filter_boolean_operator {
+
+  /**
+   * Overrides views_handler_field::query().
+   */
+  function query() {
+    global $user;
+    $sections = osha_workflow_access_get_rm_sections($user->uid);
+    $group = $this->query->set_where_group('AND');
+    $subquery = db_select('workbench_access_node', 'workbench_access_node');
+    $subquery->addField('workbench_access_node', 'nid');
+    $subquery->distinct();
+    $subquery->condition('workbench_access_node.access_id', $sections, 'IN');
+    $this->query->add_where($group, "{$this->query->base_table}.nid", $subquery, 'IN');
+  }
 }

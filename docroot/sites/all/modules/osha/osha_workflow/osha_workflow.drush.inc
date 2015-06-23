@@ -13,6 +13,12 @@ function osha_workflow_drush_command() {
     'options' => array(),
     'sections' => array(),
   );
+  $items['osha-node-section'] = array(
+    'description' => 'Assign default sections to content',
+    'aliases' => array('oshads'),
+    'examples' => array(),
+    'sections' => array(),
+  );
   return $items;
 }
 
@@ -92,4 +98,33 @@ function drush_osha_workflow_osha_create_users() {
       drush_log("Cannot find role: $role_name", 'error');
     }
   }
+}
+
+function drush_osha_workflow_osha_node_section() {
+  $bundle_section_map = osha_workflow_bundle_section_map();
+  $existing_nids = db_select('workbench_access_node', 'w')
+    ->fields('w', array('nid'))
+    ->execute()
+    ->fetchCol();
+  $count = 0;
+  foreach ($bundle_section_map as $bundle => $section) {
+    $updating_nids = db_select('node', 'n')
+      ->fields('n', array('nid'))
+      ->condition('nid', $existing_nids, 'NOT IN')
+      ->execute()
+      ->fetchCol();
+    if ($term = osha_workflow_get_section_term_by_ldap_id($section)) {
+      foreach ($updating_nids as $nid) {
+        db_insert('workbench_access_node');
+        $record = array(
+          'nid' => $nid,
+          'access_id' => $term->tid,
+          'access_scheme' => 'taxonomy',
+        );
+        drupal_write_record('workbench_access_node', $record);
+        $count++;
+      }
+    }
+  }
+  drupal_set_message($count . ' nodes added to sections.');
 }

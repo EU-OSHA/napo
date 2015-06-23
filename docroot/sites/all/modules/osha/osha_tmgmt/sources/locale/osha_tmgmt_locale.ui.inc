@@ -25,16 +25,9 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
       ->condition('ls.location', '%' . db_like(':image:description'), 'NOT LIKE')
       ->groupBy('ls.source')
       ->orderBy('ls.source');
+    $subquery = db_select('osha_locales_source_blacklist', 'blk')->fields('blk', array('lid'));
+    $select->condition('ls.lid', $subquery, 'NOT IN');
 
-    // Hide Drupal internal strings and show only the OSHA strings
-    $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
-    if (!empty($strings)) {
-      //$or = db_or()->condition('ls.textgroup', array('menu', 'taxonomy'), 'not in');
-      //$or->condition('ls.source', $strings, 'in');
-      // $select->condition($or);
-      $select->condition('ls.source', $strings, 'in');
-
-    }
     // Intersect with the cart and remove items already added to the cart
     $cart = tmgmt_ui_cart_get();
     $job_items = $cart->getJobItemsFromCart();
@@ -156,6 +149,7 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
       '#default_value' => isset($default_values['page_size']) ? $default_values['page_size'] : 50,
       '#weight' => 8,
     );
+    $ret['search_wrapper']['search']['missing_target_language']['#options'] = osha_language_list_options();
     return $ret;
   }
 
@@ -180,7 +174,18 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
     }
 
     $form['pager'] = array('#markup' => theme('pager', array('tags' => NULL)));
-
+    $form['actions']['blacklist'] = array(
+      '#type' => 'submit',
+      '#value' => 'Hide selected',
+      '#submit' => array('osha_tmgmt_ui_source_blacklist_strings_submit'),
+      '#attributes' => array(
+        'title' => 'Hide selected strings from this translation interface',
+      ),
+    );
+    $form['actions']['hint'] = array(
+      '#type' => 'item',
+      '#markup' => 'Hint: Use the <strong>Hide selected</strong> button to permanently disable the selected strings from appearing on this screen',
+    );
     return $form;
   }
 
@@ -212,5 +217,17 @@ class OSHATMGMTLocaleSourceUIController extends TMGMTLocaleSourceUIController {
     }
 
     return $row;
+  }
+}
+
+function osha_tmgmt_ui_source_blacklist_strings_submit($form, $form_state) {
+  if (!empty($form_state['values']['items'])) {
+    $insert = db_insert('osha_locales_source_blacklist')->fields(array('lid'));
+    foreach($form_state['values']['items'] as $lid) {
+      if ($lid) {
+        $insert->values(array($lid));
+      }
+    }
+    $insert->execute();
   }
 }
