@@ -393,6 +393,9 @@ function napo_lesson_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'episode_popup' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
