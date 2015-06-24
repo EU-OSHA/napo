@@ -83,7 +83,7 @@
 <header id="navbar" class="<?php print $navbar_classes; ?>">
     <div class="navbar-header col-md-3">
       <?php if ($logo): ?>
-      <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Napo'); ?>">
+      <a class="logo navbar-btn pull-left col-xs-10" href="<?php print $front_page; ?>" title="<?php print t('Napo'); ?>">
         <img src="<?php print $logo; ?>" alt="<?php print t('Napo'); ?>" />
       </a>
       <?php endif; ?>
@@ -93,7 +93,7 @@
       <?php endif; ?>
 
       <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -103,11 +103,6 @@
 
     <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['menu'])): ?>
       <div class="col-md-9 pull-right">
-        <div class="col-md-3 pull-right">
-          <?php if (!empty($page['menu'])): ?>
-            <?php print render($page['menu']); ?>
-          <?php endif; ?>
-        </div>
         <div class="navbar-collapse collapse col-md-8 pull-right">
           <nav role="navigation">
             <?php if (!empty($primary_nav)): ?>
@@ -116,6 +111,11 @@
             <?php if (!empty($secondary_nav)): ?>
               <?php print render($secondary_nav); ?>
             <?php endif; ?>
+            <div class="pull-right">
+              <?php if (!empty($page['menu'])): ?>
+                <?php print render($page['menu']); ?>
+              <?php endif; ?>
+            </div>
           </nav>
         </div>
       </div>

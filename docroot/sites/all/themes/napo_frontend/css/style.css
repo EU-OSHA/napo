@@ -7109,7 +7109,7 @@ table .checkbox input[type="checkbox"] {
 }
 .navbar.container.navbar-default .col-md-9.pull-right {
   margin-top: 10px;
-  margin-right: -9%;
+  margin-right: -4%;
 }
 .navbar.container {
   margin-top: 20px;
@@ -8765,14 +8765,14 @@ img {
   float: right;
   color: #FFF;
   border-radius: 0px;
-  margin-top: -72px;
+  margin-top: -69px;
   font-weight: bold;
   background: url('../images/video-download.png') no-repeat 96% 12px #1f3695;
 }
 #napo_film_cart_download_form_container .download-center-submit-selected {
   margin-left: 1em;
   margin-right: 11.5em;
-  padding-bottom: 15px;
+  padding-bottom: 12px;
   padding-top: 15px;
 }
 #napo_film_cart_download_form_container .download-center-submit-selected .napo_film_cart_select_count {
@@ -8786,8 +8786,8 @@ img {
   content: ' )';
 }
 #napo_film_cart_download_form_container .download-center-submit-all {
-  padding-bottom: 15px;
-  padding-top: 15px;
+  padding-bottom: 13px;
+  padding-top: 14px;
   padding-right: 45px;
 }
 .view-download-center .views-row {
@@ -9019,6 +9019,9 @@ img {
 .view-faqs .ui-accordion .ui-accordion-header .ui-accordion-header-icon {
   left: 100%;
 }
+.view-faqs .ui-accordion .ui-accordion-icons {
+  width: 98%;
+}
 .view-faqs .ui-state-default .ui-icon {
   background: url('../images/accordion-state-default.png') no-repeat 0px 0px;
   width: 27px;
@@ -9186,4 +9189,37 @@ footer .jcarousel-skin-default .jcarousel-container-horizontal {
 footer .jcarousel-skin-default .jcarousel-item {
   text-align: center;
   width: 141px !important;
+}
+@media only screen and (max-width: 767px) {
+  .logo.navbar-btn.pull-left {
+    float: right!important;
+  }
+  .navbar-collapse {
+    float: left!important;
+  }
+  .navbar-collapse.collapse.col-md-8 {
+    width: 100%;
+    overflow: hidden;
+  }
+  .navbar-collapse.collapse.col-md-8 nav {
+    margin-left: -18px;
+  }
+  .navbar-collapse.collapse.col-md-8 nav div {
+    float: left!important;
+  }
+  .navbar.container.navbar-default .col-md-9.pull-right {
+    margin-top: 0px;
+    margin-right: 0%;
+    float: left !important;
+    width: 100%;
+  }
+  .menu.nav.navbar-nav .expanded.dropdown {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  .menu.nav.navbar-nav .dropdown-menu {
+    min-width: 100%;
+    max-width: 100%;
+    position: static;
+  }
 }
