@@ -640,6 +640,7 @@ function napo_common_preprocess_node(&$vars) {
 }
 
 function napo_common_get_share_widget($node) {
+  global $language;
   // Add services javascript.
   drupal_add_js(drupal_get_path('module', 'napo_common') . '/js/share_widget.js');
   // Add facebook app key.
@@ -659,10 +660,11 @@ function napo_common_get_share_widget($node) {
       'url' => shorten_url($url),
     ),
   ));
-  return theme('napo_film_share_widget', array(
-      'url' => $url,
-      'tweet_url' => $tweet_url,
-      'node' => $node,
-    )
+  $vars = array(
+    'url' => $url,
+    'tweet_url' => $tweet_url,
+    'node' => $node,
+    'language' => $language,
   );
+  return theme('napo_film_share_widget', $vars);
 }
