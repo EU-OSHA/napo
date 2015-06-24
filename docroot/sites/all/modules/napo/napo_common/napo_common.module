@@ -258,7 +258,7 @@ function napo_common_block_configure($delta = '') {
       );
 
       $form['no_translation_text'] = array(
-        '#type' => 'textfield',
+        '#type' => 'textarea',
         '#title' => 'Page content',
         '#description' => "Content of the no translation available page",
         '#default_value' => variable_get('no_translation_text', 'OOPS!<br />Translation not available.<br />What do you want to do next?'),
@@ -283,7 +283,7 @@ function napo_common_block_configure($delta = '') {
         '#type' => 'textfield',
         '#title' => 'Page not found text',
         '#default_value' => variable_get('page_not_found_text',
-          t("OOPS!<br />Sorry, we can't find what<br />you are looking for")),
+          "OOPS!<br />Sorry, we can't find what<br />you are looking for"),
       );
       break;
   }
@@ -386,7 +386,7 @@ function napo_common_no_translation_form($form, &$form_state) {
   $form['page_content'] = array(
     '#type' => 'markup',
     '#markup' => '<div class="no_translation_page_content">'.
-      variable_get('no_translation_text', 'OOPS!<br />Translation not available.<br />What do you want to do next?')
+      t(variable_get('no_translation_text', 'OOPS!<br />Translation not available.<br />What do you want to do next?'))
       .'</div>',
   );
 
@@ -486,7 +486,7 @@ function napo_common_webform_pre_build_list_languages() {
 function napo_common_page_not_found_content() {
   // Intro text.
   $content = "<div class = 'page_not_found_intro'>";
-  $content .= variable_get('page_not_found_text', t("OOPS!<br />Sorry, we can't find what<br />you are looking for"));
+  $content .= t(variable_get('page_not_found_text', "OOPS!<br />Sorry, we can't find what<br />you are looking for"));
   $content .= '</div>';
 
   // Search block.
