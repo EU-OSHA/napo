@@ -684,15 +684,6 @@ function osha_node_view($node, $view_mode, $langcode) {
       unset($node->content['field_page_introduction']);
     }
   }
-
-  if ($view_mode != 'full' && $node->type != 'publication') {
-    // see osha_publication_field_formatter_view : publication_title_linked
-    if (!empty($node->field_archived[LANGUAGE_NONE][0]['value'])) {
-      if (!empty($node->content['title_field'][0]['#markup'])) {
-        $node->content['title_field'][0]['#markup'] .= '<span class="title-archived">' . t('Archived') . '</span>';
-      }
-    }
-  }
 }
 
 /**

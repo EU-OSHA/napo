@@ -17,10 +17,16 @@ function napo_film_field_formatter_info() {
   return $info;
 }
 
+/**
+ * Implements hook_field_formatter_info_alter().
+ */
 function napo_film_field_formatter_info_alter(&$info) {
+  // Define extra fields for settings form to save them.
   $info['title_linked']['settings']['napo_film_title_include_type'] = FALSE;
   $info['title_linked']['settings']['napo_film_title_include_episode_count'] = FALSE;
   $info['title_linked']['settings']['napo_film_title_link_episode_popup'] = FALSE;
+  $info['title_linked']['settings']['napo_film_title_link_with_film'] = FALSE;
+  $info['title_linked']['settings']['napo_film_title_link_with_film_value'] = '!episode from the film !film';
 }
 
 
