@@ -291,13 +291,6 @@ $handler->display->display_options['fields']['views_bulk_operations']['vbo_opera
     'label' => '',
   ),
 );
-/* Field: Content: Summary */
-$handler->display->display_options['fields']['field_summary']['id'] = 'field_summary';
-$handler->display->display_options['fields']['field_summary']['table'] = 'field_data_field_summary';
-$handler->display->display_options['fields']['field_summary']['field'] = 'field_summary';
-$handler->display->display_options['fields']['field_summary']['label'] = '';
-$handler->display->display_options['fields']['field_summary']['exclude'] = TRUE;
-$handler->display->display_options['fields']['field_summary']['element_label_colon'] = FALSE;
 /* Field: Content: Body */
 $handler->display->display_options['fields']['body']['id'] = 'body';
 $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
@@ -396,17 +389,16 @@ $handler->display->display_options['filters']['type']['table'] = 'node';
 $handler->display->display_options['filters']['type']['field'] = 'type';
 $handler->display->display_options['filters']['type']['value'] = array(
   'article' => 'article',
-  'page' => 'page',
-  'blog' => 'blog',
-  'calls' => 'calls',
-  'directive' => 'directive',
-  'guideline' => 'guideline',
-  'highlight' => 'highlight',
-  'job_vacancies' => 'job_vacancies',
-  'news' => 'news',
-  'press_release' => 'press_release',
-  'publication' => 'publication',
-  'seminar' => 'seminar',
+  'consortium_partner' => 'consortium_partner',
+  'faq' => 'faq',
+  'home_video' => 'home_video',
+  'lesson' => 'lesson',
+  'lesson_toolkit' => 'lesson_toolkit',
+  'lesson_video' => 'lesson_video',
+  'napo_album' => 'napo_album',
+  'napo_friend' => 'napo_friend',
+  'napo_image' => 'napo_image',
+  'napo_video' => 'napo_video',
 );
 $handler->display->display_options['filters']['type']['group'] = 1;
 $handler->display->display_options['filters']['type']['exposed'] = TRUE;
@@ -426,8 +418,6 @@ $handler->display->display_options['filters']['type']['expose']['remember_roles'
   7 => 0,
   8 => 0,
   9 => 0,
-  10 => 0,
-  11 => 0,
 );
 /* Filter criterion: Global: Combine fields filter */
 $handler->display->display_options['filters']['combine']['id'] = 'combine';
@@ -530,32 +520,6 @@ $handler->display->display_options['filters']['translation_exists']['expose']['r
 );
 $handler->display->display_options['filters']['translation_exists']['expose']['reduce'] = TRUE;
 $handler->display->display_options['filters']['translation_exists']['entity_type'] = 'node';
-/* Filter criterion: Content: Activity (field_activity) */
-$handler->display->display_options['filters']['field_activity_tid']['id'] = 'field_activity_tid';
-$handler->display->display_options['filters']['field_activity_tid']['table'] = 'field_data_field_activity';
-$handler->display->display_options['filters']['field_activity_tid']['field'] = 'field_activity_tid';
-$handler->display->display_options['filters']['field_activity_tid']['group'] = 1;
-$handler->display->display_options['filters']['field_activity_tid']['exposed'] = TRUE;
-$handler->display->display_options['filters']['field_activity_tid']['expose']['operator_id'] = 'field_activity_tid_op';
-$handler->display->display_options['filters']['field_activity_tid']['expose']['label'] = 'Activity';
-$handler->display->display_options['filters']['field_activity_tid']['expose']['operator'] = 'field_activity_tid_op';
-$handler->display->display_options['filters']['field_activity_tid']['expose']['identifier'] = 'field_activity_tid';
-$handler->display->display_options['filters']['field_activity_tid']['expose']['remember_roles'] = array(
-  2 => '2',
-  1 => 0,
-  3 => 0,
-  4 => 0,
-  5 => 0,
-  6 => 0,
-  7 => 0,
-  8 => 0,
-  9 => 0,
-  10 => 0,
-  11 => 0,
-);
-$handler->display->display_options['filters']['field_activity_tid']['type'] = 'select';
-$handler->display->display_options['filters']['field_activity_tid']['vocabulary'] = 'activity';
-$handler->display->display_options['filters']['field_activity_tid']['hierarchy'] = 1;
 /* Filter criterion: Workbench Access: Access filter */
 $handler->display->display_options['filters']['access_id']['id'] = 'access_id';
 $handler->display->display_options['filters']['access_id']['table'] = 'workbench_access';
@@ -763,7 +727,6 @@ $translatables['tmgmt_node_selection_view'] = array(
   t('Free text'),
   t('Node ID'),
   t('Not translated in'),
-  t('Activity'),
   t('Section'),
   t('Published includes also items without publishing workflow. Use CTRL to select multiple items'),
   t('Updated after'),

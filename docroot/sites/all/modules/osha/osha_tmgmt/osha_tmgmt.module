@@ -67,6 +67,14 @@ function osha_tmgmt_menu_alter(&$items) {
   unset($items['admin/tmgmt/items/%entity_object']['access callback']);
   $items['admin/tmgmt/items/%entity_object']['access arguments']
     = array('view translation job item');
+
+  // Hide panels tmgmt source menu link.
+  if (!empty($items['admin/tmgmt/sources/i18n_string_pane_configuration'])) {
+    unset($items['admin/tmgmt/sources/i18n_string_pane_configuration']);
+  }
+  if (!empty($items['admin/tmgmt/sources/i18n_string_display_configuration'])) {
+    unset($items['admin/tmgmt/sources/i18n_string_display_configuration']);
+  }
 }
 
 /**
