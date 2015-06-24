@@ -12,13 +12,13 @@ function napo_common_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
-  $export['menu_block-3'] = array(
+  $export['menu-menu-social-media-menu'] = array(
     'cache' => -1,
     'custom' => 0,
-    'delta' => 3,
+    'delta' => 'menu-social-media-menu',
     'i18n_block_language' => array(),
     'i18n_mode' => 0,
-    'module' => 'menu_block',
+    'module' => 'menu',
     'node_types' => array(),
     'pages' => '',
     'roles' => array(),
@@ -27,7 +27,7 @@ function napo_common_default_fe_block_settings() {
         'region' => 'header_top_bar',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -39,
+        'weight' => -42,
       ),
       'osha_admin' => array(
         'region' => '',
