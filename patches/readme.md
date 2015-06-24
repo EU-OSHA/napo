@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* entityreference
+  * Rendered entity is not language aware (https://www.drupal.org/node/1674792#comment-9304507)
+  * /patches/entityreference/entityreference-rendered-entity-is-not-language-aware-1674792-58.patch
+
 * ldap_user
   * Disable the watchdog successful messages
   * /patches/ldap/ldap_user/disable-watchdg.patch
