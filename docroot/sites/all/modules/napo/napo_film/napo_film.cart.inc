@@ -6,7 +6,7 @@
 function napo_film_block_view_alter(&$data, $block) {
 //  if ($block->delta == 'content_cart_summary') {
 //    $cart = ContentCart::getCurrentCart();
-//    $label = t('Download center');
+//    $label = t('Download centre');
 //    $count = $cart->countItems('node');
 //    $html = '<span class="content_cart_summary_label">' . $label . '</span>';
 //    $html .= '<span class="content_cart_summary_count">' . $count . '</span>';
@@ -107,7 +107,7 @@ function napo_film_content_cart_ajax_submit_alter(&$commands, $input_value) {
 }
 
 /**
- * Download selected/all form for download center page.
+ * Download selected/all form for Download centre page.
  */
 function napo_film_cart_download_form($form, &$form_state) {
   $count = napo_film_cart_select_in_cart_count();
@@ -310,7 +310,7 @@ function napo_film_cart_download_success_commands(&$commands, $file_path) {
     )
   );
   // Return the success message and
-  // Refresh the download center: view, cart summary block and cart form.
+  // Refresh the Download centre: view, cart summary block and cart form.
   $commands[] = ajax_command_prepend('#block-napo-film-download-cart-form', $message);
   $commands[] = ajax_command_invoke('body', 'napo_film_refresh_download_center');
 }

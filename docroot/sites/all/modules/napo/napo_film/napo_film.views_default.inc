@@ -15,14 +15,14 @@ function napo_film_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Download center';
+  $view->human_name = 'Download centre';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Download center';
+  $handler->display->display_options['title'] = 'Download centre';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -123,7 +123,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['path'] = 'download-center';
   $translatables['download_center'] = array(
     t('Master'),
-    t('Download center'),
+    t('Download centre'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -795,7 +795,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['content_cart']['label'] = '';
   $handler->display->display_options['fields']['content_cart']['exclude'] = TRUE;
   $handler->display->display_options['fields']['content_cart']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['content_cart']['contant_add_to_cart_button_label'] = 'Add to download center';
+  $handler->display->display_options['fields']['content_cart']['contant_add_to_cart_button_label'] = 'Add to download centre';
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -922,7 +922,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['content_cart']['label'] = '';
   $handler->display->display_options['fields']['content_cart']['exclude'] = TRUE;
   $handler->display->display_options['fields']['content_cart']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['content_cart']['contant_add_to_cart_button_label'] = 'Add to download center';
+  $handler->display->display_options['fields']['content_cart']['contant_add_to_cart_button_label'] = 'Add to download centre';
   /* Field: Indexed Multilingual Node: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_default_multilingual_node_index';
@@ -1081,7 +1081,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['content_cart']['label'] = '';
   $handler->display->display_options['fields']['content_cart']['exclude'] = TRUE;
   $handler->display->display_options['fields']['content_cart']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['content_cart']['contant_add_to_cart_button_label'] = 'Add to download center';
+  $handler->display->display_options['fields']['content_cart']['contant_add_to_cart_button_label'] = 'Add to download centre';
   /* Field: Napo film: Download video */
   $handler->display->display_options['fields']['download_video']['id'] = 'download_video';
   $handler->display->display_options['fields']['download_video']['table'] = 'napo_film';
@@ -1418,7 +1418,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['content_add_to_cart']['field'] = 'content_add_to_cart';
   $handler->display->display_options['fields']['content_add_to_cart']['label'] = '';
   $handler->display->display_options['fields']['content_add_to_cart']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['content_add_to_cart']['contant_add_to_cart_button_label'] = 'Add to download center';
+  $handler->display->display_options['fields']['content_add_to_cart']['contant_add_to_cart_button_label'] = 'Add to download centre';
   /* Field: Field: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
