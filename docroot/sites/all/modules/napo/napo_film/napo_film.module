@@ -171,11 +171,11 @@ function napo_film_set_view_mode($mode) {
  */
 function napo_film_views_pre_view( view &$view, &$display_id, &$args) {
   if ($view->name == 'napo_films') {
-    if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'list') {
-      $view->set_display('page_list');
+    if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'grid') {
+      $view->set_display('page_grid');
     }
     else {
-      $view->set_display('page_grid');
+      $view->set_display('page_list');
     }
 
     // When searching (word or tag) in Film page, episode should be included.
