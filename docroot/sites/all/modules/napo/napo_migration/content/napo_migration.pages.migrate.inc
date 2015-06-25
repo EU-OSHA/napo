@@ -171,7 +171,7 @@ class NapoMigrationPages extends Migration {
         }
         // Clean again after parsing.
         $text = $tidy->repairString($text, $tidy_conf, 'utf8');
-        $text = str_replace("\n", '', $text);
+        $text = str_replace("\n", ' ', $text);
         $entity->body[$language][0]['value'] = $text;
         $entity->body[$language][0]['format'] = 'full_html';
         $has_translation = TRUE;
