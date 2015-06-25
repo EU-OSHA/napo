@@ -1002,9 +1002,15 @@ function osha_tmgmt_ui_cart_remove_selected_form_submit($form, &$form_state) {
 
 function osha_tmgmt_retranslation_validate($form, &$form_state) {
   $extra_lang = osha_extra_language_list();
+  // i18n_language_name()
+  $extra_lang_name = array();
+  foreach($extra_lang as $language) {
+    $extra_lang_name[$language] = locale_language_name($language);
+  }
+
   $intersect = array_intersect($extra_lang, $form_state['values']['target_language']);
   if (count($intersect) && count($intersect) < count($form_state['values']['target_language'])) {
-    form_set_error('target_language', strtr('You have to create separate job with this languages @lang', array('@lang' => implode(', ', $extra_lang))));
+    form_set_error('target_language', strtr('Please create a separate job to include only <strong>@lang</strong> languages', array('@lang' => implode(', ', $extra_lang_name))));
   }
 }
 
