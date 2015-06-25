@@ -27,7 +27,8 @@ function napo_frontend_back_button(&$vars){
 
   // For view episodes panel, the breadcrumb it's not available here.
   // So it's hardcoded.
-  if (array_pop(arg()) == 'view-episodes') {
+  $args = arg();
+  if (end($args) == 'view-episodes') {
     $vars['back_button'] = l(t('Back to !link', array('!link' => t('Films'))), 'napos-films/films', $options);
     return;
   }
