@@ -282,6 +282,38 @@ function napo_film_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|napo_video|episode_list';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'napo_video';
+  $ds_layout->view_mode = 'episode_list';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'back_button',
+        1 => 'title_field',
+        2 => 'body',
+      ),
+    ),
+    'fields' => array(
+      'back_button' => 'ds_content',
+      'title_field' => 'ds_content',
+      'body' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|napo_video|episode_list'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
   $ds_layout->id = 'node|napo_video|episode_popup';
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'napo_video';

@@ -24,8 +24,8 @@ function napo_common_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => 'header_top_bar',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'napo_frontend',
         'weight' => -42,
       ),
@@ -64,7 +64,7 @@ function napo_common_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -139,7 +139,7 @@ function napo_common_default_fe_block_settings() {
         'region' => 'header_top_bar',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -41,
+        'weight' => -42,
       ),
       'osha_admin' => array(
         'region' => '',

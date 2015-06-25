@@ -244,6 +244,9 @@ function napo_film_strongarm() {
       'episode_popup' => array(
         'custom_settings' => TRUE,
       ),
+      'episode_list' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
