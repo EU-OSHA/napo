@@ -1155,7 +1155,7 @@ function osha_workflow_form_moderate_approve_submit($form, $form_state) {
  * {@inheritdoc}
  */
 function osha_workflow_mail($key, &$message, $params) {
-  $subject = variable_get('osha_mail_template_approval_subject', '[OSHA Website] CMW: ([node:nid]) [node:title-field]');
+  $subject = variable_get('osha_mail_template_approval_subject', '[NAPO Website] CMW: ([node:nid]) [node:title-field]');
   $body = variable_get('osha_mail_template_approval_body',
     'Dear <b>[user:name]</b>,
 

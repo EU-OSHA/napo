@@ -2338,7 +2338,7 @@ function osha_tmgmt_views_default_views_alter(&$views) {
  */
 function osha_tmgmt_mail($key, &$message, $params) {
   if ($key == 'notifyNodeIsReadyToPublish') {
-    $subject = variable_get('osha_mail_template_approval_subject', '[OSHA Website] CMW: ([node:nid]) [node:title-field]');
+    $subject = variable_get('osha_mail_template_approval_subject', '[NAPO Website] CMW: ([node:nid]) [node:title-field]');
     $body = variable_get('osha_mail_template_approval_body',
       'Dear [user:name],
       There was new content published/ready to publish that can be translated [node:url].
