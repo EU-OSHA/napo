@@ -85,6 +85,17 @@ p:last-child {
 	padding-right:5px;
 }
 
+.view-display-id-page_list .napo-film-video-type.napo-film-video-type-episode{
+	background: url('../images/ico-view-episodes.png') no-repeat 0px 2px;
+	padding-left: 25px;
+}
+
+.view-display-id-page_list .napo-film-video-type.napo-film-video-type-film{
+	background: url('../images/ico-film.png') no-repeat 0px 2px;
+	padding-left: 25px;
+}
+
+
 .title-archived{
 	display: block;
 	float: left;
@@ -208,56 +219,11 @@ p:last-child {
 	padding:0.3em;
 }
 
-.block-text-resize{
-	float:right;
-	padding-right: 1em;
-	padding-left: 1em;
-  	border-right: 2px solid #FFF;
-  	font-weight: bold;
-}
-
-#block-napo-common-napo-print-friendly{
-	float:right;
-	padding-right: 1em;
-	padding-left: 1em;
-  	border-right: 2px solid #FFF;
-  	font-weight: bold;
-  	height:24px;
-	h2{
-		margin:3px 0 0 0;
-		padding:0;
-	}
-}
-
-#block-content-cart-content-cart-summary{
-	background: url('../images/donwload-center-header.png') no-repeat 100% 40%;
-	float:right;
-	padding-right: 2em;
-	padding-left: 1em;
-	font-weight: bold;
-	margin-top:3px;
-
-	.content_cart_summary_count{
-		padding-left: 0.5em;
-		padding-right: 0.5em;
-	}
-
-	.content_cart_summary_count::before{
-			content: "( ";
-		}  
-		.content_cart_summary_count::after{
-			content: " )";
-		} 
-
-	.content_cart_summary_count.contet-cart-has-items{
-		color:@color-yellow-napo;
-	} 
-}
-
 //content home - FEATURED FILMS
 
 .napo-homepage-featured-films-container{
 	background:@color-blue-napo;
+	margin-right: 4px;
 
 	h2{
 		color:@color-yellow-napo;
@@ -1119,7 +1085,7 @@ p:last-child {
 		z-index:999999999;
 		content:" ";
 		width: 100%;
-		height: 124px;
+		height: 166px;
 	}
 
 	.field-name-field-image a:hover:after{  		
@@ -1130,8 +1096,8 @@ p:last-child {
 		content: " ";
 		width: 46px;
 		height: 46px;
-		margin-top: -82px;
-  		margin-left: 84px;
+		margin-top: -100px;
+  		margin-left: 87px;
 	}
 
 	.recommended_films_head{
@@ -1141,7 +1107,7 @@ p:last-child {
 	}
 
 	h5 a{
-		color:@color-yellow-napo;
+		color:#FFFFFF;
 	}
 }
 
@@ -1659,7 +1625,21 @@ p:last-child {
 		  color: #fff;
 		  display: block;
 		  background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
-		  margin-top:-68px;
+		  margin-top:-78px;
+		  position:absolute;
+		  max-width: 97.5%;
+		  z-index:999999999;
+
+		  p{
+		  	padding:1em;
+		  }
+	}
+
+	.attachment .views-field-body:hover{
+		  color: #fff;
+		  display: block;
+		  background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
+		  margin-top:-78px;
 		  position:absolute;
 		  max-width: 97.5%;
 		  z-index:999999999;
@@ -1673,7 +1653,20 @@ p:last-child {
 		  color: #fff;
 		  display: block;
 		  background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
-		  margin-top:-145px;
+		  margin-top:-155px;
+		  position:absolute;
+		  max-width: 92.4%;
+		  z-index:999999999;
+		  p{
+		  	padding:1em;
+		  }
+	}
+
+	.views-view-grid .views-field-body:hover{
+		  color: #fff;
+		  display: block;
+		  background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
+		  margin-top:-155px;
 		  position:absolute;
 		  max-width: 92.4%;
 		  z-index:999999999;
@@ -1764,6 +1757,23 @@ p:last-child {
 			padding-left: 10px;
 	}
 
+	ul li:nth-child(4){
+		background:url('../images/link.png') no-repeat;
+		width: 54px;
+		height: 40px;
+		text-indent: -99999px;
+		cursor:pointer;
+		a{
+			color:transparent;
+			padding-bottom: 18px;
+		}
+	}
+
+	ul li:nth-child(4):hover{
+			background:url('../images/link-hover.png') no-repeat;
+			padding-left: 10px;
+	}
+
 	.napo-share-widget > ul {
 		  display: none;
 		  background: #000099;
@@ -1811,6 +1821,16 @@ p:last-child {
 
 		.napo-share-widget ul li:nth-child(3){
 			background:url('../images/google-popup.png') no-repeat;
+			width: 54px;
+			height: 40px;
+			a{
+				color:transparent;
+				padding-bottom: 18px;
+			}
+		}
+
+		.napo-share-widget ul li:nth-child(4){
+			background:url('../images/google-popup-linkedin.png') no-repeat;
 			width: 54px;
 			height: 40px;
 			a{

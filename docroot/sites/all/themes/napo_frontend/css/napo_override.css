@@ -44,6 +44,7 @@ ul.nav li.dropdown ul.dropdown-menu {
 }
 .menu-name-menu-social-media-menu .introduction-image img{
     max-width: 25px;
+    border-radius: 3px;
 }
 
 

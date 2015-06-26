@@ -7177,6 +7177,57 @@ table .checkbox input[type="checkbox"] {
 .navbar-search .control-group {
   margin-bottom: 0px;
 }
+#block-menu-block-3 {
+  float: right;
+  padding-right: 1em;
+  border-right: 2px solid #FFF;
+}
+#block-menu-block-3 ul {
+  background: transparent;
+}
+#block-menu-block-3 li.first {
+  padding-right: 1em;
+}
+.block-text-resize {
+  float: right;
+  padding-right: 1em;
+  padding-left: 1em;
+  border-right: 2px solid #FFF;
+  font-weight: bold;
+}
+#block-napo-common-napo-print-friendly {
+  float: right;
+  padding-right: 1em;
+  padding-left: 1em;
+  border-right: 2px solid #FFF;
+  font-weight: bold;
+  height: 24px;
+}
+#block-napo-common-napo-print-friendly h2 {
+  margin: 3px 0 0 0;
+  padding: 0;
+}
+#block-content-cart-content-cart-summary {
+  background: url('../images/donwload-center-header.png') no-repeat 100% 40%;
+  float: right;
+  padding-right: 2em;
+  padding-left: 1em;
+  font-weight: bold;
+  margin-top: 3px;
+}
+#block-content-cart-content-cart-summary .content_cart_summary_count {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+#block-content-cart-content-cart-summary .content_cart_summary_count::before {
+  content: "( ";
+}
+#block-content-cart-content-cart-summary .content_cart_summary_count::after {
+  content: " )";
+}
+#block-content-cart-content-cart-summary .content_cart_summary_count.contet-cart-has-items {
+  color: #f7e235;
+}
 form#search-block-form {
   margin: 0;
 }
@@ -7296,6 +7347,14 @@ p:last-child {
 .napo-film-video-type {
   padding-right: 5px;
 }
+.view-display-id-page_list .napo-film-video-type.napo-film-video-type-episode {
+  background: url('../images/ico-view-episodes.png') no-repeat 0px 2px;
+  padding-left: 25px;
+}
+.view-display-id-page_list .napo-film-video-type.napo-film-video-type-film {
+  background: url('../images/ico-film.png') no-repeat 0px 2px;
+  padding-left: 25px;
+}
 .title-archived {
   display: block;
   float: left;
@@ -7395,48 +7454,9 @@ img {
 .header_top_bar .container.text-right {
   padding: 0.3em;
 }
-.block-text-resize {
-  float: right;
-  padding-right: 1em;
-  padding-left: 1em;
-  border-right: 2px solid #FFF;
-  font-weight: bold;
-}
-#block-napo-common-napo-print-friendly {
-  float: right;
-  padding-right: 1em;
-  padding-left: 1em;
-  border-right: 2px solid #FFF;
-  font-weight: bold;
-  height: 24px;
-}
-#block-napo-common-napo-print-friendly h2 {
-  margin: 3px 0 0 0;
-  padding: 0;
-}
-#block-content-cart-content-cart-summary {
-  background: url('../images/donwload-center-header.png') no-repeat 100% 40%;
-  float: right;
-  padding-right: 2em;
-  padding-left: 1em;
-  font-weight: bold;
-  margin-top: 3px;
-}
-#block-content-cart-content-cart-summary .content_cart_summary_count {
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-}
-#block-content-cart-content-cart-summary .content_cart_summary_count::before {
-  content: "( ";
-}
-#block-content-cart-content-cart-summary .content_cart_summary_count::after {
-  content: " )";
-}
-#block-content-cart-content-cart-summary .content_cart_summary_count.contet-cart-has-items {
-  color: #f7e235;
-}
 .napo-homepage-featured-films-container {
   background: #1f3695;
+  margin-right: 4px;
 }
 .napo-homepage-featured-films-container h2 {
   color: #f7e235;
@@ -8126,7 +8146,7 @@ img {
   z-index: 999999999;
   content: " ";
   width: 100%;
-  height: 124px;
+  height: 166px;
 }
 #recommended_films .field-name-field-image a:hover:after {
   background: url('../images/play-video-small.png') no-repeat;
@@ -8136,8 +8156,8 @@ img {
   content: " ";
   width: 46px;
   height: 46px;
-  margin-top: -82px;
-  margin-left: 84px;
+  margin-top: -100px;
+  margin-left: 87px;
 }
 #recommended_films .recommended_films_head {
   color: #f7e235;
@@ -8145,7 +8165,7 @@ img {
   font-weight: bold;
 }
 #recommended_films h5 a {
-  color: #f7e235;
+  color: #FFFFFF;
 }
 .view-napo-s-film-episodes {
   padding: 2em;
@@ -8544,7 +8564,7 @@ img {
   color: #fff;
   display: block;
   background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
-  margin-top: -68px;
+  margin-top: -78px;
   position: absolute;
   max-width: 97.5%;
   z-index: 999999999;
@@ -8552,16 +8572,40 @@ img {
 .view-napos-gallery .attachment .views-field-field-image:hover ~ .views-field-body p {
   padding: 1em;
 }
+.view-napos-gallery .attachment .views-field-body:hover {
+  color: #fff;
+  display: block;
+  background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
+  margin-top: -78px;
+  position: absolute;
+  max-width: 97.5%;
+  z-index: 999999999;
+}
+.view-napos-gallery .attachment .views-field-body:hover p {
+  padding: 1em;
+}
 .view-napos-gallery .views-view-grid .views-field-field-image:hover ~ .views-field-body {
   color: #fff;
   display: block;
   background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
-  margin-top: -145px;
+  margin-top: -155px;
   position: absolute;
   max-width: 92.4%;
   z-index: 999999999;
 }
 .view-napos-gallery .views-view-grid .views-field-field-image:hover ~ .views-field-body p {
+  padding: 1em;
+}
+.view-napos-gallery .views-view-grid .views-field-body:hover {
+  color: #fff;
+  display: block;
+  background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
+  margin-top: -155px;
+  position: absolute;
+  max-width: 92.4%;
+  z-index: 999999999;
+}
+.view-napos-gallery .views-view-grid .views-field-body:hover p {
   padding: 1em;
 }
 .view-napos-gallery .view-content .views-view-grid .row {
@@ -8628,6 +8672,21 @@ img {
   background: url('../images/google-hover.png') no-repeat;
   padding-left: 10px;
 }
+.napo-share-widget ul li:nth-child(4) {
+  background: url('../images/link.png') no-repeat;
+  width: 54px;
+  height: 40px;
+  text-indent: -99999px;
+  cursor: pointer;
+}
+.napo-share-widget ul li:nth-child(4) a {
+  color: transparent;
+  padding-bottom: 18px;
+}
+.napo-share-widget ul li:nth-child(4):hover {
+  background: url('../images/link-hover.png') no-repeat;
+  padding-left: 10px;
+}
 .napo-share-widget .napo-share-widget > ul {
   display: none;
   background: #000099;
@@ -8670,6 +8729,15 @@ img {
   height: 40px;
 }
 #cboxWrapper #cboxTitle .napo-share-widget ul li:nth-child(3) a {
+  color: transparent;
+  padding-bottom: 18px;
+}
+#cboxWrapper #cboxTitle .napo-share-widget ul li:nth-child(4) {
+  background: url('../images/google-popup-linkedin.png') no-repeat;
+  width: 54px;
+  height: 40px;
+}
+#cboxWrapper #cboxTitle .napo-share-widget ul li:nth-child(4) a {
   color: transparent;
   padding-bottom: 18px;
 }
@@ -9214,12 +9282,14 @@ footer .jcarousel-skin-default .jcarousel-item {
     width: 100%;
   }
   .menu.nav.navbar-nav .expanded.dropdown {
-    min-width: 100%;
-    max-width: 100%;
+    min-width: 100%!important;
+    max-width: 100%!important;
+    height: auto;
+    padding-left: 30px;
   }
   .menu.nav.navbar-nav .dropdown-menu {
-    min-width: 100%;
-    max-width: 100%;
-    position: static;
+    min-width: 103%!important;
+    max-width: 103%!important;
+    position: relative;
   }
 }

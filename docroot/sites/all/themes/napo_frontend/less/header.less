@@ -127,6 +127,69 @@
 }
 
 
+//Header links
+
+#block-menu-block-3{
+  float:right;
+  padding-right: 1em;
+  border-right: 2px solid #FFF;
+
+  ul{
+    background:transparent;
+  }
+
+  li.first{
+    padding-right: 1em;
+  }
+}
+
+.block-text-resize{
+  float:right;
+  padding-right: 1em;
+  padding-left: 1em;
+    border-right: 2px solid #FFF;
+    font-weight: bold;
+}
+
+#block-napo-common-napo-print-friendly{
+  float:right;
+  padding-right: 1em;
+  padding-left: 1em;
+    border-right: 2px solid #FFF;
+    font-weight: bold;
+    height:24px;
+  h2{
+    margin:3px 0 0 0;
+    padding:0;
+  }
+}
+
+#block-content-cart-content-cart-summary{
+  background: url('../images/donwload-center-header.png') no-repeat 100% 40%;
+  float:right;
+  padding-right: 2em;
+  padding-left: 1em;
+  font-weight: bold;
+  margin-top:3px;
+
+  .content_cart_summary_count{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .content_cart_summary_count::before{
+      content: "( ";
+    }  
+    .content_cart_summary_count::after{
+      content: " )";
+    } 
+
+  .content_cart_summary_count.contet-cart-has-items{
+    color:@color-yellow-napo;
+  } 
+}
+
+
 // Search form.
 
 form#search-block-form {
