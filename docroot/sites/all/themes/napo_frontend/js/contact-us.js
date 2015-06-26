@@ -1,4 +1,10 @@
-jQuery(document).ready(function () { 	
+//Fixing responsive menu to iPhone
+jQuery(document).ready(function() {
+    jQuery(".dropdown-toggle").dropdown();
+});
+
+//Contact Us
+jQuery(document).ready(function () { 
 	var hiddenContent = jQuery(".webform-client-form");
 	jQuery(".webform-client-form").css("display","none");
 	jQuery(".contact-form-widget-container h2").click(
