@@ -525,7 +525,10 @@ class OshaWorkflowPermissions {
       global $user;
     }
     if (isset($node->workbench_moderation)) {
-      $node_in_rm_section = osha_workflow_node_in_rm_section($node, $user);
+      $node_in_rm_section = FALSE;
+      if (self::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user)) {
+        $node_in_rm_section = osha_workflow_node_in_rm_section($node, $user);
+      }
       $is_admin = self::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user);
       return $is_admin || $node_in_rm_section;
     }
