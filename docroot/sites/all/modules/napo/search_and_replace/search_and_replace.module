@@ -34,6 +34,34 @@ function search_and_replace_menu() {
     'theme arguments' => array('admin_theme'),
   );
 
+  $items['node/%node/search_replace/search'] = array(
+    'title' => 'Search',
+    'access arguments' => array('use search and replace'),
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'theme callback' => 'variable_get',
+    'theme arguments' => array('admin_theme'),
+  );
+
+  $items['node/%node/search_replace/undo'] = array(
+    'title' => 'Undo',
+    'description' => 'Find (and replace) keywords in node content.',
+    'page callback' => 'search_and_replace_undo_page',
+    'page arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+    'access arguments' => array('use search and replace'),
+    'theme callback' => 'variable_get',
+    'theme arguments' => array('admin_theme'),
+  );
+
+  $items['node/%node/search_replace/undo/%'] = array(
+    'title' => 'Undo',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('search_and_replace_undo_form', 4, 1),
+    'access arguments' => array('undo search and replace'),
+    'type' => MENU_CALLBACK,
+    'weight' => 1,
+  );
+
   $items['admin/content/search_replace/settings'] = array(
     'title' => 'Settings',
     'page callback' => 'drupal_get_form',
@@ -397,6 +425,9 @@ function search_and_replace_form_replace_submit($form, &$form_state) {
   else {
     // Build settings array.
     $values = $form['#values'];
+    if (!empty($form['#node'])) {
+      $values['node'] = $form['#node'];
+    }
     $settings = search_and_replace_get_settings($values);
 
     $nids = array_filter($values['search_results']);
@@ -630,17 +661,20 @@ function search_and_replace_insert_operation($settings, $results) {
   // Filter settings.
   $allowed_settings = array('search', 'replace', 'version', 'preceded',
     'followed', 'wholeword', 'bundles', 'regex', 'mode');
-  $settings = array_intersect_key($settings, drupal_map_assoc($allowed_settings));
+  $filtered_settings = array_intersect_key($settings, drupal_map_assoc($allowed_settings));
 
   $operation = array(
-    'search' => $settings['search'],
-    'replaced' => $settings['replace'],
-    'options' => json_encode($settings),
+    'search' => $filtered_settings['search'],
+    'replaced' => $filtered_settings['replace'],
+    'options' => json_encode($filtered_settings),
     'uid' => $user->uid,
     'undo_data' => json_encode($results),
     'undone' => 0,
     'created' => time(),
   );
+  if (!empty($settings['node'])) {
+    $operation['nid'] = $settings['node']->nid;
+  }
   drupal_write_record('search_and_replace', $operation);
 }
 

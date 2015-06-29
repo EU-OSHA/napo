@@ -1,16 +1,23 @@
 <?php
 
-function search_and_replace_undo_page() {
+function search_and_replace_undo_page($node = NULL) {
   $page = array();
-  $results = db_select('search_and_replace', 'sr')
-    ->fields('sr')
-    ->extend('PagerDefault')
+  $query = db_select('search_and_replace', 'sr')
+    ->fields('sr');
+  if (!empty($node)) {
+    $query->condition('sr.nid', $node->nid);
+  }
+  else {
+    $query->condition('sr.nid', NULL);
+  }
+  $results = $query->extend('PagerDefault')
     ->limit(25)
     ->orderBy('sr.id', 'desc')
     ->execute();
 
   $header = array('Search', 'Replace', 'Settings', 'User', 'Date', 'Undone', 'Operations');
   $table_rows = array();
+  $idx = 0;
   while ($row = $results->fetchAssoc()) {
     $author = user_load($row['uid']);
     $table_rows[$row['id']] = array(
@@ -23,9 +30,25 @@ function search_and_replace_undo_page() {
     $table_rows[$row['id']][] = empty($row['undone']) ? 'No' : 'Yes';
 
     if (empty($row['undone'])) {
-      $table_rows[$row['id']][] = l('Undo revisions', 'admin/content/search_replace/undo/' . $row['id'])
-      . ' | ' . l('Reverse search', 'admin/content/search_replace', array('query' => array('undo_id' => $row['id'])));
+      if (empty($node)) {
+        $operations = '';
+        if ($idx == 0) {
+          $operations .= l('Undo revisions', 'admin/content/search_replace/undo/' . $row['id'])
+          . ' | ';
+        }
+        $operations .= l('Reverse search', 'admin/content/search_replace', array('query' => array('undo_id' => $row['id'])));
+        $table_rows[$row['id']][] = $operations;
+      } else {
+        $operations = '';
+        if ($idx == 0) {
+          $operations .= l('Undo revisions', 'node/' . $node->nid . '/search_replace/undo/' . $row['id'])
+            . ' | ';
+        }
+        $operations .= l('Reverse search', 'node/' . $node->nid . '/search_replace', array('query' => array('undo_id' => $row['id'])));
+        $table_rows[$row['id']][] = $operations;
+      }
     }
+    $idx++;
   }
 
   $page['table'] = array(
@@ -46,7 +69,7 @@ function search_and_replace_load_operation($id) {
   return $result;
 }
 
-function search_and_replace_undo_form($form, &$form_state, $id) {
+function search_and_replace_undo_form($form, &$form_state, $id, $node = NULL) {
   $operation = search_and_replace_load_operation($id);
   $form_state['#operation'] = $operation;
   $undo_data = json_decode($operation['undo_data'], true);
@@ -71,7 +94,11 @@ function search_and_replace_undo_form_submit($form, &$form_state) {
     'error_message' => t('Replace Batch has encountered an error.'),
   );
   batch_set($batch);
-  batch_process('admin/content/search_replace/undo');
+  $url = 'admin/content/search_replace/undo';
+  if (!empty($form_state['build_info']['args'][1]->nid)) {
+    $url = 'node/' . $form_state['build_info']['args'][1]->nid . '/search_replace/undo';
+  }
+  batch_process($url);
 }
 
 /**

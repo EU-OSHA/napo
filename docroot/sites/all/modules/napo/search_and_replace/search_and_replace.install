@@ -49,6 +49,13 @@ function search_and_replace_schema() {
         'unsigned' => TRUE,
         'not null' => TRUE,
       ),
+      'nid' => array(
+        'description' => 'Nid if search was performed when in node context',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+        'default' => NULL,
+      ),
       'created' => array(
         'description' => 'Created timestamp.',
         'type' => 'int',
@@ -62,8 +69,22 @@ function search_and_replace_schema() {
         'table' => 'users',
         'columns' => array('uid' => 'uid'),
       ),
+      'nid' => array(
+        'table' => 'node',
+        'columns' => array('nid' => 'nid'),
+      ),
     ),
   );
 
   return $schema;
+}
+
+/**
+ * Add nid field to search_and_replace.
+ */
+function search_and_replace_update_7001() {
+  if (!db_field_exists('search_and_replace', 'nid')) {
+    $schema = search_and_replace_schema();
+    db_add_field('search_and_replace', 'nid', $schema['search_and_replace']['fields']['nid']);
+  }
 }
