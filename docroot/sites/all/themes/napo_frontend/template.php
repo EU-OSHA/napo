@@ -22,7 +22,16 @@ function napo_frontend_back_button(&$vars){
     'attributes' => array(
       'class' => 'back_button',
     ),
+    'html' => TRUE,
   );
+
+  // For view episodes panel, the breadcrumb it's not available here.
+  // So it's hardcoded.
+  $args = arg();
+  if (end($args) == 'view-episodes') {
+    $vars['back_button'] = l(t('Back to !link', array('!link' => t('Films'))), 'napos-films/films', $options);
+    return;
+  }
 
   if (empty($referer) || strpos($referer, $base_url) === FALSE) {
     unset($vars['back_button']);
@@ -98,4 +107,16 @@ function napo_frontend_napo_film_tag_facet_link($variables) {
     'html' => TRUE,
   );
   return l($icon . $variables['name'], $variables['link'], $options);
+}
+
+/**
++ * Implements theme_pager().
++ */
+function napo_frontend_pager($variables) {
+  // Overwrite pager links.
+  $variables['tags'][0] = '«';
+  $variables['tags'][1] = '‹';
+  $variables['tags'][3] = '›';
+  $variables['tags'][4] = '»';
+  return theme_pager($variables);
 }

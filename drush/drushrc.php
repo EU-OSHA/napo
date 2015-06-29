@@ -278,6 +278,9 @@ $options['init-modules'] = array(
   'ctools',
   'entity',
   'aggregator',
+  'memcache_storage',
+  'varnish',
+//  'elysia_cron',
 
   'locale',
   'entity_translation',
@@ -365,7 +368,7 @@ $options['init-modules'] = array(
   'mpac',
   'linkit',
   'pathologic',
-  'scanner',
+  'search_and_replace',
   'nodeblock',
   'quicktabs',
   'context',
@@ -423,11 +426,6 @@ $options['init-modules'] = array(
 
   'calendar',
   'date_popup',
-  'feeds',
-  'feeds_import',
-  'feeds_ui',
-  'feeds_tamper',
-  'feeds_tamper_ui',
   'views_php',
 
   'views_json',

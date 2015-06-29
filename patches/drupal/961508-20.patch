@@ -1,0 +1,35 @@
+diff --git a/includes/common.inc b/includes/common.inc
+index d34c19d..ec50b6c 100644
+--- a/includes/common.inc
++++ b/includes/common.inc
+@@ -4873,7 +4873,14 @@ function drupal_get_private_key() {
+  *   An additional value to base the token on.
+  */
+ function drupal_get_token($value = '') {
+-  return drupal_hmac_base64($value, session_id() . drupal_get_private_key() . drupal_get_hash_salt());
++  // For mixed HTTP(S) sessions, use a constant identifier so that tokens can be shared between protocols.
++  if (variable_get('https', FALSE) && $GLOBALS['is_https'] && isset($_COOKIE[substr(session_name(), 1)])) {
++    $session_id = $_COOKIE[substr(session_name(), 1)];
++  }
++  else {
++    $session_id = session_id();
++  }
++  return drupal_hmac_base64($value, $session_id . drupal_get_private_key() . drupal_get_hash_salt());
+ }
+ 
+ /**
+diff --git a/includes/form.inc b/includes/form.inc
+index 8c3b14a..9e4039b 100644
+--- a/includes/form.inc
++++ b/includes/form.inc
+@@ -1101,6 +1101,10 @@ function drupal_validate_form($form_id, &$form, &$form_state) {
+       form_set_error('form_token', t('The form has become outdated. Copy any unsaved work in the form below and then <a href="@link">reload this page</a>.', array('@link' => $url)));
+     }
+   }
++  // Ensure the correct protocol when #https is set.
++  if (!empty($form['#https']) && !$GLOBALS['is_https']) {
++    form_set_error(NULL, t('This form requires HTTPS.  Contact the site administrator if the problem persists.'));
++  }
+ 
+   _form_validate($form, $form_state, $form_id);
+   $validated_forms[$form_id] = TRUE;

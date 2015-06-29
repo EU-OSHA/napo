@@ -53,9 +53,12 @@ function osha_workflow_strongarm() {
     'main-menu' => 'main-menu',
     'devel' => 0,
     'features' => 0,
+    'menu-footer-menu' => 0,
     'management' => 0,
     'navigation' => 0,
+    'menu-social-media-menu' => 0,
     'user-menu' => 0,
+    'menu-utility-links' => 0,
   );
   $export['workbench_access_menu'] = $strongarm;
 
@@ -170,9 +173,10 @@ function osha_workflow_strongarm() {
   $strongarm->name = 'workbench_access_taxonomy';
   $strongarm->value = array(
     'nace_codes' => 0,
-    'flickr_tags' => 0,
     'tags' => 0,
+    'target_ages' => 0,
     'thesaurus' => 0,
+    'video_type' => 0,
   );
   $export['workbench_access_taxonomy'] = $strongarm;
 

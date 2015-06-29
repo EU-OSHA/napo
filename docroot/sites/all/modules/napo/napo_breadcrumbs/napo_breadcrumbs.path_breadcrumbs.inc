@@ -13,7 +13,7 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'download_center';
-  $path_breadcrumb->name = 'Download center';
+  $path_breadcrumb->name = 'Download centre';
   $path_breadcrumb->path = 'download-center';
   $path_breadcrumb->data = array(
     'titles' => array(

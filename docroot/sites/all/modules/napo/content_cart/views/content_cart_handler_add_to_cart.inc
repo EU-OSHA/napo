@@ -24,7 +24,7 @@ class content_cart_handler_add_to_cart extends views_handler_field {
       }
       $options = $this->options;
       $label = $options['contant_add_to_cart_button_label'];
-      return '<button class="btn content-cart-add-to-cart-btn" data-value="' . $entity_type . '-' . $entity_id . '" ' . $disabled . '>'
+      return '<button title="' . $label . '" class="btn content-cart-add-to-cart-btn" data-value="' . $entity_type . '-' . $entity_id . '" ' . $disabled . '>'
         . $label . '</button>';
     }
   }

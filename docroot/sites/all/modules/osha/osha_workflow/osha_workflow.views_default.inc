@@ -198,10 +198,9 @@ function osha_workflow_views_default_views() {
   $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['state']['field'] = 'state';
   $handler->display->display_options['filters']['state']['value'] = array(
-    'to_be_approved' => 'to_be_approved',
+    'ready_to_publish' => 'ready_to_publish',
   );
   $handler->display->display_options['path'] = 'admin/workbench/approve';
-  $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Needs Approval';
   $handler->display->display_options['menu']['weight'] = '5';
   $handler->display->display_options['menu']['context'] = 0;
@@ -249,31 +248,6 @@ function osha_workflow_views_default_views() {
   $handler->display->display_options['filters']['current']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['current']['field'] = 'current';
   $handler->display->display_options['filters']['current']['value'] = '1';
-  /* Filter criterion: Workbench Moderation: State */
-  $handler->display->display_options['filters']['state']['id'] = 'state';
-  $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
-  $handler->display->display_options['filters']['state']['field'] = 'state';
-  $handler->display->display_options['filters']['state']['value'] = array(
-    'rejected' => 'rejected',
-    'approved' => 'approved',
-    'needs_review' => 'needs_review',
-  );
-  $handler->display->display_options['filters']['state']['exposed'] = TRUE;
-  $handler->display->display_options['filters']['state']['expose']['operator_id'] = 'state_op';
-  $handler->display->display_options['filters']['state']['expose']['label'] = 'State';
-  $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
-  $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
-  $handler->display->display_options['filters']['state']['expose']['multiple'] = TRUE;
-  $handler->display->display_options['filters']['state']['expose']['remember_roles'] = array(
-    2 => '2',
-    1 => 0,
-    3 => 0,
-    4 => 0,
-    5 => 0,
-    6 => 0,
-    7 => 0,
-  );
-  $handler->display->display_options['filters']['state']['expose']['reduce'] = TRUE;
   $handler->display->display_options['path'] = 'admin/workbench/manager';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Needs PM Review';
@@ -312,7 +286,6 @@ function osha_workflow_views_default_views() {
   $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['state']['field'] = 'state';
   $handler->display->display_options['filters']['state']['value'] = array(
-    'final_draft' => 'final_draft',
     'ready_to_publish' => 'ready_to_publish',
   );
   $handler->display->display_options['filters']['state']['expose']['operator_id'] = 'state_op';
@@ -588,10 +561,6 @@ function osha_workflow_views_default_views() {
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
   $handler->display->display_options['fields']['type']['field'] = 'type';
-  /* Field: Broken/missing handler */
-  $handler->display->display_options['fields']['field_activity']['id'] = 'field_activity';
-  $handler->display->display_options['fields']['field_activity']['table'] = 'field_data_field_activity';
-  $handler->display->display_options['fields']['field_activity']['field'] = 'field_activity';
   /* Field: User: Name */
   $handler->display->display_options['fields']['name']['id'] = 'name';
   $handler->display->display_options['fields']['name']['table'] = 'users';
@@ -733,7 +702,6 @@ function osha_workflow_views_default_views() {
     t('My Content'),
     t('My Content Non-Moderated'),
     t('revision user'),
-    t('Broken handler field_data_field_activity.field_activity'),
   );
   $export['osh_workflow_admin'] = $view;
 

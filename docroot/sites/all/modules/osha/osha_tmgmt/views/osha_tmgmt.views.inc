@@ -17,6 +17,26 @@ function osha_tmgmt_views_data_alter(&$data) {
 }
 
 /**
+ * Implements hook_views_pre_render().
+ */
+function osha_tmgmt_views_pre_render(&$view) {
+  if ($view->name == 'tmgmt_node_selection_view') {
+    // For publication, the link has to be with /view.
+    // Couldn't use field_title with formatter because it doesn't take the
+    // current revision title.
+    foreach ($view->result as &$result) {
+      $entity = $result->_field_data['nid']['entity'];
+      if ($entity->type == 'publication') {
+        $result->field_title_field[0]['rendered']['#markup'] = l($result->node_revision_title, 'node/' . $entity->nid . '/view');
+      }
+      else {
+        $result->field_title_field[0]['rendered']['#markup'] = l($result->node_revision_title, 'node/' . $entity->nid);
+      }
+    }
+  }
+}
+
+/**
  * Alter the view tmgmt_node_selection_view to show latest node state.
  *
  * Alter LEFT JOIN node_revision ON node.vid = node_revision.vid

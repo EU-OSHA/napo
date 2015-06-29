@@ -17,10 +17,16 @@ function napo_film_field_formatter_info() {
   return $info;
 }
 
+/**
+ * Implements hook_field_formatter_info_alter().
+ */
 function napo_film_field_formatter_info_alter(&$info) {
+  // Define extra fields for settings form to save them.
   $info['title_linked']['settings']['napo_film_title_include_type'] = FALSE;
   $info['title_linked']['settings']['napo_film_title_include_episode_count'] = FALSE;
   $info['title_linked']['settings']['napo_film_title_link_episode_popup'] = FALSE;
+  $info['title_linked']['settings']['napo_film_title_link_with_film'] = FALSE;
+  $info['title_linked']['settings']['napo_film_title_link_with_film_value'] = '!episode from the film !film';
 }
 
 
@@ -97,7 +103,25 @@ function napo_film_napo_common_field_formatter_settings_form_alter($field, $inst
     '#title' => t('Show episode popup'),
     '#default_value' => $settings['napo_film_title_link_episode_popup'],
   );
-  return $form;
+  $form['napo_film_title_link_with_film'] = array(
+    '#type' => 'checkbox',
+    '#title' => t("Show episode title with it's film"),
+    '#default_value' => $settings['napo_film_title_link_with_film'],
+  );
+  $form['napo_film_title_link_with_film_value'] = array(
+    '#type' => 'textfield',
+    '#title' => t('The value of episode title'),
+    '#default_value' => $settings['napo_film_title_link_with_film_value'],
+    '#description' => t('You can use !episode and !film placeholders'),
+    '#states' => array(
+      'visible' => array(
+        ':input[name$="napo_film_title_link_episode_title_with_film]"]' => array('checked' => TRUE),
+      ),
+      'invisible' => array(
+        ':input[name$="napo_film_title_link_episode_title_with_film]"]' => array('checked' => FALSE),
+      ),
+    ),
+  );
 }
 
 /**
@@ -168,22 +192,39 @@ function napo_film_field_formatter_view($entity_type, $entity, $field, $instance
     case 'title_linked':
       $output = isset($items[0]) ? $items[0]['safe_value'] : '';
       $type = napo_film_video_get_type($entity);
+
       // Add Film or Episode label for nodes.
       if (!empty($output) && !empty($settings['napo_film_title_include_type'])) {
         switch ($type) {
           case 'episode':
             if (!empty($settings['napo_film_title_include_episode_count'])) {
               $weight = napo_film_get_episode_number($entity) + 1;
-              $output = '<span class="napo-film-video-type">' . t('Episode @weight', array('@weight' => sprintf('%02d', $weight))) . '</span>' . $output;
+              $output = '<span class="napo-film-video-type napo-film-video-type-episode">' . t('Episode @weight', array('@weight' => sprintf('%02d', $weight))) . '</span>' . $output;
             }
             else {
-              $output = '<span class="napo-film-video-type">' . t('Episode') . '</span>' . $output;
+              $output = '<span class="napo-film-video-type napo-film-video-type-episode">' . t('Episode') . '</span>' . $output;
             }
             break;
 
           case 'film':
-            $output = '<span class="napo-film-video-type">' . t('Film') . '</span>' . $output;
+            $output = '<span class="napo-film-video-type napo-film-video-type-film">' . t('Film') . '</span>' . $output;
             break;
+        }
+      }
+
+      // Render the episode title as in defined format.
+      if (!empty($settings['napo_film_title_link_with_film'])
+        && !empty($settings['napo_film_title_link_with_film_value'])) {
+        $film = field_get_items('node', $entity, 'field_napo_film');
+        if (!empty($film)) {
+          $film = current($film)['target_id'];
+          $film_node = node_load($film);
+          $film_wrapper = entity_metadata_wrapper('node', $film_node);
+          $film_title = l($film_wrapper->title_field->value(), 'node/' . $film_node->nid);
+          $output = t($settings['napo_film_title_link_with_film_value'], array(
+            '!episode' => '<span class="epsiode-title">' . $output . '</span>',
+            '!film' => '<span class="film-title">' . $film_title . '</span>',
+          ));
         }
       }
 
@@ -214,7 +255,7 @@ function napo_film_field_formatter_view($entity_type, $entity, $field, $instance
         );
 
         if (!empty($settings['title_class'])) {
-          $element['#attributes'] = array('class' => $settings['title_class']);
+          $element['element']['#attributes'] = array('class' => $settings['title_class']);
         }
 
         $output = theme('html_tag', $element);

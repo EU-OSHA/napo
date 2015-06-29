@@ -103,6 +103,48 @@ class osha_tmgmt_handler_field_tmgmt_job_item_operations extends tmgmt_handler_f
          'attributes' => array('target' => '_blank'),
       );
     }
+    if ($item->state == TMGMT_JOB_ITEM_STATE_ACCEPTED
+        && $item->item_type == 'menu_link'
+        && user_access('preview layout validation')) {
+      $item_id = str_replace('menu:item:', '', $item->item_id);
+      $url = url(
+        sprintf('admin/structure/menu/item/%s/translate/%s', $item_id, $item->target_language),
+        array('absolute' => TRUE)
+      );
+      $url = $url . '?destination=admin/tmgmt/jobs/' . $item->tjid;
+      $element['#links']['edit'] = array(
+        'href' => $url,
+        'title' => t('edit'),
+      );
+    }
+    if ($item->state == TMGMT_JOB_ITEM_STATE_ACCEPTED
+        && $item->item_type == 'default'
+        && user_access('preview layout validation')) {
+
+      $url = url(
+        sprintf('admin/config/regional/translate/edit/%s/%s', $item->item_id, $item->target_language),
+        array('absolute' => TRUE)
+      );
+      $url = $url . '?destination=admin/tmgmt/jobs/' . $item->tjid;
+      $element['#links']['edit'] = array(
+        'href' => $url,
+        'title' => t('edit'),
+      );
+    }
+    if ($item->state == TMGMT_JOB_ITEM_STATE_ACCEPTED
+        && $item->item_type == 'taxonomy_term'
+        && user_access('preview layout validation')) {
+
+      $url = url(
+        sprintf('taxonomy/term/%s/edit/%s', $item->item_id, $item->target_language),
+        array('absolute' => TRUE)
+      );
+      $url = $url . '?destination=admin/tmgmt/jobs/' . $item->tjid;
+      $element['#links']['edit'] = array(
+        'href' => $url,
+        'title' => t('edit'),
+      );
+    }
     return drupal_render($element);
   }
 }

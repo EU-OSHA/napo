@@ -270,12 +270,7 @@ footer.footer.container section.block-menu-block{
     top: 0 !important;
 }
 
-
 /* episode carousel fix */
-/* TODO @Ivan adapt this fix to your less */
-
-
-
 .view-episode-list .jcarousel-item {
     position: relative;
 }

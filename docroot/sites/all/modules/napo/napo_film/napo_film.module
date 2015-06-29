@@ -81,7 +81,7 @@ function napo_film_module_implements_alter(&$implementations, $hook) {
  * Implements hook_cron().
  */
 function napo_film_cron() {
-  // Remove old zips created for download center.
+  // Remove old zips created for Download centre.
   $zips = file_scan_directory(NAPO_FILM_DOWN_CENTER_PATH, '/.*\.zip$/');
   if (!empty($zips)) {
     foreach (array_keys($zips) as $zip) {
@@ -104,7 +104,7 @@ function napo_film_block_info() {
   );
 
   $blocks['download_cart_form'] = array(
-    'info' => t('Download center cart form'),
+    'info' => t('Download centre cart form'),
   );
 
 
@@ -171,11 +171,11 @@ function napo_film_set_view_mode($mode) {
  */
 function napo_film_views_pre_view( view &$view, &$display_id, &$args) {
   if ($view->name == 'napo_films') {
-    if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'list') {
-      $view->set_display('page_list');
+    if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'grid') {
+      $view->set_display('page_grid');
     }
     else {
-      $view->set_display('page_grid');
+      $view->set_display('page_list');
     }
 
     // When searching (word or tag) in Film page, episode should be included.
@@ -226,11 +226,19 @@ function napo_film_render_episode($nid) {
     $render_node = node_view($node, 'episode_popup');
     // Unset the title, use it in template (modal header).
     unset($render_node['title_field']);
-    $title = field_get_items('node', $node, 'title_field');
-    $title = current($title)['value'];
+    $display_settings = array(
+      'label' => 'hidden',
+      'type' => 'title_linked',
+      'settings' => array(
+        'napo_film_title_include_type' => 1,
+        'napo_film_title_include_episode_count' => 1,
+        'title_style' => 'div',
+      ),
+    );
+    $title_episode = field_view_field('node', $node, 'title_field', $display_settings);
     $content = theme('napo_film_ajax_episode', array(
       'content' => drupal_render($render_node),
-      'title' => $title,
+      'title' => render($title_episode),
       'nid' => $nid,
       )
     );
@@ -326,6 +334,14 @@ function napo_film_form_napo_video_node_form_alter(&$form, &$form_state) {
       ),
     ),
   );
+  // Show publication date only for episodes.
+  $form['field_publication_date'] += array(
+    '#states' => array(
+      'visible' => array(
+        'select[name^="field_video_type"]' => array('value' => $types['film']),
+      ),
+    ),
+  );
 }
 
 function napo_film_video_get_type($node) {
@@ -371,8 +387,14 @@ function napo_film_node_submit($node, $form, &$form_state) {
     if (!empty($node->field_napo_film[LANGUAGE_NONE][0]['target_id'])) {
       $film = node_load($node->field_napo_film[LANGUAGE_NONE][0]['target_id']);
       $main_tag = field_get_items('node', $film, 'field_main_tag');
-      drupal_set_message('Main Tag synced with episode\'s film!', 'warning');
+      drupal_set_message("Main Tag synced with episode's film!", 'warning');
       $node->field_main_tag[LANGUAGE_NONE] = $main_tag;
+
+      $publ_date = field_get_items('node', $film, 'field_publication_date');
+      if (!empty($publ_date)) {
+        $node->field_publication_date[LANGUAGE_NONE] = $publ_date;
+        drupal_set_message("Publication date synced with episode's film!", 'warning');
+      }
     }
   }
   elseif ($type == 'film') {
@@ -427,7 +449,7 @@ function napo_film_preprocess_node(&$vars) {
               $film_node = node_load($film);
               $film_wrapper = entity_metadata_wrapper('node', $film_node);
               $film_title = l($film_wrapper->title->value(), 'node/' . $film_node->nid);
-              $label = t('View other episodes of film !film', array('!film' => $film_title));
+              $label = t('View other episodes from film !film', array('!film' => $film_title));
               $vars['episode_list_episode'] = '<div class="episode-list-label">' . $label . '</div>';
               $vars['episode_list_episode'] .= views_embed_view('episode_list', 'block_2', $film);
             }
@@ -459,6 +481,8 @@ function napo_film_preprocess_node(&$vars) {
             'settings' => array(
               'napo_film_title_include_type' => 1,
               'napo_film_title_include_episode_count' => 1,
+              'title_class' => array('napo-film-title-2'),
+              'title_style' => 'div',
             ),
           );
           $title_episode = field_view_field('node', $node, 'title_field', $display_settings);

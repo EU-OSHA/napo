@@ -36,6 +36,19 @@ function napo_gallery_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'grid';
   $handler->display->display_options['style_options']['columns'] = '3';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Relationship: Entityqueue: Node Queue */
+  $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
+  $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'node';
+  $handler->display->display_options['relationships']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
+  $handler->display->display_options['relationships']['entityqueue_relationship']['limit'] = 1;
+  $handler->display->display_options['relationships']['entityqueue_relationship']['queues'] = array(
+    'napos_gallery' => 'napos_gallery',
+    'consortium_partners' => 0,
+    'more_representative_section' => 0,
+    'frontpage_video' => 0,
+    'napos_friends' => 0,
+    'frontpage_carousel_featured' => 0,
+  );
   /* Field: Field: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
@@ -88,6 +101,11 @@ function napo_gallery_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'napo_album' => 'napo_album',
   );
+  /* Filter criterion: Entityqueue: Node In Queue */
+  $handler->display->display_options['filters']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
+  $handler->display->display_options['filters']['entityqueue_relationship']['table'] = 'node';
+  $handler->display->display_options['filters']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
+  $handler->display->display_options['filters']['entityqueue_relationship']['value'] = '0';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
@@ -386,10 +404,10 @@ function napo_gallery_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('Node Queue'),
     t('Page'),
     t('[title_field][field_publication_date]'),
     t('Attachment'),
-    t('Node Queue'),
     t('Block'),
     t('Content entity referenced from field_napo_image'),
     t('[body][share_widget]'),
