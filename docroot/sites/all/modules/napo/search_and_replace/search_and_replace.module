@@ -651,7 +651,9 @@ function search_and_replace_parse_search_results($results, $settings) {
   $items = array();
   $search_php = $settings['search_php'];
   $flag = $settings['flag'];
-  $regexstr = "/(.{0,130}?)($search_php)(.{0,130})/$flag";
+//  $regexstr = "/(.{0,130}?)($search_php)(.{0,130})/$flag";
+  $regexstr = "/$search_php/$flag";
+  $snippet_offset = 100;
 
   foreach ($results as $result) {
     $text = array();
@@ -677,17 +679,24 @@ function search_and_replace_parse_search_results($results, $settings) {
       $all_lang = array_merge($all_lang, $languages);
 
       // Extract the snippet.
-      $current_hits = preg_match_all($regexstr, $content, $matches, PREG_SET_ORDER);
+      $current_hits = preg_match_all($regexstr, $content, $matches, PREG_SET_ORDER | PREG_OFFSET_CAPTURE);
+      $pos = -1;
       if ($current_hits > 0) {
         $hits += $current_hits;
         foreach ($matches as $match) {
-          if ($match[1]) {
-            $text[$field] .= '...' . htmlentities($match[1], ENT_COMPAT, 'UTF-8');
+          $match = $match[0];
+          $word_length = strlen($match[0]);
+          // If previous snippet includes current match, skip it.
+          if ($pos >= 0 && $match[1] + $word_length < $pos + $word_length + $snippet_offset) {
+            continue;
           }
-          $text[$field] .= '<strong>' . htmlentities($match[2], ENT_COMPAT, 'UTF-8') . '</strong>';
-          if ($match[3]) {
-            $text[$field] .= htmlentities($match[3], ENT_COMPAT, 'UTF-8') . '...';
-          }
+          // Calculate offsets before and after for substr.
+          $pos = $match[1];
+          $start = $pos - $snippet_offset >= 0 ? $pos - $snippet_offset : 0;
+          $length = $word_length + 2 * $snippet_offset;
+          $snippet = htmlentities(substr($content, $start, $length), ENT_COMPAT, 'UTF-8');
+          $snippet = preg_replace($regexstr, '<strong>' . $match[0] . '</strong>', $snippet);
+          $text[$field] .= '...' . $snippet . '...';
         }
       }
       else {
