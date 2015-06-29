@@ -90,18 +90,23 @@ function search_and_replace_batch_operation_undo($results, $operation, &$context
 
   foreach ($to_process as $result) {
     $reset_current = array();
+    // Load revision that was before search and replace.
     $node = node_load($result['nid'], $result['vid']);
     $node->revision = TRUE;
     $node->log = t('Search and replace undo operation - reverting to version @vid', array('@vid' => $result['vid']));
     $node->status = $result['st'];
     if (!empty($result['moderation_state'])) {
+      // Load current node as it is.
+      $node_current = node_load($result['nid']);
       $node->workbench_moderation_state_new = $result['moderation_state'];
-      if ($node->vid != $node->workbench_moderation['current']->vid) {
-        $reset_current = $node->workbench_moderation['current'];
+      // If node has an existing draft, we will recreate it after saving the node.
+      if ($node_current->vid != $node_current->workbench_moderation['current']->vid) {
+        $reset_current = $node_current->workbench_moderation['current'];
       }
     }
     node_save($node);
     if (!empty($reset_current)) {
+      // Recreate the existing draft.
       $current_version = node_load($reset_current->nid, $reset_current->vid);
       $current_version->workbench_moderation_state_new = $reset_current->state;
       $current_version->revision = 1;
