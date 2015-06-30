@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * Update migrate map for Who is Napo.
+ */
+function napo_migration_update_7001() {
+  db_update('migrate_map_pages')
+    ->fields(array('destid1' => 254))
+    ->condition('sourceid1', 'who-is-napo/who-is-napo')
+    ->execute();
+}
+
+/**
+ * Fix body - \n replace with spaces for imported pages.
+ */
+function napo_migration_update_7002() {
+  $api = napo_migration_migrate_api();
+  $source_file = MigrationUtil::getSourceFile($api['migrations']['Pages']);
+  $migration = new NapoMigrationPages($api['migrations']['Pages']);
+  $white_list_url = $api['migrations']['Pages']['file_name_whitelist'];
+  $list = new NapoPagesMigrateList($source_file, $white_list_url);
+  foreach ($list::$data as $source_id => $row) {
+    $map_row = db_select('migrate_map_pages', 'mp')
+      ->fields('mp')
+      ->condition('sourceid1', $source_id)
+      ->execute()
+      ->fetchAssoc();
+    $node = node_load($map_row['destid1']);
+    if (!empty($node)) {
+      foreach ($node->body as $language => $body) {
+        $text = MigrationUtil::decodeHTMLText($row['text'][$language]);
+        $text = str_replace("\n", '', $text);
+        $tidy = new tidy();
+        $tidy_conf = array(
+          'clean' => TRUE,
+          'drop-empty-paras' => TRUE,
+        );
+        $text = $tidy->repairString($text, $tidy_conf, 'utf8');
+        // Remove first h1 tag because it's the same with title.
+        $text = $migration->removeTags($text, 'h1', 0);
+        switch ($row['id']) {
+          case 'meet-napo/who-is-napo':
+            // Remove napo image from text.
+            $text = $migration->removeNapoImage($text);
+            break;
+
+          case 'napos-films':
+            // Only the first 3 paragraphs are the page content.
+            $text = $migration->getFirstParagraphs($text, 3);
+            break;
+
+          case 'using-napo/rights-and-permissions':
+            // Remove first h3 - the same with title.
+            $text = $migration->removeTags($text, 'h3', 0);
+            break;
+
+          case 'using-napo/napo-for-teachers/resource-library':
+            // Remove first h3 - the same with title.
+            $text = $migration->removeTags($text, 'h2', 0);
+            break;
+
+          case 'meet-napo/the-napo-story':
+            $text = $migration->removeTags($text, 'title', 0);
+            $text = $migration->removeTags($text, 'br', 0);
+            break;
+        }
+        // Clean again after parsing.
+        $text = $tidy->repairString($text, $tidy_conf, 'utf8');
+        $text = str_replace("\n", ' ', $text);
+        $node->body[$language][0] = array();
+        $node->body[$language][0]['value'] = $text;
+        $node->body[$language][0]['format'] = 'full_html';
+      };
+      field_attach_update('node', $node);
+    }
+  }
+}
