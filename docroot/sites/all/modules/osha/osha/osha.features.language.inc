@@ -261,7 +261,7 @@ function osha_locale_default_languages() {
   $languages['no'] = array(
     'language' => 'no',
     'name' => 'Norwegian',
-    'native' => 'Norwegian',
+    'native' => 'Norsk',
     'direction' => 0,
     'enabled' => 1,
     'plurals' => 0,
