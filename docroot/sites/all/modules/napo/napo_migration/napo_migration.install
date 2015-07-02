@@ -75,3 +75,34 @@ function napo_migration_update_7002() {
     }
   }
 }
+
+/**
+ * Fix body of nodes from update 7002 - add tmgmt attr id.
+ */
+function napo_migration_update_7003() {
+  $api = napo_migration_migrate_api();
+  $source_file = MigrationUtil::getSourceFile($api['migrations']['Pages']);
+  $white_list_url = $api['migrations']['Pages']['file_name_whitelist'];
+  $list = new NapoPagesMigrateList($source_file, $white_list_url);
+  foreach ($list::$data as $source_id => $row) {
+    $map_row = db_select('migrate_map_pages', 'mp')
+      ->fields('mp')
+      ->condition('sourceid1', $source_id)
+      ->execute()
+      ->fetchAssoc();
+    if ($node = node_load($map_row['destid1'])) {
+      foreach ($node->body as $language => $body) {
+        $text = $body[0]['value'];
+        if ($row['id'] == 'meet-napo/who-is-napo') {
+          $text = str_replace('http://osha.europa.eu/en/publications/promotional-material/napo-safety-with-a-smile/view',
+            'http://osha.europa.eu/' . $language . '/publications/promotional-material/napo-safety-with-a-smile/view', $text);
+        }
+        $node->body[$language][0] = array();
+        $text = OshaTMGMTRetranslate::prepare_text($text);
+        $node->body[$language][0]['value'] = $text;
+        $node->body[$language][0]['format'] = 'full_html';
+      };
+      field_attach_update('node', $node);
+    }
+  }
+}
