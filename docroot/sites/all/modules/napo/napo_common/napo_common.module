@@ -172,6 +172,11 @@ function napo_common_node_view($node, $view_mode, $langcode) {
     }
   }
 
+  // Hide node title for redirect node page.
+  if ($node->nid == $redirectId) {
+    hide($node->content['title_field']);
+  }
+
 //  $full_mode_views = array('full', 'episode_full');
 //  if (!in_array($view_mode, $full_mode_views)) {
 //    if (!empty($node->field_archived[LANGUAGE_NONE][0]['value'])) {
