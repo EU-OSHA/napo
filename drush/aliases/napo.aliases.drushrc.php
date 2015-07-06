@@ -17,10 +17,15 @@ $aliases['staging'] = array(
 );
 
 // Example of local setting.
-// $aliases['local'] = array(
-//   'uri' => 'napo.localhost',
-//   'root' => '/home/my_user/napo-website/docroot',
-// );
+//$aliases['self'] = array(
+//  'uri' => 'napo.localhost',
+//  'root' => '/path/to/docroot',
+//  'command-specific' => array(
+//    'sql-sync' => array(
+//      'target-dump' => '/tmp/napo-source-dump.sql.gz',
+//    ),
+//  ),
+//);
 
 // Add your local aliases.
 if (file_exists(dirname(__FILE__) . '/aliases.local.php')) {
