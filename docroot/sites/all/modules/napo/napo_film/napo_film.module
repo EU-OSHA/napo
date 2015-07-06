@@ -493,6 +493,26 @@ function napo_film_preprocess_node(&$vars) {
 }
 
 /**
+ * Get episodes nids of a node napo_video type film.
+ */
+function napo_film_get_episodes($node) {
+  $episodes =  &drupal_static(__FUNCTION__);
+  if (!isset($episodes[$node->nid])) {
+    $episodes[$node->nid] = array();
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'napo_video')
+      ->propertyCondition('status', NODE_PUBLISHED)
+      ->fieldCondition('field_napo_film', 'target_id', $node->nid);
+    $result = $query->execute();
+    if (isset($result['node'])) {
+      $episodes[$node->nid] = array_keys($result['node']);
+    }
+  }
+  return $episodes[$node->nid];
+}
+
+/**
  * Get the weight of an episode form draggable views.
  */
 function napo_film_get_episode_number($node) {
