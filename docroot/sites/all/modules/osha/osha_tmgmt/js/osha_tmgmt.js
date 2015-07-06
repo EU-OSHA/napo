@@ -22,11 +22,11 @@ jQuery(document).ready(function() {
  * select and deselect multiple elements (or all) is a multi select drop down
  */
 function select_values(source, target, values){
-    jQuery('select'+target+' > option').attr('selected', '');
+    jQuery('select'+target+' > option').removeAttr('selected');
 
     if(jQuery(source).is(":checked")) {
         if(values == 'all') {
-            jQuery('select'+target+' > option').attr('selected', 'selected');
+            jQuery('select' + target + ' > option').not('[value="tr"], [value="ru"], [value="ca"]').attr('selected', 'selected');
         } else {
             jQuery.each(values, function(i, val){
                 jQuery(''+target+' option[value="'+val+'"]').attr('selected', 'selected');
