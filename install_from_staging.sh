@@ -59,6 +59,8 @@ if [ ${ecode} != 0 ]; then
   exit ${ecode};
 fi
 
+drush devify_ldap
+
 if [ ! -z "$post_update" ]; then
 echo "Run post update"
   ../$post_update
