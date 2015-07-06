@@ -745,12 +745,14 @@ function napo_film_get_film_file_by_mimetype($node, $mime) {
  */
 function napo_film_get_films_formats_as_options($node) {
   $items = field_get_items('node', $node, 'field_video');
-  $mimes = napo_film_get_video_mimes();
+  $mimes = napo_film_shown_video_mimes();
   $options = array();
   foreach ($items as $item) {
-    $options[$item['filemime']] = napo_film_get_type_label_by_mime($item['filemime']);
+    if (in_array($item['filemime'], array_keys($mimes))) {
+      $options[$item['filemime']] = napo_film_get_type_label_by_mime($item['filemime']);
+    }
   }
-  // Sert options with default mimes order.
+  // Sort options with default mimes order.
   $options = array_intersect_key($mimes, $options);
   return $options;
 }
@@ -771,10 +773,17 @@ function napo_film_get_type_label_by_mime($mime) {
 function napo_film_get_video_mimes() {
   return array(
     'video/mp4' => 'MP4',
-    'video/x-msvideo' => 'AVI',
     'video/x-ms-wmv' => 'WMV',
+    'video/x-msvideo' => 'AVI',
     'video/ogg' => 'OGV',
     'video/webm' => 'WEBM',
+  );
+}
+
+function napo_film_shown_video_mimes() {
+  return array(
+    'video/mp4' => 'MP4',
+    'video/x-ms-wmv' => 'WMV',
   );
 }
 
