@@ -3,6 +3,15 @@
 
 @media only screen and (max-width : 767px) {
 
+.navbar-default .navbar-header{
+  margin-right: 0px;
+}
+
+.vjs-default-skin .vjs-big-play-button{
+    left: 19%;
+    top: 16%;
+}
+
 .logo.navbar-btn.pull-left{
 	float:right!important;	
 }
@@ -18,6 +27,7 @@
 
 	nav{
 		margin-left: -18px;
+    width:97%;
 	}
 
 	nav div{
@@ -25,7 +35,7 @@
 	}
 }
 
-.navbar.container.navbar-default .col-md-9.pull-right{
+.navbar.container.navbar-default .col-md-8.pull-right{
  	margin-top: 0px;
   	margin-right: 0%; 
   	float: left !important;
@@ -77,10 +87,187 @@
     color:#FFF!important;
 }
 
-}
-
 .menu.nav.navbar-nav .dropdown-menu li {
   border-top: 2px solid #FFF;
   border-bottom: 0px solid #FFF;
 }
 
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+  background:transparent;
+ 
+}
+
+.navbar-toggle{
+  border: 0px solid transparent;
+  margin-top: 6%;
+  padding-left: 26px;
+  margin-right: 0px;
+}
+
+.navbar-default .navbar-toggle .icon-bar{
+  background:@color-blue-napo;
+  height: 3px;
+}
+
+.views-exposed-form{
+  margin-right: 0px;
+}
+
+.napo-film-list-view-container form{
+   margin-left: 16px;
+}
+
+//input seacrh in h1
+#edit-search-api-views-fulltext-wrapper{
+   width: 82%;
+}
+
+//lesson
+
+.node-lesson #group-right{
+  float:none;
+}
+
+video{
+  width:100%;
+}
+
+//Gallery images
+
+.view-napos-gallery .attachment .views-field-field-image:hover ~ .views-field-body p{
+  display:none;
+}
+
+
+//Napo and friends
+
+.views-slideshow-controls-top{
+  display:none;
+}
+
+.view-napo-and-friends .views-slideshow-controls-text span{
+  top:7%!important;
+}
+
+
+.field-name-field-combined-tags{
+    float:left;
+    width:86%!important;
+}
+
+//Video detail
+.node-napo-video .field-name-field-combined-tags{ 
+  width:100%;
+}
+
+}
+
+@media only screen and (max-width : 1200px) {
+
+//Napo List View
+
+.napo-film-list-details-container {
+  position:static;
+  height:auto;
+}
+
+.napo-film-list-view .field-name-field-combined-tags{
+  float:none;
+}
+
+.napo-film-list-view .napo-film-view-episodes-link{
+    margin-left: 0;
+    margin-top: 20px;
+}
+
+.napo-film-list-view .view-film-details-icon{
+  margin-top: 9px;
+}
+
+
+.napo-film-list-view .napo-film-video-download-form{
+  float: left!important;
+  margin-top: 0px !important;
+  margin-right: 0px!important;
+  margin-left: 14px;
+}
+
+}
+
+
+@media only screen and (max-width : 992px) {
+
+.napo-homepage-featured-films-container{
+  display:none;
+}
+
+.views-field-nothing-1.napo-film-image-container{
+  padding-bottom: 10px;
+}
+
+.back_button{
+  float:none;
+  padding-bottom: 16px;
+  display: block;
+  margin-bottom: 1em;
+  margin-top: 0px;
+}
+
+.node-napo-album .back_button {
+   margin-top: 0px;
+}
+
+.affix{
+  position:relative;
+}
+.node-lesson #menu-about-page-menu.nav-right-menu.affix{
+  width:100%;
+  max-width:100%;
+  position:relative;
+  top:0px;
+}
+	.node-lesson #top_menu_lessons.nav.nav-right-menu.nav-stacked.affix{
+	    width: 100% !important;
+	}
+.field-name-field-image.field-type-image{
+    margin-top: 25px;
+  }
+
+//Napo Gallery view
+
+.view-display-id-page_grid h3{
+  font-size: 18px;
+}
+
+//Episode list
+
+.view-napo-s-film-episodes .views-row{
+    margin-bottom:6em;
+    .napo-film-video-download-form{
+        position: absolute;
+        left: 37px;
+        margin-top: 23px;
+    }
+
+    .napo-film-video-download-form ~ a{
+          position: absolute;
+          margin-top: 43px;
+          float: left;
+          left: -10px;
+    }
+}
+
+.node-lesson .back_button{
+  margin-top: 0px;
+}
+
+}
+
+@media (min-width: 1200px){
+	#top_menu_lessons.nav.nav-right-menu.nav-stacked.affix{
+		width: 60em !important;
+	}
+	#group-right .col-md-9 {
+	  width: 61em;
+	}
+}
