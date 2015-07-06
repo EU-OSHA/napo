@@ -39,7 +39,13 @@ class OshaTMGMTJobItem extends TMGMTJobItem {
         }
       }
       if ($finished) {
-        $this->needsReview(t('Translation was accepted'));
+        $uri = $this->getSourceUri();
+        $this->needsReview(t(
+          '!source translation for !entity was imported',
+          array(
+            '!source' => locale_language_name($this->target_language), '!entity' => l($this->getSourceLabel(), $uri['path']))
+          )
+        );
       }
     }
     $this->save();
@@ -174,19 +180,24 @@ class OshaTMGMTJobItem extends TMGMTJobItem {
   public function acceptTranslationIntoEntity($message = '') {
     $controller = $this->getSourceController();
     $controller->saveTranslation($this);
-
-    global $user;
-    $this->addMessage('@name: Translation is now accepted and saved to node. Job item is now "@state". Message: @message',
-      array(
-        '@name' => $user->name,
-        '@state' => osha_tmgmt_get_job_item_state_label(TMGMT_JOB_ITEM_STATE_ACCEPTED),
-        '@message' => $message,
-      ));
+    // Mark node translation dirty to have it re-indexed.
+    if ($this->item_type == 'node') {
+      global $user;
+      $state = osha_tmgmt_get_job_item_state_label(TMGMT_JOB_ITEM_STATE_ACCEPTED);
+      if ($message) {
+        $this->addMessage('@name accepted the translation, translation state is <strong>@state</strong>. Additional info: @message',
+          array('@name' => $user->name, '@state' => $state, '@message' => $message)
+        );
+      }
+      else {
+        $this->addMessage('@name accepted the translation, translation state is <strong>@state</strong>.',
+          array('@name' => $user->name, '@state' => $state)
+        );
+      }
+      $item_id = $this->target_language . '_' . $this->item_id;
+      search_api_track_item_change('search_api_et_node', array($item_id));
+    }
     $this->save();
-
-    // Mark the translation dirty to reindex
-    $item_id = $this->target_language  . '_' . $this->item_id;
-    search_api_track_item_change('search_api_et_node', array($item_id));
   }
 
   /**

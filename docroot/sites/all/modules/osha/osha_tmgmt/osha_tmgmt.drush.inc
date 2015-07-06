@@ -26,6 +26,12 @@ function osha_tmgmt_drush_command()
     'description' => 'Feed the list of string literals into the locale system to make it available for translation',
     'aliases' => array('oshrl'),
   );
+  $items['osha-tmgmt-blacklist-literals'] = array(
+    'description' => 'Blacklist the strings which are not currently whitelisted in *.tranlate.inc',
+  );
+  $items['osha-tmgmt-clean-blacklist-literals'] = array(
+    'description' => 'Remove single blacklisted lid or clean the entire table',
+  );
   $items['test-osha-tmgmt-literals'] = array(
     'description' => 'Add translation X23456789X to all OSHA translatable strings in romanian language',
   );
@@ -215,4 +221,31 @@ function osha_tmgmt_gettext_get_translation($string, $language, $directory, $dom
   bindtextdomain($domain, $directory);
   textdomain($domain);
   return gettext($string);
+}
+
+function drush_osha_tmgmt_blacklist_literals() {
+  $count = db_select('osha_locales_source_blacklist')->fields(NULL, array('lid'))->execute()->rowCount();
+  if ($count) {
+    drush_set_error('Cowardly refusing to repopulate the blacklist table. Clean the table first!');
+    return;
+  }
+  $strings = module_invoke_all('osha_tmgmt_i18n_string_list');
+  $lids = db_select('locales_source')->fields(NULL, array('lid'))->condition('source', $strings, 'NOT IN')->execute()->fetchCol();
+  $insert = db_insert('osha_locales_source_blacklist')->fields(array('lid'));
+  foreach ($lids as $lid) {
+    if ($lid) {
+      $insert->values(array($lid));
+    }
+  }
+  $insert->execute();
+  drupal_set_message(dt('Congratulations! You have just blacklisted !count strings', array('!count' => count($lids))));
+}
+
+function drush_osha_tmgmt_clean_blacklist_literals() {
+  if (drush_confirm('Remove all blacklisted strings with a chance on blowing the entire planet to smithereens?')) {
+    db_delete('osha_locales_source_blacklist')->execute();
+  }
+  else {
+    drush_user_abort();
+  }
 }

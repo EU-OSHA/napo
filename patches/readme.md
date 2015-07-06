@@ -7,6 +7,28 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* drupal
+  * Applied patch to allow HTTPS
+  * /patches/drupal/471970_0.patch
+  * /patches/drupal/961508-20.patch
+
+* entityreference
+  * Rendered entity is not language aware (https://www.drupal.org/node/1674792#comment-9304507)
+  * /patches/entityreference/entityreference-rendered-entity-is-not-language-aware-1674792-58.patch
+
+* ldap_user
+  * Disable the watchdog successful messages
+  * /patches/ldap/ldap_user/disable-watchdg.patch
+  
+* ldap_server
+  * DN is not correctly parsed
+  * /patches/ldap/ldap_servers/dn_parsing_bug.patch
+  
+* ldap_authentication
+  * Entrypt password when updating account
+  * https://www.drupal.org/node/2037887
+  * ldap_authentication-check_password_against_LDAP-2037887-10.patch
+
 * jcarousel
   * Fix console error no item fallback dimensions defined
   * patches/jcarousel/jcarousel_item_fallback_dimension.patch

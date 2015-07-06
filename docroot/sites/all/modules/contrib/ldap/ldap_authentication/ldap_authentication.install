@@ -41,6 +41,28 @@ function ldap_authentication_uninstall() {
 }
 
 /**
+ * Implements hook_enable().
+ */
+function ldap_authentication_enable() {
+  // store old file path to be able to restore it when this module gets disabled again
+  variable_set('ldap_authentication_old_password_inc', variable_get('password_inc', 'includes/password.inc'));
+
+  // set file path to our own password.inc
+  variable_set('password_inc', drupal_get_path('module', 'ldap_authentication') . '/ldap_authentication.password.inc');
+}
+
+/**
+ * Implements hook_disable().
+ */
+function ldap_authentication_disable() {
+  // restore file path to previous value
+  variable_set('password_inc', variable_get('ldap_authentication_old_password_inc', 'includes/password.inc'));
+
+  // delete our variable
+  variable_del('ldap_authentication_old_password_inc');
+}
+
+/**
  * ldap_authentication and ldap_sso.  enable ldap_sso if sso was enabled in ldap_authentication previously
  */
 function ldap_authentication_update_7100() {

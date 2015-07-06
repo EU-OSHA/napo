@@ -30,8 +30,6 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
    */
   public function saveTranslation(TMGMTJobItem $job_item) {
     $entity = entity_load_single($job_item->item_type, $job_item->item_id);
-    $job = tmgmt_job_load($job_item->tjid);
-
     if ($job_item->item_type == 'node') {
       // load the latest revision
       $entity = workbench_moderation_node_current_load($entity);
@@ -41,7 +39,15 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
       self::osha_tmgmt_field_populate_entity($job_item->item_type, $entity, $job_item->target_language, $new_job_data);
       //$entity->field_needs_retranslation[LANGUAGE_NONE][0]['value'] = 0;
     } else {
-      self::osha_tmgmt_field_populate_entity($job_item->item_type, $entity, $job_item->target_language, $job_item->getData());
+      $data = $job_item->getData();
+      if ($this->valid_translation($data)) {
+        self::osha_tmgmt_field_populate_entity($job_item->item_type, $entity, $job_item->target_language, $data);
+      }
+      else {
+
+        // Do not accept an invalid translation
+        return;
+      }
     }
 
     // Change the active language of the entity to the target language.
@@ -52,8 +58,11 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
       // Force the same state in order to avoid creation of new weird transitions.
       $entity->workbench_moderation_state_new = $entity->workbench_moderation['current']->state;
     }
+    // Unset the pid so that the alias is created for current language.
+    if (!empty($entity->path['pid'])) {
+      unset($entity->path['pid']);
+    }
     entity_save($job_item->item_type, $entity);
-
     $translation = array(
       // @todo Improve hardcoded values.
       'translate' => 0,
@@ -61,9 +70,11 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
       'language' => $job_item->target_language,
       'source' => $job_item->source_language,
     );
-
     $handler->setTranslation($translation);
     $handler->saveTranslations();
+    // save() to set new job item state, otherwise job is not properly closed
+    // when this job item is the latest one accepted.
+    $job_item->save();
     $job_item->accepted();
   }
 
@@ -86,28 +97,40 @@ class OSHATMGMTEntitySourcePluginController extends TMGMTEntitySourcePluginContr
    */
   public static function osha_tmgmt_field_populate_entity($entity_type, $entity, $langcode, $data, $use_field_translation = TRUE) {
     tmgmt_field_populate_entity($entity_type, $entity, $langcode, $data, $use_field_translation);
+    unset($entity->metatags);
     foreach(element_children($data) as $field_name) {
       if ($field_name == 'metatags') {
+        $metatags = array();
         foreach (element_children($data[$field_name]) as $delta) {
-          $columns = array();
-          foreach (element_children($data[$field_name][$delta]) as $column) {
-            if (isset($data[$field_name][$delta][$column]['#translation']['#text'])) {
-              $columns[$column] = $data[$field_name][$delta][$column]['#translation']['#text'];
-            }
-            // For elements which are not translatable, keep using the original
-            // value.
-            elseif (isset($data[$field_name][$delta][$column]['#translate']) && $data[$field_name][$delta][$column]['#translate'] == FALSE) {
-              $columns[$column] = $data[$field_name][$delta][$column]['#text'];
-            }
+          $translation = $data[$field_name][$delta];
+          if (!empty($translation['value']['#translation']['#text'])) {
+            $metatags[$delta]['value'] = $translation['value']['#translation']['#text'];
           }
-          // Make sure the array_merge() gets an array as a first parameter.
-          if (!isset($entity->{$field_name}[$delta])) {
-            $entity->{$field_name}[$delta] = array();
+        }
+        $entity->{$field_name} = $metatags;
+      }
+    }
+  }
+
+  /**
+   * @return boolean
+   *   Returns TRUE if there was a non-empty translation sent and we have received a non-empty translation.
+   * Required to detect a partial import (import of a single language in a multi-language job).
+   */
+  public static function valid_translation($data) {
+    foreach(element_children($data) as $field_name) {
+      foreach (element_children($data[$field_name]) as $delta) {
+        foreach (element_children($data[$field_name][$delta]) as $column) {
+          $translation = $data[$field_name][$delta][$column];
+          if ($translation['#translate'] == TRUE
+              && empty($translation['#translation']['#text']) && !empty($translation['#text'])) {
+            // There was a translation #text sent, but returned empty (i.e. loading a single language).
+            return FALSE;
           }
-          $entity->{$field_name}[$delta] = $columns;
         }
       }
     }
+    return TRUE;
   }
 }
 

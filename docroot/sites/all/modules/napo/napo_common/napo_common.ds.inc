@@ -18,7 +18,8 @@ function napo_common_ds_custom_fields_info() {
   $ds_field->entities = array(
     'node' => 'node',
   );
-  $ds_field->ui_limit = '*|default';
+  $ds_field->ui_limit = '*|default
+*|episode_list';
   $ds_field->properties = array();
   $export['back_button'] = $ds_field;
 

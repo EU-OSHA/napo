@@ -5,7 +5,7 @@
                 var nid = $(this).data('nid');
                 if (typeof nid != 'undefined') {
                     var ajax_settings = {};
-                    ajax_settings.url = '/napo_film/ajax/episode/' + nid;
+                    ajax_settings.url = Drupal.settings.basePath + Drupal.settings.pathPrefix + 'napo_film/ajax/episode/' + nid;
                     ajax_settings.event = 'click';
                     var base = 'a.napo_film_episode_link,  .napo_film_episode_link a';
                     Drupal.ajax['napo_episode_load'] = new Drupal.ajax(base, this, ajax_settings);

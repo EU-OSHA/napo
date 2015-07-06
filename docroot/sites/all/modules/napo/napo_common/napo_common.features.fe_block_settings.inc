@@ -12,6 +12,34 @@ function napo_common_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
+  $export['menu-menu-social-media-menu'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'menu-social-media-menu',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'menu',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'napo_frontend' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'napo_frontend',
+        'weight' => -42,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 0,
+  );
+
   $export['napo_common-no_translation'] = array(
     'cache' => 1,
     'custom' => 0,
@@ -36,7 +64,7 @@ function napo_common_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => '',
+    'title' => '<none>',
     'visibility' => 1,
   );
 
@@ -111,7 +139,7 @@ function napo_common_default_fe_block_settings() {
         'region' => 'header_top_bar',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -1,
+        'weight' => -42,
       ),
       'osha_admin' => array(
         'region' => '',

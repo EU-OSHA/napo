@@ -27,6 +27,7 @@ class OSHATMGMTI18nStringDefaultSourceUIController extends TMGMTI18nStringDefaul
     }
 
     $form['pager'] = array('#markup' => theme('pager', array('tags' => NULL)));
+    $form['search_wrapper']['search']['target_language']['#options'] = osha_language_list_options();
 
     return $form;
   }

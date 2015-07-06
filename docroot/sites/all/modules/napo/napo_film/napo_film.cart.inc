@@ -6,7 +6,7 @@
 function napo_film_block_view_alter(&$data, $block) {
 //  if ($block->delta == 'content_cart_summary') {
 //    $cart = ContentCart::getCurrentCart();
-//    $label = t('Download center');
+//    $label = t('Download centre');
 //    $count = $cart->countItems('node');
 //    $html = '<span class="content_cart_summary_label">' . $label . '</span>';
 //    $html .= '<span class="content_cart_summary_count">' . $count . '</span>';
@@ -22,7 +22,7 @@ function napo_film_block_view_alter(&$data, $block) {
 
 function napo_film_cart_summary_content_alter(&$content) {
   $cart = ContentCart::getCurrentCart();
-  $label = t('Download center');
+  $label = t('Download centre');
   $count = $cart->countItems('node');
   $active_class = '';
   if ($count > 0) {
@@ -73,6 +73,7 @@ function napo_film_content_cart_remove_item($type, $id) {
 function napo_film_cart_add_mime_form($form, &$form_state, $node) {
 
   $mimes = napo_film_get_films_formats_as_options($node);
+  $type = napo_film_video_get_type($node);
   $form['mime_type_select'] = array(
     '#title' => t('Download this film as'),
     '#type' => 'radios',
@@ -81,6 +82,10 @@ function napo_film_cart_add_mime_form($form, &$form_state, $node) {
       'callback' => 'napo_film_cart_add_mime_callback',
     ),
   );
+  if ($type == 'episode') {
+    $form['mime_type_select']['#title'] = t('Download this episode as');
+  }
+
   if ($default_mime = napo_film_cart_get_stored_mime($node->nid)) {
     $form['mime_type_select']['#default_value'] = $default_mime;
   }
@@ -102,7 +107,7 @@ function napo_film_content_cart_ajax_submit_alter(&$commands, $input_value) {
 }
 
 /**
- * Download selected/all form for download center page.
+ * Download selected/all form for Download centre page.
  */
 function napo_film_cart_download_form($form, &$form_state) {
   $count = napo_film_cart_select_in_cart_count();
@@ -115,7 +120,7 @@ function napo_film_cart_download_form($form, &$form_state) {
   // Show no results message.
   if ($cart->countItems('node') == 0) {
     $form['no_results'] = array(
-      '#markup' => '<p class="cart-no-result-message">' . t('There is no content in the Download center') . '</p>',
+      '#markup' => '<p class="cart-no-result-message">' . t('There is no content in the Download centre') . '</p>',
     );
     return $form;
   }
@@ -305,7 +310,7 @@ function napo_film_cart_download_success_commands(&$commands, $file_path) {
     )
   );
   // Return the success message and
-  // Refresh the download center: view, cart summary block and cart form.
+  // Refresh the Download centre: view, cart summary block and cart form.
   $commands[] = ajax_command_prepend('#block-napo-film-download-cart-form', $message);
   $commands[] = ajax_command_invoke('body', 'napo_film_refresh_download_center');
 }
