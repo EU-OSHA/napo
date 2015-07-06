@@ -1,18 +1,4 @@
 {
-    "db" : {
-        "host": "db",
-        "username" : "root",
-        "password" : "root",
-        "port": 3306,
-        "database" : "osha",
-        "root_username": "root",
-        "root_password": "root"
-    },
-    "admin" : {
-        "username": "admin",
-        "password": "admin",
-        "email": "account@example.com"
-    },
     "uri": "http://osha.localhost",
     "solr_server": {
         "name": "Apache Solr server",
@@ -52,7 +38,6 @@
     },
     "variables": {
         "environment": "production",
-        "napo_data_dir": "/var/local/napo/data",
         "site_name": "NAPO",
         "site_mail": "account@example.com",
         "file_temporary_path": "/tmp",
