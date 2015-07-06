@@ -22,12 +22,12 @@ a:hover#text_resize_decrease {
 
 /* Menu dropdown */
 @media only screen and (min-width : 769px) {
-ul.nav li.dropdown:hover ul.dropdown-menu {
-    display: block;
-}
-ul.nav li.dropdown ul.dropdown-menu {
-    margin-top: 0;
-}
+    ul.nav li.dropdown:hover ul.dropdown-menu {
+        display: block;
+    }
+    ul.nav li.dropdown ul.dropdown-menu {
+        margin-top: 0;
+    }
 }
 
 /* Carousels */
@@ -185,7 +185,7 @@ footer.footer.container section.block-menu-block{
 .view .skin-default {
     margin: 0 auto;
     position: relative;
-    width: 1024px;
+    /*width: 1024px;*/
 }
 
 .view .skin-default .views-slideshow-controls-text {
@@ -210,7 +210,7 @@ footer.footer.container section.block-menu-block{
 
 .view-napo-and-friends .views-slideshow-controls-text span {
     position: absolute;
-    top: 300px;
+    top: 65%;
     z-index: 900;
 }
 

@@ -6,7 +6,7 @@
 h1{
 	color:@h1-color;
 	background:@h1-color-bg;
-	padding: 0.2em 0em 0.2em 0.5em; 
+	padding: 0.2em 25% 0.2em 0.5em; 
 	margin-top: 0px;
 	margin-bottom: 10px;
 }
@@ -31,10 +31,6 @@ h4{
 
 h4.modal-title{
 	color:@color-yellow-napo;
-}
-
-.views-widget-filter-search_api_views_fulltext{  //search in h1
-	width:60%;
 }
 
 .napo-film-video-download-form-title {
@@ -70,12 +66,6 @@ p:last-child {
   margin-bottom: 10px;
 }
 
-.napo-film-search-tag-filter.active{
-	position: absolute;
-	margin-left: -9em;
-	margin-top: 16px;
-}
-
 .node-article .field-name-field-image img {
 	float: left;
 	padding-right:1em;
@@ -88,11 +78,13 @@ p:last-child {
 .view-display-id-page_list .napo-film-video-type.napo-film-video-type-episode{
 	background: url('../images/ico-view-episodes.png') no-repeat 0px 2px;
 	padding-left: 25px;
+	padding-top: 10px;
 }
 
 .view-display-id-page_list .napo-film-video-type.napo-film-video-type-film{
 	background: url('../images/ico-film.png') no-repeat 0px 2px;
 	padding-left: 25px;
+	padding-top: 6px;
 }
 
 
@@ -216,7 +208,7 @@ p:last-child {
 }
 
 .header_top_bar .container.text-right{
-	padding:0.3em;
+	padding: 0.275em 0.3em;
 }
 
 //content home - FEATURED FILMS
@@ -484,7 +476,7 @@ p:last-child {
 
 .block-napo-film{
 	background: @color-napo-bg-gray-1;
-	padding: 0.3em 0em 0.3em 0;
+	padding: 6px 0px 6px 0px;
 	margin-bottom: 0.5em;
 	font-weight: bold;
 	font-size: 13px;
@@ -522,6 +514,7 @@ p:last-child {
  	width: 100%;
  	position: absolute;
  	top: 133px;
+ 	padding-bottom: 1px;
 
  	.napo-film-video-download-form:hover form{
  		margin-left:-3px;
@@ -595,8 +588,8 @@ p:last-child {
 	.napo-film-image-container .field-content a::before{ //on image ICO play
 		background:url("../images/play-video-small.png") no-repeat scroll 95% 3px;
 	    content: " ";
-	    margin-top: 69px;
-	    margin-left: 157px;
+	    margin-top: 15%;
+	    margin-left: 38%;
 	    position: absolute;
 	    width:44px;
 	    height:48px;
@@ -636,7 +629,7 @@ p:last-child {
 .content-cart-add-to-cart-btn , .btn[disabled]{	
  	text-indent: -9999px;
  	width: 43px;
-  	height: 54px;
+  	height: 49px;
   	margin-top: 17px;
     margin-left: -39px;
 }
@@ -677,6 +670,7 @@ p:last-child {
 		color: #fff;
 	    display: block;
 	    width: 70%;
+	    padding-right: 15px;
 	}
 
 	.napo-film-video-download-form-title {
@@ -808,14 +802,17 @@ p:last-child {
 	margin-top: 6px;
 	display: block;
 	padding-right: 30px;
-	width:270px;
+	margin-top: 8px;
+  	right: 0px;
+  	position: relative;
+  	width: 96.7%;
 	::before{
 		content:" ";
 	}
 }
 
 .napo-film-list-view-container form{
-	  margin-left: 155px;
+	  margin-left: 0px;
 }
 
 .napo-film-list-view-container .views-submit-button{
@@ -829,9 +826,6 @@ p:last-child {
    	background:url('../images/search.png') no-repeat 35px 5px @color-blue-light-napo;
 }
 
-.views-exposed-form{
-	margin-right: -105px;
-}
 
 .views-exposed-form .views-exposed-widget .form-submit{
 	margin-top:24px;
@@ -943,14 +937,16 @@ p:last-child {
 	//background: @color-napo-bg-gray-1;
 
 	.field-name-title-field .napo-film-title-2{
-		padding-top: 12px;
+		padding-top: 10px;
+		padding-bottom: 10px;
 		padding-left: 54px;
+		padding-right: 31%;
 		color:@color-napo-gray-5;
-		background: url('../images/ico-film.png') no-repeat 23px 13px @color-napo-bg-gray-2;
+		background: url('../images/ico-film.png') no-repeat 23px 10px @color-napo-bg-gray-2;
   		font-weight: bold;
   		font-size:@font-size-h2;
   		margin-top:1.5em;
-  		height: 43px;
+  		height: auto;
   		display:block;
 
   		.field-label{
@@ -1351,7 +1347,7 @@ p:last-child {
 
 
 	.napo-film-video-download-form{
-		margin-top: -54px;
+		margin-top: -55px;
 		margin-right: 60px;
 	}
 
@@ -1367,7 +1363,8 @@ p:last-child {
 	  padding: 14px 10px 1em 3em;
 	  font-weight: bold;
 	  font-size: @font-size-h2;
-	  height: 50px;
+	  height: auto;
+	  clear:both;
 	}
 
 	.napo-episode-title-full-view label{
@@ -1563,6 +1560,13 @@ p:last-child {
 	.lessons_by_age{
 		background:@color-napo-bg-gray-1;
 		min-height: 167px;
+		.field-content a{
+			background: url('../images/see-more-links.png') no-repeat right;
+			padding-right: 2.5em;
+			padding-top:0.4em;
+			padding-bottom:0.35em;
+			line-height: 30px;
+		}
 	}
 
 	.lesson_by_age_name{
@@ -1594,12 +1598,12 @@ p:last-child {
 .view-napos-gallery .views-field-nothing.napo-gallery-title-container{
 	background:url('../images/background-blue.png') repeat-x;
 	color:#FFF;
-	height:57px;
 	margin-bottom: 0;
 	padding-left: 1em;
 	padding-top: 14px;
+	padding-bottom: 28px;
 	font-size: 21px;
-
+	margin-bottom: 1em;
 	a{
 		color:#FFF;
 		background:url('../images/arrow-button-yellow.png') 100% 0px no-repeat;
@@ -1627,8 +1631,9 @@ p:last-child {
 		  background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
 		  margin-top:-78px;
 		  position:absolute;
-		  max-width: 97.5%;
+		  max-width: 100%;
 		  z-index:999999999;
+		  margin-right:15px;
 
 		  p{
 		  	padding:1em;
@@ -1641,8 +1646,9 @@ p:last-child {
 		  background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
 		  margin-top:-78px;
 		  position:absolute;
-		  max-width: 97.5%;
+		  max-width: 100%;
 		  z-index:999999999;
+		  margin-right:15px;
 
 		  p{
 		  	padding:1em;
@@ -1653,10 +1659,11 @@ p:last-child {
 		  color: #fff;
 		  display: block;
 		  background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
-		  margin-top:-155px;
+		  margin-top:-176px;
 		  position:absolute;
-		  max-width: 92.4%;
+		  max-width: 100%;
 		  z-index:999999999;
+		  margin-right:15px;
 		  p{
 		  	padding:1em;
 		  }
@@ -1666,10 +1673,11 @@ p:last-child {
 		  color: #fff;
 		  display: block;
 		  background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
-		  margin-top:-155px;
+		  margin-top:-176px;
 		  position:absolute;
-		  max-width: 92.4%;
+		  max-width: 100%;
 		  z-index:999999999;
+		  margin-right:15px;
 		  p{
 		  	padding:1em;
 		  }
@@ -1683,13 +1691,12 @@ p:last-child {
 // Napo Gallery Detail
 
 .node-napo-album {
-	
-	.back_button {
-		margin-top: -67px;
-	}
-
 	.field.field-name-body{
 		padding: 1em 0em 1em 0em;
+	}
+
+	.back_button{
+		margin-top: -67px;
 	}
 }
 
@@ -2020,6 +2027,19 @@ p:last-child {
 			font-weight: bold;
 		}
 
+		.napo-film-video-type.napo-film-video-type-episode{
+			background: url('../images/ico-view-episodes.png') no-repeat 0px 2px;
+			padding-left: 25px;
+			padding-top: 5px;
+			padding-bottom: 3px;
+		}
+
+		.napo-film-video-type.napo-film-video-type-film{
+			background: url('../images/ico-film.png') no-repeat 0px 0px;
+			padding-left: 25px;
+			padding-top: 4px;
+		}
+
 	.form-type-radios {
 		label{
 			float:left;
@@ -2071,6 +2091,16 @@ p:last-child {
 
 //Napo for teachers , Lessons Tabs
 
+.content{
+	.field .field-item ul{
+		list-style: none;
+		li:before{
+			content: "\2022";
+			padding-left: 1em;
+			padding-right: 0.5em;
+		}
+	}
+}
 .node-lesson {
 
 	h3 , h4 {
@@ -2087,7 +2117,7 @@ p:last-child {
 	    width: 100%;
 	    margin-top: 20px;
 	    border-bottom: 5px solid @color-blue-napo;
-	    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+	   /*  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067); */
 	    background:#FFF;
 	}
 	ul.nav-right-menu li{
@@ -2106,7 +2136,7 @@ p:last-child {
 	#menu-about-page-menu.nav-right-menu.affix{
 	    top: -20px; /* Set the top position of pinned element */
 	    z-index: 9;
-	    width: 255px;
+		max-width: 255px;
 	}
 
 	#top_menu_lessons.nav.nav-right-menu.nav-stacked.affix{
@@ -2119,7 +2149,7 @@ p:last-child {
 		background:@color-napo-bg-gray-1;
 		font-weight: bold;
 		text-transform: uppercase;
-		height:55px;
+		min-height:55px;
 		padding-top: 0px;
   		padding-left: 0px;
   		a{
@@ -2156,26 +2186,42 @@ p:last-child {
 		.lesson{
 			float:left;
 			height:55px;
-			background:@color-napo-bg-gray-1;
+			/* background:@color-napo-bg-gray-1; */
 			font-weight: bold;
-			padding-top: 0px;
-		 	padding-top: 0px;
- 			padding-left: 0px;
+			padding-top: 0.5em;
+		 	padding-left: 2em;
+			padding-right: 0.5em;
  			text-transform: none;
  			border-bottom: 0px solid #FFF;
+			background: transparent url('../images/lesson.png') no-repeat right 1px;
+			z-index: 0;
  			a{
- 				color:@color-blue-napo;		
+				/* background-color: @color-napo-bg-gray-1; */
+ 				color: @color-blue-napo;
+				padding-right: 2.5em;
  			}
+			&:first-child{
+				/* background-color: #2f2593;  */
+				background-image: url('../images/lesson_first.png');
+				padding-left: 0px;
+			}
 		}
 		.lesson.active{
-			background:@color-blue-napo;
 			height:55px;
-			padding-top: 0px;
-		 	padding-top: 0px;
- 			padding-left: 0px;
  			text-transform: none;
+			/* background-color: transparent;
+			background-image: url('../images/lesson_active.png');
+			background-repeat: no-repeat;
+			background-position: right;
+			background-position: -125px 1px; */
+			background: transparent url('../images/lesson_active.png') no-repeat -125px 1px;
+ 			padding-left: 0px;
+			padding-right: 2em;
+			margin-right: -50px;
+			z-index: 3;
  			a{
- 				color:#FFF;		
+				/* background-color: @color-blue-napo; */
+ 				color:#FFF;
  			}
 
  			a:hover{
@@ -2222,8 +2268,22 @@ p:last-child {
 	}
 
 	#group-right{
-		padding-left: 31px;
+		/* padding-left: 31px; */
+		padding-left: 0px;
 		float: right;
+		& > .field{
+			background-color: @color-napo-bg-gray-1;
+			margin: 0;
+			display: inline-block;
+			padding-left: 2em;
+			padding-right: 2em;
+			.field-name-body.field-type-text-with-summary{
+				padding: 1em 0 0;
+			}
+			video{
+				max-width: 98%;
+			}
+		}
 	}
 	/* Lesson menu end */
 }
@@ -2286,7 +2346,7 @@ p:last-child {
 
 .contact-form-widget-container h2{
 	  position: fixed;
-	  width: 410px;
+	  width: 319px;
 	  background: url('../images/background-blue.png') repeat-x;
 	  height: 54px;
 	  color: #FFF;
@@ -2323,7 +2383,7 @@ p:last-child {
 
 
 .webform-client-form{
-	width: 410px;
+	width: 319px;
   	position: fixed;
   	bottom: -10px;
   	right: 8%;
