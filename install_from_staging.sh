@@ -11,9 +11,8 @@ if [ ${ecode} != 0 ]; then
   exit ${ecode};
 fi
 
-
-pre_update=  post_update=
-while getopts b:a: opt; do
+pre_update=  post_update= files=
+while getopts b:a:f opt; do
   case $opt in
   b)
       pre_update=$OPTARG
@@ -21,6 +20,7 @@ while getopts b:a: opt; do
   a)
       post_update=$OPTARG
       ;;
+  f) files="files"
   esac
 done
 
@@ -65,4 +65,15 @@ if [ ! -z "$post_update" ]; then
 echo "Run post update"
   ../$post_update
   drush cc all
+fi
+
+if [ ! -z "$files" ]; then
+echo "Run drush rsync"
+drush rync @napo.staging:%files @self:%files -y
+fi
+
+ecode=$?
+if [ ${ecode} != 0 ]; then
+  echo "rsync has returned an error"
+  exit ${ecode};
 fi
