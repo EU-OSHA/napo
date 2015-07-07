@@ -128,12 +128,13 @@ function napo_film_block_view($delta = '') {
       // View modes links block.
       $block['subject'] = t('Napo film view modes');
       $attr = array(
-        'class' => array('napo-film-view-mode-links'),
+        'class' => array('napo-film-view-mode-links', 'napo-film-view-mode-list'),
         'rel' => 'nofollow',
       );
       $attr_grid = $attr;
+      $attr_grid['class'][] = 'napo-film-view-mode-grid';
       // Set active mode.
-      if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'grid') {
+      if (napo_film_get_list_view_mode() == 'page_grid') {
         $attr_grid['class'][] = "active";
       }
       else {
@@ -141,8 +142,11 @@ function napo_film_block_view($delta = '') {
       }
       // Get query params to preserve them.
       $query = drupal_get_query_parameters();
-      $block['content']['list']['#markup'] = l(t('List view'), 'napo_film/set_view_mode/list', array('attributes' => $attr, 'query' => $query));
-      $block['content']['grid']['#markup'] = l(t('Gallery view'), 'napo_film/set_view_mode/grid', array('attributes' => $attr_grid, 'query' => $query));
+      if (!empty($query['fvm'])) {
+        unset($query['fvm']);
+      }
+      $block['content']['list']['#markup'] = l(t('List view'), 'napo_film/set_view_mode/page_list', array('attributes' => $attr, 'query' => $query));
+      $block['content']['grid']['#markup'] = l(t('Gallery view'), 'napo_film/set_view_mode/page_grid', array('attributes' => $attr_grid, 'query' => $query));
       break;
   }
   return $block;
@@ -153,17 +157,40 @@ function napo_film_block_view($delta = '') {
  */
 function napo_film_set_view_mode($mode) {
   // Set the session accordingly.
-  if ($mode == 'list') {
-    $_SESSION['napo_films_view_mode'] = 'list';
+  if ($mode == 'page_grid') {
+    $_SESSION['napo_films_view_mode'] = 'page_grid';
   }
   else {
-    $_SESSION['napo_films_view_mode'] = 'grid';
+    $_SESSION['napo_films_view_mode'] = 'page_list';
   }
   $view = views_get_view('napo_films', TRUE);
   $url = $view->display['page_list']->display_options['path'];
   $query = drupal_get_query_parameters();
+  $query['fvm'] = $mode;
   // Redirect to view to reload the page.
   drupal_goto($url, array('query' => $query));
+}
+
+function napo_film_get_list_view_mode() {
+  $mode = 'page_list';
+  // Check if view mode enforced by url.
+  if (isset($_GET['fvm']) && $_GET['fvm'] == 'page_grid') {
+    $mode = 'page_grid';
+  }
+  else if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'page_grid') {
+    $mode = 'page_grid';
+  }
+  return $mode;
+}
+
+/**
+ * Implements hook_menu_link_alter().
+ */
+function napo_film_translated_menu_link_alter(&$item, $map) {
+  // Alter menu link of Napo Films with query parameter.
+  if ($item['link_path'] == 'napos-films/films') {
+    $item['localized_options']['query']['fvm'] = napo_film_get_list_view_mode();
+  }
 }
 
 /**
@@ -171,13 +198,9 @@ function napo_film_set_view_mode($mode) {
  */
 function napo_film_views_pre_view( view &$view, &$display_id, &$args) {
   if ($view->name == 'napo_films') {
-    if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'grid') {
-      $view->set_display('page_grid');
-    }
-    else {
-      $view->set_display('page_list');
-    }
-
+    $mode = napo_film_get_list_view_mode();
+    $view->set_display($mode);
+    $_SESSION['napo_films_view_mode'] = $mode;
     // When searching (word or tag) in Film page, episode should be included.
     // Alter the filter to include films and episodes video type.
     $params = drupal_get_query_parameters();
