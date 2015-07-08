@@ -81,9 +81,9 @@
   </div>
 <?php endif; ?>
 <header id="navbar" class="<?php print $navbar_classes; ?>">
-    <div class="navbar-header col-md-3">
+    <div class="navbar-header col-md-4">
       <?php if ($logo): ?>
-      <a class="logo navbar-btn pull-left col-xs-10" href="<?php print $front_page; ?>" title="<?php print t('Napo'); ?>">
+      <a class="logo navbar-btn col-xs-10 col-md-12 pull-left" href="<?php print $front_page; ?>" title="<?php print t('Napo'); ?>">
         <img src="<?php print $logo; ?>" alt="<?php print t('Napo'); ?>" />
       </a>
       <?php endif; ?>
@@ -102,7 +102,7 @@
     </div>
 
     <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['menu'])): ?>
-      <div class="col-md-9 pull-right">
+      <div class="col-md-8 pull-right">
         <div class="navbar-collapse collapse col-md-8 pull-right">
           <nav role="navigation">
             <?php if (!empty($primary_nav)): ?>

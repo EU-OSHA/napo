@@ -19,6 +19,7 @@
 .navbar-collapse{
 	float:left!important;
 	max-height: 400px;
+	padding-left: 0px;
 }
 
 .navbar-collapse.collapse.col-md-8{
@@ -26,7 +27,7 @@
 	overflow:hidden;
 
 	nav{
-		margin-left: -18px;
+		margin-left: 0px;
     width:97%;
 	}
 
@@ -39,7 +40,7 @@
  	margin-top: 0px;
   	margin-right: 0%; 
   	float: left !important;
-  	width: 100%;
+  	width: 98%;
 }
 
 .menu.nav.navbar-nav .first{
@@ -117,7 +118,13 @@
    margin-left: 16px;
 }
 
-//input seacrh in h1
+//Home
+
+.field-content.featured-article-body{
+    min-height: 150px;
+}
+
+//input search in h1
 #edit-search-api-views-fulltext-wrapper{
    width: 82%;
 }
@@ -149,16 +156,43 @@ video{
   top:7%!important;
 }
 
-
-.field-name-field-combined-tags{
-    float:left;
-    width:86%!important;
-}
-
 //Video detail
 .node-napo-video .field-name-field-combined-tags{ 
   width:100%;
 }
+	#block-napo-common-no-translation{
+		background: url('../images/translation-not-available-left.png') no-repeat 5px -14%;
+		.no_translation_page_content{
+			margin-left: 2em;
+			height: 374px;
+			margin-top: 0;
+			margin-bottom: 0;
+			padding: 0;
+		}
+		form{
+			margin-left: 0%;
+			width: 100%;
+		}
+		.lang-dropdown-select-element{
+			max-width: 167px;
+		}
+		.form-item-available-languages label{
+			width: 120px;
+		}
+	}
+
+.napo-film-list-view .content-cart-add-to-cart-btn{
+  display:none;
+}
+
+.col-md-6 .content-cart-add-to-cart-btn, .col-md-6 .btn[disabled]{
+  display:none;
+}
+
+.napo-film-list-view{
+  padding-left: 0em;
+}
+
 
 }
 
@@ -191,6 +225,13 @@ video{
   margin-right: 0px!important;
   margin-left: 14px;
 }
+.node-lesson #group-right {
+	padding-left: 15px;
+}
+.node-lesson #menu-about-page-menu.nav-right-menu.affix{
+	max-width: 205px;
+}
+
 
 }
 
@@ -228,7 +269,12 @@ video{
 }
 	.node-lesson #top_menu_lessons.nav.nav-right-menu.nav-stacked.affix{
 	    width: 100% !important;
+		top: 0px;
 	}
+
+.node-lesson #group-right{
+	float: none;
+}
 .field-name-field-image.field-type-image{
     margin-top: 25px;
   }
@@ -261,13 +307,41 @@ video{
   margin-top: 0px;
 }
 
+	#block-napo-common-page-not-found{
+		background: #f4f4f4 url('../images/page-not-found-right.png') no-repeat 93% 0%;
+		padding-left: 0em;
+		padding-right: 218px;
+	}
 }
 
 @media (min-width: 1200px){
-	#top_menu_lessons.nav.nav-right-menu.nav-stacked.affix{
+	.node-lesson #top_menu_lessons.nav.nav-right-menu.nav-stacked.affix{
 		width: 60em !important;
 	}
-	#group-right .col-md-9 {
+	.node-lesson #group-right .col-md-9 {
 	  width: 61em;
 	}
+}
+
+
+@media only screen and (max-width : 480px) {
+
+  .field-name-field-combined-tags{
+    float:left;
+    width:86%!important;
+  }
+
+  #block-views-episode-list-block .jcarousel-container.jcarousel-container-horizontal{
+    width:100%!important;
+  }
+
+  #block-views-episode-list-block .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img{
+    max-width: 59%;
+  }
+
+  #block-views-episode-list-block .views-field.views-field-title-field{
+     width: 59%!important;
+     height: 74px!important;
+  }
+
 }

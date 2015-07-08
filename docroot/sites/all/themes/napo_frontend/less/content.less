@@ -43,7 +43,7 @@ h4.modal-title{
   	margin-top: 4px;
 }
 
-.back_button{
+.back_button, .back_button:focus{
 	background: url('../images/arrow-button-back.png') no-repeat 96% 8px @color-blue-napo;
 	float: right;
 	color: #FFF;
@@ -66,6 +66,12 @@ p:last-child {
   margin-bottom: 10px;
 }
 
+.napo-film-search-tag-filter.active{
+	position: absolute;
+	margin-left: -9em;
+	margin-top: 16px;
+}
+
 .node-article .field-name-field-image img {
 	float: left;
 	padding-right:1em;
@@ -78,13 +84,13 @@ p:last-child {
 .view-display-id-page_list .napo-film-video-type.napo-film-video-type-episode{
 	background: url('../images/ico-view-episodes.png') no-repeat 0px 2px;
 	padding-left: 25px;
-	padding-top: 10px;
+	/* padding-top: 10px; */
 }
 
 .view-display-id-page_list .napo-film-video-type.napo-film-video-type-film{
 	background: url('../images/ico-film.png') no-repeat 0px 2px;
 	padding-left: 25px;
-	padding-top: 6px;
+/* 	padding-top: 6px; */
 }
 
 
@@ -617,6 +623,7 @@ p:last-child {
 		float: right;
 		position: absolute;
 		right: 0;
+		border-radius:0px;
 	}
 
 	.btn[disabled]{
@@ -937,10 +944,7 @@ p:last-child {
 	//background: @color-napo-bg-gray-1;
 
 	.field-name-title-field .napo-film-title-2{
-		padding-top: 10px;
-		padding-bottom: 10px;
-		padding-left: 54px;
-		padding-right: 31%;
+		padding: 10px 34% 10px 54px;
 		color:@color-napo-gray-5;
 		background: url('../images/ico-film.png') no-repeat 23px 10px @color-napo-bg-gray-2;
   		font-weight: bold;
@@ -1298,10 +1302,10 @@ p:last-child {
 	.lang-dropdown-select-element{
 		-webkit-appearance: none; 
         -moz-appearance: none;
-  		background: url('../images/arrow-language.png') no-repeat 99% 3px @color-yellow-napo;
   		width: auto;
   		padding-right: 2em;
   		font-weight: bold;
+  	/* 	background: url('../images/arrow-language.png') no-repeat 99% 3px @color-yellow-napo; */
 	}
 
 	.form-item-available-languages label{
@@ -1319,9 +1323,9 @@ p:last-child {
 	    
 }
 
-
-
-
+	.main-container.container .form-type-select:after{
+		  left: 89.5%;
+	}
 
 
 //Episode detail
@@ -1565,7 +1569,7 @@ p:last-child {
 			padding-right: 2.5em;
 			padding-top:0.4em;
 			padding-bottom:0.35em;
-			line-height: 30px;
+			line-height: 35px;
 		}
 	}
 
@@ -1869,7 +1873,7 @@ p:last-child {
 
 	#cboxNext{
 		top:50%;
-		left:94%;
+		left:90%;
 		background: url('../images/next-pop-up.png') no-repeat 0px 0px;
 		height: 40px;
 	}
@@ -1954,10 +1958,28 @@ p:last-child {
 		padding-left: 36px;
 		color: @color-blue-napo;
 		padding-top: 7px;
-		
+		min-width: 150px;
+		input[type="checkbox"]{
+			visibility: hidden;
+		}
 		label{
-			padding-left: 5px;
+			padding-left: 0px;
 			font-weight: bold;
+			&:after {
+				height: 20px;
+				width: 20px;
+				padding: 1px 8px;
+				border: 2px solid @color-blue-napo;
+				border-radius: 4px 4px 4px;
+				content: " ";
+				margin-left: 5px;
+				background-color: #FFF;
+			}
+		}
+		input[type=checkbox]:checked + label:after {
+			content: "\2713";
+			color: @color-blue-napo;
+			padding: 1px 3px;
 		}
 	}
 
@@ -2094,10 +2116,13 @@ p:last-child {
 .content{
 	.field .field-item ul{
 		list-style: none;
-		li:before{
-			content: "\2022";
-			padding-left: 1em;
-			padding-right: 0.5em;
+		li{
+			&:before{
+				content: "\2022";
+				padding-left: 1em;
+				padding-right: 0.5em;
+				float: left;
+			}
 		}
 	}
 }
@@ -2142,7 +2167,8 @@ p:last-child {
 	#top_menu_lessons.nav.nav-right-menu.nav-stacked.affix{
 	    top: -20px; /* Set the top position of pinned element */
 	    z-index: 9;
-	    width: 57%!important;
+	    /* width: 57%!important; */
+		width: 48.3em;
 	}
 
 	ul li.headings{
@@ -2218,6 +2244,7 @@ p:last-child {
  			padding-left: 0px;
 			padding-right: 2em;
 			margin-right: -50px;
+			margin-top: 0;
 			z-index: 3;
  			a{
 				/* background-color: @color-blue-napo; */
@@ -2434,3 +2461,4 @@ p:last-child {
 		clear:both;
 	}
 }
+
