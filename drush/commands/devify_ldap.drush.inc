@@ -26,13 +26,13 @@ function devify_ldap_drush_command() {
 function _drush_devify_ldap() {
   print 'Devify Solr Server';
   variable_set('ldap_servers_encryption' , LDAP_SERVERS_ENC_TYPE_CLEARTEXT);
-  $ldap_read = (array) drush_get_option('ldap-read');
-  $ldap_write = (array) drush_get_option('ldap-write');
+  $ldap_read = drush_get_option('ldap-read');
+  $ldap_write = drush_get_option('ldap-write');
 
   $ldap_read = array_merge($ldap_read, array('sid' => 'osha', 'name' => 'osha-ldap'));
-  $read_values = _devifi_ldap_get_server_values($ldap_read);
+  $read_values = _devify_ldap_get_server_values($ldap_read);
   $ldap_write = array_merge($ldap_write, array('sid' => 'osha-write', 'name' => 'osha-write'));
-  $write_values = _devifi_ldap_get_server_values($ldap_write);
+  $write_values = _devify_ldap_get_server_values($ldap_write);
 
   db_delete('ldap_servers')->execute();
   $result = drupal_write_record('ldap_servers', $read_values);
@@ -54,7 +54,7 @@ function _drush_devify_ldap() {
   ldap_servers_cache_clear();
 }
 
-function _devifi_ldap_get_server_values($ldap_read) {
+function _devify_ldap_get_server_values($ldap_read) {
   $read = array(
     'disabled' => FALSE, /* Edit this to true to make a default ldap_servers_conf disabled initially */
     'api_version' => 1,
@@ -105,10 +105,7 @@ function _devifi_ldap_get_server_values($ldap_read) {
     $field_name_lcase = drupal_strtolower($field_name);
     $values->{$field_name_lcase} = $server->{$property_name};
   }
-  $server->bindpw = $values->bindpw;
-  if (isset($new_values['bindpw']) && $server->bindpw) {
-    $values->bindpw = ldap_servers_encrypt($server->bindpw, $server->bindpw);
-  }
+  $values->bindpw = $new_values['bindpw'];
 
   $values->tls = (int)$server->tls;
   $values->followrefs = (int)$server->followrefs;

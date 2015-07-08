@@ -36,6 +36,7 @@
       "bindpw": "pass",
       "port": 389
     },
+    "sanitize_password": "password",
     "variables": {
         "environment": "production",
         "site_name": "NAPO",
