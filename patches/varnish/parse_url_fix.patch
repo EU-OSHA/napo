@@ -1,0 +1,18 @@
+diff --git a/docroot/sites/all/modules/contrib/varnish/varnish.module b/docroot/sites/all/modules/contrib/varnish/varnish.module
+index e9a6515..df597cb 100644
+--- a/docroot/sites/all/modules/contrib/varnish/varnish.module
++++ b/docroot/sites/all/modules/contrib/varnish/varnish.module
+@@ -285,7 +285,12 @@ function theme_varnish_status($variables) {
+ function _varnish_get_host() {
+   global $base_url;
+   $parts = parse_url($base_url);
+-  return $parts['host'];
++  if (!isset($parts['port']) || $parts['port'] == 80) {
++    return $parts['host'];
++  }
++  else {
++    return $parts['host'] . ':' . $parts['port'];
++  }
+ }
+ 
+ 

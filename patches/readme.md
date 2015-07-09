@@ -7,6 +7,10 @@ When patching a contrib module, the following steps should be followed:
 
 List of patches (most recent first)
 
+* varnish
+  * req.http.host not correct when using custom port for varnish.
+  * /patches/varnish/parse_url_fix.patch
+
 * drupal
   * Applied patch to allow HTTPS
   * /patches/drupal/471970_0.patch

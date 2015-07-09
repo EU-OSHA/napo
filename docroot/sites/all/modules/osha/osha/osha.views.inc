@@ -9,6 +9,7 @@
 function osha_views_query_alter(&$view, &$query) {
   // Switch from JOIN to LEFT JOIN with workbench_moderation_node_history
   // to allow adding content types which are not moderated (i.e. page).
+  return;
   if ($view->name == 'administration_content') {
     if (isset($query->table_queue['workbench_moderation_node_history']['join']->type)) {
       $query->table_queue['workbench_moderation_node_history']['join']->type = 'LEFT';
