@@ -1,15 +1,6 @@
 <?php
 
 /**
- * Implements hook_requirements().
- */
-function napo_migration_requirements($phase) {
-  global $databases;
-  if (!isset($databases['osha'])) {
-    drupal_set_message('You must set in settings.php a connection to OSHA database for taxonomy import', 'warning');
-  }
-}
-/**
  * Implements hook_migrate_api().
  */
 function napo_migration_migrate_api() {
