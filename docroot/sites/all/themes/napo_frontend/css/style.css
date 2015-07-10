@@ -9710,4 +9710,20 @@ footer .jcarousel-skin-default .jcarousel-item {
     width: 59%!important;
     height: 74px!important;
   }
+  .slider .frontpage-video-title h3 a {
+    font-size: 15px!important;
+  }
+  .slider .frontpage-video-title p span {
+    font-size: 11px!important;
+  }
+  .slider .frontpage-video-title {
+    top: 0%!important;
+    left: 148px!important;
+    max-width: 223px!important;
+    max-height: 225px;
+    padding: 0 10px 10px!important;
+  }
+  video::-webkit-media-controls {
+    display: none !important;
+  }
 }
