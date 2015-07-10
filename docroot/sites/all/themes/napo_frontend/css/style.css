@@ -8860,7 +8860,7 @@ img {
   height: 115px;
   margin: 20px 7px 25px 0;
 }
-.view-napo-and-friends .views-field-title {
+.view-napo-and-friends .views-slideshow-controls-top .views-field-title-field {
   color: #1f3695;
   background: url('../images/background-yellow.png') repeat-x;
   padding-left: 17px;
@@ -8869,13 +8869,13 @@ img {
   padding-top: 2px;
   font-size: 17px;
 }
-.view-napo-and-friends .views-content-title {
+.view-napo-and-friends .views-slideshow-controls-top  .views-content-title-field {
   width: 117px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-.view-napo-and-friends .views-field-title:hover {
+.view-napo-and-friends .views-slideshow-controls-top .views-field-title-field:hover {
   border-bottom: 5px solid #1f3695;
 }
 .view-napo-and-friends .views-field-field-image:hover {
