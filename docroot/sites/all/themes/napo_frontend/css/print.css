@@ -1,0 +1,179 @@
+/**
+ * @file
+ * Print styling
+ *
+ * We provide some sane print styling for Drupal using Zen's layout method.
+ */
+
+/**
+ * By importing this CSS file as media "all", we allow this print file to be
+ * aggregated with other stylesheets, for improved front-end performance.
+ */
+@media print {
+
+
+/*General*/
+
+h3 , h2{
+	padding: 10px 0px 10px 0px!important;
+	margin: 0px!important;
+	height: auto!important;
+}
+
+footer{
+	display: none;
+}
+
+iframe , video , .youtube-container--responsive , .modal-dialog , .slider{
+	display: none;
+}
+
+a:before{
+ 	display:none;
+}
+
+a:after{
+ 	display:none;
+}
+
+.pager{
+	display:none;
+}
+
+#edit-search-api-views-fulltext , #edit-submit-napo-films{
+	display:none;
+}
+
+button{
+	display:none;
+}
+
+.back_button{
+	display:none;
+}
+
+.alert-block{
+	display:none;
+}
+
+
+
+/*List View*/
+
+
+#block-napo-film-napo-films-view-modes{
+ 	display:none;
+}
+
+.napo-film-list-details-container{
+	display:none;
+}
+
+
+.view-display-id-page_list h3{
+	margin-top: 10px;
+}
+
+.view-display-id-page_list .napo-film-video-type.napo-film-video-type-film{
+	padding-left: 0px;
+}
+
+
+/*Gallery View*/
+
+.views-field.views-field-nothing.napo-film-content-container{
+	display:block!important;
+}
+
+.napo-film-video-download-form-title{
+	display:none;
+}
+
+.napo-film-view-link , .napo-film-view-episodes-link{
+	display:none;
+}
+
+
+/*Video Detail*/
+
+.field-name-episode-list.field-type-ds{
+	display:none;
+}
+
+.node-napo-video .field-name-title-field .napo-film-title-2{
+	padding: 0px 0px 0px 20px;
+}
+
+
+/*Napo for teachers*/
+
+#block-views-napo-target-ages-block h2.block-title{
+	height:auto!important;
+}
+
+.view-napo-target-ages .lesson_by_age_name{
+	margin-top: 0px;
+}
+
+.view-napo-target-ages .lesson_by_age_name{
+	padding: 0px 0px 5px 0px;
+}
+
+#menu-about-page-menu , #top_menu_lessons{
+	display:none;
+}
+
+
+/*Image Gallery*/
+
+.view-napos-gallery .attachment .views-field-field-image ~ .views-field-body ,
+.view-napos-gallery .views-view-grid .views-field-field-image ~ .views-field-body
+{
+	position:relative;
+	margin-top: 0px;
+	display:block;
+}
+
+.napo-share-widget{
+	display:none;
+}
+
+
+
+/*Contact US*/
+
+.ui-accordion-content{
+	overflow:hidden!important;
+	display:block!important;
+}
+
+.contact-form-widget-container{
+	display:none;
+}
+
+
+/*Napo and Firends*/
+
+.view-napo-and-friends .views-slideshow-controls-top{
+	display:none;
+}
+
+.view-napo-and-friends .views-slideshow-cycle-main-frame-row{
+	display:block!important;
+	opacity: 1!important;
+	clear:both!important;
+	position:relative!important;
+	min-height: 300px!important;
+}	
+
+
+
+
+#pf-body a, #pf-body a:visited{
+	color:red!important;
+}
+
+
+
+
+}

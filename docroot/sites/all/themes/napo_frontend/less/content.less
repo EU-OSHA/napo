@@ -68,7 +68,7 @@ p:last-child {
 
 .napo-film-search-tag-filter.active{
 	position: absolute;
-	margin-left: -9em;
+	margin-left: 0em;
 	margin-top: 16px;
 }
 
@@ -84,13 +84,11 @@ p:last-child {
 .view-display-id-page_list .napo-film-video-type.napo-film-video-type-episode{
 	background: url('../images/ico-view-episodes.png') no-repeat 0px 2px;
 	padding-left: 25px;
-	/* padding-top: 10px; */
 }
 
 .view-display-id-page_list .napo-film-video-type.napo-film-video-type-film{
 	background: url('../images/ico-film.png') no-repeat 0px 2px;
 	padding-left: 25px;
-/* 	padding-top: 6px; */
 }
 
 
@@ -184,7 +182,7 @@ p:last-child {
   	border:0;
   	box-shadow:none;
   	-webkit-box-shadow:none;
-  	margin-left: -2.1em;
+  	margin-left: -2.3em;
   	margin-top: -2.1em;
 }
 
@@ -548,7 +546,7 @@ p:last-child {
 
 	.field-name-field-combined-tags{
 		float:left;
-		width:50%;
+		width: 65%;
 	}
 
 	.field-name-field-combined-tags .field-item{
@@ -569,9 +567,16 @@ p:last-child {
 		margin-right: 0px;
 		margin-top: -2px;
     	padding: 13px 43px 10px 10px;
-    	margin-left: 15.6%;
+    	margin-left: 0.6%;
+		max-width: 159px;
 	}
-
+	a span.view-film-details-icon{
+		margin-left: 150px;
+	}
+	.napo-film-view-episodes-link ~ a span.view-film-details-icon{
+		margin-left: 0;
+	}
+	
 	.napo-film-view-link{
 		background: url('../images/napo-film-view-link.png') no-repeat;
 		color: transparent;
@@ -1025,11 +1030,6 @@ p:last-child {
 		    color: @color-blue-napo;
 		    padding: 8px;
 		}
-
-		> ul > li:hover {
-		    /*background: @color-yellow-napo;*/
-		}
-
 	}
 
 	.napo-share-widget:hover ul{
@@ -1273,11 +1273,9 @@ p:last-child {
 		margin:0 auto;
 	}
 
-	.form-item-available-languages{
-		text-align: center;
-	}
 
 	.form-item-available-languages{
+		text-align: center;
 		float:left;
 		margin-right: 1em;
 		margin-top: 5px;
@@ -1305,7 +1303,7 @@ p:last-child {
   		width: auto;
   		padding-right: 2em;
   		font-weight: bold;
-  	/* 	background: url('../images/arrow-language.png') no-repeat 99% 3px @color-yellow-napo; */
+		float: left;
 	}
 
 	.form-item-available-languages label{
@@ -1324,7 +1322,7 @@ p:last-child {
 }
 
 	.main-container.container .form-type-select:after{
-		  left: 89.5%;
+		  left: 85.5%;
 	}
 
 
@@ -1718,11 +1716,11 @@ p:last-child {
 
 	ul > li{
 		float:left;
+		padding: 0;
 	}
 
 	ul li:nth-child(1){
 		background:url('../images/facebook.png') no-repeat;
-		width: 54px;
 		height: 40px;
 		color:transparent;
 		a{
@@ -1734,13 +1732,11 @@ p:last-child {
 
 	ul li:nth-child(1):hover{
 			background:url('../images/facebook-hover.png') no-repeat;
-			padding-left: 10px;
 			cursor:pointer;
 	}
 
 	ul li:nth-child(2){
 		background:url('../images/twitter.png') no-repeat;
-		width: 54px;
 		height: 40px;
 		a{
 			color:transparent;
@@ -1750,12 +1746,10 @@ p:last-child {
 
 	ul li:nth-child(2):hover{
 			background:url('../images/twitter-hover.png') no-repeat;
-			padding-left: 10px;
 	}
 
 	ul li:nth-child(3){
 		background:url('../images/google.png') no-repeat;
-		width: 54px;
 		height: 40px;
 		a{
 			color:transparent;
@@ -1765,12 +1759,10 @@ p:last-child {
 
 	ul li:nth-child(3):hover{
 			background:url('../images/google-hover.png') no-repeat;
-			padding-left: 10px;
 	}
 
 	ul li:nth-child(4){
 		background:url('../images/link.png') no-repeat;
-		width: 54px;
 		height: 40px;
 		text-indent: -99999px;
 		cursor:pointer;
@@ -1782,7 +1774,6 @@ p:last-child {
 
 	ul li:nth-child(4):hover{
 			background:url('../images/link-hover.png') no-repeat;
-			padding-left: 10px;
 	}
 
 	.napo-share-widget > ul {
@@ -2020,6 +2011,13 @@ p:last-child {
 	}
 }
 
+input[type=checkbox]{
+	background-color: white;
+	border: 1px solid @color-blue-napo;
+	border-radius: 4px 4px 4px;
+	color: @color-blue-napo;
+}
+
 .view-download-center {
 	
 	.views-row{
@@ -2028,13 +2026,12 @@ p:last-child {
 
 	.views-field.views-field-content-cart-select-in-cart{
 		float: left;
-		background-color: @color-blue-napo;
+		background-color:@btn-blue-napo-color-trans08;
 		height: 125px;
 		position: absolute;
 		margin-left: 15px;
 		z-index: 999;
 		width: 45px;
-		opacity: 0.8;
 
 		.napo_film_select_in_cart{
 			margin-left: 16px;
@@ -2142,7 +2139,6 @@ p:last-child {
 	    width: 100%;
 	    margin-top: 20px;
 	    border-bottom: 5px solid @color-blue-napo;
-	   /*  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067); */
 	    background:#FFF;
 	}
 	ul.nav-right-menu li{
@@ -2167,7 +2163,6 @@ p:last-child {
 	#top_menu_lessons.nav.nav-right-menu.nav-stacked.affix{
 	    top: -20px; /* Set the top position of pinned element */
 	    z-index: 9;
-	    /* width: 57%!important; */
 		width: 48.3em;
 	}
 
@@ -2212,7 +2207,6 @@ p:last-child {
 		.lesson{
 			float:left;
 			height:55px;
-			/* background:@color-napo-bg-gray-1; */
 			font-weight: bold;
 			padding-top: 0.5em;
 		 	padding-left: 2em;
@@ -2222,12 +2216,10 @@ p:last-child {
 			background: transparent url('../images/lesson.png') no-repeat right 1px;
 			z-index: 0;
  			a{
-				/* background-color: @color-napo-bg-gray-1; */
  				color: @color-blue-napo;
 				padding-right: 2.5em;
  			}
 			&:first-child{
-				/* background-color: #2f2593;  */
 				background-image: url('../images/lesson_first.png');
 				padding-left: 0px;
 			}
@@ -2235,11 +2227,6 @@ p:last-child {
 		.lesson.active{
 			height:55px;
  			text-transform: none;
-			/* background-color: transparent;
-			background-image: url('../images/lesson_active.png');
-			background-repeat: no-repeat;
-			background-position: right;
-			background-position: -125px 1px; */
 			background: transparent url('../images/lesson_active.png') no-repeat -125px 1px;
  			padding-left: 0px;
 			padding-right: 2em;
@@ -2247,20 +2234,11 @@ p:last-child {
 			margin-top: 0;
 			z-index: 3;
  			a{
-				/* background-color: @color-blue-napo; */
  				color:#FFF;
  			}
 
  			a:hover{
  				background:transparent;
- 			}
-
- 			::after{
- 				/*content:'test';
- 				background: url('../images/lesson-tab.png') no-repeat 96% 12px;
- 				position: absolute;
-				height: 55px;
-				width: 80px;*/
  			}
 		}
 	}
@@ -2295,7 +2273,6 @@ p:last-child {
 	}
 
 	#group-right{
-		/* padding-left: 31px; */
 		padding-left: 0px;
 		float: right;
 		& > .field{

@@ -160,14 +160,21 @@ video{
 .node-napo-video .field-name-field-combined-tags{ 
   width:100%;
 }
+
+	.main-container.container .form-type-select:after{
+		  left: 82.5%;
+	}
+
 	#block-napo-common-no-translation{
 		background: url('../images/translation-not-available-left.png') no-repeat 5px -14%;
+		padding-left: 2em;
 		.no_translation_page_content{
-			margin-left: 2em;
+			margin-left: 5em;
 			height: 374px;
 			margin-top: 0;
 			margin-bottom: 0;
 			padding: 0;
+			font-size: 25px;
 		}
 		form{
 			margin-left: 0%;
@@ -179,9 +186,23 @@ video{
 		.form-item-available-languages label{
 			width: 120px;
 		}
+		.page_not_found_front label{
+			width: auto;
+		}
+	}
+	#block-napo-common-page-not-found{
+		.page_not_found_intro{
+			font-size: 25px;
+		}
+		.page_not_found_search > div{
+			width: 100px;
+		}
+		.page_not_found_front{
+			width: 150px;
+		}
 	}
 
-.napo-film-list-view .content-cart-add-to-cart-btn{
+.napo-film-list-view .content-cart-add-to-cart-btn, .view-napo-s-film-episodes .content-cart-add-to-cart-btn{
   display:none;
 }
 
@@ -189,11 +210,20 @@ video{
   display:none;
 }
 
-.napo-film-list-view{
+.napo-film-list-view, .view-napo-s-film-episodes .views-row{
   padding-left: 0em;
 }
-
-
+.view-napo-s-film-episodes .episode-list-details-container {
+    padding: 0 1em !important;
+}
+}
+@media only screen and (max-width : 320px) {
+	#block-napo-common-no-translation{
+		padding-left: 0em;
+			.lang-dropdown-select-element{
+				 max-width: 105px;
+			}
+	}
 }
 
 @media only screen and (max-width : 1200px) {
@@ -207,17 +237,21 @@ video{
 
 .napo-film-list-view .field-name-field-combined-tags{
   float:none;
+  width: 100%;
 }
 
 .napo-film-list-view .napo-film-view-episodes-link{
     margin-left: 0;
     margin-top: 20px;
+	max-width: 80%;
 }
 
 .napo-film-list-view .view-film-details-icon{
   margin-top: 9px;
 }
-
+	.napo-film-list-view a span.view-film-details-icon{
+		margin-left: 0px;
+	}
 
 .napo-film-list-view .napo-film-video-download-form{
   float: left!important;
@@ -344,4 +378,28 @@ video{
      height: 74px!important;
   }
 
+  .slider .frontpage-video-title h3 a{
+    font-size: 15px!important;
+
+  }
+
+  .slider .frontpage-video-title p span{
+    font-size: 11px!important;
+    
+  }
+
+  .slider .frontpage-video-title{
+    top: 0%!important;
+    left: 148px!important;
+    max-width: 223px!important;
+    max-height: 225px;
+    padding: 0 10px 10px!important;
+  }
+
+//iPhone hack , two icons play
+video::-webkit-media-controls { 
+  display:none !important;
 }
+
+}
+

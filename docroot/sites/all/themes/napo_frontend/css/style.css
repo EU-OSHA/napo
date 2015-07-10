@@ -7411,7 +7411,7 @@ p:last-child {
 }
 .napo-film-search-tag-filter.active {
   position: absolute;
-  margin-left: -9em;
+  margin-left: 0em;
   margin-top: 16px;
 }
 .node-article .field-name-field-image img {
@@ -7424,12 +7424,10 @@ p:last-child {
 .view-display-id-page_list .napo-film-video-type.napo-film-video-type-episode {
   background: url('../images/ico-view-episodes.png') no-repeat 0px 2px;
   padding-left: 25px;
-  /* padding-top: 10px; */
 }
 .view-display-id-page_list .napo-film-video-type.napo-film-video-type-film {
   background: url('../images/ico-film.png') no-repeat 0px 2px;
   padding-left: 25px;
-  /* 	padding-top: 6px; */
 }
 .title-archived {
   display: block;
@@ -7505,7 +7503,7 @@ img {
   border: 0;
   box-shadow: none;
   -webkit-box-shadow: none;
-  margin-left: -2.1em;
+  margin-left: -2.3em;
   margin-top: -2.1em;
 }
 .vjs-default-skin .vjs-big-play-button::before {
@@ -7796,7 +7794,7 @@ img {
 }
 .napo-film-list-view .field-name-field-combined-tags {
   float: left;
-  width: 50%;
+  width: 65%;
 }
 .napo-film-list-view .field-name-field-combined-tags .field-item {
   color: #1f3695;
@@ -7815,7 +7813,14 @@ img {
   margin-right: 0px;
   margin-top: -2px;
   padding: 13px 43px 10px 10px;
-  margin-left: 15.6%;
+  margin-left: 0.6%;
+  max-width: 159px;
+}
+.napo-film-list-view a span.view-film-details-icon {
+  margin-left: 150px;
+}
+.napo-film-list-view .napo-film-view-episodes-link ~ a span.view-film-details-icon {
+  margin-left: 0;
 }
 .napo-film-list-view .napo-film-view-link {
   background: url('../images/napo-film-view-link.png') no-repeat;
@@ -8176,9 +8181,6 @@ img {
   color: #1f3695;
   padding: 8px;
 }
-.node-napo-video .napo-share-widget > ul > li:hover {
-  /*background: @color-yellow-napo;*/
-}
 .node-napo-video .napo-share-widget:hover ul {
   position: absolute;
   display: block;
@@ -8379,8 +8381,6 @@ img {
 }
 #block-napo-common-no-translation .form-item-available-languages {
   text-align: center;
-}
-#block-napo-common-no-translation .form-item-available-languages {
   float: left;
   margin-right: 1em;
   margin-top: 5px;
@@ -8406,7 +8406,7 @@ img {
   width: auto;
   padding-right: 2em;
   font-weight: bold;
-  /* 	background: url('../images/arrow-language.png') no-repeat 99% 3px @color-yellow-napo; */
+  float: left;
 }
 #block-napo-common-no-translation .form-item-available-languages label {
   color: #1f3695;
@@ -8421,7 +8421,7 @@ img {
   content: ":";
 }
 .main-container.container .form-type-select:after {
-  left: 89.5%;
+  left: 85.5%;
 }
 .view-mode-episode_full .field-name-title-field .napo-film-title-2 {
   margin-top: -1px;
@@ -8723,10 +8723,10 @@ img {
 }
 .napo-share-widget ul > li {
   float: left;
+  padding: 0;
 }
 .napo-share-widget ul li:nth-child(1) {
   background: url('../images/facebook.png') no-repeat;
-  width: 54px;
   height: 40px;
   color: transparent;
 }
@@ -8737,12 +8737,10 @@ img {
 }
 .napo-share-widget ul li:nth-child(1):hover {
   background: url('../images/facebook-hover.png') no-repeat;
-  padding-left: 10px;
   cursor: pointer;
 }
 .napo-share-widget ul li:nth-child(2) {
   background: url('../images/twitter.png') no-repeat;
-  width: 54px;
   height: 40px;
 }
 .napo-share-widget ul li:nth-child(2) a {
@@ -8751,11 +8749,9 @@ img {
 }
 .napo-share-widget ul li:nth-child(2):hover {
   background: url('../images/twitter-hover.png') no-repeat;
-  padding-left: 10px;
 }
 .napo-share-widget ul li:nth-child(3) {
   background: url('../images/google.png') no-repeat;
-  width: 54px;
   height: 40px;
 }
 .napo-share-widget ul li:nth-child(3) a {
@@ -8764,11 +8760,9 @@ img {
 }
 .napo-share-widget ul li:nth-child(3):hover {
   background: url('../images/google-hover.png') no-repeat;
-  padding-left: 10px;
 }
 .napo-share-widget ul li:nth-child(4) {
   background: url('../images/link.png') no-repeat;
-  width: 54px;
   height: 40px;
   text-indent: -99999px;
   cursor: pointer;
@@ -8779,7 +8773,6 @@ img {
 }
 .napo-share-widget ul li:nth-child(4):hover {
   background: url('../images/link-hover.png') no-repeat;
-  padding-left: 10px;
 }
 .napo-share-widget .napo-share-widget > ul {
   display: none;
@@ -8971,18 +8964,23 @@ img {
   padding-top: 14px;
   padding-right: 45px;
 }
+input[type=checkbox] {
+  background-color: white;
+  border: 1px solid #1f3695;
+  border-radius: 4px 4px 4px;
+  color: #1f3695;
+}
 .view-download-center .views-row {
   margin-bottom: 1em;
 }
 .view-download-center .views-field.views-field-content-cart-select-in-cart {
   float: left;
-  background-color: #1f3695;
+  background-color: rgba(31, 54, 149, 0.8);
   height: 125px;
   position: absolute;
   margin-left: 15px;
   z-index: 999;
   width: 45px;
-  opacity: 0.8;
 }
 .view-download-center .views-field.views-field-content-cart-select-in-cart .napo_film_select_in_cart {
   margin-left: 16px;
@@ -9070,7 +9068,6 @@ img {
   width: 100%;
   margin-top: 20px;
   border-bottom: 5px solid #1f3695;
-  /*  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067); */
   background: #FFF;
 }
 .node-lesson ul.nav-right-menu li {
@@ -9096,7 +9093,6 @@ img {
   top: -20px;
   /* Set the top position of pinned element */
   z-index: 9;
-  /* width: 57%!important; */
   width: 48.3em;
 }
 .node-lesson ul li.headings {
@@ -9135,7 +9131,6 @@ img {
 .node-lesson #top_menu_lessons .lesson {
   float: left;
   height: 55px;
-  /* background:@color-napo-bg-gray-1; */
   font-weight: bold;
   padding-top: 0.5em;
   padding-left: 2em;
@@ -9146,23 +9141,16 @@ img {
   z-index: 0;
 }
 .node-lesson #top_menu_lessons .lesson a {
-  /* background-color: @color-napo-bg-gray-1; */
   color: #1f3695;
   padding-right: 2.5em;
 }
 .node-lesson #top_menu_lessons .lesson:first-child {
-  /* background-color: #2f2593;  */
   background-image: url('../images/lesson_first.png');
   padding-left: 0px;
 }
 .node-lesson #top_menu_lessons .lesson.active {
   height: 55px;
   text-transform: none;
-  /* background-color: transparent;
-			background-image: url('../images/lesson_active.png');
-			background-repeat: no-repeat;
-			background-position: right;
-			background-position: -125px 1px; */
   background: transparent url('../images/lesson_active.png') no-repeat -125px 1px;
   padding-left: 0px;
   padding-right: 2em;
@@ -9171,18 +9159,10 @@ img {
   z-index: 3;
 }
 .node-lesson #top_menu_lessons .lesson.active a {
-  /* background-color: @color-blue-napo; */
   color: #FFF;
 }
 .node-lesson #top_menu_lessons .lesson.active a:hover {
   background: transparent;
-}
-.node-lesson #top_menu_lessons .lesson.active ::after {
-  /*content:'test';
- 				background: url('../images/lesson-tab.png') no-repeat 96% 12px;
- 				position: absolute;
-				height: 55px;
-				width: 80px;*/
 }
 .node-lesson ul li:first-child {
   background: #1f3695;
@@ -9211,7 +9191,6 @@ img {
   outline: none;
 }
 .node-lesson #group-right {
-  /* padding-left: 31px; */
   padding-left: 0px;
   float: right;
 }
@@ -9548,15 +9527,20 @@ footer .jcarousel-skin-default .jcarousel-item {
   .node-napo-video .field-name-field-combined-tags {
     width: 100%;
   }
+  .main-container.container .form-type-select:after {
+    left: 82.5%;
+  }
   #block-napo-common-no-translation {
     background: url('../images/translation-not-available-left.png') no-repeat 5px -14%;
+    padding-left: 2em;
   }
   #block-napo-common-no-translation .no_translation_page_content {
-    margin-left: 2em;
+    margin-left: 5em;
     height: 374px;
     margin-top: 0;
     margin-bottom: 0;
     padding: 0;
+    font-size: 25px;
   }
   #block-napo-common-no-translation form {
     margin-left: 0%;
@@ -9568,15 +9552,40 @@ footer .jcarousel-skin-default .jcarousel-item {
   #block-napo-common-no-translation .form-item-available-languages label {
     width: 120px;
   }
-  .napo-film-list-view .content-cart-add-to-cart-btn {
+  #block-napo-common-no-translation .page_not_found_front label {
+    width: auto;
+  }
+  #block-napo-common-page-not-found .page_not_found_intro {
+    font-size: 25px;
+  }
+  #block-napo-common-page-not-found .page_not_found_search > div {
+    width: 100px;
+  }
+  #block-napo-common-page-not-found .page_not_found_front {
+    width: 150px;
+  }
+  .napo-film-list-view .content-cart-add-to-cart-btn,
+  .view-napo-s-film-episodes .content-cart-add-to-cart-btn {
     display: none;
   }
   .col-md-6 .content-cart-add-to-cart-btn,
   .col-md-6 .btn[disabled] {
     display: none;
   }
-  .napo-film-list-view {
+  .napo-film-list-view,
+  .view-napo-s-film-episodes .views-row {
     padding-left: 0em;
+  }
+  .view-napo-s-film-episodes .episode-list-details-container {
+    padding: 0 1em !important;
+  }
+}
+@media only screen and (max-width: 320px) {
+  #block-napo-common-no-translation {
+    padding-left: 0em;
+  }
+  #block-napo-common-no-translation .lang-dropdown-select-element {
+    max-width: 105px;
   }
 }
 @media only screen and (max-width: 1200px) {
@@ -9586,13 +9595,18 @@ footer .jcarousel-skin-default .jcarousel-item {
   }
   .napo-film-list-view .field-name-field-combined-tags {
     float: none;
+    width: 100%;
   }
   .napo-film-list-view .napo-film-view-episodes-link {
     margin-left: 0;
     margin-top: 20px;
+    max-width: 80%;
   }
   .napo-film-list-view .view-film-details-icon {
     margin-top: 9px;
+  }
+  .napo-film-list-view a span.view-film-details-icon {
+    margin-left: 0px;
   }
   .napo-film-list-view .napo-film-video-download-form {
     float: left!important;
@@ -9695,5 +9709,21 @@ footer .jcarousel-skin-default .jcarousel-item {
   #block-views-episode-list-block .views-field.views-field-title-field {
     width: 59%!important;
     height: 74px!important;
+  }
+  .slider .frontpage-video-title h3 a {
+    font-size: 15px!important;
+  }
+  .slider .frontpage-video-title p span {
+    font-size: 11px!important;
+  }
+  .slider .frontpage-video-title {
+    top: 0%!important;
+    left: 148px!important;
+    max-width: 223px!important;
+    max-height: 225px;
+    padding: 0 10px 10px!important;
+  }
+  video::-webkit-media-controls {
+    display: none !important;
   }
 }
