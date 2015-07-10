@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Napo webform feature.
+ */
+
+include_once 'napo_webform.features.inc';

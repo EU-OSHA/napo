@@ -1,0 +1,17 @@
+name = Napo webform
+core = 7.x
+package = Napo
+version = 7.x-0.1
+project = napo_webform
+dependencies[] = metatag
+dependencies[] = napo_contact
+dependencies[] = strongarm
+dependencies[] = webform
+dependencies[] = webform_localization
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[node][] = webform
+features[variable][] = webform_blocks
+features[variable][] = webform_localization_using_uuid
+features[variable][] = webform_node_home_video
+features[variable][] = webform_node_webform

@@ -510,6 +510,8 @@ $options['init-modules'] = array(
   'views_accordion',
   'webform',
   'napo_contact',
+  
+  'napo_webform',
 
 );
 
