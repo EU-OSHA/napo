@@ -509,8 +509,9 @@ $options['init-modules'] = array(
   //Contact Us and FAQ
   'views_accordion',
   'webform',
+  'webform_localization',
   'napo_contact',
-  
+
   'napo_webform',
 
 );
