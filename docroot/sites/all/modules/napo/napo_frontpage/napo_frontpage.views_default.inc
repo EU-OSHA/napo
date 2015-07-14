@@ -138,7 +138,7 @@ function napo_frontpage_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Frontpage Carrousel Featured';
+  $handler->display->display_options['title'] = 'Featured films';
   $handler->display->display_options['css_class'] = 'napo-homepage-featured-films';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -238,7 +238,7 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
   $translatables['frontpage_carousel_featured'] = array(
     t('Master'),
-    t('Frontpage Carrousel Featured'),
+    t('Featured films'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -438,6 +438,8 @@ function napo_frontpage_views_default_views() {
     t('[title_field]
 [body]'),
     t('Block'),
+    t('<h3>'),
+    t('</h3>'),
   );
   $export['frontpage_custom_video'] = $view;
 
