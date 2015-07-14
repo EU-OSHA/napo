@@ -187,7 +187,7 @@ function napo_lesson_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Napo target ages';
+  $handler->display->display_options['title'] = 'Lessons';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -303,7 +303,7 @@ function napo_lesson_views_default_views() {
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
   $translatables['napo_target_ages'] = array(
     t('Master'),
-    t('Napo target ages'),
+    t('Lessons'),
     t('more'),
     t('Apply'),
     t('Reset'),
