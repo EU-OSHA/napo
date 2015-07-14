@@ -105,6 +105,7 @@ function napo_film_block_info() {
 
   $blocks['download_cart_form'] = array(
     'info' => t('Download centre cart form'),
+    'cache' => DRUPAL_NO_CACHE,
   );
 
 
