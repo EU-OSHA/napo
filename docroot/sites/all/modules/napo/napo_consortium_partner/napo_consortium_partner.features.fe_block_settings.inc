@@ -36,7 +36,7 @@ function napo_consortium_partner_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'Napo is an initiative of:',
+    'title' => '',
     'visibility' => 0,
   );
 

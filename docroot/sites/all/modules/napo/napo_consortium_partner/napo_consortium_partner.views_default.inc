@@ -22,7 +22,7 @@ function napo_consortium_partner_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Consortium Partners';
+  $handler->display->display_options['title'] = 'Napo is an initiative of:';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -108,7 +108,7 @@ function napo_consortium_partner_views_default_views() {
   $handler = $view->new_display('block', 'Block', 'block');
   $translatables['consortium_partners'] = array(
     t('Master'),
-    t('Consortium Partners'),
+    t('Napo is an initiative of:'),
     t('more'),
     t('Apply'),
     t('Reset'),
