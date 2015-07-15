@@ -29,6 +29,60 @@ function osha_authentication_cron() {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function osha_authentication_form_user_login_alter(&$form, &$form_state) {
+  array_unshift($form['#validate'], 'osha_authentication_user_login_validate');
+}
+
+/**
+ * Form validation hook for user_login form.
+ * @inheritdoc
+ */
+function osha_authentication_user_login_validate($form, &$form_state) {
+  // If username contains @ check for email
+  if (!empty($form_state['values']['name']) && strpos($form_state['values']['name'], '@') !== 0) {
+    // Try the database first (for existing users)
+    if ($account = db_select('users', 'a')->fields('a', array())->condition('mail', $form_state['values']['name'])->condition('status', 1)->execute()->fetchObject()) {
+      $form_state['values']['name'] = $account->name;
+      $form_state['input']['name'] = $account->name;
+      return;
+    }
+    // Try LDAP query for users that never logged in
+    if ($auth_conf = ldap_authentication_get_valid_conf()) {
+      $mail = osha_authentication_ldap_string_sanitize($form_state['values']['name']);
+      /**
+       * @var string $sid
+       * @var LdapServer $ldap_server
+       */
+      foreach ($auth_conf->enabledAuthenticationServers as $sid => $ldap_server) {
+        if ($result = $ldap_server->search('ou=people,dc=osha,dc=europa,dc=eu', 'mail=' . $mail, array('uid'))) {
+          if (!empty($result[0]['uid'][0])) {
+            $form_state['input']['name'] = $result[0]['uid'][0];
+            $form_state['values']['name'] = $result[0]['uid'][0];
+            break;
+          }
+        }
+      }
+    }
+  }
+}
+
+function osha_authentication_ldap_string_sanitize(&$input) {
+  $ret = str_replace('\\', '', $input);
+  $ret = str_replace(',', '', $ret);
+  $ret = str_replace('+', '', $ret);
+  $ret = str_replace('"', '', $ret);
+  $ret = str_replace('<', '', $ret);
+  $ret = str_replace('>', '', $ret);
+  $ret = str_replace(';', '', $ret);
+  $ret = str_replace('(', '', $ret);
+  $ret = str_replace(')', '', $ret);
+  $ret = str_replace('|', '', $ret);
+  return $ret;
+}
+
+/**
  * Implements hook_ldap_entry_pre_provision_alter().
  */
 function osha_authentication_ldap_entry_pre_provision_alter(&$ldap_entries, $ldap_server, $context) {
