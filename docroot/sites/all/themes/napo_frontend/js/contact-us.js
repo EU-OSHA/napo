@@ -26,12 +26,12 @@ jQuery(document).ready(function () {
 });
 
 // Footer carousel responsive design
+
 jQuery(document).ready(function () {
   jQuery("#block-views-consortium-partners-block-1 div").hide();
-  jQuery("#consortium-partners-block-1-link").click(
-		function( event ){
-			event.preventDefault();
-            jQuery("#block-views-consortium-partners-block-1 div").show();
-        }
-  );
+  jQuery("#consortium-partners-block-1-link").on("click", function( event ) {
+        event.preventDefault();
+        jQuery("#block-views-consortium-partners-block-1 div").toggle();
+        return false;
+  });
 });
