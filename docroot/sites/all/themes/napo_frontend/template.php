@@ -10,6 +10,23 @@ function napo_frontend_preprocess_node(&$vars) {
 }
 
 /**
+ * Implements hook_preprocess_block().
+ */
+function napo_frontend_preprocess_block(&$vars) {
+  // Use a bare template for the page's main content.
+  //dpm($variables['block_html_id']);
+  //dpm($vars['block']->module . '-' . $vars['block']->delta);
+  if ($vars['block_html_id'] == 'block-views-consortium-partners-block') {
+    $vars['title_attributes_array']['class'][] = 'hidden-xs';
+  } else if ($vars['block_html_id'] == 'block-views-consortium-partners-block-1') {
+    $vars['title_attributes_array']['class'][] = 'visible-xs';
+    $vars['title_suffix'] =
+      '<a href="#consortium-partners-block-1-link" id="consortium-partners-block-1-link" class="visible-xs">'
+      .t('See details').'</a>';
+  }
+}
+
+/**
  * Back button link and text
  */
 function napo_frontend_back_button(&$vars){

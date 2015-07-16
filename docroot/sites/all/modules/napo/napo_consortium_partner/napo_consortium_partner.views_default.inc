@@ -106,6 +106,21 @@ function napo_consortium_partner_views_default_views() {
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'hidden-xs';
+
+  /* Display: Consortium Partners - responsive */
+  $handler = $view->new_display('block', 'Consortium Partners - responsive', 'block_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Napo is an initiative of the Napo consortium';
+  $handler->display->display_options['defaults']['css_class'] = FALSE;
+  $handler->display->display_options['css_class'] = 'visible-xs';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $translatables['consortium_partners'] = array(
     t('Master'),
     t('Napo is an initiative of:'),
@@ -119,6 +134,8 @@ function napo_consortium_partner_views_default_views() {
     t('[field_url-url]'),
     t('[title_field]'),
     t('Block'),
+    t('Consortium Partners - responsive'),
+    t('Napo is an initiative of the Napo consortium'),
   );
   $export['consortium_partners'] = $view;
 
