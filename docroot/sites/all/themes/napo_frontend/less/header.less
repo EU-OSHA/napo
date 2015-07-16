@@ -20,9 +20,15 @@
 	padding-right: 0;
 	.navbar-header{
 		padding-left: 0;
+		margin-left: -10px;
 	}
 	.pull-right{
 		padding-right: 0;
+		margin-top: 5px;
+		margin-right: -5px;
+	}
+	nav .pull-right{
+		margin-top: 0px;
 	}
 }
 
@@ -82,15 +88,22 @@
   margin-right: 0px;
 }
 
+.navbar-nav > li > a{
+    padding-top: 14.5px;
+}
+
 .menu.nav.navbar-nav .expanded.dropdown{
-  height:62px;
+  min-height: 63px;
   vertical-align: middle;
   color:@link-color;
   border-left: 3px solid #FFF;
   display: block;
-  padding: 1.5em 1em 1em;
+  padding: 1.5em 0.5em 1em 1em;
   min-width: 130px;
   max-width: 130px;
+  &.last{
+	border-right: 3px solid #FFF;
+  }
 }
 
 .menu.nav.navbar-nav .dropdown-menu{
@@ -300,7 +313,7 @@ form#search-block-form {
 	top: 0px;
 	left: 77.5%;
 	pointer-events: none;
-	 background: url('../images/arrow-language.png') no-repeat 0px 7px transparent;
+	 background: url('../images/arrow-language.png') no-repeat -2px 6px transparent;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;

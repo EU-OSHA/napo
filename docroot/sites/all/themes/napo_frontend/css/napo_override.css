@@ -78,7 +78,7 @@ a:hover#text_resize_decrease {
     top: 30%;
     left: 30px;
     padding: 0px 30px 30px 30px;
-    max-width: 300px;
+    max-width: 491px;
     z-index: 1;
     background:url('../images/background-slider-home.png');
 }
@@ -164,6 +164,11 @@ footer.footer.container section.block-menu-block{
 
 #block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li > a {
     padding: 0 10px 0 10px;
+}
+
+#block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li > a:hover {
+    background-color:transparent!important;
+    text-decoration: underline;
 }
 
 #block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li~li {
@@ -288,4 +293,13 @@ footer.footer.container section.block-menu-block{
 }
 .view-episode-list .views-field-title-field .field-content {
     padding: 0 10px !important;
+}
+
+/*Login*/
+#user-login .btn-default{
+    background-color:#E0E1E1;
+}
+
+#user-login .btn-default:hover{
+    background-color:#F2F1F2;
 }

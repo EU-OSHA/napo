@@ -33,14 +33,29 @@
 
 	nav div{
 		float:left!important;
+    width:300px;
 	}
+
+  #lang-dropdown-select-language_content{
+    width:300px!important;
+  }
+  
+  .form-type-select:after{ //menu dropdown
+    left: 89.5%!important;
+  }
+  
 }
 
 .navbar.container.navbar-default .col-md-8.pull-right{
- 	margin-top: 0px;
-  	margin-right: 0%; 
-  	float: left !important;
-  	width: 98%;
+  margin-top: 0px;
+  margin-right: 0%; 
+  float: left !important;
+  width: 300px;
+  margin-left: 5px;
+}
+
+.menu.nav.navbar-nav .expanded.dropdown.last{
+  border-right: 0px;
 }
 
 .menu.nav.navbar-nav .first{
@@ -214,8 +229,9 @@ video{
   padding-left: 0em;
 }
 .view-napo-s-film-episodes .episode-list-details-container {
-    padding: 0 1em !important;
+    padding: 0 1em 1em !important;
 }
+
 }
 @media only screen and (max-width : 320px) {
 	#block-napo-common-no-translation{
@@ -228,8 +244,12 @@ video{
 
 @media only screen and (max-width : 1200px) {
 
-//Napo List View
+//Home
+.slider .frontpage-video-title{
+  max-width: 300px!important;
+}
 
+//Napo List View
 .napo-film-list-details-container {
   position:static;
   height:auto;
@@ -336,6 +356,10 @@ video{
           left: -10px;
     }
 }
+.view-napo-s-film-episodes .episode-list-details-container {
+  padding: 0 1em 1em;
+  height: auto;
+}
 
 .node-lesson .back_button{
   margin-top: 0px;
@@ -346,6 +370,18 @@ video{
 		padding-left: 0em;
 		padding-right: 218px;
 	}
+	
+#block-system-main .view-download-center .views-field-nothing .col-md-9{
+	display: table;
+	width: 100%;
+}
+
+.pull-right{
+  float: left !important;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
 }
 
 @media (min-width: 1200px){
@@ -369,13 +405,17 @@ video{
     width:100%!important;
   }
 
+/*
   #block-views-episode-list-block .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img{
     max-width: 59%;
   }
-
-  #block-views-episode-list-block .views-field.views-field-title-field{
+*/
+  #block-views-episode-list-block .views-field-nothing{
      width: 59%!important;
-     height: 74px!important;
+  }
+
+  #block-views-episode-list-block .views-field-title-field{
+     width: 59%!important;
   }
 
   .slider .frontpage-video-title h3 a{
@@ -389,14 +429,18 @@ video{
   }
 
   .slider .frontpage-video-title{
-    top: 0%!important;
-    left: 148px!important;
-    max-width: 223px!important;
-    max-height: 225px;
-    padding: 0 10px 10px!important;
+    display:none;
   }
 
-//iPhone hack , two icons play
+  .view-display-id-page_list .napo-film-video-download-form-title{
+    display:none;
+  }
+
+  .napo-film-video-download-form-title{
+    display:none;
+  }
+
+//iPhone hack , two icons play on Home
 video::-webkit-media-controls { 
   display:none !important;
 }
