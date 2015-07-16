@@ -36,7 +36,35 @@ function napo_consortium_partner_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'Napo is an initiative of:',
+    'title' => '',
+    'visibility' => 0,
+  );
+
+  $export['views-consortium_partners-block_1'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'consortium_partners-block_1',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'napo_frontend' => array(
+        'region' => 'footer',
+        'status' => 1,
+        'theme' => 'napo_frontend',
+        'weight' => -30,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
     'visibility' => 0,
   );
 

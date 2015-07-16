@@ -173,7 +173,7 @@ function osha_strongarm() {
       'value' => '<p><span style="font-size: small;"><strong>The EU-OSHA website uses cookies to gather information necessary for browsing the website, in accordance with the EU-OSHA privacy notice.</strong></span></p><p>By clicking on any link in the EU-OSHA web pages you are giving your consent for the use of cookies.</p>',
       'format' => 'full_html',
     ),
-    'popup_agreed_enabled' => 1,
+    'popup_agreed_enabled' => 0,
     'popup_hide_agreed' => 1,
     'popup_find_more_button_message' => 'More info',
     'popup_hide_button_message' => 'Hide',

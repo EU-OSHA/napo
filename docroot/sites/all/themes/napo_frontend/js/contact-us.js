@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
 });
 
 //Contact Us
-jQuery(document).ready(function () { 
+jQuery(document).ready(function () {
 	var hiddenContent = jQuery(".webform-client-form");
 	jQuery(".webform-client-form").css("display","none");
 	jQuery(".contact-form-widget-container h2").click(
@@ -23,4 +23,15 @@ jQuery(document).ready(function () {
 			}
 		}
 	);
+});
+
+// Footer carousel responsive design
+jQuery(document).ready(function () {
+  jQuery("#block-views-consortium-partners-block-1 div").hide();
+  jQuery("#consortium-partners-block-1-link").click(
+		function( event ){
+			event.preventDefault();
+            jQuery("#block-views-consortium-partners-block-1 div").show();
+        }
+  );
 });

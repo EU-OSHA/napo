@@ -38,7 +38,7 @@ function napo_lesson_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'Lessons',
+    'title' => '',
     'visibility' => 0,
   );
 
@@ -66,7 +66,7 @@ function napo_lesson_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'Lessons',
+    'title' => '',
     'visibility' => 1,
   );
 

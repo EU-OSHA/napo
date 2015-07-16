@@ -7099,15 +7099,9 @@ table .checkbox input[type="checkbox"] {
 }
 .navbar-default .navbar-header {
   padding-left: 0;
-  margin-left: -10px;
 }
 .navbar-default .pull-right {
   padding-right: 0;
-  margin-top: 5px;
-  margin-right: -5px;
-}
-.navbar-default nav .pull-right {
-  margin-top: 0px;
 }
 .nav-bar-separate {
   background-image: url('../images/nav-bar-border.png');
@@ -7155,21 +7149,15 @@ table .checkbox input[type="checkbox"] {
 .menu.nav.navbar-nav li img {
   margin-right: 0px;
 }
-.navbar-nav > li > a {
-  padding-top: 14.5px;
-}
 .menu.nav.navbar-nav .expanded.dropdown {
-  min-height: 63px;
+  height: 62px;
   vertical-align: middle;
   color: #1f3695;
   border-left: 3px solid #FFF;
   display: block;
-  padding: 1.5em 0.5em 1em 1em;
+  padding: 1.5em 1em 1em;
   min-width: 130px;
   max-width: 130px;
-}
-.menu.nav.navbar-nav .expanded.dropdown.last {
-  border-right: 3px solid #FFF;
 }
 .menu.nav.navbar-nav .dropdown-menu {
   padding: 0px;
@@ -7338,7 +7326,7 @@ form#search-block-form {
   top: 0px;
   left: 77.5%;
   pointer-events: none;
-  background: url('../images/arrow-language.png') no-repeat -2px 6px transparent;
+  background: url('../images/arrow-language.png') no-repeat 0px 7px transparent;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -7391,7 +7379,6 @@ h4 {
 }
 h4.modal-title {
   color: #f7e235;
-  margin-right: 1em;
 }
 .napo-film-video-download-form-title {
   color: transparent;
@@ -7494,7 +7481,7 @@ img {
 .field-content.featured-article-body {
   background-color: #f2f1f2;
   line-height: 1.5em;
-  padding: 0.5em 3em 2em 2em;
+  padding: 0.5em 3em;
   min-height: 110px;
 }
 .more-link {
@@ -7516,7 +7503,7 @@ img {
   border: 0;
   box-shadow: none;
   -webkit-box-shadow: none;
-  margin-left: -2.7em;
+  margin-left: -2.3em;
   margin-top: -2.1em;
 }
 .vjs-default-skin .vjs-big-play-button::before {
@@ -7669,7 +7656,7 @@ img {
   background: transparent;
   border: 0px;
   font-weight: bold;
-  padding: 5px 8px;
+  padding-top: 8px;
 }
 .pager li > a:hover,
 .pager li > a:focus {
@@ -7706,7 +7693,7 @@ img {
   height: 25px;
   display: block;
   float: left;
-  margin-top: -1px;
+  margin-top: -2px;
 }
 .pager .pager-next a {
   text-indent: -9999px;
@@ -7941,12 +7928,9 @@ img {
   color: #fff;
   display: block;
   padding: 1em;
-  background: url('../images/bacground-hover-napo-films-gallery.png') repeat;
-  min-height: 281px;
+  background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
+  height: 281px;
   max-width: 555px;
-}
-.view-napo-films .row div:hover > .views-field-nothing.napo-film-content-container span.field-content {
-  display: table;
 }
 .view-napo-films .row div:hover > .views-field-nothing.napo-film-content-container img {
   display: none;
@@ -7970,11 +7954,7 @@ img {
 }
 .napo-film-grid-view .views-field-field-image {
   max-height: 285px;
-  height: 281px;
   overflow: hidden;
-}
-.row div:hover > .views-field-field-image {
-  height: auto;
 }
 .napo-film-grid-view .napo-film-video-download-form:hover form {
   margin-top: 40px;
@@ -8396,9 +8376,6 @@ img {
   margin-bottom: 1em;
   margin-left: -5em;
 }
-#block-napo-common-no-translation .no_translation_page_content span.translation-not-available-highlight {
-  font-size: 16px;
-}
 #block-napo-common-no-translation .form-search.content-search .input-group {
   margin: 0 auto;
 }
@@ -8508,7 +8485,7 @@ img {
   width: 320px;
   display: none;
   background: url('../images/background-blue.png') repeat-x;
-  height: auto;
+  height: 46px;
   color: #FFF;
   font-weight: bold;
   text-align: left;
@@ -8574,8 +8551,6 @@ img {
 .modal-dialog .close {
   color: #f7e235;
   opacity: 1;
-  padding: 10px 10px 10px 10px;
-  margin-top: -10px;
 }
 .modal-dialog .form-radios {
   display: none;
@@ -8887,24 +8862,6 @@ img {
 }
 .view-napo-and-friends .views-slideshow-controls-top .views-field-title-field {
   color: #1f3695;
-  background: url(../images/background-yellow.png) repeat-x;
-  padding-left: 17px;
-  font-weight: bold;
-  height: 29px;
-  padding-top: 2px;
-  font-size: 17px;
-}
-.view-napo-and-friends .views-slideshow-controls-top .views-field-title-field:hover {
-  border-bottom: 5px solid #1f3695;
-}
-.view-napo-and-friends .views-slideshow-controls-top .views-content-title-field {
-  width: 117px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-.view-napo-and-friends .views-field-title {
-  color: #1f3695;
   background: url('../images/background-yellow.png') repeat-x;
   padding-left: 17px;
   font-weight: bold;
@@ -8912,13 +8869,13 @@ img {
   padding-top: 2px;
   font-size: 17px;
 }
-.view-napo-and-friends .views-content-title {
+.view-napo-and-friends .views-slideshow-controls-top  .views-content-title-field {
   width: 117px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-.view-napo-and-friends .views-field-title:hover {
+.view-napo-and-friends .views-slideshow-controls-top .views-field-title-field:hover {
   border-bottom: 5px solid #1f3695;
 }
 .view-napo-and-friends .views-field-field-image:hover {
@@ -8938,12 +8895,6 @@ img {
 #block-napo-film-download-cart-form {
   padding: 0px;
   border-bottom: 5px solid #1f3695;
-}
-#block-napo-film-download-cart-form .alert-success {
-  margin-bottom: 0;
-}
-#block-napo-film-download-cart-form .alert-success ~ #napo_film_cart_download_form_container {
-  display: none;
 }
 #napo_film_cart_download_form_container .content-cart-add-to-cart-btn,
 #napo_film_cart_download_form_container .btn[disabled] {
@@ -9038,7 +8989,6 @@ input[type=checkbox] {
 .view-download-center .views-field-nothing .col-md-9 {
   background: #f2f1f2;
   padding: 1em 2em 1em 2em;
-  max-width: 73.8%;
 }
 .view-download-center .views-field-nothing .col-md-9 a {
   font-weight: bold;
@@ -9163,9 +9113,9 @@ input[type=checkbox] {
 .node-lesson ul li div div {
   font-weight: bold;
   text-transform: uppercase;
+  height: 55px;
   padding-top: 8px;
   padding-left: 0px;
-  padding-bottom: 20px;
   background: url('../images/download-lesson.png') no-repeat 96% 17px #bbc2df;
 }
 .node-lesson ul li div div a {
@@ -9183,29 +9133,28 @@ input[type=checkbox] {
   height: 55px;
   font-weight: bold;
   padding-top: 0.5em;
-  padding-left: 0em;
+  padding-left: 2em;
   padding-right: 0.5em;
   text-transform: none;
   border-bottom: 0px solid #FFF;
-  /*background: transparent url('../images/lesson.png') no-repeat right 1px;*/
-  background: #f2f1f2;
-  margin-right: 5px;
-  border-top-right-radius: 20px;
+  background: transparent url('../images/lesson.png') no-repeat right 1px;
   z-index: 0;
 }
 .node-lesson #top_menu_lessons .lesson a {
   color: #1f3695;
-  padding-right: 1em;
+  padding-right: 2.5em;
+}
+.node-lesson #top_menu_lessons .lesson:first-child {
+  background-image: url('../images/lesson_first.png');
+  padding-left: 0px;
 }
 .node-lesson #top_menu_lessons .lesson.active {
   height: 55px;
   text-transform: none;
-  /*background: url('../images/lesson_active.png') no-repeat -125px 1px;*/
-  background: #1f3695;
-  padding-top: 0.5em;
-  padding-left: 0em;
-  padding-right: 0.5em;
-  /*margin-right: -50px;*/
+  background: transparent url('../images/lesson_active.png') no-repeat -125px 1px;
+  padding-left: 0px;
+  padding-right: 2em;
+  margin-right: -50px;
   margin-top: 0;
   z-index: 3;
 }
@@ -9489,23 +9438,12 @@ footer .jcarousel-skin-default .jcarousel-item {
   }
   .navbar-collapse.collapse.col-md-8 nav div {
     float: left!important;
-    width: 300px;
-  }
-  .navbar-collapse.collapse.col-md-8 #lang-dropdown-select-language_content {
-    width: 300px!important;
-  }
-  .navbar-collapse.collapse.col-md-8 .form-type-select:after {
-    left: 89.5%!important;
   }
   .navbar.container.navbar-default .col-md-8.pull-right {
     margin-top: 0px;
     margin-right: 0%;
     float: left !important;
-    width: 300px;
-    margin-left: 5px;
-  }
-  .menu.nav.navbar-nav .expanded.dropdown.last {
-    border-right: 0px;
+    width: 98%;
   }
   .menu.nav.navbar-nav .first {
     padding-left: 15px;
@@ -9639,7 +9577,7 @@ footer .jcarousel-skin-default .jcarousel-item {
     padding-left: 0em;
   }
   .view-napo-s-film-episodes .episode-list-details-container {
-    padding: 0 1em 1em !important;
+    padding: 0 1em !important;
   }
 }
 @media only screen and (max-width: 320px) {
@@ -9651,9 +9589,6 @@ footer .jcarousel-skin-default .jcarousel-item {
   }
 }
 @media only screen and (max-width: 1200px) {
-  .slider .frontpage-video-title {
-    max-width: 300px!important;
-  }
   .napo-film-list-details-container {
     position: static;
     height: auto;
@@ -9739,10 +9674,6 @@ footer .jcarousel-skin-default .jcarousel-item {
     float: left;
     left: -10px;
   }
-  .view-napo-s-film-episodes .episode-list-details-container {
-    padding: 0 1em 1em;
-    height: auto;
-  }
   .node-lesson .back_button {
     margin-top: 0px;
   }
@@ -9750,15 +9681,6 @@ footer .jcarousel-skin-default .jcarousel-item {
     background: #f4f4f4 url('../images/page-not-found-right.png') no-repeat 93% 0%;
     padding-left: 0em;
     padding-right: 218px;
-  }
-  #block-system-main .view-download-center .views-field-nothing .col-md-9 {
-    display: table;
-    width: 100%;
-  }
-  .pull-right {
-    float: left !important;
-    margin-left: 0px;
-    padding-left: 0px;
   }
 }
 @media (min-width: 1200px) {
@@ -9777,16 +9699,16 @@ footer .jcarousel-skin-default .jcarousel-item {
   #block-views-episode-list-block .jcarousel-container.jcarousel-container-horizontal {
     width: 100%!important;
   }
-  /*
-  #block-views-episode-list-block .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img{
+  #block-views-episode-list-block .img-responsive,
+  .thumbnail > img,
+  .thumbnail a > img,
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
     max-width: 59%;
   }
-*/
-  #block-views-episode-list-block .views-field-nothing {
+  #block-views-episode-list-block .views-field.views-field-title-field {
     width: 59%!important;
-  }
-  #block-views-episode-list-block .views-field-title-field {
-    width: 59%!important;
+    height: 74px!important;
   }
   .slider .frontpage-video-title h3 a {
     font-size: 15px!important;
@@ -9795,13 +9717,11 @@ footer .jcarousel-skin-default .jcarousel-item {
     font-size: 11px!important;
   }
   .slider .frontpage-video-title {
-    display: none;
-  }
-  .view-display-id-page_list .napo-film-video-download-form-title {
-    display: none;
-  }
-  .napo-film-video-download-form-title {
-    display: none;
+    top: 0%!important;
+    left: 148px!important;
+    max-width: 223px!important;
+    max-height: 225px;
+    padding: 0 10px 10px!important;
   }
   video::-webkit-media-controls {
     display: none !important;

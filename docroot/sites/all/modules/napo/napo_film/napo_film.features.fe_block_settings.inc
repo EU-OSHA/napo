@@ -41,7 +41,7 @@ function napo_film_default_fe_block_settings() {
   );
 
   $export['napo_film-download_cart_form'] = array(
-    'cache' => 1,
+    'cache' => -1,
     'custom' => 0,
     'delta' => 'download_cart_form',
     'i18n_block_language' => array(),
