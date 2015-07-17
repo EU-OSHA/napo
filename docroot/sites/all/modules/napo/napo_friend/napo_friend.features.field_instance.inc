@@ -30,6 +30,13 @@ function napo_friend_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -82,6 +89,16 @@ function napo_friend_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -165,6 +182,23 @@ function napo_friend_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(
+          'napo_film_title_include_episode_count' => FALSE,
+          'napo_film_title_include_type' => FALSE,
+          'napo_film_title_link_episode_popup' => FALSE,
+          'napo_film_title_link_with_film' => FALSE,
+          'napo_film_title_link_with_film_value' => '!episode from the film !film',
+          'title_archived_label' => FALSE,
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => 'h2',
+        ),
+        'type' => 'title_linked',
         'weight' => 0,
       ),
       'teaser' => array(

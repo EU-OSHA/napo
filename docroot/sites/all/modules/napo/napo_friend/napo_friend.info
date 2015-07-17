@@ -1,7 +1,7 @@
 name = Napo Friend
 core = 7.x
 package = Napo
-version = 7.x-1.1
+version = 7.x-1.2
 project = napo_friend
 dependencies[] = ctools
 dependencies[] = entityqueue
@@ -48,4 +48,4 @@ features[variable][] = workbench_moderation_default_state_napo_friend
 features[views_view][] = napo_and_friends
 features_exclude[dependencies][options] = options
 features_exclude[dependencies][title] = title
-mtime = 1436531578
+mtime = 1437035411

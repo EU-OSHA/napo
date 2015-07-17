@@ -290,6 +290,15 @@ function osha_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
+      'search_results' => array(
+        'custom_settings' => TRUE,
+      ),
+      'episode_popup' => array(
+        'custom_settings' => FALSE,
+      ),
+      'recommended_films' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

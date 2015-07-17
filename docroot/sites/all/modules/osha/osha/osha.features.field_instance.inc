@@ -649,6 +649,15 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 600,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 2,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -731,6 +740,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 17,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -801,6 +816,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -853,6 +874,12 @@ function osha_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 19,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -960,6 +987,16 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'thumbnail',
+        ),
+        'type' => 'image',
+        'weight' => 1,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'image',
@@ -1063,6 +1100,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 15,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1136,6 +1179,12 @@ function osha_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 18,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1221,6 +1270,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 16,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1305,6 +1360,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 13,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -1379,6 +1440,12 @@ function osha_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 14,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1498,6 +1565,13 @@ function osha_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'napo_search',
+        'settings' => array(),
+        'type' => 'content_type_icon',
         'weight' => 0,
       ),
       'teaser' => array(
