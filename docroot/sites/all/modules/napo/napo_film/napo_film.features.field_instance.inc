@@ -1050,7 +1050,7 @@ function napo_film_field_default_field_instances() {
     'bundle' => 'napo_video',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'The title should be without label "Film" or "Episode". These labels are shown dynamically.',
     'display' => array(
       'default' => array(
         'label' => 'hidden',
@@ -1176,17 +1176,23 @@ function napo_film_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'title_field',
     'label' => 'Title',
-    'required' => TRUE,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
+        'entity' => 0,
+        'page' => 0,
+      ),
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
       ),
       'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'size' => 60,
@@ -1205,6 +1211,7 @@ function napo_film_field_default_field_instances() {
   t('Mark as outdated');
   t('Napo film');
   t('Publication date');
+  t('The title should be without label "Film" or "Episode". These labels are shown dynamically.');
   t('Title');
   t('Video');
   t('Video Type');
