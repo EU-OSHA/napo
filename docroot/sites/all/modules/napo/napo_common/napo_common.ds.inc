@@ -31,7 +31,8 @@ function napo_common_ds_custom_fields_info() {
   $ds_field->entities = array(
     'node' => 'node',
   );
-  $ds_field->ui_limit = 'napo_video|*
+  $ds_field->ui_limit = 'article|search_results
+napo_video|*
 napo_album|default';
   $ds_field->properties = array();
   $export['share_widget'] = $ds_field;

@@ -71,3 +71,62 @@ function napo_search_form_views_exposed_form_alter(&$form, &$form_state) {
     }
   }
 }
+
+/**
+ * Implements hook_field_formatter_info().
+ */
+function napo_search_field_formatter_info() {
+    $info = array(
+        'content_type_icon' => array(
+            'label' => t('Content type icon'),
+            'field types' => array('text'),
+            'description' => t('Display content type icon'),
+        ),
+    );
+    return $info;
+}
+
+/**
+ * Implements hook_field_formatter_view().
+ */
+function napo_search_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+    $element = array();
+    switch ($display['type']) {
+        case 'content_type_icon':
+            foreach ($items as $delta => $item) {
+                $element[$delta] = array(
+                    '#theme' => 'napo_search_content_type_icon_format',
+                    '#entity' => $entity,
+                    '#delta' => $delta,
+                );
+            }
+            break;
+    }
+    return $element;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function napo_search_theme() {
+    return array(
+        'napo_search_content_type_icon_format' => array(
+            'variables' => array('entity' => NULL, 'delta' => NULL),
+        ),
+    );
+}
+
+/*
+* Formats multilanguage file for download
+*/
+function theme_napo_search_content_type_icon_format($element) {
+    global $language;
+    $entity = $element['entity'];
+    $output = l($entity->title_field[$language->language][0]['value'], 'node/'.$entity->nid,
+        array(
+           'attributes' => array(
+               'class' => $entity->type.'-content-type-icon',
+           ),
+        ));
+    return $output;
+}

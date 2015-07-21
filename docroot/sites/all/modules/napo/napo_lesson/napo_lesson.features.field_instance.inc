@@ -30,6 +30,15 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 600,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 1,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -78,6 +87,12 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -149,6 +164,12 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -201,6 +222,12 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -260,6 +287,13 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'napo_search',
+        'settings' => array(),
+        'type' => 'content_type_icon',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -323,6 +357,13 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -352,6 +393,61 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-lesson_toolkit-field_archived'
+  $field_instances['node-lesson_toolkit-field_archived'] = array(
+    'bundle' => 'lesson_toolkit',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_archived',
+    'label' => 'Mark as outdated',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'node-lesson_toolkit-field_target_ages'
   $field_instances['node-lesson_toolkit-field_target_ages'] = array(
     'bundle' => 'lesson_toolkit',
@@ -371,6 +467,13 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -426,6 +529,13 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'napo_search',
+        'settings' => array(),
+        'type' => 'content_type_icon',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -485,6 +595,15 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 600,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 2,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -542,6 +661,16 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -618,6 +747,12 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -708,6 +843,12 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -767,6 +908,13 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'napo_search',
+        'settings' => array(),
+        'type' => 'content_type_icon',
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -975,6 +1123,7 @@ function napo_lesson_field_default_field_instances() {
   t('Image');
   t('Lesson Toolkit');
   t('Lesson Video');
+  t('Mark as outdated');
   t('Name');
   t('Target Ages');
   t('Title');
