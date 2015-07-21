@@ -130,3 +130,16 @@ function theme_napo_search_content_type_icon_format($element) {
         ));
     return $output;
 }
+
+/**
+ * Implements hook_views_pre_render()
+ */
+function napo_search_views_pre_render(&$view){
+    if($view->name == 'search' && $view->current_display == 'page'){
+        // Add javascript file
+        drupal_add_js(drupal_get_path('theme', 'napo_frontend').'/js/search-results.js');
+        // Overwrite view title
+        $view->build_info['title'] = t('Search results for @search_word',
+            array('@search_word' => '"'.$view->exposed_data['search_block_form'].'"'));
+    }
+}
