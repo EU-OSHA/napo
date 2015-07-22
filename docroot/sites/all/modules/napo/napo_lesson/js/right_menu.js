@@ -72,6 +72,7 @@ function napo_lesson_add_fields_to_right_menu(menu, field){
 function napo_lesson_menu_check_width() {
     if(jQuery(window).width() < 768) {
         jQuery('.headings').hide();
+        jQuery('#group-right .bottom-right-menu').remove();
         jQuery('#group-left').find('.scrollspy').each(function(i) {
             jQuery('#group-right').append('<div class="bottom-right-menu">' + jQuery(this).html() + '</div>');
             jQuery(this).hide();
