@@ -26,12 +26,18 @@ jQuery(document).ready(function () {
 });
 
 // Footer carousel responsive design
-
-jQuery(document).ready(function () {
-  jQuery("#block-views-consortium-partners-block-1 div").hide();
-  jQuery("#consortium-partners-block-1-link").on("click", function( event ) {
-        event.preventDefault();
-        jQuery("#block-views-consortium-partners-block-1 div").toggle();
-        return false;
-  });
-});
+var isVisible = true;
+	jQuery(document).ready(function() {
+		jQuery('#block-views-consortium-partners-block-1 div').hide();
+	    jQuery("#consortium-partners-block-1-link").click(function() {
+	        if(isVisible){
+	            jQuery("#block-views-consortium-partners-block-1 div").slideDown();
+	            jQuery(this).text(Drupal.t('Close'));
+	            isVisible = false;
+	        } else {
+	            jQuery("#block-views-consortium-partners-block-1 div").slideUp();
+	            jQuery(this).text(Drupal.t('See details'));
+	            isVisible = true;
+	        }
+	    });
+	});

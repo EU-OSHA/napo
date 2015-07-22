@@ -31,8 +31,8 @@ function napo_frontend_preprocess_block(&$vars) {
   } else if ($vars['block_html_id'] == 'block-views-consortium-partners-block-1') {
     $vars['title_attributes_array']['class'][] = 'visible-xs';
     $vars['title_suffix'] =
-      '<a href="#" id="consortium-partners-block-1-link" class="visible-xs">'
-      .t('See details').'</a>';
+      '<span id="consortium-partners-block-1-link" class="visible-xs">'
+      .t('See details').'</span>';
   }
 }
 
