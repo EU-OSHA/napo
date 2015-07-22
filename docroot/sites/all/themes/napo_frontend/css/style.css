@@ -7835,13 +7835,6 @@ img {
 .napo-film-list-view .napo-film-view-episodes-link ~ a span.view-film-details-icon {
   margin-left: 0;
 }
-.napo-film-list-view .napo-film-view-link {
-  background: url('../images/napo-film-view-link.png') no-repeat;
-  color: transparent;
-  padding-bottom: 1em;
-  padding-left: 2em;
-  float: left;
-}
 .napo-film-list-view .napo-film-image-container .napo-film-view-episodes-link {
   margin-top: -37px;
   z-index: 9999999;
@@ -7937,6 +7930,13 @@ img {
   position: absolute;
   right: 55px;
 }
+.view-display-id-page_grid .napo-film-view-link {
+  background: url('../images/napo-film-view-link.png') no-repeat;
+  color: transparent;
+  padding-bottom: 1em;
+  padding-left: 2em;
+  float: left;
+}
 .view-napo-films .row div:hover > .views-field-nothing.napo-film-content-container {
   color: #fff;
   display: block;
@@ -7993,13 +7993,6 @@ img {
 }
 .field-name-field-combined-tags .field-item {
   color: #f7e235;
-}
-.napo-film-view-link {
-  background: url('../images/napo-film-view-link.png') no-repeat;
-  color: transparent;
-  padding-bottom: 1em;
-  padding-left: 2em;
-  float: left;
 }
 .napo-film-view-link .glyphicon-play-circle:before {
   content: none;
@@ -9374,6 +9367,15 @@ input[type=checkbox] {
   font-weight: bold;
   clear: both;
 }
+.agree-button,
+.find-more-button {
+  background: #1f3695 !important;
+  color: #f7e235 !important;
+  text-shadow: 0px 0px 0 #ffffff!important;
+  box-shadow: 0 0px 0 0 #ffffff inset!important;
+  border: 0 solid #dcdcdc!important;
+  font-weight: normal !important;
+}
 .footer {
   border: 0px;
   margin-top: 0px;
@@ -9478,6 +9480,9 @@ footer .jcarousel-skin-default .jcarousel-item {
   vertical-align: middle;
 }
 @media only screen and (max-width: 767px) {
+  iframe {
+    width: 100%;
+  }
   .navbar-default .navbar-header {
     margin-right: 0px;
   }
@@ -9673,6 +9678,9 @@ footer .jcarousel-skin-default .jcarousel-item {
   #block-menu-block-1 {
     padding: 0;
     background: transparent;
+  }
+  footer #block-menu-block-2 .menu-block-text-suffix {
+    margin-bottom: 0;
   }
 }
 @media only screen and (max-width: 320px) {
