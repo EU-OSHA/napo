@@ -346,6 +346,44 @@ function napo_film_ds_layout_settings_info() {
   );
   $export['node|napo_video|episode_popup'] = $ds_layout;
 
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|napo_video|search_results';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'napo_video';
+  $ds_layout->view_mode = 'search_results';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title_field',
+        1 => 'field_image',
+        2 => 'body',
+        3 => 'node_link',
+        4 => 'download_video_form',
+        5 => 'share_widget',
+      ),
+    ),
+    'fields' => array(
+      'title_field' => 'ds_content',
+      'field_image' => 'ds_content',
+      'body' => 'ds_content',
+      'node_link' => 'ds_content',
+      'download_video_form' => 'ds_content',
+      'share_widget' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|napo_video|search_results'] = $ds_layout;
+
   return $export;
 }
 
@@ -363,6 +401,15 @@ function napo_film_ds_view_modes_info() {
     'node' => 'node',
   );
   $export['recommended_films'] = $ds_view_mode;
+
+  $ds_view_mode = new stdClass();
+  $ds_view_mode->api_version = 1;
+  $ds_view_mode->view_mode = 'search_results';
+  $ds_view_mode->label = 'Search results';
+  $ds_view_mode->entities = array(
+    'node' => 'node',
+  );
+  $export['search_results'] = $ds_view_mode;
 
   return $export;
 }

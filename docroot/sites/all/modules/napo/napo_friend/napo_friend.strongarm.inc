@@ -154,6 +154,21 @@ function napo_friend_strongarm() {
       'film_main_video_teaser' => array(
         'custom_settings' => FALSE,
       ),
+      'search_results' => array(
+        'custom_settings' => TRUE,
+      ),
+      'episode_full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'episode_popup' => array(
+        'custom_settings' => FALSE,
+      ),
+      'recommended_films' => array(
+        'custom_settings' => FALSE,
+      ),
+      'revision' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

@@ -10,6 +10,16 @@ function napo_frontend_preprocess_node(&$vars) {
 }
 
 /**
+ * Implements hook_preprocess_view()
+ */
+function napo_frontend_preprocess_views_view(&$vars){
+    $view = $vars['view'];
+    if($view->name == 'search' && $view->current_display == 'page'){
+        drupal_add_js(drupal_get_path('theme', 'napo_frontend').'/js/search-results.js');
+    }
+}
+
+/**
  * Implements hook_preprocess_block().
  */
 function napo_frontend_preprocess_block(&$vars) {
