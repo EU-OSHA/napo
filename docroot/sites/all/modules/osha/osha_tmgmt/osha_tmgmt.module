@@ -1699,21 +1699,24 @@ function osha_tmgmt_form_tmgmt_job_form_alter(&$form, &$form_state) {
       if($job_item->state != TMGMT_JOB_ITEM_STATE_ACCEPTED) {
         if ($job_item->item_type == 'node') {
           $entities = entity_load($job_item->item_type, array($job_item->item_id));
-          $id = key($entities);
-          $value = current($entities);
-          $wrapper = entity_metadata_wrapper($job_item->item_type, $value);
-          $url = url('node/' . $id, $url_opt);
-          $statistics = !empty($rows[$id][1]) ? $rows[$id][1] : array();
-          foreach ($states as $state_id => $label) {
-            if ($job_item->state == $state_id) {
-              if (isset($statistics[$label])) {
-                $statistics[$label] += 1;
-              } else {
-                $statistics[$label] = 1;
+          // TODO : if node was deleted the job item remains orphan
+          if ($id = key($entities)) {
+            $value = current($entities);
+            $wrapper = entity_metadata_wrapper($job_item->item_type, $value);
+            $url = url('node/' . $id, $url_opt);
+            $statistics = !empty($rows[$id][1]) ? $rows[$id][1] : array();
+            foreach ($states as $state_id => $label) {
+              if ($job_item->state == $state_id) {
+                if (isset($statistics[$label])) {
+                  $statistics[$label] += 1;
+                }
+                else {
+                  $statistics[$label] = 1;
+                }
               }
             }
+            $rows[$job_item->item_type . '-' . $job_item->item_id] = array(l($wrapper->label(), $url), $job_item->getSourceType(), $statistics);
           }
-          $rows[$job_item->item_type . '-' . $job_item->item_id] = array(l($wrapper->label(), $url), $job_item->getSourceType(), $statistics);
         } else {
           if ($job_item->item_type == 'default') {
             $type = 'String literal';
