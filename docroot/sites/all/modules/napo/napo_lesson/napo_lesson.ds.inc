@@ -96,6 +96,74 @@ function napo_lesson_ds_layout_settings_info() {
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|lesson_toolkit|search_results';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'lesson_toolkit';
+  $ds_layout->view_mode = 'search_results';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title_field',
+        1 => 'body',
+        2 => 'field_target_ages',
+        3 => 'node_link',
+      ),
+    ),
+    'fields' => array(
+      'title_field' => 'ds_content',
+      'body' => 'ds_content',
+      'field_target_ages' => 'ds_content',
+      'node_link' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|lesson_toolkit|search_results'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|lesson_video|search_results';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'lesson_video';
+  $ds_layout->view_mode = 'search_results';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'field_image',
+        1 => 'title_field',
+        2 => 'body',
+        3 => 'node_link',
+      ),
+    ),
+    'fields' => array(
+      'field_image' => 'ds_content',
+      'title_field' => 'ds_content',
+      'body' => 'ds_content',
+      'node_link' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|lesson_video|search_results'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
   $ds_layout->id = 'node|lesson|default';
   $ds_layout->entity_type = 'node';
   $ds_layout->bundle = 'lesson';
@@ -144,6 +212,38 @@ function napo_lesson_ds_layout_settings_info() {
     'layout_link_custom' => '',
   );
   $export['node|lesson|default'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|lesson|search_results';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'lesson';
+  $ds_layout->view_mode = 'search_results';
+  $ds_layout->layout = 'ds_1col';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'ds_content' => array(
+        0 => 'title_field',
+        1 => 'body',
+        2 => 'node_link',
+      ),
+    ),
+    'fields' => array(
+      'title_field' => 'ds_content',
+      'body' => 'ds_content',
+      'node_link' => 'ds_content',
+    ),
+    'classes' => array(),
+    'wrappers' => array(
+      'ds_content' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+  );
+  $export['node|lesson|search_results'] = $ds_layout;
 
   return $export;
 }

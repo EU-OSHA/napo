@@ -18,6 +18,9 @@ function napo_film_views_handlers() {
       'napo_film_handler_view_episodes_link' => array(
         'parent' => 'views_handler_field',
       ),
+      'napo_film_handler_view_detail_link' => array(
+        'parent' => 'views_handler_field',
+      ),
       'napo_film_handler_add_mime_to_cart' => array(
         'parent' => 'views_handler_field',
       ),
@@ -59,6 +62,13 @@ function napo_film_views_data() {
     'help' => t('Provides a link to view episodes mode of a film.'),
     'field' => array(
       'handler' => 'napo_film_handler_view_episodes_link',
+    ),
+  );
+  $data['napo_film']['view_detail_link'] = array(
+    'title' => t('View detail link'),
+    'help' => t('Provides a link to view detail of a film.'),
+    'field' => array(
+      'handler' => 'napo_film_handler_view_detail_link',
     ),
   );
   $data['napo_film']['content_cart_downlad_as'] = array(

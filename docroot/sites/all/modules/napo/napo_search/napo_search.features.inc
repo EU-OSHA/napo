@@ -5,6 +5,15 @@
  */
 
 /**
+ * Implements hook_ctools_plugin_api().
+ */
+function napo_search_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "path_breadcrumbs" && $api == "path_breadcrumbs") {
+    return array("version" => "1");
+  }
+}
+
+/**
  * Implements hook_views_api().
  */
 function napo_search_views_api($module = NULL, $api = NULL) {

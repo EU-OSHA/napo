@@ -30,6 +30,13 @@ function napo_friend_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
       'teaser' => array(
         'label' => 'hidden',
         'module' => 'text',
@@ -82,6 +89,16 @@ function napo_friend_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'thumbnail',
+        ),
+        'type' => 'image',
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -165,6 +182,13 @@ function napo_friend_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'hidden',
+        'module' => 'napo_search',
+        'settings' => array(),
+        'type' => 'content_type_icon',
         'weight' => 0,
       ),
       'teaser' => array(

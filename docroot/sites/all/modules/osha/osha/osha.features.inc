@@ -11,6 +11,9 @@ function osha_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "custom_formatters" && $api == "custom_formatters") {
     return array("version" => "2");
   }
+  if ($module == "ds" && $api == "ds") {
+    return array("version" => "1");
+  }
   if ($module == "entity_collection" && $api == "entity_collection_bundles_default") {
     return array("version" => "1");
   }
