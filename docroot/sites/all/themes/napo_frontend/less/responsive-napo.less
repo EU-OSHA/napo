@@ -139,8 +139,75 @@ iframe{
 
 //Home
 
+.video-js{
+  height:223px!important;
+  margin-bottom: 10em!important;
+}
+
+.video-js.vjs-default-skin.vjs-paused .vjs-big-play-button{
+  background: url('../images/play-video-small.png') no-repeat 99% 40%;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+.slider .frontpage-video-title{
+  background:transparent;
+  top: -65px;
+  padding:0;
+  width: 92%;
+  max-width: 100%!important;
+  left: 15px;
+}
+
+.vjs-default-skin .vjs-controls{
+  bottom:0px;
+}
+
+.vjs-default-skin .vjs-progress-control{
+  margin-top: 0px;
+}
+
+.vjs-mute-control.vjs-control{
+  margin-top: -4em;
+  margin-left: -1px;
+}
+
+.vjs-volume-control.vjs-control{
+  margin-top: -4em;
+  margin-left: 4em;
+}
+
+.vjs-default-skin .vjs-duration .vjs-duration-display , .vjs-current-time.vjs-time-controls.vjs-control .vjs-current-time-display{
+    margin-top: -38px;
+    font-weight: bold;
+    background-color: @color-blue-napo;
+    height: 12px;
+    padding-top: 3px;
+    color: @color-yellow-napo;
+}
+
+.slider .frontpage-video-title .field-content{
+  h3 a{
+    color:@color-blue-napo;
+    font-size:15px;
+  }
+
+  p{
+    display:none;
+  }
+}
+
+.nav-bar-separate{
+    margin-top: 20px;
+}
+
 .field-content.featured-article-body{
     min-height: 150px;
+}
+
+//iPhone hack , two icons play on Home
+video::-webkit-media-controls { 
+  display:none !important;
 }
 
 //input search in h1
@@ -237,13 +304,18 @@ video{
 }
 
 footer{
-
+  padding-bottom: 0;
   #block-menu-block-2 .menu.nav.navbar-nav{
   width:auto;
     li.first{
       margin-top: 60px;
     }
   }
+
+  .navbar-nav {
+    margin:0;
+  }
+
   .nav > li{
       display: block;
   }
@@ -262,8 +334,25 @@ footer{
   background:transparent;
 }
 
+#block-views-featured-articles-block{
+  padding-bottom: 10px;
+}
+
+.footer{
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
 footer #block-menu-block-2 .menu-block-text-suffix{
-  margin-bottom: 0;
+  margin-bottom: 5px;
+}
+
+footer #block-menu-block-2 .menu.nav.navbar-nav{
+  margin-top: 0em;
+}
+
+#block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li > a{
+  text-decoration: underline;
 }
 
 }
@@ -280,7 +369,7 @@ footer #block-menu-block-2 .menu-block-text-suffix{
 
 //Home
 .slider .frontpage-video-title{
-  max-width: 300px!important;
+  max-width: 300px;
 }
 
 //Napo List View
@@ -452,18 +541,9 @@ footer #block-menu-block-2 .menu-block-text-suffix{
      width: 59%!important;
   }
 
-  .slider .frontpage-video-title h3 a{
-    font-size: 15px!important;
-
-  }
-
   .slider .frontpage-video-title p span{
     font-size: 11px!important;
     
-  }
-
-  .slider .frontpage-video-title{
-    display:none;
   }
 
   .view-display-id-page_list .napo-film-video-download-form-title{
@@ -473,11 +553,6 @@ footer #block-menu-block-2 .menu-block-text-suffix{
   .napo-film-video-download-form-title{
     display:none;
   }
-
-//iPhone hack , two icons play on Home
-video::-webkit-media-controls { 
-  display:none !important;
-}
 
 }
 

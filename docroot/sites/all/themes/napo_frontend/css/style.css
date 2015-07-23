@@ -7463,6 +7463,34 @@ p:last-child {
   color: #cc2114;
   font-weight: bold;
 }
+/* Front page Video */
+.slider {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.slider video {
+  width: 100%;
+}
+.slider .view-content {
+  position: relative;
+}
+.slider .frontpage-video-title {
+  position: absolute;
+  top: 30%;
+  left: 20px;
+  padding: 0px 30px 30px 30px;
+  max-width: 491px;
+  z-index: 1;
+  background: url('../images/background-slider-home.png');
+}
+.slider .frontpage-video-title h3 a {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+}
+.slider .frontpage-video-title p {
+  color: #FFF;
+}
 #block-views-featured-articles-block {
   margin-top: -85px;
 }
@@ -9383,6 +9411,8 @@ input[type=checkbox] {
 footer h2 {
   color: #B1B3B4;
   font-weight: bold;
+  margin: 0;
+  padding: 0;
 }
 footer .jcarousel-container-horizontal img {
   filter: grayscale(100%);
@@ -9584,8 +9614,61 @@ footer .jcarousel-skin-default .jcarousel-item {
   .napo-film-list-view-container form {
     margin-left: 16px;
   }
+  .video-js {
+    height: 223px!important;
+    margin-bottom: 10em!important;
+  }
+  .video-js.vjs-default-skin.vjs-paused .vjs-big-play-button {
+    background: url('../images/play-video-small.png') no-repeat 99% 40%;
+    margin-left: 10%;
+    margin-top: 10%;
+  }
+  .slider .frontpage-video-title {
+    background: transparent;
+    top: -65px;
+    padding: 0;
+    width: 92%;
+    max-width: 100%!important;
+    left: 15px;
+  }
+  .vjs-default-skin .vjs-controls {
+    bottom: 0px;
+  }
+  .vjs-default-skin .vjs-progress-control {
+    margin-top: 0px;
+  }
+  .vjs-mute-control.vjs-control {
+    margin-top: -4em;
+    margin-left: -1px;
+  }
+  .vjs-volume-control.vjs-control {
+    margin-top: -4em;
+    margin-left: 4em;
+  }
+  .vjs-default-skin .vjs-duration .vjs-duration-display,
+  .vjs-current-time.vjs-time-controls.vjs-control .vjs-current-time-display {
+    margin-top: -38px;
+    font-weight: bold;
+    background-color: #1f3695;
+    height: 12px;
+    padding-top: 3px;
+    color: #f7e235;
+  }
+  .slider .frontpage-video-title .field-content h3 a {
+    color: #1f3695;
+    font-size: 15px;
+  }
+  .slider .frontpage-video-title .field-content p {
+    display: none;
+  }
+  .nav-bar-separate {
+    margin-top: 20px;
+  }
   .field-content.featured-article-body {
     min-height: 150px;
+  }
+  video::-webkit-media-controls {
+    display: none !important;
   }
   #edit-search-api-views-fulltext-wrapper {
     width: 82%;
@@ -9660,11 +9743,17 @@ footer .jcarousel-skin-default .jcarousel-item {
   .view-napo-s-film-episodes .episode-list-details-container {
     padding: 0 1em 1em !important;
   }
+  footer {
+    padding-bottom: 0;
+  }
   footer #block-menu-block-2 .menu.nav.navbar-nav {
     width: auto;
   }
   footer #block-menu-block-2 .menu.nav.navbar-nav li.first {
     margin-top: 60px;
+  }
+  footer .navbar-nav {
+    margin: 0;
   }
   footer .nav > li {
     display: block;
@@ -9679,8 +9768,21 @@ footer .jcarousel-skin-default .jcarousel-item {
     padding: 0;
     background: transparent;
   }
+  #block-views-featured-articles-block {
+    padding-bottom: 10px;
+  }
+  .footer {
+    padding-top: 10px;
+    padding-bottom: 0px;
+  }
   footer #block-menu-block-2 .menu-block-text-suffix {
-    margin-bottom: 0;
+    margin-bottom: 5px;
+  }
+  footer #block-menu-block-2 .menu.nav.navbar-nav {
+    margin-top: 0em;
+  }
+  #block-menu-block-1 > div.menu-block-wrapper.menu-block-1.menu-name-menu-footer-menu > ul > li > a {
+    text-decoration: underline;
   }
 }
 @media only screen and (max-width: 320px) {
@@ -9693,7 +9795,7 @@ footer .jcarousel-skin-default .jcarousel-item {
 }
 @media only screen and (max-width: 1200px) {
   .slider .frontpage-video-title {
-    max-width: 300px!important;
+    max-width: 300px;
   }
   .napo-film-list-details-container {
     position: static;
@@ -9829,22 +9931,13 @@ footer .jcarousel-skin-default .jcarousel-item {
   #block-views-episode-list-block .views-field-title-field {
     width: 59%!important;
   }
-  .slider .frontpage-video-title h3 a {
-    font-size: 15px!important;
-  }
   .slider .frontpage-video-title p span {
     font-size: 11px!important;
-  }
-  .slider .frontpage-video-title {
-    display: none;
   }
   .view-display-id-page_list .napo-film-video-download-form-title {
     display: none;
   }
   .napo-film-video-download-form-title {
     display: none;
-  }
-  video::-webkit-media-controls {
-    display: none !important;
   }
 }
