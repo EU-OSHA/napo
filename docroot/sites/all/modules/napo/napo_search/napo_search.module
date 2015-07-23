@@ -139,7 +139,11 @@ function napo_search_views_pre_render(&$view){
         // Add javascript file
         drupal_add_js(drupal_get_path('theme', 'napo_frontend').'/js/search-results.js');
         // Overwrite view title
-        $view->build_info['title'] = t('Search results for @search_word',
-            array('@search_word' => '"'.$view->exposed_data['search_block_form'].'"'));
+        if (!empty($view->exposed_data['search_block_form'])){
+            $view->build_info['title'] = t('Search results for @search_word',
+                array('@search_word' => '"'.$view->exposed_data['search_block_form'].'"'));
+        }else{
+            $view->build_info['title'] = t('Search results');
+        }
     }
 }
