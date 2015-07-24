@@ -100,7 +100,7 @@ function napo_film_block_info() {
   // Add List and Grid links for napo films view.
   $blocks['napo_films_view_modes'] = array(
     'info' => t('Napo film view modes'),
-    'cache' => DRUPAL_CACHE_GLOBAL,
+    'cache' => DRUPAL_NO_CACHE,
   );
 
   $blocks['download_cart_form'] = array(
