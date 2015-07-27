@@ -406,11 +406,16 @@ p:last-child {
 
 //pagination
 
+.pager li{
+	padding:0px;
+	margin:0px;
+}
+
 .pager li > a, .pager li > span{
 	background:transparent;
-	border:0px;
+	border:1px;
 	font-weight: bold;
-    padding: 5px 8px;
+	padding: 4px 4px;
 }
 
 .pager li>a:hover, .pager li>a:focus{
@@ -423,63 +428,60 @@ p:last-child {
 		font-weight: bold;
 		text-decoration: underline;
 		color:@color-blue-napo;
-		padding: 5px 14px;
+		padding: 4px;
 	}
 
 	.pager-first a{
-		text-indent: -9999px;
+		color:transparent;
 	}
 
 	.pager-first a::before{
 		background: url("../images/pagination-first.png") no-repeat;
 		content:" ";
-		width: 25px;
+		width: 24px;
 		height: 25px;
 		display: block;
 		float: left;
-		margin-top:-2px;
 	}
 
 	.pager-previous a{
-		text-indent: -9999px;
+		color:transparent;
 	}
 
 	.pager-previous a::before{
 		background: url("../images/pagination-previous.png") no-repeat;
 		content:" ";
-		width: 25px;
+		width: 24px;
 		height: 25px;
 		display: block;
 		float: left;
-		margin-top:-1px;
 	}
 
 	.pager-next a{
-		text-indent: -9999px;
+		color:transparent;
 	}
 
 	.pager-next a::before{
 		background: url("../images/pagination-next.png") no-repeat;
 		content:" ";
-		width: 25px;
+		width: 24px;
 		height: 25px;
 		display: block;
 		float: left;
-		margin-top:-2px;
 	}
 
 	.pager-last a{
-		text-indent: -9999px;
+		color:transparent;
 	}
 
 	.pager-last a::before{
 		background: url("../images/pagination-last.png") no-repeat;
 		content:" ";
-		width: 25px;
+		width: 24px;
 		height: 25px;
 		display: block;
 		float: left;
-		margin-top:-2px;
+		margin-top: -1px;
 	}
 
 }
@@ -2509,10 +2511,104 @@ input[type=checkbox]{
 //Cookies
 
 .agree-button , .find-more-button{
-	background:@color-blue-napo!important;
-	color:@color-yellow-napo!important;
+	background:@color-yellow-napo!important;
+	color:@color-napo-gray-5!important;
 	text-shadow: 0px 0px 0 #ffffff!important;
 	box-shadow: 0 0px 0 0 #ffffff inset!important;
 	border: 0 solid #dcdcdc!important;
-	font-weight: normal !important;
+	font-weight: bold !important;
+}
+
+//Search autocomplete
+
+.ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content.ui-corner-all{
+	left: -14em!important;
+	li:hover{
+		background:url('../images/view-episodes-yellow.png') no-repeat 99% 5px @color-yellow-napo;
+	}
+
+	li{
+		padding: 5px 10px 0 !important;
+	}
+
+	li a{
+		color:@color-blue-napo;
+		font-weight: bold!important;
+		padding-right: 10px !important;
+
+	}
+	a.ui-state-focus{
+		display:none!important;
+	}
+}
+
+
+//Search page
+
+.view-search{
+	.views-row{ 
+		padding-left: 1em;
+		padding-right: 1em;
+		.field-name-title-field a{
+			color:@color-napo-bg-gray-5;
+			font-weight: bold;
+			font-size: 15px;
+			margin-bottom: 0.5em;
+  			display: block;
+  			margin-top: 1em;
+		}
+
+		.field-name-field-image{
+			float:left;
+			padding-right: 1em;
+			margin-bottom: 5px;
+		}
+
+		.field-name-field-target-ages{
+			margin-bottom: 5px;
+		}
+
+		.read_more_button a span.glyphicon-envelope{
+			background: @color-blue-napo;
+			color: @color-yellow-napo;
+			width: auto;
+ 			padding: 6px;
+  			font-weight: bold;
+  			text-transform: uppercase;
+		}
+
+		.read_more_button a span.glyphicon-envelope::before{
+			content: " ";
+		}
+
+		.node-napo-video .field-name-body{
+			background:transparent;
+			padding-bottom: 2em;
+		}
+
+		.read_more_button a span.glyphicon-play-circle{
+			background: url('../images/play-video-small.png') no-repeat;
+			height: 42px;
+    		width: 42px;
+		}
+
+		.read_more_button a span.glyphicon-play-circle::before{
+			content: " ";
+		}
+	}
+	
+	.views-row.search-hover{
+		background:url('../images/background-yellow.png') repeat;
+		padding: 0 1em 1em 1em;
+	}
+}
+
+.btn-info.form-submit{
+  border-radius: 5px!important;
+  color: @color-napo-bg-gray-5;
+  background: @color-yellow-napo;
+  font-weight: bold;
+  float: right;
+  border: 0px solid transparent;
+  padding: 6px 12px 9px;
 }
