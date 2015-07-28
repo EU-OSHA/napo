@@ -17,8 +17,13 @@ function osha_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'article';
   $ds_fieldsetting->view_mode = 'search_results';
   $ds_fieldsetting->settings = array(
-    'node_link' => array(
+    'share_widget' => array(
       'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'node_link' => array(
+      'weight' => '4',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -47,13 +52,15 @@ function osha_ds_layout_settings_info() {
         0 => 'title_field',
         1 => 'field_image',
         2 => 'body',
-        3 => 'node_link',
+        3 => 'share_widget',
+        4 => 'node_link',
       ),
     ),
     'fields' => array(
       'title_field' => 'ds_content',
       'field_image' => 'ds_content',
       'body' => 'ds_content',
+      'share_widget' => 'ds_content',
       'node_link' => 'ds_content',
     ),
     'classes' => array(),
