@@ -69,7 +69,7 @@ function napo_film_default_fe_block_settings() {
   );
 
   $export['napo_film-napo_films_view_modes'] = array(
-    'cache' => 8,
+    'cache' => -1,
     'custom' => 0,
     'delta' => 'napo_films_view_modes',
     'i18n_block_language' => array(),
