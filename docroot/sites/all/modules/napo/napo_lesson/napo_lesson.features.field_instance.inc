@@ -32,11 +32,21 @@ function napo_lesson_field_default_field_instances() {
       ),
       'search_results' => array(
         'label' => 'hidden',
-        'module' => 'text',
+        'module' => 'smart_trim',
         'settings' => array(
+          'more_link' => 0,
+          'more_text' => 'Read more',
+          'summary_handler' => 'ignore',
           'trim_length' => 600,
+          'trim_link' => 0,
+          'trim_options' => array(
+            'text' => 'text',
+          ),
+          'trim_preserve_tags' => '',
+          'trim_suffix' => '...',
+          'trim_type' => 'chars',
         ),
-        'type' => 'text_summary_or_trimmed',
+        'type' => 'smart_trim_format',
         'weight' => 1,
       ),
       'teaser' => array(
@@ -92,7 +102,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'hidden',
@@ -168,7 +178,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -227,7 +237,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 13,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -291,9 +301,19 @@ function napo_lesson_field_default_field_instances() {
       ),
       'search_results' => array(
         'label' => 'hidden',
-        'module' => 'napo_search',
-        'settings' => array(),
-        'type' => 'content_type_icon',
+        'module' => 'napo_common',
+        'settings' => array(
+          'napo_film_title_include_episode_count' => 0,
+          'napo_film_title_include_type' => 1,
+          'napo_film_title_link_episode_popup' => 0,
+          'napo_film_title_link_with_film' => 0,
+          'napo_film_title_link_with_film_value' => '!episode from the film !film',
+          'title_archived_label' => 1,
+          'title_class' => '',
+          'title_link' => 'content',
+          'title_style' => 'h3',
+        ),
+        'type' => 'title_linked',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -533,9 +553,9 @@ function napo_lesson_field_default_field_instances() {
       ),
       'search_results' => array(
         'label' => 'hidden',
-        'module' => 'napo_search',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'content_type_icon',
+        'type' => 'text_default',
         'weight' => 0,
       ),
       'teaser' => array(
@@ -911,9 +931,9 @@ function napo_lesson_field_default_field_instances() {
       ),
       'search_results' => array(
         'label' => 'hidden',
-        'module' => 'napo_search',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'content_type_icon',
+        'type' => 'text_default',
         'weight' => 1,
       ),
       'teaser' => array(
