@@ -232,6 +232,14 @@ video{
 }
 
 
+//Gallery PopUp
+
+#colorbox #cboxContent #cboxLoadedContent div img {
+  width:100%!important;
+  height:auto!important;
+
+}
+
 //Napo and friends
 
 .views-slideshow-controls-top{
@@ -370,9 +378,37 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 }
 
 
+//contact us
 
+.block-title.desplegado{
+   bottom: 408px!important;
 }
 
+.webform-client-form{
+  padding: 5px 5px 14px;
+  right:0%;
+  font-size:10px;
+  
+  .form-control{
+    font-size:10px;
+  }
+
+  #edit-submitted-message{
+    height:40px;
+  }
+}
+
+.contact-form-widget-container h2{
+  right:0%;
+    .desplegado::before{
+      background: url("../images/contact-us-button-desplegado.png") no-repeat scroll 23% 14px;
+    }
+}
+
+
+
+
+}
 
 @media only screen and (max-width : 320px) {
 	#block-napo-common-no-translation{
@@ -572,5 +608,70 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
     display:none;
   }
 
+
+  //Napo for teachers
+
+  .view-napo-target-ages .lesson_by_age_image{
+    float:none;
+  }
+
 }
+
+
+/* Landscape iphone*/
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+
+//Contact us
+
+.contact-form-widget-container h2{
+  width:100%;
+}
+
+.block-title.desplegado {
+    bottom: 225px !important;
+}
+
+.webform-client-form{
+  width:100%;
+  bottom: 0;
+  min-height: 235px;
+
+ .webform-component--your-name{
+    float: left;
+    padding-right: 1em;
+    width: 48%;
+ }
+
+ .webform-component--your-question{
+    float: left;
+    width: 51%;
+ }
+
+ .contact-form-email-wrapper{
+    float: left;
+    padding-right: 1em;
+    width: 48%;
+ }
+
+ .contact-form-message-wrapper{
+    float: left;
+    width: 51%;
+ }
+
+}
+
+.webform-client-form div div{
+    margin-bottom: 2px;
+}
+
+ .gc-bubbleDefault.pls-container iframe{
+  width:100%!important;
+ }
+
+}
+
 

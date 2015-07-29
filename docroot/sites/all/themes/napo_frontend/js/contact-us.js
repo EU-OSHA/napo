@@ -17,7 +17,7 @@ jQuery(document).ready(function () {
 				jQuery(".imagen_disabled").removeClass("imagen_disabled");
 			} else {
 				hiddenContent.slideDown();
-				jQuery(".contact-form-widget-container h2").css("bottom","515px");
+				jQuery(".contact-form-widget-container h2").css("bottom","532px");
 				jQuery(".contact-form-widget-container h2").addClass("desplegado");
 				jQuery( "body" ).append( "<div class='imagen_disabled'></div>" );
 			}

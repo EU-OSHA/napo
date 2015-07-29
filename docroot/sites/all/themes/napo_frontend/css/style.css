@@ -8261,6 +8261,9 @@ img {
   height: 1%;
   overflow: hidden;
 }
+#recommended_films .field-name-field-image {
+  float: left;
+}
 #recommended_films .field-name-field-image a:hover:before {
   background: url('../images/background-carousel.png') no-repeat;
   display: block;
@@ -8809,8 +8812,9 @@ img {
   background: url('../images/google-hover.png') no-repeat;
 }
 .napo-share-widget ul li:nth-child(4) {
-  background: url('../images/link.png') no-repeat;
+  background: url('../images/link.png') 3px 0 no-repeat;
   height: 40px;
+  width: 40px;
   text-indent: -99999px;
   cursor: pointer;
 }
@@ -8819,7 +8823,7 @@ img {
   padding-bottom: 18px;
 }
 .napo-share-widget ul li:nth-child(4):hover {
-  background: url('../images/link-hover.png') no-repeat;
+  background: url('../images/link-hover.png') 3px 0 no-repeat;
 }
 .napo-share-widget .napo-share-widget > ul {
   display: none;
@@ -9756,6 +9760,10 @@ footer .jcarousel-skin-default .jcarousel-item {
   .view-napos-gallery .attachment .views-field-field-image:hover ~ .views-field-body p {
     display: none;
   }
+  #colorbox #cboxContent #cboxLoadedContent div img {
+    width: 100%!important;
+    height: auto!important;
+  }
   .views-slideshow-controls-top {
     display: none;
   }
@@ -9866,6 +9874,26 @@ footer .jcarousel-skin-default .jcarousel-item {
   }
   .ui-accordion .ui-accordion-content {
     padding-left: 0;
+  }
+  .block-title.desplegado {
+    bottom: 408px!important;
+  }
+  .webform-client-form {
+    padding: 5px 5px 14px;
+    right: 0%;
+    font-size: 10px;
+  }
+  .webform-client-form .form-control {
+    font-size: 10px;
+  }
+  .webform-client-form #edit-submitted-message {
+    height: 40px;
+  }
+  .contact-form-widget-container h2 {
+    right: 0%;
+  }
+  .contact-form-widget-container h2 .desplegado::before {
+    background: url("../images/contact-us-button-desplegado.png") no-repeat scroll 23% 14px;
   }
 }
 @media only screen and (max-width: 320px) {
@@ -10022,5 +10050,46 @@ footer .jcarousel-skin-default .jcarousel-item {
   }
   .napo-film-video-download-form-title {
     display: none;
+  }
+  .view-napo-target-ages .lesson_by_age_image {
+    float: none;
+  }
+}
+/* Landscape iphone*/
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+  .contact-form-widget-container h2 {
+    width: 100%;
+  }
+  .block-title.desplegado {
+    bottom: 225px !important;
+  }
+  .webform-client-form {
+    width: 100%;
+    bottom: 0;
+    min-height: 235px;
+  }
+  .webform-client-form .webform-component--your-name {
+    float: left;
+    padding-right: 1em;
+    width: 48%;
+  }
+  .webform-client-form .webform-component--your-question {
+    float: left;
+    width: 51%;
+  }
+  .webform-client-form .contact-form-email-wrapper {
+    float: left;
+    padding-right: 1em;
+    width: 48%;
+  }
+  .webform-client-form .contact-form-message-wrapper {
+    float: left;
+    width: 51%;
+  }
+  .webform-client-form div div {
+    margin-bottom: 2px;
+  }
+  .gc-bubbleDefault.pls-container iframe {
+    width: 100%!important;
   }
 }
