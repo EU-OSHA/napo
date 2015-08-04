@@ -57,17 +57,27 @@ function napo_frontpage_views_default_views() {
     'image_link' => '',
   );
   /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['text'] = '[field_icon] [title]';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_type'] = 'div';
-  $handler->display->display_options['fields']['title']['element_class'] = 'featured-article-header';
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['title_field']['alter']['text'] = '[field_icon] [title_field]';
+  $handler->display->display_options['fields']['title_field']['element_type'] = 'div';
+  $handler->display->display_options['fields']['title_field']['element_class'] = 'featured-article-header';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'title_style' => '_none',
+    'title_link' => '',
+    'title_class' => '',
+    'title_archived_label' => 0,
+    'napo_film_title_include_type' => 0,
+    'napo_film_title_include_episode_count' => 0,
+    'napo_film_title_link_episode_popup' => 0,
+    'napo_film_title_link_with_film' => 0,
+    'napo_film_title_link_with_film_value' => '!episode from the film !film',
+  );
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
@@ -121,7 +131,7 @@ function napo_frontpage_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('Node Queue'),
-    t('[field_icon] [title]'),
+    t('[field_icon] [title_field]'),
     t('Block'),
   );
   $export['featured_articles'] = $view;
