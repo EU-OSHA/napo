@@ -445,6 +445,7 @@ $options['init-modules'] = array(
   'captcha',
   'recaptcha',
   'spamspan',
+  'eu_captcha',
 
   // Newsletter modules.
   'entity_collection',
