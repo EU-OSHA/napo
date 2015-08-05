@@ -424,6 +424,8 @@ $options['init-modules'] = array(
   // cookie privacy
   'eu_cookie_compliance',
 
+  'piwik',
+
   'calendar',
   'date_popup',
   'views_php',
@@ -527,7 +529,7 @@ $options['init-themes'] = array(
 );
 
 $options['disable-modules'] = array(
-  'varnish', 'memcache_storage', 'piwik',
+  'varnish', 'memcache_storage',
 );
 
 // Add specific settings for development or demo.

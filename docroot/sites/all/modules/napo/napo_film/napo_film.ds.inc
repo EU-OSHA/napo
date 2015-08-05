@@ -175,7 +175,8 @@ napo_video|episode_full';
   $ds_field->entities = array(
     'node' => 'node',
   );
-  $ds_field->ui_limit = 'napo_video|default';
+  $ds_field->ui_limit = 'napo_video|default
+napo_video|full';
   $ds_field->properties = array();
   $export['recommended_films'] = $ds_field;
 

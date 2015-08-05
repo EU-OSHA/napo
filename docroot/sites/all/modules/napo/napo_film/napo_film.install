@@ -63,3 +63,12 @@ function napo_film_update_7004() {
     }
   }
 }
+
+/**
+ * Delete Descarcati fisierul video locale.
+ */
+function napo_film_update_7005() {
+  db_delete('locales_source')
+    ->condition('lid', 9929)
+    ->execute();
+}

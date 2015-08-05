@@ -1,0 +1,26 @@
+diff --git a/site_map.admin.inc b/site_map.admin.inc
+index 58053bc..f4bc4b4 100644
+--- a/site_map.admin.inc
++++ b/site_map.admin.inc
+@@ -14,7 +14,7 @@ function site_map_admin_settings_form() {
+   $form['site_map_page_title'] = array(
+     '#type' => 'textfield',
+     '#title' => t('Page title'),
+-    '#default_value' => variable_get('site_map_page_title', t('Site map')),
++    '#default_value' => variable_get('site_map_page_title', 'Site map'),
+     '#description' => t('Page title that will be used on the <a href="@link">site map page</a>.', array('@link' => url('sitemap'))),
+   );
+   // Field to set site map message.
+diff --git a/site_map.module b/site_map.module
+index 38bb070..ea8fe8e 100644
+--- a/site_map.module
++++ b/site_map.module
+@@ -166,7 +166,7 @@ function site_map_block_view($delta = '') {
+  * Menu callback for the site map.
+  */
+ function site_map_page() {
+-  drupal_set_title(variable_get('site_map_page_title', t('Site map')));
++  drupal_set_title(t(variable_get('site_map_page_title', 'Site map')));
+ 
+   if (variable_get('site_map_css', 0) != 1) {
+     drupal_add_css(drupal_get_path('module', 'site_map') . '/site_map.theme.css');
