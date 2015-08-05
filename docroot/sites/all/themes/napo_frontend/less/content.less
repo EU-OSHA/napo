@@ -153,6 +153,15 @@ p:last-child {
         color:#FFF;
 }
 
+
+.vjs-default-skin .vjs-duration .vjs-duration-display, .vjs-current-time.vjs-time-controls.vjs-control .vjs-current-time-display{
+	background-color: #1f3695;
+    height: 12px;
+    padding-top: 3px;
+    color: #f7e235;
+    font-weight: bold;
+}
+
 //content home
 
 #block-views-featured-articles-block{
@@ -585,7 +594,7 @@ p:last-child {
 
 	.field-name-field-combined-tags{
 		float:left;
-		width: 65%;
+		width: 56.5%;
 	}
 
 	.field-name-field-combined-tags .field-item{
@@ -607,7 +616,7 @@ p:last-child {
 		margin-top: -2px;
     	padding: 13px 43px 10px 10px;
     	margin-left: 0.6%;
-		max-width: 159px;
+		width: 215px;
 	}
 	a span.view-film-details-icon{
 		margin-left: 150px;
@@ -1462,7 +1471,7 @@ p:last-child {
   		padding-left: 17px;
   		a{
 			color:#FFF;
-			background: url('../images/arrow-button-yellow.png') no-repeat 95% 9px transparent;
+			background: url('../images/arrow-button-yellow.png') no-repeat 95% 5px transparent;
 			font-weight: bold;
 			display: block;
 			margin-top: -11px;
@@ -1708,7 +1717,7 @@ p:last-child {
 		  color: #fff;
 		  display: block;
 		  background: url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
-		  margin-top:-176px;
+		  margin-top:-191px;
 		  position:absolute;
 		  max-width: 100%;
 		  z-index:999999999;
@@ -2317,7 +2326,7 @@ input[type=checkbox]{
 		}
 	}
 
-	ul li:first-child{
+	#group-left ul li:first-child{
 		background:@color-blue-napo;
 		color:#FFF;
 		font-weight: bold;
@@ -2328,7 +2337,7 @@ input[type=checkbox]{
   		border-bottom: 0px solid #FFF;
 	}
 
-	ul li:last-child{
+	#group-left ul li:last-child{
 		  background: #1f3695;
 		  font-weight: bold;
 		  text-transform: none;
@@ -2488,6 +2497,11 @@ input[type=checkbox]{
         background: url('../images/contact-us-button-combo.png') no-repeat 97% 3px @color-napo-bg-gray-1;
   	}
 
+  	#edit-submitted-message{
+  		height:114px;
+  	}
+
+
   	.webform-submit{
   		border-radius: 10px;
   		color:@color-napo-bg-gray-5;
@@ -2495,6 +2509,7 @@ input[type=checkbox]{
   		font-weight: bold;
   		float:right;
   	}
+
 }
 
 //lesson toolkit
@@ -2528,9 +2543,7 @@ input[type=checkbox]{
 
 .ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content.ui-corner-all{
 	left: -14em!important;
-	li:hover{
-		background:url('../images/view-episodes-yellow.png') no-repeat 99% 5px @color-yellow-napo;
-	}
+	padding-bottom: 10px!important;
 
 	li{
 		padding: 5px 10px 0 !important;
@@ -2543,7 +2556,7 @@ input[type=checkbox]{
 
 	}
 	a.ui-state-focus{
-		display:none!important;
+		background:url('../images/view-episodes-yellow.png') no-repeat 99% 5px @color-yellow-napo!important;
 	}
 }
 
@@ -2552,8 +2565,8 @@ input[type=checkbox]{
 
 .view-search{
 	.views-row{ 
-		padding-left: 1em;
-		padding-right: 1em;
+		padding:0 1em 1em 1em;
+		
 		.field-name-title-field a{
 			color:@color-napo-bg-gray-5;
 			font-weight: bold;
@@ -2573,40 +2586,45 @@ input[type=checkbox]{
 			margin-bottom: 5px;
 		}
 
-		.read_more_button a span.glyphicon-envelope{
-			background: @color-blue-napo;
-			color: @color-yellow-napo;
-			width: auto;
- 			padding: 6px;
-  			font-weight: bold;
-  			text-transform: uppercase;
+
+		.field-name-node-link{
+			padding-top: 10px;
+			a:not(.glyphicon-play-circle){
+				background: @color-blue-napo!important;
+				color: @color-yellow-napo;
+				width: auto;
+	 			padding: 6px;
+	  			font-weight: bold;
+	  			text-transform: uppercase;
+			}
+
+			.glyphicon-play-circle{
+				background: url('../images/play-video-small.png') no-repeat transparent;
+				height: 42px;
+	    		width: 42px;
+			}
+			
+			.glyphicon-play-circle::before{
+				content: " ";
+			}
 		}
 
-		.read_more_button a span.glyphicon-envelope::before{
-			content: " ";
-		}
+		
 
 		.node-napo-video .field-name-body{
 			background:transparent;
 			padding-bottom: 2em;
-		}
+		}		
 
-		.read_more_button a span.glyphicon-play-circle{
-			background: url('../images/play-video-small.png') no-repeat;
-			height: 42px;
-    		width: 42px;
-		}
-
-		.read_more_button a span.glyphicon-play-circle::before{
-			content: " ";
-		}
 	}
-	
-	.views-row.search-hover{
+
+	.views-row:hover{
 		background:url('../images/background-yellow.png') repeat;
 		padding: 0 1em 1em 1em;
 	}
 }
+
+
 
 .btn-info.form-submit{
   border-radius: 5px!important;

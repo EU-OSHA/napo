@@ -269,3 +269,13 @@ footer.footer.container section.block-menu-block{
 #user-login .btn-default:hover{
     background-color:#F2F1F2;
 }
+
+
+.field-name-node-link a:not(.glyphicon-play-circle){
+                background: @color-blue-napo!important;
+                color: @color-yellow-napo;
+                width: auto;
+                padding: 6px;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
