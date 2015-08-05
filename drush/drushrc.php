@@ -543,7 +543,7 @@ $command_specific['devify'] = array(
     'stage_file_proxy',
     'coffee',
   ),
-  'delete-variables' => array('googleanalytics_account'),
+  'delete-variables' => array('googleanalytics_account', 'piwik_site_id'),
   'reset-variables' => array_merge(
     array(
       'reroute_email_enable_message' => TRUE,
