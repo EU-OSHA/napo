@@ -135,12 +135,10 @@ function content_cart_ajax_submit($input_value, $operation = '', $view = '') {
     switch ($operation) {
       case 'add':
         content_cart_add_item($type, $content_id);
-        $commands[] = ajax_command_invoke('button[data-value="' . $input_value . '"]', 'attr', array('disabled', 'disabled'));
         break;
 
       case 'remove':
         content_cart_remove_item($type, $content_id);
-        $commands[] = ajax_command_invoke('button[data-value="' . $input_value . '"]', 'removeAttr', array('disabled'));
         break;
 
       default:
@@ -152,6 +150,7 @@ function content_cart_ajax_submit($input_value, $operation = '', $view = '') {
         }
         break;
     }
+    $commands[] = ajax_command_invoke('button[data-value="' . $input_value . '"]', 'content_cart_toggle_button', array());
   }
   $content = content_cart_cart_summary_content();
   $commands[] = ajax_command_replace('#content_cart_summary_container', render($content));

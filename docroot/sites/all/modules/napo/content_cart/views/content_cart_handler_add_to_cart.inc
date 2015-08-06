@@ -17,14 +17,19 @@ class content_cart_handler_add_to_cart extends views_handler_field {
 
       drupal_add_library('system', 'drupal.ajax');
       drupal_add_js(drupal_get_path('module', 'content_cart') . '/js/content_cart.js');
-      $disabled = '';
+      $options = $this->options;
+      $label = $add_label = $options['contant_add_to_cart_button_label'];
+      $remove_label = $options['contant_remove_from_cart_button_label'];
+
+      $in_cart = '';
       $cart = ContentCart::getCurrentCart();
       if ($cart->hasInCart($entity_type, $entity_id)) {
-        $disabled = 'disabled="disabled"';
+        $in_cart = 'node_in_content_cart';
+        $label = $remove_label;
       }
-      $options = $this->options;
-      $label = $options['contant_add_to_cart_button_label'];
-      return '<button title="' . $label . '" class="btn content-cart-add-to-cart-btn" data-value="' . $entity_type . '-' . $entity_id . '" ' . $disabled . '>'
+      return '<button title="' . $label . '" class="btn content-cart-add-to-cart-btn ' .
+        $in_cart . '" data-value="' . $entity_type . '-' . $entity_id . '"' .
+        ' data-addtitle="' . $add_label . '" data-removetitle="' . $remove_label . '">'
         . $label . '</button>';
     }
   }
@@ -36,6 +41,7 @@ class content_cart_handler_add_to_cart extends views_handler_field {
   function option_definition() {
     $options = parent::option_definition();
     $options['contant_add_to_cart_button_label'] = array('default' => 'Add to cart');
+    $options['contant_remove_from_cart_button_label'] = array('default' => 'Remove from cart');
     return $options;
   }
 
@@ -45,6 +51,11 @@ class content_cart_handler_add_to_cart extends views_handler_field {
       '#type' => 'textfield',
       '#title' => t('Button text'),
       '#default_value' => $this->options['contant_add_to_cart_button_label'],
+    );
+    $form['contant_remove_from_cart_button_label'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Remove button text'),
+      '#default_value' => $this->options['contant_remove_from_cart_button_label'],
     );
   }
 }

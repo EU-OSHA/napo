@@ -7919,7 +7919,7 @@ img {
   margin-top: -7px !important;
 }
 .content-cart-add-to-cart-btn,
-.btn[disabled] {
+.content-cart-add-to-cart-btn.node_in_content_cart {
   text-indent: -9999px;
   width: 43px;
   height: 49px;
@@ -7932,7 +7932,7 @@ img {
   margin-top: -7px;
   left: 0;
 }
-.btn[disabled] {
+.content-cart-add-to-cart-btn.node_in_content_cart {
   background: url('../images/download-center-selected.png') no-repeat 93% 6px transparent;
   opacity: 1;
 }
