@@ -324,6 +324,12 @@ function napo_film_theme() {
         'link' => '',
       ),
     ),
+    'napo_film_remove_search_word_link' => array(
+      'variables' => array(
+        'name' => '',
+        'link' => '',
+      ),
+    ),
   );
 }
 
@@ -852,10 +858,21 @@ function napo_film_form_views_exposed_form_alter(&$form, &$form_state, $form_id)
           }
         }
       }
+      if (!empty($query_params['search_api_views_fulltext'])) {
+        $form['search_api_views_fulltext']['#suffix'] = theme('napo_film_remove_search_word_link',
+          array(
+            'link' => drupal_get_path_alias(),
+          )
+        );
+      }
     }
   }
 }
 
 function theme_napo_film_tag_facet_link($variables) {
   return l('X ' . $variables['name'], $variables['link']);
+}
+
+function napo_film_remove_search_word_link($variables) {
+  return l('X ', $variables['link']);
 }

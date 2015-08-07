@@ -126,6 +126,17 @@ function napo_frontend_napo_film_tag_facet_link($variables) {
   return l($icon . $variables['name'], $variables['link'], $options);
 }
 
+function napo_frontend_napo_film_remove_search_word_link($variables) {
+  $icon = '<span class="glyphicon glyphicon-remove"></span>';
+  $options = array(
+    'attributes' => array(
+      'class' => array('napo-film-search-remove-word'),
+    ),
+    'html' => TRUE,
+  );
+  return l($icon, $variables['link'], $options);
+}
+
 /**
 + * Implements theme_pager().
 + */
