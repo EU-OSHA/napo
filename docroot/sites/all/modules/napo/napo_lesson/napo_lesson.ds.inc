@@ -17,23 +17,28 @@ function napo_lesson_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'lesson';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
+    'toolkit_title' => array(
+      'weight' => '2',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'back_button' => array(
       'weight' => '1',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'download_whole_lesson' => array(
-      'weight' => '4',
+      'weight' => '5',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'right_menu' => array(
-      'weight' => '2',
+      'weight' => '3',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'top_menu' => array(
-      'weight' => '5',
+      'weight' => '6',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -72,6 +77,18 @@ function napo_lesson_ds_custom_fields_info() {
   $ds_field->ui_limit = 'lesson|default';
   $ds_field->properties = array();
   $export['right_menu'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'toolkit_title';
+  $ds_field->label = 'Toolkit title';
+  $ds_field->field_type = 3;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = 'lesson|default';
+  $ds_field->properties = array();
+  $export['toolkit_title'] = $ds_field;
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
@@ -174,22 +191,24 @@ function napo_lesson_ds_layout_settings_info() {
       'header' => array(
         0 => 'title_field',
         1 => 'back_button',
+        2 => 'toolkit_title',
       ),
       'left' => array(
-        2 => 'right_menu',
-        3 => 'field_file',
-        4 => 'download_whole_lesson',
+        3 => 'right_menu',
+        4 => 'field_file',
+        5 => 'download_whole_lesson',
       ),
       'right' => array(
-        5 => 'top_menu',
-        6 => 'field_lesson_toolkit',
-        7 => 'body',
-        8 => 'field_lesson_video',
+        6 => 'top_menu',
+        7 => 'field_lesson_toolkit',
+        8 => 'body',
+        9 => 'field_lesson_video',
       ),
     ),
     'fields' => array(
       'title_field' => 'header',
       'back_button' => 'header',
+      'toolkit_title' => 'header',
       'right_menu' => 'left',
       'field_file' => 'left',
       'download_whole_lesson' => 'left',
