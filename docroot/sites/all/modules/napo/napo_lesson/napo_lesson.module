@@ -17,7 +17,87 @@ function napo_lesson_menu() {
     'page arguments' => array(3),
     'access callback' => TRUE,
   );
+  // Reorder lesson tab for lessons, but it redirects
+  // to it's lesson toolkit tab.
+  $items['node/%/reorder_lessons_r'] = array(
+    'title' => 'Reorder lessons',
+    'page callback' => 'napo_lesson_reorder_lesson_redirect',
+    'page arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+    'access callback' => 'napo_lesson_reoder_lessons_redirect_callback',
+  );
   return $items;
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function napo_lesson_menu_alter(&$items) {
+  // Add access callback for Reorder lesson tab.
+  $items['node/%/reorder_lessons']['access callback'] = 'napo_lesson_reoder_lessons_access_callback';
+}
+
+/**
+ * Redirect the user to the Reorder lessons page of the toolkit.
+ */
+function napo_lesson_reorder_lesson_redirect($nid) {
+  $toolkit_id = _napo_lesson_get_toolkit_id($nid);
+  if (!empty($toolkit_id)) {
+    drupal_goto('node/' . $toolkit_id . '/reorder_lessons');
+  }
+  else {
+    drupal_goto();
+  }
+}
+
+/**
+ * Reorder tab on lessons only visible if have toolkit.
+ */
+function napo_lesson_reoder_lessons_redirect_callback() {
+  if (!user_access('edit any lesson content')) {
+    return FALSE;
+  }
+  // Reorder menu only for toolkit.
+  $node = node_load(arg(1));
+  if ($node && $node->type == 'lesson') {
+    $toolkit = field_get_items('node', $node, 'field_lesson_toolkit');
+    if (!empty($toolkit)) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function napo_lesson_module_implements_alter(&$implementations, $hook) {
+  // Run our hook after the views hook.
+  if ($hook == 'menu_alter') {
+    if (isset($implementations['napo_lesson'])) {
+      unset($implementations['napo_lesson']);
+      $implementations['napo_lesson'] = FALSE;
+    }
+  }
+}
+
+/**
+ * Access callback for Reorder lessons tab.
+ */
+function napo_lesson_reoder_lessons_access_callback($options) {
+  // Run the default access callback.
+  $access_callback = $options[0];
+  $access_arguments = $options[1];
+  $access = call_user_func_array($access_callback, $access_arguments);
+  if (!$access) {
+    return FALSE;
+  }
+  // Reorder menu only for films.
+  $node = node_load(arg(1));
+  if ($node && $node->type == 'lesson_toolkit') {
+    return TRUE;
+  }
+  return FALSE;
 }
 
 /**
@@ -167,4 +247,17 @@ function napo_lesson_download_video($nid) {
   }
   drupal_set_message(t("There was an error downloading the lesson's video!"), 'error');
   drupal_not_found();
+}
+
+/**
+ * Function to get the toolkit id based on a lesson id.
+ */
+function _napo_lesson_get_toolkit_id($nid) {
+  $toolkit_id = 0;
+  $node = node_load($nid);
+  $toolkit = field_get_items('node', $node, 'field_lesson_toolkit');
+  if (!empty($toolkit)) {
+    $toolkit_id = $toolkit[0]['target_id'];
+  }
+  return $toolkit_id;
 }
