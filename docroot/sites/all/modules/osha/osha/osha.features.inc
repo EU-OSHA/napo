@@ -41,11 +41,11 @@ function osha_views_api($module = NULL, $api = NULL) {
 function osha_node_info() {
   $items = array(
     'article' => array(
-      'name' => t('Article'),
+      'name' => 'Article',
       'base' => 'node_content',
-      'description' => t('Introductions and Sections'),
+      'description' => 'Introductions and Sections',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );
