@@ -706,7 +706,7 @@ function napo_film_episode_download_form($form, &$form_state, $node, $view_mode 
     '#type' => 'radios',
     '#options' => napo_film_get_films_formats_as_options($node),
     '#attributes' => array(
-      'onchange' => "form.submit('download_format')",
+      'onclick' => "form.submit('download_format')",
     ),
   );
   $form['download'] = array(
@@ -717,6 +717,10 @@ function napo_film_episode_download_form($form, &$form_state, $node, $view_mode 
     ),
   );
   $form['#prefix'] .= '<span class="napo-film-video-download-form-title"><span class="glyphicon glyphicon-download-alt"></span></span>';
+
+  $form['#attached']['js'] = array(
+    drupal_get_path('module', 'napo_film') . '/js/napo_film_download.js',
+  );
 
   return $form;
 }
