@@ -159,6 +159,19 @@ function napo_lesson_preprocess_node(&$vars) {
           'video_id' => $vars['field_lesson_video'][0]['target_id'],
         ));
       }
+      if (in_array('toolkit_title', $vars['preprocess_fields'])) {
+        $toolkit = node_load(_napo_lesson_get_toolkit_id($node->nid));
+        if (!empty($toolkit)) {
+          $title = field_get_items('node', $toolkit, 'title_field');
+          $title = current($title)['safe_value'];
+          $title = array(
+            '#markup' => '<h2 class="napo-lesson-toolkit-title">' . $title . '</h2>',
+            '#weight' => 0,
+          );
+          $vars['toolkit_title'] = drupal_render($title);
+        }
+      }
+
     }
   }
 }
