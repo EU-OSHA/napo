@@ -125,7 +125,7 @@ function napo_common_default_fe_block_settings() {
   );
 
   $export['text_resize-0'] = array(
-    'cache' => 4,
+    'cache' => -1,
     'custom' => 0,
     'delta' => 0,
     'i18n_block_language' => array(),

@@ -104,6 +104,13 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['content_cart_downlad_as']['label'] = '';
   $handler->display->display_options['fields']['content_cart_downlad_as']['exclude'] = TRUE;
   $handler->display->display_options['fields']['content_cart_downlad_as']['element_label_colon'] = FALSE;
+  /* Field: Napo film: Download video */
+  $handler->display->display_options['fields']['download_video']['id'] = 'download_video';
+  $handler->display->display_options['fields']['download_video']['table'] = 'napo_film';
+  $handler->display->display_options['fields']['download_video']['field'] = 'download_video';
+  $handler->display->display_options['fields']['download_video']['label'] = '';
+  $handler->display->display_options['fields']['download_video']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['download_video']['element_label_colon'] = FALSE;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -112,6 +119,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '[title_field]
 [body]
 [content_cart_downlad_as]
+[download_video] 
 [content_cart_remove]
 ';
   $handler->display->display_options['fields']['nothing']['element_type'] = 'div';
@@ -145,6 +153,7 @@ function napo_film_views_default_views() {
     t('[title_field]
 [body]
 [content_cart_downlad_as]
+[download_video] 
 [content_cart_remove]
 '),
     t('Page'),
