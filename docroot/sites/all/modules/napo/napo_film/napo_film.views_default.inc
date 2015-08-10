@@ -858,7 +858,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['filters']['search_api_views_fulltext']['exposed'] = TRUE;
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
-  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_word';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
@@ -868,6 +868,7 @@ function napo_film_views_default_views() {
     6 => 0,
     7 => 0,
     8 => 0,
+    9 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
     'body:value' => 'body:value',
@@ -1222,7 +1223,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator_id'] = 'search_api_views_fulltext_op';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['label'] = 'Search';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['operator'] = 'search_api_views_fulltext_op';
-  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_api_views_fulltext';
+  $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['identifier'] = 'search_word';
   $handler->display->display_options['filters']['search_api_views_fulltext']['expose']['remember_roles'] = array(
     2 => '2',
     1 => 0,
@@ -1232,6 +1233,7 @@ function napo_film_views_default_views() {
     6 => 0,
     7 => 0,
     8 => 0,
+    9 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
     'body:value' => 'body:value',

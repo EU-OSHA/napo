@@ -205,7 +205,7 @@ function napo_film_views_pre_view( view &$view, &$display_id, &$args) {
     // When searching (word or tag) in Film page, episode should be included.
     // Alter the filter to include films and episodes video type.
     $params = drupal_get_query_parameters();
-    if (!empty($params['search_api_views_fulltext'])
+    if (!empty($params['search_word'])
       || !empty($params['f'])) {
       $view_filters = $view->display_handler->get_option('filters');
       $view_filters['field_video_type']['value'] = drupal_map_assoc(napo_film_get_video_types_tid());
@@ -839,27 +839,18 @@ function napo_film_preprocess_html(&$vars) {
  */
 function napo_film_form_views_exposed_form_alter(&$form, &$form_state, $form_id) {
   if ($form['#id'] == 'views-exposed-form-napo-films-page-list') {
-    if (!empty($form['search_api_views_fulltext'])) {
+    if (!empty($form['search_word'])) {
       $query_params = drupal_get_query_parameters();
-      if (!empty($query_params['f'])) {
-        $f_params = $query_params['f'];
-
-        foreach ($f_params as $f_param) {
-          if (strpos($f_param, 'field_combined_tags:') !== FALSE) {
-            $tid = explode(':', $f_param)[1];
-            $term = taxonomy_term_load($tid);
-            $form['#prefix'] = theme('napo_film_tag_facet_link',
-              array(
-                'name' => $term->name,
-                'link' => drupal_get_path_alias(),
-              )
-            );
-            break;
-          }
-        }
+      if ($term = _napo_film_get_search_tag_term()) {
+        $form['#prefix'] = theme('napo_film_tag_facet_link',
+          array(
+            'name' => $term->name,
+            'link' => drupal_get_path_alias(),
+          )
+        );
       }
-      if (!empty($query_params['search_api_views_fulltext'])) {
-        $form['search_api_views_fulltext']['#suffix'] = theme('napo_film_remove_search_word_link',
+      if (!empty($query_params['search_word'])) {
+        $form['search_word']['#suffix'] = theme('napo_film_remove_search_word_link',
           array(
             'link' => drupal_get_path_alias(),
           )
@@ -867,6 +858,37 @@ function napo_film_form_views_exposed_form_alter(&$form, &$form_state, $form_id)
       }
     }
   }
+}
+
+/**
+ * Implements hook_preprocess_breadcrumb().
+ */
+function napo_film_preprocess_breadcrumb(&$variables) {
+  // Add a trail to breadcrumb when using search for Napo films page.
+  if (!empty($_GET['search_word'])) {
+    $variables['breadcrumb'][] = t('Search results for "@word"', array('@word' => $_GET['search_word']));
+  }
+  else if ($term = _napo_film_get_search_tag_term()) {
+    $variables['breadcrumb'][] = t('Search results for "@word"', array('@word' => $term->name));
+  }
+}
+
+/**
+ * Get the term of the combined tags search filter.
+ */
+function _napo_film_get_search_tag_term() {
+  $query_params = drupal_get_query_parameters();
+  if (!empty($query_params['f'])) {
+    $f_params = $query_params['f'];
+    foreach ($f_params as $f_param) {
+      if (strpos($f_param, 'field_combined_tags:') !== FALSE) {
+        $tid = explode(':', $f_param)[1];
+        $term = taxonomy_term_load($tid);
+        return $term;
+      }
+    }
+  }
+  return FALSE;
 }
 
 function theme_napo_film_tag_facet_link($variables) {
