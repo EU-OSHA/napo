@@ -413,61 +413,6 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson_toolkit-field_archived'
-  $field_instances['node-lesson_toolkit-field_archived'] = array(
-    'bundle' => 'lesson_toolkit',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 3,
-      ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'search_results' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 11,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_archived',
-    'label' => 'Mark as outdated',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'display_label' => 1,
-      ),
-      'type' => 'options_onoff',
-      'weight' => 3,
-    ),
-  );
-
   // Exported field_instance: 'node-lesson_toolkit-field_target_ages'
   $field_instances['node-lesson_toolkit-field_target_ages'] = array(
     'bundle' => 'lesson_toolkit',
@@ -1143,7 +1088,6 @@ function napo_lesson_field_default_field_instances() {
   t('Image');
   t('Lesson Toolkit');
   t('Lesson Video');
-  t('Mark as outdated');
   t('Name');
   t('Target Ages');
   t('Title');
