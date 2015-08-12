@@ -78,10 +78,15 @@
 .menu.nav.navbar-nav {
   background-color: @navbar-default-bg;
   font-weight: bold;
+  display:flex;
 }
 
 .menu.nav.navbar-nav li.first{
   margin-right: 0px;
+  a{
+    padding-left: 7px;
+    padding-right: 7px;
+  }
 }
 
 .menu.nav.navbar-nav li img{
@@ -110,7 +115,7 @@
   padding:0px;
   font-weight: bold;
   border-top: 2px solid transparent;
-  max-width: 129px;
+  max-width: 150px;
   min-width: 129px;
   left: -1px;
 }
@@ -140,7 +145,11 @@
 }
 
 .navbar.container.navbar-default .col-md-3{
-   padding-left: 3px;
+  padding-left: 3px;
+}
+
+.dropdown-menu > li > a{
+  padding: 3px 14px;
 }
 
 .dropdown-menu>li>a{

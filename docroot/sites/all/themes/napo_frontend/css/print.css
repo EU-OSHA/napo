@@ -14,15 +14,20 @@
 
 /*General*/
 
+#navbar{
+	display:block!important;
+}
+
+.navbar-header{
+	display:block!important;
+}
+
 h3 , h2{
 	padding: 10px 0px 10px 0px!important;
 	margin: 0px!important;
 	height: auto!important;
 }
 
-footer{
-	display: none;
-}
 
 iframe , video , .youtube-container--responsive , .modal-dialog , .slider{
 	display: none;
@@ -56,7 +61,38 @@ button{
 	display:none;
 }
 
+/*Footer*/
+.jcarousel-skin-default{
+	display: block!important;
+}
 
+#block-menu-block-2 , #block-menu-block-1 , #consortium-partners-block-1-link{
+	display:none!important;
+}
+
+#block-views-consortium-partners-block-1{
+	display:block!important;
+}
+
+#block-views-consortium-partners-block-1 h2{
+	display:block!important;
+	margin-top: -100px!important;
+}
+
+.view-consortium-partners{
+	display:block!important;
+}
+
+
+/*Home*/
+
+#block-views-featured-articles-block{
+	margin-top:20px;
+}
+
+.block-views.napo-homepage-featured-films-container{	
+	display:none!important;
+}
 
 /*List View*/
 

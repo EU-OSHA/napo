@@ -41,3 +41,12 @@ var isVisible = true;
 	        }
 	    });
 	});
+
+
+// Menu - Delete de class open when mouseout
+jQuery(function() {
+    jQuery(".dropdown").hover(
+        function(){ jQuery(this).addClass('open') },
+        function(){ jQuery(this).removeClass('open') }
+    );
+});
