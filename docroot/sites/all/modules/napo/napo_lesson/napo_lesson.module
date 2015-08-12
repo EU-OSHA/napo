@@ -66,7 +66,7 @@ function napo_lesson_reorder_lesson_redirect($nid) {
  */
 function napo_lesson_reorder_toolkit($term) {
   $view = views_get_view('lesson_toolkit_reorder');
-  $view->set_display('block_2');
+  $view->set_display('reorder_toolkit');
   $view_filters = $view->display_handler->get_option('filters');
   $view_filters['field_target_ages_tid']['value'] = drupal_map_assoc(array($term->tid));
   $overrides = array();
@@ -75,7 +75,7 @@ function napo_lesson_reorder_toolkit($term) {
     $view->display_handler->override_option($option, $definition);
   }
   $view->pre_execute();
-  return $view->render('block_2');
+  return $view->render('reorder_toolkit');
 }
 
 /**
