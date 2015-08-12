@@ -108,7 +108,7 @@ function napo_lesson_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['grouping'] = array(
     0 => array(
-      'field' => 'name_field',
+      'field' => 'nothing',
       'rendered' => 1,
       'rendered_strip' => 0,
     ),
@@ -153,12 +153,31 @@ function napo_lesson_views_default_views() {
   $handler->display->display_options['fields']['name_field']['relationship'] = 'field_target_ages_tid';
   $handler->display->display_options['fields']['name_field']['label'] = '';
   $handler->display->display_options['fields']['name_field']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['name_field']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['name_field']['alter']['text'] = '<div class="lesson_by_age_name">[name_field]</div>
+  $handler->display->display_options['fields']['name_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['name_field']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['name_field']['settings'] = array(
+    'title_style' => '_none',
+    'title_link' => '',
+    'title_class' => '',
+    'napo_common_title_prefix' => 'Target ages',
+    'title_archived_label' => 0,
+    'napo_film_title_include_type' => 0,
+    'napo_film_title_include_episode_count' => 0,
+    'napo_film_title_link_episode_popup' => 0,
+    'napo_film_title_link_with_film' => 0,
+    'napo_film_title_link_with_film_value' => '!episode from the film !film',
+  );
+  $handler->display->display_options['fields']['name_field']['link_to_entity'] = 0;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="lesson_by_age_name">[name_field]</div>
 <div class="lesson_by_age_image">[field_image]</div>
 <div class="lesson_by_age_description">[description_field]</div>';
-  $handler->display->display_options['fields']['name_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['name_field']['link_to_entity'] = 0;
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';

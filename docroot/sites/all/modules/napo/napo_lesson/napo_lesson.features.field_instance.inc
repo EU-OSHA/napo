@@ -280,6 +280,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'napo_common',
         'settings' => array(
+          'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
@@ -303,6 +304,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'napo_common',
         'settings' => array(
+          'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => 0,
           'napo_film_title_include_type' => 1,
           'napo_film_title_link_episode_popup' => 0,
@@ -320,6 +322,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'napo_common',
         'settings' => array(
+          'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
@@ -477,6 +480,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'napo_common',
         'settings' => array(
+          'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
@@ -849,6 +853,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'napo_common',
         'settings' => array(
+          'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
@@ -885,6 +890,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'napo_common',
         'settings' => array(
+          'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
@@ -1043,6 +1049,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'napo_common',
         'settings' => array(
+          'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
