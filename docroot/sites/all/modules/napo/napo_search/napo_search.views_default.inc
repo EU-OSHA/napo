@@ -120,9 +120,6 @@ function napo_search_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'article' => 'article',
     'lesson' => 'lesson',
-    'lesson_toolkit' => 'lesson_toolkit',
-    'lesson_video' => 'lesson_video',
-    'napo_friend' => 'napo_friend',
     'napo_video' => 'napo_video',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;

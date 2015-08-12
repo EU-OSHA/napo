@@ -74,11 +74,11 @@ function napo_film_image_default_styles() {
 function napo_film_node_info() {
   $items = array(
     'napo_video' => array(
-      'name' => t('Napo video'),
+      'name' => 'Napo video',
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

@@ -424,6 +424,8 @@ $options['init-modules'] = array(
   // cookie privacy
   'eu_cookie_compliance',
 
+  'piwik',
+
   'calendar',
   'date_popup',
   'views_php',
@@ -443,6 +445,7 @@ $options['init-modules'] = array(
   'captcha',
   'recaptcha',
   'spamspan',
+  'eu_captcha',
 
   // Newsletter modules.
   'entity_collection',
@@ -527,7 +530,7 @@ $options['init-themes'] = array(
 );
 
 $options['disable-modules'] = array(
-  'varnish', 'memcache_storage', 'piwik',
+  'varnish', 'memcache_storage',
 );
 
 // Add specific settings for development or demo.
@@ -540,7 +543,7 @@ $command_specific['devify'] = array(
     'stage_file_proxy',
     'coffee',
   ),
-  'delete-variables' => array('googleanalytics_account'),
+  'delete-variables' => array('googleanalytics_account', 'piwik_site_id'),
   'reset-variables' => array_merge(
     array(
       'reroute_email_enable_message' => TRUE,

@@ -1,5 +1,5 @@
 <div class="napo-share-widget">
-  <span class="napo-share-widget-title">Share</span>
+  <span class="napo-share-widget-title"><?php t('Share'); ?></span>
   <ul>
     <li id="fb-share-button-<?php print $node->nid; ?>"  class="napo-share-widget-button napo-share-widget-facebook" data-href="">Facebook</li>
     <li id="twitter-share-button-<?php print $node->nid; ?>" class="napo-share-widget-button napo-share-widget-twitter">

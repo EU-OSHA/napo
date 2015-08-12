@@ -29,27 +29,27 @@ function napo_lesson_views_api($module = NULL, $api = NULL) {
 function napo_lesson_node_info() {
   $items = array(
     'lesson' => array(
-      'name' => t('Lesson'),
+      'name' => 'Lesson',
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
     'lesson_toolkit' => array(
-      'name' => t('Lesson toolkit'),
+      'name' => 'Lesson toolkit',
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
     'lesson_video' => array(
-      'name' => t('Lesson video'),
+      'name' => 'Lesson video',
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

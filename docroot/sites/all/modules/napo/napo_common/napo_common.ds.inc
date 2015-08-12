@@ -33,7 +33,8 @@ function napo_common_ds_custom_fields_info() {
   );
   $ds_field->ui_limit = 'article|search_results
 napo_video|*
-napo_album|default';
+napo_album|default
+lesson|search_results';
   $ds_field->properties = array();
   $export['share_widget'] = $ds_field;
 

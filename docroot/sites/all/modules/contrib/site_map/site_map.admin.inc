@@ -14,7 +14,7 @@ function site_map_admin_settings_form() {
   $form['site_map_page_title'] = array(
     '#type' => 'textfield',
     '#title' => t('Page title'),
-    '#default_value' => variable_get('site_map_page_title', t('Site map')),
+    '#default_value' => variable_get('site_map_page_title', 'Site map'),
     '#description' => t('Page title that will be used on the <a href="@link">site map page</a>.', array('@link' => url('sitemap'))),
   );
   // Field to set site map message.

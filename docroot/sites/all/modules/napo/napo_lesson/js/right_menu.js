@@ -16,8 +16,16 @@ jQuery('document').ready(function() {
                 jQuery(this).attr('id','h2-'+idx);
             }
             var css = idx == 0 ? ' class=" headings active"' : ' class="headings"';
-            menu.append(jQuery('<li' + css + '><a href="#' + jQuery(this).attr('id') + '">' + jQuery(el).text() + '</a></li>'));
+            menu.append(jQuery('<li' + css + '><a class="heading-anchor" href="#' + jQuery(this).attr('id') + '">' + jQuery(el).text() + '</a></li>'));
         }
+    });
+
+    jQuery('body').on('click', '.heading-anchor', function(e){
+        e.preventDefault();
+        var scroll = jQuery(jQuery(this).attr('href')).offset().top - 60;
+        jQuery('html').animate({
+            scrollTop: scroll
+        }, 200);
     });
 
     // Add fields to affix menu
@@ -26,7 +34,8 @@ jQuery('document').ready(function() {
 
     // Spymenu target
     jQuery('body').scrollspy({
-        target: '.scrollspy'
+        target: '.scrollspy',
+        offset: 60
     });
 
     // Affix class to right nav menu

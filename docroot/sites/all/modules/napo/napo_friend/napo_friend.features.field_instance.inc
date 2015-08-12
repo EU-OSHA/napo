@@ -186,9 +186,9 @@ function napo_friend_field_default_field_instances() {
       ),
       'search_results' => array(
         'label' => 'hidden',
-        'module' => 'napo_search',
+        'module' => 'text',
         'settings' => array(),
-        'type' => 'content_type_icon',
+        'type' => 'text_default',
         'weight' => 0,
       ),
       'teaser' => array(
