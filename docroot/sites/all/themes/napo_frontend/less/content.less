@@ -548,6 +548,11 @@ p:last-child {
 	    margin-left: -13px;
  		margin-top: 13px;
 	}
+
+	.napo-film-list-image{
+		max-height: 192px;
+		overflow:hidden;
+	}
 }
 
 .block-napo-film{
@@ -597,7 +602,7 @@ p:last-child {
  	}
 }
 
-.napo-film-list-view{
+.view-display-id-page_list.napo-film-list-view{
 
 	padding-left: 4em;
 
@@ -775,7 +780,7 @@ p:last-child {
 
 }
 
-.view-napo-films {
+.view-napo-films{
 	.row div:hover > .views-field-nothing.napo-film-content-container {
 		color: #fff;
 		display: block;
@@ -816,6 +821,108 @@ p:last-child {
 	}
 }
 
+.view-napo-films-node.view-display-id-page_grid {
+	.row div:hover > .views-field-nothing.napo-film-content-container {
+		color: #fff;
+		display: block;
+		//margin-top: -52%; //responsive need this height
+		padding: 1em;
+		background:url('../images/bacground-hover-napo-films-gallery.png') repeat;
+		min-height: 281px;
+  		max-width: 555px;
+		span.field-content{
+			display: table;
+		}
+		img{
+			//visibility:hidden;
+			display:none;
+		}
+	}
+
+	.row div:hover > .views-field.views-field-field-image{
+		background:url('../images/bacground-hover-napo-films-gallery.png') repeat-x;
+
+		img{
+			//visibility:hidden;
+			display:none;
+		}
+	}
+
+	.napo-film-video-download-form{
+		float: right;
+		margin-right: 50px;
+		margin-top: -57px;
+		max-width: 50px;
+		position: relative;
+	}
+
+	.date-display-single{
+		color:@color-yellow-napo;
+		font-weight: bold;
+	}
+
+	.view-film-details-icon{
+		display:none;
+	}
+
+	.view-display-id-page_grid .views-field-nothing.napo-film-content-container {
+		display:none;
+	}
+
+	.view-napo-films-node .field-name-field-combined-tags .field-item{
+		padding-left: left;
+	}
+
+	.view-napo-films-node .napo-film-view-link{
+		padding-bottom: 2em;
+	}
+
+	.field-name-field-combined-tags{
+		margin-bottom: 1em;
+		width: 100%;
+	}
+
+	.views-field-nothing.napo-film-content-container {
+    	display: none;
+	}
+
+	.napo-film-view-episodes-link{
+		color:@color-blue-napo;
+		font-weight: bold;
+		padding: 4px 0.5em 0.5em;
+		margin-top: -2px;
+		display: block;
+		float: left;
+		padding-right: 2em;
+		background:url('../images/view-episodes-yellow.png') no-repeat 96% 5px @color-yellow-napo;
+	}
+
+	.napo-film-view-link{
+		padding-bottom: 2em;
+		margin-right:10px;
+	}
+
+	.napo-film-video-download-form:hover form{
+		margin-top: 40px;
+    	margin-left: -3px;
+	}
+}
+
+.field-name-field-combined-tags a{
+	color:@color-yellow-napo;
+	font-weight: bold;
+}
+
+.field-name-field-combined-tags .field-item{
+	padding-left: 0em;
+	margin-bottom: 1em;
+}
+
+.content-cart-add-to-cart-btn.node_in_content_cart {
+    background: url('../images/download-center-selected.png') no-repeat 93% 6px transparent;
+    opacity: 1;
+}
+
 .napo-film-grid-view .views-field-field-image{
 	max-height: 285px;
 	height: 281px;
@@ -833,17 +940,6 @@ p:last-child {
 		display:none;
 }
 
-
-
-.field-name-field-combined-tags{
-	margin-bottom: 1em;
-}
-
-.field-name-field-combined-tags a{
-	color:@color-yellow-napo;
-	margin-bottom: 1em;
-	font-weight: bold;
-}
 
 .field-name-field-combined-tags .field-item{
 	color:@color-yellow-napo;
@@ -1807,6 +1903,12 @@ p:last-child {
 .node-napo-album {
 	.field.field-name-body{
 		padding: 1em 0em 1em 0em;
+		width: 70%;
+    	float: left;
+	}
+
+	.napo-share-widget{
+		padding-top: 1em;
 	}
 
 	.back_button{
@@ -2180,6 +2282,11 @@ input[type=checkbox]{
 		margin-bottom:1em;
 	}
 
+	.napo-film-video-download-form{
+		margin-right: 50px;
+		margin-top: -21px;
+	}
+
 	.views-field.views-field-content-cart-select-in-cart{
 		float: left;
 		background-color:@btn-blue-napo-color-trans08;
@@ -2215,52 +2322,51 @@ input[type=checkbox]{
 			padding-top: 4px;
 		}
 
-	.form-type-radios {
-		label{
-			float:left;
-			color:@color-napo-bg-gray-5
-		}
-
-		.form-radios{
-			float:left;
-			.form-type-radio{
+		.form-type-radios {
+			label{
 				float:left;
-				label{
-					background:@color-blue-light-napo;
-					color:@color-blue-napo;
-					font-weight: bold;
-					padding-left: 10px;
-					padding-right: 10px;
+				color:@color-napo-bg-gray-5
+			}
+
+			.form-radios{
+				float:left;
+				.form-type-radio{
+					float:left;
+					label{
+						background:@color-blue-light-napo;
+						color:@color-blue-napo;
+						font-weight: bold;
+						padding-left: 10px;
+						padding-right: 10px;
+					}
+				}
+				input{
+					display:none;
+				}
+
+				input:checked + label{
+					background:@color-yellow-napo;
+				}
+
+				.form-radio.ajax-processed{
+					background:@color-yellow-napo;
 				}
 			}
-			input{
-				display:none;
-			}
-
-			input:checked + label{
-				background:@color-yellow-napo;
-			}
-
-			.form-radio.ajax-processed{
-				background:@color-yellow-napo;
+			.radio + .radio, .checkbox + .checkbox{
+				  margin-top: 0px;
 			}
 		}
-		.radio + .radio, .checkbox + .checkbox{
-			  margin-top: 0px;
-		}
-	}
 
 		.content_cart_remove{
 			background: url('../images/remove.png') no-repeat;
-			  text-indent: -9999px;
-			  width: 43px;
-			  height: 43px;
-			  border-radius: 0px;
-			  position: absolute;
-			  margin-top: -11px;
-			  right: 25px;
-	}
-
+			text-indent: -9999px;
+			width: 43px;
+			height: 43px;
+			border-radius: 0px;
+			position: absolute;
+			margin-top: -11px;
+			right: 25px;
+		}
 	}
 }
 
@@ -2516,13 +2622,13 @@ input[type=checkbox]{
 	  padding-left: 17px;
 	  bottom: -10px;
 	  right: 8%;
-	  padding-top: 16px;
+	  padding-top: 10px;
 	  cursor:pointer;
 	  z-index: 99;
 }
 
 .contact-form-widget-container h2::before{
-  	 background:url('../images/contact-us-button.png') 23% 5px no-repeat;
+  	 background:url('../images/contact-us-button.png') 23% 15px no-repeat;
   	 content:"";
   	 width:46px;
   	 height:46px;
@@ -2532,7 +2638,7 @@ input[type=checkbox]{
 }
 
 .contact-form-widget-container h2.desplegado::before{
-  	 background:url('../images/contact-us-button-desplegado.png') 23% 5px no-repeat;
+  	 background:url('../images/contact-us-button-desplegado.png') 23% 15px no-repeat;
   	 content:"";
   	 width:46px;
   	 height:46px;
@@ -2616,11 +2722,33 @@ input[type=checkbox]{
 //Search autocomplete
 
 .ui-autocomplete.ui-front.ui-menu.ui-widget.ui-widget-content.ui-corner-all{
-	left: -14em!important;
-	padding-bottom: 10px!important;
-
+	left: -195px !important;
+	padding-bottom: 5px!important;
+	border: 2px solid #d8d9d9!important;
 	li{
-		padding: 5px 10px 0 !important;
+		padding: 1px 5px!important;
+		cursor:pointer;
+	}
+
+	li:first-child{
+		margin-top:10px!important;
+	}
+
+	li:last-child{
+		background: #a5b8db!important;
+	    margin: 0px 5px 0px 5px!important;
+	    width: 97%!important;
+	    a{
+	    	color: #FFF!important;
+	    	text-transform: uppercase!important;
+	    }
+
+	    a.ui-state-focus{
+			background:transparent!important;
+			border: 0px!important;
+			border-radius: 0px;
+			padding-right: 0px!important;
+		}
 	}
 
 	li a{
@@ -2630,7 +2758,10 @@ input[type=checkbox]{
 
 	}
 	a.ui-state-focus{
-		background:url('../images/view-episodes-yellow.png') no-repeat 99% 5px @color-yellow-napo!important;
+		background:url('../images/view-episodes-yellow.png') no-repeat 99% 4px @color-yellow-napo!important;
+		border: 0px!important;
+		border-radius: 0px;
+		padding-right: 30px!important;
 	}
 }
 
@@ -2638,6 +2769,29 @@ input[type=checkbox]{
 //Search page
 
 .view-search{
+	h3 , .field.field-name-body , .field-name-field-image {
+		padding-left: 40px;
+	}
+
+	.node-article .field-name-title-field{ 
+		background:url('../images/search-node-others.png') no-repeat 0px 20px transparent;
+		padding-bottom: 5px;
+    	padding-top: 5px;	
+	}
+
+	.node-lesson .field-name-title-field{ 
+		background:url('../images/search-node-lesson.png') no-repeat 0px 21px transparent;
+		padding-bottom: 5px;
+    	padding-top: 5px;	
+	}
+
+	.node-napo-video .field-name-title-field{ 
+		background:url('../images/search-node-video.png') no-repeat 0px 19px transparent;
+		padding-bottom: 5px;
+    	padding-top: 5px;
+	}
+
+
 	.views-row{ 
 		padding:0 1em 1em 1em;
 		

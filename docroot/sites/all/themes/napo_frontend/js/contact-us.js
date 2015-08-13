@@ -17,12 +17,23 @@ jQuery(document).ready(function () {
 				jQuery(".imagen_disabled").removeClass("imagen_disabled");
 			} else {
 				hiddenContent.slideDown();
-				jQuery(".contact-form-widget-container h2").css("bottom","532px");
+				jQuery(".contact-form-widget-container h2").css("bottom","582px");
+				if(jQuery(window).scrollTop() + jQuery(window).height() == jQuery(document).height()) {
+      	 			jQuery(".contact-form-widget-container h2").css("bottom","485px");
+   				}
 				jQuery(".contact-form-widget-container h2").addClass("desplegado");
 				jQuery( "body" ).append( "<div class='imagen_disabled'></div>" );
 			}
 		}
 	);
+
+	jQuery(window).scroll(function() {
+   		if(jQuery(window).scrollTop() + jQuery(window).height() == jQuery(document).height()) {
+      	 	jQuery(".contact-form-widget-container h2").stop().animate({height: 170}, 'fast');
+   		}else{
+   			jQuery(".contact-form-widget-container h2").stop().animate({height: 75}, 'fast');
+   		}
+	});
 });
 
 // Footer carousel responsive design
