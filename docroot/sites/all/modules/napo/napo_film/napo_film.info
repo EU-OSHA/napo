@@ -1,7 +1,7 @@
 name = Napo Film
 core = 7.x
 package = Napo
-version = 7.x-1.8
+version = 7.x-1.9
 project = napo_film
 dependencies[] = content_cart
 dependencies[] = ctools
@@ -127,4 +127,4 @@ files[] = views/napo_film_handler_view_episodes_link.inc
 files[] = views/napo_film_handler_view_detail_link.inc
 files[] = views/napo_film_handler_add_mime_to_cart.inc
 files[] = views/napo_film_handler_select_in_cart.inc
-mtime = 1439379038
+mtime = 1439386885
