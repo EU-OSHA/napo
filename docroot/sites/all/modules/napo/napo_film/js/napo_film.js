@@ -17,9 +17,9 @@
 
                 // Take the value of the title field and set the image title attribute
                 var img_title;
-                jQuery('document').ready(function() {
-                    jQuery('ul.jcarousel-view--episode-list--block-1').find('li').each(function(){
-                        jQuery(this).mouseover(function(){
+                $('document').ready(function() {
+                    $('ul.jcarousel-view--episode-list--block-1').find('li').each(function(){
+                        $(this).mouseover(function(){
                             img_title = '';
                             $(this).find('div.views-field-title-field div.field-content a.napo_film_episode_link').each(function(){
                                 img_title = $(this).html().replace('</span>', ': ');
