@@ -32,6 +32,59 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
 
   $path_breadcrumb = new stdClass();
   $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'napo_episode_full';
+  $path_breadcrumb->name = 'Napo Episode Full';
+  $path_breadcrumb->path = 'node/%node';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => '%site:current-page:menu-link:pb-join:name',
+      1 => 'Episodes',
+      2 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '%site:current-page:menu-link:pb-join:url',
+      1 => '%node:field-napo-film:url/view-episodes',
+      2 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(
+      'node' => array(
+        'position' => 1,
+        'argument' => 'entity_id:node',
+        'settings' => array(
+          'identifier' => 'Node: ID',
+        ),
+      ),
+    ),
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'entity_field_value:node:napo_video:field_video_type',
+          'settings' => array(
+            'field_video_type' => array(
+              'und' => array(
+                0 => array(
+                  'tid' => '2726',
+                ),
+              ),
+            ),
+            'field_video_type_tid' => array(
+              0 => '2726',
+            ),
+          ),
+          'context' => 'node',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $path_breadcrumb->weight = -94;
+  $export['napo_episode_full'] = $path_breadcrumb;
+
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'napo_films_episodes';
   $path_breadcrumb->name = 'Napo films episodes';
   $path_breadcrumb->path = 'napos-films/films';
@@ -222,7 +275,25 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
       ),
     ),
     'access' => array(
-      'plugins' => array(),
+      'plugins' => array(
+        0 => array(
+          'name' => 'entity_field_value:node:napo_video:field_video_type',
+          'settings' => array(
+            'field_video_type' => array(
+              'und' => array(
+                0 => array(
+                  'tid' => '2726',
+                ),
+              ),
+            ),
+            'field_video_type_tid' => array(
+              0 => '2726',
+            ),
+          ),
+          'context' => 'node',
+          'not' => TRUE,
+        ),
+      ),
       'logic' => 'and',
     ),
   );

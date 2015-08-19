@@ -26,6 +26,17 @@ function napo_lesson_menu() {
     'type' => MENU_LOCAL_TASK,
     'access callback' => 'napo_lesson_reoder_lessons_redirect_callback',
   );
+
+  // Reorder toolkit tab.
+  $items['taxonomy/term/%taxonomy_term/reorder_toolkit'] = array(
+    'title' => 'Reorder toolkit',
+    'page callback' => 'napo_lesson_reorder_toolkit',
+    'page arguments' => array(2),
+    'type' => MENU_LOCAL_TASK,
+    'access callback' => 'napo_lesson_reorder_toolkit_access',
+    'access arguments' => array(2),
+    'weight' => 3,
+  );
   return $items;
 }
 
@@ -48,6 +59,33 @@ function napo_lesson_reorder_lesson_redirect($nid) {
   else {
     drupal_goto();
   }
+}
+
+/**
+ * Callback for lesson toolkit reorder local task.
+ */
+function napo_lesson_reorder_toolkit($term) {
+  $view = views_get_view('lesson_toolkit_reorder');
+  $view->set_display('reorder_toolkit');
+  $view_filters = $view->display_handler->get_option('filters');
+  $view_filters['field_target_ages_tid']['value'] = drupal_map_assoc(array($term->tid));
+  $overrides = array();
+  $overrides['filters'] = $view_filters;
+  foreach ($overrides as $option => $definition) {
+    $view->display_handler->override_option($option, $definition);
+  }
+  $view->pre_execute();
+  return $view->render('reorder_toolkit');
+}
+
+/**
+ * Access callback for Reorder toolkit tab.
+ */
+function napo_lesson_reorder_toolkit_access($term) {
+  if (user_access('edit any lesson_toolkit content') && $term->vocabulary_machine_name == 'target_ages') {
+    return TRUE;
+  }
+  return FALSE;
 }
 
 /**

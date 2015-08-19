@@ -184,6 +184,11 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['changed']['field'] = 'changed';
   $handler->display->display_options['fields']['changed']['date_format'] = 'short';
   $handler->display->display_options['fields']['changed']['second_date_format'] = 'year';
+  /* Field: Content: Mark as outdated */
+  $handler->display->display_options['fields']['field_archived']['id'] = 'field_archived';
+  $handler->display->display_options['fields']['field_archived']['table'] = 'field_data_field_archived';
+  $handler->display->display_options['fields']['field_archived']['field'] = 'field_archived';
+  $handler->display->display_options['fields']['field_archived']['label'] = 'Outdated';
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
@@ -414,6 +419,32 @@ function osha_views_default_views() {
   );
   $handler->display->display_options['filters']['translation_exists']['expose']['reduce'] = TRUE;
   $handler->display->display_options['filters']['translation_exists']['entity_type'] = 'node';
+  /* Filter criterion: Content: Mark as outdated (field_archived) */
+  $handler->display->display_options['filters']['field_archived_value']['id'] = 'field_archived_value';
+  $handler->display->display_options['filters']['field_archived_value']['table'] = 'field_data_field_archived';
+  $handler->display->display_options['filters']['field_archived_value']['field'] = 'field_archived_value';
+  $handler->display->display_options['filters']['field_archived_value']['value'] = array(
+    'all' => 'all',
+    0 => '0',
+    1 => '1',
+  );
+  $handler->display->display_options['filters']['field_archived_value']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['field_archived_value']['expose']['operator_id'] = 'field_archived_value_op';
+  $handler->display->display_options['filters']['field_archived_value']['expose']['label'] = 'Mark as outdated';
+  $handler->display->display_options['filters']['field_archived_value']['expose']['operator'] = 'field_archived_value_op';
+  $handler->display->display_options['filters']['field_archived_value']['expose']['identifier'] = 'field_archived_value';
+  $handler->display->display_options['filters']['field_archived_value']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+  );
+  $handler->display->display_options['filters']['field_archived_value']['expose']['reduce'] = TRUE;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'main_page');
@@ -446,6 +477,7 @@ function osha_views_default_views() {
     t('Author'),
     t('Published'),
     t('Updated date'),
+    t('Outdated'),
     t('edit'),
     t('[edit_node] [delete_node]'),
     t('Operations'),
@@ -453,6 +485,7 @@ function osha_views_default_views() {
     t('Video Type'),
     t('Vocabulary'),
     t('Not translated in'),
+    t('Mark as outdated'),
     t('Page'),
   );
   $export['administration_content'] = $view;

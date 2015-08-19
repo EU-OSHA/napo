@@ -542,6 +542,7 @@ function napo_common_field_formatter_info_alter(&$info) {
   $info['title_linked']['module'] = 'napo_common';
   // Add custom settings default.
   $info['title_linked']['settings']['title_archived_label'] = FALSE;
+  $info['title_linked']['settings']['napo_common_title_prefix'] = '';
 }
 
 /**
@@ -552,6 +553,11 @@ function napo_common_field_formatter_info_alter(&$info) {
 function napo_common_field_formatter_settings_form($field, $instance, $view_mode, $form, &$form_state) {
   $form = title_field_formatter_settings_form($field, $instance, $view_mode, $form, $form_state);
   $settings = $instance['display'][$view_mode]['settings'];
+  $form['napo_common_title_prefix'] = array(
+    '#type' => 'textfield',
+    '#title' => t('A prefix appended to the title'),
+    '#default_value' => $settings['napo_common_title_prefix'],
+  );
   $form['title_archived_label'] = array(
     '#type' => 'checkbox',
     '#title' => t('Include archived label'),
@@ -582,6 +588,11 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
   if (!empty($settings['title_archived_label']) && napo_common_node_is_archived($entity)) {
     $element[0]['#markup'] .= '<span class="title-archived"> ' . t('Archived') . '</span>';
   }
+
+  if (!empty($settings['napo_common_title_prefix'])) {
+    $element[0]['#markup'] = '<span class="napo_common_title_prefix">' . t($settings['napo_common_title_prefix']) . '</span>' . $element[0]['#markup'];
+  }
+
   return $element;
 }
 
