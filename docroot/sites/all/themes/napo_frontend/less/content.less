@@ -34,6 +34,28 @@ h4.modal-title{
 	margin-right: 1em;
 }
 
+.workbench-info-block {
+	height: 1%;
+    overflow: hidden;
+    padding: 1em!important;
+    margin-bottom: 1em!important;
+    border: 1px solid #FFEBC5!important;
+	.form-control{
+		width:auto;
+		margin-top:1em;
+		margin-bottom: 1em;
+	}
+
+	.btn-info.form-submit{
+		float:left;
+	}
+
+}
+
+.content .field .field-item ul{
+	padding-left:0px;
+}
+
 #sliding-popup.sliding-popup-top{
 	height: 1% !important;
     overflow: hidden;
@@ -145,7 +167,7 @@ p:last-child {
 .slider .frontpage-video-title {
     position: absolute;
     top: 30%;
-    left: 20px;
+    left: 30px;
     padding: 0px 30px 30px 30px;
     /*max-width: 491px;*/
     max-width: 260px;
@@ -171,6 +193,10 @@ p:last-child {
     padding-top: 3px;
     color: #f7e235;
     font-weight: bold;
+}
+
+.vjs-default-skin .vjs-duration , .vjs-default-skin .vjs-current-time{
+	top: 28px;
 }
 
 //content home
@@ -821,7 +847,7 @@ p:last-child {
 	}
 }
 
-.view-napo-films-node.view-display-id-page_grid {
+.view-napo-films-node.view-display-id-page_grid{
 	.row div:hover > .views-field-nothing.napo-film-content-container {
 		color: #fff;
 		display: block;
@@ -923,11 +949,16 @@ p:last-child {
     opacity: 1;
 }
 
-.napo-film-grid-view .views-field-field-image{
-	max-height: 285px;
+.view-napo-films-node.view-display-id-page_grid .views-field-field-image{
 	height: 281px;
 	overflow:hidden;
 }
+
+.view-napo-films.view-display-id-page_grid .views-field-field-image{
+	height: 281px;
+	overflow:hidden;
+}
+
 .row div:hover > .views-field-field-image{
 	height: auto;
 }
@@ -1205,6 +1236,10 @@ p:last-child {
 		z-index: 9;
 	}
 
+	.field-name-title-field .napo-film-video-type.napo-film-video-type-episode::after{
+		content: ":";
+	}
+
 }
 
 
@@ -1294,6 +1329,11 @@ p:last-child {
 		margin-bottom: 1em;
 		clear: both;
 		padding-left: 4em;
+		.col-sm-9{
+			background:@color-napo-bg-gray-1;
+			height:1%;
+			overflow:hidden;
+		}
 	}
 	
 	.views-row .date-display-single{
@@ -1361,7 +1401,7 @@ p:last-child {
 	}
 
 	.glyphicon.glyphicon-play-circle {
-		background: url('../images/napo-film-view-link-blue.png') no-repeat 10px 10px;
+		background: url('../images/napo-episode-view-link-blue.png') no-repeat 10px 10px;
 		color: transparent;
 		float: right;
 		width: 53px;
@@ -1705,23 +1745,28 @@ p:last-child {
 		}	
 		.views-field.views-field-nothing{
 			background:url('../images/background-modal-play.png') repeat-x;
-			height: 48px;
+			height: 84px;
   			margin-top: 0px;
 		}
 	}
 
 	.jcarousel-skin-default .jcarousel-next{
-		margin-top:-75px;
+		margin-top:-60px;
 	}
 
 	.jcarousel-skin-default .jcarousel-prev{
-		margin-top:-75px;
+		margin-top:-60px;
 	}
 
 	.napo-film-video-download-form:hover form{
 		  margin-left: 0px;
 	}
 }
+
+.modal-body .jcarousel-view--episode-list--block-1 li{
+  min-width: 150px;
+}
+
 
 //Napo for Teachers
 
@@ -1758,6 +1803,10 @@ p:last-child {
 	}
 
 	.lesson_by_age_name{
+		.napo_common_title_prefix::after{
+			padding-right: 5px;
+			content:":";
+		}
 		background:@color-blue-napo;
 		color:#FFF;
 		padding: 0.7em 0.7em 0.7em 1.4em;
@@ -1768,6 +1817,7 @@ p:last-child {
 	.lesson_by_age_description{
 		padding-top:1em;
 		padding-left: 0.5em;
+		padding-right: 0.5em;
 	}
 
 	.lesson_by_age_image{
@@ -2102,7 +2152,7 @@ p:last-child {
 .view-napo-and-friends{
     
 	.views-slideshow-cycle-main-frame.views_slideshow_cycle_teaser_section{
-		background: @color-napo-bg-gray-1;
+		/*background: @color-napo-bg-gray-1;*/
 	}
 	
     .views-slideshow-controls-top{
@@ -2131,7 +2181,7 @@ p:last-child {
 		}
 
 		.views-field-field-image{
-			background:@color-napo-bg-gray-1;
+			/*background:@color-napo-bg-gray-1;*/
 		}
 	}
 
@@ -2444,6 +2494,10 @@ input[type=checkbox]{
   		}
 	}
 
+	ul li.headings.active a{
+  		text-decoration: underline;
+  	}
+
 	ul li div div{
 		font-weight: bold;
 		text-transform: uppercase;
@@ -2681,13 +2735,19 @@ input[type=checkbox]{
   		height:114px;
   	}
 
+  	#security_code{
+	  	width: 50%;
+	    float: left;
+	}
 
   	.webform-submit{
   		border-radius: 10px;
   		color:@color-napo-bg-gray-5;
   		background:@color-yellow-napo;
   		font-weight: bold;
-  		float:right;
+  		float:left;
+  		margin-top:  0px;
+    	margin-left: 8px;
   	}
 
 }
@@ -2785,12 +2845,23 @@ input[type=checkbox]{
     	padding-top: 5px;	
 	}
 
-	.node-napo-video .field-name-title-field{ 
-		background:url('../images/search-node-video.png') no-repeat 0px 19px transparent;
+	.node-napo-video .field-name-title-field .napo-film-video-type-film { 
+		background:url('../images/search-node-video.png') no-repeat 0px 1px transparent;
 		padding-bottom: 5px;
     	padding-top: 5px;
+    	padding-left: 40px;
 	}
 
+	.node-napo-video .field-name-title-field .napo-film-video-type-episode{ 
+		background:url('../images/search-node-episode.png') no-repeat 0px 1px transparent;
+		padding-bottom: 5px;
+    	padding-top: 5px;
+    	padding-left: 40px;
+	}
+
+	.node-napo-video h3{
+		padding-left: 0px;
+	}
 
 	.views-row{ 
 		padding:0 1em 1em 1em;
@@ -2894,4 +2965,18 @@ input[type=checkbox]{
   float: right;
   border: 0px solid transparent;
   padding: 6px 12px 9px;
+}
+
+
+//The Napo Story
+
+#node-27 iframe{
+	float:left;
+	padding-right: 1em;
+	margin-bottom: 1em;
+}
+
+#node-27 h1{
+	clear:both;
+	margin:15px 0px 15px 0px;
 }

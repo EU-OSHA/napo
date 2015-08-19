@@ -159,10 +159,6 @@ footer.footer.container section.block-menu-block{
     /*width: 1024px;*/
 }
 
-.view .skin-default .views-slideshow-controls-text {
-    display: none;
-}
-
 .view .skin-default:hover .views-slideshow-controls-text {
     display: block;
 }
@@ -181,7 +177,7 @@ footer.footer.container section.block-menu-block{
 
 .view-napo-and-friends .views-slideshow-controls-text span {
     position: absolute;
-    top: 65%;
+    top: 50%;
     z-index: 900;
 }
 
@@ -194,7 +190,7 @@ footer.footer.container section.block-menu-block{
 }
 
 .view-napo-and-friends .views-slideshow-controls-text-next {
-    right: 15px; /* LTR */
+    right: 0px; /* LTR */
 }
 
 .view-napo-and-friends .views-slideshow-controls-text-previous{
@@ -210,7 +206,7 @@ footer.footer.container section.block-menu-block{
     height: 43px;
     overflow: hidden;
     text-indent: -9999px;
-    width: 30px;
+    width: 25px;
 }
 
 
