@@ -209,7 +209,9 @@ button{
 	color:red!important;
 }
 
-
+#edit-search-word{
+	display:none;
+}
 
 
 }

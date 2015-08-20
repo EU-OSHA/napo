@@ -256,6 +256,22 @@ video::-webkit-media-controls {
 }
 
 //List view
+
+.view-display-id-page_list .napo-film-video-download-form-title{
+    display:none;
+}
+
+.view-display-id-page_list.napo-film-list-view .views-row {
+    margin-bottom: 2em!important;
+}
+
+.view-display-id-page_list .napo-film-list-details-container {
+  position:static;
+  height:1%;
+  overflow:hidden;
+  padding-bottom: 9px;
+}
+
 .view-display-id-page_list .napo-film-list-image img{
   width:100%!important;
 }
@@ -542,10 +558,12 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 
 
 //Napo List View
+
+.view-display-id-page_list.napo-film-list-view .views-row{
+  margin-bottom:6em;
+}
+
 .napo-film-list-details-container {
-  position:static;
-  height:1%;
-  overflow:hidden;
   padding-bottom: 9px;
 }
 
@@ -581,6 +599,10 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
   width: 293px;
 }
 
+//Film's list view
+.napo-film-list-details-container .napo-film-video-download-form:hover form{
+  margin-left: -45px;
+}
 
 
 }
@@ -699,10 +721,6 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 .view-napo-s-film-episodes .episode-list-details-container {
   padding: 0 1em 1em;
   height: auto;
-}
-
-.view-display-id-page_list .napo-film-video-download-form-title{
-    display:none;
 }
 
 .node-lesson .back_button{
