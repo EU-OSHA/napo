@@ -17,13 +17,13 @@ function napo_lesson_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'lesson';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
-    'toolkit_title' => array(
-      'weight' => '2',
+    'back_button' => array(
+      'weight' => '1',
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'back_button' => array(
-      'weight' => '1',
+    'top_anchor' => array(
+      'weight' => '10',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -34,6 +34,11 @@ function napo_lesson_ds_field_settings_info() {
     ),
     'right_menu' => array(
       'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'toolkit_title' => array(
+      'weight' => '2',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -203,6 +208,7 @@ function napo_lesson_ds_layout_settings_info() {
         7 => 'field_lesson_toolkit',
         8 => 'body',
         9 => 'field_lesson_video',
+        10 => 'top_anchor',
       ),
     ),
     'fields' => array(
@@ -216,6 +222,7 @@ function napo_lesson_ds_layout_settings_info() {
       'field_lesson_toolkit' => 'right',
       'body' => 'right',
       'field_lesson_video' => 'right',
+      'top_anchor' => 'right',
     ),
     'classes' => array(),
     'wrappers' => array(

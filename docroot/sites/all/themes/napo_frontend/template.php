@@ -7,6 +7,7 @@ require_once 'theme/menu/menu.inc';
  */
 function napo_frontend_preprocess_node(&$vars) {
   napo_frontend_back_button($vars);
+  napo_frontend_top_anchor($vars);
 }
 
 /**
@@ -68,6 +69,23 @@ function napo_frontend_back_button(&$vars){
   }else {
     $vars['back_button'] = l(t('Back'), $referer, $options);
   }
+}
+
+/**
+ * Anchor to top of the page
+ */
+function napo_frontend_top_anchor(&$vars) {
+  global $base_url;
+  $options = array(
+      'attributes' => array(
+          'class' => 'top_anchor',
+      ),
+      'external' => TRUE,
+      'fragment' => 'top',
+      'html' => TRUE,
+  );
+
+  $vars['top_anchor'] = l('<img src="'.file_create_url(path_to_theme().'/images/anchor-top.png').'" />', '', $options);
 }
 
 function napo_frontend_text_resize_block() {
