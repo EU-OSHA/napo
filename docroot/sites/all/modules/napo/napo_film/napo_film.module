@@ -917,3 +917,19 @@ function theme_napo_film_tag_facet_link($variables) {
 function napo_film_remove_search_word_link($variables) {
   return l('X ', $variables['link']);
 }
+
+/**
+ * Implements hook_block_list_alter().
+ * Hide introduction block when a search was made
+ */
+function napo_film_block_list_alter(&$blocks){
+  foreach($blocks as $bid => $block){
+    if($block->pages == 'napos-films/films' && $block->module == 'nodeblock'){
+      $params = drupal_get_query_parameters();
+      if(!empty($params['search_word'])){
+        unset($blocks[$bid]);
+      }
+      break;
+    }
+  }
+}

@@ -39,5 +39,17 @@ lesson|search_results';
   $ds_field->properties = array();
   $export['share_widget'] = $ds_field;
 
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'top_anchor';
+  $ds_field->label = 'Top anchor';
+  $ds_field->field_type = 3;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = 'lesson|default';
+  $ds_field->properties = array();
+  $export['top_anchor'] = $ds_field;
+
   return $export;
 }
