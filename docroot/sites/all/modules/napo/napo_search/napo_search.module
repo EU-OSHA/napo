@@ -95,7 +95,7 @@ function napo_search_node_view($node, $view_mode, $langcode) {
   if ($view_mode == 'search_results') {
     if ($node->type == 'napo_video' && !empty($node->content['node_link'][0]['#markup'])) {
       $span = '<span class="glyphicon glyphicon-play-circle view-film-details-icon" title="' . t('Read more') . '"></span>';
-      $node->content['node_link'][0]['#markup'] = l($span, url('node/' . $node->nid), array('html' => TRUE));
+      $node->content['node_link'][0]['#markup'] = l($span, 'node/' . $node->nid, array('html' => TRUE));
     }
   }
 }
