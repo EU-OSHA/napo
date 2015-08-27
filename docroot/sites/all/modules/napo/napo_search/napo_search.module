@@ -93,8 +93,9 @@ function napo_search_views_pre_render(&$view) {
  */
 function napo_search_node_view($node, $view_mode, $langcode) {
   if ($view_mode == 'search_results') {
+    drupal_add_js(drupal_get_path('module', 'napo_search') . '/js/search_results.js');
     if ($node->type == 'napo_video' && !empty($node->content['node_link'][0]['#markup'])) {
-      $span = '<span class="glyphicon glyphicon-play-circle view-film-details-icon" title="' . t('Read more') . '"></span>';
+      $span = '<span class="glyphicon glyphicon-play-circle view-film-details-icon" title="' . t('View detail') . '"></span>';
       $node->content['node_link'][0]['#markup'] = l($span, 'node/' . $node->nid, array('html' => TRUE));
     }
   }
