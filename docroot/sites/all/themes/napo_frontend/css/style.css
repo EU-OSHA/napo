@@ -10582,3 +10582,21 @@ footer .menu.nav.navbar-nav {
     overflow: hidden;
   }
 }
+
+.article-icon,
+.napo_friend-icon{
+    background: url("../images/search-node-others.png") no-repeat;
+    padding: 5px 0px 5px 30px;
+}
+
+.lesson-icon,
+.lesson_toolkit-icon,
+.lesson_video-icon {
+    background: url("../images/search-node-lesson.png") no-repeat;
+    padding: 5px 0px 5px 30px;
+}
+
+.napo_video-icon {
+    background: url("../images/search-node-video.png") no-repeat;
+    padding: 5px 0px 5px 30px;
+}
