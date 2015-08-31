@@ -95,6 +95,11 @@ List of patches (most recent first)
   * Node preview removes file values from node edit form for non-displayed items
   * drupal/1289336-112.patch
   * https://www.drupal.org/node/1289336
+  
+* drupal (core)
+  * Menu links with query string params (from views exposed filters, solr facetAPI search, etc) get munged by url encoding
+  * https://www.drupal.org/node/1220410
+  * core/core-menu_links_with_query_param-1220410-coment-16.patch
 
 * workbench_access
   * Preview error (Warning: array_keys() expects parameter 1 to be array, string given in workbench_access_node_form_element() (line 1467 of ...
