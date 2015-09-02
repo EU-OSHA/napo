@@ -212,6 +212,7 @@ function napo_contact_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'views_accordion';
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['style_options']['row-start-open'] = '0';
+  $handler->display->display_options['style_options']['autoheight'] = 0;
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
