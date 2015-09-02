@@ -167,3 +167,42 @@ function napo_frontend_pager($variables) {
   $variables['tags'][4] = '»';
   return theme_pager($variables);
 }
+
+/**
+ * Overwrite the video render func ot add preload metadata attribute.
+ */
+function napo_frontend_file_entity_file_video($variables) {
+  $files = $variables['files'];
+  $output = '';
+
+  $video_attributes = array();
+  if ($variables['controls']) {
+    $video_attributes['controls'] = 'controls';
+  }
+  if ($variables['autoplay']) {
+    $video_attributes['autoplay'] = 'autoplay';
+  }
+  if ($variables['loop']) {
+    $video_attributes['loop'] = 'loop';
+  }
+  if ($variables['muted']) {
+    $video_attributes['muted'] = 'muted';
+  }
+  if ($variables['width']) {
+    $video_attributes['width'] = $variables['width'];
+  }
+  if ($variables['height']) {
+    $video_attributes['height'] = $variables['height'];
+  }
+
+  $output .= '<video preload="metadata"' . drupal_attributes($video_attributes) . '>';
+  foreach ($files as $delta => $file) {
+    $source_attributes = array(
+      'src' => file_create_url($file['uri']),
+      'type' => $file['filemime'],
+    );
+    $output .= '<source' . drupal_attributes($source_attributes) . ' />';
+  }
+  $output .= '</video>';
+  return $output;
+}
