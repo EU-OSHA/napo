@@ -25,6 +25,7 @@ regions[contact_form_widget]   = 'Contact form widget'
 
 stylesheets[all][] = css/style.css
 scripts[] = js/contact-us.js
+scripts[] = js/frontpage-video.js
 files[] = theme/menu/menu.inc
 
 ;;;;;;;;;;;;;;;;;;;;;
