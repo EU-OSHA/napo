@@ -27,7 +27,7 @@ function napo_film_default_fe_block_settings() {
         'region' => 'header_top_bar',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => -42,
+        'weight' => -43,
       ),
       'osha_admin' => array(
         'region' => '',

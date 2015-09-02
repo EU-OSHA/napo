@@ -247,6 +247,10 @@ function napo_common_block_info() {
   return $blocks;
 }
 
+function napo_common_block_info_alter(&$blocks, $theme, $code_blocks) {
+  $blocks['text_resize'][0]['cache'] = DRUPAL_NO_CACHE;
+}
+
 /**
  * Implements hook_block_configure().
  */

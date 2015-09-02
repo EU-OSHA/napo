@@ -7224,6 +7224,22 @@ table .checkbox input[type="checkbox"] {
 .navbar-search .control-group {
   margin-bottom: 0px;
 }
+
+#block-menu-menu-header-menu {
+  float: right;
+  padding: 0;
+  padding-right: 1em;
+  border-right: 2px solid #FFF;
+  height: 24px;
+}
+#block-menu-menu-header-menu .menu a {
+  padding: 0;
+    font-weight: bold;
+}
+#block-menu-menu-header-menu .menu a:hover {
+    background: none;
+    text-decoration: underline;
+}
 #block-menu-block-3 {
   float: right;
   padding-right: 1em;
