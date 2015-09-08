@@ -9,3 +9,13 @@ function napo_contact_update_7001() {
     ->condition('name', 'napo_contact')
     ->execute();
 }
+
+/**
+ * Disable comments for exiting faqs.
+ */
+function napo_contact_update_7002() {
+  db_update('node')
+    ->fields(array('comment' => 1))
+    ->condition('type', 'faq')
+    ->execute();
+}

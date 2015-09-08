@@ -105,17 +105,7 @@ function napo_contact_field_default_field_instances() {
       'default' => array(
         'label' => 'hidden',
         'module' => 'text',
-        'settings' => array(
-          'css3' => 1,
-          'effect' => 'slide',
-          'inline' => 1,
-          'js_duration' => 500,
-          'trigger_classes' => 'button',
-          'trigger_collapsed_label' => 'Close',
-          'trigger_expanded_label' => 'See the Answer',
-          'trim_ellipsis' => 1,
-          'trim_length' => 1,
-        ),
+        'settings' => array(),
         'type' => 'text_default',
         'weight' => 1,
       ),

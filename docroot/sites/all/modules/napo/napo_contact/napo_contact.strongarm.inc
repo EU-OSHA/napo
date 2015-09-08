@@ -21,7 +21,7 @@ function napo_contact_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'comment_anonymous_faq';
-  $strongarm->value = '0';
+  $strongarm->value = '-1';
   $export['comment_anonymous_faq'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -341,6 +341,12 @@ function napo_contact_strongarm() {
         'custom_settings' => FALSE,
       ),
       'revision' => array(
+        'custom_settings' => FALSE,
+      ),
+      'episode_popup' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_results' => array(
         'custom_settings' => FALSE,
       ),
     ),
