@@ -926,10 +926,13 @@ function napo_film_views_default_views() {
     'title_style' => 'h3',
     'title_link' => 'content',
     'title_class' => '',
+    'napo_common_title_prefix' => '',
     'title_archived_label' => 1,
     'napo_film_title_include_type' => 1,
     'napo_film_title_include_episode_count' => 0,
     'napo_film_title_link_episode_popup' => 0,
+    'napo_film_title_link_with_film' => 1,
+    'napo_film_title_link_with_film_value' => '!episode from the film !film',
   );
   /* Field: Content Cart: Add to cart */
   $handler->display->display_options['fields']['content_cart']['id'] = 'content_cart';
@@ -1082,10 +1085,13 @@ function napo_film_views_default_views() {
     'title_style' => 'h3',
     'title_link' => 'content',
     'title_class' => 'title',
+    'napo_common_title_prefix' => '',
     'title_archived_label' => 1,
     'napo_film_title_include_type' => 1,
     'napo_film_title_include_episode_count' => 0,
     'napo_film_title_link_episode_popup' => 0,
+    'napo_film_title_link_with_film' => 1,
+    'napo_film_title_link_with_film_value' => '!episode from the film !film',
   );
   /* Field: Content Cart: Add to cart */
   $handler->display->display_options['fields']['content_cart']['id'] = 'content_cart';
