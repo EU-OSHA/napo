@@ -15,7 +15,7 @@
 <?php endif; ?>
 <div class="<?php print $class; ?>"<?php print $attributes; ?>>
   <?php foreach ($rows as $row_number => $columns): ?>
-    <?php $x = (int) (12 / count($columns)); ?>
+    <?php $x = (int) (12 / $options['columns']); ?>
     <div <?php if ($row_classes[$row_number]) { print 'class="row ' . $row_classes[$row_number] .'"';  } ?>>
       <?php foreach ($columns as $column_number => $item): ?>
         <div <?php if ($column_classes[$row_number][$column_number]) { print 'class="col-md-' . $x . ' ' . $column_classes[$row_number][$column_number] .' col-sm-6 col-xs-12"';  } ?>>
