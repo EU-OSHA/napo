@@ -30,7 +30,12 @@ jQuery('document').ready(function() {
 
     // Add fields to affix menu
     napo_lesson_add_fields_to_right_menu(menu, '.field-name-field-file');
-    napo_lesson_add_fields_to_right_menu(menu, '.download_whole_lesson');
+
+    // Add see video scroll spy link.
+    var $lesson_video = jQuery('.node-lesson-video');
+    if ($lesson_video.length > 0) {
+        menu.append(jQuery('<li class="headings"><a class="heading-anchor" href="#' + $lesson_video.attr('id') + '">' + Drupal.t('Watch lesson') + '</a></li>'));
+    }
 
     // Spymenu target
     jQuery('body').scrollspy({
