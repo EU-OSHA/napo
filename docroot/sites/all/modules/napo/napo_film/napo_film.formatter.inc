@@ -220,7 +220,7 @@ function napo_film_field_formatter_view($entity_type, $entity, $field, $instance
           $film = current($film)['target_id'];
           $film_node = node_load($film);
           $film_wrapper = entity_metadata_wrapper('node', $film_node);
-          $film_title = l($film_wrapper->title_field->value(), 'node/' . $film_node->nid);
+          $film_title = l($film_wrapper->title->value(), 'node/' . $film_node->nid);
           $output = t($settings['napo_film_title_link_with_film_value'], array(
             '!episode' => '<span class="epsiode-title">' . $output . '</span>',
             '!film' => '<span class="film-title">' . $film_title . '</span>',
