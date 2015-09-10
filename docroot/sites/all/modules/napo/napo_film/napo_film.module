@@ -502,7 +502,7 @@ function napo_film_preprocess_node(&$vars) {
               $vars['episode_list_episode'] .= views_embed_view('episode_list', 'block_2', $film);
             }
             else {
-              $vars['episode_list_episode'] = '<div class="episode-list-label">' . $label . '</div>';
+              $vars['episode_list_episode'] = '<div class="episode-list-label">' . t($label) . '</div>';
               $vars['episode_list_episode'] .= views_embed_view('episode_list', 'block_1', $film);
             }
           }
