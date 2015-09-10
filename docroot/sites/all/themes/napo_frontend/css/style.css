@@ -9270,6 +9270,9 @@ input[type=checkbox] {
   border-radius: 4px 4px 4px;
   color: #1f3695;
 }
+.view-download-center {
+    clear: both;
+}
 .view-download-center .views-row {
   margin-bottom: 1em;
 }
