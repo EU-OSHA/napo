@@ -7647,6 +7647,7 @@ img {
 .napo-homepage-featured-films-container {
   background: #1f3695;
   margin-right: 4px;
+  clear: both;
 }
 .napo-homepage-featured-films-container h2 {
   color: #f7e235;
