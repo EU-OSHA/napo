@@ -902,7 +902,6 @@ function osha_tmgmt_form_alter(&$form, &$form_state, $form_id) {
 
       // Validation for extra languages not to mix with other languages.
       $form['request_translation']['#validate'][] = 'osha_tmgmt_retranslation_validate';
-      $form['request_full_translation']['#validate'][] = 'osha_tmgmt_retranslation_validate';
       break;
 
     case 'views_form_tmgmt_node_selection_view_tmgmt_node_selection_view_page':
