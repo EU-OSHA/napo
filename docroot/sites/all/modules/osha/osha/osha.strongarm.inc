@@ -181,7 +181,7 @@ function osha_strongarm() {
       'value' => '<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>',
       'format' => 'full_html',
     ),
-    'popup_link' => 'node/5436',
+    'popup_link' => 'node/267',
     'popup_link_new_window' => 1,
     'popup_height' => '120',
     'popup_width' => '100%',
