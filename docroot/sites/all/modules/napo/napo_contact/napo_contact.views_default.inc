@@ -246,6 +246,8 @@ function napo_contact_views_default_views() {
   $handler->display->display_options['sorts']['weight']['table'] = 'draggableviews_structure';
   $handler->display->display_options['sorts']['weight']['field'] = 'weight';
   $handler->display->display_options['sorts']['weight']['draggableviews_setting_view'] = 'faqs:page';
+  $handler->display->display_options['sorts']['weight']['draggableviews_setting_arguments'] = 'php';
+  $handler->display->display_options['sorts']['weight']['draggableviews_setting_arguments_php'] = 'return array(\'253\');';
   $handler->display->display_options['sorts']['weight']['draggableviews_setting_new_items_bottom_list'] = 1;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
