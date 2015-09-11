@@ -478,6 +478,8 @@ $options['init-modules'] = array(
 
   'content_cart',
 
+  'elysia_cron',
+
   'osha_taxonomies',
   'osha',
   'osha_tmgmt',
