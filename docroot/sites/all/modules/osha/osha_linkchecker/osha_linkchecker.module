@@ -2,7 +2,8 @@
 
 include_once 'osha_linkchecker.features.inc';
 
-function osha_linkchecker_cron() {
+// @todo: Disabled as it does nothing ... move to drush command
+function disabled_osha_linkchecker_cron() {
   $last_run = variable_get('osha_linkchecker_cron_last_run', REQUEST_TIME);
   $last_run = new DateTime(date("c", $last_run));
   $rescan_interval = 1;
