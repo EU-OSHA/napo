@@ -440,13 +440,11 @@ $handler->display->display_options['filters']['combine']['expose']['remember_rol
   7 => 0,
   8 => 0,
   9 => 0,
-  10 => 0,
-  11 => 0,
 );
 $handler->display->display_options['filters']['combine']['fields'] = array(
-  'field_summary' => 'field_summary',
   'body' => 'body',
   'title_1' => 'title_1',
+  'title_field' => 'title_field',
 );
 /* Filter criterion: Content: Nid */
 $handler->display->display_options['filters']['nid']['id'] = 'nid';
