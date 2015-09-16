@@ -160,6 +160,14 @@ function napo_common_node_view($node, $view_mode, $langcode) {
           // Uncomment after static page (No translation available) translation
           //$nodeLanguage = 'en';
         }
+
+        // Fallback CA to ES and other languages to EN - NAPO-595
+        if($language->language == 'ca'){
+          $redirectId = $node->nid; $nodeLanguage = 'es';
+        }else{
+          return;
+        }
+
         // Redirect to no translation available page.
         drupal_goto(drupal_get_path_alias('node/'.$redirectId, $nodeLanguage),
           array(
