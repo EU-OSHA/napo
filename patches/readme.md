@@ -265,6 +265,11 @@ List of patches (most recent first)
   * make text of link translatable
   * translatable_link_text.patch
 
+* entityqueue
+  * Add item autocomplete not working after update to Drupal 7.39
+  * https://www.drupal.org/node/2554857
+  * patches/entityqueue/2554857.patch
+
 Patch documentation should be in the following format:
 
 * module name

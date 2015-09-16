@@ -1036,9 +1036,7 @@ function entityqueue_field_widget_form(&$form, &$form_state, $field, $instance, 
         '#size' => $instance['widget']['settings']['size'],
         '#element_validate' => array('_entityreference_autocomplete_validate'),
         '#attributes' => array(
-          'class' => array(
-            $table_id . '-add',
-          ),
+          'id' => $table_id . '-add',
         ),
       ),
       'submit' => array(
@@ -1126,7 +1124,7 @@ function entityqueue_field_widget_ajax_callback($form, $form_state) {
 
 
   $add_id = drupal_clean_css_identifier('entityqueue-dragtable-' . $field_name . '-add');
-  $commands[] = ajax_command_invoke('.' . $add_id, 'val', array(''));
+  $commands[] = ajax_command_invoke('#' . $add_id, 'val', array(''));
   $settings = array(
     drupal_clean_css_identifier('entityqueue-dragtable-' . $field_name) => true,
   );
