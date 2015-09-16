@@ -1,7 +1,7 @@
 name = Napo Common
 core = 7.x
 package = Napo
-version = 7.x-1.6
+version = 7.x-1.7
 project = napo_common
 dependencies[] = ctools
 dependencies[] = ds
@@ -31,4 +31,4 @@ features[variable][] = site_404
 features[variable][] = theme_napo_frontend_settings
 features_exclude[dependencies][menu] = menu
 files[] = views/napo_common_views_handler_share_widget.inc
-mtime = 1441019612
+mtime = 1442305273
