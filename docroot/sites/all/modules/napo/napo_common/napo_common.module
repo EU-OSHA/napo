@@ -163,7 +163,13 @@ function napo_common_node_view($node, $view_mode, $langcode) {
 
         // Fallback CA to ES and other languages to EN - NAPO-595
         if($language->language == 'ca'){
-          $redirectId = $node->nid; $nodeLanguage = 'es';
+          drupal_goto(drupal_get_path_alias('node/'.$node->nid, $language->language),
+              array(
+                  'query' => array('orig_lng' => 'es'),
+                  'language' => (object)array('language' => $language->language),
+                  'prefix' => $language->language.'/',
+              )
+          );
         }else{
           return;
         }
