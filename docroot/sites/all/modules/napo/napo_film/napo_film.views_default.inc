@@ -2017,8 +2017,8 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<h3>[title_field]</h3>
 [field_publication_date]
 <div class="episode-list-details-container">
-[field_combined_tags]
-[download_video][path]
+<div class="tags">[field_combined_tags]</div>
+<div class="buttons">[download_video][path]</div>
 </div>';
   $handler->display->display_options['fields']['nothing']['element_type'] = '0';
   $handler->display->display_options['fields']['nothing']['element_label_type'] = '0';
@@ -2080,8 +2080,8 @@ function napo_film_views_default_views() {
     t('<h3>[title_field]</h3>
 [field_publication_date]
 <div class="episode-list-details-container">
-[field_combined_tags]
-[download_video][path]
+<div class="tags">[field_combined_tags]</div>
+<div class="buttons">[download_video][path]</div>
 </div>'),
     t('Block'),
   );
