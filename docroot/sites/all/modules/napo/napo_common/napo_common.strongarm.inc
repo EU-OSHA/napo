@@ -16,7 +16,7 @@ function napo_common_strongarm() {
   $strongarm->name = 'no_translation_exceptions';
   $strongarm->value = '41
 23
-269';
+253';
   $export['no_translation_exceptions'] = $strongarm;
 
   $strongarm = new stdClass();
