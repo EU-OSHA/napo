@@ -69,7 +69,7 @@ fi
 
 if [ ! -z "$files" ]; then
 echo "Run drush rsync"
-drush rsync @napo.staging:%files @self:%files -y
+drush rsync @staging:%files @self:%files --chmod=ug+w
 fi
 
 ecode=$?
