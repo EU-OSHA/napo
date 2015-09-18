@@ -541,6 +541,7 @@ function napo_film_preprocess_node(&$vars) {
               'napo_film_title_include_episode_count' => 1,
               'title_class' => array('napo-film-title-2'),
               'title_style' => 'div',
+              'napo_film_title_link_with_film' => TRUE,
             ),
           );
           $title_episode = field_view_field('node', $node, 'title_field', $display_settings);
