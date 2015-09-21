@@ -17,6 +17,7 @@ class content_cart_handler_field_remove_link extends views_handler_field {
     $view_name = $this->view->name . '-' . $this->view->current_display;
     // TODO add settings for views field (label, classes, wrapper etc.)
     return '<button class="btn content_cart_remove"
+      data-toggle="tooltip" title="' . t('Remove from Download Centre') . '"
       data-value="' . $entity_type . '-' . $entity_id . '"
       data-view="' . $view_name . '">' . t('Remove') . '</button>';
   }
