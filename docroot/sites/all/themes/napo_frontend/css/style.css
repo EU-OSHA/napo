@@ -7563,8 +7563,11 @@ p:last-child {
 .vjs-default-skin .vjs-current-time {
   top: 28px;
 }
-#block-views-featured-articles-block {
+.napo-homepage-featured-films-container {
   margin-top: -85px;
+}
+.napo-homepage-featured-films-container .block-title {
+  padding-top: 10px;
 }
 .view-featured-articles .views-row {
   margin: 0;
