@@ -7,6 +7,9 @@ function napo_menu_block_info() {
   $blocks = array();
   $blocks['contact_us_header_link'] = array(
     'info' => t('Contact us header link'),
+    'region' => 'header_top_bar',
+    'weight' => 0,
+    'status' => 1,
   );
   return $blocks;
 }
