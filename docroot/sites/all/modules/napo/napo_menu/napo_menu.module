@@ -1,6 +1,44 @@
 <?php
 
 /**
+ * Implements hook_block_info().
+ */
+function napo_menu_block_info() {
+  $blocks = array();
+  $blocks['contact_us_header_link'] = array(
+    'info' => t('Contact us header link'),
+    'region' => 'header_top_bar',
+    'weight' => 0,
+    'status' => 1,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function napo_menu_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {
+    case 'contact_us_header_link':
+      $block['subject'] = '';
+      $block['content'] = _napo_menu_contact_us_header_link_content();
+      break;
+  }
+  return $block;
+}
+
+function _napo_menu_contact_us_header_link_content() {
+  $menu = menu_navigation_links('menu-footer-menu');
+  $item = $menu['menu-3196'];
+  $output = theme('links', array(
+    'links' => array($item),
+    'attributes' => array('class' => 'menu nav'),
+    ));
+  return $output;
+}
+
+/**
  * Implements hook_block_configure_alter().
  */
 function napo_menu_menu_block_configure_form_alter(&$form, &$form_state) {
