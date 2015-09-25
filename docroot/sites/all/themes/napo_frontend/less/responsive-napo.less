@@ -3,6 +3,65 @@
 
 @media only screen and (max-width : 767px) {
 
+.block-napo-film a[href*='list']{ //We need this style because when you are logged, drupal put <a> "configure"
+  display:block;
+}
+
+.block-napo-film a[href*='list'].active{
+ display:block;
+}
+
+.block-napo-film a[href*='grid'] {
+  display:block;
+}
+
+.block-napo-film a[href*='grid'].active {
+  display:block;
+}
+
+
+#recommended_films .field-name-field-image{
+      float:none;
+}
+
+.napo-film-video-download-form-title{
+    display:none;
+}
+
+.view-napo-and-friends .views-slideshow-cycle-main-frame-row-item .img-responsive{
+  padding-bottom: 0px;
+}
+
+.view-napo-and-friends .views-field-field-image-1{
+  float:none;
+}
+
+.view-napo-and-friends .views-slideshow-controls-text-next{
+  left: 222px;
+}
+
+.view-napo-and-friends .views-slideshow-cycle-main-frame-row-item{
+  padding-top:0px!important;
+}
+
+.back_button, .back_button:focus{
+  height:auto;
+}
+
+.node-article .field-name-field-image img{
+  float:none;
+}
+
+.view-napos-gallery .col-xs-12 {
+  img{
+  width:100%;
+  }
+}
+
+.view-napos-gallery .views-field-nothing.napo-gallery-title-container{
+  position:relative;
+}
+
 iframe{
   width:100%;
 }
@@ -145,7 +204,7 @@ iframe{
 
 #edit-search-word-wrapper{
   margin-left: 17px;
-  width: 77%;
+  width: 50%;
 }
 
 .views-exposed-form .views-exposed-widget .form-submit{
@@ -177,17 +236,23 @@ iframe{
       }
   }
 */
+
+.view-napo-s-film-episodes .views-row .col-sm-9{
+      background:@color-napo-bg-gray-1;
+      height:1%;
+      overflow:hidden;
+}
+
 //Home
 
 .video-js{
   height:223px!important;
-  margin-bottom: 10em!important;
 }
 
 .video-js.vjs-default-skin.vjs-paused .vjs-big-play-button{
-  background: url('../images/play-video-small.png?v=1') no-repeat 72% 40%;
-  margin-left: 10%;
-  margin-top: 10%;
+  background: url('../images/play-video-small.png?v=1') no-repeat 50% 40%;
+  margin-top: 40px;
+  width: 100%;
 }
 
 .slider .frontpage-video-title{
@@ -276,6 +341,13 @@ video::-webkit-media-controls {
   width:100%!important;
 }
 
+.napo-film-list-view-container{
+  float:none;
+}
+
+#edit-search-word-wrapper{
+  margin-left:0px;
+}
 
 //lesson
 
@@ -289,6 +361,10 @@ video::-webkit-media-controls {
 
 video{
   width:100%;
+}
+
+.download_whole_lesson{
+  display:none;
 }
 
 //Gallery images
@@ -432,6 +508,12 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
   text-decoration: underline;
 }
 
+#block-menu-block-2{
+  height: 1%;
+  overflow: hidden;
+  clear: both;
+}
+
 //Contact us
 
 #block-views-faqs-block{
@@ -489,7 +571,7 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 }
 
 .view-napos-gallery .views-field-nothing.napo-gallery-title-container{
-  width: 360px!important;
+  width: 100%!important;
 }
 
 
@@ -560,7 +642,7 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 //Napo List View
 
 .view-display-id-page_list.napo-film-list-view .views-row{
-  margin-bottom:6em;
+  margin-bottom:8em;
 }
 
 .napo-film-list-details-container {
@@ -601,7 +683,7 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 
 //Film's list view
 .napo-film-list-details-container .napo-film-video-download-form:hover form{
-  margin-left: -45px;
+  margin-left: -21px;
 }
 
 
@@ -616,6 +698,10 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 
 .view-display-id-page_list h3{
     margin-top: 10px;
+}
+
+.view-display-id-page_grid h3 a{
+  width: 65%;
 }
 
 .view-napo-films-node.view-display-id-page_grid .row div:hover > .views-field-nothing.napo-film-content-container{
@@ -656,6 +742,14 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
   margin-top: 0px;
 }
 
+.back_button:focus{
+  float:none;
+  padding-bottom: 16px;
+  display: block;
+  margin-bottom: 1em;
+  margin-top: 0px;
+}
+
 .node-napo-album .back_button {
    margin-top: 0px;
 }
@@ -677,17 +771,31 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 .node-lesson #group-right{
 	float: none;
 }
+
 .field-name-field-image.field-type-image{
     margin-top: 25px;
-  }
+}
 
+#recommended_films .field-name-field-image.field-type-image{
+    margin-top: 0px;
+}
 
 .view-display-id-page_grid h3{
   font-size: 18px;
 }
 
 .view-napos-gallery .views-view-grid .views-field-field-image:hover ~ .views-field-body{
-  margin-top: -231px;
+  margin-top: -182px;
+  height: 110px;
+}
+
+.view-napos-gallery .views-view-grid .views-field-body:hover{
+  margin-top: -182px;
+  height: 110px;
+}
+
+.view-napos-gallery .attachment .views-field-body:hover{
+  margin-top: -98px;
 }
 
 //Episode list
@@ -803,11 +911,24 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
   }
 
   #block-views-episode-list-block .jcarousel-container.jcarousel-container-horizontal{
-    width:100%!important;
+    width:275px!important;
   }
 
   #block-views-episode-list-block .views-field-nothing{
+    width: 59%!important;
+  } 
+
+  .view-episode-list.view-id-episode_list.view-display-id-block_2 .views-field.views-field-nothing{
      width: 59%!important;
+   }
+
+  .view-episode-list.view-id-episode_list.view-display-id-block_2  .jcarousel-next.jcarousel-next-horizontal , .jcarousel-prev.jcarousel-prev-horizontal{
+      right: 142px;
+  }
+  
+
+  .node.node-napo-video .views-field-title-field{
+    width:59%;
   }
 
   #block-views-episode-list-block .views-field-title-field{
@@ -835,7 +956,7 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 
   .view-episode-list.view-id-episode_list{ 
     .jcarousel-next.jcarousel-next-horizontal , .jcarousel-prev.jcarousel-prev-horizontal{
-       top:10px;
+      top:10px;
     }
   }
 
@@ -902,6 +1023,13 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
   width:100%!important;
  }
 
+
+//List view
+.view-display-id-page_list.napo-film-list-view .napo-film-image-container .field-content a::before{
+   margin-left: 46%!important;
+}
+
+
 }
 
 @media only screen and (min-width : 992px) and (max-width: 1200px) {
@@ -915,5 +1043,21 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
   height:231px;
   overflow:hidden;
 }
+
+.view-napos-gallery .views-view-grid .views-field-field-image:hover ~ .views-field-body{
+    margin-top: -224px;
+    height: 152px;
+}
+
+.view-napos-gallery .views-view-grid .views-field-field-image:hover ~ .views-field-body{
+   margin-top: -224px;
+    height: 152px;
+}
+
+.view-napos-gallery .views-view-grid .views-field-body:hover{
+   margin-top: -224px;
+    height: 152px;
+}
+
 
 }
