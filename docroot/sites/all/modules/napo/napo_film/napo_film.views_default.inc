@@ -413,7 +413,8 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="[path]" class="napo_film_episode_link" data-nid="[nid]">[field_image]</a>';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[title_field]
+<a href="[path]" class="napo_film_episode_link" data-nid="[nid]">[field_image]</a>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Sort criterion: Draggableviews: Weight */
   $handler->display->display_options['sorts']['weight']['id'] = 'weight';
@@ -649,7 +650,8 @@ function napo_film_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('<a href="[path]" class="napo_film_episode_link" data-nid="[nid]">[field_image]</a>'),
+    t('[title_field]
+<a href="[path]" class="napo_film_episode_link" data-nid="[nid]">[field_image]</a>'),
     t('All'),
     t('Block'),
     t('Episode list (film)'),
@@ -658,6 +660,7 @@ function napo_film_views_default_views() {
     t('Content'),
     t('Block 2'),
     t('Episode list (episode full)'),
+    t('<a href="[path]" class="napo_film_episode_link" data-nid="[nid]">[field_image]</a>'),
   );
   $export['episode_list'] = $view;
 
