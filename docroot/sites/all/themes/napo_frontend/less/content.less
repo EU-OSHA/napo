@@ -52,6 +52,10 @@ h4.modal-title{
 
 }
 
+.btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn.active.focus{
+	outline: none;
+}
+
 .content .field .field-item ul{
 	padding-left:0px;
 }
@@ -187,6 +191,40 @@ p:last-child {
         color:#FFF;
 }
 
+/*
+
+.slider .frontpage-video-title #tmgmt-1{
+     display: block;
+	  /* Fallback for non-webkit 
+	  display: -webkit-box;
+	  max-width: 400px;
+	  height: 230px;
+	  /* Fallback for non-webkit 
+	  margin: 0 auto;
+	  -webkit-line-clamp: 9;
+	  -webkit-box-orient: vertical;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+}
+
+.slider .frontpage-video-title p{
+     display: block;
+	  /* Fallback for non-webkit 
+	  display: -webkit-box;
+	  max-width: 400px;
+	  height: 220px;
+	  /* Fallback for non-webkit 
+	  margin: 0 auto;
+	  -webkit-line-clamp: 11;
+	  -webkit-box-orient: vertical;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+}
+
+.slider .frontpage-video-title p:nth-child(2){
+     display:none;
+}
+*/
 
 .vjs-default-skin .vjs-duration .vjs-duration-display, .vjs-current-time.vjs-time-controls.vjs-control .vjs-current-time-display{
 	background-color: #1f3695;
@@ -284,24 +322,30 @@ p:last-child {
 }
 
 .vjs-default-skin .vjs-progress-control{
-	margin-top: -19em;
+	top:85px;
 }
 
 .vjs-current-time.vjs-time-controls.vjs-control .vjs-current-time-display{
-	margin-top: -7.4em;
+	margin-top: 0px;
+	top:75px;
+	position:absolute;
 }
 
 .vjs-default-skin .vjs-duration .vjs-duration-display{
-	margin-top: -7.4em;
+	margin-top: 0px;
+	top:75px;
+	position:absolute;
 }
 
 .vjs-volume-control.vjs-control{
-	margin-top: -9em;
+	margin-top:0;
+	top:25px;
 }
 
 .vjs-mute-control.vjs-control{
-	margin-top: -9em;
+	margin-top: 0px;
 	margin-left: 5em;
+	top:25px;
 }
 
 .header_top_bar .container.text-right{
@@ -313,7 +357,6 @@ p:last-child {
 .napo-homepage-featured-films-container{
 	background:@color-blue-napo;
 	margin-right: 4px;
-    clear: both;
 	margin-top: 1em;
     margin-bottom: 1em;
 
@@ -1649,6 +1692,9 @@ p:last-child {
 		}	
 	}
 
+	.views-field.views-field-nothing a:nth-child(1){
+		display:none;
+	}
 
 	.views-field-title-field{
 		position: absolute;
@@ -1701,7 +1747,16 @@ p:last-child {
 		margin-top:-10px;
 	}
 
-
+.modal-content .views-field.views-field-nothing a:nth-child(1){
+	display:block;
+	height:66px;
+	color: #FFF;
+    background: url('../images/background-blue.png?v=1') repeat-x;
+    font-weight: bold;
+    display: block;
+    padding: 3px 5px 12px 5px !important;
+    text-align: left;
+}
 
 	.jcarousel-item:hover{
 		.napo_film_episode_link{
@@ -1715,10 +1770,13 @@ p:last-child {
 
 		.views-field.views-field-nothing img{
 			visibility:hidden;
+
 		}
 
 		.views-field.views-field-nothing{
 			background:url('../images/background-modal-play.png?v=1') repeat-x;
+			background-position-y: 66px!important;
+			height: 150px!important;
 		}
 	}
 
@@ -1772,7 +1830,6 @@ p:last-child {
 		.views-field.views-field-nothing{
 			background:url('../images/background-modal-play.png?v=1') repeat-x;
 			height: 84px;
-  			margin-top: 0px;
 		}
 	}
 
@@ -2281,9 +2338,9 @@ p:last-child {
 
 	.form-item-select-all{
 		float:left;
-		padding-left: 36px;
+		padding-left: 0px;
 		color: @color-blue-napo;
-		padding-top: 7px;
+		padding-top: 16px;
 		min-width: 223px;
 		input[type="checkbox"]{
 			visibility: hidden;
@@ -2355,10 +2412,10 @@ input[type=checkbox]{
 }
 
 .view-download-center {
-    clear: both;
 	
 	.views-row{
 		margin-bottom:1em;
+		clear:both;
 	}
 
 	.napo-film-video-download-form{
@@ -2701,6 +2758,10 @@ input[type=checkbox]{
 		width: 27px;
 		height: 44px;
 	}
+
+	.ui-accordion-content.ui-helper-reset.ui-widget-content.ui-corner-bottom.ui-accordion-content-active{
+		height:auto!important;
+	}
 }
 
 .contact-form-widget-container h2{
@@ -3033,3 +3094,5 @@ input[type=checkbox]{
 	clear:both;
 	margin:15px 0px 15px 0px;
 }
+
+
