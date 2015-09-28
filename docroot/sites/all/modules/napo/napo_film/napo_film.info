@@ -28,7 +28,6 @@ dependencies[] = text
 dependencies[] = title
 dependencies[] = videojs
 dependencies[] = views
-dependencies[] = views_modes
 dependencies[] = youtube
 features[ctools][] = ds:ds:1
 features[ctools][] = entityqueue:entityqueue_default:1
