@@ -63,3 +63,18 @@ jQuery(function() {
         function(){ jQuery(this).removeClass('open') }
     );
 });
+
+
+
+
+
+
+// Refresh the page when orientation changes in Napo friend
+
+jQuery(document).ready(function() {
+	if (jQuery('body').hasClass('page-meet-napo-napo-and-friends')){
+		jQuery(window).resize(function(){location.reload();});
+	}
+});
+
+

@@ -7153,6 +7153,10 @@ table .checkbox input[type="checkbox"] {
   background-color: #eff0f0;
   font-weight: bold;
   display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
 }
 .menu.nav.navbar-nav .dropdown-toggle.nolink {
   cursor: auto;
@@ -8092,6 +8096,9 @@ p:last-child {
   float: right;
   z-index: 9;
 }
+.view-display-id-page_grid {
+  clear: both;
+}
 .view-display-id-page_grid h3 {
   background: url('../images/background-blue.png?v=1') repeat-x;
   color: #FFF;
@@ -8208,7 +8215,8 @@ p:last-child {
 .view-napo-films-node.view-display-id-page_grid .views-field-nothing.napo-film-content-container {
   display: none;
 }
-.view-napo-films-node.view-display-id-page_grid .napo-film-view-episodes-link {
+.view-napo-films-node.view-display-id-page_grid .napo-film-view-episodes-link,
+.view-napo-films-node.view-display-id-page_grid .napo-film-view-text-link {
   color: #1f3695;
   font-weight: bold;
   padding: 4px 0.5em 0.5em;
@@ -8217,6 +8225,9 @@ p:last-child {
   float: left;
   padding-right: 2em;
   background: url('../images/view-episodes-yellow.png?v=1') no-repeat 96% 5px #f7e235;
+}
+.view-napo-films-node.view-display-id-page_grid .napo-film-view-text-link {
+  margin-right: 5px;
 }
 .view-napo-films-node.view-display-id-page_grid .napo-film-view-link {
   padding-bottom: 2em;
@@ -8262,7 +8273,8 @@ p:last-child {
 .napo-film-view-link .glyphicon-play-circle:before {
   content: none;
 }
-.napo-film-view-episodes-link {
+.napo-film-view-episodes-link,
+.napo-film-view-text-link {
   color: #1f3695;
   font-weight: bold;
   padding: 4px 0.5em 0.5em;
@@ -8271,6 +8283,9 @@ p:last-child {
   float: left;
   padding-right: 2em;
   background: url('../images/view-episodes-yellow.png?v=1') no-repeat 96% 5px #f7e235;
+}
+.napo-film-view-text-link {
+  margin-right: 5px;
 }
 .content-cart-add-to-cart-btn:hover {
   text-decoration: underline;
@@ -10051,6 +10066,9 @@ footer .menu.nav.navbar-nav {
   margin: 5.75px 0px;
 }
 @media only screen and (max-width: 767px) {
+  .block-title.desplegado {
+    height: 71px!important;
+  }
   .block-napo-film a[href*='list'] {
     display: block;
   }
@@ -10219,16 +10237,6 @@ footer .menu.nav.navbar-nav {
   .form-search .ui-autocomplete {
     display: none!importanto;
   }
-  /*
-  .view-napo-s-film-episodes .views-row{
-      .napo-film-video-download-form ~ a{
-        position: relative!important;
-        margin-top: -51px!important;
-        float: right!important;
-        left: 13px!important;
-      }
-  }
-*/
   .view-napo-s-film-episodes .views-row .col-sm-9 {
     background: #f2f1f2;
     height: 1%;
@@ -10238,7 +10246,7 @@ footer .menu.nav.navbar-nav {
     height: 223px!important;
   }
   .video-js.vjs-default-skin.vjs-paused .vjs-big-play-button {
-    background: url('../images/play-video-small.png?v=1') no-repeat 50% 40%;
+    background: url('../images/play-video-small.png?v=1') no-repeat 55% 40%;
     margin-top: 40px;
     width: 100%;
   }
@@ -10257,16 +10265,19 @@ footer .menu.nav.navbar-nav {
     margin-top: 0px;
   }
   .vjs-mute-control.vjs-control {
-    margin-top: -4em;
+    margin-top: -9em;
     margin-left: -1px;
   }
   .vjs-volume-control.vjs-control {
-    margin-top: -4em;
+    margin-top: -9em;
     margin-left: 4em;
+  }
+  .vjs-default-skin .vjs-progress-control {
+    margin-top: -100px;
   }
   .vjs-default-skin .vjs-duration .vjs-duration-display,
   .vjs-current-time.vjs-time-controls.vjs-control .vjs-current-time-display {
-    margin-top: -15px;
+    margin-top: -110px;
     font-weight: bold;
     background-color: #1f3695;
     height: 12px;
@@ -10286,7 +10297,7 @@ footer .menu.nav.navbar-nav {
   .field-content.featured-article-body {
     min-height: 150px;
   }
-  video::-webkit-media-controls {
+  .front video::-webkit-media-controls {
     display: none !important;
   }
   #edit-search-api-views-fulltext-wrapper {
@@ -10419,6 +10430,7 @@ footer .menu.nav.navbar-nav {
   }
   #block-views-featured-articles-block {
     padding-bottom: 10px;
+    margin-top: 10px;
   }
   #block-views-consortium-partners-block-1 {
     padding-left: 15px;
@@ -10562,6 +10574,15 @@ footer .menu.nav.navbar-nav {
   }
 }
 @media only screen and (max-width: 992px) {
+  #node-27 iframe {
+    float: none;
+    padding-right: 1em;
+    margin-bottom: 1em;
+  }
+  #node-27 h1 {
+    clear: both;
+    margin: 15px 0px 15px 0px;
+  }
   .view-display-id-page_list h3 {
     margin-top: 10px;
   }
@@ -10770,17 +10791,29 @@ footer .menu.nav.navbar-nav {
   }
 }
 /* Landscape iphone*/
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+@media only screen and (min-device-width: 220px) and (max-device-width: 668px) {
   .contact-form-widget-container h2 {
-    width: 100%;
+    width: 320px;
+    font-size: 11px;
+    height: 55px!important;
+  }
+  .contact-form-widget-container h2 .block-title {
+    height: 30px!important;
   }
   .block-title.desplegado {
-    bottom: 225px !important;
+    height: 55px!important;
+    bottom: 175px !important;
   }
   .webform-client-form {
-    width: 100%;
-    bottom: 0;
+    width: 320px;
+    bottom: -50px;
     min-height: 235px;
+    font-size: 8px;
+  }
+  .webform-client-form .form-control {
+    height: 22px;
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
   .webform-client-form .webform-component--your-name {
     float: left;
@@ -10791,6 +10824,15 @@ footer .menu.nav.navbar-nav {
     float: left;
     width: 51%;
   }
+  .webform-client-form .webform-component--subject {
+    float: left;
+    padding-right: 1em;
+    width: 48%;
+  }
+  .webform-client-form .form-textarea-wrapper.textarea-processed {
+    float: left;
+    width: 90%;
+  }
   .webform-client-form .contact-form-email-wrapper {
     float: left;
     padding-right: 1em;
@@ -10799,6 +10841,26 @@ footer .menu.nav.navbar-nav {
   .webform-client-form .contact-form-message-wrapper {
     float: left;
     width: 51%;
+    height: 22px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  .webform-client-form .contact-form-message.form-control.form-textarea {
+    height: 60px!important;
+  }
+  .webform-client-form .captcha {
+    clear: both;
+  }
+  .webform-client-form .captchaImg {
+    width: 105px;
+    height: 41px;
+    margin-top: 3px;
+  }
+  .webform-client-form .captchaImgRefresh,
+  .webform-client-form .captchaImgReadAudio,
+  .webform-client-form .captchaObject {
+    height: 20px;
+    width: 20px;
   }
   .gc-bubbleDefault.pls-container iframe {
     width: 100%!important;
