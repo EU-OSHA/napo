@@ -35,11 +35,11 @@ function napo_frontpage_views_api($module = NULL, $api = NULL) {
 function napo_frontpage_node_info() {
   $items = array(
     'home_video' => array(
-      'name' => t('Home video'),
+      'name' => 'Home video',
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

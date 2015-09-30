@@ -395,8 +395,9 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['body_1']['field'] = 'body';
   $handler->display->display_options['fields']['body_1']['label'] = '';
   $handler->display->display_options['fields']['body_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['body_1']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['body_1']['alter']['text'] = '[body_1-summary]';
   $handler->display->display_options['fields']['body_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['body_1']['type'] = 'text_summary_or_trimmed';
   $handler->display->display_options['fields']['body_1']['settings'] = array(
     'trim_length' => '600',
   );
@@ -408,14 +409,15 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['body']['exclude'] = TRUE;
   $handler->display->display_options['fields']['body']['alter']['path'] = '[field_url]';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_link' => '0',
-    'trim_length' => '250',
+    'trim_length' => '300',
     'trim_type' => 'chars',
     'trim_suffix' => '...',
     'more_link' => '0',
     'more_text' => 'Read more',
-    'summary_handler' => 'full',
+    'summary_handler' => 'ignore',
     'trim_options' => array(
       'text' => 0,
     ),
@@ -461,6 +463,7 @@ function napo_frontpage_views_default_views() {
     t('Block'),
     t('<h3>'),
     t('</h3>'),
+    t('[body_1-summary]'),
     t('[title_field]
 [body_1]
 [body]'),
