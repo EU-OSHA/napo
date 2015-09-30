@@ -398,6 +398,7 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['body_1']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['body_1']['alter']['text'] = '[body_1-summary]';
   $handler->display->display_options['fields']['body_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body_1']['type'] = 'text_plain';
   $handler->display->display_options['fields']['body_1']['settings'] = array(
     'trim_length' => '600',
   );
@@ -429,8 +430,8 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '[title_field]
-[body_1]
-[body]';
+<div class="homepage-video-summary">[body_1]</div>
+<div class="homepage-video-body">[body]</div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing']['element_wrapper_class'] = 'frontpage-video-title';
   /* Field: Content: Video */
@@ -465,8 +466,8 @@ function napo_frontpage_views_default_views() {
     t('</h3>'),
     t('[body_1-summary]'),
     t('[title_field]
-[body_1]
-[body]'),
+<div class="homepage-video-summary">[body_1]</div>
+<div class="homepage-video-body">[body]</div>'),
   );
   $export['frontpage_custom_video'] = $view;
 
