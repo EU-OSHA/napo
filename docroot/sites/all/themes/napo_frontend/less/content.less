@@ -174,10 +174,10 @@ p:last-child {
     top: 30%;
     left: 30px;
     padding: 0px 30px 30px 30px;
-    /*max-width: 491px;*/
     max-width: 260px;
     z-index: 1;
     background:url('../images/background-slider-home.png?v=1');
+    color:#FFF;
 }
 
 
@@ -187,44 +187,10 @@ p:last-child {
     font-weight: bold;
 }
 
-.slider .frontpage-video-title p{
+.slider .frontpage-video-title .homepage-video-summary{
         color:#FFF;
+        font-weight: bold;
 }
-
-/*
-
-.slider .frontpage-video-title #tmgmt-1{
-     display: block;
-	  /* Fallback for non-webkit 
-	  display: -webkit-box;
-	  max-width: 400px;
-	  height: 230px;
-	  /* Fallback for non-webkit 
-	  margin: 0 auto;
-	  -webkit-line-clamp: 9;
-	  -webkit-box-orient: vertical;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
-}
-
-.slider .frontpage-video-title p{
-     display: block;
-	  /* Fallback for non-webkit 
-	  display: -webkit-box;
-	  max-width: 400px;
-	  height: 220px;
-	  /* Fallback for non-webkit 
-	  margin: 0 auto;
-	  -webkit-line-clamp: 11;
-	  -webkit-box-orient: vertical;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
-}
-
-.slider .frontpage-video-title p:nth-child(2){
-     display:none;
-}
-*/
 
 .vjs-default-skin .vjs-duration .vjs-duration-display, .vjs-current-time.vjs-time-controls.vjs-control .vjs-current-time-display{
 	background-color: #1f3695;
@@ -730,9 +696,7 @@ p:last-child {
     	margin-left: 0.6%;
 		width: auto;
 	}
-	a span.view-film-details-icon{
-		/*margin-left: 150px;*/
-	}
+	
 	.napo-film-view-episodes-link ~ a span.view-film-details-icon{
 		margin-left: 0;
 	}
@@ -2244,11 +2208,6 @@ p:last-child {
 //Napo Friends
 
 .view-napo-and-friends{
-    
-	.views-slideshow-cycle-main-frame.views_slideshow_cycle_teaser_section{
-		/*background: @color-napo-bg-gray-1;*/
-	}
-	
     .views-slideshow-controls-top{
 		.views-slideshow-pager-field-item{
 			width:139px;
@@ -2272,10 +2231,6 @@ p:last-child {
 		  text-overflow: ellipsis;
 		  white-space: nowrap;
 		  overflow: hidden;
-		}
-
-		.views-field-field-image{
-			/*background:@color-napo-bg-gray-1;*/
 		}
 	}
 
@@ -2624,7 +2579,6 @@ input[type=checkbox]{
 			padding-right: 0.5em;
  			text-transform: none;
  			border-bottom: 0px solid #FFF;
-			/*background: transparent url('../images/lesson.png?v=1') no-repeat right 1px;*/
 			background:@color-napo-bg-gray-1;
 			margin-right: 5px;
 			border-top-right-radius: 20px;
@@ -2637,12 +2591,10 @@ input[type=checkbox]{
 		.lesson.active{
 			height:55px;
  			text-transform: none;
-			/*background: url('../images/lesson_active.png?v=1') no-repeat -125px 1px;*/
 			background:@color-blue-napo;
  			padding-top: 0.5em;
 		 	padding-left: 0em;
 			padding-right: 0.5em;
-			/*margin-right: -50px;*/
 			margin-top: 0;
 			z-index: 3;
  			a{

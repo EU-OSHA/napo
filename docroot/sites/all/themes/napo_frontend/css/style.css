@@ -7564,53 +7564,20 @@ p:last-child {
   top: 30%;
   left: 30px;
   padding: 0px 30px 30px 30px;
-  /*max-width: 491px;*/
   max-width: 260px;
   z-index: 1;
   background: url('../images/background-slider-home.png?v=1');
+  color: #FFF;
 }
 .slider .frontpage-video-title h3 a {
   color: #fff;
   font-size: 24px;
   font-weight: bold;
 }
-.slider .frontpage-video-title p {
+.slider .frontpage-video-title .homepage-video-summary {
   color: #FFF;
+  font-weight: bold;
 }
-/*
-
-.slider .frontpage-video-title #tmgmt-1{
-     display: block;
-	  /* Fallback for non-webkit 
-	  display: -webkit-box;
-	  max-width: 400px;
-	  height: 230px;
-	  /* Fallback for non-webkit 
-	  margin: 0 auto;
-	  -webkit-line-clamp: 9;
-	  -webkit-box-orient: vertical;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
-}
-
-.slider .frontpage-video-title p{
-     display: block;
-	  /* Fallback for non-webkit 
-	  display: -webkit-box;
-	  max-width: 400px;
-	  height: 220px;
-	  /* Fallback for non-webkit 
-	  margin: 0 auto;
-	  -webkit-line-clamp: 11;
-	  -webkit-box-orient: vertical;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
-}
-
-.slider .frontpage-video-title p:nth-child(2){
-     display:none;
-}
-*/
 .vjs-default-skin .vjs-duration .vjs-duration-display,
 .vjs-current-time.vjs-time-controls.vjs-control .vjs-current-time-display {
   background-color: #1f3695;
@@ -8021,9 +7988,6 @@ p:last-child {
   padding: 13px 43px 10px 10px;
   margin-left: 0.6%;
   width: auto;
-}
-.view-display-id-page_list.napo-film-list-view a span.view-film-details-icon {
-  /*margin-left: 150px;*/
 }
 .view-display-id-page_list.napo-film-list-view .napo-film-view-episodes-link ~ a span.view-film-details-icon {
   margin-left: 0;
@@ -9235,9 +9199,6 @@ p:last-child {
 #cboxWrapper #cboxCurrent {
   display: none!important;
 }
-.view-napo-and-friends .views-slideshow-cycle-main-frame.views_slideshow_cycle_teaser_section {
-  /*background: @color-napo-bg-gray-1;*/
-}
 .view-napo-and-friends .views-slideshow-controls-top .views-slideshow-pager-field-item {
   width: 139px;
   height: 115px;
@@ -9260,9 +9221,6 @@ p:last-child {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-}
-.view-napo-and-friends .views-slideshow-controls-top .views-field-field-image {
-  /*background:@color-napo-bg-gray-1;*/
 }
 .view-napo-and-friends .views-slideshow-cycle-main-frame-row-item .img-responsive {
   padding-bottom: 125px;
@@ -9560,7 +9518,6 @@ input[type=checkbox] {
   padding-right: 0.5em;
   text-transform: none;
   border-bottom: 0px solid #FFF;
-  /*background: transparent url('../images/lesson.png?v=1') no-repeat right 1px;*/
   background: #f2f1f2;
   margin-right: 5px;
   border-top-right-radius: 20px;
@@ -9573,12 +9530,10 @@ input[type=checkbox] {
 .node-lesson #top_menu_lessons .lesson.active {
   height: 55px;
   text-transform: none;
-  /*background: url('../images/lesson_active.png?v=1') no-repeat -125px 1px;*/
   background: #1f3695;
   padding-top: 0.5em;
   padding-left: 0em;
   padding-right: 0.5em;
-  /*margin-right: -50px;*/
   margin-top: 0;
   z-index: 3;
 }
@@ -10507,6 +10462,29 @@ footer .menu.nav.navbar-nav {
   .view-napo-films .row div:hover > .views-field-nothing.napo-film-content-container {
     height: 125px;
     min-height: 125px;
+  }
+  .view-napo-films-node.view-display-id-page_grid .napo-film-view-text-link {
+    float: none;
+    margin-bottom: 5px;
+    margin-right: 0px;
+  }
+  .napo-film-list-view .napo-film-view-episodes-link {
+    float: none!important;
+    max-width: 100%!important;
+  }
+  .napo-film-view-episodes-link,
+  .napo-film-view-text-link {
+    float: none;
+    margin-bottom: 5px;
+    clear: both;
+    max-width: 100%!important;
+    margin-right: 0px;
+  }
+  .view-napo-films.view-display-id-page_grid .row div:hover > .views-field-nothing.napo-film-content-container {
+    min-height: 190px!important;
+  }
+  .view-display-id-page_grid h3 a {
+    width: 97%!important;
   }
 }
 @media only screen and (max-width: 320px) {
