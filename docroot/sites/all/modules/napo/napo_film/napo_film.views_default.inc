@@ -1158,6 +1158,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['view_detail_link']['label'] = '';
   $handler->display->display_options['fields']['view_detail_link']['exclude'] = TRUE;
   $handler->display->display_options['fields']['view_detail_link']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_detail_link']['napo_film_view_link'] = 'text';
   /* Field: Napo film: Combined tags */
   $handler->display->display_options['fields']['combined_tags']['id'] = 'combined_tags';
   $handler->display->display_options['fields']['combined_tags']['table'] = 'napo_film';
@@ -1748,6 +1749,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['view_detail_link']['label'] = '';
   $handler->display->display_options['fields']['view_detail_link']['exclude'] = TRUE;
   $handler->display->display_options['fields']['view_detail_link']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_detail_link']['napo_film_view_link'] = 'text';
   /* Field: Napo film: Combined tags */
   $handler->display->display_options['fields']['combined_tags']['id'] = 'combined_tags';
   $handler->display->display_options['fields']['combined_tags']['table'] = 'napo_film';
