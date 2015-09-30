@@ -820,6 +820,7 @@ p:last-child {
 }
 
 .view-display-id-page_grid {
+	clear:both;
 	h3 {
 		background:url('../images/background-blue.png?v=1') repeat-x;
 		color:#FFF;
@@ -969,7 +970,7 @@ p:last-child {
     	display: none;
 	}
 
-	.napo-film-view-episodes-link{
+	.napo-film-view-episodes-link , .napo-film-view-text-link{
 		color:@color-blue-napo;
 		font-weight: bold;
 		padding: 4px 0.5em 0.5em;
@@ -978,6 +979,10 @@ p:last-child {
 		float: left;
 		padding-right: 2em;
 		background:url('../images/view-episodes-yellow.png?v=1') no-repeat 96% 5px @color-yellow-napo;
+	}
+
+	.napo-film-view-text-link{
+		margin-right: 5px;
 	}
 
 	.napo-film-view-link{
@@ -1039,7 +1044,7 @@ p:last-child {
 
 }
 
-.napo-film-view-episodes-link{
+.napo-film-view-episodes-link ,  .napo-film-view-text-link{
 	color:@color-blue-napo;
 	font-weight: bold;
 	padding: 4px 0.5em 0.5em;
@@ -1048,6 +1053,10 @@ p:last-child {
 	float: left;
 	padding-right: 2em;
 	background:url('../images/view-episodes-yellow.png?v=1') no-repeat 96% 5px @color-yellow-napo;
+}
+
+.napo-film-view-text-link{
+	margin-right: 5px; 
 }
 
 .content-cart-add-to-cart-btn:hover{

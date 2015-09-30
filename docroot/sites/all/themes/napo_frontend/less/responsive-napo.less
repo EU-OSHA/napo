@@ -3,6 +3,10 @@
 
 @media only screen and (max-width : 767px) {
 
+.block-title.desplegado{
+  height:71px!important;
+}
+
 .block-napo-film a[href*='list']{ //We need this style because when you are logged, drupal put <a> "configure"
   display:block;
 }
@@ -225,18 +229,6 @@ iframe{
   display:none!importanto;
 }
 
-//episode list
-/*
-  .view-napo-s-film-episodes .views-row{
-      .napo-film-video-download-form ~ a{
-        position: relative!important;
-        margin-top: -51px!important;
-        float: right!important;
-        left: 13px!important;
-      }
-  }
-*/
-
 .view-napo-s-film-episodes .views-row .col-sm-9{
       background:@color-napo-bg-gray-1;
       height:1%;
@@ -250,7 +242,7 @@ iframe{
 }
 
 .video-js.vjs-default-skin.vjs-paused .vjs-big-play-button{
-  background: url('../images/play-video-small.png?v=1') no-repeat 50% 40%;
+  background: url('../images/play-video-small.png?v=1') no-repeat 55% 40%;
   margin-top: 40px;
   width: 100%;
 }
@@ -273,17 +265,22 @@ iframe{
 }
 
 .vjs-mute-control.vjs-control{
-  margin-top: -4em;
+  margin-top: -9em;
   margin-left: -1px;
 }
 
 .vjs-volume-control.vjs-control{
-  margin-top: -4em;
+  margin-top: -9em;
   margin-left: 4em;
 }
 
+.vjs-default-skin .vjs-progress-control{
+  margin-top: -100px;
+   
+}
+
 .vjs-default-skin .vjs-duration .vjs-duration-display , .vjs-current-time.vjs-time-controls.vjs-control .vjs-current-time-display{
-    margin-top: -15px;
+    margin-top: -110px;
     font-weight: bold;
     background-color: @color-blue-napo;
     height: 12px;
@@ -311,7 +308,7 @@ iframe{
 }
 
 //iPhone hack , two icons play on Home
-video::-webkit-media-controls { 
+.front video::-webkit-media-controls { 
   display:none !important;
 }
 
@@ -485,6 +482,7 @@ footer{
 
 #block-views-featured-articles-block{
   padding-bottom: 10px;
+  margin-top: 10px;
 }
 
 #block-views-consortium-partners-block-1{
@@ -692,7 +690,16 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 
 @media only screen and (max-width : 992px) {
 
+#node-27 iframe{
+  float:none;
+  padding-right: 1em;
+  margin-bottom: 1em;
+}
 
+#node-27 h1{
+  clear:both;
+  margin:15px 0px 15px 0px;
+}
 
 //view gallery list
 
@@ -875,7 +882,7 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 }
 
 @media (min-width: 1200px){
-	
+
   .node-lesson #top_menu_lessons.nav.nav-right-menu.nav-stacked.affix{
 		width: 60em !important;
 	}
@@ -975,25 +982,38 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 
 /* Landscape iphone*/
 @media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) {
+  and (min-device-width: 220px) 
+  and (max-device-width: 668px)
+  {
 
 //Contact us
 
 .contact-form-widget-container h2{
-  width:100%;
+  width:320px;
+  font-size:11px;
+  height:55px!important;
+}
+
+.contact-form-widget-container h2 .block-title{
+  height:30px!important;
 }
 
 .block-title.desplegado {
-    bottom: 225px !important;
+    height:55px!important;
+    bottom: 175px !important;
 }
 
 .webform-client-form{
-  width:100%;
-  bottom: 0;
+  width:320px;
+  bottom: -50px;
   min-height: 235px;
+  font-size: 8px;
+
+  .form-control{
+    height: 22px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
 
  .webform-component--your-name{
     float: left;
@@ -1006,6 +1026,17 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
     width: 51%;
  }
 
+  .webform-component--subject{
+    float: left;
+    padding-right: 1em;
+    width: 48%;
+  }
+
+ .form-textarea-wrapper.textarea-processed{
+    float: left;
+    width: 90%;
+ }
+
  .contact-form-email-wrapper{
     float: left;
     padding-right: 1em;
@@ -1015,6 +1046,28 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
  .contact-form-message-wrapper{
     float: left;
     width: 51%;
+    height: 22px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+ }
+
+ .contact-form-message.form-control.form-textarea{
+    height:60px!important;
+ }
+
+ .captcha{
+    clear:both;
+  }
+
+ .captchaImg{
+    width: 105px;
+    height: 41px;
+    margin-top:3px;
+ }
+
+ .captchaImgRefresh, .captchaImgReadAudio, .captchaObject{
+    height:20px;
+    width:20px;
  }
 
 }
