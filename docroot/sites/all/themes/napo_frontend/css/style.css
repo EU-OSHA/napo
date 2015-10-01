@@ -8488,16 +8488,16 @@ p:last-child {
   float: left;
   padding-right: 5px;
 }
-#recommended_films .field-name-field-image a:hover:before {
+#recommended_films .field-name-field-image:hover:before {
   background: url('../images/background-carousel.png?v=1') no-repeat;
   display: block;
   position: absolute;
   z-index: 999999999;
   content: " ";
   width: 100%;
-  height: 166px;
+  height: 124px;
 }
-#recommended_films .field-name-field-image a:hover:after {
+#recommended_films .field-name-field-image:hover:after {
   background: url('../images/home-play-featured.png?v=1') no-repeat;
   display: block;
   position: absolute;
@@ -8507,6 +8507,9 @@ p:last-child {
   height: 46px;
   margin-top: -100px;
   margin-left: 87px;
+}
+#recommended_films .field-name-field-image img {
+  height: 124px;
 }
 #recommended_films .recommended_films_head {
   color: #f7e235;
@@ -9822,7 +9825,6 @@ input[type=checkbox] {
   font-weight: bold;
   font-size: 15px;
   margin-bottom: 0.5em;
-  display: block;
   margin-top: 1em;
 }
 .view-search .views-row .field-name-field-image {
@@ -9852,7 +9854,7 @@ input[type=checkbox] {
   background: url('../images/play-featured-search.png?v=1') no-repeat transparent;
   height: 43px;
   width: 45px;
-  margin-top: 15px;
+  margin-top: 25px;
 }
 .view-search .views-row .field-name-node-link .glyphicon-play-circle::before {
   content: " ";
