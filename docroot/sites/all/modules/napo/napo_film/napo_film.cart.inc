@@ -83,7 +83,7 @@ function napo_film_cart_add_mime_form($form, &$form_state, $node) {
     ),
   );
   if ($type == 'episode') {
-    $form['mime_type_select']['#title'] = t('Download this episode as');
+    $form['mime_type_select']['#title'] = t('Download this scene as');
   }
 
   if ($default_mime = napo_film_cart_get_stored_mime($node->nid)) {

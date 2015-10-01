@@ -1951,6 +1951,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['content_add_to_cart']['label'] = '';
   $handler->display->display_options['fields']['content_add_to_cart']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['content_add_to_cart']['contant_add_to_cart_button_label'] = 'Add to download centre';
+  $handler->display->display_options['fields']['content_add_to_cart']['contant_remove_from_cart_button_label'] = 'Remove from download centre';
   /* Field: Field: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
@@ -2271,7 +2272,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['path']['field'] = 'path';
   $handler->display->display_options['fields']['path']['label'] = '';
   $handler->display->display_options['fields']['path']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['path']['alter']['text'] = 'View episodes <span class="glyphicon glyphicon-circle-arrow-right"></span>';
+  $handler->display->display_options['fields']['path']['alter']['text'] = 'View scenes <span class="glyphicon glyphicon-circle-arrow-right"></span>';
   $handler->display->display_options['fields']['path']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['path']['alter']['path'] = '[path]/view-episodes';
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
@@ -2311,7 +2312,7 @@ function napo_film_views_default_views() {
     t('last »'),
     t('List view'),
     t('<span class="glyphicon glyphicon-play-circle"></span>'),
-    t('View episodes <span class="glyphicon glyphicon-circle-arrow-right"></span>'),
+    t('View scenes <span class="glyphicon glyphicon-circle-arrow-right"></span>'),
     t('Gallery view'),
   );
   $export['napos_films'] = $view;

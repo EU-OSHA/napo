@@ -199,10 +199,10 @@ function napo_film_field_formatter_view($entity_type, $entity, $field, $instance
           case 'episode':
             if (!empty($settings['napo_film_title_include_episode_count'])) {
               $weight = napo_film_get_episode_number($entity) + 1;
-              $output = '<span class="napo-film-video-type napo-film-video-type-episode">' . t('Episode @weight', array('@weight' => sprintf('%02d', $weight))) . '</span>' . $output;
+              $output = '<span class="napo-film-video-type napo-film-video-type-episode">' . t('Scene @weight', array('@weight' => sprintf('%02d', $weight))) . '</span>' . $output;
             }
             else {
-              $output = '<span class="napo-film-video-type napo-film-video-type-episode">' . t('Episode') . '</span>' . $output;
+              $output = '<span class="napo-film-video-type napo-film-video-type-episode">' . t('Scene') . '</span>' . $output;
             }
             break;
 

@@ -38,7 +38,7 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => '%site:current-page:menu-link:pb-join:name',
-      1 => 'Episodes',
+      1 => 'Scenes',
       2 => '!page_title',
     ),
     'paths' => array(
