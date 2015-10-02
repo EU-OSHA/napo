@@ -634,6 +634,7 @@ function theme_napo_print_friendly_block() {
         array(
           'data' => drupal_get_path('module', 'napo_common') . '/js/napo_print_friendly.js',
           'type' => 'file',
+          'weight' => 10,
         )
       ),
     ),
