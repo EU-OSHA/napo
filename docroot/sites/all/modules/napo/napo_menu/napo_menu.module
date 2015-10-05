@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ * Code for the Napo Menu feature.
+ */
+
+include_once 'napo_menu.features.inc';
 
 /**
  * Implements hook_block_info().

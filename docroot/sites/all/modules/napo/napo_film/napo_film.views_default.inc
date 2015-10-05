@@ -698,7 +698,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['empty']['area_text_custom']['field'] = 'area_text_custom';
   $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
   $handler->display->display_options['empty']['area_text_custom']['content'] = 'No results';
-  /* Field: Indexed Multilingual Node: Node ID */
+  /* Field: Indexed Multilingual Content: Node ID */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
@@ -718,7 +718,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['counter']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['counter']['counter_start'] = '1';
   $handler->display->display_options['fields']['counter']['reverse'] = 0;
-  /* Field: Indexed Multilingual Node: Title */
+  /* Field: Indexed Multilingual Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
@@ -735,7 +735,7 @@ function napo_film_views_default_views() {
     'title_link' => 'content',
     'title_class' => 'title',
   );
-  /* Field: Indexed Multilingual Node: Image */
+  /* Field: Indexed Multilingual Content: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
@@ -763,7 +763,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing_1']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['nothing_1']['element_wrapper_class'] = 'col-md-4 napo-film-image-container';
-  /* Field: Indexed Multilingual Node: The main body text */
+  /* Field: Indexed Multilingual Content: The main body text */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -798,7 +798,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['download_video']['label'] = '';
   $handler->display->display_options['fields']['download_video']['exclude'] = TRUE;
   $handler->display->display_options['fields']['download_video']['element_label_colon'] = FALSE;
-  /* Field: Indexed Multilingual Node: URL */
+  /* Field: Indexed Multilingual Content: URL */
   $handler->display->display_options['fields']['url']['id'] = 'url';
   $handler->display->display_options['fields']['url']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['url']['field'] = 'url';
@@ -835,12 +835,12 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['nothing']['element_wrapper_class'] = 'col-md-8 napo-film-content-container';
-  /* Sort criterion: Indexed Multilingual Node: Publication date */
+  /* Sort criterion: Indexed Multilingual Content: Publication date */
   $handler->display->display_options['sorts']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['field_publication_date']['field'] = 'field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date']['order'] = 'DESC';
-  /* Filter criterion: Indexed Multilingual Node: Video Type */
+  /* Filter criterion: Indexed Multilingual Content: Video Type */
   $handler->display->display_options['filters']['field_video_type']['id'] = 'field_video_type';
   $handler->display->display_options['filters']['field_video_type']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_video_type']['field'] = 'field_video_type';
@@ -848,7 +848,7 @@ function napo_film_views_default_views() {
     2727 => '2727',
   );
   $handler->display->display_options['filters']['field_video_type']['group'] = 1;
-  /* Filter criterion: Indexed Multilingual Node: Content type */
+  /* Filter criterion: Indexed Multilingual Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -856,7 +856,7 @@ function napo_film_views_default_views() {
     'napo_video' => 'napo_video',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Indexed Multilingual Node: Status */
+  /* Filter criterion: Indexed Multilingual Content: Status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['status']['field'] = 'status';
@@ -893,7 +893,7 @@ function napo_film_views_default_views() {
     'title' => 'title',
     'title_field' => 'title_field',
   );
-  /* Filter criterion: Indexed Multilingual Node: Item language */
+  /* Filter criterion: Indexed Multilingual Content: Item language */
   $handler->display->display_options['filters']['search_api_language']['id'] = 'search_api_language';
   $handler->display->display_options['filters']['search_api_language']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['search_api_language']['field'] = 'search_api_language';
@@ -906,7 +906,7 @@ function napo_film_views_default_views() {
   $handler = $view->new_display('page', 'List', 'page_list');
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Indexed Multilingual Node: Node ID */
+  /* Field: Indexed Multilingual Content: Node ID */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
@@ -915,7 +915,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nid']['separator'] = '';
   $handler->display->display_options['fields']['nid']['link_to_entity'] = 0;
-  /* Field: Indexed Multilingual Node: Title */
+  /* Field: Indexed Multilingual Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
@@ -946,7 +946,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['content_cart']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['content_cart']['contant_add_to_cart_button_label'] = 'Add to download centre';
   $handler->display->display_options['fields']['content_cart']['contant_remove_from_cart_button_label'] = 'Remove from download centre';
-  /* Field: Indexed Multilingual Node: Image */
+  /* Field: Indexed Multilingual Content: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
@@ -975,7 +975,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing_1']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['nothing_1']['element_wrapper_class'] = 'col-md-4 napo-film-image-container';
-  /* Field: Indexed Multilingual Node: The main body text */
+  /* Field: Indexed Multilingual Content: The main body text */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -1020,7 +1020,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['view_detail_link']['label'] = '';
   $handler->display->display_options['fields']['view_detail_link']['exclude'] = TRUE;
   $handler->display->display_options['fields']['view_detail_link']['element_label_colon'] = FALSE;
-  /* Field: Indexed Multilingual Node: Publication date */
+  /* Field: Indexed Multilingual Content: Publication date */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
@@ -1067,7 +1067,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['exposed_block'] = TRUE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Indexed Multilingual Node: Node ID */
+  /* Field: Indexed Multilingual Content: Node ID */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
@@ -1076,7 +1076,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nid']['separator'] = '';
   $handler->display->display_options['fields']['nid']['link_to_entity'] = 0;
-  /* Field: Indexed Multilingual Node: Title */
+  /* Field: Indexed Multilingual Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
@@ -1121,7 +1121,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['nothing_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing_1']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['nothing_1']['element_wrapper_class'] = 'napo-film-title-container';
-  /* Field: Indexed Multilingual Node: Image */
+  /* Field: Indexed Multilingual Content: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
@@ -1132,7 +1132,7 @@ function napo_film_views_default_views() {
     'image_style' => 'film_list',
     'image_link' => 'content',
   );
-  /* Field: Indexed Multilingual Node: The main body text */
+  /* Field: Indexed Multilingual Content: The main body text */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -1174,7 +1174,7 @@ function napo_film_views_default_views() {
   $handler->display->display_options['fields']['view_episodes_link']['label'] = '';
   $handler->display->display_options['fields']['view_episodes_link']['exclude'] = TRUE;
   $handler->display->display_options['fields']['view_episodes_link']['element_label_colon'] = FALSE;
-  /* Field: Indexed Multilingual Node: Publication date */
+  /* Field: Indexed Multilingual Content: Publication date */
   $handler->display->display_options['fields']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['fields']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['field_publication_date']['field'] = 'field_publication_date';
@@ -1204,7 +1204,7 @@ function napo_film_views_default_views() {
     2 => 'OR',
   );
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Indexed Multilingual Node: Video Type */
+  /* Filter criterion: Indexed Multilingual Content: Video Type */
   $handler->display->display_options['filters']['field_video_type']['id'] = 'field_video_type';
   $handler->display->display_options['filters']['field_video_type']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_video_type']['field'] = 'field_video_type';
@@ -1212,7 +1212,7 @@ function napo_film_views_default_views() {
     2727 => '2727',
   );
   $handler->display->display_options['filters']['field_video_type']['group'] = 1;
-  /* Filter criterion: Indexed Multilingual Node: Content type */
+  /* Filter criterion: Indexed Multilingual Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -1220,7 +1220,7 @@ function napo_film_views_default_views() {
     'napo_video' => 'napo_video',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Indexed Multilingual Node: Status */
+  /* Filter criterion: Indexed Multilingual Content: Status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['status']['field'] = 'status';
@@ -1254,7 +1254,7 @@ function napo_film_views_default_views() {
     'title' => 'title',
     'title_field' => 'title_field',
   );
-  /* Filter criterion: Indexed Multilingual Node: Item language */
+  /* Filter criterion: Indexed Multilingual Content: Item language */
   $handler->display->display_options['filters']['search_api_language']['id'] = 'search_api_language';
   $handler->display->display_options['filters']['search_api_language']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['search_api_language']['field'] = 'search_api_language';
@@ -1262,7 +1262,7 @@ function napo_film_views_default_views() {
     'current' => 'current',
   );
   $handler->display->display_options['filters']['search_api_language']['group'] = 2;
-  /* Filter criterion: Indexed Multilingual Node: Item language */
+  /* Filter criterion: Indexed Multilingual Content: Item language */
   $handler->display->display_options['filters']['search_api_language_1']['id'] = 'search_api_language_1';
   $handler->display->display_options['filters']['search_api_language_1']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['search_api_language_1']['field'] = 'search_api_language';
@@ -2092,230 +2092,6 @@ function napo_film_views_default_views() {
     t('Block'),
   );
   $export['napo_s_film_episodes'] = $view;
-
-  $view = new view();
-  $view->name = 'napos_films';
-  $view->description = '';
-  $view->tag = 'default';
-  $view->base_table = 'node';
-  $view->human_name = 'Napo\'s films';
-  $view->core = 7;
-  $view->api_version = '3.0';
-  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-
-  /* Display: Master */
-  $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['cache']['type'] = 'none';
-  $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '4';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['pager']['options']['quantity'] = '7';
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'fields';
-  /* Field: Field: Image */
-  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
-  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['label'] = '';
-  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'large',
-    'image_link' => 'content',
-  );
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
-  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['label'] = '';
-  $handler->display->display_options['fields']['title_field']['element_type'] = 'h3';
-  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
-  /* Field: Content: Body */
-  $handler->display->display_options['fields']['body']['id'] = 'body';
-  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
-  $handler->display->display_options['fields']['body']['field'] = 'body';
-  $handler->display->display_options['fields']['body']['label'] = '';
-  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
-  $handler->display->display_options['fields']['body']['settings'] = array(
-    'trim_length' => '300',
-    'trim_type' => 'chars',
-    'trim_suffix' => '...',
-    'more_link' => '0',
-    'more_text' => 'Read more',
-    'summary_handler' => 'full',
-    'trim_options' => array(
-      'text' => 0,
-    ),
-  );
-  /* Field: Napo film: Download video */
-  $handler->display->display_options['fields']['download_video']['id'] = 'download_video';
-  $handler->display->display_options['fields']['download_video']['table'] = 'napo_film';
-  $handler->display->display_options['fields']['download_video']['field'] = 'download_video';
-  $handler->display->display_options['fields']['download_video']['label'] = '';
-  $handler->display->display_options['fields']['download_video']['element_label_colon'] = FALSE;
-  /* Sort criterion: Content: Publication date (field_publication_date) */
-  $handler->display->display_options['sorts']['field_publication_date_value']['id'] = 'field_publication_date_value';
-  $handler->display->display_options['sorts']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
-  $handler->display->display_options['sorts']['field_publication_date_value']['field'] = 'field_publication_date_value';
-  $handler->display->display_options['sorts']['field_publication_date_value']['order'] = 'DESC';
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'napo_video' => 'napo_video',
-  );
-  /* Filter criterion: Content: Video Type (field_video_type) */
-  $handler->display->display_options['filters']['field_video_type_tid']['id'] = 'field_video_type_tid';
-  $handler->display->display_options['filters']['field_video_type_tid']['table'] = 'field_data_field_video_type';
-  $handler->display->display_options['filters']['field_video_type_tid']['field'] = 'field_video_type_tid';
-  $handler->display->display_options['filters']['field_video_type_tid']['value'] = array(
-    2727 => '2727',
-  );
-  $handler->display->display_options['filters']['field_video_type_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_video_type_tid']['vocabulary'] = 'video_type';
-
-  /* Display: List view */
-  $handler = $view->new_display('page', 'List view', 'page_list');
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content Cart: Toggle (add/remove) cart checkbox */
-  $handler->display->display_options['fields']['content_cart']['id'] = 'content_cart';
-  $handler->display->display_options['fields']['content_cart']['table'] = 'node';
-  $handler->display->display_options['fields']['content_cart']['field'] = 'content_cart';
-  $handler->display->display_options['fields']['content_cart']['label'] = '';
-  $handler->display->display_options['fields']['content_cart']['element_label_colon'] = FALSE;
-  /* Field: Content: Nid */
-  $handler->display->display_options['fields']['nid']['id'] = 'nid';
-  $handler->display->display_options['fields']['nid']['table'] = 'node';
-  $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  $handler->display->display_options['fields']['nid']['label'] = '';
-  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Field: Image */
-  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
-  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['label'] = '';
-  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => 'large',
-    'image_link' => 'content',
-  );
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
-  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
-  $handler->display->display_options['fields']['title_field']['label'] = '';
-  $handler->display->display_options['fields']['title_field']['element_type'] = 'h3';
-  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
-  /* Field: Content: Body */
-  $handler->display->display_options['fields']['body']['id'] = 'body';
-  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
-  $handler->display->display_options['fields']['body']['field'] = 'body';
-  $handler->display->display_options['fields']['body']['label'] = '';
-  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
-  $handler->display->display_options['fields']['body']['settings'] = array(
-    'trim_length' => '300',
-    'trim_type' => 'chars',
-    'trim_suffix' => '...',
-    'more_link' => '0',
-    'more_text' => 'Read more',
-    'summary_handler' => 'full',
-    'trim_options' => array(
-      'text' => 0,
-    ),
-  );
-  /* Field: Napo film: Combined tags */
-  $handler->display->display_options['fields']['combined_tags']['id'] = 'combined_tags';
-  $handler->display->display_options['fields']['combined_tags']['table'] = 'napo_film';
-  $handler->display->display_options['fields']['combined_tags']['field'] = 'combined_tags';
-  $handler->display->display_options['fields']['combined_tags']['label'] = '';
-  $handler->display->display_options['fields']['combined_tags']['element_label_colon'] = FALSE;
-  /* Field: Napo film: Download video */
-  $handler->display->display_options['fields']['download_video']['id'] = 'download_video';
-  $handler->display->display_options['fields']['download_video']['table'] = 'napo_film';
-  $handler->display->display_options['fields']['download_video']['field'] = 'download_video';
-  $handler->display->display_options['fields']['download_video']['label'] = '';
-  $handler->display->display_options['fields']['download_video']['element_label_colon'] = FALSE;
-  /* Field: Content: Path */
-  $handler->display->display_options['fields']['path_1']['id'] = 'path_1';
-  $handler->display->display_options['fields']['path_1']['table'] = 'node';
-  $handler->display->display_options['fields']['path_1']['field'] = 'path';
-  $handler->display->display_options['fields']['path_1']['label'] = '';
-  $handler->display->display_options['fields']['path_1']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['path_1']['alter']['text'] = '<span class="glyphicon glyphicon-play-circle"></span>';
-  $handler->display->display_options['fields']['path_1']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['path_1']['alter']['path'] = '[path_1]';
-  $handler->display->display_options['fields']['path_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['path_1']['absolute'] = TRUE;
-  /* Field: Content: Path */
-  $handler->display->display_options['fields']['path']['id'] = 'path';
-  $handler->display->display_options['fields']['path']['table'] = 'node';
-  $handler->display->display_options['fields']['path']['field'] = 'path';
-  $handler->display->display_options['fields']['path']['label'] = '';
-  $handler->display->display_options['fields']['path']['alter']['alter_text'] = TRUE;
-  $handler->display->display_options['fields']['path']['alter']['text'] = 'View scenes <span class="glyphicon glyphicon-circle-arrow-right"></span>';
-  $handler->display->display_options['fields']['path']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['path']['alter']['path'] = '[path]/view-episodes';
-  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['path']['absolute'] = TRUE;
-  $handler->display->display_options['path'] = 'napos-films/filmss';
-
-  /* Display: Gallery view */
-  $handler = $view->new_display('mode', 'Gallery view', 'mode_gallery');
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'grid';
-  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
-  $handler->display->display_options['style_options']['columns'] = '2';
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'fields';
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $handler->display->display_options['displays'] = array(
-    'page_list' => 'page_list',
-    'page_episodes' => 0,
-  );
-  $handler->display->display_options['mode_id'] = 'gallery';
-  $handler->display->display_options['mode_name'] = 'Gallery view';
-  $translatables['napos_films'] = array(
-    t('Master'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
-    t('Asc'),
-    t('Desc'),
-    t('Items per page'),
-    t('- All -'),
-    t('Offset'),
-    t('« first'),
-    t('‹ previous'),
-    t('next ›'),
-    t('last »'),
-    t('List view'),
-    t('<span class="glyphicon glyphicon-play-circle"></span>'),
-    t('View scenes <span class="glyphicon glyphicon-circle-arrow-right"></span>'),
-    t('Gallery view'),
-  );
-  $export['napos_films'] = $view;
 
   return $export;
 }

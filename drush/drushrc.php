@@ -416,6 +416,7 @@ $options['init-modules'] = array(
   'xml_sitemap',
   'xmlsitemap_i18n',
   'xmlsitemap_node',
+  'xmlsitemap_menu',
 
   //Youtube field
   'youtube',

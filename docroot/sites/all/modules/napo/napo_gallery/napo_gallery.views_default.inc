@@ -36,7 +36,7 @@ function napo_gallery_views_default_views() {
   $handler->display->display_options['style_plugin'] = 'grid';
   $handler->display->display_options['style_options']['columns'] = '3';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Entityqueue: Node Queue */
+  /* Relationship: Entityqueue: Content Queue */
   $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'node';
   $handler->display->display_options['relationships']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
@@ -101,7 +101,7 @@ function napo_gallery_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'napo_album' => 'napo_album',
   );
-  /* Filter criterion: Entityqueue: Node In Queue */
+  /* Filter criterion: Entityqueue: Content In Queue */
   $handler->display->display_options['filters']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['filters']['entityqueue_relationship']['table'] = 'node';
   $handler->display->display_options['filters']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
@@ -235,7 +235,7 @@ function napo_gallery_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Entityqueue: Node Queue */
+  /* Relationship: Entityqueue: Content Queue */
   $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'node';
   $handler->display->display_options['relationships']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
@@ -298,7 +298,7 @@ function napo_gallery_views_default_views() {
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Entityqueue: Node Queue Position */
+  /* Sort criterion: Entityqueue: Content Queue Position */
   $handler->display->display_options['sorts']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['sorts']['entityqueue_relationship']['table'] = 'node';
   $handler->display->display_options['sorts']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
@@ -462,7 +462,7 @@ function napo_gallery_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
-    t('Node Queue'),
+    t('Content Queue'),
     t('Page'),
     t('[title_field][field_publication_date]'),
     t('Attachment - Intro text'),
