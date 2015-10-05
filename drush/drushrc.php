@@ -413,7 +413,7 @@ $options['init-modules'] = array(
   'search_api_views',
   'search_api_attachments',
 
-  'xml_sitemap',
+  'xmlsitemap',
   'xmlsitemap_i18n',
   'xmlsitemap_node',
   'xmlsitemap_menu',
