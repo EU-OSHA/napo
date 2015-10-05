@@ -1,0 +1,9 @@
+name = OSHA Sitemap
+description = OSHA Sitemap hooks for xmlsitemap module
+core = 7.x
+package = OSHA
+version = 7.x-0.6
+project = osha_sitemap
+dependencies[] = xmlsitemap
+dependencies[] = xmlsitemap_i18n
+dependencies[] = xmlsitemap_node

@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * Increase weight of the module to execute after xmlsitemap.
+ */
+function osha_sitemap_update_7001() {
+  db_update('system')
+    ->fields(array('weight' => 2))
+    ->condition('name', 'osha_sitemap')
+    ->execute();
+}
