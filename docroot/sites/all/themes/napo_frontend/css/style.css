@@ -9603,6 +9603,10 @@ input[type=checkbox] {
   text-align: right;
   padding-bottom: 0.5em;
 }
+#block-webform-client-block-255 {
+  /*Contact us*/
+  margin-top: 2em;
+}
 .imagen_disabled {
   background: url('../images/background-slider-home.png?v=1') repeat !important;
   height: 6000px;
@@ -10020,9 +10024,9 @@ footer .menu.nav.navbar-nav {
   margin: 5.75px 0px;
 }
 @media only screen and (max-width: 767px) {
-  .page-node-253 footer .menu.nav.navbar-nav {
+  #block-webform-client-block-255 {
     /*Contact us*/
-    padding-bottom: 4em;
+    margin-top: 4em;
   }
   .block-title.desplegado {
     height: 71px!important;
