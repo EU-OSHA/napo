@@ -20,22 +20,11 @@ jQuery(document).ready(function () {
 			} else {
 				hiddenContent.slideDown();
 				jQuery(".contact-form-widget-container h2").css("bottom","537px");
-				if(jQuery(window).scrollTop() + jQuery(window).height() == jQuery(document).height()) {
-      	 			jQuery(".contact-form-widget-container h2").css("bottom","441px");
-   				}
 				jQuery(".contact-form-widget-container h2").addClass("desplegado");
 				jQuery( "body" ).append( "<div class='imagen_disabled'></div>" );
 			}
 		}
 	);
-
-	jQuery(window).scroll(function() {
-   		if(jQuery(window).scrollTop() + jQuery(window).height() == jQuery(document).height()) {
-      	 	jQuery(".contact-form-widget-container h2").stop().animate({height: 170}, 'fast');
-   		}else{
-   			jQuery(".contact-form-widget-container h2").stop().animate({height: 75}, 'fast');
-   		}
-	});
 });
 
 // Footer carousel responsive design
@@ -74,7 +63,7 @@ jQuery(function() {
 jQuery(document).ready(function() {
 	if (jQuery('body').hasClass('page-meet-napo-napo-and-friends')){
 		jQuery(window).resize(function(){location.reload();});
-	}
+	} 
 });
 
 

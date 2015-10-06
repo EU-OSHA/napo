@@ -7309,8 +7309,8 @@ table .checkbox input[type="checkbox"] {
   margin-top: 3px;
 }
 #block-content-cart-content-cart-summary a {
-  background: url('../images/download-center.png?v=2') no-repeat 107% 0%;
-  padding: 12px 20px 3px 0px;
+  background: url('../images/download-center.png?v=2') no-repeat 104% 0%;
+  padding: 12px 23px 3px 0px;
 }
 #block-content-cart-content-cart-summary .content_cart_summary_count {
   padding-left: 0.5em;
@@ -7564,7 +7564,7 @@ p:last-child {
   top: 30%;
   left: 30px;
   padding: 0px 30px 30px 30px;
-  max-width: 260px;
+  max-width: 320px;
   z-index: 1;
   background: url('../images/background-slider-home.png?v=1');
   color: #FFF;
@@ -7646,13 +7646,12 @@ p:last-child {
   font-weight: bold;
 }
 .video-js.vjs-default-skin.vjs-paused .vjs-big-play-button {
-  background: url('../images/play-video-big.png?v=1') no-repeat 99% 40%;
+  background: url('../images/play-video-big.png?v=1') no-repeat 0% 40%;
   width: 4em;
   height: 4em;
   border: 0;
   box-shadow: none;
   -webkit-box-shadow: none;
-  margin-left: -2.7em;
   margin-top: -2.1em;
 }
 .vjs-default-skin .vjs-big-play-button::before {
@@ -9643,14 +9642,11 @@ input[type=checkbox] {
   width: 27px;
   height: 44px;
 }
-.view-faqs .ui-accordion-content.ui-helper-reset.ui-widget-content.ui-corner-bottom.ui-accordion-content-active {
-  height: auto!important;
-}
 .contact-form-widget-container h2 {
   position: fixed;
   width: 319px;
   background: url('../images/background-blue.png?v=1') repeat-x;
-  height: 54px;
+  height: 64px;
   color: #FFF;
   font-weight: bold;
   text-align: left;
@@ -9660,6 +9656,7 @@ input[type=checkbox] {
   padding-top: 10px;
   cursor: pointer;
   z-index: 99;
+  font-size: 16px;
 }
 .contact-form-widget-container h2::before {
   background: url('../images/contact-us-button.png?v=1') 23% 15px no-repeat;
@@ -10023,6 +10020,10 @@ footer .menu.nav.navbar-nav {
   margin: 5.75px 0px;
 }
 @media only screen and (max-width: 767px) {
+  .page-node-253 footer .menu.nav.navbar-nav {
+    /*Contact us*/
+    padding-bottom: 4em;
+  }
   .block-title.desplegado {
     height: 71px!important;
   }
@@ -10082,7 +10083,6 @@ footer .menu.nav.navbar-nav {
     margin-right: 0px;
   }
   .vjs-default-skin .vjs-big-play-button {
-    left: 19%;
     top: 16%;
   }
   .logo.navbar-btn.pull-left {
@@ -10203,9 +10203,8 @@ footer .menu.nav.navbar-nav {
     height: 223px!important;
   }
   .video-js.vjs-default-skin.vjs-paused .vjs-big-play-button {
-    background: url('../images/play-video-small.png?v=1') no-repeat 55% 40%;
-    margin-top: 40px;
-    width: 100%;
+    background: url('../images/play-video-small.png?v=1') no-repeat 0% 40%;
+    margin-top: 25px;
   }
   .slider .frontpage-video-title {
     background: transparent;
@@ -10246,6 +10245,9 @@ footer .menu.nav.navbar-nav {
     font-size: 15px;
   }
   .slider .frontpage-video-title .field-content p {
+    display: none;
+  }
+  .slider .frontpage-video-title .field-content .homepage-video-summary {
     display: none;
   }
   .nav-bar-separate {
@@ -10384,10 +10386,6 @@ footer .menu.nav.navbar-nav {
   #block-menu-block-1 {
     padding: 0;
     background: transparent;
-  }
-  #block-views-featured-articles-block {
-    padding-bottom: 10px;
-    margin-top: 10px;
   }
   #block-views-consortium-partners-block-1 {
     padding-left: 15px;
@@ -10554,6 +10552,16 @@ footer .menu.nav.navbar-nav {
   }
 }
 @media only screen and (max-width: 992px) {
+  #block-views-featured-articles-block {
+    padding-bottom: 10px;
+    margin-top: 10px;
+  }
+  .contact-form-widget-container h2 {
+    right: 0%;
+  }
+  .webform-client-form {
+    right: 0%;
+  }
   #node-27 iframe {
     float: none;
     padding-right: 1em;
