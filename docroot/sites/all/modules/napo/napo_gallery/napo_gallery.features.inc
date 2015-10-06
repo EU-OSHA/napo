@@ -127,19 +127,19 @@ function napo_gallery_image_default_styles() {
 function napo_gallery_node_info() {
   $items = array(
     'napo_album' => array(
-      'name' => t('Napo album'),
+      'name' => 'Napo album',
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
     'napo_image' => array(
-      'name' => t('Napo image'),
+      'name' => 'Napo image',
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

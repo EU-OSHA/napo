@@ -26,7 +26,7 @@ class napo_film_handler_view_episodes_link extends views_handler_field {
         // Show link only if the film has episodes.
         $episodes = napo_film_get_episodes($node);
         if (!empty($episodes)) {
-          $output = l(t('View episodes'), 'node/' . $node->nid . '/view-episodes',
+          $output = l(t('View scenes'), 'node/' . $node->nid . '/view-episodes',
             array('attributes' => array('class' => array('napo-film-view-episodes-link'))));
         }
       }

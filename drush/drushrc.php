@@ -413,6 +413,11 @@ $options['init-modules'] = array(
   'search_api_views',
   'search_api_attachments',
 
+  'xmlsitemap',
+  'xmlsitemap_i18n',
+  'xmlsitemap_node',
+  'xmlsitemap_menu',
+
   //Youtube field
   'youtube',
   'chosen',
@@ -493,6 +498,8 @@ $options['init-modules'] = array(
   'osha_lingua_tools',
 
   'osh_image_gallery',
+
+  'osha_sitemap',
 
   'napo_breadcrumbs',
   'napo_common',

@@ -1,4 +1,10 @@
 <?php
+/**
+ * @file
+ * Code for the Napo Menu feature.
+ */
+
+include_once 'napo_menu.features.inc';
 
 /**
  * Implements hook_block_info().
@@ -30,11 +36,20 @@ function napo_menu_block_view($delta = '') {
 
 function _napo_menu_contact_us_header_link_content() {
   $menu = menu_navigation_links('menu-footer-menu');
-  $item = $menu['menu-3196'];
-  $output = theme('links', array(
-    'links' => array($item),
-    'attributes' => array('class' => 'menu nav'),
+  $output = '';
+  $item = NULL;
+  if (!empty($menu['menu-3196'])) {
+    $item = $menu['menu-3196'];
+  }
+  elseif (!empty($menu['menu-3196 active-trail'])) {
+    $item = $menu['menu-3196 active-trail'];
+  }
+  if (!empty($item)) {
+    $output = theme('links', array(
+      'links' => array($item),
+      'attributes' => array('class' => 'menu nav'),
     ));
+  }
   return $output;
 }
 

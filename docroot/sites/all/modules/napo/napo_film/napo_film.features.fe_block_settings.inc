@@ -176,7 +176,7 @@ function napo_film_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => 'View episodes',
+    'title' => 'View scenes',
     'visibility' => 0,
   );
 

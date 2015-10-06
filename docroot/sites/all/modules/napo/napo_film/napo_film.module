@@ -507,7 +507,7 @@ function napo_film_preprocess_node(&$vars) {
               $film_node = node_load($film);
               $film_wrapper = entity_metadata_wrapper('node', $film_node);
               $film_title = l($film_wrapper->title->value(), 'node/' . $film_node->nid);
-              $label = t('View other episodes from film !film', array('!film' => $film_title));
+              $label = t('View other scenes from film !film', array('!film' => $film_title));
               $vars['episode_list_episode'] = '<div class="episode-list-label">' . $label . '</div>';
               $vars['episode_list_episode'] .= views_embed_view('episode_list', 'block_2', $film);
             }
