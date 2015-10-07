@@ -61,6 +61,10 @@ a:hover#text_resize_decrease {
     margin: 0;
 }
 
+.view-download-center .view-header {
+    clear: both;
+}
+
 /* Video Gallery Detail */
 
 .napo-film-video-download-form {
