@@ -55,7 +55,14 @@ function napo_frontend_menu_link(array $variables) {
   // Add image to menu item
   if (isset($variables['element']['#href']) && isset($element['#localized_options']['content']['image'])) {
     $path = file_create_url($element['#localized_options']['content']['image']);
-    $link = l('<img src="' . $path . '" />', $element['#href'],
+    $image_vars = array(
+      'path' => $path,
+      'attributes' => array(
+        'alt' => $element['#title'],
+      ),
+    );
+    $image = theme_image($image_vars);
+    $link = l($image, $element['#href'],
       array('html' => TRUE, 'attributes' => $element['#localized_options']['attributes'])
     );
     return '<li' . drupal_attributes($element['#attributes']) . '>' . $link . "</li>\n";

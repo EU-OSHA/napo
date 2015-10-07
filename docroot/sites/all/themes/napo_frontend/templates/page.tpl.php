@@ -104,7 +104,7 @@
     <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['menu'])): ?>
       <div class="col-md-8 pull-right">
         <div class="navbar-collapse collapse col-md-8 pull-right">
-          <nav role="navigation">
+          <nav>
             <?php if (!empty($primary_nav)): ?>
               <?php print render($primary_nav); ?>
             <?php endif; ?>
@@ -123,7 +123,7 @@
 </header>
 <div class="nav-bar-separate"></div>
 <?php if (!empty($page['slider'])): ?>
-  <div class="slider" role="slider">
+  <div class="slider">
     <?php print render($page['slider']); ?>
   </div>
 <?php endif; ?>

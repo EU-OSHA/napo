@@ -14,7 +14,7 @@ if (!empty($poster)) {
 
 if (!empty($items)): ?>
 <video id="<?php print $player_id; ?>-video" data-setup="{}" class="video-js vjs-default-skin"
-       width="<?php print($width) ?>" height="<?php print($height) ?>"
+       width="auto" height="<?php print($height) ?>"
        controls="controls" preload="metadata"
        <?php echo $attrs; ?>
        >
