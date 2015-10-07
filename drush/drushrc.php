@@ -344,6 +344,7 @@ $options['init-modules'] = array(
   'exclude_node_title',
   'metatag',
   'metatag_opengraph',
+  'hreflang',
 
 
   'special_menu_items',
