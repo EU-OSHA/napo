@@ -80,7 +80,14 @@ function napo_frontend_menu_link__menu_block($variables) {
     isset($element['#localized_options']['content']['image'])
   ) {
     $path = file_create_url($element['#localized_options']['content']['image']);
-    $link = l('<img src="' . $path . '" />', $element['#href'], array('html' => TRUE));
+    $image_vars = array(
+      'path' => $path,
+      'attributes' => array(
+        'alt' => $element['#title'],
+      ),
+    );
+    $image = theme_image($image_vars);
+    $link = l($image, $element['#href'], array('html' => TRUE));
     return sprintf("\n<li %s>%s</li>", $attr, $link);
   }
 
@@ -96,7 +103,13 @@ function napo_frontend_menu_link__menu_block($variables) {
   $output_image = "";
   if (!empty($element['#localized_options']['content']['image'])
     && $image_url = file_create_url($element['#localized_options']['content']['image'])) {
-    $image = '<img src="' . $image_url . '"/>';
+    $image_vars = array(
+      'path' => $image_url,
+      'attributes' => array(
+        'alt' => $element['#title'],
+      ),
+    );
+    $image = theme_image($image_vars);
     $output_image = l($image, $element['#href'], array('html' => TRUE));
   }
 

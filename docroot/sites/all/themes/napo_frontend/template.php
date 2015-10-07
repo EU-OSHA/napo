@@ -15,8 +15,6 @@ function napo_frontend_preprocess_node(&$vars) {
  */
 function napo_frontend_preprocess_block(&$vars) {
   // Use a bare template for the page's main content.
-  //dpm($variables['block_html_id']);
-  //dpm($vars['block']->module . '-' . $vars['block']->delta);
   if ($vars['block_html_id'] == 'block-views-consortium-partners-block') {
     $vars['title_attributes_array']['class'][] = 'hidden-xs';
   } else if ($vars['block_html_id'] == 'block-views-consortium-partners-block-1') {
@@ -116,9 +114,9 @@ function napo_frontend_text_resize_block() {
   $content['#markup'] = t('Set font size ');
 
   if (variable_get('text_resize_reset_button', FALSE) == TRUE) {
-    $content['#markup'] .= '<sup>&#x2C4</sup><a href="javascript:;" class="changer" id="text_resize_increase">A</a> <a href="javascript:;" class="changer" id="text_resize_reset">A</a> <sup>&#x2C5</sup><a href="javascript:;" class="changer" id="text_resize_decrease">A</a> <div id="text_resize_clear"></div>';
+    $content['#markup'] .= '<sup>&#x2C4;</sup><a href="javascript:;" class="changer" id="text_resize_increase">A</a> <a href="javascript:;" class="changer" id="text_resize_reset">A</a> <sup>&#x2C5;</sup><a href="javascript:;" class="changer" id="text_resize_decrease">A</a> <div id="text_resize_clear"></div>';
   } else {
-    $content['#markup'] .= '<sup>&#x2C4</sup><a href="javascript:;" class="changer" id="text_resize_increase">A</a> <sup>&#x2C5</sup><a href="javascript:;" class="changer" id="text_resize_decrease">A</a> <div id="text_resize_clear"></div>';
+    $content['#markup'] .= '<sup>&#x2C4;</sup><a href="javascript:;" class="changer" id="text_resize_increase">A</a> <sup>&#x2C5;</sup><a href="javascript:;" class="changer" id="text_resize_decrease">A</a> <div id="text_resize_clear"></div>';
   }
 
   return render($content);
