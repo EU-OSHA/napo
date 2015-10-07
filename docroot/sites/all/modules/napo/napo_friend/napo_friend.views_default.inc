@@ -242,7 +242,7 @@ function napo_friend_views_default_views() {
   $handler->display->display_options['sorts']['weight']['field'] = 'weight';
   $handler->display->display_options['sorts']['weight']['draggableviews_setting_view'] = 'napo_and_friends:page_1';
   $handler->display->display_options['sorts']['weight']['draggableviews_setting_new_items_bottom_list'] = 1;
-  $handler->display->display_options['path'] = 'meet-napo/napo-and-friends';
+  $handler->display->display_options['path'] = 'about-napo/napo-and-friends';
   $handler->display->display_options['menu']['title'] = 'View';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
@@ -254,7 +254,7 @@ function napo_friend_views_default_views() {
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['access']['perm'] = 'edit any napo_friend content';
-  $handler->display->display_options['path'] = 'meet-napo/napo-and-friends/view';
+  $handler->display->display_options['path'] = 'about-napo/napo-and-friends/view';
   $handler->display->display_options['menu']['type'] = 'default tab';
   $handler->display->display_options['menu']['title'] = 'View';
   $handler->display->display_options['menu']['weight'] = '0';
@@ -336,7 +336,7 @@ function napo_friend_views_default_views() {
   $handler->display->display_options['sorts']['weight']['field'] = 'weight';
   $handler->display->display_options['sorts']['weight']['draggableviews_setting_view'] = 'napo_and_friends:page_1';
   $handler->display->display_options['sorts']['weight']['draggableviews_setting_new_items_bottom_list'] = 1;
-  $handler->display->display_options['path'] = 'meet-napo/napo-and-friends/reorder';
+  $handler->display->display_options['path'] = 'about-napo/napo-and-friends/reorder';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'Reorder Napo and friends';
   $handler->display->display_options['menu']['weight'] = '0';
