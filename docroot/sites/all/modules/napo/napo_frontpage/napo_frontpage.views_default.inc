@@ -34,7 +34,7 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['style_options']['row_class'] = 'col-md-4';
   $handler->display->display_options['row_plugin'] = 'fields';
   $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
-  /* Relationship: Entityqueue: Node Queue */
+  /* Relationship: Entityqueue: Content Queue */
   $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'node';
   $handler->display->display_options['relationships']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
@@ -100,7 +100,7 @@ function napo_frontpage_views_default_views() {
     ),
     'trim_preserve_tags' => '',
   );
-  /* Sort criterion: Entityqueue: Node Queue Position */
+  /* Sort criterion: Entityqueue: Content Queue Position */
   $handler->display->display_options['sorts']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['sorts']['entityqueue_relationship']['table'] = 'node';
   $handler->display->display_options['sorts']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
@@ -130,7 +130,7 @@ function napo_frontpage_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('Node Queue'),
+    t('Content Queue'),
     t('[field_icon] [title_field]'),
     t('Block'),
   );
@@ -171,7 +171,7 @@ function napo_frontpage_views_default_views() {
     'field_image' => 'field_image',
     'title_field' => 'title_field',
   );
-  /* Relationship: Entityqueue: Node Queue */
+  /* Relationship: Entityqueue: Content Queue */
   $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'node';
   $handler->display->display_options['relationships']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
@@ -211,7 +211,7 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
-  /* Sort criterion: Entityqueue: Node Queue Position */
+  /* Sort criterion: Entityqueue: Content Queue Position */
   $handler->display->display_options['sorts']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['sorts']['entityqueue_relationship']['table'] = 'node';
   $handler->display->display_options['sorts']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
@@ -255,7 +255,7 @@ function napo_frontpage_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('Node Queue'),
+    t('Content Queue'),
     t('Block'),
   );
   $export['frontpage_carousel_featured'] = $view;
@@ -285,7 +285,7 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Entityqueue: Node Queue */
+  /* Relationship: Entityqueue: Content Queue */
   $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'node';
   $handler->display->display_options['relationships']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
@@ -347,7 +347,7 @@ function napo_frontpage_views_default_views() {
     'posterimage_style' => '',
   );
   $handler->display->display_options['fields']['field_video']['delta_offset'] = '0';
-  /* Sort criterion: Entityqueue: Node Queue Position */
+  /* Sort criterion: Entityqueue: Content Queue Position */
   $handler->display->display_options['sorts']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['sorts']['entityqueue_relationship']['table'] = 'node';
   $handler->display->display_options['sorts']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
@@ -432,7 +432,9 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '[title_field]
 <div class="homepage-video-summary">[body_1]</div>
 <div class="homepage-video-body">[body]</div>';
+  $handler->display->display_options['fields']['nothing']['element_type'] = 'div';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['nothing']['element_wrapper_class'] = 'frontpage-video-title';
   /* Field: Content: Video */
   $handler->display->display_options['fields']['field_video']['id'] = 'field_video';
@@ -458,7 +460,7 @@ function napo_frontpage_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('Node Queue'),
+    t('Content Queue'),
     t('[title_field]
 [body]'),
     t('Block'),

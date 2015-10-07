@@ -124,6 +124,9 @@ function napo_frontend_text_resize_block() {
 
 function napo_frontend_preprocess_image_style(&$variables) {
   $variables['attributes']['class'][] = 'img-responsive';
+  if (empty($variables['alt'])) {
+    $variables['alt'] = drupal_basename($variables['path']);
+  }
 }
 
 function napo_frontend_form_alter(&$form, &$form_state, $form_id) {
