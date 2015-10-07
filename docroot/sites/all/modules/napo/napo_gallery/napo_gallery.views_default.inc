@@ -179,7 +179,7 @@ function napo_gallery_views_default_views() {
     ),
     'trim_preserve_tags' => '',
   );
-  $handler->display->display_options['path'] = 'meet-napo/napos-gallery';
+  $handler->display->display_options['path'] = 'about-napo/napos-gallery';
 
   /* Display: Attachment - Intro text */
   $handler = $view->new_display('attachment', 'Attachment - Intro text', 'attachment_1');
