@@ -166,7 +166,11 @@ function napo_frontend_pager($variables) {
   $variables['tags'][1] = '‹';
   $variables['tags'][3] = '›';
   $variables['tags'][4] = '»';
-  return theme_pager($variables);
+
+  $pager_html = theme_pager($variables);
+  $pager_html = str_replace(array('<h2', '</h2>'), array('<h3', '</h3>'), $pager_html);
+
+  return $pager_html;
 }
 
 /**
