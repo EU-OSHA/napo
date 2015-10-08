@@ -84,7 +84,7 @@
     <div class="navbar-header col-md-4">
       <?php if ($logo): ?>
       <a class="logo navbar-btn col-xs-10 col-md-12 pull-left" href="<?php print $front_page; ?>" title="<?php print t('Napo'); ?>">
-        <img src="<?php print $logo; ?>" alt="<?php print t('Napo'); ?>" />
+        <?php print $logo; ?>
       </a>
       <?php endif; ?>
 

@@ -45,6 +45,11 @@ function napo_common_image_default_styles() {
       ),
     ),
   );
+  $styles['napo_original'] = array(
+    'name' => 'napo_original',
+    'label' => 'Original image style',
+    'effects' => array(),
+  );
 
   return $styles;
 }

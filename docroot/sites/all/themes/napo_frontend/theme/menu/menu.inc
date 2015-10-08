@@ -54,14 +54,14 @@ function napo_frontend_menu_link(array $variables) {
 
   // Add image to menu item
   if (isset($variables['element']['#href']) && isset($element['#localized_options']['content']['image'])) {
-    $path = file_create_url($element['#localized_options']['content']['image']);
     $image_vars = array(
-      'path' => $path,
+      'style_name' => 'napo_original',
+      'path' => $element['#localized_options']['content']['image'],
       'attributes' => array(
         'alt' => $element['#title'],
       ),
     );
-    $image = theme_image($image_vars);
+    $image = theme('image_style', $image_vars);
     $link = l($image, $element['#href'],
       array('html' => TRUE, 'attributes' => $element['#localized_options']['attributes'])
     );
@@ -86,14 +86,14 @@ function napo_frontend_menu_link__menu_block($variables) {
     $variables['element']['#href'] == '<front>' &&
     isset($element['#localized_options']['content']['image'])
   ) {
-    $path = file_create_url($element['#localized_options']['content']['image']);
     $image_vars = array(
-      'path' => $path,
+      'path' => $element['#localized_options']['content']['image'],
+      'style_name' => 'napo_original',
       'attributes' => array(
         'alt' => $element['#title'],
       ),
     );
-    $image = theme_image($image_vars);
+    $image = theme('image_style', $image_vars);
     $link = l($image, $element['#href'], array('html' => TRUE));
     return sprintf("\n<li %s>%s</li>", $attr, $link);
   }
@@ -108,15 +108,15 @@ function napo_frontend_menu_link__menu_block($variables) {
   $output_link = l($element['#title'], $element['#href'], $element['#localized_options']);
 
   $output_image = "";
-  if (!empty($element['#localized_options']['content']['image'])
-    && $image_url = file_create_url($element['#localized_options']['content']['image'])) {
+  if (!empty($element['#localized_options']['content']['image'])) {
     $image_vars = array(
-      'path' => $image_url,
+      'path' => $element['#localized_options']['content']['image'],
+      'style_name' => 'napo_original',
       'attributes' => array(
         'alt' => $element['#title'],
       ),
     );
-    $image = theme_image($image_vars);
+    $image = theme('image_style', $image_vars);
     $output_image = l($image, $element['#href'], array('html' => TRUE));
   }
 
@@ -125,4 +125,3 @@ function napo_frontend_menu_link__menu_block($variables) {
     <div class="introduction-image">' . $output_image . '</div>
     </li>';
 }
-

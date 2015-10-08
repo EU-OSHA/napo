@@ -122,8 +122,36 @@ function napo_frontend_text_resize_block() {
   return render($content);
 }
 
+/**
+ * Implements hook_preprocess_page().
+ */
+function napo_frontend_preprocess_page(&$vars) {
+  // Render the logo with theme image to provide alt, width and height attr.
+  $logo_path = drupal_get_path('theme', 'napo_frontend') . '/logo.png';
+  $image_info = image_get_info($logo_path);
+  $image_vars = array(
+    'path' => $logo_path,
+    'alt' => t('Napo'),
+    'height' => $image_info['height'],
+    'width' => $image_info['width'],
+  );
+  $vars['logo'] = theme('image', $image_vars);
+}
+
+/**
+ * Implements hook_preporcess_image_style().
+ */
 function napo_frontend_preprocess_image_style(&$variables) {
   $variables['attributes']['class'][] = 'img-responsive';
+  // Add default width and height attr.
+  if (empty($variables['width']) && empty($variables['height'])) {
+    $image_info = image_get_info($variables['path']);
+    if (!empty($image_info)) {
+      $variables['width'] = $image_info['width'];
+      $variables['height'] = $image_info['height'];
+    }
+  }
+  // Add an alt attribute.
   if (empty($variables['alt'])) {
     $variables['alt'] = drupal_basename($variables['path']);
   }
