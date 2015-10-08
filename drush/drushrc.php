@@ -298,8 +298,8 @@ $options['init-modules'] = array(
   'date_views',
 //  'better_exposed_filters',
 
-  'purl',
-  'views_modes',
+//  'purl',
+//  'views_modes',
 
   'mailsystem',
   'htmlmail',
