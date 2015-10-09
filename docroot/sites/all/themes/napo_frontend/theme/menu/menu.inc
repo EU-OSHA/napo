@@ -57,7 +57,7 @@ function napo_frontend_menu_link(array $variables) {
     $image_vars = array(
       'style_name' => 'napo_original',
       'path' => $element['#localized_options']['content']['image'],
-      'alt' => $element['#href'],
+      'alt' => $element['#title'],
     );
     $image = theme('image_style', $image_vars);
     $link = l($image, $element['#href'],
@@ -87,7 +87,7 @@ function napo_frontend_menu_link__menu_block($variables) {
     $image_vars = array(
       'path' => $element['#localized_options']['content']['image'],
       'style_name' => 'napo_original',
-      'alt' => $element['#href'],
+      'alt' => $element['#title'],
     );
     $image = theme('image_style', $image_vars);
     $link = l($image, $element['#href'], array('html' => TRUE));
@@ -108,7 +108,7 @@ function napo_frontend_menu_link__menu_block($variables) {
     $image_vars = array(
       'path' => $element['#localized_options']['content']['image'],
       'style_name' => 'napo_original',
-      'alt' => $element['#href'],
+      'alt' => $element['#title'],
     );
     $image = theme('image_style', $image_vars);
     $output_image = l($image, $element['#href'], array('html' => TRUE));
