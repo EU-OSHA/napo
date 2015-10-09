@@ -53,8 +53,13 @@ function napo_common_field_attach_view_alter(&$output, $context) {
     $element = &$output[$field_name];
     if ($element['#field_type'] == 'image' && $element['#formatter'] == 'image') {
       foreach (element_children($element) as $delta => $item) {
-        if (!isset($item['#item']['alt']) && empty($item['#item']['alt'])) {
-          $element[$delta]['#item']['alt'] = $context['entity']->title;
+        if (empty($item['#item']['alt'])) {
+          if (empty($element[$delta]['#item']['field_file_image_alt_text'])) {
+            $element[$delta]['#item']['alt'] = $context['entity']->title;
+          }
+          else {
+            $element[$delta]['#item']['alt'] = $element[$delta]['#item']['field_file_image_alt_text'][LANGUAGE_NONE][0]['value'];
+          }
         }
       }
     }
