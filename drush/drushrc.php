@@ -343,7 +343,8 @@ $options['init-modules'] = array(
   'strongarm',
   'exclude_node_title',
   'metatag',
-  'metatag_opengraph',
+  'metatag_panels',
+  'metatag_views',
   'hreflang',
 
 
