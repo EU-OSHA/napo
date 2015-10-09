@@ -1,0 +1,13 @@
+diff --git a/docroot/sites/all/modules/contrib/path_breadcrumbs/path_breadcrumbs.module b/docroot/sites/all/modules/contrib/path_breadcrumbs/path_breadcrumbs.module
+index eb3a088..e129944 100644
+--- a/docroot/sites/all/modules/contrib/path_breadcrumbs/path_breadcrumbs.module
++++ b/docroot/sites/all/modules/contrib/path_breadcrumbs/path_breadcrumbs.module
+@@ -325,7 +325,7 @@ function path_breadcrumbs_breadcrumb($variables) {
+ 
+     // Provide a navigational heading to give context for breadcrumb links to
+     // screen-reader users. Make the heading invisible with .element-invisible.
+-    $output = '<h2 class="element-invisible">' . t('You are here') . '</h2>';
++    $output = '<h3 class="element-invisible">' . t('You are here') . '</h3>';
+ 
+     // Hide breadcrumb navigation if it contains only one element.
+     $hide_single_breadcrumb = variable_get('path_breadcrumbs_hide_single_breadcrumb', 0);
