@@ -12,7 +12,6 @@ function napo_gallery_views_default_views() {
 
   $view = new view();
   $view->name = 'napos_gallery';
-  $view->description = 'Napo is becoming quite an international celebrity and he often gets invited to exhibitions, fairs and conferences related to';
   $view->tag = 'default';
   $view->base_table = 'node';
   $view->human_name = 'Napo\'s Gallery';
