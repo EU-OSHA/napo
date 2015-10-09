@@ -875,7 +875,7 @@ function napo_film_preprocess_html(&$vars) {
       '#tag' => 'meta',
       '#attributes' => array(
         'name' => 'description',
-        'content' => text_summary(trim(strip_tags($wrapper->language($lang)->body->value()['value'])), NULL, 155),
+        'content' => text_summary(trim(strip_tags($wrapper->language($lang)->body->value()['value'])), NULL, 150).'...',
       )
     );
     drupal_add_html_head($metatag_description, 'description');
