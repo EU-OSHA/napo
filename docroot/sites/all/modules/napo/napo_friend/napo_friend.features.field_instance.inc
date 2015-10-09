@@ -165,6 +165,7 @@ function napo_friend_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'napo_common',
         'settings' => array(
+          'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
@@ -195,6 +196,7 @@ function napo_friend_field_default_field_instances() {
         'label' => 'hidden',
         'module' => 'napo_common',
         'settings' => array(
+          'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,

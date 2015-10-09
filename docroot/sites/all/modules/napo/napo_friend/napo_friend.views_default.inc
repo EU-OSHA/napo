@@ -12,7 +12,7 @@ function napo_friend_views_default_views() {
 
   $view = new view();
   $view->name = 'napo_and_friends';
-  $view->description = '';
+  $view->description = 'Napo and friends';
   $view->tag = 'default';
   $view->base_table = 'node';
   $view->human_name = 'Napo and friends';
