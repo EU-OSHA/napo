@@ -72,3 +72,39 @@ function napo_film_update_7005() {
     ->condition('lid', 9929)
     ->execute();
 }
+
+/**
+ * Update alt images for napo films.
+ */
+function napo_film_update_7006() {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'napo_video');
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $nids = array_keys($result['node']);
+    $videos = entity_load('node', $nids);
+    $title_display = array(
+      'label' => 'hidden',
+      'type' => 'title_linked',
+      'settings' => array(
+        'napo_film_title_include_type' => TRUE,
+        'napo_film_title_include_episode_count' => TRUE,
+      ),
+    );
+    foreach ($videos as $node) {
+      $wrapper = entity_metadata_wrapper('node', $node);
+      $file = $wrapper->field_image->value();
+      if (!empty($file)) {
+        $alt = drupal_render(field_view_field('node', $node, 'title_field', $title_display));
+        $alt = str_replace('</span>', '</span> ', $alt);
+        $alt = strip_tags($alt);
+        $file = file_load($file['fid']);
+        $file->field_file_image_title_text[LANGUAGE_NONE][0]['value'] = "Caption " . $alt;
+        $file->field_file_image_alt_text[LANGUAGE_NONE][0]['value'] = "Caption " . $alt;
+        file_save($file);
+      }
+    }
+  }
+}

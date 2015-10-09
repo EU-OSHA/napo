@@ -46,6 +46,22 @@ function napo_common_download_video_access($node) {
 }
 
 /**
+ * Implements hook_field_attach_view_alter().
+ */
+function napo_common_field_attach_view_alter(&$output, $context) {
+  foreach (element_children($output) as $field_name) {
+    $element = &$output[$field_name];
+    if ($element['#field_type'] == 'image' && $element['#formatter'] == 'image') {
+      foreach (element_children($element) as $delta => $item) {
+        if (!isset($item['#item']['alt']) && empty($item['#item']['alt'])) {
+          $element[$delta]['#item']['alt'] = $context['entity']->title;
+        }
+      }
+    }
+  }
+}
+
+/**
  * Alter the node form to add other redirects (i.e node/%node/download).
  */
 function napo_common_form_node_form_alter(&$form, &$form_state, $form_id) {
