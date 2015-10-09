@@ -857,8 +857,6 @@ function napo_film_preprocess_html(&$vars) {
   $view = views_get_page_view();
   if (!empty($view) && in_array($view->name, array('napo_films', 'napo_films_node'))) {
     $node = node_load(23);
-    $lang = $vars['language']->language;
-
     $wrapper = entity_metadata_wrapper('node', $node);
     $vars['head_title_array']['title'] = $wrapper->label();
     $vars['head_title'] = $wrapper->label() . ' ' . $vars['head_title'];
@@ -868,7 +866,7 @@ function napo_film_preprocess_html(&$vars) {
       '#tag' => 'meta',
       '#attributes' => array(
         'name' => 'description',
-        'content' => text_summary(trim(strip_tags($node->body[$lang][0]['value'])), NULL, 155),
+        'content' => text_summary(trim(strip_tags($wrapper->body->value())), NULL, 155),
       )
     );
 
