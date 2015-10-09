@@ -855,14 +855,21 @@ function napo_film_preprocess_html(&$vars) {
   // Use node title as the view page title.
   // Using metatag module, the drupal_set_title is not working.
   $view = views_get_page_view();
-  if (!empty($view) && in_array($view->name, array('napo_films', 'napo_films_node'))) {
-    $node = node_load(23);
+  $node = NULL;
+  if (!empty($view)) {
+    if (in_array($view->name, array('napo_films', 'napo_films_node'))) {
+      $node = node_load(23);
+      $wrapper = entity_metadata_wrapper('node', $node);
+      $vars['head_title_array']['title'] = $wrapper->label();
+      $vars['head_title'] = $wrapper->label() . ' ' . $vars['head_title'];
+    }
+    if (!empty($view) && $view->name == 'napos_gallery') {
+      $node = node_load(28);
+    }
+  }
+  if ($node) {
     $lang = $vars['language']->language;
-
     $wrapper = entity_metadata_wrapper('node', $node);
-    $vars['head_title_array']['title'] = $wrapper->label();
-    $vars['head_title'] = $wrapper->label() . ' ' . $vars['head_title'];
-
     $metatag_description = array(
       '#type' => 'html_tag',
       '#tag' => 'meta',
@@ -871,7 +878,6 @@ function napo_film_preprocess_html(&$vars) {
         'content' => text_summary(trim(strip_tags($wrapper->language($lang)->body->value()['value'])), NULL, 155),
       )
     );
-
     drupal_add_html_head($metatag_description, 'description');
   }
 }
