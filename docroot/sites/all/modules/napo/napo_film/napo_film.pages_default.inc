@@ -85,6 +85,20 @@ function napo_film_default_page_manager_pages() {
       ),
       'logic' => 'and',
     ),
+    'metatag_panels' => array(
+      'enabled' => 1,
+      'metatags' => array(
+        'description' => array(
+          'value' => '[node:body]',
+        ),
+        'abstract' => array(
+          'value' => '[node:summary]',
+        ),
+        'keywords' => array(
+          'value' => '[node:field_tags] [node:field_combined_tags]',
+        ),
+      ),
+    ),
   );
   $display = new panels_display();
   $display->layout = 'flexible';
