@@ -14,7 +14,7 @@ class OSHATMGMTFileTranslatorPluginController extends TMGMTFileTranslatorPluginC
    * {@inheritdoc}
    */
   public function requestTranslation(TMGMTJob $job) {
-    $name = 'translation_job_napo_id_' . $job->tjid . '_request';
+    $name = 'translation_job_id_' . $job->tjid . '_request';
     $export = tmgmt_file_format_controller($job->getSetting('export_format'));
     $path = $job->getSetting('scheme') . '://tmgmt_file/' . $name . '.' .  $job->getSetting('export_format');
     $dirname = dirname($path);

@@ -912,6 +912,14 @@ class OshaWorkflowNotifications {
   }
 
   /**
+   * CW-1766 Notify Content Validator that his action is no longer needed.
+   */
+  public static function notifyTranslationValidatorsRemoved($validator, $tmgmt_job_item) {
+    OshaWorkflowNotifications::sendEmail($validator, array('tmgmt_job_item' => $tmgmt_job_item), 'osha_tmgmt', 'osha_tmgmt_content_validator_removed');
+  }
+
+
+  /**
    * Notify Project Manager that translation is ready to publish..
    *
    * @param TMGMTJobItem|OshaTMGMTJobItem $tmgmt_job_item
