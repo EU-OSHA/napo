@@ -953,25 +953,19 @@ function osha_expire_page($path) {
  *   of the entity name and bundle name, e.g. "node:story".
  */
 function osha_metatag_metatags_view_alter(&$output, $instance) {
-  if ($instance == 'global:frontpage') {
-    $queue = entityqueue_subqueue_load('frontpage_video');
-    $wrapper = entity_metadata_wrapper('entityqueue_subqueue', $queue);
-    $items = $wrapper->eq_node->value();
-    if (!empty($items)) {
-      $lang = $GLOBALS['language']->language;
-      $wrapper_node = entity_metadata_wrapper('node', $items[0]);
-      $metatag_description = array(
-        '#type' => 'html_tag',
-        '#tag' => 'meta',
-        '#attributes' => array(
-          'name' => 'description',
-          'content' => text_summary(trim(strip_tags($wrapper_node->language($lang)->body->value()['value'])), NULL, 150).'...',
-        )
-      );
-      drupal_add_html_head($metatag_description, 'description');
+ if (isset($output['description']['#attached']['drupal_add_html_head'][0][0]['#value'])) {
+    if ($instance == 'global:frontpage') {
+      $queue = entityqueue_subqueue_load('frontpage_video');
+      $wrapper = entity_metadata_wrapper('entityqueue_subqueue', $queue);
+      $items = $wrapper->eq_node->value();
+      if (!empty($items)) {
+        $lang = $GLOBALS['language']->language;
+        $wrapper_node = entity_metadata_wrapper('node', $items[0]);
+        $output['description']['#attached']['drupal_add_html_head'][0][0]['#value'] = text_summary(trim(strip_tags($wrapper_node->language($lang)->body->value()['value'])), NULL, 150).'...';
+      }
+    } else {
+      $output['description']['#attached']['drupal_add_html_head'][0][0]['#value'] = text_summary($output['description']['#attached']['drupal_add_html_head'][0][0]['#value'], NULL, 150).'...';
     }
-  } else if (isset($output['description']['#attached']['drupal_add_html_head'][0][0]['#value'])) {
-    $output['description']['#attached']['drupal_add_html_head'][0][0]['#value'] = text_summary($output['description']['#attached']['drupal_add_html_head'][0][0]['#value'], NULL, 150).'...';
   }
   if (isset($output['abstract']['#attached']['drupal_add_html_head'][0][0]['#value'])) {
     $output['abstract']['#attached']['drupal_add_html_head'][0][0]['#value'] = text_summary($output['abstract']['#attached']['drupal_add_html_head'][0][0]['#value'], NULL, 150).'...';
