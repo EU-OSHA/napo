@@ -58,8 +58,7 @@ function osha_tmgmt_user_can_edit_job_item($job_item) {
       break;
 
     case OSHA_TMGMT_JOB_ITEM_STATE_TranslationValidated:
-      if (user_access('set job item to ready to publish state')
-      ||  osha_tmgmt_is_internal_translator($job_item)) {
+      if (user_access('set job item to ready to publish state')) {
         return TRUE;
       }
       break;
@@ -72,8 +71,7 @@ function osha_tmgmt_user_can_edit_job_item($job_item) {
       break;
 
     case OSHA_TMGMT_JOB_ITEM_STATE_TranslatedReadyToPublish:
-      if (user_access('accept job item translation')
-      || osha_tmgmt_is_internal_translator($job_item)) {
+      if (user_access('accept job item translation')) {
         return TRUE;
       }
       break;
@@ -101,18 +99,26 @@ function osha_tmgmt_layout_validation_node_preview($nid, $job_item) {
   $new_job_data = OshaTMGMTRetranslate::apply_partial_translation(
     $node, $job_item->getData(), $source_language, $target_language);
   tmgmt_field_populate_entity($node->type, $node, $target_language, $new_job_data);
-  if (isset($node->body[$target_language][0])) {
-    $body = $node->body[$target_language][0];
-    if (empty($body['value'])) {
-      drupal_set_message(t('There is no translated text for Body'), 'warning');
-      $body['value'] = '';
+  foreach (element_children($new_job_data) as $field_name) {
+    // re-sanitize all fields otherwise the old translated safe_value is displayed on preview
+    if (isset($node->{$field_name}[$target_language][0])) {
+      $field = $node->{$field_name}[$target_language][0];
+      if (empty($field['value'])) {
+        drupal_set_message('There is no translated text for '.$field_name, 'warning');
+        $field['value'] = '';
+      }
+      if (empty($field['format'])) {
+        // empty string causes check_markup not to work properly
+        $field['format'] = NULL;
+      }
+      // Re-sanitize text after tmgmt_field_populate_entity
+      // ['safe_value'] is rendered instead if different than ['value']
+      // This can happen when node had a translation (re-translation)
+      $node->{$field_name}[$target_language][0]['safe_value'] =
+        check_markup($field['value'], $field['format'], $target_language);
     }
-    // Re-sanitize text after tmgmt_field_populate_entity
-    // ['safe_value'] is rendered instead if different than ['value']
-    // This can happen when node had a translation (re-translation)
-    $node->body[$target_language][0]['safe_value'] =
-      check_markup($body['value'], $body['format'], $target_language);
   }
+
   if (empty($node->title_field[$target_language][0]['value'])) {
     drupal_set_message(t('There is no translated text for Title'), 'warning');
     $node->title_field[$target_language][0]['value'] = '';
@@ -241,6 +247,17 @@ function osha_tmgmt_translation_validators_submit($form, &$form_state) {
         $entity_group = entity_collection_load($group_id);
         $users = osha_tmgmt_get_users_from_collection($group_id);
         $users = osha_workflow_users_group_by_lang_skills($users, $job_item->source_language);
+        // CW-1766: Notify the current validator if his action is no longer required
+        if ($job_item->state == OSHA_TMGMT_JOB_ITEM_STATE_TranslationValidationRequired) {
+          $removed_validators = osha_tmgmt_load_validators_by_job_item($job_item);
+          $old_current_validator = osha_tmgmt_load_validators_next($removed_validators);
+          $new_current_validator = $users[$job_item->target_language][0];
+          if (!empty($old_current_validator) && $old_current_validator->uid != $new_current_validator->uid) {
+            OshaWorkflowNotifications::notifyTranslationValidatorsRemoved($old_current_validator, $job_item);
+            OshaWorkflowNotifications::sendEmail($new_current_validator, array('tmgmt_job_item' => $job_item), 'osha_tmgmt');
+          }
+        }
+
         // Cancel existing validators.
         osha_tmgmt_remove_current_translation_validators($job_item);
         if (!empty($users[$job_item->target_language])) {
@@ -621,10 +638,21 @@ function osha_tmgmt_job_item_validators_form_validate($form, &$form_state) {
  */
 function osha_tmgmt_job_item_validators_form_submit($form, &$form_state) {
   if (!empty($form_state['values']['rows'])) {
-    osha_tmgmt_remove_current_translation_validators($form_state['jobItem']);
     $validators = array();
+    $removed_validators = osha_tmgmt_load_validators_by_job_item($form_state['jobItem']);
+    $old_current_validator = osha_tmgmt_load_validators_next($removed_validators);
     foreach ($form_state['values']['rows'] as $row) {
       $validators[$row['weight']] = $row;
+      unset($removed_validators[$row['uid']]);
+    }
+    osha_tmgmt_remove_current_translation_validators($form_state['jobItem']);
+    if ($form_state['jobItem']->state == OSHA_TMGMT_JOB_ITEM_STATE_TranslationValidationRequired) {
+      foreach ($removed_validators as $removed_validator) {
+        // CW-1766: Notify the current content validator that is no longer required to do anything
+        if ($removed_validator->next) {
+            OshaWorkflowNotifications::notifyTranslationValidatorsRemoved($removed_validator, $form_state['jobItem']);
+        }
+      }
     }
     ksort($validators);
     $idx = 0;
@@ -633,6 +661,11 @@ function osha_tmgmt_job_item_validators_form_submit($form, &$form_state) {
       $next = 0;
       if ($idx == 0) {
         $next = 1;
+        // if current state is translation validation required, notify the new "current" (if different)
+        if ($form_state['jobItem']->state == OSHA_TMGMT_JOB_ITEM_STATE_TranslationValidationRequired && $old_current_validator->uid != $validator['uid']) {
+          $current_user = user_load($validator['uid']);
+          OshaWorkflowNotifications::sendEmail($current_user, array('tmgmt_job_item' => $form_state['jobItem']), 'osha_tmgmt');
+        }
       }
       $idx++;
       $validators_name[] = $form_state['rows'][$validator['uid']]->name;
