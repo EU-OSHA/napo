@@ -60,6 +60,10 @@ function napo_frontend_back_button(&$vars){
     $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
     if(preg_match("/$regexp/siU", $previous_crumb, $matches)) {
       $url = strpos($matches[2], $base_url)!== FALSE? $matches[2] : $base_url.$matches[2];
+      // The page was accessed from pagination
+      if(strpos($referer, 'page=') !== FALSE) {
+        $url = $referer;
+      }
       $vars['back_button'] = l(t('Back to !link', array('!link' => $matches[3])), $url, $options);
     }else{
       $vars['back_button'] = l(t('Back to !link', array('!link' => strip_tags($previous_crumb))), $referer, $options);
