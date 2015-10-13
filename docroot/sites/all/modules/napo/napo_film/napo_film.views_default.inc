@@ -391,10 +391,13 @@ You can, as well, remove selected videos from the download centre list, by click
     'title_style' => '_none',
     'title_link' => 'content',
     'title_class' => '',
+    'napo_common_title_prefix' => '',
     'title_archived_label' => 1,
     'napo_film_title_include_type' => 1,
     'napo_film_title_include_episode_count' => 1,
     'napo_film_title_link_episode_popup' => 1,
+    'napo_film_title_link_with_film' => 0,
+    'napo_film_title_link_with_film_value' => '!episode from the film !film',
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
   /* Field: Field: Image */
@@ -422,7 +425,7 @@ You can, as well, remove selected videos from the download centre list, by click
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[title_field]
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '
 <a href="[path]" class="napo_film_episode_link" data-nid="[nid]">[field_image]</a>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   /* Sort criterion: Draggableviews: Weight */
@@ -476,6 +479,64 @@ You can, as well, remove selected videos from the download centre list, by click
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title_field']['element_class'] = 'napo_film_episode_link';
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['type'] = 'title_linked';
+  $handler->display->display_options['fields']['title_field']['settings'] = array(
+    'title_style' => '_none',
+    'title_link' => 'content',
+    'title_class' => '',
+    'napo_common_title_prefix' => '',
+    'title_archived_label' => 1,
+    'napo_film_title_include_type' => 1,
+    'napo_film_title_include_episode_count' => 1,
+    'napo_film_title_link_episode_popup' => 1,
+    'napo_film_title_link_with_film' => 0,
+    'napo_film_title_link_with_film_value' => '!episode from the film !film',
+  );
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 0;
+  /* Field: Field: Image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['element_wrapper_class'] = 'napo_film_episode_link';
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => 'medium2',
+    'image_link' => '',
+  );
+  /* Field: Content: Path */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['label'] = '';
+  $handler->display->display_options['fields']['path']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[title_field]
+<a href="[path]" class="napo_film_episode_link" data-nid="[nid]">[field_image]</a>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
@@ -659,11 +720,13 @@ You can, as well, remove selected videos from the download centre list, by click
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('[title_field]
+    t('
 <a href="[path]" class="napo_film_episode_link" data-nid="[nid]">[field_image]</a>'),
     t('All'),
     t('Block'),
     t('Episode list (film)'),
+    t('[title_field]
+<a href="[path]" class="napo_film_episode_link" data-nid="[nid]">[field_image]</a>'),
     t('Page'),
     t('Reorder episodes'),
     t('Content'),
