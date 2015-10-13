@@ -8767,9 +8767,6 @@ p:last-child {
 .node.node-napo-video .jcarousel-item:hover .views-field-title-field {
   display: block;
 }
-.node.node-napo-video .views-field.views-field-nothing a:nth-child(1) {
-  display: none;
-}
 .node.node-napo-video .views-field-title-field {
   position: absolute;
   width: 320px;
@@ -8787,7 +8784,7 @@ p:last-child {
   font-weight: bold;
   display: block;
   margin-top: -11px;
-  padding: 3px 35px 12px 0px!important;
+  padding: 3px 44px 12px 0px!important;
 }
 .node.node-napo-video .views-field-title-field img {
   margin-right: 0px;
@@ -10022,6 +10019,9 @@ footer .jcarousel-skin-default .jcarousel-item {
 }
 footer .menu.nav.navbar-nav {
   margin: 5.75px 0px;
+}
+footer .menu.nav.navbar-nav li img.img-responsive {
+  display: inline-block;
 }
 @media only screen and (max-width: 767px) {
   #block-webform-client-block-255 {
