@@ -345,6 +345,7 @@ $options['init-modules'] = array(
   'metatag',
   'metatag_panels',
   'metatag_views',
+  'metatag_context',
   'hreflang',
 
 

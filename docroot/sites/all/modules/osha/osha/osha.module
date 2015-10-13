@@ -961,11 +961,12 @@ function osha_metatag_metatags_view_alter(&$output, $instance) {
       if (!empty($items)) {
         $lang = $GLOBALS['language']->language;
         $wrapper_node = entity_metadata_wrapper('node', $items[0]);
-        $output['description']['#attached']['drupal_add_html_head'][0][0]['#value'] = text_summary(trim(strip_tags($wrapper_node->language($lang)->body->value()['value'])), NULL, 150).'...';
+        $output['description']['#attached']['drupal_add_html_head'][0][0]['#value'] = text_summary(trim(strip_tags($wrapper_node->language($lang)->body->value()['value'])), NULL, 150);
       }
     } else {
-      $output['description']['#attached']['drupal_add_html_head'][0][0]['#value'] = text_summary($output['description']['#attached']['drupal_add_html_head'][0][0]['#value'], NULL, 150).'...';
+      $output['description']['#attached']['drupal_add_html_head'][0][0]['#value'] = text_summary($output['description']['#attached']['drupal_add_html_head'][0][0]['#value'], NULL, 150);
     }
+   $output['description']['#attached']['drupal_add_html_head'][0][0]['#value'] = strlen($output['description']['#attached']['drupal_add_html_head'][0][0]['#value']) > 150 ? $output['description']['#attached']['drupal_add_html_head'][0][0]['#value'].'...' : $output['description']['#attached']['drupal_add_html_head'][0][0]['#value'];
   }
   if (isset($output['abstract']['#attached']['drupal_add_html_head'][0][0]['#value'])) {
     $output['abstract']['#attached']['drupal_add_html_head'][0][0]['#value'] = text_summary($output['abstract']['#attached']['drupal_add_html_head'][0][0]['#value'], NULL, 150).'...';
