@@ -862,9 +862,10 @@ function napo_film_preprocess_html(&$vars) {
       $wrapper = entity_metadata_wrapper('node', $node);
       $vars['head_title_array']['title'] = $wrapper->label();
       $vars['head_title'] = $wrapper->label() . ' ' . $vars['head_title'];
-    }
-    if (!empty($view) && $view->name == 'napos_gallery') {
+    } else if ($view->name == 'napos_gallery') {
       $node = node_load(28);
+    } else if ($view->name == 'napo_and_friends') {
+      $node = node_load(254); // Napo
     }
   }
   if ($node) {
