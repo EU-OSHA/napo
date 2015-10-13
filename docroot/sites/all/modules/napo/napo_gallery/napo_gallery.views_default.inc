@@ -12,6 +12,7 @@ function napo_gallery_views_default_views() {
 
   $view = new view();
   $view->name = 'napos_gallery';
+  $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
   $view->human_name = 'Napo\'s Gallery';
