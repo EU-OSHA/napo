@@ -73,17 +73,24 @@ function napo_frontend_back_button(&$vars){
  * Anchor to top of the page
  */
 function napo_frontend_top_anchor(&$vars) {
-  global $base_url;
   $options = array(
-      'attributes' => array(
-          'class' => 'top_anchor',
-      ),
-      'external' => TRUE,
-      'fragment' => 'top',
-      'html' => TRUE,
+    'attributes' => array(
+      'class' => 'top_anchor',
+    ),
+    'external' => TRUE,
+    'fragment' => 'top',
+    'html' => TRUE,
   );
-
-  $vars['top_anchor'] = l('<img src="'.file_create_url(path_to_theme().'/images/anchor-top.png').'" />', '', $options);
+  $icon_path = drupal_get_path('theme', 'napo_frontend') . '/images/anchor-top.png';
+  $image_info = image_get_info($icon_path);
+  $image_vars = array(
+    'path' => $icon_path,
+    'alt' => t('Go to top'),
+    'height' => $image_info['height'],
+    'width' => $image_info['width'],
+  );
+  $image = theme('image', $image_vars);
+  $vars['top_anchor'] = l($image, '', $options);
 }
 
 function napo_frontend_text_resize_block() {
