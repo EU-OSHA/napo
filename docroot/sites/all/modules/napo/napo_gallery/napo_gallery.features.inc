@@ -43,7 +43,36 @@ function napo_gallery_image_default_styles() {
     'name' => 'napo_cover',
     'label' => 'Napo Cover (1140x408)',
     'effects' => array(
-      4 => array(
+      11 => array(
+        'label' => 'Define canvas',
+        'help' => 'Define the size of the working canvas and background color, this controls the dimensions of the output image.',
+        'effect callback' => 'canvasactions_definecanvas_effect',
+        'dimensions callback' => 'canvasactions_definecanvas_dimensions',
+        'form callback' => 'canvasactions_definecanvas_form',
+        'summary theme' => 'canvasactions_definecanvas_summary',
+        'module' => 'imagecache_canvasactions',
+        'name' => 'canvasactions_definecanvas',
+        'data' => array(
+          'RGB' => array(
+            'HEX' => '#1f3695',
+          ),
+          'under' => 1,
+          'exact' => array(
+            'width' => 1200,
+            'height' => 600,
+            'xpos' => 'center',
+            'ypos' => 'top',
+          ),
+          'relative' => array(
+            'leftdiff' => '',
+            'rightdiff' => '',
+            'topdiff' => '',
+            'bottomdiff' => '',
+          ),
+        ),
+        'weight' => -10,
+      ),
+      9 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -57,9 +86,9 @@ function napo_gallery_image_default_styles() {
           'height' => '',
           'upscale' => 0,
         ),
-        'weight' => 2,
+        'weight' => -9,
       ),
-      5 => array(
+      10 => array(
         'label' => 'Crop',
         'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
         'effect callback' => 'image_crop_effect',
@@ -73,7 +102,7 @@ function napo_gallery_image_default_styles() {
           'height' => 450,
           'anchor' => 'center-top',
         ),
-        'weight' => 3,
+        'weight' => -8,
       ),
     ),
   );
@@ -83,7 +112,36 @@ function napo_gallery_image_default_styles() {
     'name' => 'napo_thumbnail',
     'label' => 'Napo Thumbnail (360x275)',
     'effects' => array(
-      7 => array(
+      14 => array(
+        'label' => 'Define canvas',
+        'help' => 'Define the size of the working canvas and background color, this controls the dimensions of the output image.',
+        'effect callback' => 'canvasactions_definecanvas_effect',
+        'dimensions callback' => 'canvasactions_definecanvas_dimensions',
+        'form callback' => 'canvasactions_definecanvas_form',
+        'summary theme' => 'canvasactions_definecanvas_summary',
+        'module' => 'imagecache_canvasactions',
+        'name' => 'canvasactions_definecanvas',
+        'data' => array(
+          'RGB' => array(
+            'HEX' => '#1f3695',
+          ),
+          'under' => 1,
+          'exact' => array(
+            'width' => 360,
+            'height' => 275,
+            'xpos' => 'center',
+            'ypos' => 'top',
+          ),
+          'relative' => array(
+            'leftdiff' => '',
+            'rightdiff' => '',
+            'topdiff' => '',
+            'bottomdiff' => '',
+          ),
+        ),
+        'weight' => -10,
+      ),
+      12 => array(
         'label' => 'Scale',
         'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
@@ -97,9 +155,9 @@ function napo_gallery_image_default_styles() {
           'height' => '',
           'upscale' => 0,
         ),
-        'weight' => 2,
+        'weight' => -9,
       ),
-      8 => array(
+      13 => array(
         'label' => 'Crop',
         'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
         'effect callback' => 'image_crop_effect',
@@ -113,7 +171,7 @@ function napo_gallery_image_default_styles() {
           'height' => 275,
           'anchor' => 'center-top',
         ),
-        'weight' => 3,
+        'weight' => -8,
       ),
     ),
   );
