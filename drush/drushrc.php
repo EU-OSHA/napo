@@ -327,6 +327,7 @@ $options['init-modules'] = array(
   'image_field_caption',
   'imagecache_actions',
   'imagecache_canvasactions',
+  'manualcrop',
 
   'tmgmt',
   'tmgmt_local',
