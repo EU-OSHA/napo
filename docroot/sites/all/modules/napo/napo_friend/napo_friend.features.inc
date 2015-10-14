@@ -38,11 +38,11 @@ function napo_friend_views_api($module = NULL, $api = NULL) {
 function napo_friend_node_info() {
   $items = array(
     'napo_friend' => array(
-      'name' => t('Napo friend'),
+      'name' => 'Napo friend',
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );
