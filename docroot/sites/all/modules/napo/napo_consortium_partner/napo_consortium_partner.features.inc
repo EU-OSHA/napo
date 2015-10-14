@@ -59,11 +59,11 @@ function napo_consortium_partner_image_default_styles() {
 function napo_consortium_partner_node_info() {
   $items = array(
     'consortium_partner' => array(
-      'name' => t('Consortium partner'),
+      'name' => 'Consortium partner',
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => 'Title',
       'help' => '',
     ),
   );

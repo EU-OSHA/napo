@@ -41,7 +41,7 @@ function napo_consortium_partner_views_default_views() {
   $handler->display->display_options['style_options']['easing'] = '';
   $handler->display->display_options['style_options']['vertical'] = 0;
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Entityqueue: Node Queue */
+  /* Relationship: Entityqueue: Content Queue */
   $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'node';
   $handler->display->display_options['relationships']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
@@ -84,7 +84,7 @@ function napo_consortium_partner_views_default_views() {
     'image_style' => 'napo_logo',
     'image_link' => '',
   );
-  /* Sort criterion: Entityqueue: Node Queue Position */
+  /* Sort criterion: Entityqueue: Content Queue Position */
   $handler->display->display_options['sorts']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['sorts']['entityqueue_relationship']['table'] = 'node';
   $handler->display->display_options['sorts']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
@@ -130,7 +130,7 @@ function napo_consortium_partner_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('Node Queue'),
+    t('Content Queue'),
     t('[field_url-url]'),
     t('[title_field]'),
     t('Block'),
