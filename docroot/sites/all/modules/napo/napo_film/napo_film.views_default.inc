@@ -87,7 +87,8 @@ You can, as well, remove selected videos from the download centre list, by click
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
   $handler->display->display_options['fields']['body']['settings'] = array(
-    'trim_length' => '600',
+    'trim_link' => '0',
+    'trim_length' => '200',
     'trim_type' => 'chars',
     'trim_suffix' => '...',
     'more_link' => '0',
@@ -96,6 +97,7 @@ You can, as well, remove selected videos from the download centre list, by click
     'trim_options' => array(
       'text' => 0,
     ),
+    'trim_preserve_tags' => '',
   );
   /* Field: Content Cart: Remove from cart link */
   $handler->display->display_options['fields']['content_cart_remove']['id'] = 'content_cart_remove';
