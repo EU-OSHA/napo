@@ -860,7 +860,7 @@ ManualCrop.isLoaded = function(selector, callback) {
   // Collect all images.
   var images = selector.filter('img');
   if (images.length != selector.length) {
-    images = images.add(selector.find('img'));
+    images = images.add(selector.find('img').filter('.manualcrop-image'));
   }
 
   if (!images.length) {
