@@ -393,7 +393,7 @@ function napo_gallery_views_default_views() {
   $handler->display->display_options['fields']['field_image_1']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_image_1']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image_1']['settings'] = array(
-    'image_style' => '',
+    'image_style' => 'napo_large',
     'image_link' => '',
   );
   /* Field: Colorbox: Colorbox trigger */

@@ -90,6 +90,30 @@ function napo_gallery_image_default_styles() {
     ),
   );
 
+  // Exported image style: napo_large.
+  $styles['napo_large'] = array(
+    'name' => 'napo_large',
+    'label' => 'Napo Large (800)',
+    'effects' => array(
+      17 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 800,
+          'height' => 800,
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: napo_thumbnail.
   $styles['napo_thumbnail'] = array(
     'name' => 'napo_thumbnail',
