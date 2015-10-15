@@ -92,6 +92,7 @@ You can, as well, remove selected videos from the download centre list, by click
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['exclude'] = TRUE;
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_link' => '0',
@@ -100,9 +101,9 @@ You can, as well, remove selected videos from the download centre list, by click
     'trim_suffix' => '...',
     'more_link' => '0',
     'more_text' => 'Read more',
-    'summary_handler' => 'full',
+    'summary_handler' => 'trim',
     'trim_options' => array(
-      'text' => 0,
+      'text' => 'text',
     ),
     'trim_preserve_tags' => '',
   );
@@ -133,7 +134,7 @@ You can, as well, remove selected videos from the download centre list, by click
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '[title_field]
-[body]
+<p>[body]</p>
 [content_cart_downlad_as]
 [download_video] 
 [content_cart_remove]
@@ -170,7 +171,7 @@ You can, as well, remove selected videos from the download centre list, by click
 You can, as well, remove selected videos from the download centre list, by clicking on the "X" button, and select the format of the video, by clicking on the "arrow" button and selecting the format.'),
     t('There is no content in the Download centre'),
     t('[title_field]
-[body]
+<p>[body]</p>
 [content_cart_downlad_as]
 [download_video] 
 [content_cart_remove]
@@ -1075,9 +1076,9 @@ You can, as well, remove selected videos from the download centre list, by click
     'trim_suffix' => '...',
     'more_link' => '0',
     'more_text' => 'Read more',
-    'summary_handler' => 'full',
+    'summary_handler' => 'trim',
     'trim_options' => array(
-      'text' => 0,
+      'text' => 'text',
     ),
     'trim_preserve_tags' => '',
   );
@@ -1133,7 +1134,7 @@ You can, as well, remove selected videos from the download centre list, by click
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[title_field][field_publication_date][body][nothing_2]';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[title_field][field_publication_date]<p>[body]</p>[nothing_2]';
   $handler->display->display_options['fields']['nothing']['element_type'] = 'div';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
@@ -1228,15 +1229,17 @@ You can, as well, remove selected videos from the download centre list, by click
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
   $handler->display->display_options['fields']['body']['settings'] = array(
-    'trim_length' => '300',
+    'trim_link' => '0',
+    'trim_length' => '250',
     'trim_type' => 'chars',
     'trim_suffix' => '...',
     'more_link' => '0',
     'more_text' => 'Read more',
-    'summary_handler' => 'full',
+    'summary_handler' => 'trim',
     'trim_options' => array(
-      'text' => 0,
+      'text' => 'text',
     ),
+    'trim_preserve_tags' => '',
   );
   /* Field: Napo film: View detail link */
   $handler->display->display_options['fields']['view_detail_link']['id'] = 'view_detail_link';
@@ -1281,7 +1284,7 @@ You can, as well, remove selected videos from the download centre list, by click
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_publication_date][body][combined_tags][view_detail_link][view_episodes_link]';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_publication_date]<p>[body]</p>[combined_tags][view_detail_link][view_episodes_link]';
   $handler->display->display_options['fields']['nothing']['element_type'] = 'div';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
@@ -1373,10 +1376,10 @@ You can, as well, remove selected videos from the download centre list, by click
     t('List'),
     t('[content_cart]<div class="napo-film-list-image">[field_image]</div>'),
     t('<div class="napo-film-list-details-container">[combined_tags][download_video][view_detail_link][view_episodes_link]</div>'),
-    t('[title_field][field_publication_date][body][nothing_2]'),
+    t('[title_field][field_publication_date]<p>[body]</p>[nothing_2]'),
     t('Grid'),
     t('[title_field][content_cart][download_video]'),
-    t('[field_publication_date][body][combined_tags][view_detail_link][view_episodes_link]'),
+    t('[field_publication_date]<p>[body]</p>[combined_tags][view_detail_link][view_episodes_link]'),
   );
   $export['napo_films'] = $view;
 
@@ -1660,9 +1663,9 @@ You can, as well, remove selected videos from the download centre list, by click
     'trim_suffix' => '...',
     'more_link' => '0',
     'more_text' => 'Read more',
-    'summary_handler' => 'full',
+    'summary_handler' => 'trim',
     'trim_options' => array(
-      'text' => 0,
+      'text' => 'text',
     ),
     'trim_preserve_tags' => '',
   );
@@ -1718,7 +1721,7 @@ You can, as well, remove selected videos from the download centre list, by click
   $handler->display->display_options['fields']['nothing_2']['table'] = 'views';
   $handler->display->display_options['fields']['nothing_2']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing_2']['label'] = '';
-  $handler->display->display_options['fields']['nothing_2']['alter']['text'] = '[title_field][field_publication_date][body][nothing_1]';
+  $handler->display->display_options['fields']['nothing_2']['alter']['text'] = '[title_field][field_publication_date]<p>[body]</p>[nothing_1]';
   $handler->display->display_options['fields']['nothing_2']['element_type'] = 'div';
   $handler->display->display_options['fields']['nothing_2']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing_2']['element_wrapper_type'] = 'div';
@@ -1817,9 +1820,9 @@ You can, as well, remove selected videos from the download centre list, by click
     'trim_suffix' => '...',
     'more_link' => '0',
     'more_text' => 'Read more',
-    'summary_handler' => 'full',
+    'summary_handler' => 'trim',
     'trim_options' => array(
-      'text' => 0,
+      'text' => 'text',
     ),
     'trim_preserve_tags' => '',
   );
@@ -1866,7 +1869,7 @@ You can, as well, remove selected videos from the download centre list, by click
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_publication_date][body][combined_tags][view_detail_link][view_episodes_link]';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_publication_date]<p>[body]</p>[combined_tags][view_detail_link][view_episodes_link]';
   $handler->display->display_options['fields']['nothing']['element_type'] = 'div';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
@@ -1893,8 +1896,9 @@ You can, as well, remove selected videos from the download centre list, by click
     t('Page'),
     t('[content_add_to_cart]<div class="napo-film-list-image">[field_image]</div>'),
     t('<div class="napo-film-list-details-container">[combined_tags][download_video][view_detail_link][view_episodes_link]</div>'),
+    t('[title_field][field_publication_date]<p>[body]</p>[nothing_1]'),
     t('[title_field][content_add_to_cart][download_video]'),
-    t('[field_publication_date][body][combined_tags][view_detail_link][view_episodes_link]'),
+    t('[field_publication_date]<p>[body]</p>[combined_tags][view_detail_link][view_episodes_link]'),
   );
   $export['napo_films_node'] = $view;
 
@@ -1966,6 +1970,7 @@ You can, as well, remove selected videos from the download centre list, by click
   $handler->display->display_options['fields']['path']['alter']['text'] = '<span class="glyphicon glyphicon-play-circle"></span>';
   $handler->display->display_options['fields']['path']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['path']['alter']['path'] = '[path]';
+  $handler->display->display_options['fields']['path']['alter']['alt'] = 'View scene';
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['path']['absolute'] = TRUE;
   /* Sort criterion: Draggableviews: Weight */
@@ -2082,6 +2087,7 @@ You can, as well, remove selected videos from the download centre list, by click
   $handler->display->display_options['fields']['path']['alter']['text'] = '<span class="glyphicon glyphicon-play-circle"></span>';
   $handler->display->display_options['fields']['path']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['path']['alter']['path'] = '[path]';
+  $handler->display->display_options['fields']['path']['alter']['alt'] = 'View scene';
   $handler->display->display_options['fields']['path']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['path']['absolute'] = TRUE;
   /* Field: Content: Categories */
@@ -2163,6 +2169,7 @@ You can, as well, remove selected videos from the download centre list, by click
     t('Asc'),
     t('Desc'),
     t('<span class="glyphicon glyphicon-play-circle"></span>'),
+    t('View scene'),
     t('All'),
     t('Page'),
     t('<h3>[title_field]</h3>
