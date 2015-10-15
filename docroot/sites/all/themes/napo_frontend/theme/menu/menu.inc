@@ -77,9 +77,8 @@ function napo_frontend_menu_link__menu_block($variables) {
   $element = &$variables['element'];
   $delta = $element['#bid']['delta'];
 
-  // Add homepage Icon.
   $element = $variables['element'];
-  $attr = drupal_attributes($element['#attributes']);
+  $attr = $element['#attributes'];
   if (isset($variables['element']['#href']) &&
     $variables['element']['#href'] == '<front>' &&
     isset($element['#localized_options']['content']['image'])
@@ -90,8 +89,8 @@ function napo_frontend_menu_link__menu_block($variables) {
       'alt' => $element['#title'],
     );
     $image = theme('image_style', $image_vars);
-    $link = l($image, $element['#href'], array('html' => TRUE));
-    return sprintf("\n<li %s>%s</li>", $attr, $link);
+    $link = l($image, $element['#href'], array_merge(array('html' => TRUE), $element['#localized_options']));
+    return sprintf("\n<li %s>%s</li>", drupal_attributes($attr), $link);
   }
 
   // Render or not the Menu Image.
@@ -100,7 +99,6 @@ function napo_frontend_menu_link__menu_block($variables) {
   if (!$render_img) {
     return napo_frontend_menu_link($variables);
   }
-  // $element['#attributes']['data-image-url'] = $image_url;
   $output_link = l($element['#title'], $element['#href'], $element['#localized_options']);
 
   $output_image = "";
@@ -111,10 +109,10 @@ function napo_frontend_menu_link__menu_block($variables) {
       'alt' => $element['#title'],
     );
     $image = theme('image_style', $image_vars);
-    $output_image = l($image, $element['#href'], array('html' => TRUE));
+    $output_image = l($image, $element['#href'], array_merge(array('html' => TRUE), $element['#localized_options']));
   }
 
-  return '<li' . drupal_attributes($element['#attributes']) . '>
+  return '<li' . drupal_attributes($attr) . '>
     <div class="introduction-title">' . $output_link . '</div>
     <div class="introduction-image">' . $output_image . '</div>
     </li>';
