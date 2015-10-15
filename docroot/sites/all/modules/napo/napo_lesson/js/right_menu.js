@@ -1,5 +1,6 @@
 jQuery('document').ready(function() {
     var menu = jQuery('#menu-about-page-menu');
+    jQuery('#top_menu_lessons_container').css('min-height', jQuery('#top_menu_lessons').height());
 
     // Change first tag from h2 to h3 to be like the rest and remove ':'
     jQuery('#group-right h2').each(function(idx, el) {
@@ -15,14 +16,14 @@ jQuery('document').ready(function() {
             if(typeof jQuery(el).attr('id') == 'undefined') {
                 jQuery(this).attr('id','h2-'+idx);
             }
-            var css = idx == 0 ? ' class=" headings active"' : ' class="headings"';
+            var css = ' class="headings"';
             menu.append(jQuery('<li' + css + '><a class="heading-anchor" href="#' + jQuery(this).attr('id') + '">' + jQuery(el).text() + '</a></li>'));
         }
     });
 
     jQuery('body').on('click', '.heading-anchor', function(e){
         e.preventDefault();
-        var scroll = jQuery(jQuery(this).attr('href')).offset().top - 60;
+        var scroll = jQuery(jQuery(this).attr('href')).offset().top - 80;
         jQuery('html').animate({
             scrollTop: scroll
         }, 200);
@@ -40,7 +41,7 @@ jQuery('document').ready(function() {
     // Spymenu target
     jQuery('body').scrollspy({
         target: '.scrollspy',
-        offset: 60
+        offset: 80
     });
 
     // Affix class to right nav menu
