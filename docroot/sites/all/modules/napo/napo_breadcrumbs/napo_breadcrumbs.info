@@ -18,5 +18,6 @@ features[path_breadcrumbs][] = napo_gallery
 features[path_breadcrumbs][] = napo_s_film_episodes_panel
 features[path_breadcrumbs][] = napos_friends
 features[path_breadcrumbs][] = node_breadcrumbs
+features[path_breadcrumbs][] = rights_and_permissions
 features[variable][] = path_breadcrumbs_truncate_title_length
-mtime = 1437035411
+mtime = 1444918871
