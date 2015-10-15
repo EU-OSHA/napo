@@ -1279,10 +1279,6 @@ You can, as well, remove selected videos from the download centre list, by click
   $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = 'div';
   $handler->display->display_options['fields']['nothing']['element_wrapper_class'] = 'napo-film-content-container';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    1 => 'AND',
-    2 => 'OR',
-  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Indexed Multilingual Content: Video Type */
   $handler->display->display_options['filters']['field_video_type']['id'] = 'field_video_type';
@@ -1341,15 +1337,7 @@ You can, as well, remove selected videos from the download centre list, by click
   $handler->display->display_options['filters']['search_api_language']['value'] = array(
     'current' => 'current',
   );
-  $handler->display->display_options['filters']['search_api_language']['group'] = 2;
-  /* Filter criterion: Indexed Multilingual Content: Item language */
-  $handler->display->display_options['filters']['search_api_language_1']['id'] = 'search_api_language_1';
-  $handler->display->display_options['filters']['search_api_language_1']['table'] = 'search_api_index_default_multilingual_node_index';
-  $handler->display->display_options['filters']['search_api_language_1']['field'] = 'search_api_language';
-  $handler->display->display_options['filters']['search_api_language_1']['value'] = array(
-    'en' => 'en',
-  );
-  $handler->display->display_options['filters']['search_api_language_1']['group'] = 2;
+  $handler->display->display_options['filters']['search_api_language']['group'] = 1;
   $handler->display->display_options['path'] = 'napos-films/films-grid';
   $translatables['napo_films'] = array(
     t('Master'),
