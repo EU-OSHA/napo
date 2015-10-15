@@ -53,7 +53,18 @@ function napo_common_field_attach_view_alter(&$output, $context) {
     $element = &$output[$field_name];
     if ($element['#field_type'] == 'image' && $element['#formatter'] == 'image') {
       foreach (element_children($element) as $delta => $item) {
-        if (empty($item['#item']['alt'])) {
+        $overwrite_alt = FALSE;
+        // For films, overwrite the alt with entity title - see NAPO-762
+        if ($context['entity']->type == 'napo_video') {
+          $overwrite_alt = TRUE;
+        }
+        if ($overwrite_alt) {
+          $element[$delta]['#item']['alt'] = $context['entity']->title;
+          $element[$delta]['#item']['title'] = $context['entity']->title;
+          $element[$delta]['#item']['field_file_image_alt_text'][LANGUAGE_NONE][0]['value'] = $context['entity']->title;
+          $element[$delta]['#item']['field_file_image_title_text'][LANGUAGE_NONE][0]['value'] = $context['entity']->title;
+        }
+        elseif (empty($item['#item']['alt'])) {
           if (empty($element[$delta]['#item']['field_file_image_alt_text'])) {
             $element[$delta]['#item']['alt'] = $context['entity']->title;
           }
