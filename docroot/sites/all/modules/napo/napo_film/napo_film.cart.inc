@@ -119,9 +119,6 @@ function napo_film_cart_download_form($form, &$form_state) {
 
   // Show no results message.
   if ($cart->countItems('node') == 0) {
-    $form['no_results'] = array(
-      '#markup' => '<p class="cart-no-result-message">' . t('There is no content in the Download centre') . '</p>',
-    );
     return $form;
   }
   $form['select_all'] = array(

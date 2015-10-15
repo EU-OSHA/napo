@@ -39,6 +39,13 @@ function napo_film_views_default_views() {
   $handler->display->display_options['header']['area']['content'] = 'From this download centre, you can either download all the videos you have selected in one operation, or you can select from the list, and click on "download selected" to download only the chosen ones.
 You can, as well, remove selected videos from the download centre list, by clicking on the "X" button, and select the format of the video, by clicking on the "arrow" button and selecting the format.';
   $handler->display->display_options['header']['area']['format'] = 'full_html';
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'There is no content in the Download centre';
+  $handler->display->display_options['empty']['area']['format'] = 'full_html';
   /* Field: Napo film: Select in cart */
   $handler->display->display_options['fields']['content_cart_select_in_cart']['id'] = 'content_cart_select_in_cart';
   $handler->display->display_options['fields']['content_cart_select_in_cart']['table'] = 'napo_film';
@@ -161,6 +168,7 @@ You can, as well, remove selected videos from the download centre list, by click
     t('Desc'),
     t('From this download centre, you can either download all the videos you have selected in one operation, or you can select from the list, and click on "download selected" to download only the chosen ones.
 You can, as well, remove selected videos from the download centre list, by clicking on the "X" button, and select the format of the video, by clicking on the "arrow" button and selecting the format.'),
+    t('There is no content in the Download centre'),
     t('[title_field]
 [body]
 [content_cart_downlad_as]
