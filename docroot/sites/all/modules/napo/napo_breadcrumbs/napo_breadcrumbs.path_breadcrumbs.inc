@@ -309,5 +309,27 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->weight = -92;
   $export['node_breadcrumbs'] = $path_breadcrumb;
 
+  $path_breadcrumb = new stdClass();
+  $path_breadcrumb->api_version = 1;
+  $path_breadcrumb->machine_name = 'rights_and_permissions';
+  $path_breadcrumb->name = 'Rights and permissions';
+  $path_breadcrumb->path = 'node/26';
+  $path_breadcrumb->data = array(
+    'titles' => array(
+      0 => 'Using Napo',
+      1 => '!page_title',
+    ),
+    'paths' => array(
+      0 => '<none>',
+      1 => '<none>',
+    ),
+    'home' => 1,
+    'translatable' => 1,
+    'arguments' => array(),
+    'access' => array(),
+  );
+  $path_breadcrumb->weight = 0;
+  $export['rights_and_permissions'] = $path_breadcrumb;
+
   return $export;
 }
