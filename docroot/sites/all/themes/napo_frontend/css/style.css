@@ -9927,10 +9927,12 @@ input[type=checkbox] {
   clear: both;
   margin: 15px 0px 15px 0px;
 }
-.napo_target_external_link {
+span.ext {
   background: url("../images/external_link_napo.png") no-repeat scroll 0 4px rgba(0, 0, 0, 0);
   margin-left: 0.5em!important;
   padding-right: 0.8em;
+  width: 0;
+  height: 0;
 }
 .footer {
   border: 0px;

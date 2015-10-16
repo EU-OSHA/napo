@@ -45,6 +45,8 @@ function napo_common_image_default_styles() {
       ),
     ),
   );
+
+  // Exported image style: napo_original.
   $styles['napo_original'] = array(
     'name' => 'napo_original',
     'label' => 'Original image style',

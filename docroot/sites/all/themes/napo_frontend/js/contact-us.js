@@ -61,10 +61,3 @@ jQuery(document).ready(function() {
 		jQuery(window).resize(function(){location.reload();});
 	} 
 });
-
-
-/* Add image to External links - _target=blank */
-
-jQuery(document).ready(function() {
-	jQuery('.main-container.container a[target="_blank"]').append('<span class="napo_target_external_link">&nbsp;</span>');
-});
