@@ -125,6 +125,10 @@ function napo_film_block_info() {
     'cache' => DRUPAL_NO_CACHE,
   );
 
+  $blocks['napo_film_intro_text'] = array(
+    'info' => t('Napo film text'),
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
 
   return $blocks;
 }
@@ -165,6 +169,24 @@ function napo_film_block_view($delta = '') {
       }
       $block['content']['list']['#markup'] = l(t('List view'), 'napo_film/set_view_mode/page_list', array('attributes' => $attr, 'query' => $query));
       $block['content']['grid']['#markup'] = l(t('Gallery view'), 'napo_film/set_view_mode/page_grid', array('attributes' => $attr_grid, 'query' => $query));
+      break;
+
+    case 'napo_film_intro_text':
+      $block['subject'] = '<none>';
+      $params = drupal_get_query_parameters();
+      // When searching, the title of the view must be specified.
+      if (!empty($params['search_word'])) {
+        $title = t('Search results for @search_word', array('@search_word' => '"' . $params['search_word'] . '"'));
+        $block['content'] = '<h1 class="page-header">' . $title . '</h1>';
+      }
+      elseif ($term = _napo_film_get_search_tag_term()) {
+        $title = t('Search results for @search_word', array('@search_word' => '"' . $term->name . '"'));
+        $block['content'] = '<h1 class="page-header">' . $title . '</h1>';
+      }
+      else {
+        $node = node_load(23);
+        $block['content'] = node_view($node);
+      }
       break;
   }
   return $block;
@@ -860,14 +882,28 @@ function napo_film_preprocess_html(&$vars) {
   if (!empty($view)) {
     if (in_array($view->name, array('napo_films', 'napo_films_node'))) {
       $node = node_load(23);
-      $wrapper = entity_metadata_wrapper('node', $node);
-      $vars['head_title_array']['title'] = $wrapper->label();
-      $vars['head_title'] = $wrapper->label() . ' ' . $vars['head_title'];
-    } else if ($view->name == 'napos_gallery') {
+      if (!empty($_GET['search_word'])) {
+        $variables['breadcrumb'][] =
+        $vars['head_title_array']['title'] = t('Search results for "@word"', array('@word' => $_GET['search_word']));
+        $vars['head_title'] = $vars['head_title_array']['title'] . ' ' . $vars['head_title'];
+      }
+      else if ($term = _napo_film_get_search_tag_term()) {
+        $vars['head_title_array']['title'] = t('Search results for "@word"', array('@word' => $term->name));
+        $vars['head_title'] = $vars['head_title_array']['title'] . ' ' . $vars['head_title'];
+      }
+      else {
+        $wrapper = entity_metadata_wrapper('node', $node);
+        $vars['head_title_array']['title'] = $wrapper->label();
+        $vars['head_title'] = $wrapper->label() . ' ' . $vars['head_title'];
+      }
+    }
+    elseif ($view->name == 'napos_gallery') {
       $node = node_load(28);
-    } else if ($view->name == 'napo_and_friends') {
+    }
+    elseif ($view->name == 'napo_and_friends') {
       $node = node_load(254); // Napo
-    } else if ($view->name == 'download_center') {
+    }
+    elseif ($view->name == 'download_center') {
       $view = views_get_view($view->name);
       if (!empty($view->display['default']->display_options['header']['area']['content'])) {
         $description = t($view->display['default']->display_options['header']['area']['content']);
@@ -956,20 +992,4 @@ function theme_napo_film_tag_facet_link($variables) {
 
 function napo_film_remove_search_word_link($variables) {
   return l('X ', $variables['link']);
-}
-
-/**
- * Implements hook_block_list_alter().
- * Hide introduction block when a search was made
- */
-function napo_film_block_list_alter(&$blocks){
-  foreach($blocks as $bid => $block){
-    if($block->pages == 'napos-films/films' && $block->module == 'nodeblock'){
-      $params = drupal_get_query_parameters();
-      if(!empty($params['search_word'])){
-        unset($blocks[$bid]);
-      }
-      break;
-    }
-  }
 }
