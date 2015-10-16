@@ -69,6 +69,7 @@
 
 .view-napos-gallery .views-field-nothing.napo-gallery-title-container{
   position:relative;
+  height:100px!important;
 }
 
 iframe{
@@ -240,6 +241,10 @@ iframe{
 }
 
 //Home
+
+.homepage-video-body{
+  display:none;
+}
 
 .video-js{
   height:223px!important;
@@ -565,7 +570,6 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 
 .node-napo-album .napo-share-widget{
   padding-top:0px;
-  margin-top: -35px;
   margin-bottom: 10px;
 
 }
@@ -612,7 +616,9 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 }
 
 .view-napo-films.view-display-id-page_grid .row div:hover > .views-field-nothing.napo-film-content-container{
-    min-height: 190px!important;
+    min-height: 175px!important;
+    height: 1%;
+    overflow: hidden;
 }
 
 .view-display-id-page_grid h3 a{
@@ -631,6 +637,10 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 }
 
 @media only screen and (max-width : 1200px) {
+
+h1{
+    padding: 0.2em 29% 0.2em 0.5em;
+  }
 
 //Galery list view
 
@@ -705,6 +715,11 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 
 .view-napos-gallery .views-field-nothing.napo-gallery-title-container{
   width: 293px;
+  height:120px;
+}
+
+.view-napos-gallery .views-view-grid .views-field-field-image:hover ~ .views-field-body p{
+  display:none;
 }
 
 //Film's list view
@@ -753,11 +768,13 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 }
 
 .view-napo-films-node.view-display-id-page_grid .row div:hover > .views-field-nothing.napo-film-content-container{
-    min-height: 175px;
+    min-height: 262px;
 }
 
 .view-napo-films.view-display-id-page_grid .row div:hover > .views-field-nothing.napo-film-content-container{
     min-height: 175px;
+    height: 1%;
+    overflow: hidden;
 }
 
 .view-napo-films-node.view-display-id-page_grid .row .views-field-nothing p#tmgmt-1{
@@ -858,20 +875,6 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 
 .view-napo-s-film-episodes .views-row{
     margin-bottom:6em;
-    /*
-    .napo-film-video-download-form{
-        position: absolute;
-        left: 37px;
-        margin-top: 23px;
-    }
-    
-    .napo-film-video-download-form ~ a{
-          position: absolute;
-          margin-top: 43px;
-          float: left;
-          left: -10px;
-    }
-    */
 }
 
 .view-napo-s-film-episodes .episode-list-details-container {
@@ -883,11 +886,11 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
   margin-top: 0px;
 }
 
-	#block-napo-common-page-not-found{
-		background: #f4f4f4 url('../images/page-not-found-right.png?v=1') no-repeat 93% 0%;
-		padding-left: 0em;
-		padding-right: 218px;
-	}
+#block-napo-common-page-not-found{
+	background: #f4f4f4 url('../images/page-not-found-right.png?v=1') no-repeat 93% 0%;
+	padding-left: 0em;
+	padding-right: 218px;
+}
 	
 #block-system-main .view-download-center .views-field-nothing .col-md-9{
 	display: table;
@@ -906,6 +909,7 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 
 .view-napos-gallery .views-field-nothing.napo-gallery-title-container{
   width: 220px;
+  height: 160px;
 }
 
 //films gallery view
@@ -918,6 +922,10 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
 .view-napo-films.view-display-id-page_grid .views-field-field-image{
   height: 175px;
   overflow:hidden;
+}
+
+#node-16 .content .field-name-field-image img{
+  padding: 20px 0px 120px 0px!important;
 }
 
 }
@@ -937,6 +945,9 @@ footer #block-menu-block-2 .menu.nav.navbar-nav{
     margin: 0 auto;
   }
 
+  .view-napos-gallery .views-field.views-field-field-image{
+     min-height: 275px;
+  }
 
 }
 

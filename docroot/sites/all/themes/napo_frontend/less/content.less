@@ -1181,7 +1181,7 @@ p:last-child {
 	//background: @color-napo-bg-gray-1;
 
 	.field-name-title-field .napo-film-title-2{
-		padding: 10px 34% 10px 54px;
+		padding: 10px 14% 10px 54px;
 		color:@color-napo-gray-5;
 		background: url('../images/ico-film.png?v=1') no-repeat 23px 10px @color-napo-bg-gray-2;
   		font-weight: bold;
@@ -1327,6 +1327,7 @@ p:last-child {
 		content:" ";
 		width: 100%;
 		height: 124px;
+		cursor:pointer;
 	}
 
 	.field-name-field-image:hover:after{  		
@@ -1339,6 +1340,7 @@ p:last-child {
 		height: 46px;
 		margin-top: -100px;
   		margin-left: 87px;
+  		cursor:pointer;
 	}
 
 	.field-name-field-image img{
@@ -1826,7 +1828,7 @@ p:last-child {
 //Napo for Teachers
 
 #node-16 .content .field-name-field-image img{
-	padding: 20px 0px 40px 0px!important;
+	padding: 20px 0px 55px 0px!important;
 	margin-left: 10px;
 }
 
@@ -1895,7 +1897,7 @@ p:last-child {
 //Napo Gallery - view-napos-gallery
 
 .view-napos-gallery .views-field-nothing.napo-gallery-title-container{
-	background: url('../images/background-blue.png?v=1') repeat-x;
+	background: url('../images/background-blue.png?v=2') repeat-x;
     color: #FFF;
     padding-left: 1em;
     padding-top: 5px;
@@ -1904,6 +1906,12 @@ p:last-child {
     position: relative;
     width: 360px;
     height: 73px;
+
+    .field-content{
+    	display: block;
+    	width: 97%;
+    }
+
 	a{
 		color:#FFF;
 		background:url('../images/arrow-button-yellow.png?v=1') 100% 0px no-repeat;
@@ -1912,9 +1920,12 @@ p:last-child {
 
 	.date-display-single{
 		float:right;
-		padding-right: 16px;
   		font-size: 14px;
   		padding-top:5px;
+  		display: block;
+    	bottom: 6px;
+    	position: absolute;
+    	right: 9px;
 	}
 }
 
@@ -1982,6 +1993,7 @@ p:last-child {
 		  height: 203px;
 		  p{
 		  	padding:1em;
+		  	width:360px;
 		  }
 	}
 
@@ -1997,6 +2009,7 @@ p:last-child {
 		  height: 203px;
 		  p{
 		  	padding:0.5em 1em 1em 1em;
+		  	width:360px;
 		  }
 	}
 
@@ -2223,6 +2236,7 @@ p:last-child {
 		  font-size: 17px;
 			&:hover {
 				border-bottom: 5px solid @color-blue-napo;
+				cursor:pointer;
 			}
 		}
 		.views-content-title-field {
@@ -2261,6 +2275,7 @@ p:last-child {
 	.views-field-field-image:hover{
 		border-top: 5px solid @color-blue-napo;
 		margin-top: -5px;
+		cursor:pointer;
 	}
 
 	.views-field-field-image-1{
@@ -2277,6 +2292,16 @@ p:last-child {
 }
 
 //Download Center
+
+.download-center-submit-all.progress-disabled + .download-center-waiting, .download-center-submit-selected.progress-disabled + .download-center-submit-all + .download-center-waiting{
+	padding:1em;
+}
+
+.view-download-center.view-id-download_center.view-display-id-page .view-empty p{
+	background:@color-napo-bg-gray-1;
+	padding:1em;
+	font-weight: bold;
+}
 
 #block-napo-film-download-cart-form{
 	padding:0px;
@@ -3042,7 +3067,6 @@ input[type=checkbox]{
   padding: 6px 12px 9px;
 }
 
-
 //The Napo Story
 
 #node-27 iframe{
@@ -3057,3 +3081,10 @@ input[type=checkbox]{
 }
 
 
+//External LINKS
+
+.napo_target_external_link{
+	background: url("../images/external_link_napo.png") no-repeat scroll 0 4px rgba(0, 0, 0, 0);
+    margin-left: 0.5em!important;
+    padding-right: 0.8em;
+}

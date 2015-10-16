@@ -54,10 +54,6 @@ jQuery(function() {
 });
 
 
-
-
-
-
 // Refresh the page when orientation changes in Napo friend
 
 jQuery(document).ready(function() {
@@ -67,3 +63,8 @@ jQuery(document).ready(function() {
 });
 
 
+/* Add image to External links - _target=blank */
+
+jQuery(document).ready(function() {
+	jQuery('.main-container.container a[target="_blank"]').append('<span class="napo_target_external_link">&nbsp;</span>');
+});
