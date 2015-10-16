@@ -367,6 +367,7 @@ $options['init-modules'] = array(
   'views_slideshow_cycle',
   'custom_formatters',
   'shorten',
+  'extlink',
 
   'taxonomy_manager',
   'term_reference_tree',
