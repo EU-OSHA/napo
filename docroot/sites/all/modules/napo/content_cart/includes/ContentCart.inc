@@ -35,6 +35,9 @@ class ContentCart implements ContentCartInterface {
         }
       }
     }
+    if (isset($_SESSION['drupal_content_cart']) && empty($_SESSION['drupal_content_cart'])) {
+      unset($_SESSION['drupal_content_cart']);
+    }
   }
 
   public function getCartContent() {
