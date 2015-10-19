@@ -11,11 +11,7 @@ interface ContentCartInterface {
 
 class ContentCart implements ContentCartInterface {
 
-  public function __construct() {
-    if (!isset($_SESSION['drupal_content_cart'])) {
-      $_SESSION['drupal_content_cart'] = array();
-    }
-  }
+  public function __construct() {}
 
   public static function getCurrentCart() {
     return new ContentCart();
@@ -42,7 +38,12 @@ class ContentCart implements ContentCartInterface {
   }
 
   public function getCartContent() {
-    return $_SESSION['drupal_content_cart'];
+    if (isset($_SESSION['drupal_content_cart'])) {
+      return $_SESSION['drupal_content_cart'];
+    }
+    else {
+      return array();
+    }
   }
 
   public function hasInCart($type, $id) {
