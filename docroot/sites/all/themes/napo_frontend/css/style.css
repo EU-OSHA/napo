@@ -9859,7 +9859,7 @@ input[type=checkbox] {
   padding-top: 10px;
   padding-left: 45%;
   position: relative;
-  top: -46px;
+  top: -60px;
 }
 .view-search .views-row .field-name-node-link a {
   color: #f7e235;
@@ -9883,10 +9883,14 @@ input[type=checkbox] {
 .view-search .views-row .node-napo-video .field-name-body {
   background: transparent;
   padding-bottom: 2em;
+  min-height: 127px;
 }
 .view-search .views-row .node-napo-video .field-name-node-link a {
   background: transparent;
   display: none;
+}
+.view-search .views-row .node-napo-video div:nth-child(3).field-name-node-link {
+  margin-top: 120px;
 }
 .view-search .views-row .napo-share-widget {
   display: none;
