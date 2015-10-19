@@ -109,6 +109,26 @@ function napo_film_cron() {
   }
 }
 
+function napo_film_libraries_info() {
+  $libraries['urijs'] = array(
+    'name' => 'urijs',
+    'vendor url' => 'https://github.com/medialize/URI.js',
+    'download url' => 'https://github.com/medialize/URI.js',
+    'version arguments' => array(
+      'file' => 'src/URI.js',
+      'pattern' => '/Version: (\d+)/',
+      'lines' => 6,
+    ),
+    'files' => array(
+      'js' => array(
+        'src/URI.min.js',
+        'src/jquery.URI.js',
+      ),
+    ),
+  );
+  return $libraries;
+}
+
 /**
  * Implements hook_block_info().
  */
@@ -150,25 +170,33 @@ function napo_film_block_view($delta = '') {
       // View modes links block.
       $block['subject'] = t('Napo film view modes');
       $attr = array(
-        'class' => array('napo-film-view-mode-links', 'napo-film-view-mode-list'),
+        'class' => array('napo-film-view-mode-links'),
         'rel' => 'nofollow',
       );
       $attr_grid = $attr;
+      $attr_list = $attr;
       $attr_grid['class'][] = 'napo-film-view-mode-grid';
-      // Set active mode.
-      if (napo_film_get_list_view_mode() == 'page_grid') {
-        $attr_grid['class'][] = "active";
-      }
-      else {
-        $attr['class'][] = "active";
-      }
+      $attr_list['class'][] = 'napo-film-view-mode-list';
+
       // Get query params to preserve them.
       $query = drupal_get_query_parameters();
-      if (!empty($query['fvm'])) {
-        unset($query['fvm']);
+      $query_grid = $query;
+      $query_list = $query;
+      $query_grid['view_mode'] = 'page_grid';
+      $query_list['view_mode'] = 'page_list';
+
+      if (!empty($_GET['view_mode']) && $_GET['view_mode'] == 'page_list') {
+        $attr_list['class'][] = 'active';
       }
-      $block['content']['list']['#markup'] = l(t('List view'), 'napo_film/set_view_mode/page_list', array('attributes' => $attr, 'query' => $query));
-      $block['content']['grid']['#markup'] = l(t('Gallery view'), 'napo_film/set_view_mode/page_grid', array('attributes' => $attr_grid, 'query' => $query));
+      else {
+        $attr_grid['class'][] = 'active';
+      }
+
+      $attr_list['data-set-view-mode'] = 'page_list';
+      $attr_grid['data-set-view-mode'] = 'page_grid';
+
+      $block['content']['list']['#markup'] = theme('link', array('text' => t('List view'), 'path' => 'napos-films/films', 'options' => array('html' => FALSE, 'attributes' => $attr_list, 'query' => $query_list)));
+      $block['content']['grid']['#markup'] = theme('link', array('text' => t('Gallery view'), 'path' => 'napos-films/films', 'options' => array('html' => FALSE, 'attributes' => $attr_grid, 'query' => $query_grid)));
       break;
 
     case 'napo_film_intro_text':
@@ -213,25 +241,12 @@ function napo_film_set_view_mode($mode) {
 function napo_film_get_list_view_mode() {
   $mode = 'page_grid';
   // Check if view mode enforced by url.
-  if (isset($_GET['fvm'])) {
-    if (in_array($_GET['fvm'], array('page_grid', 'page_list'))) {
-      $mode = $_GET['fvm'];
+  if (isset($_GET['view_mode'])) {
+    if (in_array($_GET['view_mode'], array('page_grid', 'page_list'))) {
+      $mode = $_GET['view_mode'];
     }
   }
-  else if (isset($_SESSION['napo_films_view_mode']) && $_SESSION['napo_films_view_mode'] == 'page_list') {
-    $mode = 'page_list';
-  }
   return $mode;
-}
-
-/**
- * Implements hook_menu_link_alter().
- */
-function napo_film_translated_menu_link_alter(&$item, $map) {
-  // Alter menu link of Napo Films with query parameter.
-  if ($item['link_path'] == NAPO_FILM_LINK) {
-    $item['localized_options']['query']['fvm'] = napo_film_get_list_view_mode();
-  }
 }
 
 /**
@@ -240,7 +255,6 @@ function napo_film_translated_menu_link_alter(&$item, $map) {
 function napo_film_get_film_view() {
   $params = drupal_get_query_parameters();
   $mode = napo_film_get_list_view_mode();
-  $_SESSION['napo_films_view_mode'] = $mode;
   if (empty($params['search_word']) && empty($params['f'])) {
     return views_page('napo_films_node', $mode);
   }
@@ -926,6 +940,11 @@ function napo_film_preprocess_html(&$vars) {
     );
     drupal_add_html_head($metatag_description, 'description');
   }
+
+  // Add napofilm js for view mode to all pages.
+  libraries_load('urijs');
+  drupal_add_library('napo_film', 'urijs');
+  drupal_add_js(drupal_get_path('module', 'napo_film') . '/js/napo_film.view_mode.js');
 }
 
 /**
