@@ -24,7 +24,7 @@ jQuery('document').ready(function() {
     jQuery('body').on('click', '.heading-anchor', function(e){
         e.preventDefault();
         var scroll = jQuery(jQuery(this).attr('href')).offset().top - 80;
-        jQuery('html').animate({
+        jQuery('body').animate({
             scrollTop: scroll
         }, 200);
     });
