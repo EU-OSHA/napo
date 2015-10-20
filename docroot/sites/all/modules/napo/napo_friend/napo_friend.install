@@ -1,0 +1,39 @@
+<?php
+
+
+/**
+ * Clear style attr of napo_friend and remove empty tags.
+ */
+function napo_friend_update_7001() {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'napo_friend');
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $nids = array_keys($result['node']);
+    $friends = entity_load('node', $nids);
+    foreach ($friends as $friend) {
+      foreach (array_keys($friend->translations->data) as $lang) {
+        $text = $friend->body[$lang][0]['value'];
+        $html_dom = filter_dom_load($text);
+        $xpath = new DOMXPath($html_dom);
+        $nodes = $xpath->query("//*[@style]");
+        foreach ($nodes as $node) {
+          $node->removeAttribute('style');
+        }
+        $nodes = $xpath->query("//*[normalize-space(.)='']");
+        foreach ($nodes as $node) {
+          $node->parentNode->removeChild($node);
+        }
+        $nodes = $xpath->query("//*[normalize-space(.)=\"\xC2\xA0\"]");
+        foreach ($nodes as $node) {
+          $node->parentNode->removeChild($node);
+        }
+        $friend->body[$lang][0]['value'] = filter_dom_serialize($html_dom);
+        $friend->workbench_moderation_state_new = 'published';
+        node_save($friend);
+      }
+    }
+  }
+}
