@@ -30,6 +30,7 @@ function napo_search_views_default_views() {
   $handler->display->display_options['query']['options']['search_api_bypass_access'] = 0;
   $handler->display->display_options['query']['options']['parse_mode'] = 'direct';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Search';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'default';
@@ -45,7 +46,7 @@ function napo_search_views_default_views() {
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['search_api_relevance']['field'] = 'search_api_relevance';
-  /* Sort criterion: Indexed Multilingual Node: Publication date */
+  /* Sort criterion: Indexed Multilingual Content: Publication date */
   $handler->display->display_options['sorts']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['field_publication_date']['field'] = 'field_publication_date';
@@ -54,7 +55,7 @@ function napo_search_views_default_views() {
     1 => 'AND',
     2 => 'OR',
   );
-  /* Filter criterion: Indexed Multilingual Node: Status */
+  /* Filter criterion: Indexed Multilingual Content: Status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['status']['field'] = 'status';
@@ -62,7 +63,7 @@ function napo_search_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['filters']['status']['group'] = 1;
-  /* Filter criterion: Indexed Multilingual Node: Content type */
+  /* Filter criterion: Indexed Multilingual Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -75,20 +76,20 @@ function napo_search_views_default_views() {
     'napo_video' => 'napo_video',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Indexed Multilingual Node: Publication date */
+  /* Filter criterion: Indexed Multilingual Content: Publication date */
   $handler->display->display_options['filters']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['filters']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_publication_date']['field'] = 'field_publication_date';
   $handler->display->display_options['filters']['field_publication_date']['operator'] = '<=';
   $handler->display->display_options['filters']['field_publication_date']['value'] = 'now';
   $handler->display->display_options['filters']['field_publication_date']['group'] = 2;
-  /* Filter criterion: Indexed Multilingual Node: Publication date */
+  /* Filter criterion: Indexed Multilingual Content: Publication date */
   $handler->display->display_options['filters']['field_publication_date_1']['id'] = 'field_publication_date_1';
   $handler->display->display_options['filters']['field_publication_date_1']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_publication_date_1']['field'] = 'field_publication_date';
   $handler->display->display_options['filters']['field_publication_date_1']['operator'] = 'empty';
   $handler->display->display_options['filters']['field_publication_date_1']['group'] = 2;
-  /* Filter criterion: Indexed Multilingual Node: Item language */
+  /* Filter criterion: Indexed Multilingual Content: Item language */
   $handler->display->display_options['filters']['search_api_language']['id'] = 'search_api_language';
   $handler->display->display_options['filters']['search_api_language']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['search_api_language']['field'] = 'search_api_language';
@@ -111,7 +112,7 @@ function napo_search_views_default_views() {
     2 => 'OR',
   );
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Indexed Multilingual Node: Status */
+  /* Filter criterion: Indexed Multilingual Content: Status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['status']['field'] = 'status';
@@ -119,7 +120,7 @@ function napo_search_views_default_views() {
     1 => '1',
   );
   $handler->display->display_options['filters']['status']['group'] = 1;
-  /* Filter criterion: Indexed Multilingual Node: Content type */
+  /* Filter criterion: Indexed Multilingual Content: Content type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['type']['field'] = 'type';
@@ -129,14 +130,14 @@ function napo_search_views_default_views() {
     'napo_video' => 'napo_video',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Indexed Multilingual Node: Publication date */
+  /* Filter criterion: Indexed Multilingual Content: Publication date */
   $handler->display->display_options['filters']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['filters']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_publication_date']['field'] = 'field_publication_date';
   $handler->display->display_options['filters']['field_publication_date']['operator'] = '<=';
   $handler->display->display_options['filters']['field_publication_date']['value'] = 'now';
   $handler->display->display_options['filters']['field_publication_date']['group'] = 2;
-  /* Filter criterion: Indexed Multilingual Node: Publication date */
+  /* Filter criterion: Indexed Multilingual Content: Publication date */
   $handler->display->display_options['filters']['field_publication_date_1']['id'] = 'field_publication_date_1';
   $handler->display->display_options['filters']['field_publication_date_1']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['field_publication_date_1']['field'] = 'field_publication_date';
@@ -166,7 +167,7 @@ function napo_search_views_default_views() {
     'title' => 'title',
     'title_field' => 'title_field',
   );
-  /* Filter criterion: Indexed Multilingual Node: Item language */
+  /* Filter criterion: Indexed Multilingual Content: Item language */
   $handler->display->display_options['filters']['search_api_language']['id'] = 'search_api_language';
   $handler->display->display_options['filters']['search_api_language']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['filters']['search_api_language']['field'] = 'search_api_language';
@@ -189,7 +190,7 @@ function napo_search_views_default_views() {
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Indexed Multilingual Node: Content type */
+  /* Field: Indexed Multilingual Content: Content type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['type']['field'] = 'type';
@@ -198,7 +199,7 @@ function napo_search_views_default_views() {
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['type']['link_to_entity'] = 0;
   $handler->display->display_options['fields']['type']['format_name'] = 0;
-  /* Field: Indexed Multilingual Node: Title */
+  /* Field: Indexed Multilingual Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
@@ -219,7 +220,7 @@ function napo_search_views_default_views() {
     'napo_film_title_link_with_film' => 0,
     'napo_film_title_link_with_film_value' => '!episode from the film !film',
   );
-  /* Field: Indexed Multilingual Node: Node ID */
+  /* Field: Indexed Multilingual Content: Node ID */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
@@ -227,7 +228,7 @@ function napo_search_views_default_views() {
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nid']['separator'] = '';
   $handler->display->display_options['fields']['nid']['link_to_entity'] = 0;
-  /* Field: Indexed Multilingual Node: URL */
+  /* Field: Indexed Multilingual Content: URL */
   $handler->display->display_options['fields']['url']['id'] = 'url';
   $handler->display->display_options['fields']['url']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['fields']['url']['field'] = 'url';
@@ -240,11 +241,11 @@ function napo_search_views_default_views() {
   $handler->display->display_options['sorts']['search_api_relevance']['id'] = 'search_api_relevance';
   $handler->display->display_options['sorts']['search_api_relevance']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['search_api_relevance']['field'] = 'search_api_relevance';
-  /* Sort criterion: Indexed Multilingual Node: Content type */
+  /* Sort criterion: Indexed Multilingual Content: Content type */
   $handler->display->display_options['sorts']['type']['id'] = 'type';
   $handler->display->display_options['sorts']['type']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['type']['field'] = 'type';
-  /* Sort criterion: Indexed Multilingual Node: Publication date */
+  /* Sort criterion: Indexed Multilingual Content: Publication date */
   $handler->display->display_options['sorts']['field_publication_date']['id'] = 'field_publication_date';
   $handler->display->display_options['sorts']['field_publication_date']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['sorts']['field_publication_date']['field'] = 'field_publication_date';
@@ -268,7 +269,6 @@ function napo_search_views_default_views() {
     t('Master'),
     t('Search'),
     t('more'),
-    t('Apply'),
     t('Reset'),
     t('Sort by'),
     t('Asc'),
