@@ -147,7 +147,7 @@ function napo_film_block_info() {
 
   $blocks['napo_film_intro_text'] = array(
     'info' => t('Napo film text'),
-    'cache' => DRUPAL_CACHE_GLOBAL,
+    'cache' => DRUPAL_NO_CACHE,
   );
 
   return $blocks;
