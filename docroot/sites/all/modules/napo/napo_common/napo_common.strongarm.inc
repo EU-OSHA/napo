@@ -35,7 +35,7 @@ function napo_common_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'extlink_css_exclude';
-  $strongarm->value = 'ul.menu';
+  $strongarm->value = 'ul.menu, .napo-share-widget-button';
   $export['extlink_css_exclude'] = $strongarm;
 
   $strongarm = new stdClass();
