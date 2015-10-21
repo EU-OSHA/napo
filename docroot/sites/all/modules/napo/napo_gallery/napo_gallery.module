@@ -21,14 +21,10 @@ function napo_gallery_preprocess_node(&$vars) {
 
 
 /**
- * Implements hook_node_validate().
+ * Implements hook_form_alter().
  */
-function napo_gallery_node_validate($node, $form, &$form_state) {
-  if ($node->type == 'napo_album') {
-    // Limit the title field of the album to 50 chars.
-    $lang = $form_state['values']['language'];
-    if (strlen($form_state['values']['title_field'][$lang][0]['value']) > 50) {
-      form_set_error('title_field', t('The album title should not be longer than 50 character!'));
-    }
-  }
+function napo_gallery_form_napo_album_node_form_alter(&$form, &$form_state, $form_id) {
+  // Limit the title field of the album to 50 chars.
+  $lang = element_children($form['title_field'])[0];
+  $form['title_field'][$lang][0]['value']['#maxlength'] = 50;
 }

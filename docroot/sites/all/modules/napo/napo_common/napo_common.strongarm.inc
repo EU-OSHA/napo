@@ -135,16 +135,16 @@ function napo_common_strongarm() {
     'toggle_node_user_picture' => 0,
     'toggle_comment_user_picture' => 0,
     'toggle_comment_user_verification' => 0,
-    'toggle_favicon' => 0,
+    'toggle_favicon' => 1,
     'toggle_main_menu' => 1,
     'toggle_secondary_menu' => 0,
     'default_logo' => 1,
     'logo_path' => '',
     'logo_upload' => '',
-    'default_favicon' => 0,
-    'favicon_path' => 'public://favicon.ico',
+    'default_favicon' => 1,
+    'favicon_path' => '',
     'favicon_upload' => '',
-    'general__active_tab' => 'edit-favicon',
+    'general__active_tab' => 'edit-theme-settings',
     'bootstrap__active_tab' => 'edit-components',
     'bootstrap_breadcrumb' => '1',
     'bootstrap_breadcrumb_home' => 1,
@@ -203,7 +203,6 @@ function napo_common_strongarm() {
     'bootstrap_bootswatch' => '',
     'bootstrap_rebuild_registry' => 0,
     'bootstrap_toggle_jquery_error' => 0,
-    'favicon_mimetype' => 'image/vnd.microsoft.icon',
   );
   $export['theme_napo_frontend_settings'] = $strongarm;
 
