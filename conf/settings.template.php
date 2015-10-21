@@ -579,4 +579,6 @@ $conf['memcache_servers'] = array(
 $conf['memcache_storage_wildcard_invalidate'] = 60 * 60 * 25 * 5; // 5 days
 
 # Varnish cache configuration
-$conf['cache_backends'][] = 'sites/all/modules/contrib/varnish/varnish.cache.inc';
+# $conf['cache_backends'][] = 'sites/all/modules/contrib/varnish/varnish.cache.inc';
+$conf['cache_class_cache_page'] = 'VarnishCache';
+
