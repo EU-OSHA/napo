@@ -16,7 +16,6 @@
 User-agent: *
 Crawl-delay: 10
 # Directories
-Disallow: /
 Disallow: /includes/
 Disallow: /misc/
 Disallow: /modules/
