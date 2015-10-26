@@ -32,6 +32,15 @@ function content_cart_menu() {
 }
 
 /**
+ * Implements hook_init().
+ */
+function content_cart_init() {
+  if (arg(0) == 'content_cart') {
+    drupal_page_is_cacheable(FALSE);
+  }
+}
+
+/**
  * Implements hook_views_api().
  */
 function content_cart_views_api() {
