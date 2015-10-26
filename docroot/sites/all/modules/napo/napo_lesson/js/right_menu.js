@@ -24,7 +24,7 @@ jQuery('document').ready(function() {
     jQuery('body').on('click', '.heading-anchor', function(e){
         e.preventDefault();
         var scroll = jQuery(jQuery(this).attr('href')).offset().top - 80;
-        jQuery('body').animate({
+        jQuery('html, body').animate({
             scrollTop: scroll
         }, 200);
     });
@@ -35,7 +35,7 @@ jQuery('document').ready(function() {
     // Add see video scroll spy link.
     var $lesson_video = jQuery('.node-lesson-video');
     if ($lesson_video.length > 0) {
-        menu.append(jQuery('<li class="headings"><a class="heading-anchor" href="#' + $lesson_video.attr('id') + '">' + Drupal.t('Watch lesson') + '</a></li>'));
+        menu.append(jQuery('<li class="headings"><a class="heading-anchor" href="#' + $lesson_video.attr('id') + '">' + Drupal.t('Watch the video') + '</a></li>'));
     }
 
     // Spymenu target

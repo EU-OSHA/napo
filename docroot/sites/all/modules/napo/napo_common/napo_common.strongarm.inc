@@ -84,7 +84,7 @@ function napo_common_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'extlink_subdomains';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['extlink_subdomains'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -168,8 +168,8 @@ function napo_common_strongarm() {
     'bootstrap_region_well-dashboard_main' => '',
     'bootstrap_region_well-dashboard_sidebar' => '',
     'bootstrap_region_well-dashboard_inactive' => '',
-    'bootstrap_anchors_fix' => 1,
-    'bootstrap_anchors_smooth_scrolling' => 1,
+    'bootstrap_anchors_fix' => 0,
+    'bootstrap_anchors_smooth_scrolling' => 0,
     'bootstrap_popover_enabled' => 1,
     'bootstrap_popover_animation' => 1,
     'bootstrap_popover_html' => 0,

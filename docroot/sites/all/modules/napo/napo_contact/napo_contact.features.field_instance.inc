@@ -107,7 +107,7 @@ function napo_contact_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 0,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -152,54 +152,6 @@ function napo_contact_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-faq-field_detailed_question'
-  $field_instances['node-faq-field_detailed_question'] = array(
-    'bundle' => 'faq',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => 'Enter the detailed question text',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_detailed_question',
-    'label' => 'Detailed question',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 31,
-    ),
-  );
-
   // Exported field_instance: 'node-faq-field_weight'
   $field_instances['node-faq-field_weight'] = array(
     'bundle' => 'faq',
@@ -209,15 +161,9 @@ function napo_contact_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 2,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -264,7 +210,7 @@ function napo_contact_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 2,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -307,8 +253,6 @@ function napo_contact_field_default_field_instances() {
   t('Answer');
   t('Body');
   t('Comment');
-  t('Detailed question');
-  t('Enter the detailed question text');
   t('Title');
   t('Weight');
 

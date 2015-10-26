@@ -28,6 +28,7 @@ function napo_contact_node_info() {
     'faq' => array(
       'name' => 'FAQ',
       'base' => 'node_content',
+      'description' => '',
       'has_title' => '1',
       'title_label' => 'Title',
       'help' => '',

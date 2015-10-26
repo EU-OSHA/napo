@@ -59,11 +59,16 @@ function napo_film_cart_get_stored_mime($nid) {
 }
 
 function napo_film_content_cart_remove_item($type, $id) {
+  global $user;
   if (isset($_SESSION['napo_film_cart_mime'][$id])) {
     unset($_SESSION['napo_film_cart_mime'][$id]);
   }
   if (isset($_SESSION['napo_film_select_in_cart'][$id])) {
     unset($_SESSION['napo_film_select_in_cart'][$id]);
+  }
+  // Destroy session if empty session.
+  if (user_is_anonymous() && !empty($user->sid) && empty($_SESSION)) {
+    _drupal_session_destroy($user->sid);
   }
 }
 
