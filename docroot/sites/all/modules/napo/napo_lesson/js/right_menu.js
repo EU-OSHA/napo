@@ -35,7 +35,7 @@ jQuery('document').ready(function() {
     // Add see video scroll spy link.
     var $lesson_video = jQuery('.node-lesson-video');
     if ($lesson_video.length > 0) {
-        menu.append(jQuery('<li class="headings"><a class="heading-anchor" href="#' + $lesson_video.attr('id') + '">' + Drupal.t('Watch lesson') + '</a></li>'));
+        menu.append(jQuery('<li class="headings"><a class="heading-anchor" href="#' + $lesson_video.attr('id') + '">' + Drupal.t('Watch the video') + '</a></li>'));
     }
 
     // Spymenu target
