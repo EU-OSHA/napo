@@ -209,7 +209,10 @@ function napo_lesson_preprocess_node(&$vars) {
           $vars['toolkit_title'] = drupal_render($title);
         }
       }
-
+      if (in_array('lessons_note', $vars['preprocess_fields'])) {
+        $note = variable_get('napo_lesson_note_text', '');
+        $vars['lessons_note'] = t($note);
+      }
     }
   }
 }
