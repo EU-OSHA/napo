@@ -9870,7 +9870,8 @@ input[type=checkbox] {
   display: none;
 }
 .view-search .views-row .node-napo-video div:nth-child(3).field-name-node-link {
-  margin-top: 120px;
+  /*margin-top: 120px;*/
+  top: 46px;
 }
 .view-search .views-row .napo-share-widget {
   display: none;
@@ -10508,6 +10509,9 @@ footer .menu.nav.navbar-nav li img.img-responsive {
   }
   .view-display-id-page_grid h3 a {
     width: 97%!important;
+  }
+  .node.node-napo-video .napo-share-widget {
+    margin-top: -16px;
   }
 }
 @media only screen and (max-width: 320px) {
