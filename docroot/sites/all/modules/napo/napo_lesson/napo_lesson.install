@@ -1,0 +1,47 @@
+<?php
+
+/**
+ * Added translations for Note phrase in lessons.
+ */
+function napo_lesson_update_7001() {
+  $note = 'Note: Though it is possible to use these lessons as separate units, it is recommended to work through each plan in logical succession';
+  $translations = array(
+    'ca' => 'Nota: tot i que és possible fer servir aquestes lliçons com a unitats individuals, es recomana dur a terme cada pla de treball en una successió lògica.',
+    'da' => 'NB: Selv om lektionerne kan anvendes særskilt, vil det være en fordel at gennemgå dem i den logiske rækkefølge.',
+    'de' => 'Hinweis: Diese Lektionen können als getrennte Einheiten verwendet werden. Es ist jedoch ratsam, jeden Lehrplan in logischer Reihenfolge durchzugehen.',
+    'et' => 'Märkus: kuigi neid tunnimaterjale saab kasutada ka eraldi, on otstarbekas töötada läbi iga tunnikava loogilises järjestuses.',
+    'es' => 'Nota: Aunque es posible utilizar estas lecciones por separado, se recomienda seguir el plan en su sucesión lógica',
+    'fr' => 'Note: Bien qu’il soit possible d’utiliser ces leçons de manière indépendante, il est toutefois recommandé de suivre l’ordre logique des fiches',
+    'hr' => 'Napomena: Premda je ove nastavne sate moguće koristiti kao zasebne cjeline, preporučuje se obrada svakog plana nastavnog sata logičkim slijedom',
+    'it' => 'Nota: benché sia possibile usare queste lezioni separatamente, si raccomanda di utilizzare le lezioni di ciascun pacchetto didattico in successione logica',
+    'lv' => 'Piezīme. Kaut gan šīs stundas var pasniegt atsevišķi, ieteicams izpildīt tās loģiskā secībā.',
+    'lt' => 'Pastaba. Nors šias pamokas galima naudoti kaip atskiras mokymo priemones, rekomenduojama jas vesti nuosekliai, atsižvelgiant į kiekvieno plano loginę seką.',
+    'hu' => 'Megjegyzés: Bár a leckék különálló egységként is használhatók, ajánlott az egymást követő részek logikai sorrendjének betartása.',
+    'nl' => 'Opmerking: Het is mogelijk deze lessen afzonderlijk te gebruiken; wij adviseren echter alle lessen in een logische volgorde te doorlopen.',
+    'pl' => 'Uwaga: Lekcje mogą być potraktowane jako oddzielne jednostki, zaleca się jednak pracę nad poszczególnymi zagadnieniami zawartymi w lekcji w logicznej kolejności.',
+    'pt' => 'Nota: Embora seja possível utilizar estas lições separadamente, recomenda-se que cada plano de aula seja trabalhado numa sequência lógica.',
+    'ro' => 'Notă: Deși puteți utiliza aceste lecții ca unități independente, se recomandă să parcurgeți fiecare plan în succesiune logică.',
+    'sk' => 'Poznámka: Aj keď sa tieto lekcie dajú použiť ako samostatné jednotky, odporúča sa prejsť celým plánom podľa logického sledu.',
+    'sl' => 'Opomba: Čeprav je te učne ure mogoče uporabljati ločeno, je priporočljivo vsako predelati v logičnem zaporedju.',
+    'fi' => 'Huomaa: Vaikka oppitunteja voidaan käyttää erikseen, on suositeltavaa käydä jokainen kokonaisuus läpi johdonmukaisessa järjestyksessä',
+  );
+  variable_set('napo_lesson_note_text', $note);
+  locale($note, '', 'es');
+  $lid = db_select('locales_source', 'ls')
+    ->fields('ls', array('lid'))
+    ->condition('source', $note)
+    ->execute()
+    ->fetchCol();
+
+  foreach ($translations as $lang => $text) {
+    $fields = array(
+      'lid' => $lid,
+      'language' => $lang,
+      'translation' => $text,
+    );
+    db_insert('locales_target')
+      ->fields($fields)
+      ->execute();
+  }
+}
+

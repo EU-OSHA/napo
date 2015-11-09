@@ -410,7 +410,7 @@ function search_and_replace_form_replace_validate($form, &$form_state) {
   }
 
   if (empty($values['replace'])) {
-    form_set_error('replace', t('Please enter a replacement word.'));
+//    form_set_error('replace', t('Please enter a replacement word.'));
   }
 }
 
