@@ -19,4 +19,6 @@ function osha_pathauto_punctuation_chars_alter(array &$punctuation) {
   $punctuation['8250'] = array('value' => '›', 'name' => t('Single chevron close'));
   $punctuation['0171'] = array('value' => '«', 'name' => t('Double chevron open'));
   $punctuation['0187'] = array('value' => '»', 'name' => t('Double chevron close'));
+  $punctuation['long-minus'] = array('value' => '–', 'name' => t('Long minus'));
+  $punctuation['left-apostrophe'] = array('value' => '’', 'name' => t('Apostrophe left'));
 }
