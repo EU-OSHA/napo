@@ -102,7 +102,7 @@ function napo_film_cron() {
   $zips = file_scan_directory(NAPO_FILM_DOWN_CENTER_PATH, '/.*\.zip$/');
   if (!empty($zips)) {
     foreach (array_keys($zips) as $zip) {
-      if (filemtime(drupal_realpath($zip)) < strtotime("-1 week")) {
+      if (filemtime(drupal_realpath($zip)) < strtotime("-1 day")) {
         drupal_unlink($zip);
       }
     }
