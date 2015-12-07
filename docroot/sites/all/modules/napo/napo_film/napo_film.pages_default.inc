@@ -15,7 +15,7 @@ function napo_film_default_page_manager_pages() {
   $page->task = 'page';
   $page->admin_title = 'Napo Video - View Episodes';
   $page->admin_description = 'Napo Video - View Episodes';
-  $page->path = 'node/%node/view-episodes';
+  $page->path = 'node/%node/view-scenes';
   $page->access = array(
     'plugins' => array(),
     'logic' => 'and',
