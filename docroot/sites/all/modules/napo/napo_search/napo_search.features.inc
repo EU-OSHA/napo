@@ -51,6 +51,18 @@ function napo_search_default_search_api_index() {
           "status" : 1,
           "weight" : "20",
           "settings" : { "spaces" : "[^\\\\p{L}\\\\p{N}]", "ignorable" : "[-]" }
+        },
+        "search_api_highlighting" : {
+          "status" : 1,
+          "weight" : "35",
+          "settings" : {
+            "prefix" : "\\u003Cspan class=\\u0022highlighted\\u0022\\u003E",
+            "suffix" : "\\u003C\\/span\\u003E",
+            "excerpt" : 1,
+            "excerpt_length" : "256",
+            "exclude_fields" : [],
+            "highlight" : "always"
+          }
         }
       },
       "fields" : {

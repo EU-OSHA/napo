@@ -130,6 +130,24 @@ function napo_film_napo_common_field_formatter_settings_form_alter($field, $inst
 function napo_film_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
   $element = array();
   $settings = $display['settings'];
+
+  //Highlight the searched text on search page.
+  $view = views_get_current_view();
+  if ($view) {
+    if ($view->name == 'search') {
+      foreach ($view->result as $result) {
+        if ($result->entity->nid != $entity->nid) {
+          continue;
+        }
+        $title = $result->_entity_properties['title_field'];
+        if ($title) {
+          $items[0]['safe_value'] = $title;
+        }
+        break;
+      }
+    }
+  }
+
   switch ($display['type']) {
     case 'napo_film_episode_title_linked':
       $output = isset($items[0]) ? $items[0]['safe_value'] : '';

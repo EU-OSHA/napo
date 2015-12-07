@@ -272,10 +272,15 @@ footer.footer.container section.block-menu-block{
 
 
 .field-name-node-link a:not(.glyphicon-play-circle){
-                background: @color-blue-napo!important;
-                color: @color-yellow-napo;
-                width: auto;
-                padding: 6px;
-                font-weight: bold;
-                text-transform: uppercase;
-            }
+    background: @color-blue-napo!important;
+    color: @color-yellow-napo;
+    width: auto;
+    padding: 6px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.page-search .highlighted {
+    font-weight: bold;
+    background-color: #f7e235;
+}
