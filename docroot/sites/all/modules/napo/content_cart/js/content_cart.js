@@ -43,10 +43,16 @@
         if (this.hasClass('node_in_content_cart')) {
             this.removeClass('node_in_content_cart');
             this.attr('title', this.data('addtitle'));
+            if(this.data('outofcart')){
+                alert(this.data('outofcart'));
+            }
         }
         else {
             this.addClass('node_in_content_cart');
             this.attr('title', this.data('removetitle'));
+            if(this.data('incart')){
+                alert(this.data('incart'));
+            }
         }
         return this;
     };
