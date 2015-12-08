@@ -24,7 +24,7 @@ function napo_consortium_partner_update_7001() {
         $url = 'http://www.suva.ch/it/startseite-suva';
         break;
       default:
-        $url = 'http://www.suva.ch/english/startseite-suva.htm';
+        $url = 'http://www.suva.ch/english/startseite-en-suva';
         break;
     }
 
