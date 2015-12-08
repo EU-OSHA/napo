@@ -24,4 +24,18 @@ function napo_gallery_update_7001() {
       $entity_wrapper->save();
     }
   }
+  variable_set('osha_gallery_usable_fields_bundles', array('napo_album|field_images' => 'napo_album|field_images'));
+}
+
+/**
+ * Delete instances field_image and field_napo_image for napo_album.
+ */
+function napo_gallery_update_7002() {
+  $existing_instance = field_info_instances('node', 'napo_album');
+  if (!empty($existing_instance['field_image'])) {
+    field_delete_instance($existing_instance['field_image'], TRUE);
+  }
+  if (!empty($existing_instance['field_napo_image'])) {
+    field_delete_instance($existing_instance['field_napo_image'], TRUE);
+  }
 }
