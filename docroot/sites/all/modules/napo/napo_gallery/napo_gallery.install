@@ -4,6 +4,7 @@
  * Move napo images nodes to field_images in napo album.
  */
 function napo_gallery_update_7001() {
+  features_revert_module('napo_gallery');
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'napo_album');
