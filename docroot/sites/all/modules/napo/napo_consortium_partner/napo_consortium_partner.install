@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * MN-10 Update SUVA URL
+ */
+function napo_consortium_partner_update_7001() {
+  features_revert_module('napo_consortium_partner');
+  $node = node_load(3);
+
+  $languages = osha_language_list();
+
+  foreach ($languages as $lng_object) {
+    $language = $lng_object->language;
+
+    // Create title
+    switch ($language){
+      case 'de':
+        $url = 'http://www.suva.ch/de/startseite-suva';
+        break;
+      case 'fr':
+        $url = 'http://www.suva.ch/fr/startseite-suva';
+        break;
+      case 'it':
+        $url = 'http://www.suva.ch/it/startseite-suva';
+        break;
+      default:
+        $url = 'http://www.suva.ch/english/startseite-suva.htm';
+        break;
+    }
+
+    $node->title_field[$language][0]['value'] = $node->title;
+
+    $node->field_url[$language][0]['url'] = $url;
+    $node->field_url[$language][0]['title'] = 'SUVA';
+
+    node_save($node);
+
+    $node->translations->data[$language]['entity_type'] = 'node';
+    $node->translations->data[$language]['entity_id'] = $node->nid;
+    $node->translations->data[$language]['language'] = $language;
+
+    $node->translations->data[$language]['source'] = 'en';
+    $node->translations->data[$language]['uid'] = $node->uid;
+    $node->translations->data[$language]['status'] = $node->status;
+    $node->translations->data[$language]['translate'] = 0;
+    $node->translations->data[$language]['created'] = $node->created;
+    $node->translations->data[$language]['changed'] = $node->changed;
+
+    node_save($node);
+  }
+}
