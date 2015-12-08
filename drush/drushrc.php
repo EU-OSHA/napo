@@ -471,6 +471,7 @@ $options['init-modules'] = array(
   'draggableviews',
 
   'colorbox',
+  'plupload',
 
   // Social share
   'on_the_web',
