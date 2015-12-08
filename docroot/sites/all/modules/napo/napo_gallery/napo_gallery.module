@@ -54,7 +54,8 @@ function napo_gallery_node_view($node, $view_mode, $langcode) {
 }
 
 /**
- * Implementation of hook_galleryformatter_styles().
+ * Implements hook_galleryformatter_styles().
+ *
  * @see galleryformatter_gallery_galleryformatter_styles
  */
 function napo_gallery_galleryformatter_styles() {
@@ -68,33 +69,4 @@ function napo_gallery_galleryformatter_styles() {
     }
   }
   return $gallerystyles;
-}
-
-function napo_gallery_t() {
-  $existing_instance = field_info_instances('node', 'napo_album');
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'napo_album');
-  $result = $query->execute();
-
-//  if (isset($result['node'])) {
-//    $albums_nids = array_keys($result['node']);
-//    $albums = node_load_multiple($albums_nids);
-//    foreach ($albums as $album) {
-//      if (empty($existing_instance['field_image'])) {
-//        field_purge_data('node', $album, $existing_base['field_image'], $existing_instance['field_image']);
-//      }
-//      if (empty($existing_instance['field_napo_image'])) {
-//        field_purge_data('node', $album, $existing_base['field_napo_image'], $existing_instance['field_napo_image']);
-//      }
-//    }
-//  }
-  if (!empty($existing_instance['field_image'])) {
-    field_delete_instance($existing_instance['field_image'], TRUE);
-  }
-  if (!empty($existing_instance['field_napo_image'])) {
-    field_delete_instance($existing_instance['field_napo_image'], TRUE);
-  }
-
-
 }
