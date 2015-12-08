@@ -505,6 +505,7 @@ $options['init-modules'] = array(
   'osha_lingua_tools',
 
   'osh_image_gallery',
+  'osha_gallery',
 
   'osha_sitemap',
 

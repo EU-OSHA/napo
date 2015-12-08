@@ -52,6 +52,9 @@ if [ ${ecode} != 0 ]; then
   exit ${ecode};
 fi
 
+# This is temporary, for update 7001
+drush fr napo_gallery -y
+
 # Build the site
 drush osha_build -y
 if [ ${ecode} != 0 ]; then
