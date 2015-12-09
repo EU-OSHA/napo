@@ -7615,7 +7615,7 @@ p:last-child {
   border-bottom: 5px solid #1f3695;
 }
 .field-content.featured-article-header a {
-  font-size: 17px;
+  font-size: 1.2em;
   padding-bottom: 1em;
   font-weight: bold;
   text-decoration: none;
@@ -7692,6 +7692,7 @@ p:last-child {
   color: #f7e235;
   padding-left: 2.5em;
   padding-top: 15px;
+  font-size: 1.2em;
 }
 .napo-homepage-featured-films .jcarousel-container-horizontal {
   border: 0px;
@@ -7766,7 +7767,6 @@ p:last-child {
 }
 .napo-homepage-featured-films .jcarousel-view--frontpage-carousel-featured--block .views-field-title-field a {
   color: #f7e235;
-  font-size: 14px;
   font-weight: bold;
 }
 .jcarousel-skin-napo .jcarousel-prev-horizontal {
@@ -9929,6 +9929,7 @@ footer h2 {
   font-weight: bold;
   margin: 0;
   padding: 0;
+  font-size: 1.2em;
 }
 footer .jcarousel-container-horizontal img {
   filter: grayscale(100%);
