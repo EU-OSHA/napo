@@ -165,6 +165,9 @@ function osha_workflow_permissions_role_review_manager() {
       'moderate content from draft to ready_to_publish',
       'moderate content from draft to published',
       'moderate content from ready_to_publish to published',
+
+      'access pm review tab',
+      'assign pm to node',
     ),
     osha_workflow_permissions_common(),
     osha_workflow_permissions_manage_content(),
