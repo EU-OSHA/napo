@@ -42,19 +42,15 @@
     $.fn.content_cart_toggle_button = function() {
         if (this.hasClass('node_in_content_cart')) {
             this.removeClass('node_in_content_cart');
-            this.attr('title', this.data('addtitle'));
-            if(this.data('outofcart')){
-                $.bootstrapGrowl(this.data('outofcart'), {type:'success', allow_dismiss: true, width: 'auto'});
-            }
         }
         else {
             this.addClass('node_in_content_cart');
-            this.attr('title', this.data('removetitle'));
-            if(this.data('incart')){
-                $.bootstrapGrowl(this.data('incart'), {type:'success', allow_dismiss: true, width: 'auto'});
-            }
         }
         return this;
+    };
+
+    $.fn.content_cart_growl = function(data, args) {
+        $.bootstrapGrowl(data, args);
     };
 
 })(jQuery);
