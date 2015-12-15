@@ -17,13 +17,9 @@ class content_cart_handler_add_to_cart extends views_handler_field {
 
       drupal_add_library('system', 'drupal.ajax');
       drupal_add_js(drupal_get_path('module', 'content_cart') . '/js/content_cart.js');
-      drupal_add_js(drupal_get_path('module', 'content_cart') . '/js/jquery.bootstrap-growl.min.js');
       $options = $this->options;
       $label = $add_label = t($options['contant_add_to_cart_button_label']);
       $remove_label = t($options['contant_remove_from_cart_button_label']);
-
-      $incart_message = t('Added to download centre');
-      $outofcart_message = t('Removed from download centre');
 
       $in_cart = '';
       $cart = ContentCart::getCurrentCart();
@@ -32,8 +28,7 @@ class content_cart_handler_add_to_cart extends views_handler_field {
         $label = $remove_label;
       }
       return '<button title="' . $label . '" class="btn content-cart-add-to-cart-btn ' .
-        $in_cart . '" data-incart="'.$incart_message.'" data-outofcart="'.$outofcart_message.'" data-value="' . $entity_type . '-' . $entity_id . '"' .
-        ' data-addtitle="' . $add_label . '" data-removetitle="' . $remove_label . '">'
+        $in_cart . '" data-value="' . $entity_type . '-' . $entity_id . '">'
         . $label . '</button>';
     }
   }

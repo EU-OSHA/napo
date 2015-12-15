@@ -356,6 +356,13 @@ function napo_film_theme() {
       ),
       'template' => 'theme/napo_film_ajax_episode',
     ),
+    'napo_film_cart_added_ajax_message' => array(
+      'variables' => array(
+        'title' => '',
+        'image' => '',
+      ),
+      'template' => 'theme/napo_film_cart_added_ajax_message',
+    ),
     'napo_film_share_widget' => array(
       'variables' => array(
         'url' => '',
