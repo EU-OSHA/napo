@@ -44,14 +44,14 @@
             this.removeClass('node_in_content_cart');
             this.attr('title', this.data('addtitle'));
             if(this.data('outofcart')){
-                alert(this.data('outofcart'));
+                $.bootstrapGrowl(this.data('outofcart'), {type:'success', allow_dismiss: true, width: 'auto'});
             }
         }
         else {
             this.addClass('node_in_content_cart');
             this.attr('title', this.data('removetitle'));
             if(this.data('incart')){
-                alert(this.data('incart'));
+                $.bootstrapGrowl(this.data('incart'), {type:'success', allow_dismiss: true, width: 'auto'});
             }
         }
         return this;
