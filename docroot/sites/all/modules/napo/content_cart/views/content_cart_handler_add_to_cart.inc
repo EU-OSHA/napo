@@ -17,6 +17,7 @@ class content_cart_handler_add_to_cart extends views_handler_field {
 
       drupal_add_library('system', 'drupal.ajax');
       drupal_add_js(drupal_get_path('module', 'content_cart') . '/js/content_cart.js');
+      drupal_add_js(drupal_get_path('module', 'content_cart') . '/js/jquery.bootstrap-growl.min.js');
       $options = $this->options;
       $label = $add_label = t($options['contant_add_to_cart_button_label']);
       $remove_label = t($options['contant_remove_from_cart_button_label']);
