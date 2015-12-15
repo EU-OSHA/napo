@@ -133,8 +133,6 @@ function napo_film_content_cart_ajax_submit_alter(&$commands, $input_value, $ope
     $content = t('Removed from download centre');
   }
   $content = '<div id="napo-film-cart-growl-' . $content_id . '">' . $content . '</div>';
-  $commands[] = ajax_command_remove('#napo-film-cart-growl-' . $content_id);
-  $commands[] = ajax_command_append('body', $content);
   $commands[] = ajax_command_invoke('body', 'content_cart_growl', array($content, $growl_args));
 
   // Refresh content cart summary.
