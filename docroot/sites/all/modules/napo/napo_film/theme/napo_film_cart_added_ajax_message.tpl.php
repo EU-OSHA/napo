@@ -1,6 +1,10 @@
 <?php
+
+// Reverse array to show the latest 4.
+$data = array_reverse($data);
 $label = format_plural(count($data), '1 item added to the Download centre', '@count items added to the Download centre', array('@count' => count($data)));
 $label_more = '';
+// Only show 4 thumbnails. If more than 4, add a label.
 $showing_data = array_slice($data, 0, 4);
 $more_items_count = count($data) - count($showing_data);
 if (count($data) > 4) {

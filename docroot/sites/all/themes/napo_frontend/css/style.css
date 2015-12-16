@@ -9938,7 +9938,10 @@ a.ext span.ext {
   content: "...";
 }
 .bootstrap-growl.alert.alert-success.alert-dismissible .napo-film-title-field {
-  min-height: 65px;
+  min-height: 80px;
+}
+.bootstrap-growl.alert.alert-success.alert-dismissible .napo-film-image img {
+  height: 55px;
 }
 .bootstrap-growl.alert.alert-success.alert-dismissible .napo-film-added-to-cart-message {
   background-color: #fff;
@@ -9948,6 +9951,7 @@ a.ext span.ext {
 .bootstrap-growl.alert.alert-success.alert-dismissible .napo-film-image {
   float: left;
   padding-right: 5px;
+  height: 75px;
 }
 .bootstrap-growl.alert.alert-success.alert-dismissible .napo-film-title-field {
   font-size: 12px;
@@ -9983,7 +9987,10 @@ a.ext span.ext {
   color: #585759;
 }
 .bootstrap-growl.alert.alert-warning.alert-dismissible .napo-film-title-field {
-  min-height: 65px;
+  min-height: 80px;
+}
+.bootstrap-growl.alert.alert-warning.alert-dismissible .napo-film-image img {
+  height: 55px;
 }
 .bootstrap-growl.alert.alert-warning.alert-dismissible .napo-film-added-to-cart-message {
   background-color: #fff;
@@ -9993,6 +10000,7 @@ a.ext span.ext {
 .bootstrap-growl.alert.alert-warning.alert-dismissible .napo-film-image {
   float: left;
   padding-right: 5px;
+  height: 75px;
 }
 .bootstrap-growl.alert.alert-warning.alert-dismissible .napo-film-title-field {
   font-size: 12px;
