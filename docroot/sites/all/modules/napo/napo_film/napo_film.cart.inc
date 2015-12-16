@@ -115,7 +115,7 @@ function napo_film_content_cart_ajax_submit_alter(&$commands, $input_value, $ope
   $type = $input_value[0];
   $content_id = $input_value[1];
 
-  $growl_args = array('allow_dismiss' => true, 'width' => 'auto');
+  $growl_args = array('allow_dismiss' => true, 'width' => 'auto', 'delay' => 2000);
   $block_data = array();
   if ($operation == 'add') {
     if (!empty($cart_content['node'])) {
