@@ -120,6 +120,7 @@ function napo_film_content_cart_ajax_submit_alter(&$commands, $input_value, $ope
   if ($operation == 'add') {
     if (!empty($cart_content['node'])) {
       foreach ($cart_content['node'] as $nid) {
+        // Render thumbnails to the pop-up.
         $node = node_load($nid);
         $wrapper = entity_metadata_wrapper($type, $node);
         $title = $wrapper->label();
@@ -131,6 +132,7 @@ function napo_film_content_cart_ajax_submit_alter(&$commands, $input_value, $ope
         $block_data[$nid] = theme('napo_film_cart_summary_node_view',
           array('title' => $title, 'image' => $image, 'node' => $node));
       }
+      // Render the pop-up.
       $content = theme('napo_film_cart_added_ajax_message', array('data' => $block_data));
       $growl_args['type'] = 'success';
     }
