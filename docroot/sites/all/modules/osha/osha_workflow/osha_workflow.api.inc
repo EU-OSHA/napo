@@ -524,15 +524,9 @@ class OshaWorkflowPermissions {
     if (!$user) {
       global $user;
     }
-    if (isset($node->workbench_moderation)) {
-      $node_in_rm_section = FALSE;
-      if (self::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user)) {
-        $node_in_rm_section = osha_workflow_node_in_rm_section($node, $user);
-      }
-      $is_admin = self::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user);
-      return $is_admin || $node_in_rm_section;
-    }
-    return FALSE;
+    $is_rm = self::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user);
+    $is_admin = self::userHasRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR, $user);
+    return $is_admin || $is_rm;
   }
 
 
@@ -768,9 +762,9 @@ class OshaWorkflowNotifications {
    */
   public static function notifyNodeIsPublished($node) {
     // Notify PM.
-    $project_manager = osha_workflow_get_project_manager($node->nid);
-    if (!empty($project_manager)) {
-      OshaWorkflowNotifications::sendEmail($project_manager, array('node' => $node), 'osha_workflow');
+    $users = osha_workflow_get_pms_users($node->nid);
+    if (!empty($users)) {
+      OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
     }
   }
 
@@ -785,11 +779,11 @@ class OshaWorkflowNotifications {
    *   Affected node
    */
   public static function notifyNodeIsReadyToPublish($node) {
-    // Notify PM that is ready to pbulish.
+    // Notify PMs that is ready to pbulish.
     // Some node may not have PM.
-    $project_manager = osha_workflow_get_project_manager($node->nid);
-    if (!empty($project_manager)) {
-      OshaWorkflowNotifications::sendEmail($project_manager, array('node' => $node), 'osha_workflow');
+    $users = osha_workflow_get_pms_users($node->nid);
+    if (!empty($users)) {
+      OshaWorkflowNotifications::sendEmail($users, array('node' => $node), 'osha_workflow');
     }
 
     $translation_managers = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER);

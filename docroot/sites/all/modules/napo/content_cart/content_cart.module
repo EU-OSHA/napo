@@ -152,9 +152,11 @@ function content_cart_ajax_submit($input_value, $operation = '', $view = '') {
 
       default:
         if ($cart->hasInCart($type, $content_id)) {
+          $operation = 'remove';
           content_cart_remove_item($type, $content_id);
         }
         else {
+          $operation = 'add';
           content_cart_add_item($type, $content_id);
         }
         break;
@@ -174,7 +176,7 @@ function content_cart_ajax_submit($input_value, $operation = '', $view = '') {
       $commands[] = ajax_command_replace($view_dom_class, $view_content);
     }
   }
-  drupal_alter('content_cart_ajax_submit', $commands, $input_value);
+  drupal_alter('content_cart_ajax_submit', $commands, $identifiers, $operation);
   $page = array(
     '#type' => 'ajax',
     '#commands' => $commands,

@@ -47,11 +47,6 @@ function napo_search_default_search_api_index() {
             "tags" : "h1 = 5\\nh2 = 3\\nh3 = 2\\nstrong = 2\\nb = 2\\nem = 1.5\\nu = 1.5"
           }
         },
-        "search_api_tokenizer" : {
-          "status" : 1,
-          "weight" : "20",
-          "settings" : { "spaces" : "[^\\\\p{L}\\\\p{N}]", "ignorable" : "[-]" }
-        },
         "search_api_highlighting" : {
           "status" : 1,
           "weight" : "35",

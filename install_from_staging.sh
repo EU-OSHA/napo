@@ -69,7 +69,7 @@ fi
 
 if [ ! -z "$files" ]; then
 echo "Run drush rsync"
-drush rsync @staging:%files @self:%files --chmod=ug+w
+drush -y rsync @staging:%files @self:%files --chmod=ug+w
 fi
 
 ecode=$?

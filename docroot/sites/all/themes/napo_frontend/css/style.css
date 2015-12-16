@@ -7615,7 +7615,7 @@ p:last-child {
   border-bottom: 5px solid #1f3695;
 }
 .field-content.featured-article-header a {
-  font-size: 17px;
+  font-size: 1.2em;
   padding-bottom: 1em;
   font-weight: bold;
   text-decoration: none;
@@ -7692,6 +7692,7 @@ p:last-child {
   color: #f7e235;
   padding-left: 2.5em;
   padding-top: 15px;
+  font-size: 1.2em;
 }
 .napo-homepage-featured-films .jcarousel-container-horizontal {
   border: 0px;
@@ -7766,7 +7767,6 @@ p:last-child {
 }
 .napo-homepage-featured-films .jcarousel-view--frontpage-carousel-featured--block .views-field-title-field a {
   color: #f7e235;
-  font-size: 14px;
   font-weight: bold;
 }
 .jcarousel-skin-napo .jcarousel-prev-horizontal {
@@ -9920,6 +9920,113 @@ a.ext span.ext {
   width: 0;
   height: 0;
 }
+.bootstrap-growl.alert.alert-success.alert-dismissible {
+  background-color: #1f3695;
+  border: 0px solid #1f3695;
+  border-radius: 0px;
+  color: #1f3695;
+  top: 38px!important;
+  width: 270px;
+}
+.bootstrap-growl.alert.alert-success.alert-dismissible .napo-film-added-label,
+.bootstrap-growl.alert.alert-success.alert-dismissible .napo-film-added-label-more {
+  padding-bottom: 1em;
+  font-size: 11px;
+  color: #585759;
+}
+.bootstrap-growl.alert.alert-success.alert-dismissible .napo-film-added-label-more::before {
+  content: "...";
+}
+.bootstrap-growl.alert.alert-success.alert-dismissible .napo-film-title-field {
+  min-height: 65px;
+}
+.bootstrap-growl.alert.alert-success.alert-dismissible .napo-film-added-to-cart-message {
+  background-color: #fff;
+  padding: 1em;
+  width: 240px;
+}
+.bootstrap-growl.alert.alert-success.alert-dismissible .napo-film-image {
+  float: left;
+  padding-right: 5px;
+}
+.bootstrap-growl.alert.alert-success.alert-dismissible .napo-film-title-field {
+  font-size: 12px;
+}
+.bootstrap-growl.alert.alert-success.alert-dismissible .napo-film-added-label {
+  clear: both;
+}
+.bootstrap-growl.alert.alert-success.alert-dismissible .close {
+  opacity: 0.8;
+  color: #FFF;
+}
+.bootstrap-growl.alert.alert-success.alert-dismissible .close span {
+  margin-top: -18px;
+  position: absolute;
+  margin-left: -1px;
+}
+.bootstrap-growl.alert.alert-success.alert-dismissible .close:hover,
+.bootstrap-growl.alert.alert-success.alert-dismissible .close:focus {
+  color: #FFF;
+}
+.bootstrap-growl.alert.alert-warning.alert-dismissible {
+  background-color: #f7e235;
+  border: 0px solid #f7e235;
+  border-radius: 0px;
+  color: #1f3695;
+  top: 38px!important;
+  width: 270px;
+}
+.bootstrap-growl.alert.alert-warning.alert-dismissible .napo-film-added-label,
+.bootstrap-growl.alert.alert-warning.alert-dismissible .napo-film-added-label-more {
+  padding-bottom: 1em;
+  font-size: 11px;
+  color: #585759;
+}
+.bootstrap-growl.alert.alert-warning.alert-dismissible .napo-film-title-field {
+  min-height: 65px;
+}
+.bootstrap-growl.alert.alert-warning.alert-dismissible .napo-film-added-to-cart-message {
+  background-color: #fff;
+  padding: 1em;
+  width: 240px;
+}
+.bootstrap-growl.alert.alert-warning.alert-dismissible .napo-film-image {
+  float: left;
+  padding-right: 5px;
+}
+.bootstrap-growl.alert.alert-warning.alert-dismissible .napo-film-title-field {
+  font-size: 12px;
+}
+.bootstrap-growl.alert.alert-warning.alert-dismissible .napo-film-added-label {
+  clear: both;
+}
+.bootstrap-growl.alert.alert-warning.alert-dismissible .close {
+  opacity: 0.8;
+  color: #1f3695;
+}
+.bootstrap-growl.alert.alert-warning.alert-dismissible .close span {
+  margin-top: -18px;
+  position: absolute;
+  margin-left: -1px;
+}
+.bootstrap-growl.alert.alert-warning.alert-dismissible .close:hover,
+.bootstrap-growl.alert.alert-warning.alert-dismissible .close:focus {
+  color: #1f3695;
+}
+.napo-film-access-download-centre {
+  border-top: 2px dashed #1f3695;
+}
+.napo-film-access-download-centre a {
+  background: #1f3695;
+  margin-top: 1em;
+  color: #FFF;
+}
+.napo-film-access-download-centre a:hover {
+  background: #1f3695;
+}
+.napo-film-access-download-centre a:focus {
+  background: #1f3695;
+}
 .footer {
   border: 0px;
   margin-top: 0px;
@@ -9929,6 +10036,7 @@ footer h2 {
   font-weight: bold;
   margin: 0;
   padding: 0;
+  font-size: 1.2em;
 }
 footer .jcarousel-container-horizontal img {
   filter: grayscale(100%);

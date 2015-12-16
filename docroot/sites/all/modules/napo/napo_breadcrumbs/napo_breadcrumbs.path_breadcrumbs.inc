@@ -43,7 +43,7 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
     ),
     'paths' => array(
       0 => '%site:current-page:menu-link:pb-join:url',
-      1 => '%node:field-napo-film:url/view-episodes',
+      1 => '%node:field-napo-film:url/view-scenes',
       2 => '<none>',
     ),
     'home' => 1,
@@ -170,7 +170,7 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
   $path_breadcrumb->api_version = 1;
   $path_breadcrumb->machine_name = 'napo_s_film_episodes_panel';
   $path_breadcrumb->name = 'Napo\'s film episodes - panel';
-  $path_breadcrumb->path = 'node/%node/view-episodes';
+  $path_breadcrumb->path = 'node/%node/view-scenes';
   $path_breadcrumb->data = array(
     'titles' => array(
       0 => '%site:current-page:menu-link:pb-join:name',
