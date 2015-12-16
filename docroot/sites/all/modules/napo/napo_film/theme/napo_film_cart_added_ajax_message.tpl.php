@@ -13,9 +13,11 @@ if (count($data) > 4) {
   <?php foreach ($showing_data as $node_rendered) { ?>
     <?php print $node_rendered; ?>
   <?php } ?>
+  <?php if (!empty($label_more)) { ?>
   <div class="napo-film-added-label-more">
     <?php print $label_more; ?>
   </div>
+  <?php  } ?>
   <div class="napo-film-access-download-centre">
     <a href="<?php print url('download-center'); ?>" class="btn btn-primary"><?php print t('Access to Download centre'); ?></a>
   </div>
