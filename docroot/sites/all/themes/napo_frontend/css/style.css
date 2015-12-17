@@ -9895,6 +9895,15 @@ input[type=checkbox] {
 .view-search .views-row:hover .napo-film-video-download-form {
   display: block;
 }
+.view-search .btn.btn-primary.form-submit {
+  border-radius: 5px!important;
+  color: #585759;
+  background: #f7e235;
+  font-weight: bold;
+  float: right;
+  border: 0px solid transparent;
+  padding: 6px 12px 9px;
+}
 .btn-info.form-submit {
   border-radius: 5px!important;
   color: #585759;
