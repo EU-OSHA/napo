@@ -233,23 +233,32 @@ function napo_gallery_strongarm() {
       'recommended_films' => array(
         'custom_settings' => FALSE,
       ),
+      'episode_popup' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_results' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '8',
-        ),
-        'path' => array(
           'weight' => '7',
         ),
-        'redirect' => array(
+        'path' => array(
           'weight' => '6',
+        ),
+        'redirect' => array(
+          'weight' => '5',
         ),
         'workbench_access' => array(
           'weight' => '4',
         ),
         'language' => array(
           'weight' => '5',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '9',
         ),
       ),
       'display' => array(),

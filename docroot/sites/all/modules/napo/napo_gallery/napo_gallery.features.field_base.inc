@@ -10,51 +10,37 @@
 function napo_gallery_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_napo_image'
-  $field_bases['field_napo_image'] = array(
+  // Exported field_base: 'field_images'
+  $field_bases['field_images'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_napo_image',
+    'field_name' => 'field_images',
     'foreign keys' => array(
-      'node' => array(
+      'fid' => array(
         'columns' => array(
-          'target_id' => 'nid',
+          'fid' => 'fid',
         ),
-        'table' => 'node',
+        'table' => 'file_managed',
       ),
     ),
     'indexes' => array(
-      'target_id' => array(
-        0 => 'target_id',
+      'fid' => array(
+        0 => 'fid',
       ),
     ),
     'locked' => 0,
-    'module' => 'entityreference',
+    'module' => 'image',
     'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'handler' => 'base',
-      'handler_settings' => array(
-        'behaviors' => array(
-          'entityqueue' => array(
-            'status' => 0,
-          ),
-          'views-select-list' => array(
-            'status' => 0,
-          ),
-        ),
-        'sort' => array(
-          'type' => 'none',
-        ),
-        'target_bundles' => array(
-          'napo_image' => 'napo_image',
-        ),
+      'default_image' => 0,
+      'entity_translation_sync' => array(
+        0 => 'fid',
       ),
-      'target_type' => 'node',
+      'uri_scheme' => 'public',
     ),
     'translatable' => 0,
-    'type' => 'entityreference',
+    'type' => 'image',
   );
 
   return $field_bases;
