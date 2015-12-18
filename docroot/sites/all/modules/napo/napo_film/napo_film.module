@@ -102,7 +102,7 @@ function napo_film_cron() {
   $zips = file_scan_directory(NAPO_FILM_DOWN_CENTER_PATH, '/.*\.zip$/');
   if (!empty($zips)) {
     foreach (array_keys($zips) as $zip) {
-      if (filemtime(drupal_realpath($zip)) < strtotime("-1 week")) {
+      if (filemtime(drupal_realpath($zip)) < strtotime("-1 day")) {
         drupal_unlink($zip);
       }
     }
@@ -355,6 +355,26 @@ function napo_film_theme() {
         'nid' => '',
       ),
       'template' => 'theme/napo_film_ajax_episode',
+    ),
+    'napo_film_cart_added_ajax_message' => array(
+      'variables' => array(
+        'data' => '',
+      ),
+      'template' => 'theme/napo_film_cart_added_ajax_message',
+    ),
+    'napo_film_cart_removed_ajax_message' => array(
+      'variables' => array(
+        'data' => '',
+      ),
+      'template' => 'theme/napo_film_cart_removed_ajax_message',
+    ),
+    'napo_film_cart_summary_node_view' => array(
+      'variables' => array(
+        'title' => '',
+        'image' => '',
+        'node' => '',
+      ),
+      'template' => 'theme/napo_film_cart_summary_node_view',
     ),
     'napo_film_share_widget' => array(
       'variables' => array(

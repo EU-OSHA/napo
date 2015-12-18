@@ -45,3 +45,22 @@ function napo_lesson_update_7001() {
   }
 }
 
+/**
+ * Fix aliases for lesson - NAPO-818.
+ */
+function napo_lesson_update_7002() {
+  $nids = array(20, 21, 29,30, 84, 85);
+  foreach ($nids as $nid) {
+    $path = path_load(array('source' => 'node/' . $nid, 'language' => 'en'));
+    if (!empty($path)) {
+      db_update('url_alias')
+        ->fields(array(
+          'alias' => $path['alias'],
+        ))
+        ->condition('source', 'node/' . $nid)
+        ->condition('language', 'en', '!=')
+        ->execute();
+    }
+  }
+}
+

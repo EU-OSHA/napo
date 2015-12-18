@@ -28,8 +28,7 @@ class content_cart_handler_add_to_cart extends views_handler_field {
         $label = $remove_label;
       }
       return '<button title="' . $label . '" class="btn content-cart-add-to-cart-btn ' .
-        $in_cart . '" data-value="' . $entity_type . '-' . $entity_id . '"' .
-        ' data-addtitle="' . $add_label . '" data-removetitle="' . $remove_label . '">'
+        $in_cart . '" data-value="' . $entity_type . '-' . $entity_id . '">'
         . $label . '</button>';
     }
   }

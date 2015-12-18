@@ -42,13 +42,15 @@
     $.fn.content_cart_toggle_button = function() {
         if (this.hasClass('node_in_content_cart')) {
             this.removeClass('node_in_content_cart');
-            this.attr('title', this.data('addtitle'));
         }
         else {
             this.addClass('node_in_content_cart');
-            this.attr('title', this.data('removetitle'));
         }
         return this;
+    };
+
+    $.fn.content_cart_growl = function(data, args) {
+        $.bootstrapGrowl(data, args);
     };
 
 })(jQuery);
