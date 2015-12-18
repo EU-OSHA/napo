@@ -29,7 +29,8 @@ function napo_gallery_node_view($node, $view_mode, $langcode) {
         'path' => $first_image['uri'],
         'alt' => $node->title,
       );
-      $node->content['gallery_cover_image'] = array('#markup' => theme('image_style', $image_vars));
+      $link = '<a href="javascript:void(0);" onclick="console.log(jQuery(\'.field-name-field-images a.colorbox-inline\')); jQuery(\'.field-name-field-images a.colorbox-inline\').eq(0).trigger(\'click\');">' . theme('image_style', $image_vars) . '</a>';
+      $node->content['gallery_cover_image'] = array('#markup' => $link);
       if (!empty($node->content['field_images'])) {
         $image_deltas = element_children($node->content['field_images']);
         $total = count($image_deltas);

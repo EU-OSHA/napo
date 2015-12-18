@@ -378,13 +378,17 @@ function napo_frontend_colorbox_image_formatter($variables) {
     'path' => $path,
     'title' => $caption,
     'gid' => $gallery_id,
+    'entity' => $entity,
   ));
 }
 /**
  * @see theme_colorbox_imagefield().
  */
 function napo_frontend_colorbox_imagefield($variables) {
-  $class = array('colorbox');
+  // Load the necessary js file for Colorbox activation.
+  if (_colorbox_active() && !variable_get('colorbox_inline', 0)) {
+    drupal_add_js(drupal_get_path('module', 'colorbox') . '/js/colorbox_inline.js');
+  }
   if ($variables['image']['style_name'] == 'hide') {
     $image = '';
     $class[] = 'js-hide';
@@ -395,19 +399,34 @@ function napo_frontend_colorbox_imagefield($variables) {
   else {
     $image = theme('image', $variables['image']);
   }
-  $options = drupal_parse_url($variables['path']);
-  $options += array(
-    'html' => TRUE,
-    'attributes' => array(
-      'title' => $variables['title'],
-      'class' => $class,
-      'rel' => $variables['gid'],
-    ),
-    'language' => array('language' => NULL),
+  $image_vars = array(
+    'style_name' => 'large',
+    'path' => $variables['image']['path'],
+    'alt' => $variables['entity']->title,
   );
-  $output = l($image, $options['path'], $options);
-  if (!empty($variables['title'])) {
-    $output .= '<div class="gallery-thumb-caption">' . $variables['title'] . '</div>';
-  }
-  return $output;
+  $popup = theme('image_style', $image_vars);
+  $caption = $variables['title'] . napo_common_get_share_widget($variables['entity']);
+
+  $width = 'auto';
+  $height = 'auto';
+  $gallery_id = $variables['gid'];
+  $link_options = drupal_parse_url($variables['image']['path']);
+  $link_options = array_merge($link_options, array(
+    'html' => TRUE,
+    'fragment' => 'colorbox-inline-' . md5($variables['image']['path']),
+    'query' => array(
+      'width' => $width,
+      'height' => $height,
+      'title' => $caption,
+      'inline' => 'true',
+    ),
+    'attributes' => array(
+      'class' => array('colorbox-inline'),
+      'rel' => $gallery_id,
+    ),
+  ));
+  // Remove any parameters that aren't set.
+  $link_options['query'] = array_filter($link_options['query']);
+  $link_tag = l($image, $variables['path'], $link_options);
+  return $link_tag . '<div style="display: none;"><div id="colorbox-inline-' . md5($variables['image']['path']) . '">' . $popup . '</div></div>';
 }
