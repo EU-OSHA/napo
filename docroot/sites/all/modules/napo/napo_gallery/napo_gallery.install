@@ -17,7 +17,9 @@ function napo_gallery_update_7001() {
         foreach ($album->field_napo_image[LANGUAGE_NONE] as $image_field) {
           $image_node = node_load($image_field['target_id']);
           if (!empty($image_node)) {
-            $images[] = $image_node->field_image[LANGUAGE_NONE][0];
+            $image = $image_node->field_image[LANGUAGE_NONE][0];
+            $image['title'] = $image_node->title;
+            $images[] = $image;
           }
         }
         $album->field_images[LANGUAGE_NONE] = $images;
