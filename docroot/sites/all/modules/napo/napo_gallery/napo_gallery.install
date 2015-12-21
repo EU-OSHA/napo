@@ -16,9 +16,15 @@ function napo_gallery_update_7001() {
       if (!empty($album->field_napo_image[LANGUAGE_NONE])) {
         foreach ($album->field_napo_image[LANGUAGE_NONE] as $image_field) {
           $image_node = node_load($image_field['target_id']);
+          $image_node_wrapper = entity_metadata_wrapper('node', $image_node);
           if (!empty($image_node)) {
             $image = $image_node->field_image[LANGUAGE_NONE][0];
-            $image['title'] = $image_node->title;
+            if ($body = $image_node_wrapper->body->value()) {
+              $image['title'] = strip_tags($body['value']);
+            }
+            else {
+              $image['title'] = $image_node_wrapper->label();
+            }
             $images[] = $image;
           }
         }

@@ -4,7 +4,10 @@
   <?php endif; ?>
   <div class="field-items"<?php print $content_attributes; ?>>
     <?php foreach ($items as $delta => $item): ?>
-      <div class="field-item col-md-4 col-sm-6 col-xs-12 <?php print $delta % 3 ? '' : 'clearfix'; ?>"<?php print $item_attributes[$delta]; ?>><?php print render($item); ?></div>
+      <div class="field-item col-md-4 col-sm-6 col-xs-12 <?php print $delta % 3 ? '' : 'clearfix'; ?>"<?php print $item_attributes[$delta]; ?>>
+        <?php print render($item); ?>
+        <div class="img-title"><?php print $item['#item']['title']; ?></div>
+      </div>
     <?php endforeach; ?>
   </div>
 </div>
