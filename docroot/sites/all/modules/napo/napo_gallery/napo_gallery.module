@@ -15,6 +15,42 @@ function napo_gallery_form_napo_album_node_form_alter(&$form, &$form_state, $for
   $form['title_field'][$lang][0]['value']['#maxlength'] = 50;
 }
 
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function napo_gallery_field_widget_form_alter(&$element, &$form_state, $context) {
+  // Add display_field setting to field because file_field_widget_form() assumes it is set.
+  // show Title for image fields rendered as media
+  if ($element['#field_name'] == 'field_images') {
+    if ($context['field']['type'] == 'image' && $context['instance']['widget']['module'] == 'media' && $context['instance']['settings']['title_field'] ) {
+      // add back the Title when widget is media
+      foreach (element_children($element) as $delta) {
+        $element[$delta]['#process'][] = 'napo_gallery_widget_process';
+      }
+    }
+  }
+}
+
+/**
+ * An element #process callback for the image field type.
+ *
+ * Expands the image type to include the title field.
+ */
+function napo_gallery_widget_process($element, &$form_state, $form) {
+  $item = $element['#value'];
+
+  // Add the additional alt and title fields.
+  $instance = field_widget_instance($element, $form_state);
+  $element['title'] = array(
+    '#title' => t('Title'),
+    '#type' => 'textfield',
+    '#default_value' => isset($item['title']) ? $item['title'] : '',
+    '#access' => (bool) $item['fid'],
+    '#maxlength' => 1024,
+  );
+
+  return $element;
+}
 
 /**
  * Implements hook_node_view().
