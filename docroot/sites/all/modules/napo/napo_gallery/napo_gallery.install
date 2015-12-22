@@ -22,9 +22,6 @@ function napo_gallery_update_7001() {
             if ($body = $image_node_wrapper->body->value()) {
               $image['title'] = strip_tags($body['value']);
             }
-            else {
-              $image['title'] = $image_node_wrapper->label();
-            }
             $images[] = $image;
           }
         }
