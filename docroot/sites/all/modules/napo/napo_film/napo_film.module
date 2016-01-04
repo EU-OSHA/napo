@@ -90,7 +90,7 @@ function napo_film_module_implements_alter(&$implementations, $hook) {
 function napo_film_cronapi() {
   return array('napo_film_cron' => array(
     'description' => 'Remove old zips created for Download centre.',
-    'rule' => '0 0 * * *', // daily
+    'rule' => '0 * * * *', // hourly
   ));
 }
 
