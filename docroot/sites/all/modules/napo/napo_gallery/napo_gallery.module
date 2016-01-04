@@ -41,6 +41,7 @@ function napo_gallery_widget_process($element, &$form_state, $form) {
 
   // Add the additional alt and title fields.
   $instance = field_widget_instance($element, $form_state);
+  unset($element['edit']);
   $element['title'] = array(
     '#title' => t('Title'),
     '#type' => 'textfield',
