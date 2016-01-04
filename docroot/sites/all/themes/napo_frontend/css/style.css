@@ -8950,14 +8950,15 @@ p:last-child {
   position: absolute;
   right: 9px;
 }
-
-.node-napo-album.view-mode-full .field-name-field-images,
-.node-napo-album.view-mode-full ul.pager {
-    clear: both;
-}
-
 .view-napos-gallery .view-content .row .col-xs-12 {
   margin-bottom: 1em;
+}
+.node-napo-album.view-mode-full .field-name-field-images,
+.node-napo-album.view-mode-full ul.pager {
+  clear: both;
+}
+.node-napo-album.view-mode-full .field-name-field-images .img-title {
+  min-height: 4em;
 }
 .attachment .view-napos-gallery .views-field-nothing.napo-gallery-title-container {
   background: url('../images/background-blue.png?v=1') repeat-x;
