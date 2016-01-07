@@ -284,3 +284,11 @@ footer.footer.container section.block-menu-block{
     font-weight: bold;
     background-color: #f7e235;
 }
+
+.inline-icon {
+    position: relative;
+    display: inline-block;
+    width: 60px !important;
+    margin-left: 1px;
+    margin-right: 1px;
+}

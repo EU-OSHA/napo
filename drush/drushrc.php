@@ -471,6 +471,7 @@ $options['init-modules'] = array(
   'draggableviews',
 
   'colorbox',
+  'plupload',
 
   // Social share
   'on_the_web',
@@ -505,6 +506,7 @@ $options['init-modules'] = array(
   'osha_lingua_tools',
 
   'osh_image_gallery',
+  'osha_gallery',
 
   'osha_sitemap',
 
