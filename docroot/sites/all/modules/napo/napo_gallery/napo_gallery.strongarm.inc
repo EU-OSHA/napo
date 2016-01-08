@@ -355,6 +355,13 @@ function napo_gallery_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'manualcrop_skip_js_check';
+  $strongarm->value = 1;
+  $export['manualcrop_skip_js_check'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_napo_album';
   $strongarm->value = array(
     0 => 'main-menu',
