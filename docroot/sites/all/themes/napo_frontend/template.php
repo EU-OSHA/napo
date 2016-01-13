@@ -250,3 +250,183 @@ function napo_frontend_file_entity_file_video($variables) {
   $output .= '</video>';
   return $output;
 }
+
+/**
+ * Colorbox theme function to add support for image field caption.
+ *
+ * @see theme_colorbox_image_formatter
+ */
+function napo_frontend_colorbox_image_formatter($variables) {
+  $item = $variables['item'];
+  $entity_type = $variables['entity_type'];
+  $entity = $variables['entity'];
+  $field = $variables['field'];
+  $settings = $variables['display_settings'];
+  $image = array(
+    'path' => $item['uri'],
+    'alt' => isset($item['alt']) ? $item['alt'] : '',
+    'title' => isset($item['title']) ? $item['title'] : '',
+    'style_name' => $settings['colorbox_node_style'],
+  );
+  if ($variables['delta'] == 0 && !empty($settings['colorbox_node_style_first'])) {
+    $image['style_name'] = $settings['colorbox_node_style_first'];
+  }
+  if (isset($item['width']) && isset($item['height'])) {
+    $image['width'] = $item['width'];
+    $image['height'] = $item['height'];
+  }
+  if (isset($item['attributes'])) {
+    $image['attributes'] = $item['attributes'];
+  }
+  // Allow image attributes to be overridden.
+  if (isset($variables['item']['override']['attributes'])) {
+    foreach (array('width', 'height', 'alt', 'title') as $key) {
+      if (isset($variables['item']['override']['attributes'][$key])) {
+        $image[$key] = $variables['item']['override']['attributes'][$key];
+        unset($variables['item']['override']['attributes'][$key]);
+      }
+    }
+    if (isset($image['attributes'])) {
+      $image['attributes'] = $variables['item']['override']['attributes'] + $image['attributes'];
+    }
+    else {
+      $image['attributes'] = $variables['item']['override']['attributes'];
+    }
+  }
+  $entity_title = entity_label($entity_type, $entity);
+  switch ($settings['colorbox_caption']) {
+    case 'auto':
+      // If the title is empty use alt or the entity title in that order.
+      if (!empty($image['title'])) {
+        $caption = $image['title'];
+      }
+      elseif (!empty($image['alt'])) {
+        $caption = $image['alt'];
+      }
+      elseif (!empty($entity_title)) {
+        $caption = $entity_title;
+      }
+      else {
+        $caption = '';
+      }
+      break;
+    case 'title':
+      $caption = $image['title'];
+      break;
+    case 'alt':
+      $caption = $image['alt'];
+      break;
+    case 'node_title':
+      $caption = $entity_title;
+      break;
+    case 'custom':
+      $caption = token_replace($settings['colorbox_caption_custom'], array(
+        $entity_type => $entity,
+        'file' => (object) $item,
+      ), array('clear' => TRUE));
+      break;
+    default:
+      $caption = '';
+  }
+  // If our custom checkbox is used, overwrite caption.
+  if (!empty($settings['use_image_caption_field'])) {
+    if (!empty($item['image_field_caption']['value'])) {
+      $caption = $item['image_field_caption']['value'];
+    }
+  }
+  // Shorten the caption for the ex styles or when caption shortening is active.
+  $colorbox_style = variable_get('colorbox_style', 'default');
+  $trim_length = variable_get('colorbox_caption_trim_length', 75);
+  if (((strpos($colorbox_style, 'colorbox/example') !== FALSE) || variable_get('colorbox_caption_trim', 0)) && (drupal_strlen($caption) > $trim_length)) {
+    $caption = drupal_substr($caption, 0, $trim_length - 5) . '...';
+  }
+  // Build the gallery id.
+  list($id, $vid, $bundle) = entity_extract_ids($entity_type, $entity);
+  $entity_id = !empty($id) ? $entity_type . '-' . $id : 'entity-id';
+  switch ($settings['colorbox_gallery']) {
+    case 'post':
+      $gallery_id = 'gallery-' . $entity_id;
+      break;
+
+    case 'page':
+      $gallery_id = 'gallery-all';
+      break;
+
+    case 'field_post':
+      $gallery_id = 'gallery-' . $entity_id . '-' . $field['field_name'];
+      break;
+
+    case 'field_page':
+      $gallery_id = 'gallery-' . $field['field_name'];
+      break;
+
+    case 'custom':
+      $gallery_id = $settings['colorbox_gallery_custom'];
+      break;
+
+    default:
+      $gallery_id = '';
+  }
+  if ($style_name = $settings['colorbox_image_style']) {
+    $path = image_style_url($style_name, $image['path']);
+  }
+  else {
+    $path = file_create_url($image['path']);
+  }
+  return theme('colorbox_imagefield', array(
+    'image' => $image,
+    'path' => $path,
+    'title' => $caption,
+    'gid' => $gallery_id,
+    'entity' => $entity,
+  ));
+}
+/**
+ * @see theme_colorbox_imagefield().
+ */
+function napo_frontend_colorbox_imagefield($variables) {
+  // Load the necessary js file for Colorbox activation.
+  if (_colorbox_active() && !variable_get('colorbox_inline', 0)) {
+    drupal_add_js(drupal_get_path('module', 'colorbox') . '/js/colorbox_inline.js');
+  }
+  if ($variables['image']['style_name'] == 'hide') {
+    $image = '';
+    $class[] = 'js-hide';
+  }
+  elseif (!empty($variables['image']['style_name'])) {
+    $image = theme('image_style', $variables['image']);
+  }
+  else {
+    $image = theme('image', $variables['image']);
+  }
+  $image_vars = array(
+    'style_name' => 'large',
+    'path' => $variables['image']['path'],
+    'alt' => $variables['entity']->title,
+  );
+  $popup = theme('image_style', $image_vars);
+  $caption = $variables['title'] . napo_common_get_share_widget($variables['entity']);
+
+  $width = 'auto';
+  $height = 'auto';
+  $gallery_id = $variables['gid'];
+  $link_options = drupal_parse_url($variables['image']['path']);
+  $link_options = array_merge($link_options, array(
+    'html' => TRUE,
+    'fragment' => 'colorbox-inline-' . md5($variables['image']['path']),
+    'query' => array(
+      'width' => $width,
+      'height' => $height,
+      'title' => $caption,
+      'inline' => 'true',
+    ),
+    'attributes' => array(
+      'class' => array('colorbox-inline'),
+      'rel' => $gallery_id,
+    ),
+  ));
+  // Remove any parameters that aren't set.
+  $link_options['query'] = array_filter($link_options['query']);
+  $link_tag = l($image, $variables['path'], $link_options);
+  return $link_tag . '<div style="display: none;"><div id="colorbox-inline-' . md5($variables['image']['path']) . '">' . $popup . '</div></div>';
+}

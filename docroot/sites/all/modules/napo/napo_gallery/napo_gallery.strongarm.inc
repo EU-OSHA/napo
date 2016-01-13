@@ -233,23 +233,32 @@ function napo_gallery_strongarm() {
       'recommended_films' => array(
         'custom_settings' => FALSE,
       ),
+      'episode_popup' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_results' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '8',
-        ),
-        'path' => array(
           'weight' => '7',
         ),
-        'redirect' => array(
+        'path' => array(
           'weight' => '6',
+        ),
+        'redirect' => array(
+          'weight' => '5',
         ),
         'workbench_access' => array(
           'weight' => '4',
         ),
         'language' => array(
           'weight' => '5',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '9',
         ),
       ),
       'display' => array(),
@@ -342,6 +351,13 @@ function napo_gallery_strongarm() {
   $strongarm->name = 'language_content_type_napo_image';
   $strongarm->value = '4';
   $export['language_content_type_napo_image'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'manualcrop_skip_js_check';
+  $strongarm->value = 1;
+  $export['manualcrop_skip_js_check'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
