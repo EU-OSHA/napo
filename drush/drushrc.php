@@ -534,6 +534,7 @@ $options['init-modules'] = array(
   'napo_contact',
 
   'napo_webform',
+  'match_redirect',
 
 );
 
