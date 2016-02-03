@@ -799,7 +799,7 @@ class OshaWorkflowNotifications {
       'from' => $from_state,
       'to' => $to_state,
     );
-    $review_managers = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
+    $review_managers = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR);
     OshaWorkflowNotifications::sendEmail($review_managers, $params, 'osha_workflow', 'osha_workflow_notification_admin');
   }
 
