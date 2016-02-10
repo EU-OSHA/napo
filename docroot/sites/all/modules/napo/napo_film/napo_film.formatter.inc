@@ -131,12 +131,13 @@ function napo_film_field_formatter_view($entity_type, $entity, $field, $instance
   $element = array();
   $settings = $display['settings'];
 
-  //Highlight the searched text on search page.
+  // Highlight the searched text on search page.
   $view = views_get_current_view();
   if ($view) {
-    if ($view->name == 'search') {
+    if ($view->name == 'search' && !empty($_GET['search_block_form'])) {
       foreach ($view->result as $result) {
-        if ($result->entity->nid != $entity->nid) {
+        list($lng, $nid) = explode('_', $result->_entity_properties['search_api_id'], 2);
+        if ($nid != $entity->nid) {
           continue;
         }
         $title = $result->_entity_properties['title_field'];
@@ -208,7 +209,10 @@ function napo_film_field_formatter_view($entity_type, $entity, $field, $instance
       break;
 
     case 'title_linked':
-      $output = isset($items[0]) ? $items[0]['safe_value'] : '';
+      $output = '';
+      if (!empty($items[0]['safe_value'])) {
+        $output = is_array($items[0]['safe_value']) ? $items[0]['safe_value'][0] : $items[0]['safe_value'];
+      }
       $type = napo_film_video_get_type($entity);
 
       // Add Film or Episode label for nodes.

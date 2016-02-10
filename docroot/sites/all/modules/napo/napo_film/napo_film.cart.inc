@@ -112,48 +112,52 @@ function napo_film_content_cart_ajax_submit_alter(&$commands, $input_value, $ope
   $cart = ContentCart::getCurrentCart();
   $cart_content = $cart->getCartContent();
 
-  $type = $input_value[0];
-  $content_id = $input_value[1];
-
-  $growl_args = array('allow_dismiss' => true, 'width' => 'auto', 'delay' => 2000);
-  $block_data = array();
-  if ($operation == 'add') {
-    if (!empty($cart_content['node'])) {
-      foreach ($cart_content['node'] as $nid) {
-        // Render thumbnails to the pop-up.
-        $node = node_load($nid);
-        $wrapper = entity_metadata_wrapper($type, $node);
-        $title = $wrapper->label();
-        $image_vars = array(
-          'style_name' => 'thumbnail',
-          'path' => $wrapper->field_image->value()['uri'],
-        );
-        $image = theme('image_style', $image_vars);
-        $block_data[$nid] = theme('napo_film_cart_summary_node_view',
-          array('title' => $title, 'image' => $image, 'node' => $node));
+  if (!empty($input_value[1])) {
+    $type = $input_value[0];
+    $content_id = $input_value[1];
+  }
+  if (!empty($content_id)) {
+    $growl_args = array(
+      'allow_dismiss' => TRUE, 'width' => 'auto', 'delay' => 2000);
+    $block_data = array();
+    if ($operation == 'add') {
+      if (!empty($cart_content['node'])) {
+        foreach ($cart_content['node'] as $nid) {
+          // Render thumbnails to the pop-up.
+          $node = node_load($nid);
+          $wrapper = entity_metadata_wrapper($type, $node);
+          $title = $wrapper->label();
+          $image_vars = array(
+            'style_name' => 'thumbnail',
+            'path' => $wrapper->field_image->value()['uri'],
+          );
+          $image = theme('image_style', $image_vars);
+          $block_data[$nid] = theme('napo_film_cart_summary_node_view',
+            array('title' => $title, 'image' => $image, 'node' => $node));
+        }
+        // Render the pop-up.
+        $content = theme('napo_film_cart_added_ajax_message', array('data' => $block_data));
+        $growl_args['type'] = 'success';
       }
-      // Render the pop-up.
-      $content = theme('napo_film_cart_added_ajax_message', array('data' => $block_data));
-      $growl_args['type'] = 'success';
     }
+    else {
+      $node = node_load($content_id);
+      $wrapper = entity_metadata_wrapper($type, $node);
+      $title = $wrapper->label();
+      $image_vars = array(
+        'style_name' => 'thumbnail',
+        'path' => $wrapper->field_image->value()['uri'],
+      );
+      $image = theme('image_style', $image_vars);
+      $block_data[$content_id] = theme('napo_film_cart_summary_node_view',
+        array('title' => $title, 'image' => $image, 'node' => $node));
+      $content = theme('napo_film_cart_removed_ajax_message', array('data' => $block_data));
+      $growl_args['type'] = 'warning';
+    }
+    $content = '<div id="napo-film-cart-growl-' . $content_id . '">' . $content . '</div>';
+    $commands[] = ajax_command_remove('.bootstrap-growl');
+    $commands[] = ajax_command_invoke('body', 'content_cart_growl', array($content, $growl_args));
   }
-  else {
-    $node = node_load($content_id);
-    $wrapper = entity_metadata_wrapper($type, $node);
-    $title = $wrapper->label();
-    $image_vars = array(
-      'style_name' => 'thumbnail',
-      'path' => $wrapper->field_image->value()['uri'],
-    );
-    $image = theme('image_style', $image_vars);
-    $block_data[$content_id] = theme('napo_film_cart_summary_node_view',
-      array('title' => $title, 'image' => $image, 'node' => $node));
-    $content = theme('napo_film_cart_removed_ajax_message', array('data' => $block_data));
-    $growl_args['type'] = 'warning';
-  }
-  $content = '<div id="napo-film-cart-growl-' . $content_id . '">' . $content . '</div>';
-  $commands[] = ajax_command_remove('.bootstrap-growl');
-  $commands[] = ajax_command_invoke('body', 'content_cart_growl', array($content, $growl_args));
 
   // Refresh content cart summary.
   $commands[] = ajax_command_invoke("[id^='edit-refresh']", 'mousedown');
