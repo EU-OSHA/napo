@@ -710,12 +710,6 @@ function napo_common_preprocess_node(&$vars) {
 
 function napo_common_get_share_widget($node) {
   global $language;
-  // Add services javascript.
-  drupal_add_js(drupal_get_path('module', 'napo_common') . '/js/share_widget.js');
-  // Add facebook app key.
-  $fb_app_key = variable_get('fb_app_key', '');
-  drupal_add_js(array('napo_common' => array('fb_app_key' => $fb_app_key)), 'setting');
-
   $url = url('/node/' . $node->nid, array('absolute' => TRUE));
   $title = field_get_items('node', $node, 'title_field');
   $title = current($title)['value'];

@@ -1,7 +1,11 @@
 <div class="napo-share-widget">
   <span class="napo-share-widget-title"><?php t('Share'); ?></span>
   <ul>
-    <li id="fb-share-button-<?php print $node->nid; ?>"  class="napo-share-widget-button napo-share-widget-facebook" data-href="">Facebook</li>
+    <li id="fb-share-button-<?php print $node->nid; ?>"  class="napo-share-widget-button napo-share-widget-facebook">
+      <a onclick="window.open(this.href, 'hwc-share', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        href="https://www.facebook.com/sharer/sharer.php?u=<?php print $url ?>">Facebook
+      </a>
+    </li>
     <li id="twitter-share-button-<?php print $node->nid; ?>" class="napo-share-widget-button napo-share-widget-twitter">
       <a href="<?php print $tweet_url; ?>">
         Twitter
@@ -15,16 +19,6 @@
 
 <script>
   (function($) {
-    $('#fb-share-button-<?php print $node->nid; ?>').click(function(e) {
-        e.preventDefault();
-        FB.ui({
-          method: 'share',
-          href: '<?php print $url ?>'
-        }, function (response) {
-        });
-      }
-    );
-
     $('#twitter-share-button-<?php print $node->nid; ?> a').click(function(event) {
       var width  = 575,
         height = 400,
