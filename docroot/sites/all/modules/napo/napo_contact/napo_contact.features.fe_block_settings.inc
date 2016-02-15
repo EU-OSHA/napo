@@ -52,7 +52,7 @@ function napo_contact_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => 'contact_form_widget',
+        'region' => '',
         'status' => 1,
         'theme' => 'napo_frontend',
         'weight' => 0,
