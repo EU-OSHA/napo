@@ -4,25 +4,30 @@
  * Move napo images nodes to field_images in napo album.
  */
 function napo_gallery_update_7001() {
-  features_revert_module('napo_gallery');
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'napo_album');
   $result = $query->execute();
-
   if (isset($result['node'])) {
     $albums_nids = array_keys($result['node']);
     $albums = node_load_multiple($albums_nids);
     foreach ($albums as $album) {
       $images = array();
-      $entity_wrapper = entity_metadata_wrapper('node', $album);
-      foreach ($entity_wrapper->field_napo_image->getIterator() as $delta => $image_wrapper) {
-        $file = $image_wrapper->field_image->value();
-        $file['title'] = $image_wrapper->title->value();
-        $images[] = $file;
+      if (!empty($album->field_napo_image[LANGUAGE_NONE])) {
+        foreach ($album->field_napo_image[LANGUAGE_NONE] as $image_field) {
+          $image_node = node_load($image_field['target_id']);
+          $image_node_wrapper = entity_metadata_wrapper('node', $image_node);
+          if (!empty($image_node)) {
+            $image = $image_node->field_image[LANGUAGE_NONE][0];
+            if ($body = $image_node_wrapper->body->value()) {
+              $image['title'] = strip_tags($body['value']);
+            }
+            $images[] = $image;
+          }
+        }
+        $album->field_images[LANGUAGE_NONE] = $images;
+        node_save($album);
       }
-      $entity_wrapper->field_images->set($images);
-      $entity_wrapper->save();
     }
   }
   variable_set('osha_gallery_usable_fields_bundles', array('napo_album|field_images' => 'napo_album|field_images'));

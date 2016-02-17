@@ -106,12 +106,13 @@ function napo_search_node_view($node, $view_mode, $langcode) {
  * Implements hook_node_view_alter().
  */
 function napo_search_node_view_alter(&$build) {
-  if ($build['#view_mode'] == 'search_results') {
-    //Highlight the searched text.
+  if ($build['#view_mode'] == 'search_results' && !empty($_GET['search_block_form'])) {
+    // Highlight the searched text.
     $view = views_get_current_view();
     if ($view) {
       foreach ($view->result as $result) {
-        if ($result->entity->nid != $build['#node']->nid) {
+        list($lng, $nid) = explode('_', $result->_entity_properties['search_api_id'], 2);
+        if ($nid != $build['#node']->nid) {
           continue;
         }
         $body = $result->_entity_properties['search_api_excerpt'];

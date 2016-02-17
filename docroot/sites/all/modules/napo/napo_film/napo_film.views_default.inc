@@ -157,6 +157,15 @@ You can, as well, remove selected videos from the download centre list, by click
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['empty'] = FALSE;
+  /* No results behavior: Global: Text area */
+  $handler->display->display_options['empty']['area']['id'] = 'area';
+  $handler->display->display_options['empty']['area']['table'] = 'views';
+  $handler->display->display_options['empty']['area']['field'] = 'area';
+  $handler->display->display_options['empty']['area']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area']['content'] = 'To download complete Napo films or selected scenes to your PC go to the Napo website (www.napofilm.net) and go to the film or the scene you want to download. You can either click on the \'Download\' button <span class="glyphicon napo-film-video-download-form-title inline-icon"></span>, or add your video to the download centre, by clicking on the \'Add to download centre\' button <span class="glyphicon content-cart-add-to-cart-btn inline-icon" aria-hidden="true"></span>.';
+  $handler->display->display_options['empty']['area']['format'] = 'full_html';
+  $handler->display->display_options['empty']['area']['tokenize'] = TRUE;
   $handler->display->display_options['path'] = 'download-center';
   $translatables['download_center'] = array(
     t('Master'),
@@ -177,6 +186,7 @@ You can, as well, remove selected videos from the download centre list, by click
 [content_cart_remove]
 '),
     t('Page'),
+    t('To download complete Napo films or selected scenes to your PC go to the Napo website (www.napofilm.net) and go to the film or the scene you want to download. You can either click on the \'Download\' button <span class="glyphicon napo-film-video-download-form-title inline-icon"></span>, or add your video to the download centre, by clicking on the \'Add to download centre\' button <span class="glyphicon content-cart-add-to-cart-btn inline-icon" aria-hidden="true"></span>.'),
   );
   $export['download_center'] = $view;
 
