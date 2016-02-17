@@ -12,6 +12,34 @@ function napo_contact_default_fe_block_settings() {
 
   $export['version'] = '2.0';
 
+  $export['nodeblock-304'] = array(
+    'cache' => 1,
+    'custom' => 0,
+    'delta' => 304,
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'nodeblock',
+    'node_types' => array(),
+    'pages' => 'node/253',
+    'roles' => array(),
+    'themes' => array(
+      'napo_frontend' => array(
+        'region' => 'content',
+        'status' => 1,
+        'theme' => 'napo_frontend',
+        'weight' => 1,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '<none>',
+    'visibility' => 1,
+  );
+
   $export['views-faqs-block'] = array(
     'cache' => -1,
     'custom' => 0,
@@ -52,7 +80,7 @@ function napo_contact_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => 'contact_form_widget',
+        'region' => '',
         'status' => 1,
         'theme' => 'napo_frontend',
         'weight' => 0,

@@ -276,7 +276,7 @@ if(file_exists($json_path)) {
 $command_specific['sql-sync'] = array(
   'structure-tables-list' => 'cache*,history,sessions,watchdog,ctools_css_cache,ctools_object_cache'
 );
-
+$command_specific['sql-dump'] = $command_specific['sql-sync'];
 
 $options['init-modules'] = array(
   'ctools',
