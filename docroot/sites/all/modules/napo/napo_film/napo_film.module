@@ -264,6 +264,47 @@ function napo_film_get_film_view() {
 }
 
 /**
+ * Implements hook_url_inbound_alter().
+ */
+function napo_film_url_inbound_alter(&$path, $original_path, $language) {
+  // If the current menu item exists at this path, then we should not continue
+  // processing.
+  $item = menu_get_item($path);
+  if (!empty($item) && $item['href'] == $path) {
+    return FALSE;
+  }
+  // If alias/view-scenes, set path to node/%/view-scenes.
+  $args = arg();
+  if (end($args) == 'view-scenes') {
+    $url = preg_replace('/\/view-scenes/', '', $original_path);
+    $path_source = osha_look_for_path_source($url);
+    if (!empty($path_source)) {
+      if (preg_match("/node\/[\d]{1,99}$/", $path_source)) {
+        $path = $path_source . '/view-scenes';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_url_outbound_alter().
+ */
+function napo_film_url_outbound_alter(&$path, $options, $original_path) {
+  // If the URL is indicated as external or to be left alone.
+  if (!empty($options['external']) || !empty($options['alias'])) {
+    return;
+  }
+  // Add view-scenes to aliases for films.
+  if (preg_match("/node\/[\d]{1,99}\/view-scenes/", $path)) {
+    $system_path = str_replace('/view-scenes', '', $path);
+    $en_path_alias = drupal_lookup_path('alias', $system_path, 'en');
+    if ($en_path_alias) {
+      $path = $en_path_alias . '/view-scenes';
+    }
+  }
+}
+
+/**
  * Implements hook_views_pre_view().
  */
 function napo_film_views_pre_view( view &$view, &$display_id, &$args) {
