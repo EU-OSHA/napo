@@ -3,6 +3,14 @@
 # Go to docroot/
 cd docroot/
 
+# Check if staging is set.
+drush @napo.staging status
+ecode=$?
+if [ ${ecode} != 0 ]; then
+  echo "Staging server is not set correctly."
+  exit ${ecode};
+fi
+
 # Drop all tables (including non-drupal)
 drush sql-drop -y
 ecode=$?
@@ -52,15 +60,15 @@ if [ ${ecode} != 0 ]; then
   exit ${ecode};
 fi
 
-# This is temporary, for update 7001
-drush fr napo_gallery -y
+
+drush updatedb -y
 
 # Build the site
-drush osha_build -y
-if [ ${ecode} != 0 ]; then
-  echo "osha_build has returned an error"
-  exit ${ecode};
-fi
+# drush osha_build -y
+#if [ ${ecode} != 0 ]; then
+#  echo "osha_build has returned an error"
+#  exit ${ecode};
+#fi
 
 drush devify_ldap
 
