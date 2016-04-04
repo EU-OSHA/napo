@@ -147,3 +147,11 @@ function napo_film_update_7007() {
     }
   }
 }
+
+/**
+ * Disable subpathauto and revert napo_film.
+ */
+function napo_film_update_7008() {
+  features_revert_module('napo_film');
+  module_disable(array('subpathauto'));
+}
