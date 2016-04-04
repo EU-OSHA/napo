@@ -97,6 +97,9 @@ function napo_film_default_page_manager_pages() {
         'keywords' => array(
           'value' => '[node:field_tags] [node:field_combined_tags]',
         ),
+        'canonical' => array(
+          'value' => '[node:url]',
+        ),
       ),
     ),
   );
