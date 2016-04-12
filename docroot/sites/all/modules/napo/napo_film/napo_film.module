@@ -126,6 +126,22 @@ function napo_film_libraries_info() {
       ),
     ),
   );
+  $libraries['pclzip'] = array(
+    'name' => 'PclZip',
+    'vendor url' => 'http://www.phpconcept.net/pclzip',
+    'download url' => 'http://www.phpconcept.net/pclzip/pclzip-downloads',
+    'version arguments' => array(
+      'file' => 'readme.txt',
+      'pattern' => 'PclZip\s+([0-9a-zA-Z\.-]+)',
+      'lines' => 5,
+      'cols' => 20,
+    ),
+    'files' => array(
+      'php' => array(
+        'pclzip.lib.php',
+      ),
+    ),
+  );
   return $libraries;
 }
 
