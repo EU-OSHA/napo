@@ -464,7 +464,7 @@ function napo_cart_download_videos($files) {
     $pclzip_library = libraries_load('pclzip');
     libraries_load_files($pclzip_library);
     // Open the archive.
-    $archive_path = tempnam($dir_path, 'napo_download_') . '.zip';
+    $archive_path = file_create_filename('napo_download_' . rand(10,9999) . '.zip', $dir_path);
     $archive = new PclZip($archive_path);
     $files_paths = array();
     foreach ($files as $file) {
