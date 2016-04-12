@@ -632,6 +632,7 @@ function napo_film_preprocess_node(&$vars) {
         }
         // Add share widget ds field.
         if (in_array('download_video_form', $vars['preprocess_fields'])) {
+
           $form = drupal_get_form('napo_film_episode_download_form', $node, $view_mode);
           $vars['download_video_form'] = drupal_render($form);
         }
@@ -890,17 +891,18 @@ function napo_film_episode_download_form_submit($form, &$form_state) {
   $node = $form_state['build_info']['args'][0];
   $format = $form_state['values']['download_format'];
   $file = napo_film_get_film_file_by_mimetype($node, $format);
-  $headers = array(
-    'Content-Type'              => $file->filemime,
-    'Content-Disposition'       => 'attachment; filename="' . drupal_basename($file->uri) . '"',
-    'Content-Length'            => $file->filesize,
-    'Content-Transfer-Encoding' => 'binary',
-    'Pragma'                    => 'no-cache',
-    'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
-    'Expires'                   => '0',
-    'Accept-Ranges'             => 'bytes',
-  );
-  file_transfer($file->uri, $headers);
+  drupal_goto(file_create_url($file->uri));
+//  $headers = array(
+//    'Content-Type'              => $file->filemime,
+//    'Content-Disposition'       => 'attachment; filename="' . drupal_basename($file->uri) . '"',
+//    'Content-Length'            => $file->filesize,
+//    'Content-Transfer-Encoding' => 'binary',
+//    'Pragma'                    => 'no-cache',
+//    'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
+//    'Expires'                   => '0',
+//    'Accept-Ranges'             => 'bytes',
+//  );
+//  file_transfer($file->uri, $headers);
 }
 
 /**
