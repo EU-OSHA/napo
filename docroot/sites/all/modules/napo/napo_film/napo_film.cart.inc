@@ -461,15 +461,19 @@ function napo_cart_download_videos($files) {
       }
     }
 
+    $pclzip_library = libraries_load('pclzip');
+    libraries_load_files($pclzip_library);
     // Open the archive.
-    $archive = new ZipArchive();
     $archive_path = tempnam($dir_path, 'napo_download_') . '.zip';
-    $archive->open($archive_path, ZIPARCHIVE::CREATE);
+    $archive = new PclZip($archive_path);
+    $files_paths = array();
     foreach ($files as $file) {
-      $file_path = drupal_realpath($file['uri']);
-      $archive->addFile($file_path, drupal_basename($file_path));
+      $files_paths[] = drupal_realpath($file['uri']);
     }
-    $archive->close();
+    $result = $archive->add($files_paths, PCLZIP_OPT_REMOVE_ALL_PATH, PCLZIP_OPT_TEMP_FILE_THRESHOLD, 10);
+    if (empty($result)) {
+      return NULL;
+    }
     // Return drupal scheme file path.
     $archive_name = drupal_basename($archive_path);
     $archive_drupal_path = $drupal_dir_path . '/' . $archive_name;
