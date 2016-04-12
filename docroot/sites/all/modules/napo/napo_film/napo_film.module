@@ -10,6 +10,9 @@ include_once 'napo_film.cart.inc';
 
 define('NAPO_FILM_DOWN_CENTER_PATH', 'public://napo_films_download_center');
 define('NAPO_FILM_LINK', 'napos-films/films');
+if (!defined('PCLZIP_TEMPORARY_DIR')) {
+  define('PCLZIP_TEMPORARY_DIR', variable_get('file_temporary_path', '/tmp') . '/');
+}
 
 /**
  * Implements hook_entity_info_alter().
