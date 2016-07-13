@@ -27,6 +27,7 @@ function napo_film_field_formatter_info_alter(&$info) {
   $info['title_linked']['settings']['napo_film_title_link_episode_popup'] = FALSE;
   $info['title_linked']['settings']['napo_film_title_link_with_film'] = FALSE;
   $info['title_linked']['settings']['napo_film_title_link_with_film_value'] = '!episode from the film !film';
+  $info['title_linked']['settings']['napo_film_title_include_icon'] = FALSE;
 }
 
 
@@ -107,6 +108,11 @@ function napo_film_napo_common_field_formatter_settings_form_alter($field, $inst
     '#type' => 'checkbox',
     '#title' => t("Show episode title with it's film"),
     '#default_value' => $settings['napo_film_title_link_with_film'],
+  );
+  $form['napo_film_title_include_icon'] = array(
+    '#type' => 'checkbox',
+    '#title' => t("Show empty type span for film type"),
+    '#default_value' => $settings['napo_film_title_include_icon'],
   );
   $form['napo_film_title_link_with_film_value'] = array(
     '#type' => 'textfield',
@@ -210,8 +216,9 @@ function napo_film_field_formatter_view($entity_type, $entity, $field, $instance
 
     case 'title_linked':
       $output = '';
-      if (!empty($items[0]['safe_value'])) {
-        $output = is_array($items[0]['safe_value']) ? $items[0]['safe_value'][0] : $items[0]['safe_value'];
+      if (!empty($items[0]['value'])) {
+        $output = is_array($items[0]['value']) ? $items[0]['value'][0] : $items[0]['value'];
+        $output = check_plain($output);
       }
       $type = napo_film_video_get_type($entity);
 
@@ -223,13 +230,17 @@ function napo_film_field_formatter_view($entity_type, $entity, $field, $instance
               $weight = napo_film_get_episode_number($entity) + 1;
               $output = '<span class="napo-film-video-type napo-film-video-type-episode">' . t('Scene @weight', array('@weight' => sprintf('%02d', $weight))) . '</span>' . $output;
             }
-            else {
+          else {
               $output = '<span class="napo-film-video-type napo-film-video-type-episode">' . t('Scene') . '</span>' . $output;
             }
             break;
 
           case 'film':
-            $output = '<span class="napo-film-video-type napo-film-video-type-film">' . t('Film') . '</span>' . $output;
+            // MN-71 - film word type should be removed
+//            $output = '<span class="napo-film-video-type napo-film-video-type-film">' . t('Film') . '</span>' . $output;
+            if (!empty($settings['napo_film_title_include_icon'])) {
+              $output = '<span class="napo-film-video-type napo-film-video-type-film"></span>' . $output;
+            }
             break;
         }
       }
