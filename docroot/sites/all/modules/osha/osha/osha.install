@@ -83,3 +83,19 @@ function osha_update_7010() {
   locale('More info');
   locale('<h2>Thank you for accepting cookies</h2><p>You can now hide this message or find out more about cookies.</p>');
 }
+
+/**
+ * Clenup - drupal core update
+ * For more information, see "https://www.drupal.org/node/2487215"
+ */
+function osha_update_7011() {
+  $modules = array(
+    'flickr',
+    'flickrfield',
+    'flickr_block',
+  );
+  db_delete('system')
+    ->condition('name', $modules, 'IN')
+    ->condition('type', 'module')
+  ->execute();
+ }

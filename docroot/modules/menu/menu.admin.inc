@@ -99,6 +99,11 @@ function _menu_overview_tree_form($tree) {
       $mlid = 'mlid:' . $item['mlid'];
       $form[$mlid]['#item'] = $item;
       $form[$mlid]['#attributes'] = $item['hidden'] ? array('class' => array('menu-disabled')) : array('class' => array('menu-enabled'));
+      // Set the encode option to FALSE for query parameter so query parameters
+      // does not encode.
+      if (isset($item['localized_options']['query'])) {
+        $item['localized_options']['encode'] = FALSE;
+      }
       $form[$mlid]['title']['#markup'] = l($item['title'], $item['href'], $item['localized_options']);
       if ($item['hidden']) {
         $form[$mlid]['title']['#markup'] .= ' (' . t('disabled') . ')';
@@ -281,6 +286,7 @@ function menu_edit_item($form, &$form_state, $type, $item, $menu) {
   $form['link_title'] = array(
     '#type' => 'textfield',
     '#title' => t('Menu link title'),
+    '#maxlength' => 255,
     '#default_value' => $item['link_title'],
     '#description' => t('The text to be used for this link in the menu.'),
     '#required' => TRUE,
@@ -294,7 +300,7 @@ function menu_edit_item($form, &$form_state, $type, $item, $menu) {
 
   $path = $item['link_path'];
   if (isset($item['options']['query'])) {
-    $path .= '?' . drupal_http_build_query($item['options']['query']);
+    $path .= '?' . drupal_http_build_query($item['options']['query'], FALSE);
   }
   if (isset($item['options']['fragment'])) {
     $path .= '#' . $item['options']['fragment'];
@@ -305,7 +311,7 @@ function menu_edit_item($form, &$form_state, $type, $item, $menu) {
       '#title' => t('Path'),
       '#maxlength' => 255,
       '#default_value' => $path,
-      '#description' => t('The path for this menu link. This can be an internal Drupal path such as %add-node or an external URL such as %drupal. Enter %front to link to the front page.', array('%front' => '<front>', '%add-node' => 'node/add', '%drupal' => 'http://drupal.org')),
+      '#description' => t('The path for this menu link. This can be an internal path such as %add-node or an external URL such as %example. Enter %front to link to the front page.', array('%front' => '<front>', '%add-node' => 'node/add', '%example' => 'http://example.com')),
       '#required' => TRUE,
     );
     $form['actions']['delete'] = array(
@@ -382,7 +388,7 @@ function menu_edit_item_validate($form, &$form_state) {
   if (!url_is_external($item['link_path'])) {
     $parsed_link = parse_url($item['link_path']);
     if (isset($parsed_link['query'])) {
-      $item['options']['query'] = drupal_get_query_array($parsed_link['query']);
+      $item['options']['query'] = drupal_get_query_array($parsed_link['query'], FALSE);
     }
     else {
       // Use unset() rather than setting to empty string
