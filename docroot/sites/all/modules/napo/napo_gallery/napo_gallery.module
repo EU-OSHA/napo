@@ -21,7 +21,7 @@ function napo_gallery_form_napo_album_node_form_alter(&$form, &$form_state, $for
 function napo_gallery_field_widget_form_alter(&$element, &$form_state, $context) {
   // Add display_field setting to field because file_field_widget_form() assumes it is set.
   // show Title for image fields rendered as media
-  if ($element['#field_name'] == 'field_images') {
+  if (!empty($element['#field_name']) && $element['#field_name'] == 'field_images') {
     if ($context['field']['type'] == 'image' && $context['instance']['widget']['module'] == 'media' && $context['instance']['settings']['title_field'] ) {
       // add back the Title when widget is media
       foreach (element_children($element) as $delta) {
