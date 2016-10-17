@@ -1096,12 +1096,11 @@ function osha_tmgmt_form_alter_add_source_target_info(&$form, $form_state) {
  */
 function osha_tmgmt_form_tmgmt_entity_ui_translate_form_alter(&$form, &$form_state, $form_id) {
   global $user;
-  
+
   list($id, $vid, $bundle) = entity_extract_ids($form_state['entity_type'], $form_state['entity']);
   $entity_language = entity_language($form_state['entity_type'], $form_state['entity']);
   $items = osha_tmgmt_job_item_load_latest('entity', $form_state['entity_type'], $id, $entity_language);
 
-  $node = $form_state['entity'];
   // PENDING TRANSLATIONS column.
   $pt_col_index = 4;
   // STATUS column
@@ -1181,9 +1180,8 @@ function osha_tmgmt_form_tmgmt_entity_ui_translate_form_alter(&$form, &$form_sta
 
 function osha_tmgmt_internal_translator_action_form($form, &$form_state, $node, $allowed_langs) {
   $languages = language_list();
-
   $form = array();
-  $form['#weight'] = -1;
+  $form['#weight'] = -10;
   $form['actions'] = array(
     '#type' => 'actions',
     '#weight' => -10,
@@ -1199,6 +1197,7 @@ function osha_tmgmt_internal_translator_action_form($form, &$form_state, $node, 
       '#type'=> 'submit',
       '#lang' => $lang,
       '#value' => t('@action translation for @lang', array('@action' => $action, '@lang' => $languages[$lang]->name)),
+      '#attributes' => array('class' => array('btn', 'btn-primary')),
     );
   }
   return $form;
@@ -1582,8 +1581,16 @@ function osha_tmgmt_node_view($node, $view_mode, $langcode) {
       }
     }
   }
-  
-  if ($view_mode == 'full') {
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function osha_tmgmt_page_alter(&$page) {
+  global $user;
+  $node = menu_get_object();
+  if (!empty($node)) {
+    // Add form buttons for internal translators.
     $is_internal_translator = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_INTERNAL_TRANSLATOR, $user);
     $allowed_langs = array();
     if ($is_internal_translator) {
@@ -1594,12 +1601,12 @@ function osha_tmgmt_node_view($node, $view_mode, $langcode) {
         }
       }
       if (!empty($allowed_langs)) {
-        $node->content['internal_translator'] =
-          drupal_get_form('osha_tmgmt_internal_translator_action_form', $node, $allowed_langs);
+        $is_internal_translator_form = drupal_get_form('osha_tmgmt_internal_translator_action_form', $node, $allowed_langs);
+        $page['content'] = array('internal_translator' => $is_internal_translator_form) + $page['content'];
       }
     }
   }
-  
+
 }
 
 /**

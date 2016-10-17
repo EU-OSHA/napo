@@ -218,3 +218,23 @@ function osha_workflow_permissions_role_approver() {
   );
   return $ret;
 }
+
+function osha_workflow_permissions_role_internal_translator() {
+  module_load_include('inc', 'osha_workflow', 'osha_workflow.permissions');
+  $ret = array_merge(
+    array(
+      'edit any content in draft',
+      'edit any content in ready_to_publish',
+      'edit any content in published',
+
+      'moderate content from draft to published',
+      'moderate content from draft to ready_to_publish',
+      'moderate content from ready_to_publish to published',
+    ),
+    osha_workflow_permissions_common(),
+    osha_workflow_permissions_manage_content(),
+    osha_workflow_permissions_download_file_entities(),
+    osha_worfklow_permissions_moderator()
+  );
+  return $ret;
+}
