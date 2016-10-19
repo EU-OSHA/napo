@@ -149,11 +149,20 @@ function osha_authentication_user_login(&$edit, $user) {
 
     // Configure translator skills
     $user->tmgmt_translation_skills[LANGUAGE_NONE] = array();
+    $is_internal = FALSE;
     foreach($languages as $target) {
       $user->tmgmt_translation_skills[LANGUAGE_NONE][] = array(
         'language_from' => 'en',
         'language_to' => $target
       );
+      // Add internal translator role.
+      if (in_array($target, osha_extra_language_list())) {
+        $is_internal = TRUE;
+      }
+    }
+    if ($is_internal) {
+      $r = user_role_load_by_name(OSHA_WORKFLOW_ROLE_INTERNAL_TRANSLATOR);
+      $roles[$r->rid] = OSHA_WORKFLOW_ROLE_INTERNAL_TRANSLATOR;
     }
     // Save the user with new data
     user_save($user, array('roles' => $roles));

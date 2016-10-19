@@ -545,3 +545,17 @@ function osha_workflow_update_7011() {
   $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER);
   user_role_grant_permissions($role->rid, osha_workflow_permissions_role_review_manager());
 }
+
+/**
+ * Create and assign permission for internal translator.
+ */
+function osha_workflow_update_7012() {
+  require_once 'osha_workflow.permissions.inc';
+  $role = user_role_load_by_name(OSHA_WORKFLOW_ROLE_INTERNAL_TRANSLATOR);
+  if (empty($role)) {
+    $role = new stdClass();
+    $role->name = OSHA_WORKFLOW_ROLE_INTERNAL_TRANSLATOR;
+    user_role_save($role);
+  }
+  user_role_grant_permissions($role->rid, osha_workflow_permissions_role_internal_translator());
+}
