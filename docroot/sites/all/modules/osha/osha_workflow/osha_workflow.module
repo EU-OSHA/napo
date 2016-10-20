@@ -16,6 +16,7 @@ define('OSHA_WORKFLOW_ROLE_PROJECT_MANAGER', 'Project Manager');
 define('OSHA_WORKFLOW_ROLE_APPROVER', 'Approver');
 define('OSHA_WORKFLOW_ROLE_EVENTS_COORDINATOR', 'Events Coordinator');
 define('OSHA_WORKFLOW_ROLE_EVENTS_EDITOR', 'Events Editor');
+define('OSHA_WORKFLOW_ROLE_INTERNAL_TRANSLATOR', 'Internal translator');
 /* Translation workflow roles */
 define('OSHA_WORKFLOW_ROLE_TRANSLATION_MANAGER', 'Translation Manager');
 define('OSHA_WORKFLOW_ROLE_TRANSLATION_LIAISON', 'Translation Liaison');
@@ -313,11 +314,21 @@ function osha_workflow_user_has_role_access_callback($role = 'OSHA_WORKFLOW_ROLE
  * @see http://openmonkey.blogspot.ro/2011/10/add-permissions-to-workbench-moderation.html
  */
 function osha_workflow_node_access($node, $operation, $user) {
+  global $language;
   if (OshaWorkflowPermissions::userIsAdministrator($user)) {
     return NODE_ACCESS_IGNORE;
   }
   if ($operation == 'view') {
     return NODE_ACCESS_IGNORE;
+  }
+
+  if ($operation == 'update') {
+    // MN-82 - internal translator for extra languages
+    $is_internal_translator = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_INTERNAL_TRANSLATOR, $user);
+    $is_allowed = _osha_workflow_extra_language_skill_access($user, $language->language);
+    if ($is_internal_translator && !$is_allowed) {
+      return NODE_ACCESS_DENY;
+    }
   }
 
   return NODE_ACCESS_IGNORE;
@@ -808,6 +819,7 @@ function osha_workflow_workbench_moderation_transition($node, $old, $new) {
  */
 function osha_workflow_workbench_moderation_access_alter(&$access, $op, $node) {
   global $user;
+  global $language;
   if (OshaWorkflowPermissions::userIsAdministrator($user)) {
     return $access = TRUE;
   }
@@ -825,6 +837,15 @@ function osha_workflow_workbench_moderation_access_alter(&$access, $op, $node) {
   }
 
   if ($op == 'update') {
+
+    // MN-82 - internal translator for extra languages
+    $is_internal_translator = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_INTERNAL_TRANSLATOR, $user);
+    $is_allowed = _osha_workflow_extra_language_skill_access($user, $language->language);
+    if ($is_internal_translator && !$is_allowed) {
+      $access = FALSE;
+      return;
+    }
+
     return NULL;
     $is_rm = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_REVIEW_MANAGER, $user);
     $is_pm = OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_PROJECT_MANAGER, $user);
@@ -1010,12 +1031,12 @@ function osha_workflow_form_node_form_alter(&$form, $form_state) {
     return;
   }
   if (isset($form['#node']->workbench_moderation['current']->state)) {
-    global $user;
-    $node = $form['#node'];
-    $project_manager = osha_workflow_get_project_manager($node->nid);
-    if (empty($project_manager)) {
-      drupal_set_message(t('There is no project manager set for this node.'), 'warning');
-    }
+//    global $user;
+//    $node = $form['#node'];
+//    $project_manager = osha_workflow_get_project_manager($node->nid);
+//    if (empty($project_manager)) {
+//      drupal_set_message(t('There is no project manager set for this node.'), 'warning');
+//    }
     /*$state = $form['#node']->workbench_moderation['current']->state;
     if ($state == OSHA_WORKFLOW_STATE_TO_BE_APPROVED) {
       if (osha_workflow_is_next_approver($node->nid) && OshaWorkflowPermissions::userHasRole(OSHA_WORKFLOW_ROLE_APPROVER, $user)) {
@@ -1023,6 +1044,22 @@ function osha_workflow_form_node_form_alter(&$form, $form_state) {
       }
     }*/
   }
+}
+
+
+// Check the user language skill against extra language
+function _osha_workflow_extra_language_skill_access($user, $language) {
+  if (in_array($language, osha_extra_language_list())) {
+    $account = user_load($user->uid);
+    if (!empty($account->tmgmt_translation_skills[LANGUAGE_NONE])) {
+      foreach ($account->tmgmt_translation_skills[LANGUAGE_NONE] as $lang_skill) {
+        if ($lang_skill['language_to'] == $language) {
+          return TRUE;
+        }
+      }
+    }
+  }
+  return FALSE;
 }
 
 /**
