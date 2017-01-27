@@ -3241,3 +3241,83 @@ a.ext span.ext {
 }
 
 
+/*Sticky menu
+****************************************/
+@media only screen and (min-width : 768px){
+	
+	.sticky-menu{
+		position: fixed;
+		z-index: 9999;
+		width: 100%;
+		max-width: 100% !important;
+		top: 0;
+		margin-top: 0px !important;
+		border: none;
+		.navbar-header{
+			-webkit-transition: all 0.3s;
+					    -moz-transition: all 0.3s;
+					    -ms-transition: all 0.3s;
+					    -o-transition: all 0.3s;
+					    transition: all 0.3s;
+			margin-left: 20px !important;
+			width: 360px !important;
+			padding-right: 0px !important;
+			.logo.navbar-btn{
+				padding-right: 0px !important;
+			}
+		}
+		.col-md-8{
+			-webkit-transition: all 0.3s;
+					    -moz-transition: all 0.3s;
+					    -ms-transition: all 0.3s;
+					    -o-transition: all 0.3s;
+					    transition: all 0.3s;
+			width: 607px !important;
+			margin-right: 20px !important;
+		}
+	}
+	.sticky-bar{
+		position: fixed;
+		z-index: 9998;
+		width: 100%;
+		max-width: 100% !important;
+		top: 87px;
+		
+	}
+
+	@media only screen and (max-width : 1023px){
+	
+		.sticky-bar{
+			position: fixed;
+			z-index: 9998;
+			width: 100%;
+			max-width: 100% !important;
+			top: 170px;
+		}
+
+	}
+
+}
+
+
+
+@media only screen and (max-width : 993px){
+	.sticky-menu{
+		.col-sm-9{
+			img[alt*="EU logo"]{
+				padding-top: 50px !important;
+			}
+			.header-text{
+				-webkit-transition: all 0.6s;
+					    -moz-transition: all 0.6s;
+					    -ms-transition: all 0.6s;
+					    -o-transition: all 0.6s;
+					    transition: all 0.6s;
+				font-size: 1.55em !important;
+			    width: 292px !important;
+			    padding-top: 0.9em !important;
+			}
+		}
+	}
+}
+/*end sticky menu*/
