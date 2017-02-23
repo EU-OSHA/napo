@@ -11,7 +11,8 @@
         Twitter
       </a></li>
     <li id="gplus-share-button-<?php print $node->nid; ?>" class="napo-share-widget-button napo-share-widget-gplus">
-      <a href="#" onclick="popUp=window.open('https://plus.google.com/share?url=<?php print $url; ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus();return false">Google+</a>
+      <a href="https://plus.google.com/share?url=<?php print $url; ?>"
+         onclick="popUp=window.open('https://plus.google.com/share?url=<?php print $url; ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus(); return false">Google+</a>
     </li>
     <li id="linked-in-<?php print $node->nid; ?>" class="napo-share-widget-button napo-share-widget-linkedin">Linked in</li>
   </ul>
