@@ -810,8 +810,8 @@ class OshaWorkflowNotifications {
         'from' => $from_state,
         'to' => $to_state,
       );
-      $users = osha_workflow_get_node_rm($node);
-      OshaWorkflowNotifications::sendEmail($users, $params, 'osha_workflow', 'osha_workflow_notification_admin');
+      $review_managers = OshaWorkflowPermissions::getUsersByRole(OSHA_WORKFLOW_ROLE_ADMINISTRATOR);
+      OshaWorkflowNotifications::sendEmail($review_managers, $params, 'osha_workflow', 'osha_workflow_notification_admin');
     }
   }
 
