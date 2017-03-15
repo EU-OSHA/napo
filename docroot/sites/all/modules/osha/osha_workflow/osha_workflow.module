@@ -785,7 +785,8 @@ function osha_workflow_get_default_section($node) {
  */
 function osha_workflow_workbench_moderation_transition($node, $old, $new) {
   // Review workflow.
-  if ($new == OSHA_WORKFLOW_STATE_READY_TO_PUBLISH) {
+  if ($new == OSHA_WORKFLOW_STATE_READY_TO_PUBLISH
+    && $old != OSHA_WORKFLOW_STATE_READY_TO_PUBLISH) {
     // Reset existing votes.
     $exiting_pms_entries = osha_workflow_get_pms_entries($node->nid);
     if (!empty($exiting_pms_entries)) {
@@ -1142,21 +1143,27 @@ function osha_workflow_form_moderate_approve_submit($form, $form_state) {
  */
 function osha_workflow_mail($key, &$message, $params) {
   $subject = variable_get('osha_mail_template_approval_subject', '[NAPO Website] CMW: ([node:nid]) [node:title-field]');
+  $action = isset($params['action']) ? $params['action'] : 'reviewed';
+  $status = isset($params['status']) ? $params['status'] : 'N/A';
+  $text = isset($params['text']) ? $params['text'] : ('There is new content to be '.$action.' by you');
+
   $body = variable_get('osha_mail_template_approval_body',
-    'Dear <b>[user:name]</b>,
+    'Dear <b>[user:name]</b>,<br>'.
 
-    You have a content to be reviewed <a href="[node:url]">[node:title-field]</a>.
+    $text.': <a href="[node:url]">[node:title-field]</a> (type: [node:type], status: <b>'.$status.'</b>).'.
 
-    Thank you,'
+    '<br>Thank you,'
   );
 
   if ($key == 'osha_workflow_notification_admin') {
     $body = variable_get('osha_mail_template_approval_body',
-      'Dear <b>[user:name]</b>,
+      'Dear <b>[user:name]</b>,<br>
 
-      There was a status change (from <b>' . $params['from'] . '</b> to <b>' . $params['to'] . '</b>) for <a href="[node:url]">[node:title-field]</a>.
+      No action is required. This message is just to inform you that there has been a status change (from <b>'
+      . $params['from'] . '</b> to <b>' . $params['to']
+      . '</b>) on page <a href="[node:url]">[node:title-field]</a>.
 
-      Thank you,'
+      <br>Thank you,'
     );
   }
   $message['subject'] = token_replace($subject, $params);
