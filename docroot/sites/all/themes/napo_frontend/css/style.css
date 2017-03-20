@@ -7100,6 +7100,7 @@ table .checkbox input[type="checkbox"] {
 .navbar-default .navbar-header {
   padding-left: 0;
   margin-left: -10px;
+  padding-right: 0px;
 }
 .navbar-default .pull-right {
   padding-right: 0;
@@ -7148,6 +7149,9 @@ table .checkbox input[type="checkbox"] {
   margin: 0;
   padding: 0;
   width: auto;
+}
+.navbar .logo {
+  padding-right: 0px;
 }
 .menu.nav.navbar-nav {
   background-color: #eff0f0;
@@ -7511,6 +7515,12 @@ p:last-child {
 .view-display-id-page_list .napo-film-video-type.napo-film-video-type-episode {
   background: url('../images/ico-view-episodes.png?v=1') no-repeat 0px 2px;
   padding-left: 25px;
+}
+.napo-film-video-type-film {
+  display: inline-block;
+  height: 1.1em;
+  min-height: 23px;
+  vertical-align: middle;
 }
 .view-display-id-page_list .napo-film-video-type.napo-film-video-type-film {
   background: url('../images/ico-film.png?v=1') no-repeat 0px 2px;
@@ -10049,7 +10059,6 @@ a.ext span.ext {
 .page-node-253 .field-name-body.field-type-text-with-summary p a {
   font-weight: bold;
 }
-
 /*Sticky menu
 ****************************************/
 @media only screen and (min-width: 768px) {
@@ -10298,6 +10307,10 @@ footer .menu.nav.navbar-nav li img.img-responsive {
   .navbar-default .navbar-header {
     margin-right: 0px;
   }
+  .navbar-default .navbar-header a.logo img {
+    height: auto;
+    padding-right: 15px;
+  }
   .vjs-default-skin .vjs-big-play-button {
     top: 16%;
   }
@@ -10391,7 +10404,7 @@ footer .menu.nav.navbar-nav li img.img-responsive {
     margin-right: 0px;
   }
   .navbar-default .navbar-toggle .icon-bar {
-    background: #1F3695;
+    background: #1f3695;
     height: 3px;
   }
   #edit-search-word-wrapper {
@@ -10408,7 +10421,7 @@ footer .menu.nav.navbar-nav li img.img-responsive {
     margin-left: 0px;
   }
   .form-search .ui-autocomplete {
-    display: none!important;
+    display: none!importanto;
   }
   .view-napo-s-film-episodes .views-row .col-sm-9 {
     background: #f2f1f2;
