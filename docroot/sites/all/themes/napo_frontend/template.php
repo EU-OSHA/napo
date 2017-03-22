@@ -138,7 +138,7 @@ function napo_frontend_text_resize_block() {
  */
 function napo_frontend_preprocess_page(&$vars) {
   // Render the logo with theme image to provide alt, width and height attr.
-  $logo_path = drupal_get_path('theme', 'napo_frontend') . '/logo.png';
+  $logo_path = drupal_get_path('theme', 'napo_frontend') . '/logo_aniv.png';
   $image_info = image_get_info($logo_path);
   $image_vars = array(
     'path' => $logo_path,
