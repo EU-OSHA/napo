@@ -2325,11 +2325,13 @@ p:last-child {
 		padding-top: 16px;
 		min-width: 223px;
 		input[type="checkbox"]{
-			visibility: hidden;
+			display: none;
+			cursor: pointer;
 		}
 		label{
 			padding-left: 0px;
 			font-weight: bold;
+			position: relative;
 			&:after {
 				height: 20px;
 				width: 20px;
@@ -2345,6 +2347,24 @@ p:last-child {
 			content: "\2713";
 			color: @color-blue-napo;
 			padding: 1px 3px;
+			position: relative;
+		}
+		input[type=checkbox]:checked{
+			position: absolute;
+			right: 2px;
+			display: block !important;
+			&:before {
+				content: "\2713";
+				color: @color-blue-napo;
+				padding: 0px;
+				visibility: visible;
+				display: block;
+				margin-top: -3px;
+	    		position: relative;
+	    		background-color: white;
+	    		width: 13px;
+	    		height: 16px;
+			}
 		}
 	}
 
