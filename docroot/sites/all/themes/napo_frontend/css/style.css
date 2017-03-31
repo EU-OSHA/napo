@@ -7363,13 +7363,13 @@ form#search-block-form {
   padding: 4px 12px;
   font-size: 13px;
 }
-.form-search.content-search .input-group-btn .btn.btn-default {
+.form-search.content-search .input-group-btn .btn.btn-primary {
   height: 28px;
   border-radius: 0px;
   color: transparent;
   background: url('../images/search.png?v=1') no-repeat 9px 3px #bbc2df;
 }
-.form-search.content-search .input-group-btn .btn.btn-default .glyphicon-search:before {
+.form-search.content-search .input-group-btn .btn.btn-primary .glyphicon-search:before {
   content: "";
 }
 /* para que tambien se vea correctamente en IE */
