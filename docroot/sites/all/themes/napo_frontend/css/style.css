@@ -7406,13 +7406,13 @@ form#search-block-form {
   padding: 4px 12px;
   font-size: 13px;
 }
-.form-search.content-search .input-group-btn .btn.btn-default {
+.form-search.content-search .input-group-btn .btn.btn-primary {
   height: 28px;
   border-radius: 0px;
   color: transparent;
   background: url('../images/search.png?v=1') no-repeat 9px 3px #bbc2df;
 }
-.form-search.content-search .input-group-btn .btn.btn-default .glyphicon-search:before {
+.form-search.content-search .input-group-btn .btn.btn-primary .glyphicon-search:before {
   content: "";
 }
 /* para que tambien se vea correctamente en IE */
@@ -9329,11 +9329,13 @@ p:last-child {
   min-width: 223px;
 }
 #napo_film_cart_download_form_container .form-item-select-all input[type="checkbox"] {
-  visibility: hidden;
+  display: none;
+  cursor: pointer;
 }
 #napo_film_cart_download_form_container .form-item-select-all label {
   padding-left: 0px;
   font-weight: bold;
+  position: relative;
 }
 #napo_film_cart_download_form_container .form-item-select-all label:after {
   height: 20px;
@@ -9349,6 +9351,24 @@ p:last-child {
   content: "\2713";
   color: #1f3695;
   padding: 1px 3px;
+  position: relative;
+}
+#napo_film_cart_download_form_container .form-item-select-all input[type=checkbox]:checked {
+  position: absolute;
+  right: 2px;
+  display: block !important;
+}
+#napo_film_cart_download_form_container .form-item-select-all input[type=checkbox]:checked:before {
+  content: "\2713";
+  color: #1f3695;
+  padding: 0px;
+  visibility: visible;
+  display: block;
+  margin-top: -3px;
+  position: relative;
+  background-color: white;
+  width: 13px;
+  height: 16px;
 }
 #napo_film_cart_download_form_container .download-center-submit-selected,
 #napo_film_cart_download_form_container .download-center-submit-all {
@@ -10088,6 +10108,7 @@ a.ext span.ext {
 }
 .napo-film-access-download-centre a:hover {
   background: #1f3695;
+  color: #FFF;
 }
 .napo-film-access-download-centre a:focus {
   background: #1f3695;
