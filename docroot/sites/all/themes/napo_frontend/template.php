@@ -49,6 +49,37 @@ function napo_frontend_back_button(&$vars){
     return;
   }
 
+  if($node->type == 'napo_album'){
+    $page_title = array_pop($breadcrumb);
+    $previous_crumb = array_pop($breadcrumb);
+    $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
+    if(preg_match("/$regexp/siU", $previous_crumb, $matches)) {
+      $url = strpos($matches[2], $base_url)!== FALSE? $matches[2] : $base_url.$matches[2];
+      $view = views_get_view('napos_gallery');
+      $items_per_page = $view->display['default']->display_options['pager']['options']['items_per_page'];
+      $view->set_display('napos_gallery_items');
+      $view->set_items_per_page('0');
+      $view->pre_execute();
+      $view->execute();
+      $galleries = array();
+      $i = 1;
+      if($view->result){
+        foreach($view->result as $res) {
+          $galleries[$i++] = $res->nid;
+        }
+        $gallery_position = array_search($node->nid, $galleries);
+        if($items_per_page != 0){
+          $gallery_position_page = (ceil($gallery_position/$items_per_page) - 1);
+          if($gallery_position_page != 0 ){
+            $url .= '?page=' . $gallery_position_page;
+          }
+        }
+      }
+      $vars['back_button'] = l(t('Back to !link', array('!link' => $matches[3])), $url, $options);
+      return;
+    }
+  }
+
   if (empty($referer) || strpos($referer, $base_url) === FALSE) {
     unset($vars['back_button']);
   }elseif (strpos($referer, 'search') !== FALSE) {

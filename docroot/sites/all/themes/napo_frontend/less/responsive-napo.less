@@ -84,13 +84,15 @@ iframe{
   display:none;
 }
 
-.navbar-default .navbar-header{
-  margin-right: 0px;
-  a.logo img{
-    height: auto;
-    padding-right: 15px;
-  }
-}
+// .navbar-default .navbar-header{
+//   margin-right: 0px;
+//   a.logo img{
+//     height: auto;
+//     padding-right: 15px;
+//     width: 130% !important; 
+//     max-width: inherit !important;
+//   }
+// }
 
 .vjs-default-skin .vjs-big-play-button{
     top: 16%;
@@ -98,6 +100,11 @@ iframe{
 
 .logo.navbar-btn.pull-left{
 	float:right!important;	
+}
+#search-block-form{
+  .input-group{
+    width: 100%;
+  }
 }
 
 .navbar-collapse{
@@ -112,12 +119,13 @@ iframe{
 
 	nav{
 		margin-left: 0px;
-    width:97%;
+    width:100%;
 	}
 
-	nav div{
-		float:left!important;
+	nav > div{
+		float:none !important;
     width:300px;
+    margin: 0 auto;
 	}
 
   #lang-dropdown-select-language_content{
@@ -135,13 +143,19 @@ iframe{
   margin-top: 0px;
   margin-right: 0%; 
   float: left !important;
-  width: 300px;
-  margin-left: 5px;
+  width: 100%;
+  padding-right: 0px;
+  //margin-left: 5px;
 }
 
 .menu.nav.navbar-nav {
   display:block;
-  margin: 5.75px -15px;
+  margin: 5.75px 0px;
+  li {
+    img{
+      margin: 0 auto;
+    }
+  }
 }
 
 .menu.nav.navbar-nav .expanded.dropdown.last{
@@ -158,6 +172,7 @@ iframe{
   	max-width: 100%!important;
   	height:auto;
   	padding: 1em 0px 10px 30px;
+    border: none;
 
   	.first{
   		padding-left: 10px;
@@ -206,8 +221,9 @@ iframe{
 .navbar-toggle{
   border: 0px solid transparent;
   margin-top: 0px;
-  padding-left: 26px;
   margin-right: 0px;
+  position: absolute;
+  left: 10px;
 }
 
 .navbar-default .navbar-toggle .icon-bar{
