@@ -99,3 +99,10 @@ function osha_update_7011() {
     ->condition('type', 'module')
   ->execute();
  }
+
+/**
+ * Enable views data export.
+ */
+function function osha_update_7012() {
+  module_enable(['views_data_export']);
+}
