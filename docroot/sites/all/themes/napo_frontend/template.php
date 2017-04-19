@@ -17,11 +17,10 @@ function napo_frontend_preprocess_block(&$vars) {
   // Use a bare template for the page's main content.
   if ($vars['block_html_id'] == 'block-views-consortium-partners-block') {
     $vars['title_attributes_array']['class'][] = 'hidden-xs';
-  } else if ($vars['block_html_id'] == 'block-views-consortium-partners-block-1') {
+  }
+  elseif ($vars['block_html_id'] == 'block-views-consortium-partners-block-1') {
     $vars['title_attributes_array']['class'][] = 'visible-xs';
-    $vars['title_suffix'] =
-      '<span id="consortium-partners-block-1-link" class="visible-xs">'
-      .t('See details').'</span>';
+    $vars['title_suffix'] = '<span id="consortium-partners-block-1-link" class="visible-xs">' . t('See details') . '</span>';
   }
 }
 
@@ -31,76 +30,58 @@ function napo_frontend_preprocess_block(&$vars) {
 function napo_frontend_back_button(&$vars){
   global $base_url;
   $node = $vars['node'];
-
-  $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-  $breadcrumb = drupal_get_breadcrumb();
   $options = array(
     'attributes' => array(
       'class' => 'back_button',
+      'id' => 'napo_back_button',
+      'rel' => $node->type,
     ),
     'html' => TRUE,
   );
 
-  // For view episodes panel, the breadcrumb it's not available here.
-  // So it's hardcoded.
-  $args = arg();
-  if (end($args) == 'view-scenes') {
-    $vars['back_button'] = l(t('Back to !link', array('!link' => t('Films'))), 'napos-films/films', $options);
-    return;
-  }
-
-  if($node->type == 'napo_album'){
-    $page_title = array_pop($breadcrumb);
-    $previous_crumb = array_pop($breadcrumb);
-    $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
-    if(preg_match("/$regexp/siU", $previous_crumb, $matches)) {
-      $url = strpos($matches[2], $base_url)!== FALSE? $matches[2] : $base_url.$matches[2];
-      $view = views_get_view('napos_gallery');
-      $items_per_page = $view->display['default']->display_options['pager']['options']['items_per_page'];
-      $view->set_display('napos_gallery_items');
-      $view->set_items_per_page('0');
-      $view->pre_execute();
-      $view->execute();
-      $galleries = array();
-      $i = 1;
-      if($view->result){
-        foreach($view->result as $res) {
-          $galleries[$i++] = $res->nid;
-        }
-        $gallery_position = array_search($node->nid, $galleries);
-        if($items_per_page != 0){
-          $gallery_position_page = (ceil($gallery_position/$items_per_page) - 1);
-          if($gallery_position_page != 0 ){
-            $url .= '?page=' . $gallery_position_page;
+  switch ($node->type) {
+    case 'napo_album':
+      $breadcrumb = drupal_get_breadcrumb();
+      $page_title = array_pop($breadcrumb);
+      $previous_crumb = array_pop($breadcrumb);
+      $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
+      if (preg_match("/$regexp/siU", $previous_crumb, $matches)) {
+        $url = strpos($matches[2], $base_url) !== FALSE ? $matches[2] : $base_url . $matches[2];
+        $view = views_get_view('napos_gallery');
+        $items_per_page = $view->display['default']->display_options['pager']['options']['items_per_page'];
+        $view->set_display('napos_gallery_items');
+        $view->set_items_per_page('0');
+        $view->pre_execute();
+        $view->execute();
+        $galleries = array();
+        $i = 1;
+        if ($view->result) {
+          foreach ($view->result as $res) {
+            $galleries[$i++] = $res->nid;
+          }
+          $gallery_position = array_search($node->nid, $galleries);
+          if ($items_per_page != 0) {
+            $gallery_position_page = (ceil($gallery_position / $items_per_page) - 1);
+            if ($gallery_position_page != 0) {
+              $url .= '?page=' . $gallery_position_page;
+            }
           }
         }
+        $vars['back_button'] = l(t('Back to !link', array('!link' => $matches[3])), $url, $options);
+        return;
       }
-      $vars['back_button'] = l(t('Back to !link', array('!link' => $matches[3])), $url, $options);
-      return;
-    }
-  }
+      break;
 
-  if (empty($referer) || strpos($referer, $base_url) === FALSE) {
-    unset($vars['back_button']);
-  }elseif (strpos($referer, 'search') !== FALSE) {
-    $vars['back_button'] = l(t('Back to search results'), $referer, $options);
-  }elseif (is_array($breadcrumb) && $breadcrumb) {
-    $page_title = array_pop($breadcrumb);
-    $previous_crumb = array_pop($breadcrumb);
+    case 'napo_video':
+      $vars['back_button'] = l(t('Back to Films'), '/napos-films/films', $options);
+      break;
 
-    $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
-    if(preg_match("/$regexp/siU", $previous_crumb, $matches)) {
-      $url = strpos($matches[2], $base_url)!== FALSE? $matches[2] : $base_url.$matches[2];
-      // The page was accessed from pagination
-      if(strpos($referer, 'page=') !== FALSE) {
-        $url = $referer;
-      }
-      $vars['back_button'] = l(t('Back to !link', array('!link' => $matches[3])), $url, $options);
-    }else{
-      $vars['back_button'] = l(t('Back to !link', array('!link' => strip_tags($previous_crumb))), $referer, $options);
-    }
-  }else {
-    $vars['back_button'] = l(t('Back'), $referer, $options);
+    case 'lesson':
+      $vars['back_button'] = l(t('Back to Napo for teachers teachers'), '/using-napo/napo-for-teachers', $options);
+      break;
+
+    default:
+      break;
   }
 }
 
@@ -129,7 +110,7 @@ function napo_frontend_top_anchor(&$vars) {
 }
 
 function napo_frontend_text_resize_block() {
-  // Add js, css, and library
+  // Add js, css, and library.
   $content = array(
     '#attached' => array(
       'js' => array(
@@ -145,19 +126,23 @@ function napo_frontend_text_resize_block() {
         array(
           'data' => drupal_get_path('module', 'text_resize') . '/text_resize.js',
           'type' => 'file',
-        )
+        ),
       ),
       'library' => array(
-        array('system', 'jquery.cookie')
+        array(
+          'system',
+          'jquery.cookie',
+        ),
       ),
     ),
   );
 
-  $content['#markup'] = t('Set font size ');
+  $content['#markup'] = t('Set font size');
 
   if (variable_get('text_resize_reset_button', FALSE) == TRUE) {
     $content['#markup'] .= '<sup>&#x2C4;</sup><a href="javascript:;" class="changer" id="text_resize_increase">A</a> <a href="javascript:;" class="changer" id="text_resize_reset">A</a> <sup>&#x2C5;</sup><a href="javascript:;" class="changer" id="text_resize_decrease">A</a> <div id="text_resize_clear"></div>';
-  } else {
+  }
+  else {
     $content['#markup'] .= '<sup>&#x2C4;</sup><a href="javascript:;" class="changer" id="text_resize_increase">A</a> <sup>&#x2C5;</sup><a href="javascript:;" class="changer" id="text_resize_decrease">A</a> <div id="text_resize_clear"></div>';
   }
 
@@ -200,7 +185,7 @@ function napo_frontend_preprocess_image_style(&$variables) {
 }
 
 function napo_frontend_form_alter(&$form, &$form_state, $form_id) {
-  if($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-napo-films-page-list') {
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-napo-films-page-list') {
     $form['search_api_views_fulltext']['#attributes']['placeholder'] = t('Search');
   }
 }
@@ -228,8 +213,8 @@ function napo_frontend_napo_film_remove_search_word_link($variables) {
 }
 
 /**
-+ * Implements theme_pager().
-+ */
+ * Implements theme_pager().
+**/
 function napo_frontend_pager($variables) {
   // Overwrite pager links.
   $variables['tags'][0] = '«';
@@ -341,23 +326,29 @@ function napo_frontend_colorbox_image_formatter($variables) {
         $caption = '';
       }
       break;
+
     case 'title':
       $caption = $image['title'];
       break;
+
     case 'alt':
       $caption = $image['alt'];
       break;
+
     case 'node_title':
       $caption = $entity_title;
       break;
+
     case 'custom':
       $caption = token_replace($settings['colorbox_caption_custom'], array(
         $entity_type => $entity,
         'file' => (object) $item,
       ), array('clear' => TRUE));
       break;
+
     default:
       $caption = '';
+      break;
   }
   // If our custom checkbox is used, overwrite caption.
   if (!empty($settings['use_image_caption_field'])) {

@@ -158,10 +158,6 @@ function osha_views_default_views() {
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Workbench Access: Section */
-  $handler->display->display_options['fields']['section']['id'] = 'section';
-  $handler->display->display_options['fields']['section']['table'] = 'workbench_access';
-  $handler->display->display_options['fields']['section']['field'] = 'section';
   /* Field: Content: Type */
   $handler->display->display_options['fields']['type']['id'] = 'type';
   $handler->display->display_options['fields']['type']['table'] = 'node';
@@ -445,10 +441,90 @@ function osha_views_default_views() {
     9 => 0,
   );
   $handler->display->display_options['filters']['field_archived_value']['expose']['reduce'] = TRUE;
+  /* Filter criterion: Content: Updated date */
+  $handler->display->display_options['filters']['changed']['id'] = 'changed';
+  $handler->display->display_options['filters']['changed']['table'] = 'node';
+  $handler->display->display_options['filters']['changed']['field'] = 'changed';
+  $handler->display->display_options['filters']['changed']['operator'] = 'between';
+  $handler->display->display_options['filters']['changed']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['changed']['expose']['operator_id'] = 'changed_op';
+  $handler->display->display_options['filters']['changed']['expose']['label'] = 'Changed';
+  $handler->display->display_options['filters']['changed']['expose']['operator'] = 'changed_op';
+  $handler->display->display_options['filters']['changed']['expose']['identifier'] = 'changed';
+  $handler->display->display_options['filters']['changed']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+    9 => 0,
+    10 => 0,
+  );
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'main_page');
   $handler->display->display_options['path'] = 'admin/content';
+
+  /* Display: Data export */
+  $handler = $view->new_display('views_data_export', 'Data export', 'views_data_export_1');
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['label'] = 'Content Type';
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['label'] = 'Author';
+  /* Field: Content: Published */
+  $handler->display->display_options['fields']['status']['id'] = 'status';
+  $handler->display->display_options['fields']['status']['table'] = 'node';
+  $handler->display->display_options['fields']['status']['field'] = 'status';
+  $handler->display->display_options['fields']['status']['not'] = 0;
+  /* Field: Content: Post date */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'node';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['label'] = 'Created';
+  $handler->display->display_options['fields']['created']['date_format'] = 'short_date_eu';
+  $handler->display->display_options['fields']['created']['second_date_format'] = 'year';
+  /* Field: Content: Updated date */
+  $handler->display->display_options['fields']['changed']['id'] = 'changed';
+  $handler->display->display_options['fields']['changed']['table'] = 'node';
+  $handler->display->display_options['fields']['changed']['field'] = 'changed';
+  $handler->display->display_options['fields']['changed']['date_format'] = 'short';
+  $handler->display->display_options['fields']['changed']['second_date_format'] = 'year';
+  /* Field: Content: Mark as outdated */
+  $handler->display->display_options['fields']['field_archived']['id'] = 'field_archived';
+  $handler->display->display_options['fields']['field_archived']['table'] = 'field_data_field_archived';
+  $handler->display->display_options['fields']['field_archived']['field'] = 'field_archived';
+  $handler->display->display_options['fields']['field_archived']['label'] = 'Outdated';
+  /* Field: Content: Path */
+  $handler->display->display_options['fields']['path']['id'] = 'path';
+  $handler->display->display_options['fields']['path']['table'] = 'node';
+  $handler->display->display_options['fields']['path']['field'] = 'path';
+  $handler->display->display_options['fields']['path']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['path']['absolute'] = TRUE;
+  $handler->display->display_options['path'] = 'admin/content/export';
+  $handler->display->display_options['displays'] = array(
+    'main_page' => 'main_page',
+    'default' => 0,
+  );
   $translatables['administration_content'] = array(
     t('Master'),
     t('Administration content'),
@@ -472,7 +548,6 @@ function osha_views_default_views() {
     t('- Choose an operation -'),
     t('Delete'),
     t('Title'),
-    t('Section'),
     t('Content Type'),
     t('Author'),
     t('Published'),
@@ -486,7 +561,11 @@ function osha_views_default_views() {
     t('Vocabulary'),
     t('Not translated in'),
     t('Mark as outdated'),
+    t('Changed'),
     t('Page'),
+    t('Data export'),
+    t('Created'),
+    t('Path'),
   );
   $export['administration_content'] = $view;
 
