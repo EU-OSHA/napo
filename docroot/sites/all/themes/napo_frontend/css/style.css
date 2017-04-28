@@ -7371,6 +7371,9 @@ table .checkbox input[type="checkbox"] {
 form#search-block-form {
   margin: 0;
 }
+form#search-block-form .form-actions#edit-actions {
+  margin-bottom: 0px !important;
+}
 .navbar #block-search-form {
   float: none;
   margin: 0px;
@@ -7403,14 +7406,14 @@ form#search-block-form {
   margin-top: 3px;
   border-radius: 0px;
   font-weight: bold;
-  padding: 4px 12px;
+  padding: 4px 16px;
   font-size: 13px;
 }
 .form-search.content-search .input-group-btn .btn.btn-primary {
   height: 28px;
   border-radius: 0px;
   color: transparent;
-  background: url('../images/search.png?v=1') no-repeat 9px 3px #bbc2df;
+  background: url('../images/search.png?v=1') no-repeat 0px 3px #bbc2df;
 }
 .form-search.content-search .input-group-btn .btn.btn-primary .glyphicon-search:before {
   content: "";
@@ -7427,9 +7430,9 @@ form#search-block-form {
   content: '';
   position: absolute;
   top: 0px;
-  left: 77.5%;
+  right: 0px;
   pointer-events: none;
-  background: url('../images/arrow-language.png?v=1') no-repeat 4px 6px transparent;
+  background: url('../images/arrow-language.png?v=1') no-repeat 2px 6px transparent;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -10395,7 +10398,6 @@ footer .menu.nav.navbar-nav li img.img-responsive {
     width: 300px!important;
   }
   .navbar-collapse.collapse.col-md-8 .form-type-select:after {
-    left: 262px!important;
     background: url('../images/arrow-language.png?v=1') no-repeat -2px 6px transparent;
   }
   .navbar.container.navbar-default .col-md-8.pull-right {
