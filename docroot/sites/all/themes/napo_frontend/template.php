@@ -3,14 +3,6 @@
 require_once 'theme/menu/menu.inc';
 
 /**
- * Implements hook_preprocess_node().
- */
-function napo_frontend_preprocess_node(&$vars) {
-  napo_frontend_back_button($vars);
-  napo_frontend_top_anchor($vars);
-}
-
-/**
  * Implements hook_preprocess_block().
  */
 function napo_frontend_preprocess_block(&$vars) {
@@ -22,91 +14,6 @@ function napo_frontend_preprocess_block(&$vars) {
     $vars['title_attributes_array']['class'][] = 'visible-xs';
     $vars['title_suffix'] = '<span id="consortium-partners-block-1-link" class="visible-xs">' . t('See details') . '</span>';
   }
-}
-
-/**
- * Back button link and text
- */
-function napo_frontend_back_button(&$vars){
-  global $base_url;
-  $node = $vars['node'];
-  $options = array(
-    'attributes' => array(
-      'class' => 'back_button',
-      'id' => 'napo_back_button',
-      'rel' => $node->type,
-    ),
-    'html' => TRUE,
-  );
-
-  switch ($node->type) {
-    case 'napo_album':
-      $breadcrumb = drupal_get_breadcrumb();
-      $page_title = array_pop($breadcrumb);
-      $previous_crumb = array_pop($breadcrumb);
-      $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>";
-      if (preg_match("/$regexp/siU", $previous_crumb, $matches)) {
-        $url = strpos($matches[2], $base_url) !== FALSE ? $matches[2] : $base_url . $matches[2];
-        $view = views_get_view('napos_gallery');
-        $items_per_page = $view->display['default']->display_options['pager']['options']['items_per_page'];
-        $view->set_display('napos_gallery_items');
-        $view->set_items_per_page('0');
-        $view->pre_execute();
-        $view->execute();
-        $galleries = array();
-        $i = 1;
-        if ($view->result) {
-          foreach ($view->result as $res) {
-            $galleries[$i++] = $res->nid;
-          }
-          $gallery_position = array_search($node->nid, $galleries);
-          if ($items_per_page != 0) {
-            $gallery_position_page = (ceil($gallery_position / $items_per_page) - 1);
-            if ($gallery_position_page != 0) {
-              $url .= '?page=' . $gallery_position_page;
-            }
-          }
-        }
-        $vars['back_button'] = l(t('Back to !link', array('!link' => $matches[3])), $url, $options);
-        return;
-      }
-      break;
-
-    case 'napo_video':
-      $vars['back_button'] = l(t('Back to Films'), '/napos-films/films', $options);
-      break;
-
-    case 'lesson':
-      $vars['back_button'] = l(t('Back to Napo for teachers teachers'), '/using-napo/napo-for-teachers', $options);
-      break;
-
-    default:
-      break;
-  }
-}
-
-/**
- * Anchor to top of the page
- */
-function napo_frontend_top_anchor(&$vars) {
-  $options = array(
-    'attributes' => array(
-      'class' => 'top_anchor',
-    ),
-    'external' => TRUE,
-    'fragment' => 'top',
-    'html' => TRUE,
-  );
-  $icon_path = drupal_get_path('theme', 'napo_frontend') . '/images/anchor-top.png';
-  $image_info = image_get_info($icon_path);
-  $image_vars = array(
-    'path' => $icon_path,
-    'alt' => t('Go to top'),
-    'height' => $image_info['height'],
-    'width' => $image_info['width'],
-  );
-  $image = theme('image', $image_vars);
-  $vars['top_anchor'] = l($image, '', $options);
 }
 
 function napo_frontend_text_resize_block() {
