@@ -1587,6 +1587,13 @@ You can, as well, remove selected videos from the download centre list, by click
   );
   $handler->display->display_options['filters']['field_video_type_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_video_type_tid']['vocabulary'] = 'video_type';
+  /* Filter criterion: Content: Publication date (field_publication_date) */
+  $handler->display->display_options['filters']['field_publication_date_value']['id'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['table'] = 'field_data_field_publication_date';
+  $handler->display->display_options['filters']['field_publication_date_value']['field'] = 'field_publication_date_value';
+  $handler->display->display_options['filters']['field_publication_date_value']['operator'] = '<=';
+  $handler->display->display_options['filters']['field_publication_date_value']['granularity'] = 'second';
+  $handler->display->display_options['filters']['field_publication_date_value']['default_date'] = 'now';
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_list');
