@@ -159,3 +159,10 @@ function napo_film_update_7008() {
 function napo_film_update_7009() {
   features_revert_module('napo_film');
 }
+
+/**
+ * MDR-1110 -  bugfix publication date for films listings.
+ */
+function napo_film_update_7010() {
+  features_revert_module('napo_film');
+}

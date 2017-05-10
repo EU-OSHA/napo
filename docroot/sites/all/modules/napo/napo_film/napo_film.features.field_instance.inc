@@ -10,7 +10,7 @@
 function napo_film_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-napo_video-body'
+  // Exported field_instance: 'node-napo_video-body'.
   $field_instances['node-napo_video-body'] = array(
     'bundle' => 'napo_video',
     'default_value' => NULL,
@@ -136,7 +136,7 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_video-field_archived'
+  // Exported field_instance: 'node-napo_video-field_archived'.
   $field_instances['node-napo_video-field_archived'] = array(
     'bundle' => 'napo_video',
     'default_value' => array(
@@ -233,7 +233,7 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_video-field_combined_tags'
+  // Exported field_instance: 'node-napo_video-field_combined_tags'.
   $field_instances['node-napo_video-field_combined_tags'] = array(
     'bundle' => 'napo_video',
     'default_value' => NULL,
@@ -326,7 +326,7 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_video-field_image'
+  // Exported field_instance: 'node-napo_video-field_image'.
   $field_instances['node-napo_video-field_image'] = array(
     'bundle' => 'napo_video',
     'deleted' => 0,
@@ -462,7 +462,7 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_video-field_main_tag'
+  // Exported field_instance: 'node-napo_video-field_main_tag'.
   $field_instances['node-napo_video-field_main_tag'] = array(
     'bundle' => 'napo_video',
     'default_value' => NULL,
@@ -555,7 +555,7 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_video-field_napo_film'
+  // Exported field_instance: 'node-napo_video-field_napo_film'.
   $field_instances['node-napo_video-field_napo_film'] = array(
     'bundle' => 'napo_video',
     'default_value' => NULL,
@@ -648,7 +648,7 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_video-field_publication_date'
+  // Exported field_instance: 'node-napo_video-field_publication_date'.
   $field_instances['node-napo_video-field_publication_date'] = array(
     'bundle' => 'napo_video',
     'deleted' => 0,
@@ -773,7 +773,7 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_video-field_tags'
+  // Exported field_instance: 'node-napo_video-field_tags'.
   $field_instances['node-napo_video-field_tags'] = array(
     'bundle' => 'napo_video',
     'default_value' => NULL,
@@ -864,7 +864,7 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_video-field_video'
+  // Exported field_instance: 'node-napo_video-field_video'.
   $field_instances['node-napo_video-field_video'] = array(
     'bundle' => 'napo_video',
     'deleted' => 0,
@@ -987,7 +987,7 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_video-field_video_type'
+  // Exported field_instance: 'node-napo_video-field_video_type'.
   $field_instances['node-napo_video-field_video_type'] = array(
     'bundle' => 'napo_video',
     'default_value' => NULL,
@@ -1080,7 +1080,7 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_video-field_youtube'
+  // Exported field_instance: 'node-napo_video-field_youtube'.
   $field_instances['node-napo_video-field_youtube'] = array(
     'bundle' => 'napo_video',
     'default_value' => NULL,
@@ -1241,7 +1241,7 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_video-title_field'
+  // Exported field_instance: 'node-napo_video-title_field'.
   $field_instances['node-napo_video-title_field'] = array(
     'bundle' => 'napo_video',
     'default_value' => NULL,
