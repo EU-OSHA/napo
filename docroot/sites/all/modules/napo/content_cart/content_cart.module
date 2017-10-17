@@ -120,6 +120,16 @@ function content_cart_remove_item($type, $id) {
   $cart = ContentCart::getCurrentCart();
   $cart->removeFromCart($type, $id);
   module_invoke_all('content_cart_remove_item', $type, $id);
+  content_cart_destroy_session();
+}
+
+function content_cart_destroy_session() {
+  global $user;
+
+  // Destroy session if empty session.
+  if (user_is_anonymous() && !empty($user->sid) && empty($_SESSION)) {
+    _drupal_session_destroy($user->sid);
+  }
 }
 
 /**
