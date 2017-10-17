@@ -75,3 +75,12 @@ jQuery(window).bind('scroll', function () {
         jQuery(".nav-bar-separate").removeClass("sticky-bar");
     }
 });
+
+//Clone paginator view Films
+jQuery(document).ready(function() {
+ 
+   var cloned = jQuery('.page-napos-films ul.pager').clone();
+   //put insert after another div
+   jQuery(cloned).insertAfter('#block-napo-film-napo-films-view-modes');
+
+});
