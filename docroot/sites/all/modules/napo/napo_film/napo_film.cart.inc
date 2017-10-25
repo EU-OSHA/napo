@@ -66,10 +66,6 @@ function napo_film_content_cart_remove_item($type, $id) {
   if (isset($_SESSION['napo_film_select_in_cart'][$id])) {
     unset($_SESSION['napo_film_select_in_cart'][$id]);
   }
-  // Destroy session if empty session.
-  if (user_is_anonymous() && !empty($user->sid) && empty($_SESSION)) {
-    _drupal_session_destroy($user->sid);
-  }
 }
 
 /**
@@ -313,6 +309,9 @@ function napo_film_cart_select_in_cart_download_selected($form, $form_state) {
     '#type' => 'ajax',
     '#commands' => $commands,
   );
+
+  content_cart_destroy_session();
+
   return $page;
 }
 
@@ -349,6 +348,9 @@ function napo_film_cart_select_in_cart_download_all($form, &$form_state) {
     '#type' => 'ajax',
     '#commands' => $commands,
   );
+
+  content_cart_destroy_session();
+
   return $page;
 }
 
