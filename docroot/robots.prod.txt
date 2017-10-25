@@ -15,7 +15,6 @@
 
 User-agent: *
 Crawl-delay: 10
-Disallow: /
 # CSS, JS, Images
 Allow: /misc/*.css$
 Allow: /misc/*.css?
@@ -66,7 +65,6 @@ Disallow: /install.php
 Disallow: /INSTALL.txt
 Disallow: /LICENSE.txt
 Disallow: /MAINTAINERS.txt
-Disallow: /update.php
 Disallow: /UPGRADE.txt
 Disallow: /xmlrpc.php
 # Paths (clean URLs)
@@ -89,3 +87,11 @@ Disallow: /?q=user/password/
 Disallow: /?q=user/register/
 Disallow: /?q=user/login/
 Disallow: /?q=user/logout/
+# Extra languages (MC-18)
+Disallow: /sq/
+Disallow: /bs/
+Disallow: /mk/
+Disallow: /ru/
+Disallow: /sr/
+Disallow: /sh/
+Disallow: /tr/
