@@ -324,6 +324,32 @@ function napo_film_url_outbound_alter(&$path, $options, $original_path) {
 }
 
 /**
+ * Implements hook_views_post_execute().
+ */
+function napo_film_views_post_execute(&$view) {
+  $name = 'frontpage_carousel_featured';
+  if (($view->name == $name) && ($view->current_display == 'block')) {
+    $nids = [];
+    foreach($view->result as $row) {
+      $nids[] = $row->nid;
+    }
+    if (count($view->result) < 3) {
+      $result = views_get_view_result($name, 'block_1');
+      foreach($result as $row) {
+        if (in_array($row->nid, $nids)) {
+          continue;
+        }
+        $view->result[] = $row;
+        if (count($view->result) == 3) {
+          break;
+        }
+      }
+    }
+  }
+}
+
+
+/**
  * Implements hook_views_pre_view().
  */
 function napo_film_views_pre_view( view &$view, &$display_id, &$args) {
