@@ -180,3 +180,10 @@ function napo_film_update_7011() {
 function napo_film_update_7012() {
   features_revert_module('napo_frontpage');
 }
+
+/**
+ * MDR-1484 Newest films in the Homepage.
+ */
+function napo_film_update_7013() {
+  features_revert_module('napo_frontpage');
+}

@@ -327,9 +327,22 @@ function napo_film_url_outbound_alter(&$path, $options, $original_path) {
  * Implements hook_views_post_execute().
  */
 function napo_film_views_post_execute(&$view) {
+  static $custom_video_nid = NULL;
+
+  $name = 'frontpage_custom_video';
+  if (($view->name == $name) && ($view->current_display == 'block')) {
+    if (!count($view->result)) {
+      $result = views_get_view_result('frontpage_latest_video');
+      foreach($result as $row) {
+        $view->result[] = $row;
+        $custom_video_nid = $row->nid;
+      }
+    }
+  }
+
   $name = 'frontpage_carousel_featured';
   if (($view->name == $name) && ($view->current_display == 'block')) {
-    $nids = [];
+    $nids = [$custom_video_nid];
     foreach($view->result as $row) {
       $nids[] = $row->nid;
     }
