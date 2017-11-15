@@ -14,6 +14,9 @@ class ContentCart implements ContentCartInterface {
   public function __construct() {}
 
   public static function getCurrentCart() {
+    if (user_is_anonymous()) {
+      ini_set('session.cookie_lifetime',  24 * 3600);
+    }
     return new ContentCart();
   }
 
