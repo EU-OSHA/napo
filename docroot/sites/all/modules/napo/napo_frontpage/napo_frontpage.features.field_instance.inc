@@ -10,7 +10,8 @@
 function napo_frontpage_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'entityqueue_subqueue-frontpage_carousel_featured-eq_node'
+  // Exported field_instance:
+  // 'entityqueue_subqueue-frontpage_carousel_featured-eq_node'.
   $field_instances['entityqueue_subqueue-frontpage_carousel_featured-eq_node'] = array(
     'bundle' => 'frontpage_carousel_featured',
     'default_value' => NULL,
@@ -46,7 +47,7 @@ function napo_frontpage_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'entityqueue_subqueue-frontpage_video-eq_node'
+  // Exported field_instance: 'entityqueue_subqueue-frontpage_video-eq_node'.
   $field_instances['entityqueue_subqueue-frontpage_video-eq_node'] = array(
     'bundle' => 'frontpage_video',
     'default_value' => NULL,
@@ -82,7 +83,8 @@ function napo_frontpage_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'entityqueue_subqueue-more_representative_section-eq_node'
+  // Exported field_instance:
+  // 'entityqueue_subqueue-more_representative_section-eq_node'.
   $field_instances['entityqueue_subqueue-more_representative_section-eq_node'] = array(
     'bundle' => 'more_representative_section',
     'default_value' => NULL,
@@ -118,7 +120,7 @@ function napo_frontpage_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-home_video-body'
+  // Exported field_instance: 'node-home_video-body'.
   $field_instances['node-home_video-body'] = array(
     'bundle' => 'home_video',
     'default_value' => NULL,
@@ -169,7 +171,7 @@ function napo_frontpage_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-home_video-field_image'
+  // Exported field_instance: 'node-home_video-field_image'.
   $field_instances['node-home_video-field_image'] = array(
     'bundle' => 'home_video',
     'deleted' => 0,
@@ -253,7 +255,7 @@ function napo_frontpage_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-home_video-field_url'
+  // Exported field_instance: 'node-home_video-field_url'.
   $field_instances['node-home_video-field_url'] = array(
     'bundle' => 'home_video',
     'default_value' => NULL,
@@ -322,7 +324,7 @@ function napo_frontpage_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-home_video-field_video'
+  // Exported field_instance: 'node-home_video-field_video'.
   $field_instances['node-home_video-field_video'] = array(
     'bundle' => 'home_video',
     'deleted' => 0,
@@ -398,7 +400,7 @@ function napo_frontpage_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-home_video-title_field'
+  // Exported field_instance: 'node-home_video-title_field'.
   $field_instances['node-home_video-title_field'] = array(
     'bundle' => 'home_video',
     'default_value' => NULL,
