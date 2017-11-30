@@ -49,3 +49,12 @@ function napo_consortium_partner_update_7001() {
     node_save($node);
   }
 }
+
+/**
+ * MDR-1532 error when editing a link.
+ */
+function napo_consortium_partner_update_7002() {
+  $node = node_load(3);
+  $node->translations->data['en']['source'] = '';
+  node_save($node);
+}
