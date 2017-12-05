@@ -193,4 +193,6 @@ function napo_film_update_7013() {
  */
 function napo_film_update_7014() {
   features_revert(array('napo_film' => array('views_view')));
+  features_revert(array('napo_search' => array('views_view')));
+
 }

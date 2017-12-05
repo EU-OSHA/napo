@@ -1,7 +1,7 @@
 name = Napo search
 core = 7.x
 package = Napo
-version = 7.x-1.3
+version = 7.x-1.4
 project = napo_search
 dependencies[] = entity
 dependencies[] = fe_block
@@ -26,4 +26,3 @@ features[user_permission][] = use Search Autocomplete
 features[user_permission][] = use advanced search
 features[views_view][] = search
 features_exclude[dependencies][ctools] = ctools
-mtime = 1449743880
