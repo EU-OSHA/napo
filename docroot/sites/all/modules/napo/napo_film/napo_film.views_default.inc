@@ -1346,9 +1346,12 @@ You can, as well, remove selected videos from the download centre list, by click
     7 => 0,
     8 => 0,
     9 => 0,
+    10 => 0,
   );
   $handler->display->display_options['filters']['search_api_views_fulltext']['fields'] = array(
     'body:value' => 'body:value',
+    'field_tags:name' => 'field_tags:name',
+    'field_tags:name_field' => 'field_tags:name_field',
     'title' => 'title',
     'title_field' => 'title_field',
   );
