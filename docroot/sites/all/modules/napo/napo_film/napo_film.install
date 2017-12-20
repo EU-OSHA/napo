@@ -187,3 +187,12 @@ function napo_film_update_7012() {
 function napo_film_update_7013() {
   features_revert_module('napo_frontpage');
 }
+
+/**
+ * MDR-1541 Search and tagging.
+ */
+function napo_film_update_7014() {
+  features_revert(array('napo_film' => array('views_view')));
+  features_revert(array('napo_search' => array('views_view')));
+
+}
