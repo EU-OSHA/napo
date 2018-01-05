@@ -10,21 +10,13 @@
 function osha_taxonomies_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'description_field'
+  // Exported field_base: 'description_field'.
   $field_bases['description_field'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'description_field',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -40,14 +32,13 @@ function osha_taxonomies_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
-  // Exported field_base: 'field_excluded_from'
+  // Exported field_base: 'field_excluded_from'.
   $field_bases['field_excluded_from'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_excluded_from',
-    'foreign keys' => array(),
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -69,21 +60,13 @@ function osha_taxonomies_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_nace_changes'
+  // Exported field_base: 'field_nace_changes'.
   $field_bases['field_nace_changes'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_nace_changes',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -98,21 +81,13 @@ function osha_taxonomies_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_nace_code'
+  // Exported field_base: 'field_nace_code'.
   $field_bases['field_nace_code'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_nace_code',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -128,21 +103,13 @@ function osha_taxonomies_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_nace_excludes'
+  // Exported field_base: 'field_nace_excludes'.
   $field_bases['field_nace_excludes'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_nace_excludes',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -157,21 +124,13 @@ function osha_taxonomies_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_nace_includes'
+  // Exported field_base: 'field_nace_includes'.
   $field_bases['field_nace_includes'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_nace_includes',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -186,21 +145,13 @@ function osha_taxonomies_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_nace_includes_also'
+  // Exported field_base: 'field_nace_includes_also'.
   $field_bases['field_nace_includes_also'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_nace_includes_also',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -215,21 +166,13 @@ function osha_taxonomies_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_tags_code'
+  // Exported field_base: 'field_tags_code'.
   $field_bases['field_tags_code'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_tags_code',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -245,21 +188,13 @@ function osha_taxonomies_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_thesaurus_code'
+  // Exported field_base: 'field_thesaurus_code'.
   $field_bases['field_thesaurus_code'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_thesaurus_code',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -275,21 +210,13 @@ function osha_taxonomies_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'name_field'
+  // Exported field_base: 'name_field'.
   $field_bases['name_field'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'name_field',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',

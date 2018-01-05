@@ -41,6 +41,7 @@ function napo_search_user_default_permissions() {
   $permissions['search content'] = array(
     'name' => 'search content',
     'roles' => array(
+      'Internal translator' => 'Internal translator',
       'Project Manager' => 'Project Manager',
       'Review Manager' => 'Review Manager',
       'administrator' => 'administrator',
@@ -53,6 +54,7 @@ function napo_search_user_default_permissions() {
   $permissions['use Search Autocomplete'] = array(
     'name' => 'use Search Autocomplete',
     'roles' => array(
+      'Internal translator' => 'Internal translator',
       'Project Manager' => 'Project Manager',
       'Review Manager' => 'Review Manager',
       'administrator' => 'administrator',
@@ -65,6 +67,7 @@ function napo_search_user_default_permissions() {
   $permissions['use advanced search'] = array(
     'name' => 'use advanced search',
     'roles' => array(
+      'Internal translator' => 'Internal translator',
       'Project Manager' => 'Project Manager',
       'Review Manager' => 'Review Manager',
       'administrator' => 'administrator',
