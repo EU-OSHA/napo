@@ -511,7 +511,7 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['field_video']['settings'] = array(
     'width' => '',
     'height' => '',
-    'posterimage_field' => '',
+    'posterimage_field' => 'field_image',
     'posterimage_style' => '',
   );
   $handler->display->display_options['fields']['field_video']['delta_offset'] = '0';
@@ -630,9 +630,21 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'home_video' => 'home_video',
     'napo_video' => 'napo_video',
   );
+  /* Filter criterion: Content: Video Type (field_video_type) */
+  $handler->display->display_options['filters']['field_video_type_tid']['id'] = 'field_video_type_tid';
+  $handler->display->display_options['filters']['field_video_type_tid']['table'] = 'field_data_field_video_type';
+  $handler->display->display_options['filters']['field_video_type_tid']['field'] = 'field_video_type_tid';
+  $handler->display->display_options['filters']['field_video_type_tid']['value'] = array(
+    2727 => '2727',
+  );
+  $handler->display->display_options['filters']['field_video_type_tid']['expose']['operator_id'] = 'field_video_type_tid_op';
+  $handler->display->display_options['filters']['field_video_type_tid']['expose']['label'] = 'Video Type (field_video_type)';
+  $handler->display->display_options['filters']['field_video_type_tid']['expose']['operator'] = 'field_video_type_tid_op';
+  $handler->display->display_options['filters']['field_video_type_tid']['expose']['identifier'] = 'field_video_type_tid';
+  $handler->display->display_options['filters']['field_video_type_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_video_type_tid']['vocabulary'] = 'video_type';
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
@@ -721,7 +733,7 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['field_video']['settings'] = array(
     'width' => '',
     'height' => '',
-    'posterimage_field' => '',
+    'posterimage_field' => 'field_image',
     'posterimage_style' => '',
   );
   $handler->display->display_options['fields']['field_video']['delta_offset'] = '0';
@@ -736,6 +748,7 @@ function napo_frontpage_views_default_views() {
     t('Desc'),
     t('[title_field]
 [body]'),
+    t('Video Type (field_video_type)'),
     t('Block'),
     t('<h3>'),
     t('</h3>'),
