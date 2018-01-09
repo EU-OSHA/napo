@@ -332,7 +332,7 @@ function napo_film_views_post_execute(&$view) {
   $name = 'frontpage_custom_video';
   if (($view->name == $name) && ($view->current_display == 'block')) {
     if (!count($view->result)) {
-      $result = views_get_view_result('frontpage_latest_video');
+      $result = views_get_view_result('frontpage_latest_video', 'block');
       foreach($result as $row) {
         $view->result[] = $row;
         $custom_video_nid = $row->nid;
