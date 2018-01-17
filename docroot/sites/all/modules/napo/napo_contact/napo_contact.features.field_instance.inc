@@ -10,7 +10,7 @@
 function napo_contact_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'comment-comment_node_faq-comment_body'
+  // Exported field_instance: 'comment-comment_node_faq-comment_body'.
   $field_instances['comment-comment_node_faq-comment_body'] = array(
     'bundle' => 'comment_node_faq',
     'default_value' => NULL,
@@ -44,7 +44,7 @@ function napo_contact_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact_us_faq-body'
+  // Exported field_instance: 'node-contact_us_faq-body'.
   $field_instances['node-contact_us_faq-body'] = array(
     'bundle' => 'contact_us_faq',
     'default_value' => NULL,
@@ -95,7 +95,7 @@ function napo_contact_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-faq-body'
+  // Exported field_instance: 'node-faq-body'.
   $field_instances['node-faq-body'] = array(
     'bundle' => 'faq',
     'default_value' => NULL,
@@ -152,7 +152,7 @@ function napo_contact_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-faq-field_weight'
+  // Exported field_instance: 'node-faq-field_weight'.
   $field_instances['node-faq-field_weight'] = array(
     'bundle' => 'faq',
     'default_value' => NULL,
@@ -199,7 +199,7 @@ function napo_contact_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-faq-title_field'
+  // Exported field_instance: 'node-faq-title_field'.
   $field_instances['node-faq-title_field'] = array(
     'bundle' => 'faq',
     'default_value' => NULL,

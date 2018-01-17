@@ -10,7 +10,7 @@
 function osha_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'file-document-field_file_description'
+  // Exported field_instance: 'file-document-field_file_description'.
   $field_instances['file-document-field_file_description'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -31,6 +31,12 @@ function osha_field_default_field_instances() {
         'weight' => 0,
       ),
       'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'wysiwyg' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -58,7 +64,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-document-field_language'
+  // Exported field_instance: 'file-document-field_language'.
   $field_instances['file-document-field_language'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -88,6 +94,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'wysiwyg' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'file',
     'field_name' => 'field_language',
@@ -96,7 +108,6 @@ function osha_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
-      'wysiwyg_override' => 1,
     ),
     'widget' => array(
       'active' => 1,
@@ -109,7 +120,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-document-field_nace_codes'
+  // Exported field_instance: 'file-document-field_nace_codes'.
   $field_instances['file-document-field_nace_codes'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -135,6 +146,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'wysiwyg' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'file',
     'field_name' => 'field_nace_codes',
@@ -143,7 +160,6 @@ function osha_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
-      'wysiwyg_override' => 1,
     ),
     'widget' => array(
       'active' => 0,
@@ -157,7 +173,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-document-field_tags'
+  // Exported field_instance: 'file-document-field_tags'.
   $field_instances['file-document-field_tags'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -183,6 +199,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'wysiwyg' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'file',
     'field_name' => 'field_tags',
@@ -191,7 +213,6 @@ function osha_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
-      'wysiwyg_override' => 1,
     ),
     'widget' => array(
       'active' => 1,
@@ -204,7 +225,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-document-field_thesaurus'
+  // Exported field_instance: 'file-document-field_thesaurus'.
   $field_instances['file-document-field_thesaurus'] = array(
     'bundle' => 'document',
     'default_value' => NULL,
@@ -230,6 +251,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'wysiwyg' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'file',
     'field_name' => 'field_thesaurus',
@@ -238,7 +265,6 @@ function osha_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
-      'wysiwyg_override' => 1,
     ),
     'widget' => array(
       'active' => 0,
@@ -252,7 +278,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-image-field_file_description'
+  // Exported field_instance: 'file-image-field_file_description'.
   $field_instances['file-image-field_file_description'] = array(
     'bundle' => 'image',
     'default_value' => NULL,
@@ -273,6 +299,12 @@ function osha_field_default_field_instances() {
         'weight' => 0,
       ),
       'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'wysiwyg' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
@@ -300,7 +332,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-image-field_file_image_alt_text'
+  // Exported field_instance: 'file-image-field_file_image_alt_text'.
   $field_instances['file-image-field_file_image_alt_text'] = array(
     'bundle' => 'image',
     'default_value' => NULL,
@@ -331,6 +363,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'wysiwyg' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'file',
     'field_name' => 'field_file_image_alt_text',
@@ -340,6 +378,7 @@ function osha_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
+      'wysiwyg_override' => 1,
     ),
     'widget' => array(
       'active' => 1,
@@ -352,7 +391,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-image-field_file_image_title_text'
+  // Exported field_instance: 'file-image-field_file_image_title_text'.
   $field_instances['file-image-field_file_image_title_text'] = array(
     'bundle' => 'image',
     'default_value' => NULL,
@@ -383,6 +422,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'wysiwyg' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'file',
     'field_name' => 'field_file_image_title_text',
@@ -392,6 +437,7 @@ function osha_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'text_processing' => 0,
       'user_register_form' => FALSE,
+      'wysiwyg_override' => 1,
     ),
     'widget' => array(
       'active' => 1,
@@ -404,7 +450,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-image-field_language'
+  // Exported field_instance: 'file-image-field_language'.
   $field_instances['file-image-field_language'] = array(
     'bundle' => 'image',
     'default_value' => NULL,
@@ -434,6 +480,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'wysiwyg' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'file',
     'field_name' => 'field_language',
@@ -442,7 +494,6 @@ function osha_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
-      'wysiwyg_override' => 1,
     ),
     'widget' => array(
       'active' => 1,
@@ -455,7 +506,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-image-field_nace_codes'
+  // Exported field_instance: 'file-image-field_nace_codes'.
   $field_instances['file-image-field_nace_codes'] = array(
     'bundle' => 'image',
     'default_value' => NULL,
@@ -481,6 +532,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'wysiwyg' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'file',
     'field_name' => 'field_nace_codes',
@@ -489,7 +546,6 @@ function osha_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
-      'wysiwyg_override' => 1,
     ),
     'widget' => array(
       'active' => 0,
@@ -503,7 +559,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-image-field_tags'
+  // Exported field_instance: 'file-image-field_tags'.
   $field_instances['file-image-field_tags'] = array(
     'bundle' => 'image',
     'default_value' => NULL,
@@ -529,6 +585,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'wysiwyg' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'file',
     'field_name' => 'field_tags',
@@ -537,7 +599,6 @@ function osha_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
-      'wysiwyg_override' => 1,
     ),
     'widget' => array(
       'active' => 1,
@@ -550,7 +611,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'file-image-field_thesaurus'
+  // Exported field_instance: 'file-image-field_thesaurus'.
   $field_instances['file-image-field_thesaurus'] = array(
     'bundle' => 'image',
     'default_value' => NULL,
@@ -576,6 +637,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'wysiwyg' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'file',
     'field_name' => 'field_thesaurus',
@@ -584,7 +651,6 @@ function osha_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'user_register_form' => FALSE,
-      'wysiwyg_override' => 1,
     ),
     'widget' => array(
       'active' => 0,
@@ -598,7 +664,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-body'
+  // Exported field_instance: 'node-article-body'.
   $field_instances['node-article-body'] = array(
     'bundle' => 'article',
     'default_value' => NULL,
@@ -703,7 +769,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_character_count'
+  // Exported field_instance: 'node-article-field_character_count'.
   $field_instances['node-article-field_character_count'] = array(
     'bundle' => 'article',
     'default_value' => array(
@@ -784,7 +850,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_expiration_date'
+  // Exported field_instance: 'node-article-field_expiration_date'.
   $field_instances['node-article-field_expiration_date'] = array(
     'bundle' => 'article',
     'deleted' => 0,
@@ -867,7 +933,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_icon'
+  // Exported field_instance: 'node-article-field_icon'.
   $field_instances['node-article-field_icon'] = array(
     'bundle' => 'article',
     'deleted' => 0,
@@ -953,7 +1019,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_image'
+  // Exported field_instance: 'node-article-field_image'.
   $field_instances['node-article-field_image'] = array(
     'bundle' => 'article',
     'deleted' => 0,
@@ -1085,7 +1151,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_nace_codes'
+  // Exported field_instance: 'node-article-field_nace_codes'.
   $field_instances['node-article-field_nace_codes'] = array(
     'bundle' => 'article',
     'default_value' => NULL,
@@ -1167,7 +1233,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_page_count'
+  // Exported field_instance: 'node-article-field_page_count'.
   $field_instances['node-article-field_page_count'] = array(
     'bundle' => 'article',
     'default_value' => array(
@@ -1248,7 +1314,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_publication_date'
+  // Exported field_instance: 'node-article-field_publication_date'.
   $field_instances['node-article-field_publication_date'] = array(
     'bundle' => 'article',
     'deleted' => 0,
@@ -1345,7 +1411,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_tags'
+  // Exported field_instance: 'node-article-field_tags'.
   $field_instances['node-article-field_tags'] = array(
     'bundle' => 'article',
     'default_value' => NULL,
@@ -1426,7 +1492,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-field_thesaurus'
+  // Exported field_instance: 'node-article-field_thesaurus'.
   $field_instances['node-article-field_thesaurus'] = array(
     'bundle' => 'article',
     'default_value' => NULL,
@@ -1508,7 +1574,7 @@ function osha_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-article-title_field'
+  // Exported field_instance: 'node-article-title_field'.
   $field_instances['node-article-title_field'] = array(
     'bundle' => 'article',
     'default_value' => NULL,
@@ -1521,6 +1587,7 @@ function osha_field_default_field_instances() {
         'settings' => array(
           'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
+          'napo_film_title_include_icon' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
           'napo_film_title_link_with_film' => FALSE,
@@ -1539,6 +1606,7 @@ function osha_field_default_field_instances() {
         'settings' => array(
           'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
+          'napo_film_title_include_icon' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
           'napo_film_title_link_with_film' => FALSE,
@@ -1557,6 +1625,7 @@ function osha_field_default_field_instances() {
         'settings' => array(
           'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
+          'napo_film_title_include_icon' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
           'napo_film_title_link_with_film' => FALSE,
@@ -1575,6 +1644,7 @@ function osha_field_default_field_instances() {
         'settings' => array(
           'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
+          'napo_film_title_include_icon' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
           'napo_film_title_link_with_film' => FALSE,
@@ -1611,6 +1681,7 @@ function osha_field_default_field_instances() {
         'settings' => array(
           'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => 0,
+          'napo_film_title_include_icon' => FALSE,
           'napo_film_title_include_type' => 0,
           'napo_film_title_link_episode_popup' => 0,
           'napo_film_title_link_with_film' => 0,
