@@ -10,7 +10,7 @@
 function napo_lesson_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-lesson-body'.
+  // Exported field_instance: 'node-lesson-body'
   $field_instances['node-lesson-body'] = array(
     'bundle' => 'lesson',
     'default_value' => NULL,
@@ -77,7 +77,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson-field_file'.
+  // Exported field_instance: 'node-lesson-field_file'
   $field_instances['node-lesson-field_file'] = array(
     'bundle' => 'lesson',
     'deleted' => 0,
@@ -162,7 +162,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson-field_lesson_toolkit'.
+  // Exported field_instance: 'node-lesson-field_lesson_toolkit'
   $field_instances['node-lesson-field_lesson_toolkit'] = array(
     'bundle' => 'lesson',
     'default_value' => NULL,
@@ -221,7 +221,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson-field_lesson_video'.
+  // Exported field_instance: 'node-lesson-field_lesson_video'
   $field_instances['node-lesson-field_lesson_video'] = array(
     'bundle' => 'lesson',
     'default_value' => NULL,
@@ -281,7 +281,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson-title_field'.
+  // Exported field_instance: 'node-lesson-title_field'
   $field_instances['node-lesson-title_field'] = array(
     'bundle' => 'lesson',
     'default_value' => NULL,
@@ -294,7 +294,6 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(
           'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
-          'napo_film_title_include_icon' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
           'napo_film_title_link_with_film' => FALSE,
@@ -319,7 +318,6 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(
           'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => 0,
-          'napo_film_title_include_icon' => FALSE,
           'napo_film_title_include_type' => 1,
           'napo_film_title_link_episode_popup' => 0,
           'napo_film_title_link_with_film' => 0,
@@ -338,7 +336,6 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(
           'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
-          'napo_film_title_include_icon' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
           'napo_film_title_link_with_film' => FALSE,
@@ -375,7 +372,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson_toolkit-body'.
+  // Exported field_instance: 'node-lesson_toolkit-body'
   $field_instances['node-lesson_toolkit-body'] = array(
     'bundle' => 'lesson_toolkit',
     'default_value' => NULL,
@@ -431,7 +428,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson_toolkit-field_target_ages'.
+  // Exported field_instance: 'node-lesson_toolkit-field_target_ages'
   $field_instances['node-lesson_toolkit-field_target_ages'] = array(
     'bundle' => 'lesson_toolkit',
     'default_value' => NULL,
@@ -484,7 +481,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson_toolkit-title_field'.
+  // Exported field_instance: 'node-lesson_toolkit-title_field'
   $field_instances['node-lesson_toolkit-title_field'] = array(
     'bundle' => 'lesson_toolkit',
     'default_value' => NULL,
@@ -497,7 +494,6 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(
           'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
-          'napo_film_title_include_icon' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
           'napo_film_title_link_with_film' => FALSE,
@@ -554,7 +550,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson_video-body'.
+  // Exported field_instance: 'node-lesson_video-body'
   $field_instances['node-lesson_video-body'] = array(
     'bundle' => 'lesson_video',
     'default_value' => NULL,
@@ -620,7 +616,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson_video-field_image'.
+  // Exported field_instance: 'node-lesson_video-field_image'
   $field_instances['node-lesson_video-field_image'] = array(
     'bundle' => 'lesson_video',
     'deleted' => 0,
@@ -720,7 +716,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson_video-field_video'.
+  // Exported field_instance: 'node-lesson_video-field_video'
   $field_instances['node-lesson_video-field_video'] = array(
     'bundle' => 'lesson_video',
     'deleted' => 0,
@@ -817,7 +813,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson_video-field_youtube'.
+  // Exported field_instance: 'node-lesson_video-field_youtube'
   $field_instances['node-lesson_video-field_youtube'] = array(
     'bundle' => 'lesson_video',
     'default_value' => NULL,
@@ -882,7 +878,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson_video-title_field'.
+  // Exported field_instance: 'node-lesson_video-title_field'
   $field_instances['node-lesson_video-title_field'] = array(
     'bundle' => 'lesson_video',
     'default_value' => NULL,
@@ -895,7 +891,6 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(
           'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
-          'napo_film_title_include_icon' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
           'napo_film_title_link_with_film' => FALSE,
@@ -933,7 +928,6 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(
           'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
-          'napo_film_title_include_icon' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
           'napo_film_title_link_with_film' => FALSE,
@@ -970,7 +964,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-target_ages-description_field'.
+  // Exported field_instance: 'taxonomy_term-target_ages-description_field'
   $field_instances['taxonomy_term-target_ages-description_field'] = array(
     'bundle' => 'target_ages',
     'default_value' => NULL,
@@ -1020,7 +1014,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-target_ages-field_image'.
+  // Exported field_instance: 'taxonomy_term-target_ages-field_image'
   $field_instances['taxonomy_term-target_ages-field_image'] = array(
     'bundle' => 'target_ages',
     'deleted' => 0,
@@ -1092,7 +1086,7 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-target_ages-name_field'.
+  // Exported field_instance: 'taxonomy_term-target_ages-name_field'
   $field_instances['taxonomy_term-target_ages-name_field'] = array(
     'bundle' => 'target_ages',
     'default_value' => NULL,
@@ -1105,7 +1099,6 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(
           'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => FALSE,
-          'napo_film_title_include_icon' => FALSE,
           'napo_film_title_include_type' => FALSE,
           'napo_film_title_link_episode_popup' => FALSE,
           'napo_film_title_link_with_film' => FALSE,

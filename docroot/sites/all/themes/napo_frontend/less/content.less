@@ -279,11 +279,6 @@ p:last-child {
   	  font-weight: bold;
 }
 
-.vjs-poster{
-	width: 100%;
-	height: 100%;
-}
-
 .video-js.vjs-default-skin.vjs-paused .vjs-big-play-button{
 	background: url('../images/play-video-big.png?v=1') no-repeat 0% 40%;
 	width: 4em;
@@ -1101,7 +1096,7 @@ p:last-child {
     background:@color-blue-light-napo;
     color: @color-blue-napo;
     z-index: 9;
-    //margin-left: 10px;
+    margin-left: 10px;
 }
 
 .napo-film-video-download-form:hover .form-type-radio{
@@ -3014,21 +3009,14 @@ input[type=checkbox]{
 
 
 		.field-name-node-link{
-			// padding-top: 10px;
-			// padding-left: 45%;
-		 	// position: relative;
-		 	// top: -60px;
-		    clear: left;
+			padding-top: 10px;
+			padding-left: 45%;
 		    position: relative;
-		    top: inherit;
-		    float: right;
-		    padding: inherit;
-		    width: 43px;
-		    height: 43px;
+		    top: -60px;
 			a{
 				color: @color-yellow-napo;
 				width: auto;
-	 			padding: 0px;
+	 			padding: 6px;
 	  			font-weight: bold;
 	  			text-transform: uppercase;
 	  			background:@color-blue-napo;
@@ -3038,9 +3026,8 @@ input[type=checkbox]{
 			.glyphicon-play-circle{
 				background: url('../images/play-featured-search.png?v=1') no-repeat transparent;
 				height: 43px;
-   				width: 43px;
-    			// margin-top: -40px;
-    			margin-top: -1px;
+   				width: 45px;
+    			margin-top: -40px;
     			position:absolute;
 			}
 			
@@ -3081,11 +3068,9 @@ input[type=checkbox]{
 		.field-name-node-link a{
 			display:inline;
 		}
+
 		.napo-share-widget{
 			display:block;
-			margin-top: 0px;
-    		height: 43px;
-    		margin-right: 5px;
 		}
 
 		.node-napo-video .field-name-node-link a{
@@ -3094,20 +3079,6 @@ input[type=checkbox]{
 
 		.napo-film-video-download-form{
 			display:block;
-			margin: 0px;
-			margin-right: 5px;
-			.napo-film-video-download-form-title{
-				margin: 0px;
-			    padding: 0px;
-			    width: inherit;
-			    height: inherit;
-			    background-position: inherit;
-			    .glyphicon-download-alt{
-			    	    width: 42px;
-					    height: 43px;
-					    top: 0px;
-			    }
-			}
 		}	
 	}
 

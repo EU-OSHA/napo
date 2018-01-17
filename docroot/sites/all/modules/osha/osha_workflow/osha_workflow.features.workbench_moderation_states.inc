@@ -15,7 +15,6 @@ function osha_workflow_workbench_moderation_export_states() {
       'description' => 'Admins and RM can add and edit content in state draft',
       'weight' => -10,
     ),
-    'needs_review' => FALSE,
     'published' => array(
       'name' => 'published',
       'label' => 'Published',

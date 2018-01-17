@@ -10,13 +10,21 @@
 function napo_lesson_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_lesson_toolkit'.
+  // Exported field_base: 'field_lesson_toolkit'
   $field_bases['field_lesson_toolkit'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_lesson_toolkit',
+    'foreign keys' => array(
+      'node' => array(
+        'columns' => array(
+          'target_id' => 'nid',
+        ),
+        'table' => 'node',
+      ),
+    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -46,13 +54,21 @@ function napo_lesson_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_lesson_video'.
+  // Exported field_base: 'field_lesson_video'
   $field_bases['field_lesson_video'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_lesson_video',
+    'foreign keys' => array(
+      'node' => array(
+        'columns' => array(
+          'target_id' => 'nid',
+        ),
+        'table' => 'node',
+      ),
+    ),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
@@ -84,13 +100,21 @@ function napo_lesson_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_target_ages'.
+  // Exported field_base: 'field_target_ages'
   $field_bases['field_target_ages'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_target_ages',
+    'foreign keys' => array(
+      'tid' => array(
+        'columns' => array(
+          'tid' => 'tid',
+        ),
+        'table' => 'taxonomy_term_data',
+      ),
+    ),
     'indexes' => array(
       'tid' => array(
         0 => 'tid',
