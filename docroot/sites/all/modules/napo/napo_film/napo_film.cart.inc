@@ -393,9 +393,10 @@ function napo_film_cart_download_error_commands(&$commands) {
  *
  */
 function napo_film_cart_node_get_video_by_mime($node, $mime) {
+  global $language;
   $file = NULL;
   $node_wrapper = entity_metadata_wrapper('node', $node);
-  $videos = $node_wrapper->field_video->value();
+  $videos = $node_wrapper->language($language->language)->field_video->value();
   foreach ($videos as $video) {
     if ($video['filemime'] == $mime) {
       return $video;
