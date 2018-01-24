@@ -35,9 +35,10 @@ function napo_common_download_video_callback($node) {
  * Access callback for "Download video" tab.
  */
 function napo_common_download_video_access($node) {
+  global $language;
   if (!empty($node) && isset($node->field_video)) {
     $wrapper = entity_metadata_wrapper('node', $node);
-    $files = $wrapper->field_video->value();
+    $files = $wrapper->language($language->language)->field_video->value();
     if (!empty($files)) {
       return TRUE;
     }
@@ -97,9 +98,10 @@ function napo_common_form_node_form_alter(&$form, &$form_state, $form_id) {
  * Downloads video file from field_video of a node.
  */
 function napo_common_download_video($node) {
+  global $language;
   if (!empty($node) && isset($node->field_video)) {
     $wrapper = entity_metadata_wrapper('node', $node);
-    $files = $wrapper->field_video->value();
+    $files = $wrapper->language($language->language)->field_video->value();
     if (!empty($files)) {
       $file = array();
       // Try finding mp4 format.

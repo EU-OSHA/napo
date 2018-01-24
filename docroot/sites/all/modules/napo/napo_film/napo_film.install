@@ -203,3 +203,10 @@ function napo_film_update_7014() {
 function napo_film_update_7015() {
   features_revert(array('napo_frontpage' => array('views_view')));
 }
+
+/**
+ * MDR-1562 add language versions to the videos.
+ */
+function napo_film_update_7016() {
+  features_revert(array('napo_frontpage' => array('field_base')));
+}
