@@ -280,10 +280,11 @@ function theme_napo_lesson_first_lesson_link($element) {
  * Callback for Download whole lesson button.
  */
 function napo_lesson_download_video($nid) {
+  global $language;
   $node = node_load($nid);
   if (!empty($node)) {
     $wrapper = entity_metadata_wrapper('node', $node);
-    $file = $wrapper->field_video->value();
+    $file = $wrapper->language($language->language)->field_video->value();
     if (!empty($file)) {
       $file = current($file);
       $headers = array(

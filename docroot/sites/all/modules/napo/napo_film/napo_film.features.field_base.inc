@@ -164,7 +164,7 @@ function napo_film_field_default_field_bases() {
       ),
       'uri_scheme' => 'public',
     ),
-    'translatable' => 0,
+    'translatable' => 1,
     'type' => 'file',
   );
 
@@ -213,7 +213,7 @@ function napo_film_field_default_field_bases() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
     ),
-    'translatable' => 0,
+    'translatable' => 1,
     'type' => 'youtube',
   );
 
