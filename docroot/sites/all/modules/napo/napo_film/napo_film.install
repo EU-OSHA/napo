@@ -210,3 +210,10 @@ function napo_film_update_7015() {
 function napo_film_update_7016() {
   features_revert(array('napo_frontpage' => array('field_base')));
 }
+
+/**
+ * MDR-1658 Make "Youtube link" field translatable.
+ */
+function napo_film_update_7017() {
+  features_revert(array('napo_frontpage' => array('field_base')));
+}
