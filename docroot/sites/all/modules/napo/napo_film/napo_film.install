@@ -217,3 +217,22 @@ function napo_film_update_7016() {
 function napo_film_update_7017() {
   features_revert(array('napo_frontpage' => array('field_base')));
 }
+
+/**
+ * MDR-1773 Uploaded files can't be searched in the upload popup of a lesson video.
+ */
+function napo_film_update_7018() {
+  db_update('field_data_field_video')
+    ->fields(array(
+      'language' => 'en',
+    ))
+    ->condition('language', 'und', '=')
+    ->execute();
+
+  db_update('field_revision_field_video')
+    ->fields(array(
+      'language' => 'en',
+    ))
+    ->condition('language', 'und', '=')
+    ->execute();
+}
