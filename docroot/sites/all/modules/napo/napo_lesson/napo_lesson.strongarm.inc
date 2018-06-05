@@ -573,6 +573,9 @@ function napo_lesson_strongarm() {
         'language' => array(
           'weight' => '5',
         ),
+        'xmlsitemap' => array(
+          'weight' => '9',
+        ),
       ),
       'display' => array(),
     ),
