@@ -511,8 +511,8 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['field_video']['settings'] = array(
     'width' => '',
     'height' => '',
-    'posterimage_field' => 'field_image',
-    'posterimage_style' => '',
+    'posterimage_field' => 'field_poster_image',
+    'posterimage_style' => 'poster_image',
   );
   $handler->display->display_options['fields']['field_video']['delta_offset'] = '0';
   $translatables['frontpage_custom_video'] = array(

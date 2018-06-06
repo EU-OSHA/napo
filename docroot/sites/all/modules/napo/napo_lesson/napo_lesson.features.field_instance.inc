@@ -662,7 +662,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 3,
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'node',
@@ -720,6 +720,98 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-lesson_video-field_poster_image'.
+  $field_instances['node-lesson_video-field_poster_image'] = array(
+    'bundle' => 'lesson_video',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_poster_image',
+    'label' => 'Poster image',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'image_field_caption' => 0,
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'media',
+      'settings' => array(
+        'allowed_schemes' => array(
+          'public' => 'public',
+        ),
+        'allowed_types' => array(
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
+        ),
+        'browser_plugins' => array(
+          'media_browser_osha--media_browser_osha' => 0,
+          'media_browser_osha--media_browser_osha_my_files' => 0,
+          'media_default--media_browser_1' => 0,
+          'media_default--media_browser_my_files' => 0,
+          'upload' => 0,
+        ),
+        'manualcrop_crop_info' => 1,
+        'manualcrop_default_crop_area' => 1,
+        'manualcrop_enable' => 0,
+        'manualcrop_inline_crop' => 0,
+        'manualcrop_instant_crop' => FALSE,
+        'manualcrop_instant_preview' => 1,
+        'manualcrop_keyboard' => 1,
+        'manualcrop_maximize_default_crop_area' => 0,
+        'manualcrop_require_cropping' => array(),
+        'manualcrop_styles_list' => array(),
+        'manualcrop_styles_mode' => 'include',
+        'manualcrop_thumblist' => 0,
+      ),
+      'type' => 'media_generic',
+      'weight' => 3,
+    ),
+  );
+
   // Exported field_instance: 'node-lesson_video-field_video'.
   $field_instances['node-lesson_video-field_video'] = array(
     'bundle' => 'lesson_video',
@@ -753,17 +845,14 @@ function napo_lesson_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'hidden',
-        'module' => 'file_entity',
+        'module' => 'videojs',
         'settings' => array(
-          'autoplay' => FALSE,
-          'controls' => TRUE,
-          'height' => NULL,
-          'loop' => FALSE,
-          'multiple_file_behavior' => 'tags',
-          'muted' => FALSE,
-          'width' => NULL,
+          'height' => '',
+          'posterimage_field' => 'field_poster_image',
+          'posterimage_style' => 'poster_image',
+          'width' => '',
         ),
-        'type' => 'file_video',
+        'type' => 'videojs',
         'weight' => 2,
       ),
     ),
@@ -773,7 +862,7 @@ function napo_lesson_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'description_field' => 0,
-      'entity_translation_sync' => FALSE,
+      'entity_translation_sync' => 0,
       'file_directory' => 'lesson_video',
       'file_extensions' => 'ogv avi wmv mp4',
       'max_filesize' => '',
@@ -789,8 +878,8 @@ function napo_lesson_field_default_field_instances() {
         'allowed_types' => array(
           'audio' => 0,
           'document' => 0,
-          'image' => 'image',
-          'video' => 0,
+          'image' => 0,
+          'video' => 'video',
         ),
         'browser_plugins' => array(
           'media_browser_osha--media_browser_osha' => 'media_browser_osha--media_browser_osha',
@@ -799,21 +888,21 @@ function napo_lesson_field_default_field_instances() {
           'media_default--media_browser_my_files' => 0,
           'upload' => 'upload',
         ),
-        'manualcrop_crop_info' => TRUE,
-        'manualcrop_default_crop_area' => TRUE,
-        'manualcrop_enable' => FALSE,
-        'manualcrop_inline_crop' => FALSE,
+        'manualcrop_crop_info' => 1,
+        'manualcrop_default_crop_area' => 1,
+        'manualcrop_enable' => 0,
+        'manualcrop_inline_crop' => 0,
         'manualcrop_instant_crop' => FALSE,
-        'manualcrop_instant_preview' => TRUE,
-        'manualcrop_keyboard' => TRUE,
-        'manualcrop_maximize_default_crop_area' => FALSE,
+        'manualcrop_instant_preview' => 1,
+        'manualcrop_keyboard' => 1,
+        'manualcrop_maximize_default_crop_area' => 0,
         'manualcrop_require_cropping' => array(),
         'manualcrop_styles_list' => array(),
         'manualcrop_styles_mode' => 'include',
-        'manualcrop_thumblist' => FALSE,
+        'manualcrop_thumblist' => 0,
       ),
       'type' => 'media_generic',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
@@ -833,6 +922,7 @@ function napo_lesson_field_default_field_instances() {
           'youtube_controls' => FALSE,
           'youtube_height' => NULL,
           'youtube_iv_load_policy' => FALSE,
+          'youtube_loop' => FALSE,
           'youtube_showinfo' => FALSE,
           'youtube_size' => '420x315',
           'youtube_width' => NULL,
@@ -862,7 +952,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 6,
       ),
     ),
     'entity_type' => 'node',
@@ -878,7 +968,7 @@ function napo_lesson_field_default_field_instances() {
       'module' => 'youtube',
       'settings' => array(),
       'type' => 'youtube',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -966,7 +1056,7 @@ function napo_lesson_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -5,
+      'weight' => 0,
     ),
   );
 
@@ -1151,6 +1241,7 @@ function napo_lesson_field_default_field_instances() {
   t('Lesson Toolkit');
   t('Lesson Video');
   t('Name');
+  t('Poster image');
   t('Target Ages');
   t('Title');
   t('Video');
