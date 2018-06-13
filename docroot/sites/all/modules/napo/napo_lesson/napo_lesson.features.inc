@@ -24,6 +24,30 @@ function napo_lesson_views_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function napo_lesson_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: poster_image.
+  $styles['poster_image'] = array(
+    'label' => 'Poster image 1280×720',
+    'effects' => array(
+      8 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 1280,
+          'height' => 720,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_node_info().
  */
 function napo_lesson_node_info() {

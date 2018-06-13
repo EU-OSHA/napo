@@ -234,19 +234,29 @@ function napo_film_update_7019() {
     ->execute()
     ->fetchCol();
 
-  db_update('field_data_field_video')
-    ->fields(array(
-      'language' => 'en',
-    ))
-    ->condition('language', 'und', '=')
-    ->condition('entity_id', $entity_ids, 'NOT IN')
-    ->execute();
+  if ($entity_ids) {
+    db_update('field_data_field_video')
+      ->fields(array(
+        'language' => 'en',
+      ))
+      ->condition('language', 'und', '=')
+      ->condition('entity_id', $entity_ids, 'NOT IN')
+      ->execute();
+  }
 
-  db_update('field_revision_field_video')
-    ->fields(array(
-      'language' => 'en',
-    ))
-    ->condition('language', 'und', '=')
-    ->condition('entity_id', $entity_ids, 'NOT IN')
-    ->execute();
+  $entity_ids = db_select('field_revision_field_video', 'v')
+    ->fields('v',['entity_id'])
+    ->condition('v.language', 'en')
+    ->execute()
+    ->fetchCol();
+
+  if ($entity_ids) {
+    db_update('field_revision_field_video')
+      ->fields([
+        'language' => 'en',
+      ])
+      ->condition('language', 'und', '=')
+      ->condition('entity_id', $entity_ids, 'NOT IN')
+      ->execute();
+  }
 }

@@ -98,26 +98,72 @@ function napo_frontpage_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__home_video';
   $strongarm->value = array(
-    'view_modes' => array(),
+    'view_modes' => array(
+      'teaser' => array(
+        'custom_settings' => TRUE,
+      ),
+      'osha_slideshow' => array(
+        'custom_settings' => TRUE,
+      ),
+      'full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'rss' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_index' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_result' => array(
+        'custom_settings' => FALSE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'film_main_video_teaser' => array(
+        'custom_settings' => FALSE,
+      ),
+      'episode_full' => array(
+        'custom_settings' => FALSE,
+      ),
+      'episode_popup' => array(
+        'custom_settings' => FALSE,
+      ),
+      'token' => array(
+        'custom_settings' => FALSE,
+      ),
+      'recommended_films' => array(
+        'custom_settings' => FALSE,
+      ),
+      'search_results' => array(
+        'custom_settings' => FALSE,
+      ),
+      'revision' => array(
+        'custom_settings' => FALSE,
+      ),
+    ),
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '9',
+          'weight' => '8',
         ),
         'title' => array(
           'weight' => '1',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '7',
         ),
         'redirect' => array(
-          'weight' => '7',
+          'weight' => '6',
         ),
         'language' => array(
           'weight' => '5',
         ),
         'workbench_access' => array(
           'weight' => '0',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '9',
         ),
       ),
       'display' => array(),
