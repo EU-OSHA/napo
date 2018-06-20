@@ -7687,8 +7687,11 @@ p:last-child {
   font-weight: bold;
 }
 .vjs-poster {
-  width: 100%;
+  width: auto;
   height: 100%;
+}
+.video-js.vjs-default-skin.vjs-paused {
+  overflow: hidden;
 }
 .video-js.vjs-default-skin.vjs-paused .vjs-big-play-button {
   background: url('../images/play-video-big.png?v=1') no-repeat 0% 40%;
