@@ -29,6 +29,21 @@ function napo_lesson_views_api($module = NULL, $api = NULL) {
 function napo_lesson_image_default_styles() {
   $styles = array();
 
+  // Exported image style: lesson_poster_image.
+  $styles['lesson_poster_image'] = array(
+    'label' => 'Lesson poster image 768x675',
+    'effects' => array(
+      8 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 768,
+          'height' => 675,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: poster_image.
   $styles['poster_image'] = array(
     'label' => 'Poster image 1280×720',
