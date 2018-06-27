@@ -759,7 +759,7 @@ function napo_lesson_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_poster_image',
-    'label' => 'Poster image',
+    'label' => 'Poster image (768x675)',
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
@@ -849,7 +849,7 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(
           'height' => '',
           'posterimage_field' => 'field_poster_image',
-          'posterimage_style' => 'poster_image',
+          'posterimage_style' => 'lesson_poster_image',
           'width' => '',
         ),
         'type' => 'videojs',
@@ -1241,7 +1241,7 @@ function napo_lesson_field_default_field_instances() {
   t('Lesson Toolkit');
   t('Lesson Video');
   t('Name');
-  t('Poster image');
+  t('Poster image (768x675)');
   t('Target Ages');
   t('Title');
   t('Video');

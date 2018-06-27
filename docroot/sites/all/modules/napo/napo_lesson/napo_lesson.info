@@ -1,7 +1,7 @@
 name = Napo Lesson
 core = 7.x
 package = Napo
-version = 7.x-1.5
+version = 7.x-1.6
 project = napo_lesson
 dependencies[] = ctools
 dependencies[] = ds
@@ -61,6 +61,7 @@ features[field_instance][] = node-lesson_video-title_field
 features[field_instance][] = taxonomy_term-target_ages-description_field
 features[field_instance][] = taxonomy_term-target_ages-field_image
 features[field_instance][] = taxonomy_term-target_ages-name_field
+features[image][] = lesson_poster_image
 features[image][] = poster_image
 features[node][] = lesson
 features[node][] = lesson_toolkit
