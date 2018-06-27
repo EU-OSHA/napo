@@ -285,7 +285,7 @@ function napo_frontpage_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_poster_image',
-    'label' => 'Poster image',
+    'label' => 'Poster image (1280x720)',
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
@@ -536,7 +536,7 @@ function napo_frontpage_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Image');
-  t('Poster image');
+  t('Poster image (1280x720)');
   t('Queue items');
   t('Title');
   t('URL');
