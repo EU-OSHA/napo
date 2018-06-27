@@ -31,12 +31,12 @@ function napo_lesson_image_default_styles() {
 
   // Exported image style: lesson_poster_image.
   $styles['lesson_poster_image'] = array(
-    'label' => 'Lesson poster image 768x675',
+    'label' => 'Lesson poster image 784x675',
     'effects' => array(
       8 => array(
         'name' => 'image_scale_and_crop',
         'data' => array(
-          'width' => 768,
+          'width' => 784,
           'height' => 675,
         ),
         'weight' => 1,

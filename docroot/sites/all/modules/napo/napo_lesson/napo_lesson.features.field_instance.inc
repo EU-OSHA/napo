@@ -759,7 +759,7 @@ function napo_lesson_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_poster_image',
-    'label' => 'Poster image (768x675)',
+    'label' => 'Poster image (784x675)',
     'required' => 0,
     'settings' => array(
       'alt_field' => 0,
@@ -1241,7 +1241,7 @@ function napo_lesson_field_default_field_instances() {
   t('Lesson Toolkit');
   t('Lesson Video');
   t('Name');
-  t('Poster image (768x675)');
+  t('Poster image (784x675)');
   t('Target Ages');
   t('Title');
   t('Video');
