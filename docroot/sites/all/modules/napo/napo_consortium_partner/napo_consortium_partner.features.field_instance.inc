@@ -10,7 +10,7 @@
 function napo_consortium_partner_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-consortium_partner-body'
+  // Exported field_instance: 'node-consortium_partner-body'.
   $field_instances['node-consortium_partner-body'] = array(
     'bundle' => 'consortium_partner',
     'default_value' => NULL,
@@ -61,7 +61,7 @@ function napo_consortium_partner_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-consortium_partner-field_image'
+  // Exported field_instance: 'node-consortium_partner-field_image'.
   $field_instances['node-consortium_partner-field_image'] = array(
     'bundle' => 'consortium_partner',
     'deleted' => 0,
@@ -145,7 +145,7 @@ function napo_consortium_partner_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-consortium_partner-field_url'
+  // Exported field_instance: 'node-consortium_partner-field_url'.
   $field_instances['node-consortium_partner-field_url'] = array(
     'bundle' => 'consortium_partner',
     'default_value' => NULL,
@@ -214,7 +214,7 @@ function napo_consortium_partner_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-consortium_partner-title_field'
+  // Exported field_instance: 'node-consortium_partner-title_field'.
   $field_instances['node-consortium_partner-title_field'] = array(
     'bundle' => 'consortium_partner',
     'default_value' => NULL,
