@@ -1,7 +1,7 @@
 name = Consortium Partner
 core = 7.x
 package = Napo
-version = 7.x-1.1
+version = 7.x-1.2
 project = napo_consortium_partner
 dependencies[] = ctools
 dependencies[] = features
@@ -47,4 +47,3 @@ features[variable][] = node_preview_consortium_partner
 features[variable][] = node_submitted_consortium_partner
 features[variable][] = nodeblock_comment_link_consortium_partner
 features[views_view][] = consortium_partners
-mtime = 1449570760
