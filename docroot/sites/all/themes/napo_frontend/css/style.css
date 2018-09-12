@@ -10256,6 +10256,40 @@ footer .jcarousel-container-horizontal img:hover {
 .jcarousel-skin-default .jcarousel-item {
   border: 0px;
 }
+footer .view-consortium-partners .section-logo-wrapper .section-logo-list {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-between;
+  padding: 0;
+  margin: 1rem 0;
+}
+footer .view-consortium-partners .section-logo-wrapper .section-logo-list li:nth-child(3) {
+  position: relative;
+  top: -5px;
+}
+footer .view-consortium-partners .section-logo-wrapper .section-logo-list img {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: gray;
+  border: 0px;
+  margin: 0 auto;
+  border-bottom: 2px solid #FFF;
+  opacity: 0.8;
+  width: 100%;
+}
+footer .view-consortium-partners .section-logo-wrapper .section-logo-list img:hover {
+  filter: grayscale(0%);
+  -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
+  -ms-filter: grayscale(0%);
+  -o-filter: grayscale(0%);
+  filter: none;
+  border: 0px;
+  opacity: 1;
+}
 footer #block-menu-block-2 .menu.nav.navbar-nav {
   width: 100%;
   background: url('../images/nav-bar-border.png?v=1') repeat-x scroll 1px center rgba(0, 0, 0, 0);
@@ -10827,6 +10861,19 @@ footer .menu.nav.navbar-nav li img.img-responsive {
   .node.node-napo-video .napo-share-widget {
     margin-top: -16px;
   }
+  footer .view-consortium-partners .section-logo-wrapper .section-logo-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+  }
+  footer .view-consortium-partners .section-logo-wrapper .section-logo-list li {
+    margin: 10px 10px;
+    align-self: center;
+    text-align: left;
+  }
+  footer .view-consortium-partners .section-logo-wrapper .section-logo-list li img {
+    width: auto;
+  }
 }
 @media only screen and (max-width: 320px) {
   #block-napo-common-no-translation {
@@ -10834,6 +10881,9 @@ footer .menu.nav.navbar-nav li img.img-responsive {
   }
   #block-napo-common-no-translation .lang-dropdown-select-element {
     max-width: 105px;
+  }
+  footer .view-consortium-partners .section-logo-wrapper .section-logo-list {
+    display: block;
   }
 }
 @media only screen and (max-width: 1200px) {
@@ -10897,6 +10947,9 @@ footer .menu.nav.navbar-nav li img.img-responsive {
   }
   .napo-film-list-details-container .napo-film-video-download-form:hover form {
     margin-left: -21px;
+  }
+  footer .view-consortium-partners .section-logo-wrapper .section-logo-list img {
+    width: 95%;
   }
 }
 @media only screen and (max-width: 992px) {
