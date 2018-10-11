@@ -10,10 +10,6 @@
       <a href="<?php print $tweet_url; ?>">
         Twitter
       </a></li>
-    <li id="gplus-share-button-<?php print $node->nid; ?>" class="napo-share-widget-button napo-share-widget-gplus">
-      <a href="https://plus.google.com/share?url=<?php print $url; ?>"
-         onclick="popUp=window.open('https://plus.google.com/share?url=<?php print $url; ?>', 'popupwindow', 'scrollbars=yes,width=800,height=400');popUp.focus(); return false">Google+</a>
-    </li>
     <li id="linked-in-<?php print $node->nid; ?>" class="napo-share-widget-button napo-share-widget-linkedin">Linked in</li>
   </ul>
 </div>
@@ -73,9 +69,6 @@ if (!empty($node->path['alias'])) {
                 });
                 $('#fb-share-button-<?php print $node->nid; ?> a').click(function(event) {
                     _paq.push(['trackEvent', 'Share', 'Facebook', '<?php print $event_name ?>', '<?php print $event_val ?>']);
-                });
-                $('#gplus-share-button-<?php print $node->nid; ?> a').click(function(event) {
-                    _paq.push(['trackEvent', 'Share', 'Google+', '<?php print $event_name ?>', '<?php print $event_val ?>']);
                 });
             }
         });

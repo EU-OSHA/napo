@@ -1680,21 +1680,14 @@ p:last-child {
   height: 40px;
   width: 45px;
 }
-.napo-share-widget ul li:nth-child(3) a {
-  color: transparent;
-  padding-bottom: 18px;
-}
-.napo-share-widget ul li:nth-child(3):hover {
-  background: url('../images/google-hover.png?v=1') no-repeat;
-}
-.napo-share-widget ul li:nth-child(4) {
+.napo-share-widget ul li:nth-child(3) {
   background: url('../images/link.png?v=1') 0px 0 no-repeat;
   height: 40px;
   width: 45px;
   text-indent: -99999px;
   cursor: pointer;
 }
-.napo-share-widget ul li:nth-child(4) a {
+.napo-share-widget ul li:nth-child(3) a {
   color: transparent;
   padding-bottom: 18px;
 }
@@ -1743,20 +1736,11 @@ p:last-child {
   padding-bottom: 18px;
 }
 #cboxWrapper #cboxTitle .napo-share-widget ul li:nth-child(3) {
-  background: url('../images/google-popup.png?v=1') no-repeat;
-  width: 54px;
-  height: 40px;
-}
-#cboxWrapper #cboxTitle .napo-share-widget ul li:nth-child(3) a {
-  color: transparent;
-  padding-bottom: 18px;
-}
-#cboxWrapper #cboxTitle .napo-share-widget ul li:nth-child(4) {
   background: url('../images/google-popup-linkedin.png?v=1') no-repeat;
   width: 54px;
   height: 40px;
 }
-#cboxWrapper #cboxTitle .napo-share-widget ul li:nth-child(4) a {
+#cboxWrapper #cboxTitle .napo-share-widget ul li:nth-child(3) a {
   color: transparent;
   padding-bottom: 18px;
 }
