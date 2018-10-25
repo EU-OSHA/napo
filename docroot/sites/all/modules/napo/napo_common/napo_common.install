@@ -50,3 +50,11 @@ function napo_common_update_7003() {
     ))
     ->execute();
 }
+
+/**
+ * MDR-2256 Napo: Matomo script to overwrite the language for the URLs is not working.
+ */
+function napo_common_update_7004() {
+  variable_set('piwik_translation_set', 1);
+  variable_set('piwik_query_parameters', 1);
+}
