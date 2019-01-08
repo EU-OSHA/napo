@@ -306,7 +306,7 @@ function matomo_admin_settings_form($form_state) {
   $matomo_custom_vars = variable_get('matomo_custom_var', array());
 
   // Matomo supports up to 5 custom variables.
-  for ($i = 1; $i < 6; $i++) {
+  for ($i = 1; $i < 11; $i++) {
     $form['matomo_custom_var']['slots'][$i]['slot'] = array(
       '#default_value' => $i,
       '#description' => t('Slot number'),
