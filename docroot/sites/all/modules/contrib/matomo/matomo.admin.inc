@@ -9,7 +9,6 @@
  * Implements hook_admin_settings() for configuring the module.
  */
 function matomo_admin_settings_form($form_state) {
-
   $form['account'] = array(
     '#type' => 'fieldset',
     '#title' => t('General settings'),
