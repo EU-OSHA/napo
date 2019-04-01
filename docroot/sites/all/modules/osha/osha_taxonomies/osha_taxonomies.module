@@ -10,3 +10,88 @@ define('OSHA_TAXONOMIES_TAGS', 'tags');
 define('OSHA_TAXONOMIES_NACE_CODES', 'nace_codes');
 define('OSHA_TAXONOMIES_THESAURUS', 'thesaurus');
 
+function osha_taxonomies_import_main_category() {
+  $file = sprintf('%s/data/main_category.json', dirname(__FILE__));
+  if (!is_readable($file)) {
+    drupal_set_message("Cannot read taxonomy file! ($file).", 'warning');
+  }
+  else {
+    $json = json_decode(file_get_contents($file), TRUE);
+    $vocabulary = 'main_category';
+    $voc = taxonomy_vocabulary_machine_name_load($vocabulary);
+    if (empty($voc)) {
+      drupal_set_message("$vocabulary doesn't exits!", 'warning');
+    }
+    else {
+      if (empty($json)) {
+        drupal_set_message("Empty taxonomy $vocabulary found in file!", 'warning');
+      }
+      else {
+        $parents = [];
+        foreach ($json['map'] as $parent => $terms) {
+          if (empty($json['terms'][$parent])) {
+            watchdog('osha_taxonomies', 'No translation found for: !name', array('!name' => $parent), WATCHDOG_WARNING);
+            $json['terms'][$parent] = ['en' => $parent];
+          }
+          foreach ($terms as $term) {
+            $parents[$term] = $parent;
+            if (empty($json['terms'][$term])) {
+              watchdog('osha_taxonomies', 'No translation found for: !name', array('!name' => $term), WATCHDOG_WARNING);
+              $json['terms'][$term] = ['en' => $term];
+            }
+          }
+        }
+        $weight = 0;
+        $map = [];
+        foreach ($json as $term_name => $term_data) {
+          $term_parent_name = $term_data['parent'];
+          $term_names = $term_data['terms'];
+
+          $term = taxonomy_get_term_by_name($term_name, $vocabulary);
+          if (!empty($term)) {
+            reset($term);
+            $term = current($term);
+            $map[$term_name] = $term->tid;
+            continue;
+          }
+          // Creating the term.
+          $term = new stdClass();
+          $term->name = $term->name_field['en'][0]['value'] = $term_name;
+          $term->vid = $voc->vid;
+          $term->language = 'en';
+          $term->weight = $weight++;
+
+          if ($term_parent_name && !empty($map[$term_parent_name])) {
+            $term->parent = $map[$term_parent_name];
+          }
+
+          taxonomy_term_save($term);
+          $map[$term_name] = $term->tid;
+
+          if (!empty($term->tid)) {
+            unset($term_names['en']);
+            // Setting Translations.
+            $translation_handler = entity_translation_get_handler('taxonomy_term', $term);
+            $term->translations = $translation_handler->getTranslations();
+            foreach ($term_names as $lang => $name) {
+              if (!isset($term->translations->data[$lang])) {
+                $translation_handler->setTranslation(array(
+                  'translate' => 0,
+                  'status' => 1,
+                  'uid' => 1,
+                  'language' => $lang,
+                  'source' => 'en',
+                ));
+              }
+              $term->name_field[$lang][0]['value'] = $name;
+            }
+            taxonomy_term_save($term);
+          }
+          else {
+            drupal_set_message("$term->name could not be saved!", 'warning');
+          }
+        }
+      }
+    }
+  }
+}
