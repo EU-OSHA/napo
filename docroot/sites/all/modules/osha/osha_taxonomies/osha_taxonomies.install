@@ -1,1 +1,9 @@
 <?php
+/**
+ * MDR-2664 Napo - Create a main topic category to tag the films and lessons.
+ */
+function osha_taxonomies_update_7001() {
+  features_revert_module('napo_film');
+  features_revert_module('osha');
+  osha_taxonomies_import_main_category();
+}

@@ -229,7 +229,7 @@ function napo_film_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -322,7 +322,7 @@ function napo_film_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 14,
+      'weight' => 12,
     ),
   );
 
@@ -552,6 +552,76 @@ function napo_film_field_default_field_instances() {
       ),
       'type' => 'options_select',
       'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-napo_video-field_main_topic_category'.
+  $field_instances['node-napo_video-field_main_topic_category'] = array(
+    'bundle' => 'napo_video',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 27,
+      ),
+      'episode_full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'episode_popup' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'recommended_films' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_main_topic_category',
+    'label' => 'Main category',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 10,
     ),
   );
 
@@ -1096,6 +1166,7 @@ function napo_film_field_default_field_instances() {
           'youtube_controls' => 0,
           'youtube_height' => '',
           'youtube_iv_load_policy' => 1,
+          'youtube_loop' => FALSE,
           'youtube_showinfo' => 1,
           'youtube_size' => 'responsive',
           'youtube_width' => '',
@@ -1112,6 +1183,7 @@ function napo_film_field_default_field_instances() {
           'youtube_controls' => 0,
           'youtube_height' => '',
           'youtube_iv_load_policy' => 1,
+          'youtube_loop' => FALSE,
           'youtube_showinfo' => 1,
           'youtube_size' => 'responsive',
           'youtube_width' => '',
@@ -1134,6 +1206,7 @@ function napo_film_field_default_field_instances() {
           'youtube_controls' => 0,
           'youtube_height' => '',
           'youtube_iv_load_policy' => 1,
+          'youtube_loop' => FALSE,
           'youtube_showinfo' => 1,
           'youtube_size' => 'responsive',
           'youtube_width' => '',
@@ -1150,6 +1223,7 @@ function napo_film_field_default_field_instances() {
           'youtube_controls' => 0,
           'youtube_height' => '',
           'youtube_iv_load_policy' => 1,
+          'youtube_loop' => FALSE,
           'youtube_showinfo' => 1,
           'youtube_size' => 'responsive',
           'youtube_width' => '',
@@ -1166,6 +1240,7 @@ function napo_film_field_default_field_instances() {
           'youtube_controls' => FALSE,
           'youtube_height' => NULL,
           'youtube_iv_load_policy' => FALSE,
+          'youtube_loop' => FALSE,
           'youtube_showinfo' => FALSE,
           'youtube_size' => '420x315',
           'youtube_width' => NULL,
@@ -1194,6 +1269,7 @@ function napo_film_field_default_field_instances() {
           'youtube_controls' => 0,
           'youtube_height' => '',
           'youtube_iv_load_policy' => 1,
+          'youtube_loop' => FALSE,
           'youtube_showinfo' => 1,
           'youtube_size' => 'responsive',
           'youtube_width' => '',
@@ -1216,6 +1292,7 @@ function napo_film_field_default_field_instances() {
           'youtube_controls' => FALSE,
           'youtube_height' => NULL,
           'youtube_iv_load_policy' => FALSE,
+          'youtube_loop' => FALSE,
           'youtube_showinfo' => FALSE,
           'youtube_size' => '420x315',
           'youtube_width' => NULL,
@@ -1454,6 +1531,7 @@ function napo_film_field_default_field_instances() {
   t('Categories');
   t('Image');
   t('Main Category');
+  t('Main category');
   t('Mark as outdated');
   t('Napo film');
   t('Publication date');

@@ -71,3 +71,10 @@ function napo_lesson_update_7003() {
   features_revert_module('napo_lesson');
   features_revert_module('napo_frontpage');
 }
+
+/**
+ * MDR-2664 Napo - Estimation to create a main topic category to tag the films and lessons.
+ */
+function napo_lesson_update_7004() {
+  features_revert_module('napo_lesson');
+}

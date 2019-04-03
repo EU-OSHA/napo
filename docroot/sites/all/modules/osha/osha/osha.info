@@ -1,7 +1,7 @@
 name = osha
 core = 7.x
 package = OSHA
-version = 7.x-1.26
+version = 7.x-1.27
 project = osha
 dependencies[] = aggregator
 dependencies[] = comment
@@ -100,6 +100,7 @@ features[field_instance][] = node-article-field_character_count
 features[field_instance][] = node-article-field_expiration_date
 features[field_instance][] = node-article-field_icon
 features[field_instance][] = node-article-field_image
+features[field_instance][] = node-article-field_main_topic_category
 features[field_instance][] = node-article-field_nace_codes
 features[field_instance][] = node-article-field_page_count
 features[field_instance][] = node-article-field_publication_date
