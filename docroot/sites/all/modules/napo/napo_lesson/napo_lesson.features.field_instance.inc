@@ -281,6 +281,58 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-lesson-field_main_topic_category'.
+  $field_instances['node-lesson-field_main_topic_category'] = array(
+    'bundle' => 'lesson',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 10,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_main_topic_category',
+    'label' => 'Main category',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 32,
+    ),
+  );
+
   // Exported field_instance: 'node-lesson-title_field'.
   $field_instances['node-lesson-title_field'] = array(
     'bundle' => 'lesson',
@@ -1240,6 +1292,7 @@ function napo_lesson_field_default_field_instances() {
   t('Image');
   t('Lesson Toolkit');
   t('Lesson Video');
+  t('Main category');
   t('Name');
   t('Poster image (784x675)');
   t('Target Ages');

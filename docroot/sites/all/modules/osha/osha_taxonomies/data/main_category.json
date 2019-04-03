@@ -1419,7 +1419,7 @@
             "sl": "Vzdr\u017eevanje",
             "sv": "Underh\u00e5ll"
         },
-        "parent": "Leadership and worker participation"
+        "parent": ""
     },
     "Floor covering": {
         "terms": {
@@ -1449,7 +1449,7 @@
             "sl": "Talne obloge",
             "sv": "Golvbel\u00e4ggning"
         },
-        "parent": ""
+        "parent": "Maintenance"
     },
     "Good housekeeping": {
         "terms": {
@@ -1479,7 +1479,7 @@
             "sl": "Dobro gospodarjenje",
             "sv": "Hush\u00e5llning"
         },
-        "parent": "Floor covering"
+        "parent": "Maintenance"
     },
     "Lock out": {
         "terms": {
@@ -1509,7 +1509,7 @@
             "sl": "Zaklepanje",
             "sv": "Lockout"
         },
-        "parent": "Floor covering"
+        "parent": "Maintenance"
     },
     "Machinery": {
         "terms": {
@@ -1539,7 +1539,7 @@
             "sl": "Stroji",
             "sv": "Maskinerier"
         },
-        "parent": "Floor covering"
+        "parent": "Maintenance"
     },
     "Musculoskeletal disorders (MSDs)": {
         "terms": {
@@ -2656,5 +2656,35 @@
             "sv": "S\u00e4kra v\u00e4gar"
         },
         "parent": "Work environment"
+    },
+    "Construction": {
+        "terms": {
+            "en": "Construction"
+        },
+        "parent": ""
+    },
+    "Cleaning workers": {
+        "terms": {
+            "en": "Cleaning workers"
+        },
+        "parent": ""
+    },
+    "Electrical safety": {
+        "terms": {
+            "en": "Electrical safety"
+        },
+        "parent": ""
+    },
+    "OSH and young people": {
+        "terms": {
+            "en": "OSH and young people"
+        },
+        "parent": ""
+    },
+    "Risk assessment": {
+        "terms": {
+            "en": "Risk assessment"
+        },
+        "parent": ""
     }
 }
