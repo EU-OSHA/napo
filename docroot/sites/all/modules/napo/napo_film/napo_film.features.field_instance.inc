@@ -621,7 +621,7 @@ function napo_film_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
@@ -930,7 +930,7 @@ function napo_film_field_default_field_instances() {
       'module' => 'multiple_selects',
       'settings' => array(),
       'type' => 'multiple_selects',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
