@@ -927,9 +927,9 @@ function napo_film_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'multiple_selects',
+      'module' => 'options',
       'settings' => array(),
-      'type' => 'multiple_selects',
+      'type' => 'options_buttons',
       'weight' => 10,
     ),
   );
@@ -1525,6 +1525,39 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'taxonomy_term-main_category-field_tags'.
+  $field_instances['taxonomy_term-main_category-field_tags'] = array(
+    'bundle' => 'main_category',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_tags',
+    'label' => 'Tags',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 42,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
@@ -1535,6 +1568,7 @@ function napo_film_field_default_field_instances() {
   t('Mark as outdated');
   t('Napo film');
   t('Publication date');
+  t('Tags');
   t('The title should be without label "Film" or "Episode". These labels are shown dynamically.');
   t('Title');
   t('Video');
