@@ -10,6 +10,54 @@ define('OSHA_TAXONOMIES_TAGS', 'tags');
 define('OSHA_TAXONOMIES_NACE_CODES', 'nace_codes');
 define('OSHA_TAXONOMIES_THESAURUS', 'thesaurus');
 
+function osha_taxonomies_add_subcategory_to_category($tags_vocabulary, $tid, $subcategory_name) {
+  $term = taxonomy_term_load($tid);
+  if ($terms = taxonomy_term_load_multiple(
+    array(),
+    array(
+      'name' => trim($subcategory_name),
+      'vid' => $tags_vocabulary->vid,
+    )
+  )) {
+    if (count($terms) > 1) {
+      krumo('error '. $subcategory_name, $terms);
+    }
+    if (count($terms) > 1) {
+    }
+    $tag_term = array_pop($terms);
+    $term->field_tags[LANGUAGE_NONE][] = ['tid' => $tag_term->tid];
+    taxonomy_term_save($term);
+  }
+  else {
+    watchdog('osha_taxonomies', 'tag @name not found', array('@name' => $subcategory_name), WATCHDOG_ERROR);
+  }
+}
+
+function osha_taxonomies_update_main_category() {
+  $tags_vocabulary = taxonomy_vocabulary_machine_name_load('tags');
+  $vocabulary = taxonomy_vocabulary_machine_name_load('main_category');
+  $tree = taxonomy_get_tree($vocabulary->vid);
+  foreach ($tree as $term) {
+    if (($term->name == 'Accident prevention') || ($term->name == 'Ageing and OSH')) {
+      osha_taxonomies_add_subcategory_to_category($tags_vocabulary, $term->tid, $term->name);
+      continue;
+    }
+    if ($term->parents[0]) {
+      osha_taxonomies_add_subcategory_to_category($tags_vocabulary, $term->parents[0], $term->name);
+    }
+  }
+}
+
+function osha_taxonomies_delete_main_subcategory() {
+  $vocabulary = taxonomy_vocabulary_machine_name_load('main_category');
+  $tree = taxonomy_get_tree($vocabulary->vid);
+  foreach ($tree as $term) {
+    if ($term->parents[0]) {
+      taxonomy_term_delete($term->tid);
+    }
+  }
+}
+
 function osha_taxonomies_import_main_category() {
   $file = sprintf('%s/data/main_category.json', dirname(__FILE__));
   if (!is_readable($file)) {
@@ -93,5 +141,53 @@ function osha_taxonomies_import_main_category() {
         }
       }
     }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function osha_taxonomies_form_alter(&$form, &$form_state, $form_id) {
+  if (!empty($form['field_main_topic_category'])) {
+    $def_main_tags = $form['field_main_topic_category'][LANGUAGE_NONE]['#default_value'];
+    $def_tags = $form['field_tags'][LANGUAGE_NONE]['#default_value'];
+    $tags = $form['field_tags'][LANGUAGE_NONE]['#options'];
+    $states = [];
+    $vocabulary = taxonomy_vocabulary_machine_name_load('main_category');
+    $terms = entity_load('taxonomy_term', FALSE, array('vid' => $vocabulary->vid));
+    $main_tag = [];
+    foreach ($terms as $term) {
+      foreach($term->field_tags[LANGUAGE_NONE] as $tag) {
+        if (!$def_main_tags &&
+          $def_tags &&
+          in_array($tag['tid'], $def_tags)
+        ) {
+          $main_tag[$term->name] = $term->name;
+        }
+        else {
+          $states['#edit-field-tags-und-' . $tag['tid']] = ['visible' => ['#edit-field-main-topic-category-und' => ['value' => $term->tid]]];
+        }
+        unset($tags[$tag['tid']]);
+      }
+    }
+
+    if (!$def_main_tags && $def_tags) {
+      drupal_set_message('Please select Main category ' . implode(', ', $main_tag));
+    }
+    $no_parent_tid = variable_get('no_parent_tid', 0);
+    foreach($tags as $tid => $name) {
+      if (in_array($tid, $def_tags)) {
+        drupal_set_message($name . ' without Main Category', 'error');
+      }
+      else {
+        $states['#edit-field-tags-und-' . $tid] = ['visible' => ['#edit-field-main-topic-category-und' => ['value' => $no_parent_tid]]];
+      }
+    }
+
+    $form['field_main_topic_category']['#attached']['library'][] = array('system', 'drupal.states');
+    $form['field_main_topic_category']['#attached']['js'][] = array(
+      'type' => 'setting',
+      'data' => array('states' => $states),
+    );
   }
 }
