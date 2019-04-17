@@ -7,3 +7,13 @@ function osha_taxonomies_update_7001() {
   features_revert_module('osha');
   osha_taxonomies_import_main_category();
 }
+
+/**
+ * MDR-2664 Napo - Create a main topic category to tag the films and lessons.
+ */
+function osha_taxonomies_update_7002() {
+  features_revert_module('napo_film');
+  features_revert_module('osha');
+  osha_taxonomies_update_main_category();
+  osha_taxonomies_delete_main_subcategory();
+}
