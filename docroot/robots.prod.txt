@@ -96,3 +96,6 @@ Disallow: /ru/
 Disallow: /sr/
 Disallow: /sh/
 Disallow: /tr/
+Disallow: /*taxonomy/term/*/feed
+Disallow: /*taxonomy/term/*
+Disallow: /*node/*
