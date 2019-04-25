@@ -22,10 +22,13 @@ regions[footer_menu]    = 'Footer Menu'
 regions[page_top]       = 'Page top'
 regions[page_bottom]    = 'Page bottom'
 regions[contact_form_widget]   = 'Contact form widget'
-
+;todo put css/style.css and css/revamp.css here from...
 stylesheets[all][] = css/style.css
+stylesheets[all][] = css/revamp.css
+
 scripts[] = js/contact-us.js
 scripts[] = js/frontpage-video.js
+scripts[] = js/menu-responsive.js
 scripts[] = js/back-button.js
 files[] = theme/menu/menu.inc
 
@@ -33,6 +36,7 @@ files[] = theme/menu/menu.inc
 ;; Stylesheets
 ;;;;;;;;;;;;;;;;;;;;;
 
+stylesheets[all][] = css/system.base.css
 stylesheets[all][] = css/napo_override.css
 stylesheets[all][] = css/print.css
 

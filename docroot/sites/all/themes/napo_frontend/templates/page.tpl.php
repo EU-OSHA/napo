@@ -123,7 +123,7 @@
 </header>
 <div class="nav-bar-separate"></div>
 <?php if (!empty($page['slider'])): ?>
-  <div class="slider">
+  <div class="slider container">
     <?php print render($page['slider']); ?>
   </div>
 <?php endif; ?>
