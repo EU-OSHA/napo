@@ -155,10 +155,15 @@ jQuery(document).ready(function () {
 /** MENU RESPONSIVE **/
 jQuery(document).ready(function () {
 
-    jQuery('#search-block-form').on('submit', function(e){
-        e.preventDefault();
-        value = jQuery('#edit-search-block-form--2').val();
-        alert('Searching... "'+ value + '"');
+   
+    jQuery('header .block-lang-dropdown').prepend('<div class="btn-search-mobile"></div>');
+     
+    jQuery(window).on("resize",function(e){
+        jQuery('#block-search-form').removeClass('in');
+        jQuery('header .menu li.dropdown').removeClass('in');
+        jQuery('header .menu li.dropdown').removeClass('open');
+        mobileDevice(screen.width);    
+         //mobileDevice( jQuery(window).width() );
     });
 
     mobileDevice(screen.width); 
@@ -174,7 +179,7 @@ jQuery(document).ready(function () {
                     jQuery('#block-search-form').toggleClass('in');
                 });
 
-                jQuery('.btn-primary[type=button]').click(function () {
+                jQuery('form.content-search .btn-primary[type=submit]').click(function () {
                     if( jQuery('#edit-search-block-form--2').val().length > 0) {
                         jQuery('#search-block-form').submit();
                         jQuery('#block-search-form').removeClass('in');
@@ -193,32 +198,32 @@ jQuery(document).ready(function () {
                 }
             });
 
-            jQuery('.menu li.dropdown span').click(function () {
+            if( jQuery('header .menu li.first a label').length == 0 ){
+                jQuery('header .menu li.first a').append('<label>Home</label>');
+            }
+            
+
+            jQuery('header .menu li.dropdown > span').click(function () {
                 element = jQuery(this).parent();
-                if(element.hasClass('in')){
-                    jQuery('.menu li.dropdown').removeClass('in');
+                jQuery('header .menu li.dropdown').removeClass('open');
+
+                if( element.hasClass('in') ){
+                    jQuery('header .menu li.dropdown').removeClass('in');
                 } else {
-                    jQuery('.menu li.dropdown').removeClass('in');
+                    //jQuery('header .menu li.dropdown').removeClass('in');
                     jQuery( element ).addClass('in');
                 }            
             });
-
-
-
         
         } else {
             jQuery('#block-search-form').removeClass('in');
             jQuery('.menu li.dropdown').removeClass('in');
             jQuery(".search--lang--block").appendTo(".nav-main-menu");
+            if( jQuery('header .menu li.first a label').length > 0 ){
+                jQuery('header .menu li.first a label').remove();
+            }
         }
 
     }
 
-    jQuery(window).on("resize",function(e){
-        e.preventDefault();
-        jQuery('#block-search-form').removeClass('in');
-        mobileDevice(screen.width);    
-         //mobileDevice( jQuery(window).width() );
-    });
-        
 });

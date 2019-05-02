@@ -1,4 +1,43 @@
 @import url('//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic&subset=cyrillic,cyrillic-ext,latin,greek-ext,greek,latin-ext');
+.navbar-default .navbar-header {
+  margin-right: 0px;
+}
+.navbar-default .navbar-header a.logo img {
+  width: auto !important;
+  max-width: inherit !important;
+}
+@media only screen and (max-width: 1199px) {
+  .navbar-default .navbar-header a.logo img {
+    width: 120% !important;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .navbar-default .navbar-header a.logo img {
+    width: initial !important;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .navbar-default .navbar-header a.logo img {
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto;
+  }
+  .navbar-default .navbar-header a.logo {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-left: 0px;
+  }
+}
+@media only screen and (max-width: 1199px) {
+  .sticky-menu .navbar-header a.logo img {
+    width: 100% !important;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .sticky-menu .navbar-header a.logo img {
+    width: initial !important;
+  }
+}
 html.overlay-open .navbar-fixed-top {
   z-index: 400;
 }
@@ -7,6 +46,10 @@ html.js fieldset.collapsed {
 }
 html.js input.form-autocomplete {
   background-image: none;
+}
+body {
+  font-size: 1.8rem;
+  color: #1f3695;
 }
 body {
   position: relative;
@@ -93,6 +136,7 @@ body #admin-menu .dropdown li {
   margin-right: -15px;
   padding-left: 15px;
   padding-right: 15px;
+  margin-top: 0;
 }
 @media screen and (min-width: 768px) {
   .navbar .logo {
@@ -517,7 +561,7 @@ table .checkbox input[type="checkbox"] {
 @media (min-width: 768px) {
   .form-horizontal .form-group label {
     float: left;
-    width: 16.666666666666664%;
+    width: 16.66666667%;
   }
 }
 .alert a {

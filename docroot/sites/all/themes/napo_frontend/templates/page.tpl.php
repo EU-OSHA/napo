@@ -93,33 +93,35 @@
       <?php endif; ?>
 
       <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-
-    <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['menu'])): ?>
-      <div class="col-md-8 pull-right">
-        <div class="navbar-collapse collapse col-md-8 pull-right">
-          <nav>
-            <?php if (!empty($primary_nav)): ?>
-              <?php print render($primary_nav); ?>
-            <?php endif; ?>
-            <?php if (!empty($secondary_nav)): ?>
-              <?php print render($secondary_nav); ?>
-            <?php endif; ?>
-            <div class="pull-right">
-              <?php if (!empty($page['menu'])): ?>
-                <?php print render($page['menu']); ?>
-              <?php endif; ?>
-            </div>
-          </nav>
-        </div>
+      <div class="navbar--toggle--button">
+        <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
       </div>
-    <?php endif; ?>
+    </div>
+      <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['menu'])): ?>
+        <div class="col-md-8 pull-right menu--search--block ">
+          <div class="navbar-collapse collapse">
+            <nav class="nav-main-menu">
+              <?php if (!empty($primary_nav)): ?>
+                <?php print render($primary_nav); ?>
+              <?php endif; ?>
+              <?php if (!empty($secondary_nav)): ?>
+                <?php print render($secondary_nav); ?>
+              <?php endif; ?>
+              <div class="search--lang--block  pull-right">
+                <?php if (!empty($page['menu'])): ?>
+                  <?php print render($page['menu']); ?>
+                <?php endif; ?>
+              </div>
+            </nav>
+          </div>
+        </div>
+      <?php endif; ?>
+
 </header>
 <div class="nav-bar-separate"></div>
 <?php if (!empty($page['slider'])): ?>

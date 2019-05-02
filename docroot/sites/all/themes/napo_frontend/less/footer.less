@@ -8,71 +8,159 @@
 	margin-top: 0px;
 }
 
-footer h2{
-	color:#B1B3B4;
-	font-weight: bold;
-	margin:0;
-	padding:0;
-	font-size: 1.2em;
-}
+footer{
+	.consortium--partners--block{
+		padding: 2rem 3% 0rem;
+		margin: auto;
+		h2{
+			color: @link-color;
+			font-size: 2rem;
+			margin-bottom: 2rem;
+		}
+		.section-logo-list{
+		  display: flex;
+		  list-style-type: none;
+		  justify-content: space-between;
+		  padding: 0;
+		  margin: 1rem 0;
+			li{
+				padding: 0 1rem;
+				&:first-child{
+					padding: 0 1rem 0 0;
+				}
+				&:nth-child(2) {
+				  position: relative;
+				  top: -5px;
+				}
+				&:last-child{
+					padding: 0 0 0 1rem;
+				}
+			}
+			img{
+			  filter: grayscale(100%);
+			  -webkit-filter: grayscale(100%);
+			  -moz-filter: grayscale(100%);
+			  -ms-filter: grayscale(100%);
+			  -o-filter: grayscale(100%);
+			  filter: gray;
+			  border: 0px;
+			  margin: 0 auto;
+			  border-bottom: 0px;
+			  opacity: 0.8;
+			  width: 100%;
+				&:hover{
+				  filter: grayscale(0%);
+				  -webkit-filter: grayscale(0%);
+				  -moz-filter: grayscale(0%);
+				  -ms-filter: grayscale(0%);
+				  -o-filter: grayscale(0%);
+				  filter: none;
+				  border: 0px;
+				  opacity: 1;
+			  }
+			}
+		}
+	}
+	.footer--social--block{
+		.menu.nav.navbar-nav{
+			background: none !important;
+			width:100%;
+			text-align:center;
+			margin-top: 2em;
+			display:block;
+			li{
+				padding:0 1rem !important;
+				display: inline-block !important; 
+				a{
+					padding: 0 !important;
+					height: 4rem;
+					width: 4rem;
+					display: block;
+					img{
+						display: none;
+					}
+				}
+				&.first{
+					background:url('../images/facebook-icon-footer.png') no-repeat;
+			    display: inline-block;
+			    padding-right: 1em;
+			  	padding-left: 2em;
+				}
+				&.last{
+				  background:url('../images/youtube-icon-footer.png') no-repeat;
+				  display: inline-block;
+				  padding-right: 2em;
+				}
+			}
+		}
+		.menu-block-text-suffix{
+			font-size: 2rem;
+			text-align: center;
+			color:@color-blue-napo;
+			margin-bottom: 1.5em;
+			font-weight: bold;
+		}
+	}
+	.footer--info--menu{
+	  background: #59595A !important;
+	  padding:1.5rem 0 !important;	  
+	  ul{
+	  	margin: 0 !important;
+	  	background: none !important;
+	  	justify-content: center;
+	  	li{
+	  		background: none !important;
+	  		a{
+	  			font-size: 1.3rem;
+	  			font-family: 'ubuntu';
+	  			font-weight: normal;
+	  			color: #FFF !important;
+	  			padding: 0 !important;
+	  			&:after{
+	  				content:' | ';
+	  				font-family: 'ubuntu';
+	  				display: inline-block;
+	  				margin: 0 1rem;
+	  			}
+	  		}
+  			&.last{
+  				a:after{
+		  				content:''; 					
+  				}
+  			}
+	  	}
+	  }
+	}
+} 
 
-footer .jcarousel-container-horizontal img {
-	filter: grayscale(100%);
-	-webkit-filter: grayscale(100%);
-	-moz-filter: grayscale(100%);
-	-ms-filter: grayscale(100%);
-	-o-filter: grayscale(100%);
-	filter: gray;
-	border:0px;
-	margin:0 auto;
-	border-bottom: 2px solid #FFF;
-	opacity:0.8;
-}
 
-footer .jcarousel-container-horizontal img:hover {
-	filter: grayscale(0%);
-	-webkit-filter: grayscale(0%);
-	-moz-filter: grayscale(0%);
-	-ms-filter: grayscale(0%);
-	-o-filter: grayscale(0%);
-	filter: none;
-	border:0px;
-	opacity:1;
-	margin-top: -2px;
-}
+footer{
+	.menu.nav.navbar-nav{
+		margin: 5.75px 0px;
+		li{
+			img.img-responsive{
+				display: inline-block;
+			} 
+		}
+	}
+	.navbar-nav {
+		float: none;
+		text-align: center;
+		> li {
+			float: none;
+		}
+	}
+	.nav{
+		> li {
+			display: inline;
+			> a {
+				display: inline-block;
+			}
+		}
+	} 
+} 
 
-.jcarousel-skin-default .jcarousel-item{
-	border:0px;
-}
 
-footer #block-menu-block-2 .menu.nav.navbar-nav{
-	width:100%;
-	background:url('../images/nav-bar-border.png?v=2') repeat-x scroll 1px center rgba(0, 0, 0, 0);
-	text-align:center;
-	margin-top: 2em;
-	display:block;
-}
-
-footer #block-menu-block-2 .menu.nav.navbar-nav li.first{
-    display: inline-block;
-    padding-right: 1em;
-  	padding-left: 2em;
-  	background:#FFF;
-}
-
-footer #block-menu-block-2 .menu.nav.navbar-nav li.last{
-    background:url('../images/nav-bar-border.png?v=2') repeat-x scroll 1px center rgba(0, 0, 0, 0);
-    display: inline-block;
-    padding-right: 2em;
-    background:#FFF;
-}
-
-footer #block-menu-block-2 .menu-block-text-suffix{
-	text-align: center;
-	color:@color-blue-napo;
-	margin-bottom: 1.5em;
-	font-weight: bold;
-}
 
 #block-menu-block-1{
 	background:@navbar-default-bg;
@@ -83,42 +171,62 @@ footer #block-menu-block-2 .menu-block-text-suffix{
 	color:@color-gray-napo-footer;
 }
 
-footer .navbar-nav {
-	float: none;
-	text-align: center;
-}
-
-footer .navbar-nav > li {
-	float: none;
-}
-
-footer .nav > li {
-	display: inline;
-}
-
-footer .nav > li > a {
-	display: inline-block;
-}
 
 
 // carousel NAPO IS THE INITIATIVE OF:
+footer{
+	h2{
+		color:#B1B3B4;
+		font-weight: bold;
+		margin:0;
+		padding:0;
+		font-size: 1.2em;
+	}
+	.jcarousel-container-horizontal{
+		img {
+			filter: grayscale(100%);
+			-webkit-filter: grayscale(100%);
+			-moz-filter: grayscale(100%);
+			-ms-filter: grayscale(100%);
+			-o-filter: grayscale(100%);
+			filter: gray;
+			border:0px;
+			margin:0 auto;
+			border-bottom: 2px solid #FFF;
+			opacity:0.8;
+			&:hover {
+				filter: grayscale(0%);
+				-webkit-filter: grayscale(0%);
+				-moz-filter: grayscale(0%);
+				-ms-filter: grayscale(0%);
+				-o-filter: grayscale(0%);
+				filter: none;
+				border:0px;
+				opacity:1;
+				margin-top: -2px;
+			}
+		}
+	}
+	.jcarousel-skin-default{
+		.jcarousel-item{
+			border:0px;
+			text-align: center;
+			width: 141px !important;
+			height: 80px;
+			display: flex;
+			align-items: center;
+			position: relative;
+	   	> div {
+	   		width: 100%;
+	   		text-align: center;
+	   	}
+		}
+		.jcarousel-container-horizontal{
+			padding:0!important;
+		}
+	}
+} 
 
-footer .jcarousel-skin-default .jcarousel-container-horizontal{
-	padding:0!important;
-}
-
-footer .jcarousel-skin-default .jcarousel-item{
-	text-align: center;
-    width: 141px !important;
-    height: 80px;
-    display: flex;
-    align-items: center;
-   	position: relative;
-   	> div {
-   		width: 100%;
-   		text-align: center;
-   	}
-}
 
 .view-consortium-partners.view-id-consortium_partners.view-display-id-block{
 	.jcarousel-skin-default .jcarousel-next{
@@ -153,11 +261,3 @@ footer .jcarousel-skin-default .jcarousel-item{
 	display:block;
 }
 
-
-footer .menu.nav.navbar-nav{
-	margin: 5.75px 0px;
-}
-
-footer .menu.nav.navbar-nav li img.img-responsive{
-	display: inline-block;
-}
