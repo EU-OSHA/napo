@@ -6,6 +6,44 @@ a:hover {
   /* Safari */
   transition: all 0.6s;
 }
+#sliding-popup .popup-content {
+  margin: 0 auto;
+  max-width: initial;
+  width: auto;
+  display: block;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+#sliding-popup .popup-content #popup-text {
+  float: none;
+  width: 100%;
+  max-width: 60%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+#sliding-popup .popup-content #popup-buttons {
+  float: none;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 100%;
+  max-width: 100%;
+}
+#sliding-popup .popup-content #popup-buttons .eu-cookie-compliance-secondary-button,
+#sliding-popup .popup-content #popup-buttons .eu-cookie-compliance-default-button,
+#sliding-popup .popup-content #popup-buttons .eu-cookie-compliance-more-button {
+  font-size: 1.2rem !important;
+  border-radius: 0.6rem;
+  padding: 1px 6px!important;
+  margin: 0rem 0.3rem !important;
+  display: inline-block;
+  box-shadow: none !important;
+  border: 0px !important;
+  text-shadow: none !important;
+  color: #585759 !important;
+  font-family: Ubuntu;
+  font-weight: bold !important;
+}
 .sticky-bar {
   top: 8.1rem !important;
 }
