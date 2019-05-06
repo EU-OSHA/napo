@@ -291,8 +291,7 @@ function napo_frontpage_views_default_views() {
   $handler->display->display_options['fields']['title_field']['alter']['text'] = '<div class="slider-item">
                   <div class="lead">
                     <div>
-                      <p>[title_field]</p>
-                      <button class="btn-primary"><img src="/sites/all/themes/napo_frontend/images/play-video.png"></button>
+                      <p>[title_field]</p>[play-video-link]
                     </div>
                   </div>
 [field_image]
@@ -358,8 +357,7 @@ function napo_frontpage_views_default_views() {
     t('<div class="slider-item">
                   <div class="lead">
                     <div>
-                      <p>[title_field]</p>
-                      <button class="btn-primary"><img src="/sites/all/themes/napo_frontend/images/play-video.png"></button>
+                      <p>[title_field]</p>[play-video-link]
                     </div>
                   </div>
 [field_image]
