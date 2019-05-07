@@ -10,6 +10,7 @@ a:hover{
   -webkit-transition: all 0.6s; /* Safari */
   transition: all 0.6s;
 }
+
 #sliding-popup{
 	.popup-content {
 	  margin: 0 auto;
@@ -50,7 +51,11 @@ a:hover{
 	  } 
 	}
 }
-
+.vjs-default-skin .vjs-progress-holder .vjs-play-progress, 
+.vjs-default-skin .vjs-progress-holder .vjs-load-progress, 
+.vjs-default-skin .vjs-progress-holder .vjs-load-progress div {
+  height: 0.8em;
+}
 .sticky-bar {
   top: 8.1rem !important;
 }
@@ -1185,7 +1190,7 @@ a:hover{
 	.slider {
 		clear: both;
 		.frontpage-video-title{
-		  display: none;
+		  display: none !important;
 		}
 		.view-frontpage-custom-video{
 			.video-js{

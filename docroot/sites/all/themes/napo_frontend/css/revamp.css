@@ -44,6 +44,11 @@ a:hover {
   font-family: Ubuntu;
   font-weight: bold !important;
 }
+.vjs-default-skin .vjs-progress-holder .vjs-play-progress,
+.vjs-default-skin .vjs-progress-holder .vjs-load-progress,
+.vjs-default-skin .vjs-progress-holder .vjs-load-progress div {
+  height: 0.8em;
+}
 .sticky-bar {
   top: 8.1rem !important;
 }
@@ -1074,7 +1079,7 @@ a:hover {
     clear: both;
   }
   .slider .frontpage-video-title {
-    display: none;
+    display: none !important;
   }
   .slider .view-frontpage-custom-video .video-js {
     height: 350px !important;
