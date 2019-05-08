@@ -1,7 +1,9 @@
 // variables
 @color-napo-bg-gray-6: #575558;
 @link-color:    		#1F3695;
-
+.element-invisible {
+	display: none !important;
+}
 body{
 	overflow-x: hidden;
 }
@@ -283,6 +285,7 @@ h2 a.ext span.ext{
 				&.icon-workplace{
 					a{
 						background: url('../images/workplace-icon.png') no-repeat;
+						pointer-events: none;
 						&:hover{
 							opacity:0.6;
 						}
@@ -318,6 +321,13 @@ h2 a.ext span.ext{
 					&:hover{
 						opacity:0.6;
 						text-decoration: none;
+					}
+				}
+			}		
+			&.views-row-1{
+				.featured-article-body{
+					.more-link{
+						pointer-events: none;
 					}
 				}
 			}

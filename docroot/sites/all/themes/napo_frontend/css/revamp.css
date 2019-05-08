@@ -1,3 +1,6 @@
+.element-invisible {
+  display: none !important;
+}
 body {
   overflow-x: hidden;
 }
@@ -270,6 +273,7 @@ h2 a.ext span.ext {
 }
 .featured--block--section .view-content .views-row h3.icon-workplace a {
   background: url('../images/workplace-icon.png') no-repeat;
+  pointer-events: none;
 }
 .featured--block--section .view-content .views-row h3.icon-workplace a:hover {
   opacity: 0.6;
@@ -303,6 +307,9 @@ h2 a.ext span.ext {
 .featured--block--section .view-content .views-row .featured-article-body .more-link:hover {
   opacity: 0.6;
   text-decoration: none;
+}
+.featured--block--section .view-content .views-row.views-row-1 .featured-article-body .more-link {
+  pointer-events: none;
 }
 .story--block--section {
   background: #eeedee url(../images/background-story.png) bottom left repeat-x;
