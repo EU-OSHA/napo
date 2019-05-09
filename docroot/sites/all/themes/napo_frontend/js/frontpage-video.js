@@ -198,8 +198,8 @@ jQuery(document).ready(function () {
                 }
             });
 
-            if( jQuery('header .menu li.first a label').length == 0 ){
-                jQuery('header .menu li.first a').append('<label>Home</label>');
+            if( jQuery('header .menu > li.first a label').length == 0 ){
+                jQuery('header .menu > li.first a').append('<label>Home</label>');
             }
             
 
