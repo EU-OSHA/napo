@@ -1032,7 +1032,6 @@ h2 a.ext span.ext {
   }
   .lessons--section--block .lessons--items--grid .lessons-item > a {
     width: 100%;
-    height: 200px;
     overflow: hidden;
     display: block;
   }
@@ -1154,6 +1153,10 @@ h2 a.ext span.ext {
   }
   .lessons--section--block .lessons--items--grid {
     flex-direction: column;
+  }
+  .lessons--section--block .lessons--items--grid .lessons-item img {
+    width: 100%;
+    height: auto;
   }
   .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content {
     min-height: 11rem;
