@@ -324,6 +324,7 @@ h2 a.ext span.ext {
 .story--block--section .story--block .story--item {
   padding: 2rem 0;
   flex: 50%;
+  color: #1f3695;
 }
 .story--block--section .story--block .story--item iframe {
   width: 100% !important;

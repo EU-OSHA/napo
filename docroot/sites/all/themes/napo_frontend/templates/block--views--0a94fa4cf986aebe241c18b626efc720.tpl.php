@@ -18,7 +18,7 @@ $translated = osha_tmgmt_literal_get_translation('Napo\'s films');
 <section class="container slider--video--section">
     <div class="slider--video--block row">
         <div class="slider--video--items">
-            <h2 class="block-title"><a href="napos-films.html"><?php print $translated; ?></a></h2>
+            <h2 class="block-title"><a href="napos-films/films"><?php print $translated; ?></a></h2>
             <?php print $content; ?>
         </div>
     </div>
