@@ -254,16 +254,19 @@ function napo_film_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '13',
+          'weight' => '15',
         ),
         'path' => array(
-          'weight' => '11',
+          'weight' => '13',
         ),
         'redirect' => array(
-          'weight' => '12',
+          'weight' => '14',
         ),
         'language' => array(
           'weight' => '2',
+        ),
+        'xmlsitemap' => array(
+          'weight' => '16',
         ),
       ),
       'display' => array(),
