@@ -258,7 +258,9 @@ function napo_search_views_default_views() {
   $handler->display->display_options['arguments']['search_api_views_fulltext']['id'] = 'search_api_views_fulltext';
   $handler->display->display_options['arguments']['search_api_views_fulltext']['table'] = 'search_api_index_default_multilingual_node_index';
   $handler->display->display_options['arguments']['search_api_views_fulltext']['field'] = 'search_api_views_fulltext';
-  $handler->display->display_options['arguments']['search_api_views_fulltext']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['search_api_views_fulltext']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['search_api_views_fulltext']['default_argument_type'] = 'query';
+  $handler->display->display_options['arguments']['search_api_views_fulltext']['default_argument_options']['parameter'] = 'term';
   $handler->display->display_options['arguments']['search_api_views_fulltext']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['search_api_views_fulltext']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['search_api_views_fulltext']['not'] = 0;

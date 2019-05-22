@@ -121,3 +121,11 @@ function osha_update_7013() {
 function osha_update_7014() {
   module_enable(['csrf_checks']);
 }
+
+/**
+ * MDR-2663 NAPO Contrib modules security updates.
+ */
+function osha_update_7015() {
+  module_enable(['views_contextual_filter_query']);
+  features_revert_module('napo_search');
+}
