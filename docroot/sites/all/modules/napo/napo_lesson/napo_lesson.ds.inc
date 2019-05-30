@@ -50,6 +50,21 @@ function napo_lesson_ds_field_settings_info() {
   );
   $export['node|lesson|default'] = $ds_fieldsetting;
 
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|lesson|full';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'lesson';
+  $ds_fieldsetting->view_mode = 'full';
+  $ds_fieldsetting->settings = array(
+    'back_button' => array(
+      'weight' => '0',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|lesson|full'] = $ds_fieldsetting;
+
   return $export;
 }
 
@@ -273,6 +288,73 @@ function napo_lesson_ds_layout_settings_info() {
     'layout_disable_css' => 0,
   );
   $export['node|lesson|default'] = $ds_layout;
+
+  $ds_layout = new stdClass();
+  $ds_layout->api_version = 1;
+  $ds_layout->id = 'node|lesson|full';
+  $ds_layout->entity_type = 'node';
+  $ds_layout->bundle = 'lesson';
+  $ds_layout->view_mode = 'full';
+  $ds_layout->layout = 'ds_2col_stacked';
+  $ds_layout->settings = array(
+    'regions' => array(
+      'header' => array(
+        0 => 'back_button',
+        1 => 'title_field',
+        2 => 'field_lesson_video',
+        3 => 'field_lesson_intro_text',
+      ),
+      'left' => array(
+        4 => 'field_learning_objectives',
+        5 => 'field_starter',
+        6 => 'field_activities',
+        7 => 'field_assessment',
+        8 => 'field_curriculum_links',
+      ),
+      'right' => array(
+        9 => 'field_file',
+      ),
+    ),
+    'fields' => array(
+      'back_button' => 'header',
+      'title_field' => 'header',
+      'field_lesson_video' => 'header',
+      'field_lesson_intro_text' => 'header',
+      'field_learning_objectives' => 'left',
+      'field_starter' => 'left',
+      'field_activities' => 'left',
+      'field_assessment' => 'left',
+      'field_curriculum_links' => 'left',
+      'field_file' => 'right',
+    ),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+      'header' => array(
+        'detail--text--block' => 'detail--text--block',
+      ),
+      'left' => array(
+        'acordion--block acordion--items--block' => 'acordion--block acordion--items--block',
+      ),
+      'right' => array(
+        'download--section--block' => 'download--section--block',
+      ),
+    ),
+    'wrappers' => array(
+      'header' => 'div',
+      'left' => 'div',
+      'right' => 'div',
+      'footer' => 'div',
+    ),
+    'layout_wrapper' => 'div',
+    'layout_attributes' => '',
+    'layout_attributes_merge' => 1,
+    'layout_link_attribute' => '',
+    'layout_link_custom' => '',
+    'layout_disable_css' => 0,
+  );
+  $export['node|lesson|full'] = $ds_layout;
 
   $ds_layout = new stdClass();
   $ds_layout->api_version = 1;
