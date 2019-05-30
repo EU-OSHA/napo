@@ -176,7 +176,7 @@ function napo_lesson_preprocess_node(&$vars) {
 
   if($node->type == 'lesson') {
     if (!empty($vars['preprocess_fields'])) {
-      // Right Menu
+      // Right Menu.
       if (in_array('right_menu', $vars['preprocess_fields'])) {
         drupal_add_js(drupal_get_path('module', 'napo_lesson') . '/js/right_menu.js');
         $vars['right_menu'] = theme('right_menu', array());
@@ -190,7 +190,7 @@ function napo_lesson_preprocess_node(&$vars) {
           'lessons' => $lessons,
         ));
       }
-      // Download whole lesson
+      // Download whole lesson.
       if (in_array('download_whole_lesson', $vars['preprocess_fields'])
        && !empty($vars['field_lesson_video'][0]['target_id'])) {
         $vars['download_whole_lesson'] = theme('download_whole_lesson', array(

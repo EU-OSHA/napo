@@ -1,7 +1,7 @@
 name = Napo Lesson
 core = 7.x
 package = Napo
-version = 7.x-1.8
+version = 7.x-1.10
 project = napo_lesson
 dependencies[] = ctools
 dependencies[] = ds

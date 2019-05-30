@@ -875,10 +875,14 @@ h2 a.ext span.ext {
   color: #FFF;
   font-size: 1.4rem;
 }
-.related--lessons--block .related-lessons-item .related-item-content .keyword-list label {
+.related--lessons--block .related-lessons-item .related-item-content .keyword-list .keyword-label {
   font-weight: normal;
   margin-right: 0.5rem;
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
 }
+
 .related--lessons--block .related-lessons-item .related-item-content .keyword-list .keyword-tag {
   opacity: 0.6;
   display: inline-block;

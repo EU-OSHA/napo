@@ -17,11 +17,6 @@ function napo_lesson_ds_field_settings_info() {
   $ds_fieldsetting->bundle = 'lesson';
   $ds_fieldsetting->view_mode = 'default';
   $ds_fieldsetting->settings = array(
-    'lessons_note' => array(
-      'weight' => '3',
-      'label' => 'hidden',
-      'format' => 'default',
-    ),
     'back_button' => array(
       'weight' => '1',
       'label' => 'hidden',
@@ -37,8 +32,8 @@ function napo_lesson_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
-    'right_menu' => array(
-      'weight' => '4',
+    'lessons_note' => array(
+      'weight' => '3',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -216,17 +211,22 @@ function napo_lesson_ds_layout_settings_info() {
         2 => 'toolkit_title',
         3 => 'lessons_note',
       ),
-      'left' => array(
-        4 => 'right_menu',
-        5 => 'field_file',
-      ),
       'right' => array(
-        6 => 'top_menu',
-        7 => 'field_lesson_toolkit',
-        8 => 'body',
-        9 => 'field_lesson_video',
-        10 => 'download_whole_lesson',
-        11 => 'top_anchor',
+        4 => 'field_file',
+        5 => 'top_menu',
+        6 => 'field_lesson_toolkit',
+        7 => 'body',
+        8 => 'field_lesson_video',
+        9 => 'download_whole_lesson',
+        10 => 'top_anchor',
+      ),
+      'left' => array(
+        11 => 'field_learning_objectives',
+        12 => 'field_starter',
+        13 => 'field_activities',
+        14 => 'field_assessment',
+        15 => 'field_curriculum_links',
+        16 => 'field_lesson_intro_text',
       ),
     ),
     'fields' => array(
@@ -234,16 +234,31 @@ function napo_lesson_ds_layout_settings_info() {
       'back_button' => 'header',
       'toolkit_title' => 'header',
       'lessons_note' => 'header',
-      'right_menu' => 'left',
-      'field_file' => 'left',
+      'field_file' => 'right',
       'top_menu' => 'right',
       'field_lesson_toolkit' => 'right',
       'body' => 'right',
       'field_lesson_video' => 'right',
       'download_whole_lesson' => 'right',
       'top_anchor' => 'right',
+      'field_learning_objectives' => 'left',
+      'field_starter' => 'left',
+      'field_activities' => 'left',
+      'field_assessment' => 'left',
+      'field_curriculum_links' => 'left',
+      'field_lesson_intro_text' => 'left',
     ),
-    'classes' => array(),
+    'classes' => array(
+      'layout_class' => array(
+        'detail--text--block' => 'detail--text--block',
+      ),
+      'left' => array(
+        'acordion--block acordion--items--block' => 'acordion--block acordion--items--block',
+      ),
+      'right' => array(
+        'download--section--block' => 'download--section--block',
+      ),
+    ),
     'wrappers' => array(
       'header' => 'div',
       'left' => 'div',
@@ -255,6 +270,7 @@ function napo_lesson_ds_layout_settings_info() {
     'layout_attributes_merge' => 1,
     'layout_link_attribute' => '',
     'layout_link_custom' => '',
+    'layout_disable_css' => 0,
   );
   $export['node|lesson|default'] = $ds_layout;
 
