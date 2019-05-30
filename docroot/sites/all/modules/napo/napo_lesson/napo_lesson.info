@@ -107,6 +107,7 @@ features[variable][] = comment_preview_lesson_video
 features[variable][] = comment_subject_field_lesson
 features[variable][] = comment_subject_field_lesson_toolkit
 features[variable][] = comment_subject_field_lesson_video
+features[variable][] = ds_classes_regions
 features[variable][] = entity_translation_comment_filter_lesson
 features[variable][] = entity_translation_comment_filter_lesson_toolkit
 features[variable][] = entity_translation_comment_filter_lesson_video

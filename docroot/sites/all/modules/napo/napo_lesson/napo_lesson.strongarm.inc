@@ -160,6 +160,16 @@ function napo_lesson_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'ds_classes_regions';
+  $strongarm->value = 'detail--section--block
+detail--text--block
+acordion--block acordion--items--block
+download--section--block';
+  $export['ds_classes_regions'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_comment_filter_lesson';
   $strongarm->value = 0;
   $export['entity_translation_comment_filter_lesson'] = $strongarm;
