@@ -110,6 +110,31 @@ function napo_film_ds_field_settings_info() {
   );
   $export['node|napo_video|episode_popup'] = $ds_fieldsetting;
 
+  $ds_fieldsetting = new stdClass();
+  $ds_fieldsetting->api_version = 1;
+  $ds_fieldsetting->id = 'node|napo_video|search_results';
+  $ds_fieldsetting->entity_type = 'node';
+  $ds_fieldsetting->bundle = 'napo_video';
+  $ds_fieldsetting->view_mode = 'search_results';
+  $ds_fieldsetting->settings = array(
+    'share_widget' => array(
+      'weight' => '5',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'download_video_form' => array(
+      'weight' => '4',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'node_link' => array(
+      'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+  );
+  $export['node|napo_video|search_results'] = $ds_fieldsetting;
+
   return $export;
 }
 

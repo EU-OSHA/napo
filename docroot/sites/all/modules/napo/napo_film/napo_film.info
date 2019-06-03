@@ -1,7 +1,7 @@
 name = Napo Film
 core = 7.x
 package = Napo
-version = 7.x-1.15
+version = 7.x-1.16
 project = napo_film
 dependencies[] = content_cart
 dependencies[] = ctools
@@ -38,6 +38,7 @@ features[ctools][] = views:views_default:3.0
 features[ds_field_settings][] = node|napo_video|default
 features[ds_field_settings][] = node|napo_video|episode_full
 features[ds_field_settings][] = node|napo_video|episode_popup
+features[ds_field_settings][] = node|napo_video|search_results
 features[ds_fields][] = download_video_form
 features[ds_fields][] = episode_list
 features[ds_fields][] = episode_list_episode
