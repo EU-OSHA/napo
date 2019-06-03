@@ -177,6 +177,7 @@ jQuery(document).ready(function () {
 
                 jQuery('.btn-search-mobile').click(function () {
                     jQuery('#block-search-form').toggleClass('in');
+                    alert('');
                 });
 
                 jQuery('form.content-search .btn-primary[type=submit]').click(function () {
