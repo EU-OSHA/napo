@@ -57,7 +57,7 @@
       }
       &#block-napo-common-napo-print-friendly{
         font-weight: bold;
-        a{
+        > a{
           background: url(../images/print-icon.svg) right center no-repeat;
           background-size: 25px;
           padding-right: 3rem;
@@ -99,11 +99,13 @@
         }
       }
       &#block-content-cart-content-cart-summary{
-        a{
-          background: url(../images/download-icon.svg) right center no-repeat;
-          background-size: 25px;
-          padding-right: 3rem;
-          font-weight: bold;
+        #content_cart_summary{
+          > a{
+            background: url(../images/download-icon.svg) right center no-repeat;
+            background-size: 25px;
+            padding-right: 3rem;
+            font-weight: bold;
+          }          
         }
         .content_cart_summary_count::before {
           content: "(";

@@ -7181,13 +7181,13 @@ table .checkbox input[type="checkbox"] {
 .header_top_bar .region-header-top-bar > div#block-napo-common-napo-print-friendly {
   font-weight: bold;
 }
-.header_top_bar .region-header-top-bar > div#block-napo-common-napo-print-friendly a {
+.header_top_bar .region-header-top-bar > div#block-napo-common-napo-print-friendly > a {
   background: url(../images/print-icon.svg) right center no-repeat;
   background-size: 25px;
   padding-right: 3rem;
   font-weight: bold;
 }
-.header_top_bar .region-header-top-bar > div#block-napo-common-napo-print-friendly a > span.glyphicon {
+.header_top_bar .region-header-top-bar > div#block-napo-common-napo-print-friendly > a > span.glyphicon {
   display: none;
 }
 .header_top_bar .region-header-top-bar > div.block-text-resize {
@@ -7221,7 +7221,7 @@ table .checkbox input[type="checkbox"] {
   margin-left: 0.5rem;
   font-size: 1.6rem;
 }
-.header_top_bar .region-header-top-bar > div#block-content-cart-content-cart-summary a {
+.header_top_bar .region-header-top-bar > div#block-content-cart-content-cart-summary #content_cart_summary > a {
   background: url(../images/download-icon.svg) right center no-repeat;
   background-size: 25px;
   padding-right: 3rem;
