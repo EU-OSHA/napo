@@ -230,7 +230,11 @@ function napo_film_ds_layout_settings_info() {
       'body' => 'ds_content',
       'recommended_films' => 'ds_content',
     ),
-    'classes' => array(),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+    ),
     'wrappers' => array(
       'ds_content' => 'div',
     ),
@@ -239,6 +243,7 @@ function napo_film_ds_layout_settings_info() {
     'layout_attributes_merge' => 1,
     'layout_link_attribute' => '',
     'layout_link_custom' => '',
+    'layout_disable_css' => FALSE,
   );
   $export['node|napo_video|default'] = $ds_layout;
 

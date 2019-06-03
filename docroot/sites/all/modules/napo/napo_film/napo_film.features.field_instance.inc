@@ -71,7 +71,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 11,
       ),
       'recommended_films' => array(
         'label' => 'hidden',
@@ -187,7 +187,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 2,
       ),
       'recommended_films' => array(
         'label' => 'above',
@@ -277,6 +277,12 @@ function napo_film_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'inline',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
       ),
       'recommended_films' => array(
         'label' => 'above',
@@ -372,7 +378,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 7,
       ),
       'recommended_films' => array(
         'label' => 'hidden',
@@ -509,7 +515,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 4,
       ),
       'recommended_films' => array(
         'label' => 'inline',
@@ -564,9 +570,8 @@ function napo_film_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
+        'type' => 'hidden',
         'weight' => 27,
       ),
       'episode_full' => array(
@@ -586,6 +591,12 @@ function napo_film_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
       ),
       'recommended_films' => array(
         'label' => 'above',
@@ -672,7 +683,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 8,
       ),
       'recommended_films' => array(
         'label' => 'inline',
@@ -780,7 +791,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'recommended_films' => array(
         'label' => 'inline',
@@ -890,7 +901,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 9,
       ),
       'recommended_films' => array(
         'label' => 'inline',
@@ -977,9 +988,15 @@ function napo_film_field_default_field_instances() {
         'weight' => 5,
       ),
       'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'hidden',
+        'module' => 'videojs',
+        'settings' => array(
+          'height' => '',
+          'posterimage_field' => 'field_image',
+          'posterimage_style' => 'lesson_poster_image',
+          'width' => '',
+        ),
+        'type' => 'videojs',
         'weight' => 0,
       ),
       'recommended_films' => array(
@@ -1104,7 +1121,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 6,
       ),
       'recommended_films' => array(
         'label' => 'inline',
@@ -1252,7 +1269,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 5,
       ),
       'recommended_films' => array(
         'label' => 'hidden',
@@ -1417,7 +1434,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'recommended_films' => array(
         'label' => 'hidden',

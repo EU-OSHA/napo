@@ -689,13 +689,18 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
 
     case 'napo_introductory_text':
       $guidance_href = variable_get('guidance_href');
+      $node = menu_get_object();
+      $guidance_title = t('Teacher guidance');
+      if ($node->type =='msds_activities') {
+        $guidance_title = t('Facilitator guidance');
+      }
       foreach ($items as $delta => $item) {
         $element[$delta] = array(
           '#markup' => '<div class="detail--content--block"><div class="text-block">
           <p>' . $item['safe_value'].'</p>
         </div>
         <div class="guidance-block">
-          <p class="guidance-title">' . t('Teacher guidance') . '</p>
+          <p class="guidance-title">' . $guidance_title . '</p>
           <p class="guidance-text">' . t('Do you need help as a teacher to organize the learning session?') . '</p>
           <p><a href="' . $guidance_href . '" class="more-link">' . t('Find outmore here') . '</a></p>
         </div></div>',
@@ -870,6 +875,9 @@ function napo_common_back_button(&$vars){
 
     case 'lesson':
       $vars['back_button'] = '<p class="btn-back">' . l(t('Back to Napo for teachers teachers'), '/using-napo/napo-for-teachers', []) . '</p>';
+      break;
+    case 'msds_activities':
+      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to lessons'), '/using-napo/napo-for-teachers', []) . '</p>';
       break;
 
     default:
