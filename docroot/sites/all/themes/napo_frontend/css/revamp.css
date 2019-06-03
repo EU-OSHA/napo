@@ -645,7 +645,7 @@ h2 a.ext span.ext {
   color: #FFF;
   font-size: 1.4rem;
 }
-.lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list label {
+.lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-label {
   font-weight: normal;
   margin-right: 0.5rem;
 }
@@ -1129,7 +1129,7 @@ h2 a.ext span.ext {
     width: 100%;
     padding: 3rem;
   }
-  .page--banner--block .detail--content--block .text-block .keyword-list label {
+  .page--banner--block .detail--content--block .text-block .keyword-list .keyword-label {
     display: block !important;
   }
   .page--banner--block .detail--content--block .guidance-block {

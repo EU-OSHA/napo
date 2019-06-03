@@ -1,7 +1,7 @@
 name = Napo Lesson
 core = 7.x
 package = Napo
-version = 7.x-1.9
+version = 7.x-1.10
 project = napo_lesson
 dependencies[] = ctools
 dependencies[] = ds
@@ -165,6 +165,7 @@ features[variable][] = xmlsitemap_settings_node_lesson_video
 features[views_view][] = lesson_related_lesson
 features[views_view][] = lesson_toolkit_reorder
 features[views_view][] = lessons
+features[views_view][] = napo_for_teachers
 features[views_view][] = napo_target_ages
 features_exclude[dependencies][file] = file
 features_exclude[dependencies][title] = title
