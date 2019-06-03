@@ -180,12 +180,14 @@ jQuery(document).ready(function () {
                 });
 
                 jQuery('form.content-search .btn-primary[type=submit]').click(function () {
+                    console.log(jQuery('#edit-search-block-form--2').val().length);
                     if( jQuery('#edit-search-block-form--2').val().length > 0) {
-                        jQuery('#search-block-form').submit();
+                       // jQuery('#search-block-form').submit();
                         jQuery('#block-search-form').removeClass('in');
                         jQuery('#edit-search-block-form--2').val('');
                     } else {
                         jQuery('#block-search-form').removeClass('in');
+                        return false;
                     }
                 });
             }

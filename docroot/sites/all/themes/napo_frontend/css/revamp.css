@@ -1,7 +1,8 @@
 .element-invisible {
   display: none !important;
 }
-body {
+body,
+html {
   overflow-x: hidden;
 }
 a:hover {
@@ -645,13 +646,13 @@ h2 a.ext span.ext {
   color: #FFF;
   font-size: 1.4rem;
 }
-.lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-label {
+.lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list label {
   font-weight: normal;
   margin-right: 0.5rem;
 }
 .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag {
   opacity: 0.6;
-  display: inline-block;
+  display: inline;
 }
 .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag:after {
   content: ',';
@@ -710,6 +711,10 @@ h2 a.ext span.ext {
   display: none;
   color: #666;
 }
+.detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-text h4 {
+  font-size: 1.8rem;
+  margin: 2rem 0 1.4rem;
+}
 .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-text .ratings-list {
   list-style-type: none;
   padding: 0;
@@ -752,6 +757,31 @@ h2 a.ext span.ext {
 }
 .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-text .ratings-list li .definition {
   margin: 0 2rem;
+}
+.detail--section--block .detail--text--block .acordion--items--block .field-name-field-assessment .acordion-content-text ul {
+  padding: 0;
+  margin: 0;
+}
+.detail--section--block .detail--text--block .acordion--items--block .field-name-field-assessment .acordion-content-text ul li {
+  list-style-type: none;
+}
+.detail--section--block .detail--text--block .acordion--items--block .field-name-field-assessment .acordion-content-text ul li strong {
+  width: auto;
+  padding: 2px 0 2px 3rem;
+  display: inline-block;
+  color: #666;
+}
+.detail--section--block .detail--text--block .acordion--items--block .field-name-field-assessment .acordion-content-text ul li:nth-child(1) strong {
+  background: url(../images/star-rating.svg) no-repeat;
+  background-size: 25px 25px;
+}
+.detail--section--block .detail--text--block .acordion--items--block .field-name-field-assessment .acordion-content-text ul li:nth-child(2) strong {
+  background: url(../images/star-rating-silver.svg) no-repeat;
+  background-size: 25px 25px;
+}
+.detail--section--block .detail--text--block .acordion--items--block .field-name-field-assessment .acordion-content-text ul li:nth-child(3) strong {
+  background: url(../images/star-rating-bronze.svg) no-repeat;
+  background-size: 25px 25px;
 }
 .detail--section--block .detail--text--block .download--section--block {
   flex: 24%;
@@ -814,15 +844,21 @@ h2 a.ext span.ext {
   min-height: 30rem;
   position: relative;
 }
-.related--lessons--block .related-lessons-item img {
-  width: 368px;
-  height: 200px;
+.related--lessons--block .related-lessons-item .field-content > a {
+  width: 100%;
+  height: 220px;
+  display: block;
+  overflow: hidden;
+}
+.related--lessons--block .related-lessons-item .field-content > a img {
+  width: 100%;
+  height: auto;
   position: relative;
   -webkit-transform: scale(1);
   -webkit-transition: all 1s;
   transition: all 1s;
 }
-.related--lessons--block .related-lessons-item img:hover {
+.related--lessons--block .related-lessons-item .field-content > a img:hover {
   opacity: 0.6;
   filter: gray;
   /* IE6-9 */
@@ -840,7 +876,7 @@ h2 a.ext span.ext {
   flex-direction: column;
   background: #1f3695 url(../images/background-items.png) top left repeat-x;
   width: 100%;
-  min-height: 40%;
+  min-height: 60%;
   text-align: center;
   padding: 2rem 2rem 0;
 }
@@ -875,17 +911,14 @@ h2 a.ext span.ext {
   color: #FFF;
   font-size: 1.4rem;
 }
-.related--lessons--block .related-lessons-item .related-item-content .keyword-list .keyword-label {
+.related--lessons--block .related-lessons-item .related-item-content .keyword-list label {
   font-weight: normal;
   margin-right: 0.5rem;
-  display: inline-block;
-  max-width: 100%;
-  margin-bottom: 5px;
 }
-
 .related--lessons--block .related-lessons-item .related-item-content .keyword-list .keyword-tag {
   opacity: 0.6;
-  display: inline-block;
+  display: inline;
+  padding-left: 0.5rem;
 }
 .related--lessons--block .related-lessons-item .related-item-content .keyword-list .keyword-tag:after {
   content: ',';
@@ -915,7 +948,7 @@ h2 a.ext span.ext {
   }
   .container.navbar {
     width: 100%;
-    padding: 1rem !important;
+    padding: 1rem 0 !important;
     margin: 2rem 0;
   }
   .slider--video--section .slider--video--block.row {
@@ -1129,7 +1162,7 @@ h2 a.ext span.ext {
     width: 100%;
     padding: 3rem;
   }
-  .page--banner--block .detail--content--block .text-block .keyword-list .keyword-label {
+  .page--banner--block .detail--content--block .text-block .keyword-list label {
     display: block !important;
   }
   .page--banner--block .detail--content--block .guidance-block {
@@ -1167,6 +1200,10 @@ h2 a.ext span.ext {
   }
   .detail--section--block .detail--text--block {
     flex-wrap: wrap;
+    width: 100%;
+  }
+  .detail--section--block .detail--text--block .field-type-file {
+    width: 100%;
   }
   .detail--section--block .detail--text--block .acordion--items--block {
     flex: 100%;
@@ -1407,6 +1444,8 @@ h2 a.ext span.ext {
     background: url(../images/search.png?v=2) no-repeat 4px 3px transparent;
     background-size: 3rem;
     padding: 1.5rem;
+    position: relative;
+    top: 2px;
   }
   header.navbar .menu--search--block {
     margin: 9rem 0 0 !important;
@@ -1449,12 +1488,20 @@ h2 a.ext span.ext {
     display: none;
   }
   header.navbar .menu--search--block .nav-main-menu .menu li > a,
-  header.navbar .menu--search--block .nav-main-menu .menu li span {
+  header.navbar .menu--search--block .nav-main-menu .menu li > span {
     color: #1f3695;
     background: #FFF;
     min-height: 6rem;
     padding-top: 2rem;
     font-size: 2rem;
+  }
+  header.navbar .menu--search--block .nav-main-menu .menu li > span .caret {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #1f3695;
+    display: inline-block !important;
   }
   header.navbar .menu--search--block .nav-main-menu .menu li.open .dropdown-menu {
     display: none;
@@ -1508,9 +1555,34 @@ h2 a.ext span.ext {
   }
 }
 @media only screen and (max-width: 450px) {
+  header.navbar {
+    min-height: auto;
+    margin: 1rem 0 0 !important;
+  }
   header.navbar .navbar--toggle--button {
+    width: 90%;
+    left: 5%;
+    top: 120%;
+  }
+  header.navbar #block-lang-dropdown-language-content #lang_dropdown_form_language_content .form-type-select #lang-dropdown-select-language_content {
+    width: 120px !important;
+  }
+  .nav-bar-separate {
+    margin-top: 0;
+  }
+  header.navbar .menu--search--block .navbar-collapse {
+    margin-top: 5px;
+  }
+  .navbar-default .navbar-header {
+    margin: 0;
+    padding: 0 1.5rem;
+  }
+  .navbar-default .navbar-header a.logo {
     width: 100%;
-    left: 0.5rem;
+  }
+  .navbar-default .navbar-header a.logo img {
+    width: 100% !important;
+    margin: auto;
   }
   .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-text .ratings-list li {
     flex-direction: column;
