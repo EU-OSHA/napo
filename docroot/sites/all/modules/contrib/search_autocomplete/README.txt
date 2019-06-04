@@ -28,15 +28,11 @@ files.
 --------------------------------------------------------------------------------
 -- 2.  Updating Search Autocomplete:
 
-Delete every files in the module directory sites/all/modules/contrib/search_autocomplete
+Delete every files in the module directory sites/all/modules/search_autocomplete
 or in the equivalent directory of your Drupal installation.
 
 Place all files from this 4.x version in this
 sites/all/modules/search_autocomplete or equivalent folder.
-
-You can alternatively use drush to Download the module:
-drush dl search_autocomplete
-
 
 Run the update script. Make sure to run the update functions.
 
@@ -47,7 +43,7 @@ You can also perform a full and complete uninstall of Search Autocomplete and
 try to re-install.
 
 Another solution would be to refer to the documentation:
-http://drupal-addict.com/nos-projets/search-autocomplete
+http://projects.axiomcafe.fr/search-autocomplete
 
 Finally, you can also post an issue at:
 https://drupal.org/project/issues/search_autocomplete
@@ -59,7 +55,7 @@ Navigate to /admin/config/search/search_autocomplete
 
 The configuration options are not as quite easy to understand as it was in
 previous version. Please consider reading the documentation available at:
-http://drupal-addict.com/nos-projets/search-autocomplete
+http://projects.axiomcafe.fr/search-autocomplete
 
 --------------------------------------------------------------------------------
 -- 4.  Translating Search Autocomplete
