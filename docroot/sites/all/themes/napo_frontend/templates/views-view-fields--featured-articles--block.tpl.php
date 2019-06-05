@@ -27,11 +27,21 @@ $workplace_nid = variable_get('workplace_nid', 0);
 $map = [
   $workplace_nid => 'icon-workplace',
   16 => 'icon-teachers',
-  ];
+];
 
 if (!empty($map[$row->nid])) {
   $search = '<h3 class="field-content ';
-  $fields['title_field']->content = str_replace($search,$search . $map[$row->nid] . ' ' . $row->nid . ' ', $fields['title_field']->content);
+  $fields['title_field']->content = str_replace($search, $search . $map[$row->nid] . ' ' . $row->nid . ' ', $fields['title_field']->content);
+  $search = url('node/' . $row->nid);
+  $replace = '#';
+  if ($map[$row->nid] == 'icon-teachers') {
+    $replace = url('using-napo/napo-for-teachers');
+  }
+  if ($map[$row->nid] == 'icon-workplace') {
+    $replace = url('using-napo/napo-workplaces');
+  }
+  $fields['title_field']->content = str_replace($search, $replace, $fields['title_field']->content);
+  $fields['body']->content = str_replace($search, $replace, $fields['body']->content);
 }
 ?>
 <?php foreach ($fields as $id => $field): ?>
