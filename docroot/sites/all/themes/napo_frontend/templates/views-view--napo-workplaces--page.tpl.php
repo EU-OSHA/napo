@@ -27,19 +27,23 @@
  * @ingroup views_templates
  */
 ?>
-<section class="lessons--section--block">
-    <div class="<?php print $classes; ?>">
+
+
+<section class="page--banner--block">
       <?php
-      if ($footer) {
-        print '<section class="page--banner--block">' . $footer . '</section>';
-      }
-      ?>
-        </h2>
-        <h2><?php print t('Lessons');
-          if ($header) {
-            print '<span class="lessons-available">[' . $header . ']</span>';
-          } ?>
-        </h2>
+        if ($footer) {
+            print $footer;
+        }
+      ?>      
+</section>
+
+
+<section class="lessons--section--block">
+      <h2><?php print t('Understanding MSDs');
+        if ($header) {
+          print '<span class="lessons-available">[' . $header . ']</span>';
+        } ?>
+      </h2>
 
       <?php if ($exposed): ?>
           <div class="lessons--section--filters">

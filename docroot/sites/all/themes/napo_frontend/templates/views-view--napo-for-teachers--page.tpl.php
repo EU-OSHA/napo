@@ -27,39 +27,43 @@
  * @ingroup views_templates
  */
 ?>
-    <section class="lessons--section--block">
-<div class="<?php print $classes; ?>">
-    <?php
-    if ($footer) {
-        print '<section class="page--banner--block">' . $footer . '</section>';
-    }
-    ?>
-    </h2>
-    <h2><?php print t('Lessons');
-      if ($header) {
-        print '<span class="lessons-available">[' . $header . ']</span>';
-      } ?>
-    </h2>
+<section class="page--banner--block">
+      <?php
+        if ($footer) {
+            print $footer;
+        }
+      ?>      
+</section>
 
-  <?php if ($exposed): ?>
-    <div class="lessons--section--filters">
-      <?php print $exposed; ?>
-    </div>
-  <?php endif; ?>
 
-  <?php if ($rows): ?>
-    <div class="lessons--items--grid">
-      <?php print $rows; ?>
-    </div>
-  <?php elseif ($empty): ?>
-    <div class="view-empty">
-      <?php print $empty; ?>
-    </div>
-  <?php endif; ?>
 
-  <?php if ($pager): ?>
-    <?php print $pager; ?>
-  <?php endif; ?>
+<section class="lessons--section--block">
+  <div class="<?php print $classes; ?>">
+      <h2>
+        <?php print t('Lessons');
+          if ($header) {
+            print '<span class="lessons-available">[' . $header . ']</span>';
+          } ?>
+      </h2>
+    <?php if ($exposed): ?>
+      <div class="lessons--section--filters">
+        <?php print $exposed; ?>
+      </div>
+    <?php endif; ?>
 
-</div><?php /* class view */ ?>
-    </section>
+    <?php if ($rows): ?>
+      <div class="lessons--items--grid">
+        <?php print $rows; ?>
+      </div>
+    <?php elseif ($empty): ?>
+      <div class="view-empty">
+        <?php print $empty; ?>
+      </div>
+    <?php endif; ?>
+
+    <?php if ($pager): ?>
+      <?php print $pager; ?>
+    <?php endif; ?>
+  </div>
+<?php /* class view */ ?>
+</section>

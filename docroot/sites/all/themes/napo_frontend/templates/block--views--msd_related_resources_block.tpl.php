@@ -13,7 +13,7 @@ $translated = osha_tmgmt_literal_get_translation($title);
 ?>
 <div id="<?php print $block_html_id; ?>" class="<?php print $classes; ?>"<?php print $attributes; ?>>
     <section class="related--lessons--block">
-        <h2><?php print $translated; ?></h2>
+      <h2><?php print $translated; ?></h2>
       <?php print $content; ?>
     </section>
 </div>

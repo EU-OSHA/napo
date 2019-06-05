@@ -6,6 +6,7 @@
 }
 body, html{
 	overflow-x: hidden;
+	color: @link-color !important;
 }
 
 a:hover{
@@ -53,7 +54,8 @@ a:hover{
 	  } 
 	}
 }
-.vjs-default-skin .vjs-progress-holder .vjs-play-progress, 
+.vjs-default-skin .vjs-progress-holder .vjs-play-progress,
+.vjs-default-skin .vjs-progress-control,  
 .vjs-default-skin .vjs-progress-holder .vjs-load-progress, 
 .vjs-default-skin .vjs-progress-holder .vjs-load-progress div {
   height: 0.8em;
@@ -296,7 +298,6 @@ h2 a.ext span.ext{
 				&.icon-workplace{
 					a{
 						background: url('../images/workplace-icon.png') no-repeat;
-						pointer-events: none;
 						&:hover{
 							opacity:0.6;
 						}
@@ -338,7 +339,7 @@ h2 a.ext span.ext{
 			&.views-row-1{
 				.featured-article-body{
 					.more-link{
-						pointer-events: none;
+
 					}
 				}
 			}
@@ -488,7 +489,24 @@ h2 a.ext span.ext{
 		}
 	}
 }
-
+h1.page-header{
+	display: none;
+}
+.region-content{
+	h1{
+		font-size: 4rem;
+		font-weight: bold;
+		background: none;
+  	padding: 0 0 1rem;
+  	margin-top: 0rem;
+  	background: transparent !important;
+  	display: block;
+	}
+}
+#node-16 .content .field-name-field-image img{
+	padding: 0px 1em 1em 0!important;
+  margin-left: 0;
+}
 .page--banner--block{
   padding: 0 3% 4rem;
   position: relative;
@@ -568,140 +586,182 @@ h2 a.ext span.ext{
 	}
 }
 
-.lessons--section--block{
-	background:#EEEDEE url(../images/nav-bar-borderx2.png?v=2) bottom left repeat-x;
-	padding: 3rem 3% 3rem 3%;
-	margin: 2rem auto;
-	display: flex;
-	flex-wrap: wrap;
-	h2{
-		font-size: 3rem;
-		flex:60%;
-		margin: 2rem 0 3rem;
+.page-using-napo-napo-for-teachers, .page-using-napo-napo-workplaces{
+	h1.page-header{
+		font-size: 4rem;
+	  font-weight: bold;
+	  background: none;
+	  padding: 0 3% 1rem;
+	  margin-top: 2.5rem;
+	  border:0; 
+		background: transparent !important;
+  	display: block;
 	}
-	.lessons--section--filters{
-	  margin: 2rem 1rem 2rem;
-	  padding: 0 0 0 4rem;
-	  flex: 28%;
-		.search-text{
-			width: 100%;
-			border-radius: 6rem;
-			background:@link-color;
-			color: #FFF;
-		  border: 0;
-		  box-shadow: none;
-		  padding: 0.6rem 1.5rem;
-		  font-size: 1.5rem;
-			&::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-			  color: #FFF;
-			  opacity: 0.6;
-			}
-			&::-moz-placeholder { /* Firefox 19+ */
-			  color: #FFF;
-			  opacity: 0.6;
-			}
-			&:-ms-input-placeholder { /* IE 10+ */
-			  color: #FFF;
-			  opacity: 0.6;
-			}
-			&:-moz-placeholder { /* Firefox 18- */
-			  color: #FFF;
-			  opacity: 0.6;
-			}
-			&:focus{
-				outline: 0;
-			}
+	.page--banner--block{
+	  padding: 0 3% 4rem;
+	  position: relative;
+		display: flex;
+		flex-direction: row;
+		.field-name-field-image{
+			flex:50%;
+		}
+		.field-name-body{
+			flex:50%;
+			padding: 1rem 4rem;
 		}
 	}
-	.lessons--items--grid{
-	  display: flex;
-	  width: 100%;
-	  flex-wrap: wrap;
-	  justify-content: space-between;
-		.lessons-item{
-			border: 2px solid  @link-color;
-		  flex: 30%;
-		  margin: 1.5rem;
-			border-radius: 0 0 2rem 2rem;
-			overflow: hidden;
-			min-height: 30rem;
-			position: relative;
-			img{
-			  width: 368px;
-			  height: 200px;
-			  position: relative;
-		  	-webkit-transform:scale(1);
-		  	-webkit-transition:all 1s;
-		  	transition:all 1s;
-			  &:hover{
-			  	opacity:0.6;
-				  filter: gray; /* IE6-9 */
-				  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
-				  filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
-			  	-webkit-transform:scale(1.2);
-			  	-webkit-transition:all 1.5s;
-			  	transition:all 1.5s;
-			  }
-			}
-			.lessons-item-content{
-				position: relative;
-			  display: flex;
-			  flex-direction: column;
-				background: @link-color url(../images/background-items.png) top left repeat-x;
+
+	.lessons--section--block{
+		background:#EEEDEE url(../images/nav-bar-borderx2.png?v=2) bottom left repeat-x;
+		padding: 3rem 3% 3rem 3%;
+		margin: 2rem auto;
+		display: flex;
+		flex-wrap: wrap;
+		h2{
+			font-size: 3rem;
+			flex:60%;
+			margin: 2rem 0 3rem;
+		}
+		.lessons--section--filters{
+		  margin: 2rem 1rem 2rem;
+		  padding: 0 0 0 4rem;
+		  flex: 28%;
+		  #views-exposed-form-napo-for-teachers-page, 
+		  #views-exposed-form-napo-workplaces-page{
+		  	label{
+		  		display: none;
+		  	}
+		  	button{
+		  		display: none;
+		  	}
+		  }
+			.search-text, .form-text{
 				width: 100%;
-				min-height: 40%;
-				text-align: center;
-				padding: 2rem 2rem 0;
-				h3{
-					font-size: 1.5rem;
-					font-weight: bold;
-					color: #FFF;
-					margin: 1rem 0;
-					a{
-						color: #FFF;
+				border-radius: 6rem;
+				background:@link-color;
+				color: #FFF;
+			  border: 0;
+			  box-shadow: none;
+			  padding: 0.6rem 1.5rem;
+			  font-size: 1.5rem;
+				&::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+				  color: #FFF;
+				  opacity: 0.6;
+				}
+				&::-moz-placeholder { /* Firefox 19+ */
+				  color: #FFF;
+				  opacity: 0.6;
+				}
+				&:-ms-input-placeholder { /* IE 10+ */
+				  color: #FFF;
+				  opacity: 0.6;
+				}
+				&:-moz-placeholder { /* Firefox 18- */
+				  color: #FFF;
+				  opacity: 0.6;
+				}
+				&:focus{
+					outline: 0;
+				}
+			}
+		}
+		.lessons--items--grid{
+		  display: flex;
+		  width: 100%;
+		  flex-wrap: wrap;
+		  justify-content: space-between;
+			.lessons-item{
+				border: 2px solid  @link-color;
+			  width: 30%;
+			  margin: 1.5rem;
+				border-radius: 0 0 2rem 2rem;
+				overflow: hidden;
+				height: 30rem;
+				position: relative;
+				a{
+					display: block;
+					height: 60%;				
+					img{
+					  width: 100%;
+					  height: auto;
+					  position: relative;
+				  	-webkit-transform:scale(1);
+				  	-webkit-transition:all 1s;
+				  	transition:all 1s;
+					  &:hover{
+					  	opacity:0.6;
+						  filter: gray; /* IE6-9 */
+						  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+						  filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+					  	-webkit-transform:scale(1.2);
+					  	-webkit-transition:all 1.5s;
+					  	transition:all 1.5s;
+					  }
 					}
 				}
-				.new-hightlight{
+				.lessons-item-content{
+					position: relative;
+				  display: flex;
+				  flex-direction: column;
+					background: @link-color url(../images/background-items.png) top left repeat-x;
+					width: 100%;
+					min-height: 40%;
 					text-align: center;
-					position: absolute;
-					top: -1.2rem;
-					margin: 0 auto;
-					left: 42%;
-					span{
-					  background: #f7e235;
-					  padding: 0.5rem 0.8rem 0.5rem 1.4rem;
-					  border: 1px solid;
-					  border-radius: 2rem;
-					  text-transform: uppercase;
-					  letter-spacing: 0.8rem;
-					  font-size: 1.2rem;
-					  font-weight: bold;
-					  display: inline-block;
+					padding: 2rem 2rem 0;
+					h3{
+						font-size: 1.5rem;
+						font-weight: bold;
+						color: #FFF;
+						margin: 1rem 0;
+						a{
+							color: #FFF;
+						}
 					}
-				}
-				.keyword-list{
-					color: #FFF;
-					font-size: 1.4rem;
-					label{
-						font-weight: normal;
-						margin-right: 0.5rem;
+					.new-hightlight{
+						text-align: center;
+						position: absolute;
+						top: -1.2rem;
+						margin: 0 auto;
+						left: 42%;
+						span{
+						  background: #f7e235;
+						  padding: 0.5rem 0.8rem 0.5rem 1.4rem;
+						  border: 1px solid;
+						  border-radius: 2rem;
+						  text-transform: uppercase;
+						  letter-spacing: 0.8rem;
+						  font-size: 1.2rem;
+						  font-weight: bold;
+						  display: inline-block;
+						}
 					}
-					.keyword-tag{
-						opacity: 0.6;
-						display: inline;
-						&:after{
-							content:',';
+					.keyword-list{
+						color: #FFF;
+						font-size: 1.4rem;
+						label{
+							font-weight: normal;
 							margin-right: 0.5rem;
 						}
-						&:last-child:after{
-							content:'';
+						.keyword-tag{
+							opacity: 0.6;
+							display: inline;
+							&:after{
+								content:',';
+								margin-right: 0.5rem;
+							}
+							&:last-child:after{
+								content:'';
+							}
 						}
-					}
-				}	
+					}	
+				}
 			}
 		}
 	}
+
 }
+
+
 
 .detail--section--block{
 	padding: 0 3% 2rem 3%;
@@ -1096,102 +1156,105 @@ h2 a.ext span.ext{
 		}
 	}
 
-	.page--banner--block{
-		.page--banner--grid{
-			> div{
-				img{
-					width: 100%;
+	.page-using-napo-napo-for-teachers, .page-using-napo-napo-workplaces{
+		.page--banner--block{
+			.page--banner--grid{
+				> div{
+					img{
+						width: 100%;
+					}
 				}
 			}
-		}
-		.detail--content--block{
-			.text-block{
-			  float: none;
-			  width: 100%;
-			  padding: 3rem;
+			.detail--content--block{
+				.text-block{
+				  float: none;
+				  width: 100%;
+				  padding: 3rem;
+				}
+				.guidance-block{
+					text-align: left;
+					padding:1rem 3rem;
+				  float: none;
+				  width: 100%;
+				  .more-link{
+				  	right: -3rem;
+				  }
+				}
 			}
-			.guidance-block{
-				text-align: left;
-				padding:1rem 3rem;
-			  float: none;
-			  width: 100%;
-			  .more-link{
-			  	right: -3rem;
+		} 
+		.detail--section--block{
+			.detail--text--block{
+			  flex-wrap: wrap;
+			  .acordion--items--block{
+					flex: 100%;
+					padding: 0;
+					.acordion--block--item{
+						margin-bottom: 2rem;
+						border-radius: 3.2rem;
+						.acordion-content-title{
+							padding: 2rem;
+							background-position: 97% 23px;
+							&.active{
+								background-position: 97% 23px;
+							}
+						}
+					}
+			  }
+			  .download--section--block{
+			  	flex: 100%;
+			  	top: 2rem;
+			  	h3{
+		  		  font-size: 3rem;
+			  	}
+			  	ul{
+						display: flex;
+						flex-wrap: wrap;
+						li{
+							margin: 0 1rem;
+							flex:45%;
+						}
+						li:last-child{
+							flex:100%;
+							text-align: center;
+							margin: 1rem 0 0;
+							> a{
+								background: url(../images/btn-download-all.png) 65% 50% no-repeat, 
+														url(../images/btn-download-all.png) 35% 50% no-repeat;
+							}
+						}
+			  	}
 			  }
 			}
 		}
-	} 
-	.detail--section--block{
-		.detail--text--block{
-		  flex-wrap: wrap;
-		  .acordion--items--block{
-				flex: 100%;
-				padding: 0;
-				.acordion--block--item{
-					margin-bottom: 2rem;
-					border-radius: 3.2rem;
-					.acordion-content-title{
-						padding: 2rem;
-						background-position: 97% 23px;
-						&.active{
-							background-position: 97% 23px;
-						}
+		.lessons--section--block{
+			.lessons--items--grid{
+				.lessons-item{
+					flex: 46%;
+					overflow: hidden;
+					> a{
+					  width:100%;
+					  //min-height: 200px;
+					  overflow: hidden;
+					  display: block;
+					  img{
+					  	width:100%;
+					  	height: auto;
+					  }
 					}
-				}
-		  }
-		  .download--section--block{
-		  	flex: 100%;
-		  	top: 2rem;
-		  	h3{
-	  		  font-size: 3rem;
-		  	}
-		  	ul{
-					display: flex;
-					flex-wrap: wrap;
-					li{
-						margin: 0 1rem;
-						flex:45%;
+					&:nth-child(odd){
+						margin-left: 0;
 					}
-					li:last-child{
-						flex:100%;
-						text-align: center;
-						margin: 1rem 0 0;
-						> a{
-							background: url(../images/btn-download-all.png) 65% 50% no-repeat, 
-													url(../images/btn-download-all.png) 35% 50% no-repeat;
-						}
-					}
-		  	}
-		  }
-		}
-	}
-
-	.lessons--section--block{
-		.lessons--items--grid{
-			.lessons-item{
-				flex: 46%;
-				overflow: hidden;
-				> a{
-				  width:100%;
-				  //min-height: 200px;
-				  overflow: hidden;
-				  display: block;
-				  img{
-				  	width:100%;
-				  	height: auto;
-				  }
-				}
-				&:nth-child(odd){
-					margin-left: 0;
 				}
 			}
 		}
-	}
-	.related--lessons--block{  
-		.related-lessons-item {
-		  width: 47%;
+		.related--lessons--block{  
+			.related-lessons-item {
+			  width: 47%;
+			}
 		}
 	}
+
+
 	footer{
 		.consortium--partners--block{
 			h2{
@@ -1268,125 +1331,131 @@ h2 a.ext span.ext{
 			}
 		}
 	}
-	.page--banner--block{
-		padding: 0;
+
+	.page-using-napo-napo-for-teachers, .page-using-napo-napo-workplaces{
 		h1{
+		  padding: 0 !important;
+		  margin: 1rem 1.5rem;
+		}
+		.page--banner--block{
 			padding: 0;
-			margin: 1rem 1.5rem;
-		}
-		.btn-back {
-		  position: absolute;
-		  top: -5rem;
-		  left: 2rem;
-		}
-		.page--banner--grid{
 			flex-direction: column;
-			.column--media--block{
+			h1{
+			  padding: 0;
+			  margin: 1rem 1.5rem;
+			}
+			.btn-back {
+			  position: absolute;
+			  top: -5rem;
+			  left: 2rem;
+			}
+			.field-name-field-image{
+				margin-top: 0;
 				img{
 					width: 100%;
-				}
+				}				
 			}
-			.column--content--block{
-			  padding: 2rem !important;
-			}
-		}
-		.detail--content--block{
-			.text-block{
+			.field-name-body{
 			  float: none;
 			  width: 100%;
 			  padding: 3rem;
-			  .keyword-list{
-			  	label{
-			  		display: block !important;
+			}
+			.page--banner--grid{
+				flex-direction: column;
+			}
+			.detail--content--block{
+				.guidance-block{
+					text-align: left;
+					padding:1rem 3rem;
+				  float: none;
+				  width: 100%;
+				  .more-link{
+				  	right: -3rem;
+				  }
+				}
+			}
+		} 
+		.lessons--section--block{
+			flex-direction: column;
+		  margin: 0;
+		  h2{
+		  	margin: 2rem;
+		  }
+		  .lessons--section--filters{
+			  margin: 1rem 0;
+			  padding: 0;
+			  #edit-search-wrapper{
+					width: 100%;
+				  #edit-search{
+				  	padding: 3rem;
+				  }
+			  }
+		  }
+		  .lessons--items--grid{
+		  	flex-direction: column;
+		  	.lessons-item{
+		  		width: 100%;
+		  		margin: 1rem 0;
+		  		img{
+					  width: 100%;
+					  height: auto;
+		  		}
+					.lessons-item-content{
+						min-height:40%; 
+					}
+		  	}
+		  }
+		}
+		.detail--section--block{
+			.detail--text--block{
+			  flex-wrap: wrap;
+			  width: 100%;
+			  .field-type-file{
+					width: 100%;
+			  }
+			  .acordion--items--block{
+					flex: 100%;
+					padding: 0;
+					.acordion--block--item{
+						margin-bottom: 2rem;
+						border-radius: 3.2rem;
+						.acordion-content-title{
+							padding: 2rem;
+							background-position: 97% 23px;
+							&.active{
+								background-position: 97% 23px;
+							}
+						}
+					}
+			  }
+			  .download--section--block{
+			  	flex: 100%;
+			  	top: 2rem;
+			  	h3{
+		  		  font-size: 3rem;
+			  	}
+			  	ul{
+						display: flex;
+						flex-wrap: wrap;
+						flex-direction: column;
+						li{
+							margin: 0 1rem;
+						}
+						li:last-child{
+							flex:100%;
+							text-align: center;
+							margin: 1rem 0 0;
+							> a{
+								background: url(../images/btn-download-all.png) 80% 50% no-repeat, 
+														url(../images/btn-download-all.png) 20% 50% no-repeat;
+							}
+						}
 			  	}
 			  }
 			}
-			.guidance-block{
-				text-align: left;
-				padding:1rem 3rem;
-			  float: none;
-			  width: 100%;
-			  .more-link{
-			  	right: -3rem;
-			  }
-			}
-		}
-	} 
-	.lessons--section--block{
-		flex-direction: column;
-	  margin: 0;
-	  h2{
-	  	margin: 2rem;
-	  }
-	  .lessons--section--filters{
-		  margin: 1rem;
-		  padding: 0;
-		  .search-text{
-		  	padding: 2rem;
-		  }
-	  }
-	  .lessons--items--grid{
-	  	flex-direction: column;
-	  	.lessons-item{
-	  		img{
-				  width: 100%;
-				  height: auto;
-	  		}
-				.lessons-item-content{
-					min-height: 11rem; 
-				}
-	  	}
-	  }
-	}
-	.detail--section--block{
-		.detail--text--block{
-		  flex-wrap: wrap;
-		  width: 100%;
-		  .field-type-file{
-				width: 100%;
-		  }
-		  .acordion--items--block{
-				flex: 100%;
-				padding: 0;
-				.acordion--block--item{
-					margin-bottom: 2rem;
-					//border:0;
-					border-radius: 3.2rem;
-					.acordion-content-title{
-						padding: 2rem;
-						background-position: 97% 23px;
-						&.active{
-							background-position: 97% 23px;
-						}
-					}
-				}
-		  }
-		  .download--section--block{
-		  	flex: 100%;
-		  	top: 2rem;
-		  	h3{
-	  		  font-size: 3rem;
-		  	}
-		  	ul{
-					display: flex;
-					flex-wrap: wrap;
-					flex-direction: column;
-					li{
-						margin: 0 1rem;
-					}
-					li:last-child{
-						flex:100%;
-						text-align: center;
-						margin: 1rem 0 0;
-						> a{
-							background: url(../images/btn-download-all.png) 80% 50% no-repeat, 
-													url(../images/btn-download-all.png) 20% 50% no-repeat;
-						}
-					}
-		  	}
-		  }
 		}
 	}
+
 	.related--lessons--block{
 		  flex-direction: column;
 			h2{
