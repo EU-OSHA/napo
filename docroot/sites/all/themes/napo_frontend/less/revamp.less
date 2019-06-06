@@ -60,6 +60,10 @@ a:hover{
 .vjs-default-skin .vjs-progress-holder .vjs-load-progress div {
   height: 0.8em;
 }
+.vjs-poster{
+  width: 100%;
+  height: auto;
+}
 .header_top_bar a.ext span.ext, 
 h2 a.ext span.ext{
   display: none;
@@ -303,7 +307,7 @@ h2 a.ext span.ext{
 						}
 					}					
 				}
-				&.icon-teachers{
+				&.icon-teachers{ 
 					a{
 						background: url('../images/teachers-icon.png') no-repeat;
 						&:hover{
@@ -316,6 +320,26 @@ h2 a.ext span.ext{
 					display: block;
 					padding: 2rem 0 0rem 7rem;
 					font-size: inherit;
+				}
+			}
+			&.views-row-1{
+				h3{
+					a{
+						background: url('../images/workplace-icon.png') no-repeat;
+						&:hover{
+							opacity:0.6;
+						}
+					}	
+				}
+			}
+			&.views-row-2{
+				h3{
+					a{
+						background: url('../images/workplace-icon.png') no-repeat;
+						&:hover{
+							opacity:0.6;
+						}
+					}	
 				}
 			}
 			.featured-article-body{
@@ -1156,7 +1180,7 @@ h1.page-header{
 		}
 	}
 
-	.page-using-napo-napo-for-teachers, .page-using-napo-napo-workplaces{
+	.page-using-napo-napo-for-teachers, .page-using-napo-napo-workplaces, .node-type-lesson, .node-type-msds-activities{
 		.page--banner--block{
 			.page--banner--grid{
 				> div{
@@ -1332,7 +1356,7 @@ h1.page-header{
 		}
 	}
 
-	.page-using-napo-napo-for-teachers, .page-using-napo-napo-workplaces{
+	.page-using-napo-napo-for-teachers, .page-using-napo-napo-workplaces, .node-type-lesson, .node-type-msds-activities{
 		h1{
 		  padding: 0 !important;
 		  margin: 1rem 1.5rem;
@@ -1364,6 +1388,11 @@ h1.page-header{
 				flex-direction: column;
 			}
 			.detail--content--block{
+				.text-block{
+				  float: none;
+				  width: 100%;
+				  padding: 3rem;
+				}
 				.guidance-block{
 					text-align: left;
 					padding:1rem 3rem;
@@ -1392,16 +1421,20 @@ h1.page-header{
 			  }
 		  }
 		  .lessons--items--grid{
-		  	flex-direction: column;
+		  	flex-direction: row;
 		  	.lessons-item{
-		  		width: 100%;
+		  		width: 49%;
+		  		height: auto;
 		  		margin: 1rem 0;
-		  		img{
-					  width: 100%;
-					  height: auto;
+		  		a{
+		  			height: auto;
+			  		img{
+						  width: 100%;
+						  height: auto;
+			  		}
 		  		}
 					.lessons-item-content{
-						min-height:40%; 
+						min-height:60%; 
 					}
 		  	}
 		  }
@@ -1437,9 +1470,10 @@ h1.page-header{
 			  	ul{
 						display: flex;
 						flex-wrap: wrap;
-						flex-direction: column;
+						flex-direction: row;
 						li{
 							margin: 0 1rem;
+							flex: 45%;
 						}
 						li:last-child{
 							flex:100%;
@@ -1457,11 +1491,11 @@ h1.page-header{
 	}
 
 	.related--lessons--block{
-		  flex-direction: column;
+		  flex-direction: row;
 			h2{
 			}
 			.related-lessons-item{
-			  width: 100%;
+			  width: 50%;
 				img{
 				  &:hover{
 				  }
@@ -1837,6 +1871,52 @@ h1.page-header{
 	}
 }
 
+@media only screen and (max-width:600px){
+  .download--section--block{
+  	ul{
+			flex-direction: column !important;
+			li{
+				flex: 100% !important;
+			}
+  	}
+  }
+}
+
+@media only screen and (max-width:525px){
+  .lessons--items--grid{
+  	flex-direction: column !important;
+  	.lessons-item{
+  		width: 100%  !important;
+  		img{
+			  width: 100%;
+			  height: auto;
+  		}
+			.lessons-item-content{
+				min-height:40%; 
+			}
+  	}
+  }
+	.related--lessons--block{
+		  flex-direction: column;
+			.related-lessons-item{
+			  width: 100%;
+			  margin: 1rem 0;
+			  .field-content{
+			  	> a{
+			  		img{
+						  width: auto;
+						  height: 100%;
+						  margin: auto;
+			  		}
+			  	}
+			  }
+				.related-item-content{
+					min-height: auto;
+				}
+			}
+	}
+}
+
 @media only screen and (max-width:450px){
 
 	header.navbar{
@@ -1897,7 +1977,6 @@ h1.page-header{
 		  }
 		}
 	}
-
 }
 
 
