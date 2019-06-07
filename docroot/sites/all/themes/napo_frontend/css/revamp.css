@@ -296,17 +296,19 @@ h2 a.ext span.ext {
 .featured--block--section .view-content .views-row h3 a {
   color: #FFF;
   display: block;
-  padding: 2rem 0 0rem 7rem;
+  padding: 2.5rem 0 0rem 7rem;
   font-size: inherit;
 }
 .featured--block--section .view-content .views-row.views-row-1 h3 a {
-  background: url('../images/workplace-icon.png') no-repeat;
+  padding: 2.5rem 0 0rem 6.5rem;
+  background: url('../images/workplace-icon.png') left -1px no-repeat;
 }
 .featured--block--section .view-content .views-row.views-row-1 h3 a:hover {
   opacity: 0.6;
 }
 .featured--block--section .view-content .views-row.views-row-2 h3 a {
-  background: url('../images/workplace-icon.png') no-repeat;
+  padding: 2.5rem 0 0rem 7.5rem;
+  background: url('../images/teachers-icon.png') left -1px no-repeat;
 }
 .featured--block--section .view-content .views-row.views-row-2 h3 a:hover {
   opacity: 0.6;
