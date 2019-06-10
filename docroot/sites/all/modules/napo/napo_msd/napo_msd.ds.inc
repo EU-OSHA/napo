@@ -22,6 +22,11 @@ function napo_msd_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
+    'download_block' => array(
+      'weight' => '8',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
   );
   $export['node|msds_activities|full'] = $ds_fieldsetting;
 
@@ -112,7 +117,7 @@ function napo_msd_ds_layout_settings_info() {
         7 => 'field_assessment',
       ),
       'right' => array(
-        8 => 'field_conversation_started',
+        8 => 'download_block',
       ),
     ),
     'fields' => array(
@@ -124,7 +129,7 @@ function napo_msd_ds_layout_settings_info() {
       'field_activities' => 'left',
       'field_concluding_questions' => 'left',
       'field_assessment' => 'left',
-      'field_conversation_started' => 'right',
+      'download_block' => 'right',
     ),
     'classes' => array(
       'layout_class' => array(
