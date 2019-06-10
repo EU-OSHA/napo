@@ -168,11 +168,70 @@ function napo_lesson_theme() {
   );
 }
 
+function napo_lesson_get_download_block($node) {
+  global $language;
+  $file_uri = $node->field_file[$language->language][0]['uri'];
+  $lesson_video = $node->field_lesson_video[LANGUAGE_NONE][0]['entity'];
+  $video = $lesson_video->field_video;
+  $video_uri = @$video['en'][0]['uri'];
+  if (!empty($video[$language->language])) {
+    $video_uri = $video[$language->language][0]['uri'];
+  }
+  $video_id = $lesson_video->nid;
+  $resources_required = $node->field_resources_required[LANGUAGE_NONE];
+
+  if ($video_uri) {
+    $output = '<a href="' . url('using-napo/napo-for-teachers/download_video/' . $video_id) . '">';
+    $output .= t('Video');
+    $size = @filesize($video_uri);
+    if ($size) {
+      $output .= ' <span class="related_size">(' . format_size($size) . ')</span>';
+    }
+    $output .= '</a>';
+    $items[] = $output;
+  }
+
+  if ($file_uri) {
+    $output = '<a href="' . file_create_url($file_uri) . '">';
+    $output .= t('Lesson');
+    $size = @filesize($file_uri);
+    if ($size) {
+      $output .= ' <span class="related_size">(' . format_size($size) . ')</span>';
+    }
+    $output .= '</a>';
+
+    $items[] = $output;
+  }
+
+  if ($node->type == 'lesson') {
+    $items[] = l(t('Teacher guidance'),'node/' . $node->nid . '/guidance');
+  }
+  else {
+    $items[] = l(t('Facilitator guidance'),'node/' . $node->nid . '/guidance');
+  }
+
+  if ($resources_required) {
+    $items[] = l(t('Related resources'),'node/' . $node->nid . '/related_resources');
+  }
+
+  $items[] = '<a href="' . url('node/' . $node->nid . '/download_all') . '">' . t('DOWNLOAD ALL') . '</a>';
+  $list = theme('item_list', array('items' => $items));
+  return '<div class="download--section--block"><h3>' . t('Download') . '</h3>' . $list . '</div>';
+}
+
 /**
  * Implements hook_preprocess_node().
  */
 function napo_lesson_preprocess_node(&$vars) {
   $node = $vars['node'];
+
+  if($node->type == 'msds_activities') {
+    if (!empty($vars['preprocess_fields'])) {
+      if (in_array('download_block', $vars['preprocess_fields'])) {
+        $vars['download_block'] = napo_lesson_get_download_block($node);
+      }
+    }
+  }
 
   if($node->type == 'lesson') {
     if (!empty($vars['preprocess_fields'])) {
@@ -190,6 +249,11 @@ function napo_lesson_preprocess_node(&$vars) {
           'lessons' => $lessons,
         ));
       }
+
+      if (in_array('download_block', $vars['preprocess_fields'])) {
+        $vars['download_block'] = napo_lesson_get_download_block($node);
+      }
+
       // Download whole lesson.
       if (in_array('download_whole_lesson', $vars['preprocess_fields'])
        && !empty($vars['field_lesson_video'][0]['target_id'])) {

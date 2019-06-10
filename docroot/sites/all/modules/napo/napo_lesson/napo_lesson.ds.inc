@@ -62,6 +62,11 @@ function napo_lesson_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
+    'download_block' => array(
+      'weight' => '9',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
   );
   $export['node|lesson|full'] = $ds_fieldsetting;
 
@@ -73,6 +78,19 @@ function napo_lesson_ds_field_settings_info() {
  */
 function napo_lesson_ds_custom_fields_info() {
   $export = array();
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'download_block';
+  $ds_field->label = 'Download block';
+  $ds_field->field_type = 3;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = 'lesson|*
+msds_activities|*';
+  $ds_field->properties = array();
+  $export['download_block'] = $ds_field;
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
@@ -312,7 +330,7 @@ function napo_lesson_ds_layout_settings_info() {
         8 => 'field_curriculum_links',
       ),
       'right' => array(
-        9 => 'field_file',
+        9 => 'download_block',
       ),
     ),
     'fields' => array(
@@ -325,7 +343,7 @@ function napo_lesson_ds_layout_settings_info() {
       'field_activities' => 'left',
       'field_assessment' => 'left',
       'field_curriculum_links' => 'left',
-      'field_file' => 'right',
+      'download_block' => 'right',
     ),
     'classes' => array(
       'layout_class' => array(

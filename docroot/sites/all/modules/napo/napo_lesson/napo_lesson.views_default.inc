@@ -666,6 +666,7 @@ return $arguments;';
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
   $handler->display->display_options['style_options']['row_class_special'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
   /* Header: Global: Result summary */
   $handler->display->display_options['header']['result']['id'] = 'result';
   $handler->display->display_options['header']['result']['table'] = 'views';
@@ -684,6 +685,11 @@ return $arguments;';
   $handler->display->display_options['relationships']['field_lesson_video_target_id']['field'] = 'field_lesson_video_target_id';
   $handler->display->display_options['relationships']['field_lesson_video_target_id']['label'] = 'lesson_video';
   $handler->display->display_options['relationships']['field_lesson_video_target_id']['required'] = TRUE;
+  /* Relationship: Field: Tags (field_tags) */
+  $handler->display->display_options['relationships']['field_tags_tid']['id'] = 'field_tags_tid';
+  $handler->display->display_options['relationships']['field_tags_tid']['table'] = 'field_data_field_tags';
+  $handler->display->display_options['relationships']['field_tags_tid']['field'] = 'field_tags_tid';
+  $handler->display->display_options['relationships']['field_tags_tid']['label'] = 'Tags';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
   $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
@@ -722,7 +728,7 @@ return $arguments;';
   $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => '',
+    'image_style' => 'lessons_grid_image',
     'image_link' => '',
   );
   /* Field: Field: Tags */
@@ -742,10 +748,18 @@ return $arguments;';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="lessons-item-content">
 <h3>[title_field]</h3>
 <p class="keyword-list">
-<span class="keyword-label"><label>Keyword:</label></span><span class="keyword-tag">[field_tags]</span>
+<span class="keyword-label"><label>Keyword:</label></span> <span class="keyword-tag">[field_tags]</span>
 </p>
 </div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Field: Taxonomy term: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'field_tags_tid';
+  $handler->display->display_options['fields']['name']['label'] = '';
+  $handler->display->display_options['fields']['name']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -783,8 +797,9 @@ return $arguments;';
     10 => 0,
   );
   $handler->display->display_options['filters']['combine']['fields'] = array(
+    'title_field' => 'title_field',
     'body' => 'body',
-    'field_tags' => 'field_tags',
+    'name' => 'name',
   );
 
   /* Display: Page */
@@ -801,10 +816,11 @@ return $arguments;';
     t('Desc'),
     t('@total'),
     t('lesson_video'),
+    t('Tags'),
     t('<div class="lessons-item-content">
 <h3>[title_field]</h3>
 <p class="keyword-list">
-<span class="keyword-label"><label>Keyword:</label></span><span class="keyword-tag">[field_tags]</span>
+<span class="keyword-label"><label>Keyword:</label></span> <span class="keyword-tag">[field_tags]</span>
 </p>
 </div>'),
     t('Search'),

@@ -21,6 +21,35 @@ function napo_common_menu() {
     'type' => MENU_CALLBACK,
     'weight' => 4,
   );
+
+
+  $items['node/%node/related_resources'] = array(
+    'title' => 'Related resources',
+    'page callback' => 'napo_common_related_resources_callack',
+    'page arguments' => array(1),
+    'access callback' => 'napo_common_download_video_access',
+    'access arguments' => array(1),
+    'type' => MENU_CALLBACK,
+    'weight' => 4,
+  );
+  $items['node/%node/guidance'] = array(
+    'title' => 'guidance',
+    'page callback' => 'napo_common_guidance_callack',
+    'page arguments' => array(1),
+    'access callback' => 'napo_common_download_video_access',
+    'access arguments' => array(1),
+    'type' => MENU_CALLBACK,
+    'weight' => 4,
+  );
+  $items['node/%node/download_all'] = array(
+    'title' => 'Download all files',
+    'page callback' => 'napo_common_download_all_callback',
+    'page arguments' => array(1),
+    'access callback' => 'napo_common_download_video_access',
+    'access arguments' => array(1),
+    'type' => MENU_CALLBACK,
+    'weight' => 4,
+  );
   return $items;
 }
 
@@ -653,6 +682,16 @@ function napo_common_field_formatter_settings_summary($field, $instance, $view_m
   return title_field_formatter_settings_summary($field, $instance, $view_mode);
 }
 
+
+function napo_common_related_resources_callack($node) {
+}
+
+function napo_common_guidance_callack($node) {
+}
+
+function napo_common_download_all_callback($node) {
+}
+
 /**
  * Implements hook_field_formatter_view().
  */
@@ -672,18 +711,6 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
       break;
 
     case 'lesson_download':
-      foreach ($items as $delta => $item) {
-        $items = [];
-        $items[] = '<a href="javascript:">'.t('Video ( MB)') . '</a>';
-        $items[] = '<a href="javascript:">'.t('Lesson ( MB)') . '</a>';
-        $items[] = '<a href="javascript:">'.t('Teacher guidance') . '</a>';
-        $items[] = '<a href="javascript:">'.t('Related resources ()') . '</a>';
-        $items[] = '<a href="javascript:">'.t('DOWNLOAD ALL') . '</a>';
-        $list = theme('item_list', array('items' => $items));
-        $element[$delta] = array(
-          '#markup' => '<div class="download--section--block"><h3>' . t('Download') . '</h3>' . $list . '</div>',
-        );
-      }
       return $element;
       break;
 
@@ -876,6 +903,7 @@ function napo_common_back_button(&$vars){
     case 'lesson':
       $vars['back_button'] = '<p class="btn-back">' . l(t('Back to Napo for teachers teachers'), '/using-napo/napo-for-teachers', []) . '</p>';
       break;
+
     case 'msds_activities':
       $vars['back_button'] = '<p class="btn-back">' . l(t('Back to lessons'), '/using-napo/napo-for-teachers', []) . '</p>';
       break;

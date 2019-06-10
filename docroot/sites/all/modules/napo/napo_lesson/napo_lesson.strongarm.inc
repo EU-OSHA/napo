@@ -413,16 +413,16 @@ download--section--block';
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '7',
+          'weight' => '15',
         ),
         'title' => array(
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '5',
+          'weight' => '13',
         ),
         'redirect' => array(
-          'weight' => '6',
+          'weight' => '14',
         ),
         'workbench_access' => array(
           'weight' => '4',
@@ -431,7 +431,7 @@ download--section--block';
           'weight' => '3',
         ),
         'xmlsitemap' => array(
-          'weight' => '8',
+          'weight' => '16',
         ),
       ),
       'display' => array(),

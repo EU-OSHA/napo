@@ -92,3 +92,11 @@ function napo_lesson_update_7005() {
 function napo_lesson_update_7006() {
   features_revert(array('napo_lesson' => array('views_view')));
 }
+
+/**
+ * NRV-17 Impv - Napo for teachers.
+ */
+function napo_lesson_update_7007() {
+  features_revert(array('napo_lesson' => array('views_view')));
+  features_revert(array('napo_msd' => array('views_view')));
+}

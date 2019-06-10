@@ -65,3 +65,11 @@ function napo_consortium_partner_update_7002() {
 function napo_consortium_partner_update_7003() {
   features_revert(array('napo_consortium_partner' => array('views_view')));
 }
+
+/**
+ * .
+ */
+function napo_consortium_partner_update_7004() {
+  features_revert(array('napo_consortium_partner' => array('views_view')));
+  features_revert(array('napo_consortium_partner' => array('fe_block_settings')));
+}
