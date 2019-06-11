@@ -236,3 +236,15 @@ jQuery(document).ready(function () {
     jQuery('#edit-search').attr('placeholder','Search...');
 });
 
+/** DOWNLOAD LESSON BLOCK **/
+jQuery(document).ready(function () {
+    var downloadList = jQuery('.node-type-lesson .download--section--block ul')
+    var numListItems = jQuery('.node-type-lesson .download--section--block ul li').length;
+    if( numListItems == 4 ){
+        downloadList.addClass('odd');
+    }
+    if( numListItems == 5 ){
+        downloadList.addClass('even');
+    }
+
+});
