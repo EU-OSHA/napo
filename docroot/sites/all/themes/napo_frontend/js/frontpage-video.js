@@ -246,5 +246,19 @@ jQuery(document).ready(function () {
     if( numListItems == 5 ){
         downloadList.addClass('even');
     }
+});
+
+
+/** DOWNLOAD activities and glossary **/
+jQuery(document).ready(function () {
+    var labelActivities = jQuery('.node-type-article .field-name-field-activity-list-file .field-label').text();
+    var labelActivitiesPrint = labelActivities.substr(0, labelActivities.length-2);
+
+    var labelGlossary = jQuery('.node-type-article .field-name-field-menu .field-label').text();
+    var labelGlossaryPrint = labelGlossary.substr(0, labelGlossary.length-2);
+
+    jQuery('.node-type-article .field-name-field-activity-list-file .field-items a').text(labelActivitiesPrint);
+    jQuery('.node-type-article .field-name-field-menu .field-items a').text(labelGlossaryPrint);
+
 
 });

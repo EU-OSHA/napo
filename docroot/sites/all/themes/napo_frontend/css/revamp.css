@@ -589,6 +589,68 @@ h1.page-header {
   width: 60%;
   float: right;
 }
+.node-type-article .content .field-name-field-activity-list-file {
+  clear: both;
+  float: left;
+  margin-right: 1rem;
+  background: url(/sites/all/themes/napo_frontend/images/background-blue.png?v=1) repeat-x;
+  color: #FFF;
+  width: 25rem;
+  padding: 1rem 2rem;
+}
+.node-type-article .content .field-name-field-activity-list-file .field-label {
+  display: none;
+}
+.node-type-article .content .field-name-field-activity-list-file .field-items {
+  float: none;
+}
+.node-type-article .content .field-name-field-activity-list-file .field-items .file-icon {
+  display: none;
+}
+.node-type-article .content .field-name-field-activity-list-file .field-items a {
+  color: transparent;
+  background: url(/sites/all/themes/napo_frontend/images/video-download-v2.png?v=1) no-repeat 100% 0px;
+  padding: 8px 0 0 0;
+  display: block;
+  width: 100%;
+  height: 4rem;
+  margin: 0;
+  color: #FFF;
+  font-weight: bold;
+}
+.node-type-article .content .field-name-field-menu,
+.node-type-article .content .field-name-field-glossary {
+  float: left;
+  margin-right: 1rem;
+  background: url(/sites/all/themes/napo_frontend/images/background-blue.png?v=1) repeat-x;
+  color: #FFF;
+  width: 25rem;
+  padding: 1rem 2rem;
+}
+.node-type-article .content .field-name-field-menu .field-label,
+.node-type-article .content .field-name-field-glossary .field-label {
+  display: none;
+}
+.node-type-article .content .field-name-field-menu .field-items,
+.node-type-article .content .field-name-field-glossary .field-items {
+  float: none;
+}
+.node-type-article .content .field-name-field-menu .field-items .file-icon,
+.node-type-article .content .field-name-field-glossary .field-items .file-icon {
+  display: none;
+}
+.node-type-article .content .field-name-field-menu .field-items a,
+.node-type-article .content .field-name-field-glossary .field-items a {
+  color: transparent;
+  background: url(/sites/all/themes/napo_frontend/images/video-download-v2.png?v=1) no-repeat 100% 0px;
+  padding: 8px 0 0 0;
+  display: block;
+  width: 100%;
+  height: 4rem;
+  margin: 0;
+  color: #FFF;
+  font-weight: bold;
+}
 .page-using-napo-napo-for-teachers h1.page-header,
 .page-using-napo-napo-workplaces h1.page-header {
   font-size: 4rem;
