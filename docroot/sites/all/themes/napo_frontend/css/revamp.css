@@ -555,6 +555,40 @@ h1.page-header {
   padding: 0.8rem 6rem 0 0;
   text-align: right;
 }
+.node-type-article .content {
+  position: relative;
+}
+.node-type-article .content .field-name-field-guidance-file {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.node-type-article .content .field-name-field-guidance-file .field-label {
+  display: none;
+}
+.node-type-article .content .field-name-field-guidance-file .field-items .file-icon {
+  display: none;
+}
+.node-type-article .content .field-name-field-guidance-file .field-items a {
+  color: transparent;
+  background: url(/sites/all/themes/napo_frontend/images/video-download-v2.png?v=1) no-repeat 10px 7px;
+  padding: 10px;
+  display: block;
+  width: 52px;
+  height: 50px;
+  margin-top: 4px;
+}
+.node-type-article .content .field-name-field-image {
+  width: 39%;
+  height: auto;
+  overflow: auto;
+  float: left;
+}
+.node-type-article .content .field-type-text-with-summary {
+  padding: 1em;
+  width: 60%;
+  float: right;
+}
 .page-using-napo-napo-for-teachers h1.page-header,
 .page-using-napo-napo-workplaces h1.page-header {
   font-size: 4rem;
