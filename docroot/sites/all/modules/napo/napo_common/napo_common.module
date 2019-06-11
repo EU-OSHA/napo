@@ -7,6 +7,13 @@
 include_once 'napo_common.features.inc';
 include_once 'napo_common.views.inc';
 
+function napo_common_download_zip_access($node) {
+  if (($node->type == 'msds_activities') || ($node->type =='lesson')) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
 /**
  * Implements hook_menu().
  */
@@ -21,13 +28,11 @@ function napo_common_menu() {
     'type' => MENU_CALLBACK,
     'weight' => 4,
   );
-
-
   $items['node/%node/related_resources'] = array(
     'title' => 'Related resources',
     'page callback' => 'napo_common_related_resources_callack',
     'page arguments' => array(1),
-    'access callback' => 'napo_common_download_video_access',
+    'access callback' => 'napo_common_download_zip_access',
     'access arguments' => array(1),
     'type' => MENU_CALLBACK,
     'weight' => 4,
@@ -36,7 +41,7 @@ function napo_common_menu() {
     'title' => 'guidance',
     'page callback' => 'napo_common_guidance_callack',
     'page arguments' => array(1),
-    'access callback' => 'napo_common_download_video_access',
+    'access callback' => 'napo_common_download_zip_access',
     'access arguments' => array(1),
     'type' => MENU_CALLBACK,
     'weight' => 4,
@@ -45,11 +50,12 @@ function napo_common_menu() {
     'title' => 'Download all files',
     'page callback' => 'napo_common_download_all_callback',
     'page arguments' => array(1),
-    'access callback' => 'napo_common_download_video_access',
+    'access callback' => 'napo_common_download_zip_access',
     'access arguments' => array(1),
     'type' => MENU_CALLBACK,
     'weight' => 4,
   );
+
   return $items;
 }
 
@@ -682,14 +688,167 @@ function napo_common_field_formatter_settings_summary($field, $instance, $view_m
   return title_field_formatter_settings_summary($field, $instance, $view_mode);
 }
 
+function _napo_common_resources_required_files($node) {
+  global $language;
+  $files = [];
+  if ($node->field_resources_required) {
+    foreach($node->field_resources_required[LANGUAGE_NONE] as $row) {
+      $resource = node_load($row['target_id']);
+      $wrapper = entity_metadata_wrapper('node', $resource);
+      $file = $wrapper->language($language->language)->field_file->value();
+      if ($file) {
+        $files[] = $file;
+      }
+    }
+  }
+  return $files;
+}
 
 function napo_common_related_resources_callack($node) {
+  $files = _napo_common_resources_required_files($node);
+  $archive_drupal_path = napo_common_archive_files($files, 'resources_required_' . rand(10,9999) . '.zip');
+  if ($archive_drupal_path) {
+    napo_common_download_archive($archive_drupal_path);
+  }
+  else {
+    drupal_set_message(t("There was an error downloading the related resources!"), 'error');
+    drupal_not_found();
+  }
+}
+
+function _napo_common_get_guidance_files($type) {
+  global $language;
+  if ($type == 'lesson') {
+    $nid = variable_get('facilitator_guidance_nid', 341);
+    $node = node_load($nid);
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $files[] = $wrapper->language($language->language)->field_guidance_file->value();
+  }
+  else {
+    $nid = variable_get('facilitator_guidance_nid', 340);
+    $node = node_load($nid);
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $files[] = $wrapper->language($language->language)->field_guidance_file->value();
+    $files[] = $wrapper->language($language->language)->field_activity_list_file->value();
+    $files[] = $wrapper->language($language->language)->field_menu->value();
+  }
+  return $files;
 }
 
 function napo_common_guidance_callack($node) {
+  $files = _napo_common_get_guidance_files($node->type);
+  $archive_drupal_path = napo_common_archive_files($files, 'guidance_' . rand(10,9999) . '.zip');
+  if ($archive_drupal_path) {
+    napo_common_download_archive($archive_drupal_path);
+  }
+  else {
+    drupal_set_message(t("There was an error downloading the files!"), 'error');
+    drupal_not_found();
+  }
+}
+
+function _napo_common_download_all_files($node) {
+  global $language;
+  $files = [];
+
+  $wrapper = entity_metadata_wrapper('node', $node);
+  if ($node->type == 'lesson') {
+    $lesson_video_nid = $node->field_lesson_video[LANGUAGE_NONE][0]['target_id'];
+    $file = $wrapper->language($language->language)->field_file->value();
+  }
+  else {
+    $lesson_video_nid = $node->field_msds_video[LANGUAGE_NONE][0]['target_id'];
+    $file = $wrapper->language($language->language)->field_conversation_started->value();
+  }
+  if ($file) {
+    $files[] = $file;
+  }
+  if ($lesson_video_nid) {
+    $lesson_video = node_load($lesson_video_nid);
+    $wrapper = entity_metadata_wrapper('node', $lesson_video);
+    $files[] = $wrapper->language($language->language)->field_video->value()[0];
+  }
+  $resources = _napo_common_resources_required_files($node);
+  if ($resources) {
+    $files = array_merge($files, $resources);
+  }
+  $guidance_files = _napo_common_get_guidance_files($node->type);
+  if ($guidance_files) {
+    $files = array_merge($files, $guidance_files);
+  }
+  return $files;
+}
+
+function napo_common_archive_files($files, $basename, $drupal_dir_path = NAPO_FILM_DOWN_CENTER_PATH) {
+  if (!empty($files)) {
+    $dir_path = drupal_realpath($drupal_dir_path);
+    // Return if dir don't exists.
+    if (!file_prepare_directory($drupal_dir_path, FILE_CREATE_DIRECTORY)) {
+      watchdog('napo_film', 'The directory !dir could not be accessed!', array('!dir' => $drupal_dir_path), WATCHDOG_ERROR);
+      return NULL;
+    }
+    // Check if it's enough disks pace to create the archive.
+    $files_size = 0;
+    foreach ($files as $file) {
+      $files_size += $file['filesize'];
+      if (disk_free_space($dir_path) < $files_size) {
+        watchdog('napo_film', 'There is not enough space to create a zip with files of !size MB!',
+          array('!size' => $files_size / pow(1024, 2)), WATCHDOG_ERROR);
+        return NULL;
+      }
+    }
+
+    $pclzip_library = libraries_load('pclzip');
+    libraries_load_files($pclzip_library);
+    // Open the archive.
+    $archive_path = file_create_filename($basename, $dir_path);
+    $archive = new PclZip($archive_path);
+    $files_paths = array();
+    foreach ($files as $file) {
+      $files_paths[] = drupal_realpath($file['uri']);
+    }
+    $result = $archive->add($files_paths, PCLZIP_OPT_REMOVE_ALL_PATH, PCLZIP_OPT_TEMP_FILE_THRESHOLD, 10);
+    if (empty($result)) {
+      return NULL;
+    }
+    // Return drupal scheme file path.
+    $archive_name = drupal_basename($archive_path);
+    $archive_drupal_path = $drupal_dir_path . '/' . $archive_name;
+    return $archive_drupal_path;
+  }
+  return NULL;
+}
+
+function napo_common_download_archive($archive_drupal_path) {
+    if (!empty($archive_drupal_path)) {
+      $file = [];
+      $file['uri'] = $archive_drupal_path;
+      $file['filesize'] = filesize($archive_drupal_path);
+      $file['filemime'] = 'application/zip';
+      $headers = array(
+        'Content-Type'              => $file['filemime'],
+        'Content-Disposition'       => 'attachment; filename="' . drupal_basename($file['uri']) . '"',
+        'Content-Length'            => $file['filesize'],
+        'Content-Transfer-Encoding' => 'binary',
+        'Pragma'                    => 'no-cache',
+        'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
+        'Expires'                   => '0',
+        'Accept-Ranges'             => 'bytes',
+      );
+      file_transfer($file['uri'], $headers);
+    }
 }
 
 function napo_common_download_all_callback($node) {
+  $files = _napo_common_download_all_files($node);
+  $archive_drupal_path = napo_common_archive_files($files, 'download_' . rand(10,9999) . '.zip');
+  if ($archive_drupal_path) {
+    napo_common_download_archive($archive_drupal_path);
+  }
+  else {
+    drupal_set_message(t("There was an error downloading the files!"), 'error');
+    drupal_not_found();
+  }
 }
 
 /**

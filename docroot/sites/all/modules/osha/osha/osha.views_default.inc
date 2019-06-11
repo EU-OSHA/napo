@@ -238,8 +238,11 @@ function osha_views_default_views() {
     'faq' => 'faq',
     'home_video' => 'home_video',
     'lesson' => 'lesson',
+    'lesson_resources' => 'lesson_resources',
     'lesson_toolkit' => 'lesson_toolkit',
     'lesson_video' => 'lesson_video',
+    'msds_activities' => 'msds_activities',
+    'msds_resources' => 'msds_resources',
     'napo_album' => 'napo_album',
     'napo_friend' => 'napo_friend',
     'napo_image' => 'napo_image',
@@ -261,6 +264,8 @@ function osha_views_default_views() {
     6 => 0,
     7 => 0,
     8 => 0,
+    9 => 0,
+    10 => 0,
   );
   $handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
   /* Filter criterion: Content: Video Type (field_video_type) */
