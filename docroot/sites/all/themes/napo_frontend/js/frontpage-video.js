@@ -236,6 +236,19 @@ jQuery(document).ready(function () {
     jQuery('#edit-search').attr('placeholder','Search...');
 });
 
+
+/** node type article **/
+jQuery(document).ready(function () {
+    var imageWrapper = jQuery('.node-type-article .content .field-name-field-image');
+    if(imageWrapper.length == 0){
+        jQuery('.node-type-article .content .field-type-text-with-summary').addClass('without-img');
+    }
+
+});
+
+
+
+
 /** DOWNLOAD LESSON BLOCK **/
 jQuery(document).ready(function () {
     var downloadList = jQuery('.node-type-lesson .download--section--block ul')

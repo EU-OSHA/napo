@@ -579,15 +579,19 @@ h1.page-header {
   margin-top: 4px;
 }
 .node-type-article .content .field-name-field-image {
-  width: 39%;
-  height: auto;
-  overflow: auto;
-  float: left;
+  /* width: 39%;
+		  height: auto;
+		  overflow: auto;
+		  float: left;*/
 }
 .node-type-article .content .field-type-text-with-summary {
   padding: 1em;
-  width: 60%;
-  float: right;
+  /*width: 60%;
+			float: right;*/
+}
+.node-type-article .content .field-type-text-with-summary.without-img {
+  /*width: 100%;
+				float: none;*/
 }
 .node-type-article .content .field-name-field-activity-list-file {
   clear: both;
