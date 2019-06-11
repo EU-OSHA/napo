@@ -59,9 +59,24 @@ a:hover {
   width: 100%;
   height: auto;
 }
+.page-node-253 .field-name-body.field-type-text-with-summary p {
+  font-size: 1.8rem;
+}
+.field-content.faq-answer {
+  font-size: 1.6rem;
+}
+.field-content.faq-answer p {
+  padding-left: 2.2rem;
+}
+.node .content .field-name-body.field-type-text-with-summary {
+  padding: 1.6rem 0;
+}
 .header_top_bar a.ext span.ext,
 h2 a.ext span.ext {
   display: none;
+}
+h3 {
+  font-size: 2.4rem;
 }
 .header_top_bar .region-header-top-bar > div#block-napo-common-napo-print-friendly .contextual-links-wrapper a {
   background: transparent url(/modules/contextual/images/gear-select.png) no-repeat 2px 0 !important;
@@ -192,6 +207,9 @@ h2 a.ext span.ext {
   top: -100%;
   -webkit-transition: top ease-out 0.5s;
   transition: top ease-out 0.5s;
+}
+.slider--video--section .slider--video--block .slider--video--items .multicarousel--block .multicarousel--block--inner .item > .slider-item .lead:hover {
+  cursor: pointer;
 }
 .slider--video--section .slider--video--block .slider--video--items .multicarousel--block .multicarousel--block--inner .item > .slider-item .lead > div {
   width: 80%;
@@ -590,6 +608,7 @@ h1.page-header {
 			float: right;*/
 }
 .node-type-article .content .field-type-text-with-summary.without-img {
+  padding: 0em;
   /*width: 100%;
 				float: none;*/
 }

@@ -246,7 +246,13 @@ jQuery(document).ready(function () {
 
 });
 
-
+/** all block is link for napo's film slider in the home **/
+jQuery(document).ready(function () {    
+    jQuery('.slider--video--block .slider--video--items .slider-item .lead').click(function () {
+        var sliderItemLink = jQuery('a',this).attr('href');
+        window.location.href = sliderItemLink;
+    });
+});
 
 
 /** DOWNLOAD LESSON BLOCK **/
