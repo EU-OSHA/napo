@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Napo MSD feature.
+ */
+
+include_once 'napo_msd.features.inc';

@@ -78,3 +78,32 @@ function napo_lesson_update_7003() {
 function napo_lesson_update_7004() {
   features_revert_module('napo_lesson');
 }
+
+/**
+ * NRV-16 Impv - Napo lessons.
+ */
+function napo_lesson_update_7005() {
+  features_revert_module('napo_lesson');
+}
+
+/**
+ * NRV-17 Impv - Napo for teachers.
+ */
+function napo_lesson_update_7006() {
+  features_revert(array('napo_lesson' => array('views_view')));
+}
+
+/**
+ * NRV-17 Impv - Napo for teachers.
+ */
+function napo_lesson_update_7007() {
+  features_revert(array('napo_lesson' => array('views_view')));
+  features_revert(array('napo_msd' => array('views_view')));
+}
+
+/**
+ * NRV-45 Adaptation Resource library page.
+ */
+function napo_lesson_update_7008() {
+  features_revert_module('napo_lesson');
+}

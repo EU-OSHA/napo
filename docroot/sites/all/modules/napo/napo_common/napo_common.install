@@ -58,3 +58,11 @@ function napo_common_update_7004() {
   variable_set('piwik_translation_set', 1);
   variable_set('piwik_query_parameters', 1);
 }
+
+/**
+ * NRV-19 Napo MSDs Activities.
+ */
+function napo_common_update_7005() {
+  module_enable(['napo_lesson_resources', 'napo_msd']);
+  features_revert_module('napo_film');
+}

@@ -129,3 +129,10 @@ function osha_update_7015() {
   module_enable(['views_contextual_filter_query']);
   features_revert_module('napo_search');
 }
+
+/**
+ * .
+ */
+function osha_update_7016() {
+  features_revert(array('osha' => array('field_base', 'field_instance')));
+}

@@ -180,12 +180,14 @@ jQuery(document).ready(function () {
                 });
 
                 jQuery('form.content-search .btn-primary[type=submit]').click(function () {
+                    console.log(jQuery('#edit-search-block-form--2').val().length);
                     if( jQuery('#edit-search-block-form--2').val().length > 0) {
-                        jQuery('#search-block-form').submit();
+                       // jQuery('#search-block-form').submit();
                         jQuery('#block-search-form').removeClass('in');
                         jQuery('#edit-search-block-form--2').val('');
                     } else {
                         jQuery('#block-search-form').removeClass('in');
+                        return false;
                     }
                 });
             }
@@ -225,5 +227,56 @@ jQuery(document).ready(function () {
         }
 
     }
+
+});
+
+
+jQuery(document).ready(function () {
+    jQuery('#edit-search').attr('placeholder','Search...');
+});
+
+
+/** node type article **/
+jQuery(document).ready(function () {
+    var imageWrapper = jQuery('.node-type-article .content .field-name-field-image');
+    if(imageWrapper.length == 0){
+        jQuery('.node-type-article .content .field-type-text-with-summary').addClass('without-img');
+    }
+
+});
+
+/** all block is link for napo's film slider in the home **/
+jQuery(document).ready(function () {    
+    jQuery('.slider--video--block .slider--video--items .slider-item .lead').click(function () {
+        var sliderItemLink = jQuery('a',this).attr('href');
+        window.location.href = sliderItemLink;
+    });
+});
+
+
+/** DOWNLOAD LESSON BLOCK **/
+jQuery(document).ready(function () {
+    var downloadList = jQuery('.node-type-lesson .download--section--block ul')
+    var numListItems = jQuery('.node-type-lesson .download--section--block ul li').length;
+    if( numListItems == 4 ){
+        downloadList.addClass('odd');
+    }
+    if( numListItems == 5 ){
+        downloadList.addClass('even');
+    }
+});
+
+
+/** DOWNLOAD activities and glossary **/
+jQuery(document).ready(function () {
+    var labelActivities = jQuery('.node-type-article .field-name-field-activity-list-file .field-label').text();
+    var labelActivitiesPrint = labelActivities.substr(0, labelActivities.length-2);
+
+    var labelGlossary = jQuery('.node-type-article .field-name-field-menu .field-label').text();
+    var labelGlossaryPrint = labelGlossary.substr(0, labelGlossary.length-2);
+
+    jQuery('.node-type-article .field-name-field-activity-list-file .field-items a').text(labelActivitiesPrint);
+    jQuery('.node-type-article .field-name-field-menu .field-items a').text(labelGlossaryPrint);
+
 
 });

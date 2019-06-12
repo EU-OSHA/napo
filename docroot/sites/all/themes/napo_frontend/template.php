@@ -102,6 +102,15 @@ function napo_frontend_text_resize_block() {
 }
 
 /**
+ * Implements hook_preprocess_node().
+ */
+function napo_frontend_preprocess_node(&$vars) {
+  if (variable_get('workplaces_list_entity_nid', 334) == $vars['nid']) {
+    $vars['theme_hook_suggestions'][] = 'node__list_entity';
+  }
+}
+
+/**
  * Implements hook_preprocess_page().
  */
 function napo_frontend_preprocess_page(&$vars) {
