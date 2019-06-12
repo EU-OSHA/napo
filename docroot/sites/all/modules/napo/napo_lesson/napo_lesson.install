@@ -100,3 +100,10 @@ function napo_lesson_update_7007() {
   features_revert(array('napo_lesson' => array('views_view')));
   features_revert(array('napo_msd' => array('views_view')));
 }
+
+/**
+ * NRV-45 Adaptation Resource library page.
+ */
+function napo_lesson_update_7008() {
+  features_revert_module('napo_lesson');
+}
