@@ -792,7 +792,7 @@ h1.page-header {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item,
 .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item {
@@ -1579,6 +1579,7 @@ h1.page-header {
   .node-type-lesson .lessons--section--block .lessons--items--grid,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid {
     flex-direction: row;
+    justify-content: space-between;
   }
   .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item,
   .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item,
