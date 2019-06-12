@@ -167,6 +167,24 @@ function napo_lesson_theme() {
     ),
   );
 }
+function napo_lesson_get_resources_required($node) {
+  global $language;
+  $items = [];
+  foreach($node->field_resources_required[LANGUAGE_NONE] as $row) {
+    $resource = node_load($row['target_id']);
+    $wrapper = entity_metadata_wrapper('node', $resource);
+    $items[] = $wrapper->language($language->language)->title_field->value();
+  }
+  $text = variable_get('download_provided_resources_text', 'To download the provided resources, go to:');
+  $url = variable_get('napo_resources_url', 'napo-for-teachers/Resources');
+  $list = theme('item_list', array('items' => $items));
+  $url = url($url, ['absolute' => TRUE]);
+  $output = $list . $text . ' ' . l($url, $url);
+
+  return '<div class="acordion--block--item">'.
+  '<h3 class="acordion-content-title active">' . t('Resources required') . '</h3>'.
+  '<div class="acordion-content-text" style="display: none;">' . $output . '</div></div>';
+}
 
 function napo_lesson_get_download_block($node) {
   global $language;
@@ -259,6 +277,9 @@ function napo_lesson_preprocess_node(&$vars) {
         ));
       }
 
+      if (in_array('resources_required', $vars['preprocess_fields'])) {
+        $vars['resources_required'] = napo_lesson_get_resources_required($node);
+      }
       if (in_array('download_block', $vars['preprocess_fields'])) {
         $vars['download_block'] = napo_lesson_get_download_block($node);
       }

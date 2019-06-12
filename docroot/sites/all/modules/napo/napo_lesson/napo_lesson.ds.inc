@@ -63,7 +63,12 @@ function napo_lesson_ds_field_settings_info() {
       'format' => 'default',
     ),
     'download_block' => array(
-      'weight' => '9',
+      'weight' => '10',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'resources_required' => array(
+      'weight' => '8',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -115,6 +120,18 @@ msds_activities|*';
   $ds_field->ui_limit = 'lesson|*';
   $ds_field->properties = array();
   $export['lessons_note'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'resources_required';
+  $ds_field->label = 'Resources required';
+  $ds_field->field_type = 3;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = '';
+  $ds_field->properties = array();
+  $export['resources_required'] = $ds_field;
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
@@ -259,7 +276,8 @@ function napo_lesson_ds_layout_settings_info() {
         13 => 'field_activities',
         14 => 'field_assessment',
         15 => 'field_curriculum_links',
-        16 => 'field_lesson_intro_text',
+        16 => 'field_resources_required',
+        17 => 'field_lesson_intro_text',
       ),
     ),
     'fields' => array(
@@ -279,6 +297,7 @@ function napo_lesson_ds_layout_settings_info() {
       'field_activities' => 'left',
       'field_assessment' => 'left',
       'field_curriculum_links' => 'left',
+      'field_resources_required' => 'left',
       'field_lesson_intro_text' => 'left',
     ),
     'classes' => array(
@@ -327,10 +346,11 @@ function napo_lesson_ds_layout_settings_info() {
         5 => 'field_starter',
         6 => 'field_activities',
         7 => 'field_assessment',
-        8 => 'field_curriculum_links',
+        8 => 'resources_required',
+        9 => 'field_curriculum_links',
       ),
       'right' => array(
-        9 => 'download_block',
+        10 => 'download_block',
       ),
     ),
     'fields' => array(
@@ -342,6 +362,7 @@ function napo_lesson_ds_layout_settings_info() {
       'field_starter' => 'left',
       'field_activities' => 'left',
       'field_assessment' => 'left',
+      'resources_required' => 'left',
       'field_curriculum_links' => 'left',
       'download_block' => 'right',
     ),

@@ -28,7 +28,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 23,
+        'weight' => 24,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -232,7 +232,7 @@ function napo_lesson_field_default_field_instances() {
         'module' => 'napo_common',
         'settings' => array(),
         'type' => 'napo_acordion',
-        'weight' => 8,
+        'weight' => 9,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -297,7 +297,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 21,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -521,7 +521,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 22,
+        'weight' => 23,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -643,16 +643,20 @@ function napo_lesson_field_default_field_instances() {
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'bypass_access' => FALSE,
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
         'weight' => 17,
       ),
       'full' => array(
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 22,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -774,7 +778,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 24,
+        'weight' => 25,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -1269,6 +1273,64 @@ function napo_lesson_field_default_field_instances() {
       ),
       'type' => 'media_generic',
       'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'node-lesson_video-field_main_topic_category'.
+  $field_instances['node-lesson_video-field_main_topic_category'] = array(
+    'bundle' => 'lesson_video',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'i18n_taxonomy',
+        'settings' => array(),
+        'type' => 'i18n_taxonomy_term_reference_link',
+        'weight' => 6,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_main_topic_category',
+    'label' => 'Main category',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 6,
     ),
   );
 
@@ -1860,6 +1922,7 @@ function napo_lesson_field_default_field_instances() {
   t('Lesson Toolkit');
   t('Lesson Video');
   t('Links to subject/curriculum');
+  t('Main category');
   t('Name');
   t('Poster image (784x675)');
   t('Resources required');
