@@ -1281,7 +1281,7 @@ h1.page-header {
   .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .acordion--items--block,
   .node-type-lesson .detail--section--block .detail--text--block .acordion--items--block,
   .node-type-msds-activities .detail--section--block .detail--text--block .acordion--items--block {
-    flex: 100%;
+    width: 100%;
     padding: 0;
   }
   .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item,
@@ -1356,7 +1356,7 @@ h1.page-header {
   .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item,
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item {
-    flex: 46%;
+    width: 46%;
     overflow: hidden;
     height: 30rem;
   }
