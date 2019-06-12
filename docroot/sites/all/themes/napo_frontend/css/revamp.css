@@ -405,6 +405,9 @@ h3 {
 .story--block--section .story--block .story--item img {
   width: 100%;
 }
+.view-id-resource_library {
+  padding: 0 3% 2rem;
+}
 .breadcrumb {
   font-size: 1.2rem;
   padding: 1.5rem 3%;
