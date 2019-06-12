@@ -797,17 +797,17 @@ h1.page-header {
 .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item,
 .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item {
   border: 2px solid #1f3695;
-  width: 47%;
+  width: 30%;
   margin: 1.5rem;
   border-radius: 0 0 2rem 2rem;
   overflow: hidden;
-  height: 35rem;
+  min-height: 28rem;
   position: relative;
 }
 .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a,
 .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item a {
   display: block;
-  height: 70%;
+  height: 60%;
 }
 .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a img,
 .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item a img {
@@ -838,7 +838,7 @@ h1.page-header {
   flex-direction: column;
   background: #1f3695 url(../images/background-items.png) top left repeat-x;
   width: 100%;
-  min-height: 30%;
+  min-height: 40%;
   text-align: center;
   padding: 2rem 2rem 0;
 }
@@ -1281,7 +1281,7 @@ h1.page-header {
   .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .acordion--items--block,
   .node-type-lesson .detail--section--block .detail--text--block .acordion--items--block,
   .node-type-msds-activities .detail--section--block .detail--text--block .acordion--items--block {
-    flex: 100%;
+    width: 100%;
     padding: 0;
   }
   .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item,
@@ -1356,7 +1356,7 @@ h1.page-header {
   .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item,
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item {
-    flex: 46%;
+    width: 46%;
     overflow: hidden;
     height: 30rem;
   }
