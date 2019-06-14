@@ -279,7 +279,7 @@ function napo_msd_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Napo for teachers';
+  $handler->display->display_options['title'] = 'Napo in the workplace';
   $handler->display->display_options['css_class'] = 'lessons--items--grid';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -306,9 +306,15 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['footer']['entity']['id'] = 'entity';
   $handler->display->display_options['footer']['entity']['table'] = 'entity__global';
   $handler->display->display_options['footer']['entity']['field'] = 'entity';
-  $handler->display->display_options['footer']['entity']['entity_id'] = '334';
+  $handler->display->display_options['footer']['entity']['entity_id'] = '430';
   $handler->display->display_options['footer']['entity']['view_mode'] = 'teaser';
   $handler->display->display_options['footer']['entity']['bypass_access'] = 0;
+  /* No results behavior: Global: Unfiltered text */
+  $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
+  $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
+  $handler->display->display_options['empty']['area_text_custom']['field'] = 'area_text_custom';
+  $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area_text_custom']['content'] = 'No results';
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_msds_video_target_id']['id'] = 'field_msds_video_target_id';
   $handler->display->display_options['relationships']['field_msds_video_target_id']['table'] = 'field_data_field_msds_video';
@@ -434,10 +440,29 @@ function napo_msd_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '6';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['defaults']['footer'] = FALSE;
+  /* Footer: Entity: Rendered entity */
+  $handler->display->display_options['footer']['entity']['id'] = 'entity';
+  $handler->display->display_options['footer']['entity']['table'] = 'entity__global';
+  $handler->display->display_options['footer']['entity']['field'] = 'entity';
+  $handler->display->display_options['footer']['entity']['entity_id'] = '430';
+  $handler->display->display_options['footer']['entity']['view_mode'] = 'teaser';
+  $handler->display->display_options['footer']['entity']['bypass_access'] = 0;
   $handler->display->display_options['path'] = 'using-napo/napo-workplaces';
   $translatables['napo_workplaces'] = array(
     t('Master'),
-    t('Napo for teachers'),
+    t('Napo in the workplace'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -445,6 +470,7 @@ function napo_msd_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('@total'),
+    t('No results'),
     t('MSDs video'),
     t('Tags'),
     t('<div class="lessons-item-content">
@@ -455,6 +481,13 @@ function napo_msd_views_default_views() {
 </div>'),
     t('Search'),
     t('Page'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
   );
   $export['napo_workplaces'] = $view;
 
