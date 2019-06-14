@@ -66,3 +66,11 @@ function napo_common_update_7005() {
   module_enable(['napo_lesson_resources', 'napo_msd']);
   features_revert_module('napo_film');
 }
+
+/**
+ * NRV-60 MSDs Activities - Conversation started is missing (in some of them).
+ */
+function napo_common_update_7006() {
+  features_revert(array('napo_msd' => array('views_view')));
+  features_revert(array('napo_msd' => array('fe_block_settings')));
+}
