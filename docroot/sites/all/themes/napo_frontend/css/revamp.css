@@ -1546,7 +1546,8 @@ h1.page-header {
   .page-using-napo-napo-workplaces .page--banner--block .field-name-field-image img,
   .node-type-lesson .page--banner--block .field-name-field-image img,
   .node-type-msds-activities .page--banner--block .field-name-field-image img {
-    width: 100%;
+    width: auto;
+    margin: auto;
   }
   .page-using-napo-napo-for-teachers .page--banner--block .field-name-body,
   .page-using-napo-napo-workplaces .page--banner--block .field-name-body,
@@ -2135,6 +2136,38 @@ h1.page-header {
   }
   .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-text .ratings-list li .definition {
     margin: 0 0 0 4rem;
+  }
+  .page-using-napo-napo-for-teachers .lessons--section--block,
+  .page-using-napo-napo-workplaces .lessons--section--block,
+  .node-type-lesson .lessons--section--block,
+  .node-type-msds-activities .lessons--section--block {
+    flex-direction: column;
+    margin: 0;
+  }
+  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid,
+  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid,
+  .node-type-lesson .lessons--section--block .lessons--items--grid,
+  .node-type-msds-activities .lessons--section--block .lessons--items--grid {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item,
+  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item,
+  .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item,
+  .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item {
+    min-height: 26rem;
+  }
+  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a,
+  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item a,
+  .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item a,
+  .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item a {
+    height: auto;
+  }
+  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
+  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
+  .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
+  .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content {
+    min-height: 60%;
   }
 }
 @media only screen and (max-width: 375px) {

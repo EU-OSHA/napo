@@ -1577,7 +1577,8 @@ h1.page-header{
 			.field-name-field-image{
 				margin-top: 0;
 				img{
-					width: 100%;
+					width: auto;
+					margin: auto;
 				}				
 			}
 			.field-name-body{
@@ -2201,6 +2202,28 @@ h1.page-header{
 		  }
 		}
 	}
+
+	.page-using-napo-napo-for-teachers, .page-using-napo-napo-workplaces, .node-type-lesson, .node-type-msds-activities{
+		.lessons--section--block{
+			flex-direction: column;
+		  margin: 0;
+		  .lessons--items--grid{
+		  	flex-direction: row;
+	  	  justify-content: space-between;
+		  	.lessons-item{
+		  		 min-height: 26rem;
+		  		a{
+		  			height: auto;
+		  		}
+					.lessons-item-content{
+						min-height:60%; 
+					}
+		  	}
+		  }
+		}
+	}
+
+
 }
 
 
