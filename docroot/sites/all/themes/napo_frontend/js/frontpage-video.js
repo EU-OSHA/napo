@@ -280,3 +280,17 @@ jQuery(document).ready(function () {
 
 
 });
+
+
+/** video home message **/
+jQuery(document).ready(function () {
+    var homeVideoText = jQuery('.homepage-video-body').text().length;
+    console.log( homeVideoText );
+    if( homeVideoText > 350 || homeVideoText <= 500 ){
+        jQuery('.slider .frontpage-video-title').css('max-width','38rem');
+    } 
+    if( homeVideoText > 500 ){
+        jQuery('.slider .frontpage-video-title').css({'max-width':'42rem',top:'10%',left:'8rem'});
+    }
+
+});
