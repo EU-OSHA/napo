@@ -71,6 +71,9 @@ a:hover {
 .node .content .field-name-body.field-type-text-with-summary {
   padding: 1.6rem 0;
 }
+.views-exposed-form .views-exposed-widget .form-submit {
+  margin-top: 29px;
+}
 .header_top_bar a.ext span.ext,
 h2 a.ext span.ext {
   display: none;
@@ -792,8 +795,13 @@ h1.page-header {
 }
 .page-using-napo-napo-for-teachers .lessons--section--block .view-empty,
 .page-using-napo-napo-workplaces .lessons--section--block .view-empty {
+  background: transparent;
+  padding: 12px 12px 12px 12px;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  font-size: 13px;
+  border-bottom: 5px solid #1f3695;
   width: 100%;
-  text-align: center;
 }
 .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid,
 .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid {
