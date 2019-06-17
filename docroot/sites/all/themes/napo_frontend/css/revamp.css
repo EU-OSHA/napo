@@ -2155,7 +2155,7 @@ h1.page-header {
   .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item,
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item {
-    min-height: 26rem;
+    min-height: auto;
   }
   .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a,
   .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item a,
