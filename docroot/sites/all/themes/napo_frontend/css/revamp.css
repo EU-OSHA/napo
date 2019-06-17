@@ -1512,6 +1512,7 @@ h1.page-header {
   .node-type-msds-activities .page--banner--block h1 {
     padding: 0;
     margin: 1rem 1.5rem;
+    word-break: break-word;
   }
   .page-using-napo-napo-for-teachers .page--banner--block .btn-back,
   .page-using-napo-napo-workplaces .page--banner--block .btn-back,
