@@ -78,6 +78,16 @@ a:hover {
 .view-display-id-page {
   padding: 0 3rem 2rem;
 }
+.page-napos-films .region-content {
+  padding: 0 3%;
+}
+.napo-share-widget ul li:nth-child(3) {
+  background: url(../images/link.png) no-repeat;
+  text-indent: -99999px;
+}
+.napo-share-widget ul li:nth-child(3):hover {
+  background: url(../images/link-hover.png) no-repeat;
+}
 .header_top_bar a.ext span.ext,
 h2 a.ext span.ext {
   display: none;
@@ -1431,6 +1441,21 @@ h1.page-header {
     margin: auto;
   }
 }
+@media only screen and (max-width: 992px) {
+  #block-content-cart-content-cart-summary a {
+    background: none;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 900px) {
+  .header_top_bar .region-header-top-bar > div,
+  .header_top_bar .region-header-top-bar > div a,
+  .header_top_bar .region-header-top-bar > div label {
+    font-size: 1.35rem;
+  }
+  .header_top_bar .region-header-top-bar > div:after {
+    padding: 0 0.5rem;
+  }
+}
 @media only screen and (min-width: 768px) {
   .sticky-menu {
     padding: 1rem 0 0 !important;
@@ -1458,6 +1483,12 @@ h1.page-header {
 @media only screen and (max-width: 767px) {
   .node-type-lesson .video-js {
     height: 521px !important;
+  }
+  .page-napos-films .region-content {
+    padding: 0 3%;
+  }
+  .node.node-napo-video .napo-share-widget {
+    margin-top: 0;
   }
   .node-type-article .content {
     position: relative;
@@ -1532,7 +1563,8 @@ h1.page-header {
   .page-using-napo-napo-workplaces .page--banner--block .field-name-field-image img,
   .node-type-lesson .page--banner--block .field-name-field-image img,
   .node-type-msds-activities .page--banner--block .field-name-field-image img {
-    width: 100%;
+    width: auto;
+    margin: auto;
   }
   .page-using-napo-napo-for-teachers .page--banner--block .field-name-body,
   .page-using-napo-napo-workplaces .page--banner--block .field-name-body,
@@ -2121,6 +2153,38 @@ h1.page-header {
   }
   .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-text .ratings-list li .definition {
     margin: 0 0 0 4rem;
+  }
+  .page-using-napo-napo-for-teachers .lessons--section--block,
+  .page-using-napo-napo-workplaces .lessons--section--block,
+  .node-type-lesson .lessons--section--block,
+  .node-type-msds-activities .lessons--section--block {
+    flex-direction: column;
+    margin: 0;
+  }
+  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid,
+  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid,
+  .node-type-lesson .lessons--section--block .lessons--items--grid,
+  .node-type-msds-activities .lessons--section--block .lessons--items--grid {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item,
+  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item,
+  .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item,
+  .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item {
+    min-height: auto;
+  }
+  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a,
+  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item a,
+  .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item a,
+  .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item a {
+    height: auto;
+  }
+  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
+  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
+  .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
+  .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content {
+    min-height: 60%;
   }
 }
 @media only screen and (max-width: 375px) {
