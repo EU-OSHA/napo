@@ -64,6 +64,7 @@ a:hover {
 }
 .field-content.faq-answer {
   font-size: 1.6rem;
+  color: #1f3695;
 }
 .field-content.faq-answer p {
   padding-left: 2.2rem;
@@ -425,6 +426,14 @@ h3 {
   border-bottom: 0px;
   color: #666;
   text-decoration: none;
+}
+.page-node-26 .breadcrumb,
+.page-node-253 .breadcrumb,
+.page-sitemap .breadcrumb,
+.page-node-269 .breadcrumb,
+.page-node-267 .breadcrumb,
+.page-node-26 .breadcrumb {
+  padding: 1.5rem 0;
 }
 .pagination {
   text-align: center;
