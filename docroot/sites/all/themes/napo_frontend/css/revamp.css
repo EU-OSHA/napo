@@ -1431,6 +1431,21 @@ h1.page-header {
     margin: auto;
   }
 }
+@media only screen and (max-width: 992px) {
+  #block-content-cart-content-cart-summary a {
+    background: none;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 900px) {
+  .header_top_bar .region-header-top-bar > div,
+  .header_top_bar .region-header-top-bar > div a,
+  .header_top_bar .region-header-top-bar > div label {
+    font-size: 1.35rem;
+  }
+  .header_top_bar .region-header-top-bar > div:after {
+    padding: 0 0.5rem;
+  }
+}
 @media only screen and (min-width: 768px) {
   .sticky-menu {
     padding: 1rem 0 0 !important;
