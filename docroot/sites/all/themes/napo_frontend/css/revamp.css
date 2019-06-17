@@ -790,6 +790,11 @@ h1.page-header {
 .page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters .form-text:focus {
   outline: 0;
 }
+.page-using-napo-napo-for-teachers .lessons--section--block .view-empty,
+.page-using-napo-napo-workplaces .lessons--section--block .view-empty {
+  width: 100%;
+  text-align: center;
+}
 .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid,
 .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid {
   display: flex;
