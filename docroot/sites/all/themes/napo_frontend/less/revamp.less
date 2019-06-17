@@ -83,6 +83,23 @@ a:hover{
 .view-display-id-page{
 	padding: 0 3rem 2rem;
 }
+.page-napos-films .region-content{
+  padding: 0 3%;	
+}
+.napo-share-widget{
+	ul{
+		li{
+			&:nth-child(3){
+					background: url(../images/link.png) no-repeat;
+					text-indent: -99999px;
+					&:hover{
+					background: url(../images/link-hover.png) no-repeat;
+					}
+			}
+		}
+	}
+}
+
 
 
 .header_top_bar a.ext span.ext, 
@@ -1465,10 +1482,23 @@ h1.page-header{
 		}  
 	}
 
-
 }
 
-
+@media only screen and (max-width: 992px){
+	#block-content-cart-content-cart-summary a {
+	  background: none;
+	}	
+}
+@media only screen and (min-width: 768px) and (max-width: 900px){
+	.header_top_bar .region-header-top-bar > div, 
+	.header_top_bar .region-header-top-bar > div a, 
+	.header_top_bar .region-header-top-bar > div label{
+		font-size: 1.35rem;
+	}
+	.header_top_bar .region-header-top-bar > div:after{
+		padding: 0 0.5rem;
+	}
+}
 
 @media only screen and (min-width: 768px){
 	.sticky-menu{
@@ -1500,6 +1530,12 @@ h1.page-header{
 		.video-js{
 			  height: 521px !important;
 		}	
+	}
+	.page-napos-films .region-content{
+	  padding: 0 3%;	
+	}
+	.node.node-napo-video .napo-share-widget {
+	  margin-top: 0;
 	}
 	.node-type-article{
 		.content{
@@ -1555,9 +1591,6 @@ h1.page-header{
 			h1{
 			  padding: 0;
 			  margin: 1rem 1.5rem;
-			  //NRV-83 MOBILE RESOLUTION: Lesson content overflows the screen width
-			  word-break: break-word;
-
 			}
 			.btn-back {
 			  position: absolute;
@@ -1567,7 +1600,8 @@ h1.page-header{
 			.field-name-field-image{
 				margin-top: 0;
 				img{
-					width: 100%;
+					width: auto;
+					margin: auto;
 				}				
 			}
 			.field-name-body{
@@ -2191,6 +2225,28 @@ h1.page-header{
 		  }
 		}
 	}
+
+	.page-using-napo-napo-for-teachers, .page-using-napo-napo-workplaces, .node-type-lesson, .node-type-msds-activities{
+		.lessons--section--block{
+			flex-direction: column;
+		  margin: 0;
+		  .lessons--items--grid{
+		  	flex-direction: row;
+	  	  justify-content: space-between;
+		  	.lessons-item{
+		  		 min-height: auto;
+		  		a{
+		  			height: auto;
+		  		}
+					.lessons-item-content{
+						min-height:60%; 
+					}
+		  	}
+		  }
+		}
+	}
+
+
 }
 
 
