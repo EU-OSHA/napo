@@ -159,9 +159,10 @@ jQuery(document).ready(function () {
     jQuery('header .block-lang-dropdown').prepend('<div class="btn-search-mobile"></div>');
      
     jQuery(window).on("resize",function(e){
-        jQuery('#block-search-form').removeClass('in');
-        jQuery('header .menu li.dropdown').removeClass('in');
-        jQuery('header .menu li.dropdown').removeClass('open');
+        //NRV-84 MOBILE RESOLUTION: Menu items are no reachable when scrolling down
+        //jQuery('#block-search-form').removeClass('in');
+        //jQuery('header .menu li.dropdown').removeClass('in');
+        //jQuery('header .menu li.dropdown').removeClass('open');
         mobileDevice(screen.width);    
          //mobileDevice( jQuery(window).width() );
     });
