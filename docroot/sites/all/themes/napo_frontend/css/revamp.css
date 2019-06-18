@@ -1204,6 +1204,9 @@ h1.page-header {
 .related--lessons--block .related-lessons-item .related-item-content .keyword-list .keyword-tag:last-child:after {
   content: '';
 }
+.view-display-id-page_list.napo-film-list-view .napo-film-list-details-container .napo-film-view-episodes-link {
+  padding: 9px 43px 9px 10px;
+}
 @-webkit-keyframes autofill {
   to {
     background: #1f3695;
