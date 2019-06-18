@@ -88,6 +88,9 @@ a:hover {
 .napo-share-widget ul li:nth-child(3):hover {
   background: url(../images/link-hover.png) no-repeat;
 }
+header #block-lang-dropdown-language-content #lang_dropdown_form_language_content .form-type-select #lang-dropdown-select-language_content {
+  border-radius: 6rem;
+}
 .header_top_bar a.ext span.ext,
 h2 a.ext span.ext {
   display: none;
