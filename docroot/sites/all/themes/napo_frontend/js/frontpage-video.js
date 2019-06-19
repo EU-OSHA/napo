@@ -286,7 +286,7 @@ jQuery(document).ready(function () {
 /** video home message **/
 jQuery(document).ready(function () {
     var homeVideoText = jQuery('.homepage-video-body').text().length;
-    console.log( homeVideoText );
+
     if( homeVideoText > 350 || homeVideoText <= 500 ){
         jQuery('.slider .frontpage-video-title').css('max-width','38rem');
     } 
@@ -294,4 +294,28 @@ jQuery(document).ready(function () {
         jQuery('.slider .frontpage-video-title').css({'max-width':'42rem',top:'10%',left:'8rem'});
     }
 
+});
+
+
+/** clean copy paste styles **/
+jQuery(document).ready(function () {
+    var wrapperDiv = jQuery('.region-content');
+/*
+    if( jQuery('.region-content p span').attr('style').indexOf('font-size:') != -1 ){
+        jQuery('.region-content p span').removeAttr('style');
+    }
+*/
+nElement = jQuery('.region-content p').length ;
+
+for(i=0; i < nElement; i++ ){
+    jQuery('.region-content p').removeAttr('style');
+    jQuery('.region-content p span').removeAttr('style');
+}
+
+
+/*
+    if( jQuery('.region-content p').attr('style').indexOf('font-size:') != -1 ){
+        jQuery('.region-content p').removeAttr('style');
+    }
+*/
 });

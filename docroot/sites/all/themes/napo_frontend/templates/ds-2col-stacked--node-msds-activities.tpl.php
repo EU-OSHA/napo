@@ -16,7 +16,7 @@
 </section>
 
 <section class="detail--section--block">
-    <h2><?php print t('Activities'); ?></h2>
+    <h2><?php print t('Activity'); ?></h2>
     <div class="detail--text--block">
         <div class="<?php print $left_classes; ?>">
           <?php print $left; ?>
