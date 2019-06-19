@@ -1206,6 +1206,10 @@ h3 {
 .view-display-id-page_list.napo-film-list-view .napo-film-list-details-container .napo-film-view-episodes-link {
   padding: 9px 43px 9px 10px;
 }
+a.resource-library-link {
+  text-decoration: underline;
+  font-weight: bold;
+}
 @-webkit-keyframes autofill {
   to {
     background: #1f3695;
