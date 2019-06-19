@@ -1060,7 +1060,7 @@ function napo_common_back_button(&$vars){
       break;
 
     case 'lesson':
-      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to Napo for teachers teachers'), '/using-napo/napo-for-teachers', []) . '</p>';
+      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to Napo for teachers'), '/using-napo/napo-for-teachers', []) . '</p>';
       break;
 
     case 'msds_activities':
