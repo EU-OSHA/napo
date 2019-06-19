@@ -1206,6 +1206,9 @@ h3 {
 .view-display-id-page_list.napo-film-list-view .napo-film-list-details-container .napo-film-view-episodes-link {
   padding: 9px 43px 9px 10px;
 }
+.view-display-id-page_list.napo-film-list-view .field-name-field-combined-tags .field-item {
+  font-size: 0.6em;
+}
 a.resource-library-link {
   text-decoration: underline;
   font-weight: bold;
