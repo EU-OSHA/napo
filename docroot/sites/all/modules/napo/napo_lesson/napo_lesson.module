@@ -193,13 +193,19 @@ function napo_lesson_get_download_block($node) {
   if ($node->type == 'lesson') {
     $file_uri = $wrapper->language($language->language)->field_file->value()['uri'];
     $lesson_video = $node->field_lesson_video[LANGUAGE_NONE][0]['entity'];
+    if ($lesson_video) {
+      $wrapper = entity_metadata_wrapper('node', $lesson_video);
+      $video = $wrapper->language($language->language)->field_video->value()[0];
+    }
   }
   else {
     $file_uri = $wrapper->language($language->language)->field_conversation_started->value()['uri'];
     $lesson_video = $node->field_msds_video[LANGUAGE_NONE][0]['entity'];
+    if ($lesson_video) {
+      $wrapper = entity_metadata_wrapper('node', $lesson_video);
+      $video = $wrapper->language($language->language)->field_video->value()[0];
+    }
   }
-  $wrapper = entity_metadata_wrapper('node', $lesson_video);
-  $video = $wrapper->language($language->language)->field_video->value()[0];
 
   $video_uri = @$video['uri'];
   $video_id = $lesson_video->nid;
