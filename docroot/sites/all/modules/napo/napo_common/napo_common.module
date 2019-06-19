@@ -719,13 +719,13 @@ function napo_common_related_resources_callack($node) {
 function _napo_common_get_guidance_files($type) {
   global $language;
   if ($type == 'lesson') {
-    $nid = variable_get('facilitator_guidance_nid', 341);
+    $nid = variable_get('teacher_guidance_nid', 407);
     $node = node_load($nid);
     $wrapper = entity_metadata_wrapper('node', $node);
     $files[] = $wrapper->language($language->language)->field_guidance_file->value();
   }
   else {
-    $nid = variable_get('facilitator_guidance_nid', 340);
+    $nid = variable_get('facilitator_guidance_nid', 408);
     $node = node_load($nid);
     $wrapper = entity_metadata_wrapper('node', $node);
     $files[] = $wrapper->language($language->language)->field_guidance_file->value();
