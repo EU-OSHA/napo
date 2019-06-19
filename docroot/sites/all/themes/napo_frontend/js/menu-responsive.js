@@ -77,14 +77,6 @@ jQuery(window).bind('scroll', function () {
     }
 });
 
-//Clone paginator view Films
-jQuery(document).ready(function() {
- 
-   var cloned = jQuery('.page-napos-films ul.pager').clone();
-   //put insert after another div
-   jQuery(cloned).insertAfter('#block-napo-film-napo-films-view-modes');
-
-});;
 jQuery(document).ready(function () {
     jQuery("div.view.view-frontpage-custom-video.view-id-frontpage_custom_video.view-display-id-block").click( function (event) {
         if (jQuery("div.video-js.vjs-default-skin").hasClass("vjs-playing")){

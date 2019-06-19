@@ -11,6 +11,124 @@ function napo_msd_views_default_views() {
   $export = array();
 
   $view = new view();
+  $view->name = 'conversation_started';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Conversation started';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = '<none>';
+  $handler->display->display_options['css_class'] = 'related-lessons-item';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '1';
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'related-lessons-item';
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
+  /* Relationship: Entity Reference: Referenced Entity */
+  $handler->display->display_options['relationships']['field_msds_video_target_id']['id'] = 'field_msds_video_target_id';
+  $handler->display->display_options['relationships']['field_msds_video_target_id']['table'] = 'field_data_field_msds_video';
+  $handler->display->display_options['relationships']['field_msds_video_target_id']['field'] = 'field_msds_video_target_id';
+  $handler->display->display_options['relationships']['field_msds_video_target_id']['label'] = 'MSDs Video';
+  $handler->display->display_options['relationships']['field_msds_video_target_id']['required'] = TRUE;
+  /* Field: Field: Image */
+  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
+  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
+  $handler->display->display_options['fields']['field_image']['relationship'] = 'field_msds_video_target_id';
+  $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_image']['settings'] = array(
+    'image_style' => '',
+    'image_link' => '',
+  );
+  /* Field: Content: Conversation started */
+  $handler->display->display_options['fields']['field_conversation_started']['id'] = 'field_conversation_started';
+  $handler->display->display_options['fields']['field_conversation_started']['table'] = 'field_data_field_conversation_started';
+  $handler->display->display_options['fields']['field_conversation_started']['field'] = 'field_conversation_started';
+  $handler->display->display_options['fields']['field_conversation_started']['label'] = '';
+  $handler->display->display_options['fields']['field_conversation_started']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_conversation_started']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_conversation_started']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_conversation_started']['type'] = 'file_url_plain';
+  $handler->display->display_options['fields']['field_conversation_started']['settings'] = array(
+    'text' => 'Download [file:name]',
+  );
+  /* Field: Global: Custom text */
+  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['table'] = 'views';
+  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="[field_conversation_started]">[field_image]</a>
+<div class="related-item-content">
+<h3><a href="[field_conversation_started]">Conversation started</a></h3>
+</div>';
+  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Contextual filter: Content: Nid */
+  $handler->display->display_options['arguments']['nid']['id'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['table'] = 'node';
+  $handler->display->display_options['arguments']['nid']['field'] = 'nid';
+  $handler->display->display_options['arguments']['nid']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['nid']['default_argument_type'] = 'node';
+  $handler->display->display_options['arguments']['nid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['nid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['nid']['summary_options']['items_per_page'] = '25';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'msds_activities' => 'msds_activities',
+  );
+
+  /* Display: Block */
+  $handler = $view->new_display('block', 'Block', 'block');
+  $translatables['conversation_started'] = array(
+    t('Master'),
+    t('<none>'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('MSDs Video'),
+    t('<a href="[field_conversation_started]">[field_image]</a>
+<div class="related-item-content">
+<h3><a href="[field_conversation_started]">Conversation started</a></h3>
+</div>'),
+    t('All'),
+    t('Block'),
+  );
+  $export['conversation_started'] = $view;
+
+  $view = new view();
   $view->name = 'msd_related_resources';
   $view->description = '';
   $view->tag = 'default';
@@ -161,7 +279,7 @@ function napo_msd_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Napo for teachers';
+  $handler->display->display_options['title'] = 'Napo in the workplace';
   $handler->display->display_options['css_class'] = 'lessons--items--grid';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -188,9 +306,15 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['footer']['entity']['id'] = 'entity';
   $handler->display->display_options['footer']['entity']['table'] = 'entity__global';
   $handler->display->display_options['footer']['entity']['field'] = 'entity';
-  $handler->display->display_options['footer']['entity']['entity_id'] = '334';
+  $handler->display->display_options['footer']['entity']['entity_id'] = '430';
   $handler->display->display_options['footer']['entity']['view_mode'] = 'teaser';
   $handler->display->display_options['footer']['entity']['bypass_access'] = 0;
+  /* No results behavior: Global: Unfiltered text */
+  $handler->display->display_options['empty']['area_text_custom']['id'] = 'area_text_custom';
+  $handler->display->display_options['empty']['area_text_custom']['table'] = 'views';
+  $handler->display->display_options['empty']['area_text_custom']['field'] = 'area_text_custom';
+  $handler->display->display_options['empty']['area_text_custom']['empty'] = TRUE;
+  $handler->display->display_options['empty']['area_text_custom']['content'] = 'No results';
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_msds_video_target_id']['id'] = 'field_msds_video_target_id';
   $handler->display->display_options['relationships']['field_msds_video_target_id']['table'] = 'field_data_field_msds_video';
@@ -316,10 +440,29 @@ function napo_msd_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '6';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
+  $handler->display->display_options['defaults']['footer'] = FALSE;
+  /* Footer: Entity: Rendered entity */
+  $handler->display->display_options['footer']['entity']['id'] = 'entity';
+  $handler->display->display_options['footer']['entity']['table'] = 'entity__global';
+  $handler->display->display_options['footer']['entity']['field'] = 'entity';
+  $handler->display->display_options['footer']['entity']['entity_id'] = '430';
+  $handler->display->display_options['footer']['entity']['view_mode'] = 'teaser';
+  $handler->display->display_options['footer']['entity']['bypass_access'] = 0;
   $handler->display->display_options['path'] = 'using-napo/napo-workplaces';
   $translatables['napo_workplaces'] = array(
     t('Master'),
-    t('Napo for teachers'),
+    t('Napo in the workplace'),
     t('more'),
     t('Apply'),
     t('Reset'),
@@ -327,6 +470,7 @@ function napo_msd_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('@total'),
+    t('No results'),
     t('MSDs video'),
     t('Tags'),
     t('<div class="lessons-item-content">
@@ -337,6 +481,13 @@ function napo_msd_views_default_views() {
 </div>'),
     t('Search'),
     t('Page'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
   );
   $export['napo_workplaces'] = $view;
 

@@ -159,9 +159,10 @@ jQuery(document).ready(function () {
     jQuery('header .block-lang-dropdown').prepend('<div class="btn-search-mobile"></div>');
      
     jQuery(window).on("resize",function(e){
-        jQuery('#block-search-form').removeClass('in');
-        jQuery('header .menu li.dropdown').removeClass('in');
-        jQuery('header .menu li.dropdown').removeClass('open');
+        //NRV-84 MOBILE RESOLUTION: Menu items are no reachable when scrolling down
+        //jQuery('#block-search-form').removeClass('in');
+        //jQuery('header .menu li.dropdown').removeClass('in');
+        //jQuery('header .menu li.dropdown').removeClass('open');
         mobileDevice(screen.width);    
          //mobileDevice( jQuery(window).width() );
     });
@@ -279,4 +280,42 @@ jQuery(document).ready(function () {
     jQuery('.node-type-article .field-name-field-menu .field-items a').text(labelGlossaryPrint);
 
 
+});
+
+
+/** video home message **/
+jQuery(document).ready(function () {
+    var homeVideoText = jQuery('.homepage-video-body').text().length;
+
+    if( homeVideoText > 350 || homeVideoText <= 500 ){
+        jQuery('.slider .frontpage-video-title').css('max-width','38rem');
+    } 
+    if( homeVideoText > 500 ){
+        jQuery('.slider .frontpage-video-title').css({'max-width':'42rem',top:'10%',left:'8rem'});
+    }
+
+});
+
+
+/** clean copy paste styles **/
+jQuery(document).ready(function () {
+    var wrapperDiv = jQuery('.region-content');
+/*
+    if( jQuery('.region-content p span').attr('style').indexOf('font-size:') != -1 ){
+        jQuery('.region-content p span').removeAttr('style');
+    }
+*/
+nElement = jQuery('.region-content p').length ;
+
+for(i=0; i < nElement; i++ ){
+    jQuery('.region-content p').removeAttr('style');
+    jQuery('.region-content p span').removeAttr('style');
+}
+
+
+/*
+    if( jQuery('.region-content p').attr('style').indexOf('font-size:') != -1 ){
+        jQuery('.region-content p').removeAttr('style');
+    }
+*/
 });

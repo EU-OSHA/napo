@@ -719,13 +719,13 @@ function napo_common_related_resources_callack($node) {
 function _napo_common_get_guidance_files($type) {
   global $language;
   if ($type == 'lesson') {
-    $nid = variable_get('facilitator_guidance_nid', 341);
+    $nid = variable_get('teacher_guidance_nid', 407);
     $node = node_load($nid);
     $wrapper = entity_metadata_wrapper('node', $node);
     $files[] = $wrapper->language($language->language)->field_guidance_file->value();
   }
   else {
-    $nid = variable_get('facilitator_guidance_nid', 340);
+    $nid = variable_get('facilitator_guidance_nid', 408);
     $node = node_load($nid);
     $wrapper = entity_metadata_wrapper('node', $node);
     $files[] = $wrapper->language($language->language)->field_guidance_file->value();
@@ -1060,11 +1060,11 @@ function napo_common_back_button(&$vars){
       break;
 
     case 'lesson':
-      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to Napo for teachers teachers'), '/using-napo/napo-for-teachers', []) . '</p>';
+      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to Napo for teachers'), '/using-napo/napo-for-teachers', []) . '</p>';
       break;
 
     case 'msds_activities':
-      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to lessons'), '/using-napo/napo-for-teachers', []) . '</p>';
+      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to Napo in the workplace'), '/using-napo/napo-workplaces', []) . '</p>';
       break;
 
     default:

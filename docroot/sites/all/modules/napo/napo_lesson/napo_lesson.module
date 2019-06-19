@@ -193,13 +193,19 @@ function napo_lesson_get_download_block($node) {
   if ($node->type == 'lesson') {
     $file_uri = $wrapper->language($language->language)->field_file->value()['uri'];
     $lesson_video = $node->field_lesson_video[LANGUAGE_NONE][0]['entity'];
+    if ($lesson_video) {
+      $wrapper = entity_metadata_wrapper('node', $lesson_video);
+      $video = $wrapper->language($language->language)->field_video->value()[0];
+    }
   }
   else {
     $file_uri = $wrapper->language($language->language)->field_conversation_started->value()['uri'];
     $lesson_video = $node->field_msds_video[LANGUAGE_NONE][0]['entity'];
+    if ($lesson_video) {
+      $wrapper = entity_metadata_wrapper('node', $lesson_video);
+      $video = $wrapper->language($language->language)->field_video->value()[0];
+    }
   }
-  $wrapper = entity_metadata_wrapper('node', $lesson_video);
-  $video = $wrapper->language($language->language)->field_video->value()[0];
 
   $video_uri = @$video['uri'];
   $video_id = $lesson_video->nid;
@@ -228,13 +234,14 @@ function napo_lesson_get_download_block($node) {
   }
 
   if ($node->type == 'lesson') {
-    $nid = variable_get('facilitator_guidance_nid', 341);
+    $nid = variable_get('teacher_guidance_nid', 407);
     $guidance = node_load($nid);
     $file_uri = $guidance->field_guidance_file[$language->language][0]['uri'];
     $items[] = l(t('Teacher guidance'), file_create_url($file_uri));
   }
   else {
-    $items[] = l(t('Facilitator guidance'),'node/' . $node->nid . '/guidance');
+    $nid = variable_get('facilitator_guidance_nid', 408);
+    $items[] = l(t('Facilitator guidance'),'node/' . $nid . '/guidance');
   }
 
   if ($node->field_resources_required[LANGUAGE_NONE]) {

@@ -69,6 +69,7 @@ a:hover{
 }
 .field-content.faq-answer{
 	font-size: 1.6rem;
+	color: #1f3695;
 	p {
 	  padding-left: 2.2rem;
 	}
@@ -76,6 +77,43 @@ a:hover{
 .node .content .field-name-body.field-type-text-with-summary {
   padding: 1.6rem 0;
 }
+.page-search .views-exposed-form .views-exposed-widget .form-submit{
+	margin-top: 29px;
+}
+.view-display-id-page{
+	padding: 0 3rem 2rem;
+}
+.page-napos-films .region-content{
+  //padding: 0 3%;	
+}
+.napo-share-widget{
+	ul{
+		li{
+			&:nth-child(3){
+					background: url(../images/link.png) no-repeat;
+					text-indent: -99999px;
+					&:hover{
+					background: url(../images/link-hover.png) no-repeat;
+					}
+			}
+		}
+	}
+}
+
+//NRV-91 Language selector - round shape
+header{
+	#block-lang-dropdown-language-content {
+		#lang_dropdown_form_language_content {
+			.form-type-select {
+				#lang-dropdown-select-language_content {
+					border-radius: 6rem;
+				}
+			}
+		}
+	}
+}
+
+
 
 .header_top_bar a.ext span.ext, 
 h2 a.ext span.ext{
@@ -454,8 +492,8 @@ h3{
 	padding: 0 3% 2rem;
 }
 .breadcrumb{
-	font-size: 1.2rem;
-  padding: 1.5rem 3%;
+	font-size: 1.4rem;
+  padding: 1.5rem 1rem;
   a{
   	border-bottom: 1px solid #f7e235;
   	&:hover{
@@ -465,7 +503,11 @@ h3{
   	}
   }
 }
-
+.page-node-26, .page-node-253, .page-sitemap, .page-node-269, .page-node-267, .page-node-26{
+	.breadcrumb{
+		padding: 1.5rem 1rem;
+	}
+}
 .pagination{
   text-align: center;
   display: block;
@@ -540,17 +582,29 @@ h3{
 		}
 	}
 }
-h1.page-header{
-	display: none;
+.node-type-msds-activities{
+	h1.page-header{
+		display: none;
+	}	
 }
+
+.page-sitemap{
+	h1.page-header{
+		display: block;
+		font-size: 4rem;
+		font-weight: bold;
+  	padding: 0.3rem 0.7rem;
+  	margin-top: 0rem;
+  	display: block;
+	}
+}
+
 .region-content{
 	h1{
 		font-size: 4rem;
 		font-weight: bold;
-		background: none;
-  	padding: 0 0 1rem;
+  	padding: 0.3rem 0.7rem;
   	margin-top: 0rem;
-  	background: transparent !important;
   	display: block;
 	}
 }
@@ -559,7 +613,7 @@ h1.page-header{
   margin-left: 0;
 }
 .page--banner--block{
-  padding: 0 3% 4rem;
+  padding: 0 0 4rem;
   position: relative;
   .btn-back{
 	  position: absolute;
@@ -575,8 +629,7 @@ h1.page-header{
 	h1{
 		font-size: 4rem;
 		font-weight: bold;
-		background: none;
-  	padding: 0 0 1rem;
+  	padding: 0.3rem 0.7rem;
   	margin-top: 2.5rem;
 	}
 	.page--banner--grid{
@@ -744,11 +797,9 @@ h1.page-header{
 	h1.page-header{
 		font-size: 4rem;
 	  font-weight: bold;
-	  background: none;
-	  padding: 0 3% 1rem;
+	  padding: 0.3rem 0.7rem;
 	  margin-top: 2.5rem;
 	  border:0; 
-		background: transparent !important;
   	display: block;
 	}
 	.page--banner--block{
@@ -818,6 +869,15 @@ h1.page-header{
 					outline: 0;
 				}
 			}
+		}
+		.view-empty{
+		  background: transparent;
+		  padding: 12px 12px 12px 12px;
+		  margin-bottom: 0.5em;
+		  font-weight: bold;
+		  font-size: 13px;
+		  border-bottom: 5px solid #1f3695;
+			width: 100%;
 		}
 		.lessons--items--grid{
 		  display: flex;
@@ -927,7 +987,7 @@ h1.page-header{
 	  flex-wrap: nowrap;
 		.acordion--items--block{
 			flex:76%;
-			padding: 0 18rem 0 0;
+			padding: 0 8rem 0 0;
 			margin-top: 2rem;
 			position: relative;
 			.acordion--block--item{
@@ -1185,6 +1245,28 @@ h1.page-header{
 			}
 		}
 }
+
+//NRV-94 View scenes, The box is not aligned with the other 2 boxes
+.view-display-id-page_list.napo-film-list-view{ 
+	.napo-film-list-details-container{
+		.napo-film-view-episodes-link {
+			padding: 9px 43px 9px 10px;
+		}
+	}
+	//NRV-93 Napo Films, the text is not correctly displayed
+	.field-name-field-combined-tags{
+		.field-item{	
+			font-size: 0.6em;
+		}
+	}
+}
+
+//NRV-45 Adaptation Resource library page
+a.resource-library-link{
+	text-decoration: underline;
+	font-weight: bold;
+}
+
 
 
 @-webkit-keyframes autofill {
@@ -1444,10 +1526,23 @@ h1.page-header{
 		}  
 	}
 
-
 }
 
-
+@media only screen and (max-width: 992px){
+	#block-content-cart-content-cart-summary a {
+	  background: none;
+	}	
+}
+@media only screen and (min-width: 768px) and (max-width: 900px){
+	.header_top_bar .region-header-top-bar > div, 
+	.header_top_bar .region-header-top-bar > div a, 
+	.header_top_bar .region-header-top-bar > div label{
+		font-size: 1.35rem;
+	}
+	.header_top_bar .region-header-top-bar > div:after{
+		padding: 0 0.5rem;
+	}
+}
 
 @media only screen and (min-width: 768px){
 	.sticky-menu{
@@ -1479,6 +1574,12 @@ h1.page-header{
 		.video-js{
 			  height: 521px !important;
 		}	
+	}
+	.page-napos-films .region-content{
+	  padding: 0 3%;	
+	}
+	.node.node-napo-video .napo-share-widget {
+	  margin-top: 0;
 	}
 	.node-type-article{
 		.content{
@@ -1534,6 +1635,8 @@ h1.page-header{
 			h1{
 			  padding: 0;
 			  margin: 1rem 1.5rem;
+			  //NRV-83 MOBILE RESOLUTION: Lesson content overflows the screen width
+			  word-break: break-word;
 			}
 			.btn-back {
 			  position: absolute;
@@ -1543,7 +1646,8 @@ h1.page-header{
 			.field-name-field-image{
 				margin-top: 0;
 				img{
-					width: 100%;
+					width: auto;
+					margin: auto;
 				}				
 			}
 			.field-name-body{
@@ -2167,6 +2271,28 @@ h1.page-header{
 		  }
 		}
 	}
+
+	.page-using-napo-napo-for-teachers, .page-using-napo-napo-workplaces, .node-type-lesson, .node-type-msds-activities{
+		.lessons--section--block{
+			flex-direction: column;
+		  margin: 0;
+		  .lessons--items--grid{
+		  	flex-direction: row;
+	  	  justify-content: space-between;
+		  	.lessons-item{
+		  		 min-height: auto;
+		  		a{
+		  			height: auto;
+		  		}
+					.lessons-item-content{
+						min-height:60%; 
+					}
+		  	}
+		  }
+		}
+	}
+
+
 }
 
 
