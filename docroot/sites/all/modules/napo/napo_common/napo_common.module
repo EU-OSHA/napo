@@ -1064,7 +1064,7 @@ function napo_common_back_button(&$vars){
       break;
 
     case 'msds_activities':
-      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to lessons'), '/using-napo/napo-for-teachers', []) . '</p>';
+      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to Napo in the workplace'), '/using-napo/napo-workplaces', []) . '</p>';
       break;
 
     default:
