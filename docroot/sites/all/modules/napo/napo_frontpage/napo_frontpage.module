@@ -97,7 +97,7 @@ function napo_frontpage_block_view($delta = '') {
     case 'napo_frontpage_story':
       $block['subject'] = '<none>';
       $link = variable_get('napo_frontpage_story_link', 'node/27');
-      $title = variable_get('napo_frontpage_story_title', 'Napo\'s Story');
+      $title = variable_get('napo_frontpage_story_title', 'The Napo Story');
       $body = variable_get('napo_frontpage_story_text', '<p>Napo’s character has been created to educate european citizen about the risk that can occur at work or at home.</p>
         <p>Learn how it has been created and what makes Napo a great educational material.</p>');
       $iframe_src = variable_get('napo_frontpage_story_iframe', 'https://www.youtube.com/embed/QCQowf79bfU');
@@ -106,7 +106,7 @@ function napo_frontpage_block_view($delta = '') {
     <div class="story--item story--content--block">
       <h2>' . l(t($title), $link) . '</h2>
       <div class="content">' . t($body) . '
-        <p class="btn-story">' . l(t('DISCOVER'), $link) . '</p>
+        <p class="btn-story">' . l(t('See more'), $link) . '</p>
       </div>
     </div>
     <div class="story--item story--media--block">
