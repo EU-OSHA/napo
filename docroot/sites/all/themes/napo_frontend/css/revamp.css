@@ -427,7 +427,7 @@ h3 {
 }
 .breadcrumb {
   font-size: 1.4rem;
-  padding: 1.5rem 0;
+  padding: 1.5rem 1rem;
 }
 .breadcrumb a {
   border-bottom: 1px solid #f7e235;
@@ -443,7 +443,7 @@ h3 {
 .page-node-269 .breadcrumb,
 .page-node-267 .breadcrumb,
 .page-node-26 .breadcrumb {
-  padding: 1.5rem 0;
+  padding: 1.5rem 1rem;
 }
 .pagination {
   text-align: center;
