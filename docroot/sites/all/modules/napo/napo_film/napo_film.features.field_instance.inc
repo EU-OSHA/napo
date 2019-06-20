@@ -561,81 +561,6 @@ function napo_film_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_video-field_main_topic_category'.
-  $field_instances['node-napo_video-field_main_topic_category'] = array(
-    'bundle' => 'napo_video',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 27,
-      ),
-      'episode_full' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'episode_popup' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'film_main_video_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 12,
-      ),
-      'recommended_films' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'search_results' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_main_topic_category',
-    'label' => 'Main category',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 9,
-    ),
-  );
-
   // Exported field_instance: 'node-napo_video-field_napo_film'.
   $field_instances['node-napo_video-field_napo_film'] = array(
     'bundle' => 'napo_video',
@@ -1581,7 +1506,6 @@ function napo_film_field_default_field_instances() {
   t('Categories');
   t('Image');
   t('Main Category');
-  t('Main category');
   t('Mark as outdated');
   t('Napo film');
   t('Publication date');
