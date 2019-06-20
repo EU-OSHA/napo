@@ -2,7 +2,7 @@
 h1 {
   color: #1f3695;
   background: #f2f1f2;
-  padding: 0.2em 25% 0.2em 0.5em;
+  padding: 0.3rem 0.7rem;
   margin-top: 0px;
   margin-bottom: 10px;
 }
@@ -2570,7 +2570,7 @@ input[type=checkbox] {
 }
 #node-27 h1 {
   clear: both;
-  margin: 15px 0px 15px 0px;
+  padding: 0.3rem 0.7rem;
 }
 a.ext span.ext {
   background: url("../images/external_link_napo.png") no-repeat scroll 0 4px rgba(0, 0, 0, 0);
