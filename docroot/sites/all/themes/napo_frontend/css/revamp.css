@@ -1213,6 +1213,11 @@ a.resource-library-link {
   text-decoration: underline;
   font-weight: bold;
 }
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item {
+    border: none;
+  }
+}
 @-webkit-keyframes autofill {
   to {
     background: #1f3695;

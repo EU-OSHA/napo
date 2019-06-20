@@ -1267,6 +1267,14 @@ a.resource-library-link{
 	font-weight: bold;
 }
 
+//NRV-113 IE browser - Lessons & Activities - Accordions displayed as cutted
+//Only changed in IE
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { 
+  .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item{
+  	border:none;
+  }
+} 
+
 
 
 @-webkit-keyframes autofill {
