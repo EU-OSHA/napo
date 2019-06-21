@@ -1220,6 +1220,14 @@ a.resource-library-link {
     border: none;
   }
 }
+.view-napo-s-film-episodes .episode-list-details-container .tags {
+  font-size: 0.6em;
+}
+.view-napo-s-film-episodes .views-row div.episode-list-details-container {
+  padding-bottom: 0em !important;
+  padding-top: 0em !important;
+  height: 51px;
+}
 @-webkit-keyframes autofill {
   to {
     background: #1f3695;
