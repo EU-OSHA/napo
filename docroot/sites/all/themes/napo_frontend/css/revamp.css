@@ -1219,6 +1219,9 @@ a.resource-library-link {
   .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item {
     border: none;
   }
+  .detail--section--block .detail--text--block {
+    flex: 24%;
+  }
 }
 .view-napo-s-film-episodes .episode-list-details-container .tags {
   font-size: 0.6em;
@@ -1341,6 +1344,7 @@ a.resource-library-link {
   .node-type-msds-activities .detail--section--block .detail--text--block {
     flex-wrap: wrap;
     width: 100%;
+    flex: none;
   }
   .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block,
   .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .acordion--items--block,

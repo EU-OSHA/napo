@@ -1288,6 +1288,10 @@ a.resource-library-link{
   .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item{
   	border:none;
   }
+  //NRV-145 IE Download links are not correctly displayed
+  .detail--section--block .detail--text--block{
+  	flex:24%;
+  }
 } 
 
 //NRV-139 Scene icons
@@ -1459,6 +1463,8 @@ a.resource-library-link{
 			.detail--text--block{
 			  flex-wrap: wrap;
 			  width: 100%;
+			  //NRV-145 IE Download links are not correctly displayed
+			  flex: none;
 			  .acordion--items--block{
 					width: 100%;
 					padding: 0;
