@@ -1215,6 +1215,9 @@ a.resource-library-link {
   text-decoration: underline;
   font-weight: bold;
 }
+#edit-search-block-form--2::-moz-placeholder {
+  color: white;
+}
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item {
     border: none;
