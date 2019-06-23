@@ -33,5 +33,6 @@ function napo_msd_block_view($delta = '') {
 function napo_msd_related_resources_block() {
   $block1 = block_load('views', 'msd_related_resources-block');
   $block2 = block_load('views', 'conversation_started-block');
-  return render(_block_get_renderable_array(_block_render_blocks([$block1, $block2])));
+  $blocks = _block_get_renderable_array(_block_render_blocks([$block1, $block2]));
+  return render($blocks);
 }

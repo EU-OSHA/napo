@@ -701,6 +701,16 @@ function _napo_common_resources_required_files($node) {
       }
     }
   }
+  if ($node->field_msds_resources_required) {
+    foreach($node->field_resources_required[LANGUAGE_NONE] as $row) {
+      $resource = node_load($row['target_id']);
+      $wrapper = entity_metadata_wrapper('node', $resource);
+      $file = $wrapper->language($language->language)->field_file->value();
+      if ($file) {
+        $files[] = $file;
+      }
+    }
+  }
   return $files;
 }
 
@@ -758,7 +768,7 @@ function _napo_common_download_all_files($node) {
   }
   else {
     $lesson_video_nid = $node->field_msds_video[LANGUAGE_NONE][0]['target_id'];
-    $file = $wrapper->language($language->language)->field_conversation_started->value();
+    $file = $wrapper->language($language->language)->field_activity->value();
   }
   if ($file) {
     $files[] = $file;

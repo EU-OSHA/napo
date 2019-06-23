@@ -196,19 +196,23 @@ function napo_lesson_get_intro_block($node) {
 function napo_lesson_get_resources_required($node) {
   global $language;
   $items = [];
-  if (!empty($node->field_msds_resources_required)) {
-    foreach($node->field_msds_resources_required[LANGUAGE_NONE] as $row) {
+  if ($node->type == 'lesson') {
+    $resources_required = $node->field_resources_required;
+  }
+  else {
+    $resources_required = $node->field_msds_resources_required;
+  }
+  if (!empty($resources_required)) {
+    foreach($resources_required[LANGUAGE_NONE] as $row) {
       $resource = node_load($row['target_id']);
-      $wrapper = entity_metadata_wrapper('node', $resource);
-      $items[] = $wrapper->language($language->language)->title_field->value();
+      if ($resource) {
+        $wrapper = entity_metadata_wrapper('node', $resource);
+        $items[] = $wrapper->language($language->language)->title_field->value();
+      }
     }
   }
-  if (!empty($node->field_resources_required)) {
-    foreach ($node->field_resources_required[LANGUAGE_NONE] as $row) {
-      $resource = node_load($row['target_id']);
-      $wrapper = entity_metadata_wrapper('node', $resource);
-      $items[] = $wrapper->language($language->language)->title_field->value();
-    }
+  if (!$items) {
+    return '';
   }
   $output = theme('item_list', array('items' => $items));
 
@@ -231,6 +235,7 @@ function napo_lesson_get_download_block($node) {
 
   $wrapper = entity_metadata_wrapper('node', $node);
   if ($node->type == 'lesson') {
+    $file_title = t('Lesson');
     $file_uri = $wrapper->language($language->language)->field_file->value()['uri'];
     $lesson_video = $node->field_lesson_video[LANGUAGE_NONE][0]['entity'];
     if ($lesson_video) {
@@ -239,7 +244,8 @@ function napo_lesson_get_download_block($node) {
     }
   }
   else {
-    $file_uri = $wrapper->language($language->language)->field_conversation_started->value()['uri'];
+    $file_title = t('Activity');
+    $file_uri = $wrapper->language($language->language)->field_activity->value()['uri'];
     $lesson_video = $node->field_msds_video[LANGUAGE_NONE][0]['entity'];
     if ($lesson_video) {
       $wrapper = entity_metadata_wrapper('node', $lesson_video);
@@ -262,8 +268,8 @@ function napo_lesson_get_download_block($node) {
   }
 
   if ($file_uri) {
-    $output = '<a href="' . file_create_url($file_uri) . '">';
-    $output .= t('Lesson');
+    $output = '<a href="' . file_create_url($file_uri) . '" target="_blank">';
+    $output .= $file_title;
     $size = @filesize($file_uri);
     if ($size) {
       $output .= ' <span class="related_size">(' . format_size($size) . ')</span>';
@@ -274,17 +280,19 @@ function napo_lesson_get_download_block($node) {
   }
 
   if ($node->type == 'lesson') {
+    $resources_required = $node->field_resources_required;
     $nid = variable_get('teacher_guidance_nid', 407);
     $guidance = node_load($nid);
     $file_uri = $guidance->field_guidance_file[$language->language][0]['uri'];
     $items[] = l(t('Teacher guidance'), file_create_url($file_uri));
   }
   else {
+    $resources_required = $node->field_msds_resources_required;
     $nid = variable_get('facilitator_guidance_nid', 408);
     $items[] = l(t('Facilitator guidance'),'node/' . $nid . '/guidance');
   }
 
-  if ($node->field_resources_required[LANGUAGE_NONE]) {
+  if ($resources_required && $resources_required[LANGUAGE_NONE]) {
     $items[] = l(t('Related resources'),'node/' . $node->nid . '/related_resources');
   }
 
