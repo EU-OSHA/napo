@@ -167,6 +167,32 @@ function napo_lesson_theme() {
     ),
   );
 }
+
+function napo_lesson_get_intro_block($node) {
+  global $language;
+  $nid = variable_get('teacher_guidance_nid', 407);
+  $guidance_title = t('Teacher guidance');
+  if ($node->type == 'msds_activities') {
+    $nid = variable_get('facilitator_guidance_nid', 408);
+    $guidance_title = t('Facilitator guidance');
+    $video = $node->field_msds_video[LANGUAGE_NONE]['0']['entity'];
+  }
+  else {
+    $video = $node->field_lesson_video[LANGUAGE_NONE]['0']['entity'];
+  }
+  $guidance_href = url('node/' . $nid);
+  $wrapper = entity_metadata_wrapper('node', $video);
+  $text = strip_tags($wrapper->language($language->language)->body->value()['value']);
+  return '<div class="detail--content--block"><div class="text-block">
+<p>' . $text . '</p>
+</div>
+<div class="guidance-block">
+<p class="guidance-title">' . $guidance_title . '</p>
+<p class="guidance-text">' . t('Do you need help as a teacher to organize the learning session?') . '</p>
+<p><a href="' . $guidance_href . '" class="more-link">' . t('Find out more here') . '</a></p>
+</div></div>';
+}
+
 function napo_lesson_get_resources_required($node) {
   global $language;
   $items = [];
@@ -275,6 +301,10 @@ function napo_lesson_preprocess_node(&$vars) {
 
   if($node->type == 'msds_activities') {
     if (!empty($vars['preprocess_fields'])) {
+      if (in_array('intro_block', $vars['preprocess_fields'])) {
+        $vars['intro_block'] = napo_lesson_get_intro_block($node);
+      }
+
       if (in_array('download_block', $vars['preprocess_fields'])) {
         $vars['download_block'] = napo_lesson_get_download_block($node);
       }
@@ -306,6 +336,9 @@ function napo_lesson_preprocess_node(&$vars) {
       }
       if (in_array('download_block', $vars['preprocess_fields'])) {
         $vars['download_block'] = napo_lesson_get_download_block($node);
+      }
+      if (in_array('intro_block', $vars['preprocess_fields'])) {
+        $vars['intro_block'] = napo_lesson_get_intro_block($node);
       }
 
       // Download whole lesson.

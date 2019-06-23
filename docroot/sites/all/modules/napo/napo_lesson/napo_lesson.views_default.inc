@@ -829,7 +829,6 @@ __Tags__
     t('No results'),
     t('lesson_video'),
     t('Tags'),
-    t('Title'),
     t('<div class="lessons-item-content">
 <h3>[title_field]</h3>
 <p class="keyword-list">

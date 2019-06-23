@@ -30,6 +30,7 @@ features[ds_field_settings][] = node|lesson|default
 features[ds_field_settings][] = node|lesson|full
 features[ds_fields][] = download_block
 features[ds_fields][] = download_whole_lesson
+features[ds_fields][] = intro_block
 features[ds_fields][] = lessons_note
 features[ds_fields][] = resources_required
 features[ds_fields][] = right_menu
