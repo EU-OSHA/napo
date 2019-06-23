@@ -74,3 +74,22 @@ function napo_common_update_7006() {
   features_revert(array('napo_msd' => array('views_view')));
   features_revert(array('napo_msd' => array('fe_block_settings')));
 }
+
+/**
+ * NRV-13 Create Teacher guidance page.
+ */
+function napo_common_update_7007() {
+  $nid = variable_get('teacher_guidance_nid', 407);
+  $nodes = node_load_multiple(NULL, array("title" => "Teacher guidance"));
+  $node = current($nodes);
+  if ($node && $nid != $node->nid) {
+    variable_set('teacher_guidance_nid', $node->nid);
+  }
+
+  $nid = variable_get('facilitator_guidance_nid', 408);
+  $nodes = node_load_multiple(NULL, array("title" => "Facilitator guidance"));
+  $node = current($nodes);
+  if ($node && $nid != $node->nid) {
+    variable_set('facilitator_guidance_nid', $node->nid);
+  }
+}

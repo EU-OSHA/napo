@@ -874,12 +874,14 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
       break;
 
     case 'napo_introductory_text':
-      $guidance_href = variable_get('guidance_href');
       $node = menu_get_object();
+      $nid = variable_get('teacher_guidance_nid', 407);
       $guidance_title = t('Teacher guidance');
-      if ($node->type =='msds_activities') {
+      if ($node->type == 'msds_activities') {
+        $nid = variable_get('facilitator_guidance_nid', 408);
         $guidance_title = t('Facilitator guidance');
       }
+      $guidance_href = url('node/' . $nid);
       foreach ($items as $delta => $item) {
         $element[$delta] = array(
           '#markup' => '<div class="detail--content--block"><div class="text-block">
@@ -888,7 +890,7 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
         <div class="guidance-block">
           <p class="guidance-title">' . $guidance_title . '</p>
           <p class="guidance-text">' . t('Do you need help as a teacher to organize the learning session?') . '</p>
-          <p><a href="' . $guidance_href . '" class="more-link">' . t('Find outmore here') . '</a></p>
+          <p><a href="' . $guidance_href . '" class="more-link">' . t('Find out more here') . '</a></p>
         </div></div>',
         );
       }
