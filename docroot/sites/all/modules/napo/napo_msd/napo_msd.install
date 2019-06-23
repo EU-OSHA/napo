@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * NRV-112 Activities - Resources required accordion missing.
+ */
+function napo_msd_update_7001() {
+  module_enable(['views_autocomplete_filters']);
+  features_revert_module('napo_msd');
+  features_revert(array('napo_lesson' => array('views_view')));
+}

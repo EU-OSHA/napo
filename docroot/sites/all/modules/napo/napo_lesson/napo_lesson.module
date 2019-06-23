@@ -170,10 +170,19 @@ function napo_lesson_theme() {
 function napo_lesson_get_resources_required($node) {
   global $language;
   $items = [];
-  foreach($node->field_resources_required[LANGUAGE_NONE] as $row) {
-    $resource = node_load($row['target_id']);
-    $wrapper = entity_metadata_wrapper('node', $resource);
-    $items[] = $wrapper->language($language->language)->title_field->value();
+  if (!empty($node->field_msds_resources_required)) {
+    foreach($node->field_msds_resources_required[LANGUAGE_NONE] as $row) {
+      $resource = node_load($row['target_id']);
+      $wrapper = entity_metadata_wrapper('node', $resource);
+      $items[] = $wrapper->language($language->language)->title_field->value();
+    }
+  }
+  if (!empty($node->field_resources_required)) {
+    foreach ($node->field_resources_required[LANGUAGE_NONE] as $row) {
+      $resource = node_load($row['target_id']);
+      $wrapper = entity_metadata_wrapper('node', $resource);
+      $items[] = $wrapper->language($language->language)->title_field->value();
+    }
   }
   $output = theme('item_list', array('items' => $items));
 
@@ -268,6 +277,9 @@ function napo_lesson_preprocess_node(&$vars) {
     if (!empty($vars['preprocess_fields'])) {
       if (in_array('download_block', $vars['preprocess_fields'])) {
         $vars['download_block'] = napo_lesson_get_download_block($node);
+      }
+      if (in_array('resources_required', $vars['preprocess_fields'])) {
+        $vars['resources_required'] = napo_lesson_get_resources_required($node);
       }
     }
   }
