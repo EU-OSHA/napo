@@ -76,6 +76,7 @@ features[variable][] = node_preview_msds_activities
 features[variable][] = node_preview_msds_resources
 features[variable][] = node_submitted_msds_activities
 features[variable][] = node_submitted_msds_resources
+features[variable][] = pathauto_node_msds_activities_pattern
 features[variable][] = xmlsitemap_settings_node_msds_activities
 features[variable][] = xmlsitemap_settings_node_msds_resources
 features[views_view][] = conversation_started

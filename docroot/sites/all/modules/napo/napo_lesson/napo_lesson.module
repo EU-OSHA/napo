@@ -175,15 +175,20 @@ function napo_lesson_get_resources_required($node) {
     $wrapper = entity_metadata_wrapper('node', $resource);
     $items[] = $wrapper->language($language->language)->title_field->value();
   }
-  $text = variable_get('download_provided_resources_text', 'To download the provided resources, go to:');
-  $url = variable_get('napo_resources_url', 'napo-for-teachers/Resources');
-  $list = theme('item_list', array('items' => $items));
-  $url = url($url, ['absolute' => TRUE]);
-  $output = $list . $text . ' ' . l($url, $url);
+  $output = theme('item_list', array('items' => $items));
 
+  $text = variable_get('resources_required_text', '');
+  if (!$text) {
+    $text = variable_get('download_provided_resources_text', 'To download the provided resources, go to:');
+    $options['attributes'] = ['target' => '_blank'];
+    $options['absolute'] = TRUE;
+    $url = variable_get('napo_resources_url', 'using-napo/napo-for-teachers/resource-library');
+    $url = url($url, $options);
+    $text .= ' ' . l($url, $url, $options);
+  }
   return '<div class="acordion--block--item">'.
   '<h3 class="acordion-content-title active">' . t('Resources required') . '</h3>'.
-  '<div class="acordion-content-text" style="display: none;">' . $output . '</div></div>';
+  '<div class="acordion-content-text" style="display: none;">' . $output . $text . '</div></div>';
 }
 
 function napo_lesson_get_download_block($node) {

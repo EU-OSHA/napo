@@ -147,6 +147,7 @@ function napo_msd_field_default_field_bases() {
           'type' => 'none',
         ),
         'target_bundles' => array(
+          'lesson_video' => 'lesson_video',
           'napo_video' => 'napo_video',
         ),
       ),

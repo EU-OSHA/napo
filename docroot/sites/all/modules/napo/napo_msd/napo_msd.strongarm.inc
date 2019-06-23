@@ -144,9 +144,6 @@ function napo_msd_strongarm() {
       'episode_popup' => array(
         'custom_settings' => FALSE,
       ),
-      'print' => array(
-        'custom_settings' => FALSE,
-      ),
       'token' => array(
         'custom_settings' => FALSE,
       ),
@@ -163,25 +160,22 @@ function napo_msd_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '16',
+          'weight' => '15',
         ),
         'title' => array(
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '15',
-        ),
-        'redirect' => array(
           'weight' => '14',
         ),
-        'xmlsitemap' => array(
+        'redirect' => array(
           'weight' => '13',
         ),
-        'language' => array(
+        'xmlsitemap' => array(
           'weight' => '12',
         ),
-        'workbench_access' => array(
-          'weight' => '0',
+        'language' => array(
+          'weight' => '11',
         ),
       ),
       'display' => array(),
@@ -314,6 +308,13 @@ function napo_msd_strongarm() {
   $strongarm->name = 'node_submitted_msds_resources';
   $strongarm->value = 0;
   $export['node_submitted_msds_resources'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_msds_activities_pattern';
+  $strongarm->value = 'learning-with-napo/napo-in-the-workplace/[node:title]';
+  $export['pathauto_node_msds_activities_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
