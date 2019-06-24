@@ -107,6 +107,12 @@ h3 {
 .header_top_bar .region-header-top-bar > div#block-napo-common-napo-print-friendly .contextual-links-wrapper a {
   background: transparent url(/modules/contextual/images/gear-select.png) no-repeat 2px 0 !important;
 }
+.header_top_bar #content_cart_summary_container {
+  background: url(../images/download-icon.svg);
+  background-position: top right;
+  background-repeat: no-repeat;
+  padding-right: 3rem;
+}
 .sticky-bar {
   top: 8.1rem !important;
 }
@@ -941,6 +947,10 @@ h1 {
 .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag:last-child:after,
 .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag:last-child:after {
   content: '';
+}
+.page-using-napo-napo-for-teachers .lessons--section--block .pager,
+.page-using-napo-napo-workplaces .lessons--section--block .pager {
+  width: 100%;
 }
 .detail--section--block {
   padding: 0 3% 2rem 3%;
