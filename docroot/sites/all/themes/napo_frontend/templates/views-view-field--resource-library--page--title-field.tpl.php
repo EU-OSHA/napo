@@ -26,8 +26,14 @@
 $clip_nid = variable_get('napo_film_clip_nid', 429);
 if ($row->node_field_data_field_resources_required_nid == $clip_nid) {
   $link = url('using-napo/napo-for-teachers/download_video/' . $row->nid);
+  print l($output, $link);
 }
 else {
-  $link = file_create_url($row->field_field_file[0]['raw']['uri']);
+  if ($row->field_field_file) {
+    $link = file_create_url($row->field_field_file[0]['raw']['uri']);
+    print l($output, $link);
+  }
+  else {
+    print $output;
+  }
 }
-print l($output, $link);
