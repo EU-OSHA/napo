@@ -948,6 +948,10 @@ h1 {
 .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag:last-child:after {
   content: '';
 }
+.page-using-napo-napo-for-teachers .lessons--section--block .pager,
+.page-using-napo-napo-workplaces .lessons--section--block .pager {
+  width: 100%;
+}
 .detail--section--block {
   padding: 0 3% 2rem 3%;
 }
