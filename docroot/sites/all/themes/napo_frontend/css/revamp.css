@@ -107,6 +107,12 @@ h3 {
 .header_top_bar .region-header-top-bar > div#block-napo-common-napo-print-friendly .contextual-links-wrapper a {
   background: transparent url(/modules/contextual/images/gear-select.png) no-repeat 2px 0 !important;
 }
+.header_top_bar #content_cart_summary_container {
+  background: url(../images/download-icon.svg);
+  background-position: top right;
+  background-repeat: no-repeat;
+  padding-right: 3rem;
+}
 .sticky-bar {
   top: 8.1rem !important;
 }
