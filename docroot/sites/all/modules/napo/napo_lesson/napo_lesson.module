@@ -238,7 +238,7 @@ function napo_lesson_get_download_block($node) {
     $file_title = t('Lesson');
     $file_uri = $wrapper->language($language->language)->field_file->value()['uri'];
     $lesson_video = $node->field_lesson_video[LANGUAGE_NONE][0]['entity'];
-    if ($lesson_video) {
+    if ($lesson_video && !empty($lesson_video->field_video)) {
       $wrapper = entity_metadata_wrapper('node', $lesson_video);
       $video = $wrapper->language($language->language)->field_video->value()[0];
     }
@@ -247,7 +247,7 @@ function napo_lesson_get_download_block($node) {
     $file_title = t('Activity');
     $file_uri = $wrapper->language($language->language)->field_activity->value()['uri'];
     $lesson_video = $node->field_msds_video[LANGUAGE_NONE][0]['entity'];
-    if ($lesson_video) {
+    if ($lesson_video && !empty($lesson_video->field_video)) {
       $wrapper = entity_metadata_wrapper('node', $lesson_video);
       $video = $wrapper->language($language->language)->field_video->value()[0];
     }

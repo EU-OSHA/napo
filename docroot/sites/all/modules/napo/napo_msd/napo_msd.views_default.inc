@@ -106,6 +106,11 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'msds_activities' => 'msds_activities',
   );
+  /* Filter criterion: Content: Conversation started (field_conversation_started:fid) */
+  $handler->display->display_options['filters']['field_conversation_started_fid']['id'] = 'field_conversation_started_fid';
+  $handler->display->display_options['filters']['field_conversation_started_fid']['table'] = 'field_data_field_conversation_started';
+  $handler->display->display_options['filters']['field_conversation_started_fid']['field'] = 'field_conversation_started_fid';
+  $handler->display->display_options['filters']['field_conversation_started_fid']['operator'] = 'not empty';
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');

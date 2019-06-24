@@ -8,3 +8,10 @@ function napo_msd_update_7001() {
   features_revert_module('napo_lesson');
   features_revert_module('napo_msd');
 }
+
+/**
+ * NRV-150 MSDs Activity: conversation starter behaviour.
+ */
+function napo_msd_update_7002() {
+  features_revert(array('napo_msd' => array('views_view')));
+}
