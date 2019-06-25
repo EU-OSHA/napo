@@ -1231,6 +1231,10 @@ a.resource-library-link {
 #edit-search-block-form--2::-moz-placeholder {
   color: white;
 }
+.group-buttons-facilitator-guidance.field-group-html-element {
+  display: flex;
+  justify-content: center;
+}
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item {
     border: none;
@@ -2158,6 +2162,12 @@ a.resource-library-link {
   }
   .related--lessons--block .related-lessons-item .related-item-content {
     min-height: auto;
+  }
+  .group-buttons-facilitator-guidance.field-group-html-element {
+    flex-wrap: wrap;
+  }
+  .group-buttons-facilitator-guidance.field-group-html-element div.field {
+    margin-bottom: 1rem;
   }
 }
 @media only screen and (max-width: 450px) {
