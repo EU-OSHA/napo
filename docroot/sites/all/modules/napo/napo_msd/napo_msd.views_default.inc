@@ -43,20 +43,19 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['relationships']['field_msds_video_target_id']['field'] = 'field_msds_video_target_id';
   $handler->display->display_options['relationships']['field_msds_video_target_id']['label'] = 'MSDs Video';
   $handler->display->display_options['relationships']['field_msds_video_target_id']['required'] = TRUE;
-  /* Field: Field: Image */
-  $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
-  $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
-  $handler->display->display_options['fields']['field_image']['relationship'] = 'field_msds_video_target_id';
-  $handler->display->display_options['fields']['field_image']['label'] = '';
-  $handler->display->display_options['fields']['field_image']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_image']['settings'] = array(
-    'image_style' => '',
+  /* Field: Content: Conversation starters cover */
+  $handler->display->display_options['fields']['field_conversation_starters_cove']['id'] = 'field_conversation_starters_cove';
+  $handler->display->display_options['fields']['field_conversation_starters_cove']['table'] = 'field_data_field_conversation_starters_cove';
+  $handler->display->display_options['fields']['field_conversation_starters_cove']['field'] = 'field_conversation_starters_cove';
+  $handler->display->display_options['fields']['field_conversation_starters_cove']['label'] = '';
+  $handler->display->display_options['fields']['field_conversation_starters_cove']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_conversation_starters_cove']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_conversation_starters_cove']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_conversation_starters_cove']['settings'] = array(
+    'image_style' => 'starters_cover',
     'image_link' => '',
   );
-  /* Field: Content: Conversation started */
+  /* Field: Content: Conversation starters */
   $handler->display->display_options['fields']['field_conversation_started']['id'] = 'field_conversation_started';
   $handler->display->display_options['fields']['field_conversation_started']['table'] = 'field_data_field_conversation_started';
   $handler->display->display_options['fields']['field_conversation_started']['field'] = 'field_conversation_started';
@@ -73,7 +72,7 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="[field_conversation_started]">[field_image]</a>
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="[field_conversation_started]">[field_conversation_starters_cove]</a>
 <div class="related-item-content">
 <h3><a href="[field_conversation_started]">Conversation started</a></h3>
 </div>';
@@ -106,7 +105,7 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'msds_activities' => 'msds_activities',
   );
-  /* Filter criterion: Content: Conversation started (field_conversation_started:fid) */
+  /* Filter criterion: Content: Conversation starters (field_conversation_started:fid) */
   $handler->display->display_options['filters']['field_conversation_started_fid']['id'] = 'field_conversation_started_fid';
   $handler->display->display_options['filters']['field_conversation_started_fid']['table'] = 'field_data_field_conversation_started';
   $handler->display->display_options['filters']['field_conversation_started_fid']['field'] = 'field_conversation_started_fid';
@@ -124,7 +123,7 @@ function napo_msd_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('MSDs Video'),
-    t('<a href="[field_conversation_started]">[field_image]</a>
+    t('<a href="[field_conversation_started]">[field_conversation_starters_cove]</a>
 <div class="related-item-content">
 <h3><a href="[field_conversation_started]">Conversation started</a></h3>
 </div>'),
