@@ -741,6 +741,13 @@ function osha_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 1,
       ),
+      'view' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 3,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'body',
@@ -800,14 +807,20 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'view' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 19,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_activity_list_file',
-    'label' => 'Activity list file',
+    'label' => 'List of activities',
     'required' => 0,
     'settings' => array(
       'description_field' => 1,
-      'entity_translation_sync' => FALSE,
+      'entity_translation_sync' => 0,
       'file_directory' => '',
       'file_extensions' => 'txt pdf',
       'max_filesize' => '250MB',
@@ -910,6 +923,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 6,
       ),
+      'view' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 15,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_character_count',
@@ -986,6 +1005,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 7,
       ),
+      'view' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_expiration_date',
@@ -1045,6 +1070,12 @@ function osha_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'view' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 18,
       ),
     ),
     'entity_type' => 'node',
@@ -1126,6 +1157,12 @@ function osha_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'view' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 17,
       ),
     ),
     'entity_type' => 'node',
@@ -1259,6 +1296,16 @@ function osha_field_default_field_instances() {
         'type' => 'image',
         'weight' => 0,
       ),
+      'view' => array(
+        'label' => 'hidden',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => 'large',
+        ),
+        'type' => 'image',
+        'weight' => 1,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_image',
@@ -1346,14 +1393,20 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'view' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 20,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_menu',
-    'label' => 'Menu',
+    'label' => 'Glossary',
     'required' => 0,
     'settings' => array(
       'description_field' => 1,
-      'entity_translation_sync' => FALSE,
+      'entity_translation_sync' => 0,
       'file_directory' => '',
       'file_extensions' => 'txt pdf',
       'max_filesize' => '250MB',
@@ -1458,6 +1511,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 14,
       ),
+      'view' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_nace_codes',
@@ -1537,6 +1596,12 @@ function osha_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 9,
+      ),
+      'view' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 16,
       ),
     ),
     'entity_type' => 'node',
@@ -1628,6 +1693,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 15,
       ),
+      'view' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_publication_date',
@@ -1718,6 +1789,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 3,
       ),
+      'view' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_tags',
@@ -1795,6 +1872,12 @@ function osha_field_default_field_instances() {
       ),
       'teaser' => array(
         'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
+      'view' => array(
+        'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 10,
@@ -1946,6 +2029,12 @@ function osha_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 2,
       ),
+      'view' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'title_field',
@@ -1972,7 +2061,6 @@ function osha_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Activity list file');
   t('Alt text');
   t('Alternative text is used by screen readers, search engines, and when the image cannot be loaded. By adding alt text you improve accessibility and search engine optimization.');
   t('Automatically calculated when saving. The count of characters found in the default language text (English).');
@@ -1981,11 +2069,12 @@ function osha_field_default_field_instances() {
   t('Character count');
   t('Description');
   t('Expiration date');
+  t('Glossary');
   t('Guidance file');
   t('Icon');
   t('Image');
   t('Language');
-  t('Menu');
+  t('List of activities');
   t('Nace');
   t('Page count');
   t('Publication date');
