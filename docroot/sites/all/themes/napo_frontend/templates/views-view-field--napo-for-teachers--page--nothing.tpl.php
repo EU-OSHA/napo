@@ -22,13 +22,11 @@
  * the view is modified.
  */
 $names = [];
-if ($row->node_field_data_field_lesson_video_nid) {
-  $node = node_load($row->node_field_data_field_lesson_video_nid);
-  if ($node->field_tags) {
-    foreach($node->field_tags['und'] as $tag) {
-      $term = taxonomy_term_load($tag['tid']);
-      $names[] = $term->name;
-    }
+$node = node_load($row->nid);
+if ($node->field_tags) {
+  foreach($node->field_tags['und'] as $tag) {
+    $term = taxonomy_term_load($tag['tid']);
+    $names[] = $term->name;
   }
 }
 $label = t('Keyword');

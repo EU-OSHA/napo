@@ -86,7 +86,7 @@ function napo_msd_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 19,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -285,7 +285,7 @@ function napo_msd_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 21,
+        'weight' => 22,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -366,10 +366,10 @@ function napo_msd_field_default_field_instances() {
       ),
       'full' => array(
         'label' => 'hidden',
-        'module' => 'text',
+        'module' => 'napo_common',
         'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 4,
+        'type' => 'napo_introductory_text',
+        'weight' => 3,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -490,7 +490,7 @@ function napo_msd_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 20,
+        'weight' => 21,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -597,7 +597,7 @@ function napo_msd_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 23,
+        'weight' => 24,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
@@ -648,7 +648,7 @@ function napo_msd_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 22,
+        'weight' => 23,
       ),
       'osha_slideshow' => array(
         'label' => 'above',

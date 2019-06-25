@@ -701,7 +701,7 @@ function _napo_common_resources_required_files($node) {
       }
     }
   }
-  if ($node->field_msds_resources_required) {
+  if (variable_get('allow_msds_resources_required', FALSE) && $node->field_msds_resources_required) {
     foreach($node->field_resources_required[LANGUAGE_NONE] as $row) {
       $resource = node_load($row['target_id']);
       $wrapper = entity_metadata_wrapper('node', $resource);

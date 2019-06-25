@@ -42,7 +42,7 @@
       <h2>
         <?php print t('Lessons');
           if ($header) {
-            print '<span class="lessons-available">[' . $header . ']</span>';
+            print '<span class="lessons-available"> [' . $header . ']</span>';
           } ?>
       </h2>
     <?php if ($exposed): ?>

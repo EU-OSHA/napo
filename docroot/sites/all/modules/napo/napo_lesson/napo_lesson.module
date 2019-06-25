@@ -221,13 +221,17 @@ function napo_lesson_get_resources_required($node) {
     $text = variable_get('download_provided_resources_text', 'To download the provided resources, go to:');
     $options['attributes'] = ['target' => '_blank'];
     $options['absolute'] = TRUE;
+    $title = variable_get('napo_resources_text', 'Resource library');
     $url = variable_get('napo_resources_url', 'using-napo/napo-for-teachers/resource-library');
     $url = url($url, $options);
-    $text .= ' ' . l($url, $url, $options);
+    $text .= ' ' . l($title, $url, $options);
   }
-  return '<div class="acordion--block--item">'.
+  if ($node->type == 'lesson') {
+    $output .= $text;
+  }
+    return '<div class="acordion--block--item">'.
   '<h3 class="acordion-content-title active">' . t('Resources required') . '</h3>'.
-  '<div class="acordion-content-text" style="display: none;">' . $output . $text . '</div></div>';
+  '<div class="acordion-content-text" style="display: none;">' . $output . '</div></div>';
 }
 
 function napo_lesson_get_download_block($node) {
@@ -279,6 +283,7 @@ function napo_lesson_get_download_block($node) {
     $items[] = $output;
   }
 
+  $resources_required = NULL;
   if ($node->type == 'lesson') {
     $resources_required = $node->field_resources_required;
     $nid = variable_get('teacher_guidance_nid', 407);
@@ -287,7 +292,6 @@ function napo_lesson_get_download_block($node) {
     $items[] = l(t('Teacher guidance'), file_create_url($file_uri));
   }
   else {
-    $resources_required = $node->field_msds_resources_required;
     $nid = variable_get('facilitator_guidance_nid', 408);
     $items[] = l(t('Facilitator guidance'),'node/' . $nid . '/guidance');
   }

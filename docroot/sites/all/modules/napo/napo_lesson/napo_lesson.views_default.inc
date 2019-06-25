@@ -698,7 +698,6 @@ return $arguments;';
   $handler->display->display_options['relationships']['field_tags_tid']['id'] = 'field_tags_tid';
   $handler->display->display_options['relationships']['field_tags_tid']['table'] = 'field_data_field_tags';
   $handler->display->display_options['relationships']['field_tags_tid']['field'] = 'field_tags_tid';
-  $handler->display->display_options['relationships']['field_tags_tid']['relationship'] = 'field_lesson_video_target_id';
   $handler->display->display_options['relationships']['field_tags_tid']['label'] = 'Tags';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
