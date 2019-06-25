@@ -938,7 +938,12 @@ function napo_common_views_query_alter(&$view, &$query) {
       $key = 0;
       $conditions = $query->where[2]['conditions'][$key]['field']->conditions();
       if ($conditions) {
-        $db_or = db_or();
+        if ($conditions['#conjunction'] = 'AND') {
+          $db_or_and = db_and();
+        }
+        else {
+          $db_or_and = db_or();
+        }
         foreach ($conditions as $condition) {
           if (!is_array($condition)) {
             continue;
@@ -946,9 +951,9 @@ function napo_common_views_query_alter(&$view, &$query) {
           $search = 'field_data_title_field.title_field_value';
           $replace = $search . ", ' ', taxonomy_term_data_field_data_field_tags.name";
           $condition['field'] = str_replace($search,$replace, $condition['field']);
-          $db_or->where($condition['field'], $condition['value']);
+          $db_or_and->where($condition['field'], $condition['value']);
         }
-        $query->where[2]['conditions'][$key]['field'] = $db_or;
+        $query->where[2]['conditions'][$key]['field'] = $db_or_and;
       }
     }
   }

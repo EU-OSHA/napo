@@ -21,12 +21,14 @@
  * regardless of any changes in the aliasing that might happen if
  * the view is modified.
  */
-$node = node_load($row->nid);
 $names = [];
-if ($node->field_tags) {
-  foreach($node->field_tags['und'] as $tag) {
-    $term = taxonomy_term_load($tag['tid']);
-    $names[] = $term->name;
+if ($row->node_field_data_field_lesson_video_nid) {
+  $node = node_load($row->node_field_data_field_lesson_video_nid);
+  if ($node->field_tags) {
+    foreach($node->field_tags['und'] as $tag) {
+      $term = taxonomy_term_load($tag['tid']);
+      $names[] = $term->name;
+    }
   }
 }
 $label = t('Keyword');

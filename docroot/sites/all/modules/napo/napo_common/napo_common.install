@@ -93,3 +93,11 @@ function napo_common_update_7007() {
     variable_set('facilitator_guidance_nid', $node->nid);
   }
 }
+
+/**
+ * NRV-78 NAPO FOR TEACHERS: Autocomplete does not work.
+ */
+function napo_common_update_7008() {
+  features_revert(array('napo_lesson' => array('views_view')));
+  features_revert(array('napo_msd' => array('views_view')));
+}
