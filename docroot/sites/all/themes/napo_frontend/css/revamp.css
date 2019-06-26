@@ -1818,12 +1818,15 @@ a.resource-library-link {
   }
   .related--lessons--block {
     flex-direction: row;
+    justify-content: space-between;
   }
   .related--lessons--block .related-lessons-item {
-    width: 50%;
+    width: 49%;
+    height: auto;
+    margin: 1rem 0;
   }
   .related--lessons--block .related-lessons-item .related-item-content {
-    min-height: 11rem;
+    min-height: 60%;
   }
   .slider--video--section .slider--video--block .slider--video--items .multicarousel--block {
     padding: 0;
@@ -2162,6 +2165,7 @@ a.resource-library-link {
   .related--lessons--block .related-lessons-item {
     width: 100%;
     margin: 1rem 0;
+    min-height: auto;
   }
   .related--lessons--block .related-lessons-item .field-content > a img {
     width: auto;

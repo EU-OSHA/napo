@@ -1871,16 +1871,24 @@ a.resource-library-link{
 
 	.related--lessons--block{
 		  flex-direction: row;
+		  //NRV-155 Mobile Activity - Related resources boxes
+		  justify-content: space-between;
 			h2{
 			}
 			.related-lessons-item{
-			  width: 50%;
+				//NRV-155 Mobile Activity - Related resources boxes	
+			  	//width: 50%;
+			  	width: 49%;
+			  	height: auto;
+			  	margin: 1rem 0;
 				img{
 				  &:hover{
 				  }
 				}
 				.related-item-content{
-					min-height: 11rem;
+					//NRV-155 Mobile Activity - Related resources boxes
+					//min-height: 11rem;
+					min-height: 60%;
 					h3{
 						a{
 						}
@@ -2291,6 +2299,8 @@ a.resource-library-link{
 			.related-lessons-item{
 			  width: 100%;
 			  margin: 1rem 0;
+			  //NRV-155 Mobile Activity - Related resources boxes
+			  min-height: auto;
 			  .field-content{
 			  	> a{
 			  		img{
