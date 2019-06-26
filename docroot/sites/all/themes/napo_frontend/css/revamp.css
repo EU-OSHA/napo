@@ -1239,6 +1239,10 @@ a.resource-library-link {
 .related-item-content h3 .file .file-size {
   display: none;
 }
+.related-item-content h3 .file a:after {
+  content: url('../images/btn-download-all.png');
+  margin: 0.5rem;
+}
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item {
     border: none;
