@@ -41,7 +41,7 @@
 <section class="lessons--section--block">
       <h2><?php print t('Understanding MSDs');
         if ($header) {
-          print '<span class="lessons-available">[' . $header . ']</span>';
+          print '<span class="lessons-available"> [' . $header . ']</span>';
         } ?>
       </h2>
 

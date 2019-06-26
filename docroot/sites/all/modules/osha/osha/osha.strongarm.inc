@@ -264,6 +264,9 @@ function osha_strongarm() {
       'recommended_films' => array(
         'custom_settings' => FALSE,
       ),
+      'view' => array(
+        'custom_settings' => TRUE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(

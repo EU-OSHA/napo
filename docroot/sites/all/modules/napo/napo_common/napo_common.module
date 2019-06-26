@@ -632,6 +632,13 @@ function napo_common_field_formatter_info() {
       'settings' => array(
       ),
     ),
+    'msd_starter' => array(
+      'label' => t('MSD starter'),
+      'description' => t('MSD starter file + description.'),
+      'field types' => array('file', 'image'),
+      'settings' => array(
+      ),
+    ),
 
     'napo_introductory_text' => array(
       'label' => t('napo introductory text'),
@@ -701,6 +708,16 @@ function _napo_common_resources_required_files($node) {
       }
     }
   }
+  if (variable_get('allow_msds_resources_required', FALSE) && $node->field_msds_resources_required) {
+    foreach($node->field_resources_required[LANGUAGE_NONE] as $row) {
+      $resource = node_load($row['target_id']);
+      $wrapper = entity_metadata_wrapper('node', $resource);
+      $file = $wrapper->language($language->language)->field_file->value();
+      if ($file) {
+        $files[] = $file;
+      }
+    }
+  }
   return $files;
 }
 
@@ -758,7 +775,7 @@ function _napo_common_download_all_files($node) {
   }
   else {
     $lesson_video_nid = $node->field_msds_video[LANGUAGE_NONE][0]['target_id'];
-    $file = $wrapper->language($language->language)->field_conversation_started->value();
+    $file = $wrapper->language($language->language)->field_activity->value();
   }
   if ($file) {
     $files[] = $file;
@@ -869,17 +886,28 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
       return $element;
       break;
 
+    case 'msd_starter':
+      foreach ($items as $delta => $item) {
+        $element[$delta] = array(
+          '#markup' => '<div class=""><a href="' . file_create_url($item['uri']) . '" target="_blank">'. $item['description'] . '</a></div>',
+        );
+      }
+      return $element;
+      break;
+
     case 'lesson_download':
       return $element;
       break;
 
     case 'napo_introductory_text':
-      $guidance_href = variable_get('guidance_href');
       $node = menu_get_object();
+      $nid = variable_get('teacher_guidance_nid', 407);
       $guidance_title = t('Teacher guidance');
-      if ($node->type =='msds_activities') {
+      if ($node->type == 'msds_activities') {
+        $nid = variable_get('facilitator_guidance_nid', 408);
         $guidance_title = t('Facilitator guidance');
       }
+      $guidance_href = url('node/' . $nid);
       foreach ($items as $delta => $item) {
         $element[$delta] = array(
           '#markup' => '<div class="detail--content--block"><div class="text-block">
@@ -888,7 +916,7 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
         <div class="guidance-block">
           <p class="guidance-title">' . $guidance_title . '</p>
           <p class="guidance-text">' . t('Do you need help as a teacher to organize the learning session?') . '</p>
-          <p><a href="' . $guidance_href . '" class="more-link">' . t('Find outmore here') . '</a></p>
+          <p><a href="' . $guidance_href . '" class="more-link">' . t('Find out more here') . '</a></p>
         </div></div>',
         );
       }
@@ -915,6 +943,36 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
   }
 
   return $element;
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function napo_common_views_query_alter(&$view, &$query) {
+  if (('napo_workplaces' == $view->name) || ('napo_for_teachers' == $view->name)) {
+    if ($query->where[2]['conditions']) {
+      $key = 0;
+      $conditions = $query->where[2]['conditions'][$key]['field']->conditions();
+      if ($conditions) {
+        if ($conditions['#conjunction'] = 'AND') {
+          $db_or_and = db_and();
+        }
+        else {
+          $db_or_and = db_or();
+        }
+        foreach ($conditions as $condition) {
+          if (!is_array($condition)) {
+            continue;
+          }
+          $search = 'field_data_title_field.title_field_value';
+          $replace = $search . ", ' ', taxonomy_term_data_field_data_field_tags.name";
+          $condition['field'] = str_replace($search,$replace, $condition['field']);
+          $db_or_and->where($condition['field'], $condition['value']);
+        }
+        $query->where[2]['conditions'][$key]['field'] = $db_or_and;
+      }
+    }
+  }
 }
 
 /**

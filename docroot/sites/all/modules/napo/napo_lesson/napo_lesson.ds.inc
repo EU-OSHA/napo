@@ -62,13 +62,18 @@ function napo_lesson_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
+    'intro_block' => array(
+      'weight' => '3',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'download_block' => array(
-      'weight' => '10',
+      'weight' => '11',
       'label' => 'hidden',
       'format' => 'default',
     ),
     'resources_required' => array(
-      'weight' => '8',
+      'weight' => '9',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -108,6 +113,19 @@ msds_activities|*';
   $ds_field->ui_limit = 'lesson|default';
   $ds_field->properties = array();
   $export['download_whole_lesson'] = $ds_field;
+
+  $ds_field = new stdClass();
+  $ds_field->api_version = 1;
+  $ds_field->field = 'intro_block';
+  $ds_field->label = 'Intro block';
+  $ds_field->field_type = 3;
+  $ds_field->entities = array(
+    'node' => 'node',
+  );
+  $ds_field->ui_limit = 'lesson|*
+msds_activities|*';
+  $ds_field->properties = array();
+  $export['intro_block'] = $ds_field;
 
   $ds_field = new stdClass();
   $ds_field->api_version = 1;
@@ -339,25 +357,27 @@ function napo_lesson_ds_layout_settings_info() {
         0 => 'back_button',
         1 => 'title_field',
         2 => 'field_lesson_video',
-        3 => 'field_lesson_intro_text',
+        3 => 'intro_block',
       ),
       'left' => array(
-        4 => 'field_learning_objectives',
-        5 => 'field_starter',
-        6 => 'field_activities',
-        7 => 'field_assessment',
-        8 => 'resources_required',
-        9 => 'field_curriculum_links',
+        4 => 'field_lesson_intro_text',
+        5 => 'field_learning_objectives',
+        6 => 'field_starter',
+        7 => 'field_activities',
+        8 => 'field_assessment',
+        9 => 'resources_required',
+        10 => 'field_curriculum_links',
       ),
       'right' => array(
-        10 => 'download_block',
+        11 => 'download_block',
       ),
     ),
     'fields' => array(
       'back_button' => 'header',
       'title_field' => 'header',
       'field_lesson_video' => 'header',
-      'field_lesson_intro_text' => 'header',
+      'intro_block' => 'header',
+      'field_lesson_intro_text' => 'left',
       'field_learning_objectives' => 'left',
       'field_starter' => 'left',
       'field_activities' => 'left',

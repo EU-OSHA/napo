@@ -26,6 +26,12 @@ function osha_ds_field_settings_info() {
       'weight' => '4',
       'label' => 'hidden',
       'format' => 'default',
+      'formatter_settings' => array(
+        'link text' => 'Read more',
+        'link class' => '',
+        'wrapper' => '',
+        'class' => '',
+      ),
     ),
   );
   $export['node|article|search_results'] = $ds_fieldsetting;
@@ -63,7 +69,11 @@ function osha_ds_layout_settings_info() {
       'body' => 'ds_content',
       'node_link' => 'ds_content',
     ),
-    'classes' => array(),
+    'classes' => array(
+      'layout_class' => array(
+        '' => '',
+      ),
+    ),
     'wrappers' => array(
       'ds_content' => 'div',
     ),
@@ -72,6 +82,7 @@ function osha_ds_layout_settings_info() {
     'layout_attributes_merge' => 1,
     'layout_link_attribute' => '',
     'layout_link_custom' => '',
+    'layout_disable_css' => FALSE,
   );
   $export['node|article|search_results'] = $ds_layout;
 

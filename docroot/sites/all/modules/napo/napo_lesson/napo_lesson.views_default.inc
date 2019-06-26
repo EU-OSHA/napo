@@ -659,8 +659,11 @@ return $arguments;';
   $handler->display->display_options['query']['options']['pure_distinct'] = TRUE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['expose_sort_order'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '6';
   $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['row_class'] = 'lessons-item';
   $handler->display->display_options['style_options']['default_row_class'] = FALSE;
@@ -718,6 +721,14 @@ return $arguments;';
     'napo_film_title_link_with_film_value' => '!episode from the film !film',
   );
   $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_field_1']['id'] = 'title_field_1';
+  $handler->display->display_options['fields']['title_field_1']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field_1']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field_1']['label'] = '';
+  $handler->display->display_options['fields']['title_field_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field_1']['type'] = 'text_plain';
+  $handler->display->display_options['fields']['title_field_1']['link_to_entity'] = 0;
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
@@ -725,6 +736,20 @@ return $arguments;';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['exclude'] = TRUE;
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['body']['type'] = 'smart_trim_format';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_link' => '0',
+    'trim_length' => '15',
+    'trim_type' => 'words',
+    'trim_suffix' => '',
+    'more_link' => '0',
+    'more_text' => 'Read more',
+    'summary_handler' => 'full',
+    'trim_options' => array(
+      'text' => 'text',
+    ),
+    'trim_preserve_tags' => '',
+  );
   /* Field: Field: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
@@ -737,35 +762,23 @@ return $arguments;';
     'image_style' => 'lessons_grid_image',
     'image_link' => '',
   );
-  /* Field: Field: Tags */
-  $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
-  $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
-  $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
-  $handler->display->display_options['fields']['field_tags']['label'] = '';
-  $handler->display->display_options['fields']['field_tags']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_tags']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_tags']['type'] = 'i18n_taxonomy_term_reference_plain';
-  $handler->display->display_options['fields']['field_tags']['delta_offset'] = '0';
-  /* Field: Global: Custom text */
+  /* Field: Title and tags */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
+  $handler->display->display_options['fields']['nothing']['ui_name'] = 'Title and tags';
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<div class="lessons-item-content">
 <h3>[title_field]</h3>
 <p class="keyword-list">
-<span class="keyword-label"><label>Keyword:</label></span> <span class="keyword-tag">[field_tags]</span>
+__Tags__
 </p>
 </div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  /* Field: Taxonomy term: Name */
-  $handler->display->display_options['fields']['name']['id'] = 'name';
-  $handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
-  $handler->display->display_options['fields']['name']['field'] = 'name';
-  $handler->display->display_options['fields']['name']['relationship'] = 'field_tags_tid';
-  $handler->display->display_options['fields']['name']['label'] = '';
-  $handler->display->display_options['fields']['name']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -780,11 +793,13 @@ return $arguments;';
   $handler->display->display_options['filters']['type']['value'] = array(
     'lesson' => 'lesson',
   );
+  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Global: Combine fields filter */
   $handler->display->display_options['filters']['combine']['id'] = 'combine';
   $handler->display->display_options['filters']['combine']['table'] = 'views';
   $handler->display->display_options['filters']['combine']['field'] = 'combine';
-  $handler->display->display_options['filters']['combine']['operator'] = 'word';
+  $handler->display->display_options['filters']['combine']['operator'] = 'allwords';
+  $handler->display->display_options['filters']['combine']['group'] = 2;
   $handler->display->display_options['filters']['combine']['exposed'] = TRUE;
   $handler->display->display_options['filters']['combine']['expose']['operator_id'] = 'combine_op';
   $handler->display->display_options['filters']['combine']['expose']['label'] = 'Search';
@@ -802,10 +817,15 @@ return $arguments;';
     9 => 0,
     10 => 0,
   );
+  $handler->display->display_options['filters']['combine']['expose']['autocomplete_filter'] = 1;
+  $handler->display->display_options['filters']['combine']['expose']['autocomplete_items'] = '10';
+  $handler->display->display_options['filters']['combine']['expose']['autocomplete_min_chars'] = '3';
+  $handler->display->display_options['filters']['combine']['expose']['autocomplete_raw_suggestion'] = 0;
+  $handler->display->display_options['filters']['combine']['expose']['autocomplete_raw_dropdown'] = 0;
+  $handler->display->display_options['filters']['combine']['expose']['autocomplete_dependent'] = 1;
   $handler->display->display_options['filters']['combine']['fields'] = array(
-    'title_field' => 'title_field',
+    'title_field_1' => 'title_field_1',
     'body' => 'body',
-    'name' => 'name',
   );
 
   /* Display: Page */
@@ -820,6 +840,13 @@ return $arguments;';
     t('Sort by'),
     t('Asc'),
     t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
     t('@total'),
     t('No results'),
     t('lesson_video'),
@@ -827,7 +854,7 @@ return $arguments;';
     t('<div class="lessons-item-content">
 <h3>[title_field]</h3>
 <p class="keyword-list">
-<span class="keyword-label"><label>Keyword:</label></span> <span class="keyword-tag">[field_tags]</span>
+__Tags__
 </p>
 </div>'),
     t('Search'),

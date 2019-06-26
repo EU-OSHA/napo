@@ -72,11 +72,14 @@ a:hover {
 .node .content .field-name-body.field-type-text-with-summary {
   padding: 1.6rem 0;
 }
+.views-exposed-form .views-exposed-widget {
+  padding: 0.4rem 0em 0 0;
+}
 .page-search .views-exposed-form .views-exposed-widget .form-submit {
   margin-top: 29px;
 }
 .view-display-id-page {
-  padding: 0 3rem 2rem;
+  padding: 0 1rem 2rem;
 }
 .napo-share-widget ul li:nth-child(3) {
   background: url(../images/link.png) no-repeat;
@@ -87,6 +90,9 @@ a:hover {
 }
 header #block-lang-dropdown-language-content #lang_dropdown_form_language_content .form-type-select #lang-dropdown-select-language_content {
   border-radius: 6rem;
+}
+header .menu.nav.navbar-nav > li {
+  height: 100%;
 }
 .header_top_bar a.ext span.ext,
 h2 a.ext span.ext {
@@ -100,6 +106,12 @@ h3 {
 }
 .header_top_bar .region-header-top-bar > div#block-napo-common-napo-print-friendly .contextual-links-wrapper a {
   background: transparent url(/modules/contextual/images/gear-select.png) no-repeat 2px 0 !important;
+}
+.header_top_bar #content_cart_summary_container {
+  background: url(../images/download-icon.svg);
+  background-position: top right;
+  background-repeat: no-repeat;
+  padding-right: 3rem;
 }
 .sticky-bar {
   top: 8.1rem !important;
@@ -165,7 +177,7 @@ h3 {
 }
 .slider .frontpage-video-title {
   position: absolute;
-  top: 12%;
+  top: 10%;
   left: 11rem;
   padding: 4rem;
   max-width: 30rem;
@@ -518,16 +530,17 @@ h3 {
 .node-type-msds-activities h1.page-header {
   display: none;
 }
+h1 {
+  padding: 0.3rem 0.7rem;
+}
 .page-sitemap h1.page-header {
-  font-size: 4rem;
-  font-weight: bold;
+  font-size: 3rem;
   padding: 0.3rem 0.7rem;
   margin-top: 0rem;
   display: block;
 }
 .region-content h1 {
-  font-size: 4rem;
-  font-weight: bold;
+  font-size: 3rem;
   padding: 0.3rem 0.7rem;
   margin-top: 0rem;
   display: block;
@@ -545,15 +558,14 @@ h3 {
   top: -4.5rem;
 }
 .page--banner--block .btn-back a {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: bold;
   background: url(../images/arrow-back.png) left 50% no-repeat;
   padding: 0.5rem 1rem;
   background-size: auto 10px;
 }
 .page--banner--block h1 {
-  font-size: 4rem;
-  font-weight: bold;
+  font-size: 3rem;
   padding: 0.3rem 0.7rem;
   margin-top: 2.5rem;
 }
@@ -582,7 +594,7 @@ h3 {
   float: left;
   width: 76%;
   background: #EDECED;
-  padding: 4rem 3rem 3rem 8rem;
+  padding: 1rem 3rem 1rem 8rem;
 }
 .page--banner--block .detail--content--block .guidance-block {
   float: right;
@@ -624,12 +636,12 @@ h3 {
 }
 .node-type-article .content .field-name-field-guidance-file .field-items a {
   color: transparent;
-  background: url(/sites/all/themes/napo_frontend/images/video-download-v2.png?v=1) no-repeat 10px 7px;
+  background: url(/sites/all/themes/napo_frontend/images/video-download-v2.png?v=1) no-repeat 10px 5px;
   padding: 10px;
   display: block;
   width: 52px;
-  height: 50px;
-  margin-top: 4px;
+  height: 44px;
+  margin-top: -5px;
 }
 .node-type-article .content .field-name-field-image {
   /* width: 39%;
@@ -711,8 +723,7 @@ h3 {
 }
 .page-using-napo-napo-for-teachers h1.page-header,
 .page-using-napo-napo-workplaces h1.page-header {
-  font-size: 4rem;
-  font-weight: bold;
+  font-size: 3rem;
   padding: 0.3rem 0.7rem;
   margin-top: 2.5rem;
   border: 0;
@@ -936,6 +947,10 @@ h3 {
 .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag:last-child:after,
 .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag:last-child:after {
   content: '';
+}
+.page-using-napo-napo-for-teachers .lessons--section--block .pager,
+.page-using-napo-napo-workplaces .lessons--section--block .pager {
+  width: 100%;
 }
 .detail--section--block {
   padding: 0 3% 2rem 3%;
@@ -1213,6 +1228,37 @@ a.resource-library-link {
   text-decoration: underline;
   font-weight: bold;
 }
+#edit-search-block-form--2::-moz-placeholder {
+  color: white;
+}
+.group-buttons-facilitator-guidance.field-group-html-element {
+  display: flex;
+  justify-content: center;
+}
+.related-item-content h3 .file .file-icon,
+.related-item-content h3 .file .file-size {
+  display: none;
+}
+.related-item-content h3 .file a:after {
+  content: url('../images/btn-download-all.png');
+  margin: 0.5rem;
+}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item {
+    border: none;
+  }
+  .detail--section--block .detail--text--block {
+    flex: 24%;
+  }
+}
+.view-napo-s-film-episodes .episode-list-details-container .tags {
+  font-size: 0.6em;
+}
+.view-napo-s-film-episodes .views-row div.episode-list-details-container {
+  padding-bottom: 0em !important;
+  padding-top: 0em !important;
+  height: 51px;
+}
 @-webkit-keyframes autofill {
   to {
     background: #1f3695;
@@ -1326,6 +1372,7 @@ a.resource-library-link {
   .node-type-msds-activities .detail--section--block .detail--text--block {
     flex-wrap: wrap;
     width: 100%;
+    flex: none;
   }
   .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block,
   .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .acordion--items--block,
@@ -1771,12 +1818,15 @@ a.resource-library-link {
   }
   .related--lessons--block {
     flex-direction: row;
+    justify-content: space-between;
   }
   .related--lessons--block .related-lessons-item {
-    width: 50%;
+    width: 49%;
+    height: auto;
+    margin: 1rem 0;
   }
   .related--lessons--block .related-lessons-item .related-item-content {
-    min-height: 11rem;
+    min-height: 60%;
   }
   .slider--video--section .slider--video--block .slider--video--items .multicarousel--block {
     padding: 0;
@@ -2115,6 +2165,7 @@ a.resource-library-link {
   .related--lessons--block .related-lessons-item {
     width: 100%;
     margin: 1rem 0;
+    min-height: auto;
   }
   .related--lessons--block .related-lessons-item .field-content > a img {
     width: auto;
@@ -2123,6 +2174,12 @@ a.resource-library-link {
   }
   .related--lessons--block .related-lessons-item .related-item-content {
     min-height: auto;
+  }
+  .group-buttons-facilitator-guidance.field-group-html-element {
+    flex-wrap: wrap;
+  }
+  .group-buttons-facilitator-guidance.field-group-html-element div.field {
+    margin-bottom: 1rem;
   }
 }
 @media only screen and (max-width: 450px) {

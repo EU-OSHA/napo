@@ -23,7 +23,12 @@ function napo_msd_ds_field_settings_info() {
       'format' => 'default',
     ),
     'download_block' => array(
-      'weight' => '8',
+      'weight' => '10',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
+    'resources_required' => array(
+      'weight' => '9',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -115,9 +120,10 @@ function napo_msd_ds_layout_settings_info() {
         5 => 'field_activities',
         6 => 'field_concluding_questions',
         7 => 'field_assessment',
+        8 => 'resources_required',
       ),
       'right' => array(
-        8 => 'download_block',
+        9 => 'download_block',
       ),
     ),
     'fields' => array(
@@ -129,6 +135,7 @@ function napo_msd_ds_layout_settings_info() {
       'field_activities' => 'left',
       'field_concluding_questions' => 'left',
       'field_assessment' => 'left',
+      'resources_required' => 'left',
       'download_block' => 'right',
     ),
     'classes' => array(

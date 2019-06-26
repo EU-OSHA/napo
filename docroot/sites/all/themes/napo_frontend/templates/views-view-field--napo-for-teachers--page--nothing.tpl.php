@@ -21,19 +21,16 @@
  * regardless of any changes in the aliasing that might happen if
  * the view is modified.
  */
-?>
-<?php
-$clip_nid = variable_get('napo_film_clip_nid', 429);
-if ($row->node_field_data_field_resources_required_nid == $clip_nid) {
-  $link = url('using-napo/napo-for-teachers/download_video/' . $row->nid);
-  print l($output, $link);
-}
-else {
-  if ($row->field_field_file) {
-    $link = file_create_url($row->field_field_file[0]['raw']['uri']);
-    print l($output, $link);
-  }
-  else {
-    print $output;
+$names = [];
+$node = node_load($row->nid);
+if ($node->field_tags) {
+  foreach($node->field_tags['und'] as $tag) {
+    $term = taxonomy_term_load($tag['tid']);
+    $names[] = $term->name;
   }
 }
+$label = t('Keyword');
+$tags = implode(', ', $names);
+$replace = '<span class="keyword-label"><label>' . $label . ':</label></span> <span class="keyword-tag">' . $tags . '</span>';
+$output = str_replace('__Tags__', $replace, $output);
+print $output;
