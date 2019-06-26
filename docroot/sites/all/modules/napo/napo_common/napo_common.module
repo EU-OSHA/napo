@@ -632,6 +632,13 @@ function napo_common_field_formatter_info() {
       'settings' => array(
       ),
     ),
+    'msd_starter' => array(
+      'label' => t('MSD starter'),
+      'description' => t('MSD starter file + description.'),
+      'field types' => array('file', 'image'),
+      'settings' => array(
+      ),
+    ),
 
     'napo_introductory_text' => array(
       'label' => t('napo introductory text'),
@@ -874,6 +881,15 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
           '#markup' => '<div class="acordion--block--item">'.
             '<h3 class="acordion-content-title active">' . t($instance['label']) . '</h3>'.
             '<div class="acordion-content-text" style="display: none;">' . $item['safe_value'] . '</div></div>',
+        );
+      }
+      return $element;
+      break;
+
+    case 'msd_starter':
+      foreach ($items as $delta => $item) {
+        $element[$delta] = array(
+          '#markup' => '<div class=""><a href="' . file_create_url($item['uri']) . '" target="_blank">'. $item['description'] . '</a></div>',
         );
       }
       return $element;

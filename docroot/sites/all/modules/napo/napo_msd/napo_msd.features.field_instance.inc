@@ -462,7 +462,7 @@ function napo_msd_field_default_field_instances() {
         'module' => 'napo_common',
         'settings' => array(),
         'type' => 'napo_introductory_text',
-        'weight' => 3,
+        'weight' => 4,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
