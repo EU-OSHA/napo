@@ -737,13 +737,18 @@ h1{
 					display: none;
 		  	}
 		  	a{
-				  color: transparent;
-				  background: url(/sites/all/themes/napo_frontend/images/video-download-v2.png?v=1) no-repeat 10px 7px;
-				  padding: 10px;
-				  display: block;
-				  width: 52px;
-				  height: 50px;
-				  margin-top: 4px;
+		  			//NRV-157 Tablet Facilitator guidance - Download icon not correctly displayed
+		  			//Changed some values to adjust the button to the grey ribbon after change the title size
+				  	color: transparent;
+				  	//background: url(/sites/all/themes/napo_frontend/images/video-download-v2.png?v=1) no-repeat 10px 7px;
+				  	background: url(/sites/all/themes/napo_frontend/images/video-download-v2.png?v=1) no-repeat 10px 5px;
+				  	padding: 10px;
+				  	display: block;
+				  	width: 52px;
+				  	//height: 50px;
+				  	height: 44px;
+				  	//margin-top: 4px;
+				  	margin-top:-5px;
 		  	}
 		  }
 		}
