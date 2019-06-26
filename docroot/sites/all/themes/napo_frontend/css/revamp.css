@@ -1235,6 +1235,10 @@ a.resource-library-link {
   display: flex;
   justify-content: center;
 }
+.related-item-content h3 .file .file-icon,
+.related-item-content h3 .file .file-size {
+  display: none;
+}
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item {
     border: none;
