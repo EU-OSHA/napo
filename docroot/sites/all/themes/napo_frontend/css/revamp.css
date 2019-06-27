@@ -2075,6 +2075,10 @@ a.resource-library-link {
     border-top: 6px solid #1f3695;
     display: inline-block !important;
   }
+  header.navbar .menu--search--block .nav-main-menu .menu li > span .caret.caret-up {
+    border-top: 0px solid #1f3695 !important;
+    border-bottom: 6px solid #1f3695 !important;
+  }
   header.navbar .menu--search--block .nav-main-menu .menu li.open .dropdown-menu {
     display: none;
     background: #FFF !important;
@@ -2095,6 +2099,7 @@ a.resource-library-link {
   header.navbar .menu--search--block .nav-main-menu .menu li.in.open span {
     color: #1f3695;
     background: #FFF;
+    border-bottom: 1px solid #1f3695;
   }
   header.navbar .menu--search--block .nav-main-menu .menu li.in .dropdown-menu,
   header.navbar .menu--search--block .nav-main-menu .menu li.in.open .dropdown-menu {
