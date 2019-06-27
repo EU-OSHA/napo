@@ -211,7 +211,7 @@ jQuery(document).ready(function () {
                 jQuery('header .menu li.dropdown').removeClass('open');
 
                 if( element.hasClass('in') ){
-                    jQuery('header .menu li.dropdown').removeClass('in');
+                    jQuery(element).removeClass('in');
                     jQuery('.caret', this).removeClass('caret-up');
                 } else {
                     //jQuery('header .menu li.dropdown').removeClass('in');
