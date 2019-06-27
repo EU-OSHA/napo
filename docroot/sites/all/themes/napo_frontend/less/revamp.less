@@ -1205,7 +1205,8 @@ h1{
 			position: relative;
 			.field-content > a{
 			  width: 100%;
-			  height: 220px;
+			  //height: 220px;
+			  height:auto;
 				display: block;
 				overflow: hidden;
 				img{
@@ -1321,13 +1322,10 @@ a.resource-library-link{
 //NRV-151 cover for the conversation starters
 .related-item-content{
 	h3{
-		.file{
-			.file-icon, .file-size{
-				display: none;
-			}
-			a:after {
-    			content: url('../images/btn-download-all.png');
-    			margin:0.5rem;
+		div{
+			a{
+    			padding: 1rem 3.5rem;
+    			background: url(../images/btn-download-all.png) 96% 50% no-repeat;
 			}
 		}
 	}

@@ -1137,7 +1137,7 @@ h1 {
 }
 .related--lessons--block .related-lessons-item .field-content > a {
   width: 100%;
-  height: 220px;
+  height: auto;
   display: block;
   overflow: hidden;
 }
@@ -1235,13 +1235,9 @@ a.resource-library-link {
   display: flex;
   justify-content: center;
 }
-.related-item-content h3 .file .file-icon,
-.related-item-content h3 .file .file-size {
-  display: none;
-}
-.related-item-content h3 .file a:after {
-  content: url('../images/btn-download-all.png');
-  margin: 0.5rem;
+.related-item-content h3 div a {
+  padding: 1rem 3.5rem;
+  background: url(../images/btn-download-all.png) 96% 50% no-repeat;
 }
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item {
