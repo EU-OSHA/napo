@@ -4,6 +4,9 @@
  * Code for the Napo Common feature.
  */
 
+define('NAPO_TEACHERS_URL', variable_get('napo_teachers_url', '/using-napo/napo-for-teachers'));
+define('NAPO_WORKPLACES_URL', variable_get('napo_workplaces_url', '/using-napo/napo-in-the-workplaces'));
+
 include_once 'napo_common.features.inc';
 include_once 'napo_common.views.inc';
 
@@ -826,6 +829,7 @@ function napo_common_archive_files($files, $basename, $drupal_dir_path = NAPO_FI
     }
     $result = $archive->add($files_paths, PCLZIP_OPT_REMOVE_ALL_PATH, PCLZIP_OPT_TEMP_FILE_THRESHOLD, 10);
     if (empty($result)) {
+      watchdog('napo_film', 'Emptry result!', array(), WATCHDOG_ERROR);
       return NULL;
     }
     // Return drupal scheme file path.
@@ -833,6 +837,7 @@ function napo_common_archive_files($files, $basename, $drupal_dir_path = NAPO_FI
     $archive_drupal_path = $drupal_dir_path . '/' . $archive_name;
     return $archive_drupal_path;
   }
+  watchdog('napo_film', 'emptry files!', array(), WATCHDOG_ERROR);
   return NULL;
 }
 
@@ -1118,11 +1123,11 @@ function napo_common_back_button(&$vars){
       break;
 
     case 'lesson':
-      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to Napo for teachers'), '/using-napo/napo-for-teachers', []) . '</p>';
+      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to Napo for teachers'), NAPO_TEACHERS_URL, []) . '</p>';
       break;
 
     case 'msds_activities':
-      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to Napo in the workplace'), '/using-napo/napo-workplaces', []) . '</p>';
+      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to Napo in the workplace'), NAPO_WORKPLACES_URL, []) . '</p>';
       break;
 
     default:
