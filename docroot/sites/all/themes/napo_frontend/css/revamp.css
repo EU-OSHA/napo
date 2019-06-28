@@ -1239,6 +1239,9 @@ a.resource-library-link {
   padding: 1rem 3.5rem;
   background: url(../images/btn-download-all.png) 96% 50% no-repeat;
 }
+.napo-film-list-view-container .views-submit-button button {
+  background: url(../images/search_blue.png?v=2) no-repeat 14px 5px #bbc2df;
+}
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item {
     border: none;
