@@ -189,7 +189,7 @@ function napo_lesson_get_intro_block($node) {
 <div class="guidance-block">
 <p class="guidance-title">' . $guidance_title . '</p>
 <p class="guidance-text">' . t('Do you need help as a teacher to organize the learning session?') . '</p>
-<p><a href="' . $guidance_href . '" class="more-link">' . t('Find out more here') . '</a></p>
+<p><a href="' . $guidance_href . '" class="more-link" target="_blank">' . t('Find out more here') . '</a></p>
 </div></div>';
 }
 

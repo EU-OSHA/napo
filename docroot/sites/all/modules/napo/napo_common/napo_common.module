@@ -829,7 +829,7 @@ function napo_common_archive_files($files, $basename, $drupal_dir_path = NAPO_FI
     }
     $result = $archive->add($files_paths, PCLZIP_OPT_REMOVE_ALL_PATH, PCLZIP_OPT_TEMP_FILE_THRESHOLD, 10);
     if (empty($result)) {
-      watchdog('napo_film', 'Emptry result!', array(), WATCHDOG_ERROR);
+      watchdog('napo_film', 'Empty result!', array(), WATCHDOG_ERROR);
       return NULL;
     }
     // Return drupal scheme file path.
