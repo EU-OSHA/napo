@@ -920,7 +920,7 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
         </div>
         <div class="guidance-block">
           <p class="guidance-title">' . $guidance_title . '</p>
-          <p class="guidance-text">' . t('Do you need help as a teacher to organize the learning session?') . '</p>
+          <p class="guidance-text">' . t('Do you need help to organize a learning activity in your workplace?') . '</p>
           <p><a href="' . $guidance_href . '" class="more-link">' . t('Find out more here') . '</a></p>
         </div></div>',
         );
