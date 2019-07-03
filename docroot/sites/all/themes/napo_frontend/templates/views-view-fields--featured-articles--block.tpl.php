@@ -35,10 +35,10 @@ if (!empty($map[$row->nid])) {
   $search = url('node/' . $row->nid);
   $replace = '#';
   if ($map[$row->nid] == 'icon-teachers') {
-    $replace = url('using-napo/napo-for-teachers');
+    $replace = url(NAPO_TEACHERS_URL);
   }
   if ($map[$row->nid] == 'icon-workplace') {
-    $replace = url('using-napo/napo-workplaces');
+    $replace = url(NAPO_WORKPLACES_URL);
   }
   $fields['title_field']->content = str_replace($search, $replace, $fields['title_field']->content);
   $fields['body']->content = str_replace($search, $replace, $fields['body']->content);

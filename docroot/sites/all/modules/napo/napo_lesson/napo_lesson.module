@@ -188,8 +188,8 @@ function napo_lesson_get_intro_block($node) {
 </div>
 <div class="guidance-block">
 <p class="guidance-title">' . $guidance_title . '</p>
-<p class="guidance-text">' . t('Do you need help as a teacher to organize the learning session?') . '</p>
-<p><a href="' . $guidance_href . '" class="more-link">' . t('Find out more here') . '</a></p>
+<p class="guidance-text">' . t('Do you need help to organize a learning activity in your workplace?') . '</p>
+<p><a href="' . $guidance_href . '" class="more-link" target="_blank">' . t('Find out more here') . '</a></p>
 </div></div>';
 }
 
@@ -292,8 +292,8 @@ function napo_lesson_get_download_block($node) {
     $items[] = l(t('Teacher guidance'), file_create_url($file_uri));
   }
   else {
-    $nid = variable_get('facilitator_guidance_nid', 408);
-    $items[] = l(t('Facilitator guidance'),'node/' . $nid . '/guidance');
+    //    $nid = variable_get('facilitator_guidance_nid', 408);
+    $items[] = l(t('Facilitator guidance'),'node/' . $node->nid . '/guidance');
   }
 
   if ($resources_required && $resources_required[LANGUAGE_NONE]) {
