@@ -1049,13 +1049,6 @@ h1 {
 .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-text .ratings-list li .definition {
   margin: 0 2rem;
 }
-.detail--section--block .detail--text--block .acordion--items--block .field-name-field-assessment .acordion-content-text ul {
-  padding: 0;
-  margin: 0;
-}
-.detail--section--block .detail--text--block .acordion--items--block .field-name-field-assessment .acordion-content-text ul li {
-  list-style-type: none;
-}
 .detail--section--block .detail--text--block .acordion--items--block .field-name-field-assessment .acordion-content-text ul li strong {
   width: auto;
   padding: 2px 0 2px 3rem;
