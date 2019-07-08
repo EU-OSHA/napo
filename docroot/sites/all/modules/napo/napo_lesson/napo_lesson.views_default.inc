@@ -830,7 +830,7 @@ __Tags__
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'using-napo/napo-for-teachers';
+  $handler->display->display_options['path'] = 'learning-with-napo/napo-for-teachers';
   $translatables['napo_for_teachers'] = array(
     t('Master'),
     t('Napo for teachers'),
@@ -1137,7 +1137,7 @@ __Tags__
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'using-napo/napo-for-teachers/resource-library';
+  $handler->display->display_options['path'] = 'learning-with-napo/napo-for-teachers/resource-library';
   $translatables['resource_library'] = array(
     t('Master'),
     t('Resource library'),

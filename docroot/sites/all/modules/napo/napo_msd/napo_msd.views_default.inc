@@ -539,7 +539,7 @@ __Tags__
   $handler->display->display_options['footer']['entity']['entity_id'] = '430';
   $handler->display->display_options['footer']['entity']['view_mode'] = 'teaser';
   $handler->display->display_options['footer']['entity']['bypass_access'] = 0;
-  $handler->display->display_options['path'] = 'using-napo/napo-workplaces';
+  $handler->display->display_options['path'] = 'learning-with-napo/napo-in-the-workplace';
   $translatables['napo_workplaces'] = array(
     t('Master'),
     t('Napo in the workplace'),

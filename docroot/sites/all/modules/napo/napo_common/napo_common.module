@@ -4,8 +4,11 @@
  * Code for the Napo Common feature.
  */
 
-define('NAPO_TEACHERS_URL', variable_get('napo_teachers_url', '/using-napo/napo-for-teachers'));
-define('NAPO_WORKPLACES_URL', variable_get('napo_workplaces_url', '/using-napo/napo-in-the-workplaces'));
+define('NAPO_TEACHERS_URL', variable_get('napo_teachers_url', '/learning-with-napo/napo-for-teachers'));
+define('NAPO_WORKPLACES_URL', variable_get('napo_workplaces_url', '/learning-with-napo/napo-in-the-workplace'));
+
+// using-napo/napo-workplaces => learning-with-napo/napo-in-the-workplace
+// using-napo/napo-for-teachers => learning-with-napo/napo-for-teachers
 
 include_once 'napo_common.features.inc';
 include_once 'napo_common.views.inc';
