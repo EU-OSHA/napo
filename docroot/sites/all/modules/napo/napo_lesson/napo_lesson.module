@@ -17,6 +17,12 @@ function napo_lesson_menu() {
     'page arguments' => array(3),
     'access callback' => TRUE,
   );
+  $items['learning-with-napo/napo-for-teachers/download_video/%'] = array(
+    'title' => 'Download lesson video',
+    'page callback' => 'napo_lesson_download_video',
+    'page arguments' => array(3),
+    'access callback' => TRUE,
+  );
   // Reorder lesson tab for lessons, but it redirects
   // to it's lesson toolkit tab.
   $items['node/%/reorder_lessons_r'] = array(
@@ -222,7 +228,7 @@ function napo_lesson_get_resources_required($node) {
     $options['attributes'] = ['target' => '_blank'];
     $options['absolute'] = TRUE;
     $title = variable_get('napo_resources_text', 'Resource library');
-    $url = variable_get('napo_resources_url', 'using-napo/napo-for-teachers/resource-library');
+    $url = variable_get('napo_resources_url', 'learning-with-napo/napo-for-teachers/resource-library');
     $url = url($url, $options);
     $text .= ' ' . l($title, $url, $options);
   }
@@ -261,7 +267,7 @@ function napo_lesson_get_download_block($node) {
   $video_id = $lesson_video->nid;
 
   if ($video_uri) {
-    $output = '<a href="' . url('using-napo/napo-for-teachers/download_video/' . $video_id) . '">';
+    $output = '<a href="' . url('learning-with-napo/napo-for-teachers/download_video/' . $video_id) . '">';
     $output .= t('Video');
     $size = @filesize($video_uri);
     if ($size) {

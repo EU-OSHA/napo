@@ -132,7 +132,7 @@ function napo_breadcrumbs_path_breadcrumbs_settings_info() {
           'name' => 'path_visibility',
           'settings' => array(
             'visibility_setting' => '1',
-            'paths' => 'using-napo/napo-for-teachers',
+            'paths' => 'learning-with-napo/napo-for-teachers',
           ),
           'context' => 'empty',
           'not' => FALSE,

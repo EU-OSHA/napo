@@ -101,3 +101,13 @@ function napo_common_update_7008() {
   features_revert(array('napo_lesson' => array('views_view')));
   features_revert(array('napo_msd' => array('views_view')));
 }
+
+/**
+ * NRV-196 URL - Learning with Napo instead of Using Napo.
+ */
+function napo_common_update_7009() {
+  features_revert(array('napo_lesson' => array('views_view')));
+  features_revert(array('napo_msd' => array('views_view')));
+  variable_set('napo_teachers_url', '/learning-with-napo/napo-for-teachers');
+  variable_set('napo_workplaces_url', '/learning-with-napo/napo-in-the-workplaces');
+}

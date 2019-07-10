@@ -721,66 +721,66 @@ h1 {
   color: #FFF;
   font-weight: bold;
 }
-.page-using-napo-napo-for-teachers h1.page-header,
-.page-using-napo-napo-workplaces h1.page-header {
+.page-learning-with-napo-napo-for-teachers h1.page-header,
+.page-learning-with-napo-napo-in-the-workplace h1.page-header {
   font-size: 3rem;
   padding: 0.3rem 0.7rem;
   margin-top: 2.5rem;
   border: 0;
   display: block;
 }
-.page-using-napo-napo-for-teachers .page--banner--block,
-.page-using-napo-napo-workplaces .page--banner--block {
+.page-learning-with-napo-napo-for-teachers .page--banner--block,
+.page-learning-with-napo-napo-in-the-workplace .page--banner--block {
   padding: 0 3% 4rem;
   position: relative;
   display: flex;
   flex-direction: row;
 }
-.page-using-napo-napo-for-teachers .page--banner--block .field-name-field-image,
-.page-using-napo-napo-workplaces .page--banner--block .field-name-field-image {
+.page-learning-with-napo-napo-for-teachers .page--banner--block .field-name-field-image,
+.page-learning-with-napo-napo-in-the-workplace .page--banner--block .field-name-field-image {
   flex: 50%;
 }
-.page-using-napo-napo-for-teachers .page--banner--block .field-name-body,
-.page-using-napo-napo-workplaces .page--banner--block .field-name-body {
+.page-learning-with-napo-napo-for-teachers .page--banner--block .field-name-body,
+.page-learning-with-napo-napo-in-the-workplace .page--banner--block .field-name-body {
   flex: 50%;
   padding: 1rem 4rem;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block,
-.page-using-napo-napo-workplaces .lessons--section--block {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block {
   background: #eeedee url(../images/nav-bar-borderx2.png?v=2) bottom left repeat-x;
   padding: 3rem 3% 3rem 3%;
   margin: 2rem auto;
   display: flex;
   flex-wrap: wrap;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block h2,
-.page-using-napo-napo-workplaces .lessons--section--block h2 {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block h2,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block h2 {
   font-size: 3rem;
   flex: 60%;
   margin: 2rem 0 3rem;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters {
   margin: 2rem 1rem 2rem;
   padding: 0 0 0 4rem;
   flex: 28%;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters #views-exposed-form-napo-for-teachers-page label,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters #views-exposed-form-napo-for-teachers-page label,
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters #views-exposed-form-napo-workplaces-page label,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters #views-exposed-form-napo-workplaces-page label {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters #views-exposed-form-napo-for-teachers-page label,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters #views-exposed-form-napo-for-teachers-page label,
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters #views-exposed-form-napo-workplaces-page label,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters #views-exposed-form-napo-workplaces-page label {
   display: none;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters #views-exposed-form-napo-for-teachers-page button,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters #views-exposed-form-napo-for-teachers-page button,
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters #views-exposed-form-napo-workplaces-page button,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters #views-exposed-form-napo-workplaces-page button {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters #views-exposed-form-napo-for-teachers-page button,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters #views-exposed-form-napo-for-teachers-page button,
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters #views-exposed-form-napo-workplaces-page button,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters #views-exposed-form-napo-workplaces-page button {
   display: none;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .search-text,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters .search-text,
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .form-text,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters .form-text {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .search-text,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters .search-text,
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .form-text,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters .form-text {
   width: 100%;
   border-radius: 6rem;
   background: #1f3695;
@@ -790,46 +790,46 @@ h1 {
   padding: 0.6rem 1.5rem;
   font-size: 1.5rem;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .search-text::-webkit-input-placeholder,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters .search-text::-webkit-input-placeholder,
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .form-text::-webkit-input-placeholder,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters .form-text::-webkit-input-placeholder {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .search-text::-webkit-input-placeholder,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters .search-text::-webkit-input-placeholder,
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .form-text::-webkit-input-placeholder,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters .form-text::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: #FFF;
   opacity: 0.6;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .search-text::-moz-placeholder,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters .search-text::-moz-placeholder,
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .form-text::-moz-placeholder,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters .form-text::-moz-placeholder {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .search-text::-moz-placeholder,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters .search-text::-moz-placeholder,
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .form-text::-moz-placeholder,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters .form-text::-moz-placeholder {
   /* Firefox 19+ */
   color: #FFF;
   opacity: 0.6;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .search-text:-ms-input-placeholder,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters .search-text:-ms-input-placeholder,
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .form-text:-ms-input-placeholder,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters .form-text:-ms-input-placeholder {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .search-text:-ms-input-placeholder,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters .search-text:-ms-input-placeholder,
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .form-text:-ms-input-placeholder,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters .form-text:-ms-input-placeholder {
   /* IE 10+ */
   color: #FFF;
   opacity: 0.6;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .search-text:-moz-placeholder,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters .search-text:-moz-placeholder,
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .form-text:-moz-placeholder,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters .form-text:-moz-placeholder {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .search-text:-moz-placeholder,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters .search-text:-moz-placeholder,
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .form-text:-moz-placeholder,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters .form-text:-moz-placeholder {
   /* Firefox 18- */
   color: #FFF;
   opacity: 0.6;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .search-text:focus,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters .search-text:focus,
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .form-text:focus,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters .form-text:focus {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .search-text:focus,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters .search-text:focus,
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters .form-text:focus,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters .form-text:focus {
   outline: 0;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .view-empty,
-.page-using-napo-napo-workplaces .lessons--section--block .view-empty {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .view-empty,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .view-empty {
   background: transparent;
   padding: 12px 12px 12px 12px;
   margin-bottom: 0.5em;
@@ -838,15 +838,15 @@ h1 {
   border-bottom: 5px solid #1f3695;
   width: 100%;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item {
   border: 2px solid #1f3695;
   width: 30%;
   margin: 1.5rem;
@@ -855,13 +855,13 @@ h1 {
   min-height: 28rem;
   position: relative;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item a {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item a {
   display: block;
   height: 60%;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a img,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item a img {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a img,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item a img {
   width: 100%;
   height: auto;
   position: relative;
@@ -869,8 +869,8 @@ h1 {
   -webkit-transition: all 1s;
   transition: all 1s;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a img:hover,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item a img:hover {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a img:hover,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item a img:hover {
   opacity: 0.6;
   filter: gray;
   /* IE6-9 */
@@ -882,8 +882,8 @@ h1 {
   -webkit-transition: all 1.5s;
   transition: all 1.5s;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -893,27 +893,27 @@ h1 {
   text-align: center;
   padding: 2rem 2rem 0;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content h3,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content h3 {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content h3,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content h3 {
   font-size: 1.5rem;
   font-weight: bold;
   color: #FFF;
   margin: 1rem 0;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content h3 a,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content h3 a {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content h3 a,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content h3 a {
   color: #FFF;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .new-hightlight,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .new-hightlight {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .new-hightlight,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .new-hightlight {
   text-align: center;
   position: absolute;
   top: -1.2rem;
   margin: 0 auto;
   left: 42%;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .new-hightlight span,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .new-hightlight span {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .new-hightlight span,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .new-hightlight span {
   background: #f7e235;
   padding: 0.5rem 0.8rem 0.5rem 1.4rem;
   border: 1px solid;
@@ -924,32 +924,32 @@ h1 {
   font-weight: bold;
   display: inline-block;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list {
   color: #FFF;
   font-size: 1.4rem;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list label,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list label {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list label,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list label {
   font-weight: normal;
   margin-right: 0.5rem;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag {
   opacity: 0.6;
   display: inline;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag:after,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag:after {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag:after,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag:after {
   content: ',';
   margin-right: 0.5rem;
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag:last-child:after,
-.page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag:last-child:after {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag:last-child:after,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag:last-child:after {
   content: '';
 }
-.page-using-napo-napo-for-teachers .lessons--section--block .pager,
-.page-using-napo-napo-workplaces .lessons--section--block .pager {
+.page-learning-with-napo-napo-for-teachers .lessons--section--block .pager,
+.page-learning-with-napo-napo-in-the-workplace .lessons--section--block .pager {
   width: 100%;
 }
 .detail--section--block {
@@ -1048,13 +1048,6 @@ h1 {
 }
 .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-text .ratings-list li .definition {
   margin: 0 2rem;
-}
-.detail--section--block .detail--text--block .acordion--items--block .field-name-field-assessment .acordion-content-text ul {
-  padding: 0;
-  margin: 0;
-}
-.detail--section--block .detail--text--block .acordion--items--block .field-name-field-assessment .acordion-content-text ul li {
-  list-style-type: none;
 }
 .detail--section--block .detail--text--block .acordion--items--block .field-name-field-assessment .acordion-content-text ul li strong {
   width: auto;
@@ -1336,22 +1329,22 @@ a.resource-library-link {
   .story--block--section .story--block .story--item iframe {
     width: 100% !important;
   }
-  .page-using-napo-napo-for-teachers .page--banner--block .page--banner--grid > div img,
-  .page-using-napo-napo-workplaces .page--banner--block .page--banner--grid > div img,
+  .page-learning-with-napo-napo-for-teachers .page--banner--block .page--banner--grid > div img,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block .page--banner--grid > div img,
   .node-type-lesson .page--banner--block .page--banner--grid > div img,
   .node-type-msds-activities .page--banner--block .page--banner--grid > div img {
     width: 100%;
   }
-  .page-using-napo-napo-for-teachers .page--banner--block .detail--content--block .text-block,
-  .page-using-napo-napo-workplaces .page--banner--block .detail--content--block .text-block,
+  .page-learning-with-napo-napo-for-teachers .page--banner--block .detail--content--block .text-block,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block .detail--content--block .text-block,
   .node-type-lesson .page--banner--block .detail--content--block .text-block,
   .node-type-msds-activities .page--banner--block .detail--content--block .text-block {
     float: none;
     width: 100%;
     padding: 3rem;
   }
-  .page-using-napo-napo-for-teachers .page--banner--block .detail--content--block .guidance-block,
-  .page-using-napo-napo-workplaces .page--banner--block .detail--content--block .guidance-block,
+  .page-learning-with-napo-napo-for-teachers .page--banner--block .detail--content--block .guidance-block,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block .detail--content--block .guidance-block,
   .node-type-lesson .page--banner--block .detail--content--block .guidance-block,
   .node-type-msds-activities .page--banner--block .detail--content--block .guidance-block {
     text-align: left;
@@ -1359,105 +1352,105 @@ a.resource-library-link {
     float: none;
     width: 100%;
   }
-  .page-using-napo-napo-for-teachers .page--banner--block .detail--content--block .guidance-block .more-link,
-  .page-using-napo-napo-workplaces .page--banner--block .detail--content--block .guidance-block .more-link,
+  .page-learning-with-napo-napo-for-teachers .page--banner--block .detail--content--block .guidance-block .more-link,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block .detail--content--block .guidance-block .more-link,
   .node-type-lesson .page--banner--block .detail--content--block .guidance-block .more-link,
   .node-type-msds-activities .page--banner--block .detail--content--block .guidance-block .more-link {
     right: -3rem;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block,
   .node-type-lesson .detail--section--block .detail--text--block,
   .node-type-msds-activities .detail--section--block .detail--text--block {
     flex-wrap: wrap;
     width: 100%;
     flex: none;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .acordion--items--block,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .acordion--items--block,
   .node-type-lesson .detail--section--block .detail--text--block .acordion--items--block,
   .node-type-msds-activities .detail--section--block .detail--text--block .acordion--items--block {
     width: 100%;
     padding: 0;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item,
   .node-type-lesson .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item,
   .node-type-msds-activities .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item {
     margin-bottom: 2rem;
     border-radius: 3.2rem;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title,
   .node-type-lesson .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title,
   .node-type-msds-activities .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title {
     padding: 2rem;
     background-position: 97% 23px;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title.active,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title.active,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title.active,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title.active,
   .node-type-lesson .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title.active,
   .node-type-msds-activities .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title.active {
     background-position: 97% 23px;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .download--section--block,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block {
     width: 100%;
     top: 2rem;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block h3,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .download--section--block h3,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block h3,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block h3,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block h3,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block h3 {
     font-size: 3rem;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .download--section--block ul,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block ul,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block ul,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block ul {
     display: flex;
     flex-wrap: wrap;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul.odd li,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .download--section--block ul.odd li,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul.odd li,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block ul.odd li,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block ul.odd li,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block ul.odd li {
     margin: 0 1rem;
     width: 30%;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul.even li,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .download--section--block ul.even li,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul.even li,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block ul.even li,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block ul.even li,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block ul.even li {
     margin: 0 1rem;
     width: 45%;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul li:last-child,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .download--section--block ul li:last-child,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul li:last-child,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block ul li:last-child,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block ul li:last-child,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block ul li:last-child {
     width: 100%;
     text-align: center;
     margin: 1rem 0 0;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul li:last-child > a,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .download--section--block ul li:last-child > a,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul li:last-child > a,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block ul li:last-child > a,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block ul li:last-child > a,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block ul li:last-child > a {
     background: url(../images/btn-download-all.png) 65% 50% no-repeat, url(../images/btn-download-all.png) 35% 50% no-repeat;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item,
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item {
     width: 46%;
     overflow: hidden;
     height: 30rem;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item > a,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item > a,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item > a,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item > a,
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item > a,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item > a {
     width: 100%;
@@ -1465,27 +1458,27 @@ a.resource-library-link {
     display: block;
     height: 60%;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item > a img,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item > a img,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item > a img,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item > a img,
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item > a img,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item > a img {
     width: 100%;
     height: auto;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content {
     height: 40%;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item:nth-child(odd),
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item:nth-child(odd),
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item:nth-child(odd),
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item:nth-child(odd),
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item:nth-child(odd),
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item:nth-child(odd) {
     margin-left: 0;
   }
-  .page-using-napo-napo-for-teachers .related--lessons--block .related-lessons-item,
-  .page-using-napo-napo-workplaces .related--lessons--block .related-lessons-item,
+  .page-learning-with-napo-napo-for-teachers .related--lessons--block .related-lessons-item,
+  .page-learning-with-napo-napo-in-the-workplace .related--lessons--block .related-lessons-item,
   .node-type-lesson .related--lessons--block .related-lessons-item,
   .node-type-msds-activities .related--lessons--block .related-lessons-item {
     width: 47%;
@@ -1581,73 +1574,73 @@ a.resource-library-link {
     margin-top: 65px;
     background-size: 70px;
   }
-  .page-using-napo-napo-for-teachers h1,
-  .page-using-napo-napo-workplaces h1,
+  .page-learning-with-napo-napo-for-teachers h1,
+  .page-learning-with-napo-napo-in-the-workplace h1,
   .node-type-lesson h1,
   .node-type-msds-activities h1 {
     padding: 0 !important;
     margin: 1rem 1.5rem;
   }
-  .page-using-napo-napo-for-teachers .page--banner--block,
-  .page-using-napo-napo-workplaces .page--banner--block,
+  .page-learning-with-napo-napo-for-teachers .page--banner--block,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block,
   .node-type-lesson .page--banner--block,
   .node-type-msds-activities .page--banner--block {
     padding: 0;
     flex-direction: column;
   }
-  .page-using-napo-napo-for-teachers .page--banner--block h1,
-  .page-using-napo-napo-workplaces .page--banner--block h1,
+  .page-learning-with-napo-napo-for-teachers .page--banner--block h1,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block h1,
   .node-type-lesson .page--banner--block h1,
   .node-type-msds-activities .page--banner--block h1 {
     padding: 0;
     margin: 1rem 1.5rem;
     word-break: break-word;
   }
-  .page-using-napo-napo-for-teachers .page--banner--block .btn-back,
-  .page-using-napo-napo-workplaces .page--banner--block .btn-back,
+  .page-learning-with-napo-napo-for-teachers .page--banner--block .btn-back,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block .btn-back,
   .node-type-lesson .page--banner--block .btn-back,
   .node-type-msds-activities .page--banner--block .btn-back {
     position: absolute;
     top: -5rem;
     left: 2rem;
   }
-  .page-using-napo-napo-for-teachers .page--banner--block .field-name-field-image,
-  .page-using-napo-napo-workplaces .page--banner--block .field-name-field-image,
+  .page-learning-with-napo-napo-for-teachers .page--banner--block .field-name-field-image,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block .field-name-field-image,
   .node-type-lesson .page--banner--block .field-name-field-image,
   .node-type-msds-activities .page--banner--block .field-name-field-image {
     margin-top: 0;
   }
-  .page-using-napo-napo-for-teachers .page--banner--block .field-name-field-image img,
-  .page-using-napo-napo-workplaces .page--banner--block .field-name-field-image img,
+  .page-learning-with-napo-napo-for-teachers .page--banner--block .field-name-field-image img,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block .field-name-field-image img,
   .node-type-lesson .page--banner--block .field-name-field-image img,
   .node-type-msds-activities .page--banner--block .field-name-field-image img {
     width: auto;
     margin: auto;
   }
-  .page-using-napo-napo-for-teachers .page--banner--block .field-name-body,
-  .page-using-napo-napo-workplaces .page--banner--block .field-name-body,
+  .page-learning-with-napo-napo-for-teachers .page--banner--block .field-name-body,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block .field-name-body,
   .node-type-lesson .page--banner--block .field-name-body,
   .node-type-msds-activities .page--banner--block .field-name-body {
     float: none;
     width: 100%;
     padding: 3rem;
   }
-  .page-using-napo-napo-for-teachers .page--banner--block .page--banner--grid,
-  .page-using-napo-napo-workplaces .page--banner--block .page--banner--grid,
+  .page-learning-with-napo-napo-for-teachers .page--banner--block .page--banner--grid,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block .page--banner--grid,
   .node-type-lesson .page--banner--block .page--banner--grid,
   .node-type-msds-activities .page--banner--block .page--banner--grid {
     flex-direction: column;
   }
-  .page-using-napo-napo-for-teachers .page--banner--block .detail--content--block .text-block,
-  .page-using-napo-napo-workplaces .page--banner--block .detail--content--block .text-block,
+  .page-learning-with-napo-napo-for-teachers .page--banner--block .detail--content--block .text-block,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block .detail--content--block .text-block,
   .node-type-lesson .page--banner--block .detail--content--block .text-block,
   .node-type-msds-activities .page--banner--block .detail--content--block .text-block {
     float: none;
     width: 100%;
     padding: 3rem;
   }
-  .page-using-napo-napo-for-teachers .page--banner--block .detail--content--block .guidance-block,
-  .page-using-napo-napo-workplaces .page--banner--block .detail--content--block .guidance-block,
+  .page-learning-with-napo-napo-for-teachers .page--banner--block .detail--content--block .guidance-block,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block .detail--content--block .guidance-block,
   .node-type-lesson .page--banner--block .detail--content--block .guidance-block,
   .node-type-msds-activities .page--banner--block .detail--content--block .guidance-block {
     text-align: left;
@@ -1655,162 +1648,162 @@ a.resource-library-link {
     float: none;
     width: 100%;
   }
-  .page-using-napo-napo-for-teachers .page--banner--block .detail--content--block .guidance-block .more-link,
-  .page-using-napo-napo-workplaces .page--banner--block .detail--content--block .guidance-block .more-link,
+  .page-learning-with-napo-napo-for-teachers .page--banner--block .detail--content--block .guidance-block .more-link,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block .detail--content--block .guidance-block .more-link,
   .node-type-lesson .page--banner--block .detail--content--block .guidance-block .more-link,
   .node-type-msds-activities .page--banner--block .detail--content--block .guidance-block .more-link {
     right: -3rem;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block,
-  .page-using-napo-napo-workplaces .lessons--section--block,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block,
   .node-type-lesson .lessons--section--block,
   .node-type-msds-activities .lessons--section--block {
     flex-direction: column;
     margin: 0;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block h2,
-  .page-using-napo-napo-workplaces .lessons--section--block h2,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block h2,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block h2,
   .node-type-lesson .lessons--section--block h2,
   .node-type-msds-activities .lessons--section--block h2 {
     margin: 2rem;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters,
   .node-type-lesson .lessons--section--block .lessons--section--filters,
   .node-type-msds-activities .lessons--section--block .lessons--section--filters {
     margin: 1rem 0;
     padding: 0;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters #edit-search-wrapper,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters #edit-search-wrapper,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters #edit-search-wrapper,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters #edit-search-wrapper,
   .node-type-lesson .lessons--section--block .lessons--section--filters #edit-search-wrapper,
   .node-type-msds-activities .lessons--section--block .lessons--section--filters #edit-search-wrapper {
     width: 100%;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--section--filters #edit-search-wrapper #edit-search,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--section--filters #edit-search-wrapper #edit-search,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--section--filters #edit-search-wrapper #edit-search,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--section--filters #edit-search-wrapper #edit-search,
   .node-type-lesson .lessons--section--block .lessons--section--filters #edit-search-wrapper #edit-search,
   .node-type-msds-activities .lessons--section--block .lessons--section--filters #edit-search-wrapper #edit-search {
     padding: 3rem;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid,
   .node-type-lesson .lessons--section--block .lessons--items--grid,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid {
     flex-direction: row;
     justify-content: space-between;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item,
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item {
     width: 49%;
     height: auto;
     margin: 1rem 0;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item a,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item a,
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item a,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item a {
     height: auto;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a img,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item a img,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a img,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item a img,
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item a img,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item a img {
     width: 100%;
     height: auto;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content {
     min-height: 60%;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block,
   .node-type-lesson .detail--section--block .detail--text--block,
   .node-type-msds-activities .detail--section--block .detail--text--block {
     flex-wrap: wrap;
     width: 100%;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .field-type-file,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .field-type-file,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .field-type-file,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .field-type-file,
   .node-type-lesson .detail--section--block .detail--text--block .field-type-file,
   .node-type-msds-activities .detail--section--block .detail--text--block .field-type-file {
     width: 100%;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .acordion--items--block,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .acordion--items--block,
   .node-type-lesson .detail--section--block .detail--text--block .acordion--items--block,
   .node-type-msds-activities .detail--section--block .detail--text--block .acordion--items--block {
     flex: 100%;
     padding: 0;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item,
   .node-type-lesson .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item,
   .node-type-msds-activities .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item {
     margin-bottom: 2rem;
     border-radius: 3.2rem;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title,
   .node-type-lesson .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title,
   .node-type-msds-activities .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title {
     padding: 2rem;
     background-position: 97% 23px;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title.active,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title.active,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title.active,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title.active,
   .node-type-lesson .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title.active,
   .node-type-msds-activities .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-title.active {
     background-position: 97% 23px;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .download--section--block,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block {
     width: 100%;
     top: 2rem;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block h3,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .download--section--block h3,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block h3,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block h3,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block h3,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block h3 {
     font-size: 3rem;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .download--section--block ul,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block ul,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block ul,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block ul {
     display: flex;
     flex-wrap: wrap;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul.odd li,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .download--section--block ul.odd li,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul.odd li,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block ul.odd li,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block ul.odd li,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block ul.odd li {
     margin: 0 1rem;
     width: 45%;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul.even li,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .download--section--block ul.even li,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul.even li,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block ul.even li,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block ul.even li,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block ul.even li {
     margin: 0 1rem;
     width: 45%;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul li:last-child,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .download--section--block ul li:last-child,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul li:last-child,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block ul li:last-child,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block ul li:last-child,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block ul li:last-child {
     flex: 100%;
     text-align: center;
     margin: 1rem 0 0;
   }
-  .page-using-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul li:last-child > a,
-  .page-using-napo-napo-workplaces .detail--section--block .detail--text--block .download--section--block ul li:last-child > a,
+  .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block .download--section--block ul li:last-child > a,
+  .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block ul li:last-child > a,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block ul li:last-child > a,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block ul li:last-child > a {
     background: url(../images/btn-download-all.png) 80% 50% no-repeat, url(../images/btn-download-all.png) 20% 50% no-repeat;
@@ -2227,34 +2220,34 @@ a.resource-library-link {
   .detail--section--block .detail--text--block .acordion--items--block .acordion--block--item .acordion-content-text .ratings-list li .definition {
     margin: 0 0 0 4rem;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block,
-  .page-using-napo-napo-workplaces .lessons--section--block,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block,
   .node-type-lesson .lessons--section--block,
   .node-type-msds-activities .lessons--section--block {
     flex-direction: column;
     margin: 0;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid,
   .node-type-lesson .lessons--section--block .lessons--items--grid,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid {
     flex-direction: row;
     justify-content: space-between;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item,
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item {
     min-height: auto;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item a,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item a,
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item a,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item a {
     height: auto;
   }
-  .page-using-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
-  .page-using-napo-napo-workplaces .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
+  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
+  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
   .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content {
     min-height: 60%;
