@@ -1251,6 +1251,9 @@ a.resource-library-link {
   padding-top: 0em !important;
   height: 51px;
 }
+.underline-link {
+  text-decoration: underline;
+}
 @-webkit-keyframes autofill {
   to {
     background: #1f3695;
