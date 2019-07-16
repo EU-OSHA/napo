@@ -50,6 +50,13 @@ function napo_lesson_views_default_views() {
   $handler->display->display_options['relationships']['field_lesson_video_target_id']['field'] = 'field_lesson_video_target_id';
   $handler->display->display_options['relationships']['field_lesson_video_target_id']['relationship'] = 'reverse_field_lesson_toolkit_node';
   $handler->display->display_options['relationships']['field_lesson_video_target_id']['label'] = 'video';
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['relationship'] = 'reverse_field_lesson_toolkit_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   /* Field: Field: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
@@ -61,7 +68,7 @@ function napo_lesson_views_default_views() {
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
     'image_style' => '',
-    'image_link' => 'content',
+    'image_link' => '',
   );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
@@ -85,7 +92,7 @@ function napo_lesson_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_image] 
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="__link__">[field_image]</a>
 <div class="related-item-content">
 <h3>[title_1]</h3>
 <p class="keyword-list">
@@ -148,7 +155,7 @@ function napo_lesson_views_default_views() {
     t('lesson_related_lesson'),
     t('video'),
     t('Keyword'),
-    t('[field_image] 
+    t('<a href="__link__">[field_image]</a>
 <div class="related-item-content">
 <h3>[title_1]</h3>
 <p class="keyword-list">
@@ -817,7 +824,6 @@ __Tags__
     9 => 0,
     10 => 0,
   );
-  $handler->display->display_options['filters']['combine']['expose']['autocomplete_filter'] = 1;
   $handler->display->display_options['filters']['combine']['expose']['autocomplete_items'] = '10';
   $handler->display->display_options['filters']['combine']['expose']['autocomplete_min_chars'] = '3';
   $handler->display->display_options['filters']['combine']['expose']['autocomplete_raw_suggestion'] = 0;
