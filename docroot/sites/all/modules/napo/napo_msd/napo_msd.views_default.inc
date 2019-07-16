@@ -84,7 +84,7 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_conversation_starters_cove]
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="__link__" target="_blank">[field_conversation_starters_cove]</a>
 <div class="related-item-content">
 <h3>[field_conversation_started]</h3>
 </div>';
@@ -135,7 +135,7 @@ function napo_msd_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('MSDs Video'),
-    t('[field_conversation_starters_cove]
+    t('<a href="__link__" target="_blank">[field_conversation_starters_cove]</a>
 <div class="related-item-content">
 <h3>[field_conversation_started]</h3>
 </div>'),
