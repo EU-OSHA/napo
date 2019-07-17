@@ -40,16 +40,9 @@ function napo_gallery_image_default_styles() {
 
   // Exported image style: mc_napo_thumbnail.
   $styles['mc_napo_thumbnail'] = array(
-    'name' => 'mc_napo_thumbnail',
     'label' => 'MC Napo Thumbnail (360x275)',
     'effects' => array(
       16 => array(
-        'label' => 'Manual Crop: Crop and scale',
-        'help' => 'Crop and scale a user-selected area, respecting the ratio of the destination width and height.',
-        'effect callback' => 'manualcrop_crop_and_scale_effect',
-        'form callback' => 'manualcrop_crop_and_scale_form',
-        'summary theme' => 'manualcrop_crop_and_scale_summary',
-        'module' => 'manualcrop',
         'name' => 'manualcrop_crop_and_scale',
         'data' => array(
           'width' => 360,
@@ -66,16 +59,9 @@ function napo_gallery_image_default_styles() {
 
   // Exported image style: napo_cover.
   $styles['napo_cover'] = array(
-    'name' => 'napo_cover',
     'label' => 'Napo Cover (1140x408)',
     'effects' => array(
       11 => array(
-        'label' => 'Manual Crop: Crop and scale',
-        'help' => 'Crop and scale a user-selected area, respecting the ratio of the destination width and height.',
-        'effect callback' => 'manualcrop_crop_and_scale_effect',
-        'form callback' => 'manualcrop_crop_and_scale_form',
-        'summary theme' => 'manualcrop_crop_and_scale_summary',
-        'module' => 'manualcrop',
         'name' => 'manualcrop_crop_and_scale',
         'data' => array(
           'width' => 1140,
@@ -92,17 +78,9 @@ function napo_gallery_image_default_styles() {
 
   // Exported image style: napo_large.
   $styles['napo_large'] = array(
-    'name' => 'napo_large',
     'label' => 'Napo Large (800)',
     'effects' => array(
       17 => array(
-        'label' => 'Scale',
-        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
-        'effect callback' => 'image_scale_effect',
-        'dimensions callback' => 'image_scale_dimensions',
-        'form callback' => 'image_scale_form',
-        'summary theme' => 'image_scale_summary',
-        'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
           'width' => 800,
@@ -116,17 +94,9 @@ function napo_gallery_image_default_styles() {
 
   // Exported image style: napo_thumbnail.
   $styles['napo_thumbnail'] = array(
-    'name' => 'napo_thumbnail',
     'label' => 'Napo Thumbnail (360x275)',
     'effects' => array(
       14 => array(
-        'label' => 'Scale',
-        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
-        'effect callback' => 'image_scale_effect',
-        'dimensions callback' => 'image_scale_dimensions',
-        'form callback' => 'image_scale_form',
-        'summary theme' => 'image_scale_summary',
-        'module' => 'image',
         'name' => 'image_scale',
         'data' => array(
           'width' => 450,
@@ -136,13 +106,6 @@ function napo_gallery_image_default_styles() {
         'weight' => -10,
       ),
       13 => array(
-        'label' => 'Define canvas',
-        'help' => 'Define the size of the working canvas and background color, this controls the dimensions of the output image.',
-        'effect callback' => 'canvasactions_definecanvas_effect',
-        'dimensions callback' => 'canvasactions_definecanvas_dimensions',
-        'form callback' => 'canvasactions_definecanvas_form',
-        'summary theme' => 'canvasactions_definecanvas_summary',
-        'module' => 'imagecache_canvasactions',
         'name' => 'canvasactions_definecanvas',
         'data' => array(
           'RGB' => array(
@@ -165,13 +128,6 @@ function napo_gallery_image_default_styles() {
         'weight' => -9,
       ),
       15 => array(
-        'label' => 'Crop',
-        'help' => 'Cropping will remove portions of an image to make it the specified dimensions.',
-        'effect callback' => 'image_crop_effect',
-        'dimensions callback' => 'image_resize_dimensions',
-        'form callback' => 'image_crop_form',
-        'summary theme' => 'image_crop_summary',
-        'module' => 'image',
         'name' => 'image_crop',
         'data' => array(
           'width' => 360,
