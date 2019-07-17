@@ -595,6 +595,7 @@ h1 {
   width: 76%;
   background: #EDECED;
   padding: 1rem 3rem 1rem 8rem;
+  min-height: 175px;
 }
 .page--banner--block .detail--content--block .guidance-block {
   float: right;
