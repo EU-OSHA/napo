@@ -294,8 +294,9 @@ function napo_lesson_get_download_block($node) {
     $resources_required = $node->field_resources_required;
     $nid = variable_get('teacher_guidance_nid', 407);
     $guidance = node_load($nid);
-    $file_uri = $guidance->field_guidance_file[$language->language][0]['uri'];
-    $items[] = l(t('Teacher guidance'), file_create_url($file_uri));
+    $wrapper = entity_metadata_wrapper('node', $guidance);
+    $file = $wrapper->language($language->language)->field_guidance_file->value();
+    $items[] = l(t('Teacher guidance'), file_create_url($file['uri']));
   }
   else {
     //    $nid = variable_get('facilitator_guidance_nid', 408);

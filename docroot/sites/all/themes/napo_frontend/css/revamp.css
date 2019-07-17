@@ -595,6 +595,7 @@ h1 {
   width: 76%;
   background: #EDECED;
   padding: 1rem 3rem 1rem 8rem;
+  min-height: 175px;
 }
 .page--banner--block .detail--content--block .guidance-block {
   float: right;
@@ -1250,6 +1251,9 @@ a.resource-library-link {
   padding-bottom: 0em !important;
   padding-top: 0em !important;
   height: 51px;
+}
+.underline-link {
+  text-decoration: underline;
 }
 @-webkit-keyframes autofill {
   to {

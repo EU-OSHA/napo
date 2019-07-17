@@ -84,7 +84,7 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_conversation_starters_cove]
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="__link__" target="_blank">[field_conversation_starters_cove]</a>
 <div class="related-item-content">
 <h3>[field_conversation_started]</h3>
 </div>';
@@ -135,7 +135,7 @@ function napo_msd_views_default_views() {
     t('Asc'),
     t('Desc'),
     t('MSDs Video'),
-    t('[field_conversation_starters_cove]
+    t('<a href="__link__" target="_blank">[field_conversation_starters_cove]</a>
 <div class="related-item-content">
 <h3>[field_conversation_started]</h3>
 </div>'),
@@ -270,7 +270,7 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['fields']['field_image']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_image']['settings'] = array(
     'image_style' => 'lessons_grid_image',
-    'image_link' => 'content',
+    'image_link' => '',
   );
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
@@ -294,7 +294,7 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_image] 
+  $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="__link__">[field_image]</a>
 <div class="related-item-content">
 <h3>[title_1]</h3>
 <p class="keyword-list">
@@ -305,6 +305,14 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['nothing']['element_wrapper_type'] = '0';
   $handler->display->display_options['fields']['nothing']['element_default_classes'] = FALSE;
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['relationship'] = 'field_resources_related_target_id';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
   $handler->display->display_options['block_description'] = 'MSD related resources';
   $translatables['msd_related_resources'] = array(
     t('Master'),
@@ -326,6 +334,13 @@ function napo_msd_views_default_views() {
 </div>'),
     t('All'),
     t('Block'),
+    t('<a href="__link__">[field_image]</a>
+<div class="related-item-content">
+<h3>[title_1]</h3>
+<p class="keyword-list">
+<span class="keyword-label"><label>Keyword:</label></span><span class="keyword-tag">[field_tags]</span>
+</p>
+</div>'),
     t('MSD related resources'),
   );
   $export['msd_related_resources'] = $view;

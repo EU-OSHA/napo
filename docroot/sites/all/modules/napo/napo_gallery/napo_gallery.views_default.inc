@@ -241,7 +241,6 @@ function napo_gallery_views_default_views() {
   $handler->display->display_options['relationships']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
   $handler->display->display_options['relationships']['entityqueue_relationship']['table'] = 'node';
   $handler->display->display_options['relationships']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
-  $handler->display->display_options['relationships']['entityqueue_relationship']['required'] = TRUE;
   $handler->display->display_options['relationships']['entityqueue_relationship']['limit'] = 1;
   $handler->display->display_options['relationships']['entityqueue_relationship']['queues'] = array(
     'napos_gallery' => 'napos_gallery',
@@ -329,11 +328,6 @@ function napo_gallery_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'napo_album' => 'napo_album',
   );
-  /* Filter criterion: Entityqueue: Content In Queue */
-  $handler->display->display_options['filters']['entityqueue_relationship']['id'] = 'entityqueue_relationship';
-  $handler->display->display_options['filters']['entityqueue_relationship']['table'] = 'node';
-  $handler->display->display_options['filters']['entityqueue_relationship']['field'] = 'entityqueue_relationship';
-  $handler->display->display_options['filters']['entityqueue_relationship']['value'] = '1';
   $handler->display->display_options['displays'] = array(
     'page' => 'page',
     'default' => 0,

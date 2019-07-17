@@ -27,7 +27,7 @@
  * @ingroup views_templates
  */
 ?>
-<div class="multicarousel--block" id="multicarouselBlock1" data-items="1,2,3,3" data-slide="1" data-interval="1000">
+<div class="multicarousel--block" id="multicarouselBlock1" data-items="1,2,3,3" data-slide="3" data-interval="1000">
   <?php if ($rows): ?>
     <div class="multicarousel--block--inner">
       <?php print $rows; ?>
@@ -40,3 +40,44 @@
 <button class="btn btn-primary leftLst over"><img src="/sites/all/themes/napo_frontend/images/slider-left.png" title="show more"></button>
 <button class="btn btn-primary rightLst"><img src="/sites/all/themes/napo_frontend/images/slider-right.png" title="show more"></button>
 </div>
+
+<script type="text/javascript">
+
+	jQuery(document).ready(function(){
+	    if (jQuery(window).width() >= 992) {
+	        jQuery(".multicarousel--block").attr("data-slide","3");
+	    }  
+	});
+	
+	jQuery(window).resize(function () {
+        if (jQuery(window).width() >= 992) {
+            jQuery(".multicarousel--block").attr("data-slide","3");
+        }
+	}); 
+
+
+    jQuery(document).ready(function(){
+	    if (jQuery(window).width() <= 991) {
+	        jQuery(".multicarousel--block").attr("data-slide","2");
+	    }  
+	});
+	
+	jQuery(window).resize(function () {
+        if (jQuery(window).width() <= 991) {
+            jQuery(".multicarousel--block").attr("data-slide","2");
+        }
+	}); 
+
+	jQuery(document).ready(function(){
+	    if (jQuery(window).width() <= 767) {
+	        jQuery(".multicarousel--block").attr("data-slide","1");
+	    }  
+	});
+	
+	jQuery(window).resize(function () {
+        if (jQuery(window).width() <= 767) {
+            jQuery(".multicarousel--block").attr("data-slide","1");
+        }
+	}); 
+
+</script>

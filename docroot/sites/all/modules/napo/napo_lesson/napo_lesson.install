@@ -107,3 +107,11 @@ function napo_lesson_update_7007() {
 function napo_lesson_update_7008() {
   features_revert_module('napo_lesson');
 }
+
+/**
+ * NRV-177 Lesson/Activity through the cover.
+ */
+function napo_lesson_update_7009() {
+  features_revert(array('napo_lesson' => array('views_view')));
+  features_revert(array('napo_msd' => array('views_view')));
+}

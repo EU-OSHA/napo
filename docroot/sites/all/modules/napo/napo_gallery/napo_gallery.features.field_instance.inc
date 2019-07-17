@@ -10,7 +10,7 @@
 function napo_gallery_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-napo_album-body'
+  // Exported field_instance: 'node-napo_album-body'.
   $field_instances['node-napo_album-body'] = array(
     'bundle' => 'napo_album',
     'default_value' => NULL,
@@ -61,7 +61,7 @@ function napo_gallery_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_album-field_images'
+  // Exported field_instance: 'node-napo_album-field_images'.
   $field_instances['node-napo_album-field_images'] = array(
     'bundle' => 'napo_album',
     'deleted' => 0,
@@ -100,7 +100,7 @@ function napo_gallery_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_images',
     'label' => 'Images',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
@@ -119,18 +119,26 @@ function napo_gallery_field_default_field_instances() {
       'module' => 'media',
       'settings' => array(
         'allowed_schemes' => array(
-          0 => 'public',
-          1 => 'private',
+          'public' => 'public',
         ),
         'allowed_types' => array(
-          0 => 'image',
+          'audio' => 0,
+          'document' => 0,
+          'image' => 'image',
+          'video' => 0,
         ),
-        'browser_plugins' => array(),
+        'browser_plugins' => array(
+          'media_browser_osha--media_browser_osha' => 0,
+          'media_browser_osha--media_browser_osha_my_files' => 0,
+          'media_default--media_browser_1' => 0,
+          'media_default--media_browser_my_files' => 0,
+          'upload' => 0,
+        ),
         'manualcrop_crop_info' => 1,
         'manualcrop_default_crop_area' => 1,
         'manualcrop_enable' => 1,
         'manualcrop_inline_crop' => 0,
-        'manualcrop_instant_crop' => 0,
+        'manualcrop_instant_crop' => FALSE,
         'manualcrop_instant_preview' => 1,
         'manualcrop_keyboard' => 1,
         'manualcrop_maximize_default_crop_area' => 0,
@@ -141,15 +149,13 @@ function napo_gallery_field_default_field_instances() {
         ),
         'manualcrop_styles_mode' => 'include',
         'manualcrop_thumblist' => 0,
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
       ),
       'type' => 'media_generic',
       'weight' => 4,
     ),
   );
 
-  // Exported field_instance: 'node-napo_album-field_publication_date'
+  // Exported field_instance: 'node-napo_album-field_publication_date'.
   $field_instances['node-napo_album-field_publication_date'] = array(
     'bundle' => 'napo_album',
     'deleted' => 0,
@@ -202,7 +208,7 @@ function napo_gallery_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_album-title_field'
+  // Exported field_instance: 'node-napo_album-title_field'.
   $field_instances['node-napo_album-title_field'] = array(
     'bundle' => 'napo_album',
     'default_value' => NULL,
@@ -257,7 +263,7 @@ function napo_gallery_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_image-body'
+  // Exported field_instance: 'node-napo_image-body'.
   $field_instances['node-napo_image-body'] = array(
     'bundle' => 'napo_image',
     'default_value' => NULL,
@@ -314,7 +320,7 @@ function napo_gallery_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_image-field_image'
+  // Exported field_instance: 'node-napo_image-field_image'.
   $field_instances['node-napo_image-field_image'] = array(
     'bundle' => 'napo_image',
     'deleted' => 0,
@@ -404,7 +410,7 @@ function napo_gallery_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-napo_image-title_field'
+  // Exported field_instance: 'node-napo_image-title_field'.
   $field_instances['node-napo_image-title_field'] = array(
     'bundle' => 'napo_image',
     'default_value' => NULL,
@@ -417,6 +423,7 @@ function napo_gallery_field_default_field_instances() {
         'settings' => array(
           'napo_common_title_prefix' => '',
           'napo_film_title_include_episode_count' => 0,
+          'napo_film_title_include_icon' => FALSE,
           'napo_film_title_include_type' => 0,
           'napo_film_title_link_episode_popup' => 0,
           'napo_film_title_link_with_film' => 0,
