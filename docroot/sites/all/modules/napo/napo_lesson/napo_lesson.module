@@ -222,6 +222,11 @@ function napo_lesson_get_resources_required($node) {
     $lesson_video = $wrapper->language($language->language)->field_lesson_video->value();
     $items[] = '<a href="#videojs-' . $lesson_video->nid . '-field-video-video">' . $node->title . '</a>';
   }
+  if ($node->type == 'msds_activities') {
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $msds_video = $wrapper->language($language->language)->field_msds_video->value();
+    $items[] = '<a href="#videojs-' . $msds_video->nid . '-field-video-video">' . $node->title . '</a>';
+  }
   if (!$items) {
     return '';
   }
