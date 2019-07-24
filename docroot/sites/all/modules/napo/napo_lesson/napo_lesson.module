@@ -217,6 +217,16 @@ function napo_lesson_get_resources_required($node) {
       }
     }
   }
+  if ($node->type == 'lesson') {
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $lesson_video = $wrapper->language($language->language)->field_lesson_video->value();
+    $items[] = '<a href="#videojs-' . $lesson_video->nid . '-field-video-video">' . $node->title . '</a>';
+  }
+  if ($node->type == 'msds_activities') {
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $msds_video = $wrapper->language($language->language)->field_msds_video->value();
+    $items[] = '<a href="#videojs-' . $msds_video->nid . '-field-video-video">' . $node->title . '</a>';
+  }
   if (!$items) {
     return '';
   }
@@ -235,7 +245,7 @@ function napo_lesson_get_resources_required($node) {
   if ($node->type == 'lesson') {
     $output .= $text;
   }
-    return '<div class="acordion--block--item">'.
+  return '<div class="acordion--block--item">'.
   '<h3 class="acordion-content-title active">' . t('Resources required') . '</h3>'.
   '<div class="acordion-content-text" style="display: none;">' . $output . '</div></div>';
 }
