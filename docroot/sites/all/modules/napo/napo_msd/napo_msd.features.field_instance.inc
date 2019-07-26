@@ -37,6 +37,13 @@ function napo_msd_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 3,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -77,9 +84,8 @@ function napo_msd_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'file',
         'settings' => array(),
-        'type' => 'file_default',
+        'type' => 'hidden',
         'weight' => 13,
       ),
       'full' => array(
@@ -93,6 +99,12 @@ function napo_msd_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 11,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -178,6 +190,13 @@ function napo_msd_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 5,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -237,6 +256,13 @@ function napo_msd_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 4,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -292,6 +318,12 @@ function napo_msd_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -359,12 +391,8 @@ function napo_msd_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'image',
-        'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
-        ),
-        'type' => 'image',
+        'settings' => array(),
+        'type' => 'hidden',
         'weight' => 14,
       ),
       'full' => array(
@@ -378,6 +406,12 @@ function napo_msd_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 12,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -470,6 +504,13 @@ function napo_msd_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 1,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -528,6 +569,13 @@ function napo_msd_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 2,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -591,6 +639,16 @@ function napo_msd_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'bypass_access' => FALSE,
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 6,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -647,6 +705,12 @@ function napo_msd_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -698,6 +762,12 @@ function napo_msd_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 9,
+      ),
       'teaser' => array(
         'label' => 'above',
         'settings' => array(),
@@ -748,6 +818,12 @@ function napo_msd_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -812,6 +888,25 @@ function napo_msd_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(
+          'napo_common_title_prefix' => '',
+          'napo_film_title_include_episode_count' => 0,
+          'napo_film_title_include_icon' => 0,
+          'napo_film_title_include_type' => 0,
+          'napo_film_title_link_episode_popup' => 0,
+          'napo_film_title_link_with_film' => 0,
+          'napo_film_title_link_with_film_value' => '!episode from the film !film',
+          'title_archived_label' => 0,
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => 'h1',
+        ),
+        'type' => 'title_linked',
         'weight' => 0,
       ),
       'teaser' => array(

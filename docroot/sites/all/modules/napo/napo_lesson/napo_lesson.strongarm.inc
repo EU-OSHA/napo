@@ -386,7 +386,7 @@ download--section--block';
         'custom_settings' => FALSE,
       ),
       'print' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'token' => array(
         'custom_settings' => FALSE,
@@ -408,6 +408,9 @@ download--section--block';
       ),
       'search_results' => array(
         'custom_settings' => TRUE,
+      ),
+      'view' => array(
+        'custom_settings' => FALSE,
       ),
     ),
     'extra_fields' => array(

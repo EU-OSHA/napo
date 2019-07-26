@@ -186,6 +186,9 @@ function napo_lesson_get_intro_block($node) {
   else {
     $video = $node->field_lesson_video[LANGUAGE_NONE]['0']['entity'];
   }
+  if (!$video) {
+    return '';
+  }
   $guidance_href = url('node/' . $nid);
   $wrapper = entity_metadata_wrapper('node', $video);
   $text = strip_tags($wrapper->language($language->language)->body->value()['value']);
@@ -245,9 +248,13 @@ function napo_lesson_get_resources_required($node) {
   if ($node->type == 'lesson') {
     $output .= $text;
   }
+  $display = 'none';
+  if (arg(2) == 'lesson_pdf') {
+    $display = 'block';
+  }
   return '<div class="acordion--block--item">'.
   '<h3 class="acordion-content-title active">' . t('Resources required') . '</h3>'.
-  '<div class="acordion-content-text" style="display: none;">' . $output . '</div></div>';
+  '<div class="acordion-content-text" style="display: ' . $display . ';">' . $output . '</div></div>';
 }
 
 function napo_lesson_get_download_block($node) {
@@ -343,7 +350,7 @@ function napo_lesson_preprocess_node(&$vars) {
     }
   }
 
-  if($node->type == 'lesson') {
+  if ($node->type == 'lesson') {
     if (!empty($vars['preprocess_fields'])) {
       // Right Menu.
       if (in_array('right_menu', $vars['preprocess_fields'])) {

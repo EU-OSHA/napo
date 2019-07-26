@@ -36,6 +36,12 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'print' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 24,
+      ),
       'search_results' => array(
         'label' => 'hidden',
         'module' => 'smart_trim',
@@ -110,6 +116,13 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 4,
+      ),
       'search_results' => array(
         'label' => 'above',
         'settings' => array(),
@@ -174,6 +187,13 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 5,
       ),
       'search_results' => array(
         'label' => 'above',
@@ -240,6 +260,13 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 8,
+      ),
       'search_results' => array(
         'label' => 'above',
         'settings' => array(),
@@ -304,6 +331,12 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 21,
       ),
       'search_results' => array(
         'label' => 'hidden',
@@ -396,6 +429,13 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 2,
+      ),
       'search_results' => array(
         'label' => 'above',
         'settings' => array(),
@@ -460,6 +500,13 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 1,
       ),
       'search_results' => array(
         'label' => 'above',
@@ -528,6 +575,12 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 22,
       ),
       'search_results' => array(
         'label' => 'hidden',
@@ -599,6 +652,12 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'print' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 23,
+      ),
       'search_results' => array(
         'label' => 'hidden',
         'settings' => array(),
@@ -664,6 +723,12 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'print' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 6,
+      ),
       'search_results' => array(
         'label' => 'above',
         'settings' => array(),
@@ -722,6 +787,13 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 3,
       ),
       'search_results' => array(
         'label' => 'above',
@@ -785,6 +857,12 @@ function napo_lesson_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 25,
       ),
       'search_results' => array(
         'label' => 'above',
@@ -867,6 +945,25 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(
+          'napo_common_title_prefix' => '',
+          'napo_film_title_include_episode_count' => FALSE,
+          'napo_film_title_include_icon' => FALSE,
+          'napo_film_title_include_type' => FALSE,
+          'napo_film_title_link_episode_popup' => FALSE,
+          'napo_film_title_link_with_film' => FALSE,
+          'napo_film_title_link_with_film_value' => '!episode from the film !film',
+          'title_archived_label' => FALSE,
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => 'h1',
+        ),
+        'type' => 'title_linked',
         'weight' => 0,
       ),
       'search_results' => array(

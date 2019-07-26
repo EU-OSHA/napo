@@ -21,10 +21,194 @@ function napo_common_download_zip_access($node) {
 }
 
 /**
+ * Implements hook_admin_paths().
+ */
+function napo_common_admin_paths() {
+  $paths = array(
+    'node/*/lesson_pdf' => TRUE,
+  );
+  return $paths;
+}
+
+function _napo_common_lesson_pdf_name($node, $language) {
+  $map = [
+    20 => 'Napo-lesson-Danger-Prohibition-signs',
+    21 => 'Napo-lesson-Mandatory-Rescue-signs',
+    29 => 'Napo-lesson-Be-body-wise-Skin',
+    30 => 'Napo-lesson-Be-body-wise-Back',
+    361 => 'Napo-lesson-Identification-risks-hazards',
+    85 => 'Napo-lesson-hazards-Intervention-prevention',
+
+    347 => 'Napo-in-the-workplace-activity-Check-your-posture',
+    348 => 'Napo-in-the-workplace-activity-Keep-moving-at-work',
+    349 => 'Napo-in-the-workplace-activity-Share-skills-and-experience',
+    350 => 'Napo-in-the-workplace-activity-Risk-assess-repetitive-work',
+    351 => 'Napo-in-the-workplace-activity-Split-up-heavy-loads',
+    352 => 'Napo-in-the-workplace-activity-Report-signs-MSDs-early',
+    353 => 'Napo-in-the-workplace-activity-Dont-twist-prevent-MSDs',
+    354 => 'Napo-in-the-workplace-activity-Dont-forget-handling-aids',
+    355 => 'Napo-in-the-workplace-activity-Customise-your-workstation',
+    353 => 'Napo-in-the-workplace-activity-Prevent-hand-arm-vibration',
+    357 => 'Napo-in-the-workplace-activity-Let-machine-take-strain',
+    358 => 'Napo-in-the-workplace-activity-Take-a-break',
+    359 => 'Napo-in-the-workplace-activity-Lift-and-carry-safely',
+    431 => 'Napo-in-the-workplace-activity-Know-early-signs-of-MSDs',
+  ];
+  $filename = $language . '_'  . $node->nid . '.pdf';
+  if (!empty($map[$node->nid])) {
+    $filename = $map[$node->nid] . '-' . $language . '.pdf';
+  }
+  return 'public://' . 'lessons/' . $filename;
+}
+
+/**
+ * Gennerate a PDF for a given Drupal path.
+ *
+ * @param string $path
+ *   path of the page to convert to PDF.
+ * @param array $query
+ *   (Optional) array of key/value pairs as used in the url() function for the
+ *   query.
+ * @param int $cid
+ *   (Optional) comment ID of the comment to render.
+ * @param string $pdf_filename
+ *   (Optional) filename of the generated PDF.
+ * @param string $view_mode
+ *   (Optional) view mode to be used when rendering the content.
+ *
+ * @return string|null
+ *   generated PDF page, or NULL in case of error
+ *
+ * @see print_pdf_controller()
+ */
+function osha_print_pdf_generate_path($path, $query = NULL, $cid = NULL, $pdf_filename = NULL, $view_mode = PRINT_VIEW_MODE) {
+  global $base_url;
+
+  $link = print_pdf_print_link();
+  $node = print_controller($path, $link['format'], $cid, $view_mode);
+  if ($node) {
+    // Call the tool's hook_pdf_tool_info(), to see if CSS must be expanded.
+    $pdf_tool = explode('|', variable_get('print_pdf_pdf_tool', PRINT_PDF_PDF_TOOL_DEFAULT));
+    $cache_enabled = variable_get('print_pdf_cache_enabled', PRINT_PDF_CACHE_ENABLED_DEFAULT);
+
+    $function = $pdf_tool[0] . '_pdf_tool_info';
+    $info = function_exists($function) ? $function() : array();
+    $expand = isset($info['expand_css']) ? $info['expand_css'] : FALSE;
+    $html = theme('print', array(
+      'node' => $node,
+      'query' => $query,
+      'expand_css' => $expand,
+      'format' => $link['format'],
+    ));
+    // Img elements must be set to absolute.
+    $pattern = '!<(img\s[^>]*?)>!is';
+    $html = preg_replace_callback($pattern, '_print_rewrite_urls', $html);
+
+    // Convert the a href elements, to make sure no relative links remain.
+    $pattern = '!<(a\s[^>]*?)>!is';
+    $html = preg_replace_callback($pattern, '_print_rewrite_urls', $html);
+    // And make anchor links relative again, to permit in-PDF navigation.
+    $html = preg_replace("!${base_url}/" . $link['path'] . '/.*?#!', '#', $html);
+
+    $meta = array(
+      'node' => $node,
+      'url' => url(drupal_get_path_alias(empty($node->nid) ? $node->path : "node/$node->nid"), array('absolute' => TRUE)),
+    );
+    if (isset($node->name)) {
+      $meta['name'] = $node->name;
+    }
+    if (isset($node->title)) {
+      $meta['title'] = $node->title;
+    }
+
+    $paper_size = isset($node->print_pdf_size) ? $node->print_pdf_size : NULL;
+    $page_orientation = isset($node->print_pdf_orientation) ? $node->print_pdf_orientation : NULL;
+
+    return print_pdf_generate_html($html, $meta, NULL, $paper_size, $page_orientation);
+  }
+  return NULL;
+}
+
+/**
+ * Form for downloading a field_video file in available formats.
+ */
+function napo_common_lesson_pdf_page($node) {
+  global $language;
+  if ($action = arg(3)) {
+    $options = [
+      'language' => $language->language,
+      'absolute' => TRUE,
+    ];
+    if ($action == 'pdf') {
+      $path  = url($language->language . '/node/' . $node->nid . '/lesson_pdf/' . $language->language, $options);
+      file_get_contents($path);
+      $path  = url($language->language . '/node/' . $node->nid . '/lesson_pdf/', $options);
+      drupal_goto($path, $options);
+    }
+    else {
+      $dest = _napo_common_lesson_pdf_name($node, $language->language);
+      module_load_include('inc', 'print_pdf', 'print_pdf.pages');
+      $pdf = osha_print_pdf_generate_path($node->nid, [], NULL, NULL);
+      $file_temp = file_save_data($pdf, $dest, FILE_EXISTS_REPLACE);
+
+      $node = node_load($node->nid);
+      if (!empty($file_temp)) {
+        $file_temp->status = 1;
+        $file_temp->display = 1;
+        $node->field_file[$language->language][0] = (array) $file_temp;
+        node_save($node);
+      }
+      $path  = url($language->language . '/node/' . $node->nid . '/lesson_pdf/', $options);
+      drupal_goto($path, $options);
+    }
+  }
+  $form['intro']['#markup'] = variable_get('lesson_pdf_markup',
+    '<p>Please select the language version that you want to generate the lesson pdf, and click on the "Generate pdf" button in the corresponding column.<br>
+  Please remember that the pdf is generate using the published content of the lesson.<br>
+  Please, once the pdf is generate, check the layout to ensure that the lessons is dis-played properly in the pdf file.</p>');
+
+  $header = [t('Language'), t('Actions'), t('Date of the PDF')];
+  $rows = [];
+  $installed = language_list();
+  foreach ($node->translations->data as $lang => $data) {
+    if ($data['status'] ==  0) {
+      continue;
+    }
+    $dest = _napo_common_lesson_pdf_name($node, $lang);
+    $date = '';
+    if (file_exists($dest)) {
+      $date = date('d-m-Y', filemtime($dest));
+    }
+    $rows[] = [
+      $installed[$lang]->name,
+      l(t('Generate PDF'), $lang . '/node/' . $node->nid . '/lesson_pdf/pdf', [
+        'language' => $lang,
+        'absolute' => TRUE,
+        ]
+      ),
+      $date
+    ];
+  }
+  $form['rows']['#markup'] = theme('table', array(
+    'header' => $header,
+    'rows' => $rows,
+  ));
+  return $form;
+}
+
+/**
  * Implements hook_menu().
  */
 function napo_common_menu() {
   $items = array();
+  $items['node/%node/lesson_pdf'] = array(
+    'title' => 'Lesson pdf',
+    'page callback' => 'napo_common_lesson_pdf_page',
+    'page arguments' => array(1),
+    'access callback' => 'napo_common_download_zip_access',
+    'access arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+  );
   $items['node/%node/download_video'] = array(
     'title' => 'Download video',
     'page callback' => 'napo_common_download_video_callback',
@@ -884,11 +1068,15 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
 
   switch ($display['type']) {
     case 'napo_acordion':
+      $display = 'none';
+      if (arg(2) == 'lesson_pdf') {
+        $display = 'block';
+      }
       foreach ($items as $delta => $item) {
         $element[$delta] = array(
           '#markup' => '<div class="acordion--block--item">'.
             '<h3 class="acordion-content-title active">' . t($instance['label']) . '</h3>'.
-            '<div class="acordion-content-text" style="display: none;">' . $item['safe_value'] . '</div></div>',
+            '<div class="acordion-content-text" style="display: ' . $display . ';">' . $item['safe_value'] . '</div></div>',
         );
       }
       return $element;
