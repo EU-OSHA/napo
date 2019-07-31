@@ -156,12 +156,6 @@ function napo_msd_strongarm() {
       'revision' => array(
         'custom_settings' => FALSE,
       ),
-      'print' => array(
-        'custom_settings' => TRUE,
-      ),
-      'view' => array(
-        'custom_settings' => FALSE,
-      ),
     ),
     'extra_fields' => array(
       'form' => array(

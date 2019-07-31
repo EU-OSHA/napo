@@ -22,6 +22,4 @@
  * the view is modified.
  */
 $url = url('node/' . $row->node_field_data_field_resources_related_nid);
-$output = str_replace('__link__', $url, $output);
-?>
-<?php print $output;
+print str_replace('__link__', $url, $output);

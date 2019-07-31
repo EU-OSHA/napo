@@ -284,7 +284,7 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
   $handler->display->display_options['fields']['field_tags']['field'] = 'field_tags';
-  $handler->display->display_options['fields']['field_tags']['relationship'] = 'field_msds_video_target_id';
+  $handler->display->display_options['fields']['field_tags']['relationship'] = 'field_resources_related_target_id';
   $handler->display->display_options['fields']['field_tags']['label'] = 'Keyword';
   $handler->display->display_options['fields']['field_tags']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_tags']['type'] = 'i18n_taxonomy_term_reference_plain';
@@ -403,7 +403,6 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['relationships']['field_tags_tid']['id'] = 'field_tags_tid';
   $handler->display->display_options['relationships']['field_tags_tid']['table'] = 'field_data_field_tags';
   $handler->display->display_options['relationships']['field_tags_tid']['field'] = 'field_tags_tid';
-  $handler->display->display_options['relationships']['field_tags_tid']['relationship'] = 'field_msds_video_target_id';
   $handler->display->display_options['relationships']['field_tags_tid']['label'] = 'Tags';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_field']['id'] = 'title_field';

@@ -22,3 +22,10 @@ function napo_msd_update_7002() {
 function napo_msd_update_7003() {
   features_revert_module('napo_msd');
 }
+
+/**
+ * MDR-3132 MSDs Activity keywords field.
+ */
+function napo_msd_update_7004() {
+  features_revert(array('napo_msd' => array('views_view')));
+}
