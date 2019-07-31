@@ -1145,7 +1145,22 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
  * Implements hook_views_query_alter().
  */
 function napo_common_views_query_alter(&$view, &$query) {
+  global $language;
   if (('napo_workplaces' == $view->name) || ('napo_for_teachers' == $view->name)) {
+    if (variable_get('napo_common_filter_by_language', TRUE)) {
+      foreach ($query->table_queue as $field_name => &$field) {
+        if (strpos($field_name, 'field_data_field_') !== 0) {
+          continue;
+        }
+        if (in_array($field_name, ['field_data_field_lesson_video', 'field_data_field_msds_video', 'field_data_field_tags'])) {
+          continue;
+        }
+        $field['join']->extra[] = [
+          'field' => 'language',
+          'value' => $language->language,
+        ];
+      }
+    }
     if ($query->where[2]['conditions']) {
       $key = 0;
       $conditions = $query->where[2]['conditions'][$key]['field']->conditions();

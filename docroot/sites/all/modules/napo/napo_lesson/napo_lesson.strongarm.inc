@@ -409,9 +409,6 @@ download--section--block';
       'search_results' => array(
         'custom_settings' => TRUE,
       ),
-      'view' => array(
-        'custom_settings' => FALSE,
-      ),
     ),
     'extra_fields' => array(
       'form' => array(

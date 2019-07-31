@@ -480,6 +480,43 @@ __Tags__
 </p>
 </div>';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Field: Content: Activities */
+  $handler->display->display_options['fields']['field_activities']['id'] = 'field_activities';
+  $handler->display->display_options['fields']['field_activities']['table'] = 'field_data_field_activities';
+  $handler->display->display_options['fields']['field_activities']['field'] = 'field_activities';
+  $handler->display->display_options['fields']['field_activities']['label'] = '';
+  $handler->display->display_options['fields']['field_activities']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_activities']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_activities']['type'] = 'text_plain';
+  /* Field: Content: Assessment */
+  $handler->display->display_options['fields']['field_assessment']['id'] = 'field_assessment';
+  $handler->display->display_options['fields']['field_assessment']['table'] = 'field_data_field_assessment';
+  $handler->display->display_options['fields']['field_assessment']['field'] = 'field_assessment';
+  $handler->display->display_options['fields']['field_assessment']['label'] = '';
+  $handler->display->display_options['fields']['field_assessment']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_assessment']['element_label_colon'] = FALSE;
+  /* Field: Content: Concluding questions */
+  $handler->display->display_options['fields']['field_concluding_questions']['id'] = 'field_concluding_questions';
+  $handler->display->display_options['fields']['field_concluding_questions']['table'] = 'field_data_field_concluding_questions';
+  $handler->display->display_options['fields']['field_concluding_questions']['field'] = 'field_concluding_questions';
+  $handler->display->display_options['fields']['field_concluding_questions']['label'] = '';
+  $handler->display->display_options['fields']['field_concluding_questions']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_concluding_questions']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_concluding_questions']['type'] = 'text_plain';
+  /* Field: Content: Introductory text */
+  $handler->display->display_options['fields']['field_introductory_text']['id'] = 'field_introductory_text';
+  $handler->display->display_options['fields']['field_introductory_text']['table'] = 'field_data_field_introductory_text';
+  $handler->display->display_options['fields']['field_introductory_text']['field'] = 'field_introductory_text';
+  $handler->display->display_options['fields']['field_introductory_text']['label'] = '';
+  $handler->display->display_options['fields']['field_introductory_text']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_introductory_text']['element_label_colon'] = FALSE;
+  /* Field: Content: Learning Objectives */
+  $handler->display->display_options['fields']['field_learning_objectives']['id'] = 'field_learning_objectives';
+  $handler->display->display_options['fields']['field_learning_objectives']['table'] = 'field_data_field_learning_objectives';
+  $handler->display->display_options['fields']['field_learning_objectives']['field'] = 'field_learning_objectives';
+  $handler->display->display_options['fields']['field_learning_objectives']['label'] = '';
+  $handler->display->display_options['fields']['field_learning_objectives']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_learning_objectives']['element_label_colon'] = FALSE;
   $handler->display->display_options['filter_groups']['groups'] = array(
     1 => 'AND',
     2 => 'OR',
@@ -529,7 +566,11 @@ __Tags__
   $handler->display->display_options['filters']['combine']['expose']['autocomplete_dependent'] = 1;
   $handler->display->display_options['filters']['combine']['fields'] = array(
     'title_field_1' => 'title_field_1',
-    'body' => 'body',
+    'field_activities' => 'field_activities',
+    'field_assessment' => 'field_assessment',
+    'field_concluding_questions' => 'field_concluding_questions',
+    'field_introductory_text' => 'field_introductory_text',
+    'field_learning_objectives' => 'field_learning_objectives',
   );
 
   /* Display: Page */

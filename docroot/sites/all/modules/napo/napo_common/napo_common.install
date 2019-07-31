@@ -119,4 +119,5 @@ function napo_common_update_7010() {
   module_enable(['print']);
   features_revert(array('napo_lesson' => array('field_base', 'field_instance')));
   features_revert(array('napo_msd' => array('field_base', 'field_instance')));
+  variable_set('napo_common_filter_by_language', TRUE);
 }
