@@ -103,8 +103,16 @@
           visibility: hidden;
           display: none;
       }
-
+      .header-title{
+        color:#1f3695 !important;
+        text-align: center;
+      }
+      .print-title{
+        color:#1f3695 !important;
+      }
       .print-content h1{
+        display: none !important;
+        visibility: hidden !important;
         background:none;
         font-size: 20pt !important;
       }
@@ -119,6 +127,8 @@
       }
       .print-content h4{
         font-size: 12pt;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
       }
       .print-content .acordion-content-text{
         color:black !important;
@@ -139,28 +149,18 @@
     <?php print $css; ?>
 
   </head>
-  <?php 
- 
-  $headerpath = base_path() . path_to_theme() .'/logo.png' ;
-
-  
-  ?>
-   <header  style="position: fixed;top:-60px;">
-      <?php print '<img  src="'.$headerpath.'">'; ?>
-      
+  <?php $headerpath = base_path() . path_to_theme() .'/logo.png' ; ?>
+  <header style="position: fixed;top:-60px;">
+    <div class="header-title">Napo for teachers</div>
+    <?php print '<img src="' . $headerpath . '">'; ?>
+    <div class="print-title"><?php print $print_title; ?></div>
   </header>
   <div id="footer" style="position: fixed;bottom: 10px; left: 10px; width:100%;">
-    https://napofilm.net675
+    https://napofilm.net
   </div>
-  <body>
+  <body style="padding-top:100px;">
     <?php if (!empty($message)): ?>
       <div class="print-message"><?php print $message; ?></div><p />
-    <?php endif; ?>
-    <?php if ($print_logo): ?>
-     <div class="print-logo"><?php print $print_logo; ?></div>
-    <?php endif; ?>
-    <?php if (!isset($node->type)): ?>
-      <h2 class="print-title"><?php print $print_title; ?></h2>
     <?php endif; ?>
     <div class="print-content"><?php print $content; ?></div>
   </body>
