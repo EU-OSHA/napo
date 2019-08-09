@@ -72,8 +72,12 @@
   "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>">
   <head>
-    <?php print $head; ?>
+    <?php 
+    global $language;
+    print $head; 
+    ?>
     <base href='<?php print $url ?>' />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><?php print $print_title; ?></title>
     <?php print $scripts; ?>
     <?php if (isset($sendtoprinter)) print $sendtoprinter; ?>
@@ -82,19 +86,78 @@
       <link rel='shortcut icon' href='<?php print theme_get_setting('favicon') ?>' type='image/x-icon' />
     <?php endif; ?>
       <style>
+      html{
+        font-family: DejaVu Sans !important;
+      }
+
+      .page-header{
+        font-weight: 300!important;
+        font-family: 'Open Sans', sans-serif!important;
+        font-size: 2.6em;
+        padding-left: 0;
+        margin-left: -10px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
       .print-footnote {
           visibility: hidden;
           display: none;
       }
+
+      .print-content h1{
+        background:none;
+        font-size: 20pt !important;
+      }
+      .print-content h2{
+        font-size: 16pt !important;
+      }
+      .print-content h3{
+        color:#1f3695 !important;
+        font-size: 16pt !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+      }
+      .print-content h4{
+        font-size: 12pt;
+      }
+      .print-content .acordion-content-text{
+        color:black !important;
+      }
+
+      .print-content{
+        font-size: 10pt;
+      }
+
+      #footer:after { content: counter(page); font-size: 22px; position: absolute; right: 05px; top: 30px }
+      #footer {
+        color: #3c3c3c;
+        font-size: 10pt;
+        bottom: 10px;
+        font-style: italic
+      }
       </style>
     <?php print $css; ?>
+
   </head>
+  <?php 
+ 
+  $headerpath = base_path() . path_to_theme() .'/logo.png' ;
+
+  
+  ?>
+   <header  style="position: fixed;top:-60px;">
+      <?php print '<img  src="'.$headerpath.'">'; ?>
+      
+  </header>
+  <div id="footer" style="position: fixed;bottom: 10px; left: 10px; width:100%;">
+    https://napofilm.net675
+  </div>
   <body>
     <?php if (!empty($message)): ?>
       <div class="print-message"><?php print $message; ?></div><p />
     <?php endif; ?>
     <?php if ($print_logo): ?>
-      <div class="print-logo"><?php print $print_logo; ?></div>
+     <div class="print-logo"><?php print $print_logo; ?></div>
     <?php endif; ?>
     <?php if (!isset($node->type)): ?>
       <h2 class="print-title"><?php print $print_title; ?></h2>
