@@ -171,7 +171,21 @@ function napo_lesson_theme() {
       ),
       'template' => 'theme/download_whole_lesson',
     ),
+    'napo_lesson_video_url_format' => array(
+      'variables' => array('items' => NULL),
+    ),
   );
+}
+
+/*
+ * Formats the related resources (attached files) as icon and description/filename
+ */
+function theme_napo_lesson_video_url_format($element) {
+  global $language;
+  $node = menu_get_object();
+  $label = variable_get('pdf_video_url_label', 'Scene URL');
+  $url = url('node/' . $node->nid, ['absolute' => TRUE]);
+  return '<p class="video-list"><span class="video-label">' . $label . ': </span><span class="video-url">' . l($url, $url, ['html' => TRUE]) . '</span></p>';
 }
 
 function napo_lesson_get_intro_block($node) {
@@ -235,12 +249,12 @@ function napo_lesson_get_resources_required($node) {
   }
   $output = theme('item_list', array('items' => $items));
 
-  $text = variable_get('resources_required_text', '');
+  $text = t(variable_get('resources_required_text', ''));
   if (!$text) {
-    $text = variable_get('download_provided_resources_text', 'To download the provided resources, go to:');
+    $text = t(variable_get('download_provided_resources_text', 'To download the provided resources, go to:'));
     $options['attributes'] = ['target' => '_blank'];
     $options['absolute'] = TRUE;
-    $title = variable_get('napo_resources_text', 'Resource library');
+    $title = t(variable_get('napo_resources_text', 'Resource library'));
     $url = variable_get('napo_resources_url', 'learning-with-napo/napo-for-teachers/resource-library');
     $url = url($url, $options);
     $text .= ' ' . l($title, $url, $options);
@@ -249,7 +263,7 @@ function napo_lesson_get_resources_required($node) {
     $output .= $text;
   }
   $display = 'none';
-  if (arg(2) == 'lesson_pdf') {
+  if (arg(2) == 'generate_pdf') {
     $display = 'block';
   }
   return '<div class="acordion--block--item">'.
@@ -428,6 +442,11 @@ function napo_lesson_field_formatter_info() {
       'field types' => array('text'),
       'description' => t('Get the link of the first lesson in the lesson kit'),
     ),
+    'video_url' => array(
+      'label' => 'Lesson / Activity video url',
+      'field types' => array('entityreference'),
+      'description' => 'Displays vidoe ulr as link for pdf.',
+    ),
   );
   return $info;
 }
@@ -448,6 +467,13 @@ function napo_lesson_field_formatter_view($entity_type, $entity, $field, $instan
         );
       }
       break;
+    case 'video_url':
+      $element[0] = array(
+        '#theme' => 'napo_lesson_video_url_format',
+        '#items' => $items,
+      );
+      break;
+
   }
   return $element;
 }

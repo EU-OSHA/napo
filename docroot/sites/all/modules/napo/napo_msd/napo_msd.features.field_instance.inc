@@ -323,7 +323,7 @@ function napo_msd_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 8,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -641,13 +641,9 @@ function napo_msd_field_default_field_instances() {
       ),
       'print' => array(
         'label' => 'hidden',
-        'module' => 'entityreference',
-        'settings' => array(
-          'bypass_access' => FALSE,
-          'link' => FALSE,
-        ),
-        'type' => 'entityreference_label',
-        'weight' => 6,
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 7,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -706,10 +702,11 @@ function napo_msd_field_default_field_instances() {
         'weight' => 0,
       ),
       'print' => array(
-        'label' => 'above',
+        'label' => 'hidden',
+        'module' => 'napo_lesson',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 10,
+        'type' => 'video_url',
+        'weight' => 6,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -766,7 +763,7 @@ function napo_msd_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 10,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -823,7 +820,7 @@ function napo_msd_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',

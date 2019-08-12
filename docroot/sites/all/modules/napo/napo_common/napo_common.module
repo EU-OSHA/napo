@@ -140,9 +140,10 @@ function napo_common_lesson_pdf_page($node) {
       'absolute' => TRUE,
     ];
     if ($action == 'pdf') {
-      $path  = url($language->language . '/node/' . $node->nid . '/lesson_pdf/' . $language->language, $options);
+      $path  = url($language->language . '/node/' . $node->nid . '/generate_pdf/' . $language->language, $options);
       file_get_contents($path);
       $path  = url($language->language . '/node/' . $node->nid . '/lesson_pdf/', $options);
+      drupal_set_message(t($node->title . ' pdf has been generated.'));
       drupal_goto($path, $options);
     }
     else {
@@ -155,7 +156,12 @@ function napo_common_lesson_pdf_page($node) {
       if (!empty($file_temp)) {
         $file_temp->status = 1;
         $file_temp->display = 1;
-        $node->field_file[$language->language][0] = (array) $file_temp;
+        if ($node->type == 'lesson') {
+          $node->field_file[$language->language][0] = (array) $file_temp;
+        }
+        else {
+          $node->field_activity[$language->language][0] = (array) $file_temp;
+        }
         node_save($node);
       }
       $path  = url($language->language . '/node/' . $node->nid . '/lesson_pdf/', $options);
@@ -165,7 +171,7 @@ function napo_common_lesson_pdf_page($node) {
   $form['intro']['#markup'] = variable_get('lesson_pdf_markup',
     '<p>Please select the language version that you want to generate the lesson pdf, and click on the "Generate pdf" button in the corresponding column.<br>
   Please remember that the pdf is generate using the published content of the lesson.<br>
-  Please, once the pdf is generate, check the layout to ensure that the lessons is dis-played properly in the pdf file.</p>');
+  Please, once the pdf is generate, check the layout to ensure that the lessons is displayed properly in the pdf file.</p>');
 
   $header = [t('Language'), t('Actions'), t('Date of the PDF')];
   $rows = [];
@@ -181,7 +187,7 @@ function napo_common_lesson_pdf_page($node) {
     }
     $rows[] = [
       $installed[$lang]->name,
-      l(t('Generate PDF'), $lang . '/node/' . $node->nid . '/lesson_pdf/pdf', [
+      l(t('Generate PDF'), $lang . '/node/' . $node->nid . '/generate_pdf/pdf', [
         'language' => $lang,
         'absolute' => TRUE,
         ]
@@ -196,6 +202,18 @@ function napo_common_lesson_pdf_page($node) {
   return $form;
 }
 
+
+/**
+ * Implements hook_permission().
+ */
+function napo_common_permission() {
+  return array(
+    'access generate pdf page' => [
+      'title' => t('Access generate pdf page'),
+      'description' => t('Allows a user to access generate pdf page.'),
+    ],
+  );
+}
 /**
  * Implements hook_menu().
  */
@@ -205,9 +223,16 @@ function napo_common_menu() {
     'title' => 'Lesson pdf',
     'page callback' => 'napo_common_lesson_pdf_page',
     'page arguments' => array(1),
+    'access arguments' => array('access generate pdf page'),
+    'type' => MENU_LOCAL_TASK,
+  );
+  $items['node/%node/generate_pdf'] = array(
+    'title' => 'Lesson pdf',
+    'page callback' => 'napo_common_lesson_pdf_page',
+    'page arguments' => array(1),
     'access callback' => 'napo_common_download_zip_access',
     'access arguments' => array(1),
-    'type' => MENU_LOCAL_TASK,
+    'type' => MENU_CALLBACK,
   );
   $items['node/%node/download_video'] = array(
     'title' => 'Download video',
@@ -1069,7 +1094,7 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
   switch ($display['type']) {
     case 'napo_acordion':
       $display = 'none';
-      if (arg(2) == 'lesson_pdf') {
+      if (arg(2) == 'generate_pdf') {
         $display = 'block';
       }
       foreach ($items as $delta => $item) {
