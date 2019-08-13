@@ -151,6 +151,7 @@ function napo_common_lesson_pdf_page($node) {
       module_load_include('inc', 'print_pdf', 'print_pdf.pages');
       $pdf = osha_print_pdf_generate_path($node->nid, [], NULL, NULL);
       $file_temp = file_save_data($pdf, $dest, FILE_EXISTS_REPLACE);
+      $file_temp->description = str_replace('.pdf', '', $file_temp->filename);
 
       $node = node_load($node->nid);
       if (!empty($file_temp)) {
