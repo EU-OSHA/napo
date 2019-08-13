@@ -85,7 +85,8 @@
     <?php if (theme_get_setting('toggle_favicon')): ?>
       <link rel='shortcut icon' href='<?php print theme_get_setting('favicon') ?>' type='image/x-icon' />
     <?php endif; ?>
-      <style>
+    <style>
+
       html{
         font-family: DejaVu Sans !important;
       }
@@ -99,69 +100,97 @@
         padding-top: 0px;
         padding-bottom: 0px;
       }
+
+      a{
+        text-decoration: none;
+        border-bottom: 1px solid #1f3695;
+        color: #1f3695 !important;
+      }
+
       .print-footnote {
           visibility: hidden;
           display: none;
       }
+
       .header-title{
-        color:#1f3695 !important;
+        color:#1f3797 !important;
         text-align: center;
+        font-size: 18pt;
+        font-weight: bold;
       }
+
       .print-title{
         color:#1f3695 !important;
+        padding-top: 0!important;
+        padding-left: 23px;
       }
+
       .print-content h1{
         display: none !important;
         visibility: hidden !important;
         background:none;
         font-size: 20pt !important;
       }
+
       .print-content h2{
         font-size: 16pt !important;
       }
+
       .print-content h3{
         color:#1f3695 !important;
-        font-size: 16pt !important;
+        font-size: 14pt !important;
         margin-bottom: 0 !important;
         padding-bottom: 0 !important;
       }
+
       .print-content h4{
         font-size: 12pt;
         margin-bottom: 0 !important;
         padding-bottom: 0 !important;
       }
+
       .print-content .acordion-content-text{
-        color:black !important;
+        color:#333333 !important;
+        padding-top: 0 !important;
+        margin-top: 0 !important;
       }
 
       .print-content{
         font-size: 10pt;
       }
-
-      #footer:after { content: counter(page); font-size: 22px; position: absolute; right: 05px; top: 30px }
-      #footer {
-        color: #3c3c3c;
+      
+      #footer a{
+        color: #1f3695;
         font-size: 10pt;
-        bottom: 10px;
-        font-style: italic
+        bottom: 40px;
+        font-style: normal;
       }
-      </style>
+
+      #footer:after { 
+        content: counter(page); 
+        font-size: 22px; 
+        position: absolute; 
+        right: 05px; 
+        top: -10px; 
+      }
+
+    </style>
     <?php print $css; ?>
 
   </head>
   <?php $headerpath = base_path() . path_to_theme() .'/logo.png' ; ?>
-  <header style="position: fixed;top:-60px;">
+  <header style="position: fixed; top:-30px;">
     <div class="header-title">Napo for teachers</div>
-    <?php print '<img src="' . $headerpath . '">'; ?>
+    <?php print '<img style="width:342;height:74px;" src="' . $headerpath . '">'; ?>
     <div class="print-title"><?php print $print_title; ?></div>
   </header>
-  <div id="footer" style="position: fixed;bottom: 10px; left: 10px; width:100%;">
-    https://napofilm.net
-  </div>
-  <body style="padding-top:100px;">
+  <body style="padding-top:180px;">
     <?php if (!empty($message)): ?>
       <div class="print-message"><?php print $message; ?></div><p />
     <?php endif; ?>
     <div class="print-content"><?php print $content; ?></div>
   </body>
+  <div id="footer" style="position: fixed;bottom: 10px; left: 10px; width:100%;">
+    <a href="https://napofilm.net">https://napofilm.net</a>
+  </div>
 </html>
