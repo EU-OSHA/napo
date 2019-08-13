@@ -178,7 +178,7 @@
     <?php print $css; ?>
 
   </head>
-  <?php $headerpath = base_path() . path_to_theme() .'/logo.png' ; ?>
+  <?php $headerpath = base_path() . path_to_theme() .'/logo-pdf.png' ; ?>
   <header style="position: fixed; top:-30px;">
     <div class="header-title">Napo for teachers</div>
     <?php print '<img style="width:342;height:74px;" src="' . $headerpath . '">'; ?>
