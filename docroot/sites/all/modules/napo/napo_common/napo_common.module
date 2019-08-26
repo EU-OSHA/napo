@@ -13,6 +13,20 @@ define('NAPO_WORKPLACES_URL', variable_get('napo_workplaces_url', '/learning-wit
 include_once 'napo_common.features.inc';
 include_once 'napo_common.views.inc';
 
+function napo_common_lesson_pdf_access($node) {
+  if (user_access('edit any lesson_toolkit content') && $node->type == 'lesson') {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+function napo_common_activity_pdf_access($node) {
+  if (user_access('edit any lesson_toolkit content') && $node->type == 'msds_activities') {
+    return TRUE;
+  }
+  return FALSE;
+}
+
 function napo_common_download_zip_access($node) {
   if (($node->type == 'msds_activities') || ($node->type =='lesson')) {
     return TRUE;
@@ -26,6 +40,7 @@ function napo_common_download_zip_access($node) {
 function napo_common_admin_paths() {
   $paths = array(
     'node/*/lesson_pdf' => TRUE,
+    'node/*/activity_pdf' => TRUE,
   );
   return $paths;
 }
@@ -142,7 +157,12 @@ function napo_common_lesson_pdf_page($node) {
     if ($action == 'pdf') {
       $path  = url($language->language . '/node/' . $node->nid . '/generate_pdf/' . $language->language, $options);
       file_get_contents($path);
-      $path  = url($language->language . '/node/' . $node->nid . '/lesson_pdf/', $options);
+      if ($node->type == 'lesson') {
+        $path  = url($language->language . '/node/' . $node->nid . '/lesson_pdf/', $options);
+      }
+      else {
+        $path  = url($language->language . '/node/' . $node->nid . '/activity_pdf/', $options);
+      }
       drupal_set_message(t($node->title . ' pdf has been generated.'));
       drupal_goto($path, $options);
     }
@@ -165,14 +185,27 @@ function napo_common_lesson_pdf_page($node) {
         }
         node_save($node);
       }
-      $path  = url($language->language . '/node/' . $node->nid . '/lesson_pdf/', $options);
+      if ($node->type == 'lesson') {
+        $path = url($language->language . '/node/' . $node->nid . '/lesson_pdf/', $options);
+      }
+      else {
+        $path = url($language->language . '/node/' . $node->nid . '/activity_pdf/', $options);
+      }
       drupal_goto($path, $options);
     }
   }
-  $form['intro']['#markup'] = variable_get('lesson_pdf_markup',
-    '<p>Please select the language version that you want to generate the lesson pdf, and click on the "Generate pdf" button in the corresponding column.<br>
+  if ($node->type == 'lesson') {
+    $form['intro']['#markup'] = variable_get('lesson_pdf_markup',
+      '<p>Please select the language version that you want to generate the lesson pdf, and click on the "Generate pdf" button in the corresponding column.<br>
   Please remember that the pdf is generate using the published content of the lesson.<br>
   Please, once the pdf is generate, check the layout to ensure that the lessons is displayed properly in the pdf file.</p>');
+  }
+  else {
+    $form['intro']['#markup'] = variable_get('activity_pdf_markup',
+      '<p>Please select the language version that you want to generate the activity pdf, and click on the "Generate pdf" button in the corresponding column.<br>
+  Please remember that the pdf is generate using the published content of the MSDs activity.<br>
+  Please, once the pdf is generate, check the layout to ensure that the MSD activity is displayed properly in the pdf file.</p>');
+  }
 
   $header = [t('Language'), t('Actions'), t('Date of the PDF')];
   $rows = [];
@@ -220,11 +253,20 @@ function napo_common_permission() {
  */
 function napo_common_menu() {
   $items = array();
+  $items['node/%node/activity_pdf'] = array(
+    'title' => 'Activity pdf',
+    'page callback' => 'napo_common_lesson_pdf_page',
+    'page arguments' => array(1),
+    'access callback' => 'napo_common_activity_pdf_access',
+    'access arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+  );
   $items['node/%node/lesson_pdf'] = array(
     'title' => 'Lesson pdf',
     'page callback' => 'napo_common_lesson_pdf_page',
     'page arguments' => array(1),
-    'access arguments' => array('access generate pdf page'),
+    'access callback' => 'napo_common_lesson_pdf_access',
+    'access arguments' => array(1),
     'type' => MENU_LOCAL_TASK,
   );
   $items['node/%node/generate_pdf'] = array(

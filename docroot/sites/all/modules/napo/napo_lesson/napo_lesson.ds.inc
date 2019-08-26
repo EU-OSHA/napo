@@ -83,7 +83,7 @@ function napo_lesson_ds_field_settings_info() {
   $ds_fieldsetting->view_mode = 'print';
   $ds_fieldsetting->settings = array(
     'resources_required' => array(
-      'weight' => '6',
+      'weight' => '7',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -434,17 +434,20 @@ function napo_lesson_ds_layout_settings_info() {
   $ds_layout->settings = array(
     'regions' => array(
       'ds_content' => array(
-        0 => 'field_lesson_intro_text',
-        1 => 'field_learning_objectives',
-        2 => 'field_starter',
-        3 => 'field_activities',
-        4 => 'field_assessment',
-        5 => 'resources_required',
-        6 => 'field_curriculum_links',
-        7 => 'field_lesson_video',
+        0 => 'title_field',
+        1 => 'field_lesson_video',
+        2 => 'field_lesson_intro_text',
+        3 => 'field_learning_objectives',
+        4 => 'field_starter',
+        5 => 'field_activities',
+        6 => 'field_assessment',
+        7 => 'resources_required',
+        8 => 'field_curriculum_links',
       ),
     ),
     'fields' => array(
+      'title_field' => 'ds_content',
+      'field_lesson_video' => 'ds_content',
       'field_lesson_intro_text' => 'ds_content',
       'field_learning_objectives' => 'ds_content',
       'field_starter' => 'ds_content',
@@ -452,7 +455,6 @@ function napo_lesson_ds_layout_settings_info() {
       'field_assessment' => 'ds_content',
       'resources_required' => 'ds_content',
       'field_curriculum_links' => 'ds_content',
-      'field_lesson_video' => 'ds_content',
     ),
     'classes' => array(
       'layout_class' => array(
