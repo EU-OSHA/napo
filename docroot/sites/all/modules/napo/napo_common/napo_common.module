@@ -36,7 +36,7 @@ function _napo_common_lesson_pdf_name($node, $language) {
     21 => 'Napo-lesson-Mandatory-Rescue-signs',
     29 => 'Napo-lesson-Be-body-wise-Skin',
     30 => 'Napo-lesson-Be-body-wise-Back',
-    361 => 'Napo-lesson-Identification-risks-hazards',
+    84 => 'Napo-lesson-Identification-risks-hazards',
     85 => 'Napo-lesson-hazards-Intervention-prevention',
 
     347 => 'Napo-in-the-workplace-activity-Check-your-posture',
@@ -48,7 +48,7 @@ function _napo_common_lesson_pdf_name($node, $language) {
     353 => 'Napo-in-the-workplace-activity-Dont-twist-prevent-MSDs',
     354 => 'Napo-in-the-workplace-activity-Dont-forget-handling-aids',
     355 => 'Napo-in-the-workplace-activity-Customise-your-workstation',
-    353 => 'Napo-in-the-workplace-activity-Prevent-hand-arm-vibration',
+    356 => 'Napo-in-the-workplace-activity-Prevent-hand-arm-vibration',
     357 => 'Napo-in-the-workplace-activity-Let-machine-take-strain',
     358 => 'Napo-in-the-workplace-activity-Take-a-break',
     359 => 'Napo-in-the-workplace-activity-Lift-and-carry-safely',
@@ -151,6 +151,7 @@ function napo_common_lesson_pdf_page($node) {
       module_load_include('inc', 'print_pdf', 'print_pdf.pages');
       $pdf = osha_print_pdf_generate_path($node->nid, [], NULL, NULL);
       $file_temp = file_save_data($pdf, $dest, FILE_EXISTS_REPLACE);
+      $file_temp->description = str_replace('.pdf', '', $file_temp->filename);
 
       $node = node_load($node->nid);
       if (!empty($file_temp)) {

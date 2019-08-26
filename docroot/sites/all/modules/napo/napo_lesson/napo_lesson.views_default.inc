@@ -1095,7 +1095,7 @@ __Tags__
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['grouping'] = array(
     0 => array(
-      'field' => 'title',
+      'field' => 'title_field_1',
       'rendered' => 1,
       'rendered_strip' => 0,
     ),
@@ -1115,15 +1115,13 @@ __Tags__
   $handler->display->display_options['relationships']['field_lesson_video_target_id']['field'] = 'field_lesson_video_target_id';
   $handler->display->display_options['relationships']['field_lesson_video_target_id']['label'] = 'lesson_video';
   /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  $handler->display->display_options['fields']['title_field_1']['id'] = 'title_field_1';
+  $handler->display->display_options['fields']['title_field_1']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field_1']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field_1']['label'] = '';
+  $handler->display->display_options['fields']['title_field_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title_field_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field_1']['link_to_entity'] = 0;
   /* Field: Content: File */
   $handler->display->display_options['fields']['field_file']['id'] = 'field_file';
   $handler->display->display_options['fields']['field_file']['table'] = 'field_data_field_file';
