@@ -1225,7 +1225,11 @@ h1 {
   content: '';
 }
 .view-display-id-page_list.napo-film-list-view .napo-film-list-details-container .napo-film-view-episodes-link {
-  padding: 9px 43px 9px 10px;
+  padding: 0 43px 0 10px;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
 }
 .view-display-id-page_list.napo-film-list-view .field-name-field-combined-tags .field-item {
   font-size: 0.6em;
@@ -1281,6 +1285,9 @@ a.resource-library-link {
   .navbar-default .navbar-header a.logo img {
     width: 90% !important;
     margin: auto;
+  }
+  .page--banner--block .btn-back a {
+    margin-left: 10px;
   }
   .container {
     width: 100%;
@@ -1517,10 +1524,27 @@ a.resource-library-link {
   .header_top_bar .region-header-top-bar > div,
   .header_top_bar .region-header-top-bar > div a,
   .header_top_bar .region-header-top-bar > div label {
-    font-size: 1.35rem;
+    font-size: 1.20rem;
   }
   .header_top_bar .region-header-top-bar > div:after {
     padding: 0 0.5rem;
+  }
+  html[lang=bg] .header_top_bar .region-header-top-bar > div,
+  html[lang=lv] .header_top_bar .region-header-top-bar > div,
+  html[lang=pt] .header_top_bar .region-header-top-bar > div,
+  html[lang=sl] .header_top_bar .region-header-top-bar > div,
+  html[lang=sv] .header_top_bar .region-header-top-bar > div,
+  html[lang=bg] .header_top_bar .region-header-top-bar > div a,
+  html[lang=lv] .header_top_bar .region-header-top-bar > div a,
+  html[lang=pt] .header_top_bar .region-header-top-bar > div a,
+  html[lang=sl] .header_top_bar .region-header-top-bar > div a,
+  html[lang=sv] .header_top_bar .region-header-top-bar > div a,
+  html[lang=bg] .header_top_bar .region-header-top-bar > div label,
+  html[lang=lv] .header_top_bar .region-header-top-bar > div label,
+  html[lang=pt] .header_top_bar .region-header-top-bar > div label,
+  html[lang=sl] .header_top_bar .region-header-top-bar > div label,
+  html[lang=sv] .header_top_bar .region-header-top-bar > div label {
+    font-size: 1rem;
   }
 }
 @media only screen and (min-width: 768px) {

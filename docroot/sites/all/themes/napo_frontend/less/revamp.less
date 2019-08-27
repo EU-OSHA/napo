@@ -1307,7 +1307,11 @@ h1{
 .view-display-id-page_list.napo-film-list-view{ 
 	.napo-film-list-details-container{
 		.napo-film-view-episodes-link {
-			padding: 9px 43px 9px 10px;
+			padding: 0 43px 0 10px;
+			height: 43px;
+			display: flex;
+			align-items: center;
+			font-size: 1.5rem;
 		}
 	}
 	//NRV-93 Napo Films, the text is not correctly displayed
@@ -1416,6 +1420,10 @@ a.resource-library-link{
 				}
 			} 
 		} 
+	}
+
+	.page--banner--block .btn-back a{
+		margin-left: 10px;
 	}
 
 	.container {
@@ -1663,10 +1671,18 @@ a.resource-library-link{
 	.header_top_bar .region-header-top-bar > div, 
 	.header_top_bar .region-header-top-bar > div a, 
 	.header_top_bar .region-header-top-bar > div label{
-		font-size: 1.35rem;
+		font-size: 1.20rem;
 	}
 	.header_top_bar .region-header-top-bar > div:after{
 		padding: 0 0.5rem;
+	}
+
+	html[lang=bg], html[lang=lv], html[lang=pt], html[lang=sl], html[lang=sv]{
+		.header_top_bar .region-header-top-bar > div, 
+		.header_top_bar .region-header-top-bar > div a, 
+		.header_top_bar .region-header-top-bar > div label{
+			font-size: 1rem;
+		}
 	}
 }
 
