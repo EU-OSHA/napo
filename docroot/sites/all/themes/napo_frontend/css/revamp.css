@@ -93,6 +93,13 @@ header #block-lang-dropdown-language-content #lang_dropdown_form_language_conten
 }
 header .menu.nav.navbar-nav > li {
   height: 100%;
+  padding: 0em 1em 0em 1em !important;
+  vertical-align: middle;
+  display: flex;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  align-items: center;
 }
 .header_top_bar a.ext span.ext,
 h2 a.ext span.ext {
@@ -107,11 +114,11 @@ h3 {
 .header_top_bar .region-header-top-bar > div#block-napo-common-napo-print-friendly .contextual-links-wrapper a {
   background: transparent url(/modules/contextual/images/gear-select.png) no-repeat 2px 0 !important;
 }
-.header_top_bar #content_cart_summary_container {
+.header_top_bar #content_cart_summary_container a .content_cart_summary_count {
   background: url(../images/download-icon.svg);
   background-position: top right;
   background-repeat: no-repeat;
-  padding-right: 3rem;
+  padding-right: 25px;
 }
 .sticky-bar {
   top: 8.1rem !important;
@@ -618,8 +625,12 @@ h1 {
   font-size: 1.5rem;
   min-height: 5rem;
   color: #FFF;
-  padding: 0.8rem 6rem 0 0;
+  padding: 0rem 6rem 0 0;
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  line-height: 16px;
 }
 .node-type-article .content {
   position: relative;
@@ -859,7 +870,7 @@ h1 {
 .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a,
 .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item a {
   display: block;
-  height: 60%;
+  height: auto;
 }
 .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item a img,
 .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item a img {
@@ -890,7 +901,7 @@ h1 {
   flex-direction: column;
   background: #1f3695 url(../images/background-items.png) top left repeat-x;
   width: 100%;
-  min-height: 40%;
+  min-height: 100%;
   text-align: center;
   padding: 2rem 2rem 0;
 }
@@ -934,6 +945,7 @@ h1 {
 .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list label {
   font-weight: normal;
   margin-right: 0.5rem;
+  margin-bottom: 0;
 }
 .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag,
 .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content .keyword-list .keyword-tag {
@@ -1451,7 +1463,7 @@ a.resource-library-link {
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item {
     width: 46%;
     overflow: hidden;
-    height: 30rem;
+    height: auto;
   }
   .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item > a,
   .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item > a,
@@ -1460,7 +1472,7 @@ a.resource-library-link {
     width: 100%;
     overflow: hidden;
     display: block;
-    height: 60%;
+    height: auto;
   }
   .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item > a img,
   .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item > a img,
@@ -1717,12 +1729,6 @@ a.resource-library-link {
   .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item a img {
     width: 100%;
     height: auto;
-  }
-  .page-learning-with-napo-napo-for-teachers .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
-  .page-learning-with-napo-napo-in-the-workplace .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
-  .node-type-lesson .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content,
-  .node-type-msds-activities .lessons--section--block .lessons--items--grid .lessons-item .lessons-item-content {
-    min-height: 60%;
   }
   .page-learning-with-napo-napo-for-teachers .detail--section--block .detail--text--block,
   .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block,

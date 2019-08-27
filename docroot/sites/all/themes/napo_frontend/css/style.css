@@ -587,9 +587,9 @@ a.bg-danger:hover {
   background-color: #e4b9b9;
 }
 .page-header {
- /* padding-bottom: 9px;
+  padding-bottom: 9px;
   margin: 40px 0 20px;
-  border-bottom: 1px solid #eeeeee;*/
+  border-bottom: 1px solid #eeeeee;
 }
 ul,
 ol {
@@ -7127,6 +7127,22 @@ table .checkbox input[type="checkbox"] {
 .lang-dropdown-select-element.form-control.form-select {
   background-color: #f7e235;
 }
+/* Fix language items */
+html[lang=sk] .page--banner--block .detail--content--block .guidance-block .more-link,
+html[lang=nl] .page--banner--block .detail--content--block .guidance-block .more-link {
+  padding-left: 3em;
+}
+html[lang=de] .detail--section--block .detail--text--block .download--section--block ul li:last-child a,
+html[lang=el] .detail--section--block .detail--text--block .download--section--block ul li:last-child a {
+  font-size: 1.5rem;
+}
+@media all and (-ms-high-contrast: none) {
+  *::-ms-backdrop,
+  .header_top_bar #content_cart_summary_container a .content_cart_summary_count {
+    padding-right: 45px !important;
+  }
+  /* IE11 */
+}
 .header_top_bar {
   background-color: #575558;
   color: #FFF;
@@ -7384,6 +7400,7 @@ header .menu.nav.navbar-nav .dropdown-menu > li > a:hover::before {
 }
 header .menu.nav.navbar-nav .dropdown-toggle.nolink {
   cursor: auto;
+  line-height: initial;
 }
 header .menu.nav.navbar-nav .expanded.dropdown:hover {
   background-color: #1f3695;
@@ -7427,7 +7444,6 @@ header .menu.nav.navbar-nav > li:hover ul.dropdown-menu li a:hover:before {
 }
 header .menu.nav.navbar-nav > li.first {
   margin-right: 1rem;
-  padding: 1.4rem !important;
 }
 header .menu.nav.navbar-nav > li.first:hover {
   border-radius: 6rem;
@@ -7568,7 +7584,7 @@ header #block-lang-dropdown-language-content #lang_dropdown_form_language_conten
 h1 {
   color: #1f3695;
   background: #f2f1f2;
-  padding: 0.2em 25% 0.2em 0.5em;
+  padding: 0.3rem 0.7rem;
   margin-top: 0px;
   margin-bottom: 10px;
 }
@@ -10136,7 +10152,7 @@ input[type=checkbox] {
 }
 #node-27 h1 {
   clear: both;
-  margin: 15px 0px 15px 0px;
+  padding: 0.3rem 0.7rem;
 }
 a.ext span.ext {
   background: url("../images/external_link_napo.png") no-repeat scroll 0 4px rgba(0, 0, 0, 0);
