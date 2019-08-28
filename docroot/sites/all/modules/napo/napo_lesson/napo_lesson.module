@@ -171,7 +171,21 @@ function napo_lesson_theme() {
       ),
       'template' => 'theme/download_whole_lesson',
     ),
+    'napo_lesson_video_url_format' => array(
+      'variables' => array('items' => NULL),
+    ),
   );
+}
+
+/*
+ * Formats the related resources (attached files) as icon and description/filename
+ */
+function theme_napo_lesson_video_url_format($element) {
+  global $language;
+  $node = menu_get_object();
+  $label = variable_get('pdf_video_url_label', 'Scene URL');
+  $url = url('node/' . $node->nid, ['absolute' => TRUE]);
+  return '<p class="video-list"><span class="video-label">' . $label . ': </span><span class="video-url">' . l($url, $url, ['html' => TRUE]) . '</span></p>';
 }
 
 function napo_lesson_get_intro_block($node) {
@@ -186,6 +200,9 @@ function napo_lesson_get_intro_block($node) {
   else {
     $video = $node->field_lesson_video[LANGUAGE_NONE]['0']['entity'];
   }
+  if (!$video) {
+    return '';
+  }
   $guidance_href = url('node/' . $nid);
   $wrapper = entity_metadata_wrapper('node', $video);
   $text = strip_tags($wrapper->language($language->language)->body->value()['value']);
@@ -194,7 +211,7 @@ function napo_lesson_get_intro_block($node) {
 </div>
 <div class="guidance-block">
 <p class="guidance-title">' . $guidance_title . '</p>
-<p class="guidance-text">' . t('Do you need help to organize a learning activity in your workplace?') . '</p>
+<p class="guidance-text">' . t('Do you need help to organise a learning activity in your workplace?') . '</p>
 <p><a href="' . $guidance_href . '" class="more-link" target="_blank">' . t('Find out more here') . '</a></p>
 </div></div>';
 }
@@ -232,12 +249,12 @@ function napo_lesson_get_resources_required($node) {
   }
   $output = theme('item_list', array('items' => $items));
 
-  $text = variable_get('resources_required_text', '');
+  $text = t(variable_get('resources_required_text', ''));
   if (!$text) {
-    $text = variable_get('download_provided_resources_text', 'To download the provided resources, go to:');
+    $text = t(variable_get('download_provided_resources_text', 'To download the provided resources, go to:'));
     $options['attributes'] = ['target' => '_blank'];
     $options['absolute'] = TRUE;
-    $title = variable_get('napo_resources_text', 'Resource library');
+    $title = t(variable_get('napo_resources_text', 'Resource library'));
     $url = variable_get('napo_resources_url', 'learning-with-napo/napo-for-teachers/resource-library');
     $url = url($url, $options);
     $text .= ' ' . l($title, $url, $options);
@@ -245,9 +262,13 @@ function napo_lesson_get_resources_required($node) {
   if ($node->type == 'lesson') {
     $output .= $text;
   }
+  $display = 'none';
+  if (arg(2) == 'generate_pdf') {
+    $display = 'block';
+  }
   return '<div class="acordion--block--item">'.
   '<h3 class="acordion-content-title active">' . t('Resources required') . '</h3>'.
-  '<div class="acordion-content-text" style="display: none;">' . $output . '</div></div>';
+  '<div class="acordion-content-text" style="display: ' . $display . ';">' . $output . '</div></div>';
 }
 
 function napo_lesson_get_download_block($node) {
@@ -343,7 +364,7 @@ function napo_lesson_preprocess_node(&$vars) {
     }
   }
 
-  if($node->type == 'lesson') {
+  if ($node->type == 'lesson') {
     if (!empty($vars['preprocess_fields'])) {
       // Right Menu.
       if (in_array('right_menu', $vars['preprocess_fields'])) {
@@ -421,6 +442,11 @@ function napo_lesson_field_formatter_info() {
       'field types' => array('text'),
       'description' => t('Get the link of the first lesson in the lesson kit'),
     ),
+    'video_url' => array(
+      'label' => 'Lesson / Activity video url',
+      'field types' => array('entityreference'),
+      'description' => 'Displays vidoe ulr as link for pdf.',
+    ),
   );
   return $info;
 }
@@ -441,6 +467,13 @@ function napo_lesson_field_formatter_view($entity_type, $entity, $field, $instan
         );
       }
       break;
+    case 'video_url':
+      $element[0] = array(
+        '#theme' => 'napo_lesson_video_url_format',
+        '#items' => $items,
+      );
+      break;
+
   }
   return $element;
 }

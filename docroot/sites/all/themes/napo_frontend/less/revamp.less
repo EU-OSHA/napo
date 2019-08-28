@@ -127,10 +127,15 @@ header{
 	//NRV-146 Menu not centered - Firefox
 	.menu.nav.navbar-nav > li{
 		height: 100%;
+		padding: 0em 1em 0em 1em !important;
+	    vertical-align: middle;
+	    display: flex;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+	    align-items: center;
 	}
 }
-
-
 
 .header_top_bar a.ext span.ext, 
 h2 a.ext span.ext{
@@ -155,10 +160,12 @@ h3{
 }
 .header_top_bar{
 	#content_cart_summary_container{
-  background: url(../images/download-icon.svg);
-  background-position:top right;
-  background-repeat: no-repeat;
-  padding-right: 3rem;
+		a .content_cart_summary_count {
+	  background: url(../images/download-icon.svg);
+	  background-position:top right;
+	  background-repeat: no-repeat;
+	  padding-right: 25px;
+	  }
 	}
 }
 .sticky-bar {
@@ -692,7 +699,6 @@ h1{
 			width: 76%;
 			background: #EDECED;
 			//NRV-137 Napo in the workplace - Video/Facilitator ribbon
-			//padding:4rem 3rem 3rem 8rem;
 			padding:1rem 3rem 1rem 8rem;
 			min-height: 175px;
 		}
@@ -706,7 +712,7 @@ h1{
 			background: @link-color;
 			.guidance-title{
 				font-weight: bold;
-			  margin: 2rem 0 1rem;
+				margin: 2rem 0 1rem;
 			}
 			.more-link{
 				position: relative;
@@ -716,8 +722,12 @@ h1{
 				font-size: 1.5rem;
 				min-height: 5rem;
 				color: #FFF;
-				padding: 0.8rem 6rem 0 0;
+				padding: 0rem 6rem 0 0;
 				text-align: right;
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				line-height: 16px;
 			}
 		}
 	}
@@ -931,7 +941,7 @@ h1{
 				position: relative;
 				a{
 					display: block;
-					height: 60%;				
+					height: auto;				
 					img{
 					  width: 100%;
 					  height: auto;
@@ -956,7 +966,7 @@ h1{
 				  flex-direction: column;
 					background: @link-color url(../images/background-items.png) top left repeat-x;
 					width: 100%;
-					min-height: 40%;
+					min-height: 100%;
 					text-align: center;
 					padding: 2rem 2rem 0;
 					h3{
@@ -992,6 +1002,7 @@ h1{
 						label{
 							font-weight: normal;
 							margin-right: 0.5rem;
+							margin-bottom: 0;
 						}
 						.keyword-tag{
 							opacity: 0.6;
@@ -1296,7 +1307,11 @@ h1{
 .view-display-id-page_list.napo-film-list-view{ 
 	.napo-film-list-details-container{
 		.napo-film-view-episodes-link {
-			padding: 9px 43px 9px 10px;
+			padding: 0 43px 0 10px;
+			height: 43px;
+			display: flex;
+			align-items: center;
+			font-size: 1.5rem;
 		}
 	}
 	//NRV-93 Napo Films, the text is not correctly displayed
@@ -1405,6 +1420,10 @@ a.resource-library-link{
 				}
 			} 
 		} 
+	}
+
+	.page--banner--block .btn-back a{
+		margin-left: 10px;
 	}
 
 	.container {
@@ -1595,13 +1614,13 @@ a.resource-library-link{
 				.lessons-item{
 					width: 46%;
 					overflow: hidden;
-					height: 30rem;
+					height: auto;
 					> a{
 					  width:100%;
 					  //min-height: 200px;
 					  overflow: hidden;
 					  display: block;
-					  height: 60%;
+					  height: auto;
 					  img{
 					  	width:100%;
 					  	height: auto;
@@ -1652,10 +1671,18 @@ a.resource-library-link{
 	.header_top_bar .region-header-top-bar > div, 
 	.header_top_bar .region-header-top-bar > div a, 
 	.header_top_bar .region-header-top-bar > div label{
-		font-size: 1.35rem;
+		font-size: 1.20rem;
 	}
 	.header_top_bar .region-header-top-bar > div:after{
 		padding: 0 0.5rem;
+	}
+
+	html[lang=bg], html[lang=lv], html[lang=pt], html[lang=sl], html[lang=sv]{
+		.header_top_bar .region-header-top-bar > div, 
+		.header_top_bar .region-header-top-bar > div a, 
+		.header_top_bar .region-header-top-bar > div label{
+			font-size: 1rem;
+		}
 	}
 }
 
@@ -1820,9 +1847,6 @@ a.resource-library-link{
 						  height: auto;
 			  		}
 		  		}
-					.lessons-item-content{
-						min-height:60%; 
-					}
 		  	}
 		  }
 		}
@@ -1878,8 +1902,8 @@ a.resource-library-link{
 							text-align: center;
 							margin: 1rem 0 0;
 							> a{
-								background: url(../images/btn-download-all.png) 80% 50% no-repeat, 
-														url(../images/btn-download-all.png) 20% 50% no-repeat;
+								background: url(../images/btn-download-all.png) 95% 50% no-repeat, 
+														url(../images/btn-download-all.png) 5% 50% no-repeat;
 							}
 						}
 			  	}

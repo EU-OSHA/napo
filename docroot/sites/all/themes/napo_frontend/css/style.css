@@ -587,9 +587,9 @@ a.bg-danger:hover {
   background-color: #e4b9b9;
 }
 .page-header {
- /* padding-bottom: 9px;
+  padding-bottom: 9px;
   margin: 40px 0 20px;
-  border-bottom: 1px solid #eeeeee;*/
+  border-bottom: 1px solid #eeeeee;
 }
 ul,
 ol {
@@ -7127,6 +7127,22 @@ table .checkbox input[type="checkbox"] {
 .lang-dropdown-select-element.form-control.form-select {
   background-color: #f7e235;
 }
+/* Fix language items */
+html[lang=sk] .page--banner--block .detail--content--block .guidance-block .more-link,
+html[lang=nl] .page--banner--block .detail--content--block .guidance-block .more-link {
+  padding-left: 3em;
+}
+html[lang=de] .detail--section--block .detail--text--block .download--section--block ul li:last-child a,
+html[lang=el] .detail--section--block .detail--text--block .download--section--block ul li:last-child a {
+  font-size: 1.5rem;
+}
+@media all and (-ms-high-contrast: none) {
+  *::-ms-backdrop,
+  .header_top_bar #content_cart_summary_container a .content_cart_summary_count {
+    padding-right: 45px !important;
+  }
+  /* IE11 */
+}
 .header_top_bar {
   background-color: #575558;
   color: #FFF;
@@ -7384,6 +7400,7 @@ header .menu.nav.navbar-nav .dropdown-menu > li > a:hover::before {
 }
 header .menu.nav.navbar-nav .dropdown-toggle.nolink {
   cursor: auto;
+  line-height: initial;
 }
 header .menu.nav.navbar-nav .expanded.dropdown:hover {
   background-color: #1f3695;
@@ -7427,7 +7444,6 @@ header .menu.nav.navbar-nav > li:hover ul.dropdown-menu li a:hover:before {
 }
 header .menu.nav.navbar-nav > li.first {
   margin-right: 1rem;
-  padding: 1.4rem !important;
 }
 header .menu.nav.navbar-nav > li.first:hover {
   border-radius: 6rem;
@@ -7568,7 +7584,7 @@ header #block-lang-dropdown-language-content #lang_dropdown_form_language_conten
 h1 {
   color: #1f3695;
   background: #f2f1f2;
-  padding: 0.2em 25% 0.2em 0.5em;
+  padding: 0.3rem 0.7rem;
   margin-top: 0px;
   margin-bottom: 10px;
 }
@@ -8094,12 +8110,12 @@ p:last-child {
 .napo-film-list-details-container {
   background: #f2f1f2;
   padding-top: 10px;
-  height: 59px;
+  height: 100%;
   display: block;
   width: 98%;
-  position: absolute;
-  top: 133px;
   padding-bottom: 1px;
+  float: left;
+  padding-bottom: 0.5em;
 }
 .napo-film-list-details-container .napo-film-video-download-form:hover form {
   margin-left: -3px;
@@ -10136,7 +10152,7 @@ input[type=checkbox] {
 }
 #node-27 h1 {
   clear: both;
-  margin: 15px 0px 15px 0px;
+  padding: 0.3rem 0.7rem;
 }
 a.ext span.ext {
   background: url("../images/external_link_napo.png") no-repeat scroll 0 4px rgba(0, 0, 0, 0);
@@ -11007,8 +11023,7 @@ footer .jcarousel-skin-default .jcarousel-container-horizontal {
     margin-right: 0px;
   }
   .napo-film-list-view .napo-film-view-episodes-link {
-    float: none!important;
-    max-width: 100%!important;
+    margin-top: 1em !important;
   }
   .napo-film-view-episodes-link,
   .napo-film-view-text-link {
@@ -11042,6 +11057,9 @@ footer .jcarousel-skin-default .jcarousel-container-horizontal {
   h1 {
     padding: 0.2em 29% 0.2em 0.5em;
   }
+  .node .content .field-name-body.field-type-text-with-summary {
+    padding: 1.6rem 1.6rem !important;
+  }
   .view-napo-films-node.view-display-id-page_grid .row .views-field-nothing p#tmgmt-2 {
     display: none;
   }
@@ -11062,9 +11080,6 @@ footer .jcarousel-skin-default .jcarousel-container-horizontal {
   }
   .view-napo-s-film-episodes.view-id-napo_s_film_episodes .col-sm-3 img {
     height: 148px;
-  }
-  .view-display-id-page_list.napo-film-list-view .views-row {
-    margin-bottom: 8em;
   }
   .napo-film-list-details-container {
     padding-bottom: 9px;
@@ -11137,6 +11152,10 @@ footer .jcarousel-skin-default .jcarousel-container-horizontal {
   #node-27 h1 {
     clear: both;
     margin: 15px 0px 15px 0px;
+  }
+  .featured--block--section .view-content .views-row .featured-article-body {
+    min-height: auto;
+    padding-bottom: 2.5em !important;
   }
   .view-display-id-page_list h3 {
     margin-top: 10px;
@@ -11275,6 +11294,15 @@ footer .jcarousel-skin-default .jcarousel-container-horizontal {
   }
   #node-16 .content .field-name-field-image img {
     padding: 20px 0px 120px 0px!important;
+  }
+  .page-learning-with-napo-napo-for-teachers .page--banner--block,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block {
+    display: block !important;
+    padding: 0 3% 0rem !important;
+  }
+  .page-learning-with-napo-napo-for-teachers .page--banner--block .field-name-body,
+  .page-learning-with-napo-napo-in-the-workplace .page--banner--block .field-name-body {
+    padding: 3rem 1rem 1rem 1rem !important;
   }
 }
 @media (min-width: 1200px) {

@@ -111,3 +111,13 @@ function napo_common_update_7009() {
   variable_set('napo_teachers_url', '/learning-with-napo/napo-for-teachers');
   variable_set('napo_workplaces_url', '/learning-with-napo/napo-in-the-workplaces');
 }
+
+/**
+ * MDR-2918 Napo Revamp - Generate pdf (Napo Lessons/MSDs Activities).
+ */
+function napo_common_update_7010() {
+  module_enable(['print']);
+  features_revert(array('napo_lesson' => array('field_base', 'field_instance')));
+  features_revert(array('napo_msd' => array('field_base', 'field_instance')));
+  variable_set('napo_common_filter_by_language', TRUE);
+}

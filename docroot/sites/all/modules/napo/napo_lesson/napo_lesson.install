@@ -115,3 +115,11 @@ function napo_lesson_update_7009() {
   features_revert(array('napo_lesson' => array('views_view')));
   features_revert(array('napo_msd' => array('views_view')));
 }
+
+/**
+ * MDR-2918 Napo Revamp - Generate pdf (Napo Lessons/MSDs Activities).
+ */
+function napo_lesson_update_7010() {
+  features_revert_module('napo_lesson');
+  features_revert_module('napo_msd');
+}
