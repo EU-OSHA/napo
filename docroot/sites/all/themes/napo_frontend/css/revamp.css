@@ -1840,7 +1840,7 @@ a.resource-library-link {
   .page-learning-with-napo-napo-in-the-workplace .detail--section--block .detail--text--block .download--section--block ul li:last-child > a,
   .node-type-lesson .detail--section--block .detail--text--block .download--section--block ul li:last-child > a,
   .node-type-msds-activities .detail--section--block .detail--text--block .download--section--block ul li:last-child > a {
-    background: url(../images/btn-download-all.png) 80% 50% no-repeat, url(../images/btn-download-all.png) 20% 50% no-repeat;
+    background: url(../images/btn-download-all.png) 95% 50% no-repeat, url(../images/btn-download-all.png) 5% 50% no-repeat;
   }
   .related--lessons--block {
     flex-direction: row;
