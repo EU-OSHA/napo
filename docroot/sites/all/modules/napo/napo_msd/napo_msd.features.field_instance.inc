@@ -104,7 +104,7 @@ function napo_msd_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 11,
+        'weight' => 22,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -323,7 +323,7 @@ function napo_msd_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 8,
+        'weight' => 19,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -411,7 +411,7 @@ function napo_msd_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 12,
+        'weight' => 23,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -643,7 +643,7 @@ function napo_msd_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 7,
+        'weight' => 18,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -763,7 +763,7 @@ function napo_msd_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 10,
+        'weight' => 21,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -820,7 +820,7 @@ function napo_msd_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 9,
+        'weight' => 20,
       ),
       'teaser' => array(
         'label' => 'above',
