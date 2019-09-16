@@ -192,9 +192,11 @@ function napo_lesson_get_intro_block($node) {
   global $language;
   $nid = variable_get('teacher_guidance_nid', 407);
   $guidance_title = t('Teacher guidance');
+  $guidance_text = variable_get('teacher_guidance_text', 'Do you need help to organise a learning activity in your classroom?');
   if ($node->type == 'msds_activities') {
     $nid = variable_get('facilitator_guidance_nid', 408);
     $guidance_title = t('Facilitator guidance');
+    $guidance_text = variable_get('facilitator_guidance_text', 'Do you need help to organise a learning activity in your workplace?');
     $video = $node->field_msds_video[LANGUAGE_NONE]['0']['entity'];
   }
   else {
@@ -211,7 +213,7 @@ function napo_lesson_get_intro_block($node) {
 </div>
 <div class="guidance-block">
 <p class="guidance-title">' . $guidance_title . '</p>
-<p class="guidance-text">' . t('Do you need help to organise a learning activity in your workplace?') . '</p>
+<p class="guidance-text">' . t($guidance_text) . '</p>
 <p><a href="' . $guidance_href . '" class="more-link" target="_blank">' . t('Find out more here') . '</a></p>
 </div></div>';
 }

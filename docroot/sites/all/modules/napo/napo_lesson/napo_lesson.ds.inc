@@ -67,8 +67,13 @@ function napo_lesson_ds_field_settings_info() {
       'label' => 'hidden',
       'format' => 'default',
     ),
+    'resources_required' => array(
+      'weight' => '10',
+      'label' => 'hidden',
+      'format' => 'default',
+    ),
     'download_block' => array(
-      'weight' => '11',
+      'weight' => '12',
       'label' => 'hidden',
       'format' => 'default',
     ),
@@ -158,6 +163,7 @@ msds_activities|*';
     'node' => 'node',
   );
   $ds_field->ui_limit = 'lesson|default
+lesson|full
 lesson|print';
   $ds_field->properties = array();
   $export['resources_required'] = $ds_field;
@@ -377,9 +383,10 @@ function napo_lesson_ds_layout_settings_info() {
         7 => 'field_activities',
         8 => 'field_assessment',
         9 => 'field_curriculum_links',
+        10 => 'resources_required',
       ),
       'right' => array(
-        10 => 'download_block',
+        11 => 'download_block',
       ),
     ),
     'fields' => array(
@@ -393,6 +400,7 @@ function napo_lesson_ds_layout_settings_info() {
       'field_activities' => 'left',
       'field_assessment' => 'left',
       'field_curriculum_links' => 'left',
+      'resources_required' => 'left',
       'download_block' => 'right',
     ),
     'classes' => array(
