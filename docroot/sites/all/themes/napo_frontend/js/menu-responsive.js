@@ -1,4 +1,82 @@
 
+(function( $ ){
+  // Webpages' menu homogenisation - Sticky menus
+ 
+/*
+  //fixing sticky menu
+  var num = 120; //number of pixels before modifying styles
+  $(window).bind('scroll', function () {
+      if ($(window).scrollTop() > num) {
+          //$("#navbar").addClass("sticky-menu");
+          //$(".nav-bar-separate").addClass("sticky-bar");
+      } else {
+          //$('#navbar').removeClass('sticky-menu');
+          //$(".nav-bar-separate").removeClass("sticky-bar");
+      }
+  });
+*/
+  $(document).ready(function() {
+
+    var prevScrollpos = $(window).offset.top;
+
+    $(window).on("load resize scroll",function(e){
+
+      if( $(window).width() > 1024 )
+      {
+        var minScroll = 144;
+      }else {
+        var minScroll = 250;;        
+      }
+
+      if( $(window).width() < 768 )
+      {
+        var mobile = true
+      } else {
+        var mobile = false
+      }
+
+      var currentScrollPos = $(window).scrollTop();
+      if( $(window).scrollTop() > minScroll){
+        $('.nav-bar-separate').hide();
+        $('.nav-bar-separate.absolute').show();
+        if(prevScrollpos > currentScrollPos)
+        { 
+          $('#navbar').removeClass('hide-header');
+          if(minScroll == 250){
+            if(mobile){
+              $('#navbar').addClass('show-header mobile');
+            } else{
+              $('#navbar').addClass('show-header responsive');
+            }
+            
+          }else{
+            $('#navbar').addClass('show-header');
+          }
+          
+        }
+        else
+        {
+          $('#navbar').removeClass('show-header');
+          if(minScroll == 250){
+            $('#navbar').addClass('hide-header responsive');
+          }else{
+            $('#navbar').addClass('hide-header');
+          }
+                 
+        }        
+      } else {
+        $('.nav-bar-separate').show();
+        $('.nav-bar-separate.absolute').hide();
+        $('#navbar').removeClass('show-header');
+        $('#navbar').removeClass('show-header');
+        $('#navbar').removeClass('responsive');
+        $('#navbar').removeClass('mobile');
+      }
+      prevScrollpos = currentScrollPos;
+    });
+  });
+})( jQuery );
+
 //Fixing responsive menu to iPhone
 jQuery(document).ready(function() {
     jQuery(".dropdown-toggle").dropdown();
@@ -61,20 +139,6 @@ jQuery(document).ready(function() {
 	if (jQuery('body').hasClass('page-meet-napo-napo-and-friends')){
 		jQuery(window).resize(function(){location.reload();});
 	} 
-});
-
-
-//fixing sticky menu
-var num = 120; //number of pixels before modifying styles
-
-jQuery(window).bind('scroll', function () {
-    if (jQuery(window).scrollTop() > num) {
-        jQuery("#navbar").addClass("sticky-menu");
-        jQuery(".nav-bar-separate").addClass("sticky-bar");
-    } else {
-        jQuery('#navbar').removeClass('sticky-menu');
-        jQuery(".nav-bar-separate").removeClass("sticky-bar");
-    }
 });
 
 jQuery(document).ready(function () {
