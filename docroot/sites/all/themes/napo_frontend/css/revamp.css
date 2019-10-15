@@ -88,6 +88,9 @@ a:hover {
 .napo-share-widget ul li:nth-child(3):hover {
   background: url(../images/link-hover.png) no-repeat;
 }
+.navbar-default .navbar-header a.logo img {
+  padding: 0 0.5rem 0.5rem 2rem;
+}
 header#navbar.show-header {
   position: fixed;
   top: 0rem;
