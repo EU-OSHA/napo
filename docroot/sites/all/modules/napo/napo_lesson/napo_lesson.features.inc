@@ -44,6 +44,21 @@ function napo_lesson_image_default_styles() {
     ),
   );
 
+  // Exported image style: lessons_grid_image.
+  $styles['lessons_grid_image'] = array(
+    'label' => 'lessons grid image',
+    'effects' => array(
+      10 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 317,
+          'height' => 177,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: poster_image.
   $styles['poster_image'] = array(
     'label' => 'Poster image 1280×720',

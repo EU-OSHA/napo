@@ -78,3 +78,48 @@ function napo_lesson_update_7003() {
 function napo_lesson_update_7004() {
   features_revert_module('napo_lesson');
 }
+
+/**
+ * NRV-16 Impv - Napo lessons.
+ */
+function napo_lesson_update_7005() {
+  features_revert_module('napo_lesson');
+}
+
+/**
+ * NRV-17 Impv - Napo for teachers.
+ */
+function napo_lesson_update_7006() {
+  features_revert(array('napo_lesson' => array('views_view')));
+}
+
+/**
+ * NRV-17 Impv - Napo for teachers.
+ */
+function napo_lesson_update_7007() {
+  features_revert(array('napo_lesson' => array('views_view')));
+  features_revert(array('napo_msd' => array('views_view')));
+}
+
+/**
+ * NRV-45 Adaptation Resource library page.
+ */
+function napo_lesson_update_7008() {
+  features_revert_module('napo_lesson');
+}
+
+/**
+ * NRV-177 Lesson/Activity through the cover.
+ */
+function napo_lesson_update_7009() {
+  features_revert(array('napo_lesson' => array('views_view')));
+  features_revert(array('napo_msd' => array('views_view')));
+}
+
+/**
+ * MDR-2918 Napo Revamp - Generate pdf (Napo Lessons/MSDs Activities).
+ */
+function napo_lesson_update_7010() {
+  features_revert_module('napo_lesson');
+  features_revert_module('napo_msd');
+}

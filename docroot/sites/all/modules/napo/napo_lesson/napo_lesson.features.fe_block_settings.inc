@@ -70,6 +70,34 @@ function napo_lesson_default_fe_block_settings() {
     'visibility' => 0,
   );
 
+  $export['views-lessons-block_1'] = array(
+    'cache' => -1,
+    'custom' => 0,
+    'delta' => 'lessons-block_1',
+    'i18n_block_language' => array(),
+    'i18n_mode' => 0,
+    'module' => 'views',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'napo_frontend' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'napo_frontend',
+        'weight' => 0,
+      ),
+      'osha_admin' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'osha_admin',
+        'weight' => 0,
+      ),
+    ),
+    'title' => '',
+    'visibility' => 0,
+  );
+
   $export['views-napo_target_ages-block'] = array(
     'cache' => -1,
     'custom' => 0,

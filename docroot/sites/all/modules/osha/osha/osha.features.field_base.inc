@@ -33,6 +33,32 @@ function osha_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
+  // Exported field_base: 'field_activity_list_file'.
+  $field_bases['field_activity_list_file'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_activity_list_file',
+    'indexes' => array(
+      'fid' => array(
+        0 => 'fid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'file',
+    'settings' => array(
+      'display_default' => 0,
+      'display_field' => 0,
+      'entity_translation_sync' => array(
+        0 => 'fid',
+      ),
+      'uri_scheme' => 'public',
+    ),
+    'translatable' => 1,
+    'type' => 'file',
+  );
+
   // Exported field_base: 'field_archived'.
   $field_bases['field_archived'] = array(
     'active' => 1,
@@ -222,6 +248,32 @@ function osha_field_default_field_bases() {
     'type' => 'text_long',
   );
 
+  // Exported field_base: 'field_guidance_file'.
+  $field_bases['field_guidance_file'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_guidance_file',
+    'indexes' => array(
+      'fid' => array(
+        0 => 'fid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'file',
+    'settings' => array(
+      'display_default' => 0,
+      'display_field' => 0,
+      'entity_translation_sync' => array(
+        0 => 'fid',
+      ),
+      'uri_scheme' => 'public',
+    ),
+    'translatable' => 1,
+    'type' => 'file',
+  );
+
   // Exported field_base: 'field_icon'.
   $field_bases['field_icon'] = array(
     'active' => 1,
@@ -300,6 +352,32 @@ function osha_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'language_field',
+  );
+
+  // Exported field_base: 'field_menu'.
+  $field_bases['field_menu'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_menu',
+    'indexes' => array(
+      'fid' => array(
+        0 => 'fid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'file',
+    'settings' => array(
+      'display_default' => 0,
+      'display_field' => 0,
+      'entity_translation_sync' => array(
+        0 => 'fid',
+      ),
+      'uri_scheme' => 'public',
+    ),
+    'translatable' => 1,
+    'type' => 'file',
   );
 
   // Exported field_base: 'field_nace_codes'.

@@ -24,11 +24,23 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'text_default',
         'weight' => 8,
       ),
+      'full' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 25,
+      ),
       'osha_slideshow' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 23,
       ),
       'search_results' => array(
         'label' => 'hidden',
@@ -77,6 +89,222 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-lesson-field_activities'.
+  $field_instances['node-lesson-field_activities'] = array(
+    'bundle' => 'lesson',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 14,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 7,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 5,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_activities',
+    'label' => 'Activities',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-lesson-field_assessment'.
+  $field_instances['node-lesson-field_assessment'] = array(
+    'bundle' => 'lesson',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 15,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 8,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 6,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_assessment',
+    'label' => 'Assessment',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 9,
+    ),
+  );
+
+  // Exported field_instance: 'node-lesson-field_curriculum_links'.
+  $field_instances['node-lesson-field_curriculum_links'] = array(
+    'bundle' => 'lesson',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 16,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 9,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 8,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_curriculum_links',
+    'label' => 'Links to subject/curriculum',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 10,
+    ),
+  );
+
   // Exported field_instance: 'node-lesson-field_file'.
   $field_instances['node-lesson-field_file'] = array(
     'bundle' => 'lesson',
@@ -92,11 +320,23 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'file_download_link',
         'weight' => 5,
       ),
+      'full' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 23,
+      ),
       'osha_slideshow' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 21,
       ),
       'search_results' => array(
         'label' => 'hidden',
@@ -162,6 +402,150 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-lesson-field_learning_objectives'.
+  $field_instances['node-lesson-field_learning_objectives'] = array(
+    'bundle' => 'lesson',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 12,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 5,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 3,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_learning_objectives',
+    'label' => 'Learning Objectives',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-lesson-field_lesson_intro_text'.
+  $field_instances['node-lesson-field_lesson_intro_text'] = array(
+    'bundle' => 'lesson',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 18,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 2,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_lesson_intro_text',
+    'label' => 'Introductory text',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'node-lesson-field_lesson_toolkit'.
   $field_instances['node-lesson-field_lesson_toolkit'] = array(
     'bundle' => 'lesson',
@@ -180,11 +564,23 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'entityreference_entity_view',
         'weight' => 7,
       ),
+      'full' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 24,
+      ),
       'osha_slideshow' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 22,
       ),
       'search_results' => array(
         'label' => 'hidden',
@@ -233,17 +629,35 @@ function napo_lesson_field_default_field_instances() {
         'module' => 'entityreference',
         'settings' => array(
           'links' => 0,
-          'use_content_language' => TRUE,
+          'use_content_language' => 1,
           'view_mode' => 'teaser',
         ),
         'type' => 'entityreference_entity_view',
         'weight' => 9,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'links' => 0,
+          'use_content_language' => 1,
+          'view_mode' => 'osha_slideshow',
+        ),
+        'type' => 'entityreference_entity_view',
+        'weight' => 2,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_lesson',
+        'settings' => array(),
+        'type' => 'video_url',
+        'weight' => 1,
       ),
       'search_results' => array(
         'label' => 'hidden',
@@ -281,25 +695,40 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-lesson-field_main_topic_category'.
-  $field_instances['node-lesson-field_main_topic_category'] = array(
+  // Exported field_instance: 'node-lesson-field_resources_required'.
+  $field_instances['node-lesson-field_resources_required'] = array(
     'bundle' => 'lesson',
     'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'above',
-        'module' => 'i18n_taxonomy',
+        'label' => 'hidden',
+        'module' => 'entityreference',
+        'settings' => array(
+          'bypass_access' => FALSE,
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 17,
+      ),
+      'full' => array(
+        'label' => 'hidden',
         'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 10,
+        'type' => 'hidden',
+        'weight' => 11,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 20,
       ),
       'search_results' => array(
         'label' => 'above',
@@ -315,8 +744,8 @@ function napo_lesson_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_main_topic_category',
-    'label' => 'Main category',
+    'field_name' => 'field_resources_required',
+    'label' => 'Resources required',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -329,7 +758,79 @@ function napo_lesson_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 32,
+      'weight' => 12,
+    ),
+  );
+
+  // Exported field_instance: 'node-lesson-field_starter'.
+  $field_instances['node-lesson-field_starter'] = array(
+    'bundle' => 'lesson',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 13,
+      ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 6,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(),
+        'type' => 'napo_acordion',
+        'weight' => 4,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_starter',
+    'label' => 'Starter',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 7,
     ),
   );
 
@@ -342,16 +843,27 @@ function napo_lesson_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'i18n_taxonomy',
         'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
+        'type' => 'hidden',
         'weight' => 11,
+      ),
+      'full' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 26,
       ),
       'osha_slideshow' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 24,
       ),
       'search_results' => array(
         'label' => 'above',
@@ -381,7 +893,7 @@ function napo_lesson_field_default_field_instances() {
         'apply_chosen' => '',
       ),
       'type' => 'options_select',
-      'weight' => 34,
+      'weight' => 11,
     ),
   );
 
@@ -411,10 +923,48 @@ function napo_lesson_field_default_field_instances() {
         'type' => 'title_linked',
         'weight' => 0,
       ),
+      'full' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(
+          'napo_common_title_prefix' => '',
+          'napo_film_title_include_episode_count' => FALSE,
+          'napo_film_title_include_icon' => FALSE,
+          'napo_film_title_include_type' => FALSE,
+          'napo_film_title_link_episode_popup' => FALSE,
+          'napo_film_title_link_with_film' => FALSE,
+          'napo_film_title_link_with_film_value' => '!episode from the film !film',
+          'title_archived_label' => FALSE,
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => 'h1',
+        ),
+        'type' => 'title_linked',
+        'weight' => 1,
+      ),
       'osha_slideshow' => array(
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'print' => array(
+        'label' => 'hidden',
+        'module' => 'napo_common',
+        'settings' => array(
+          'napo_common_title_prefix' => '',
+          'napo_film_title_include_episode_count' => 0,
+          'napo_film_title_include_icon' => 0,
+          'napo_film_title_include_type' => 0,
+          'napo_film_title_link_episode_popup' => 0,
+          'napo_film_title_link_with_film' => 0,
+          'napo_film_title_link_with_film_value' => '!episode from the film !film',
+          'title_archived_label' => 0,
+          'title_class' => '',
+          'title_link' => '',
+          'title_style' => 'h1',
+        ),
+        'type' => 'title_linked',
         'weight' => 0,
       ),
       'search_results' => array(
@@ -682,7 +1232,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 7,
       ),
       'search_results' => array(
         'label' => 'hidden',
@@ -724,6 +1274,70 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-lesson_video-field_body_revamp'.
+  $field_instances['node-lesson_video-field_body_revamp'] = array(
+    'bundle' => 'lesson_video',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 7,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_body_revamp',
+    'label' => 'Body-Revamp',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Išči',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 11,
+    ),
+  );
+
   // Exported field_instance: 'node-lesson_video-field_image'.
   $field_instances['node-lesson_video-field_image'] = array(
     'bundle' => 'lesson_video',
@@ -750,7 +1364,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 6,
       ),
       'search_results' => array(
         'label' => 'hidden',
@@ -834,7 +1448,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'hidden',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 5,
+        'weight' => 6,
       ),
       'film_main_video_teaser' => array(
         'label' => 'above',
@@ -846,7 +1460,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'search_results' => array(
         'label' => 'above',
@@ -916,6 +1530,63 @@ function napo_lesson_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-lesson_video-field_tags'.
+  $field_instances['node-lesson_video-field_tags'] = array(
+    'bundle' => 'lesson_video',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
+      'film_main_video_teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+      'search_results' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_tags',
+    'label' => 'Tags',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
+      'weight' => 10,
+    ),
+  );
+
   // Exported field_instance: 'node-lesson_video-field_video'.
   $field_instances['node-lesson_video-field_video'] = array(
     'bundle' => 'lesson_video',
@@ -936,9 +1607,15 @@ function napo_lesson_field_default_field_instances() {
         'weight' => 0,
       ),
       'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'hidden',
+        'module' => 'videojs',
+        'settings' => array(
+          'height' => '',
+          'posterimage_field' => 'field_poster_image',
+          'posterimage_style' => 'lesson_poster_image',
+          'width' => '',
+        ),
+        'type' => 'videojs',
         'weight' => 0,
       ),
       'search_results' => array(
@@ -1044,7 +1721,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 5,
       ),
       'search_results' => array(
         'label' => 'hidden',
@@ -1112,7 +1789,7 @@ function napo_lesson_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 4,
       ),
       'search_results' => array(
         'label' => 'hidden',
@@ -1338,15 +2015,22 @@ function napo_lesson_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Activities');
+  t('Assessment');
   t('Body');
+  t('Body-Revamp');
   t('Description');
   t('File');
   t('Image');
+  t('Introductory text');
+  t('Learning Objectives');
   t('Lesson Toolkit');
   t('Lesson Video');
-  t('Main category');
+  t('Links to subject/curriculum');
   t('Name');
   t('Poster image (784x675)');
+  t('Resources required');
+  t('Starter');
   t('Tags');
   t('Target Ages');
   t('Title');

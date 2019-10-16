@@ -58,3 +58,66 @@ function napo_common_update_7004() {
   variable_set('piwik_translation_set', 1);
   variable_set('piwik_query_parameters', 1);
 }
+
+/**
+ * NRV-19 Napo MSDs Activities.
+ */
+function napo_common_update_7005() {
+  module_enable(['napo_lesson_resources', 'napo_msd']);
+  features_revert_module('napo_film');
+}
+
+/**
+ * NRV-60 MSDs Activities - Conversation started is missing (in some of them).
+ */
+function napo_common_update_7006() {
+  features_revert(array('napo_msd' => array('views_view')));
+  features_revert(array('napo_msd' => array('fe_block_settings')));
+}
+
+/**
+ * NRV-13 Create Teacher guidance page.
+ */
+function napo_common_update_7007() {
+  $nid = variable_get('teacher_guidance_nid', 407);
+  $nodes = node_load_multiple(NULL, array("title" => "Teacher guidance"));
+  $node = current($nodes);
+  if ($node && $nid != $node->nid) {
+    variable_set('teacher_guidance_nid', $node->nid);
+  }
+
+  $nid = variable_get('facilitator_guidance_nid', 408);
+  $nodes = node_load_multiple(NULL, array("title" => "Facilitator guidance"));
+  $node = current($nodes);
+  if ($node && $nid != $node->nid) {
+    variable_set('facilitator_guidance_nid', $node->nid);
+  }
+}
+
+/**
+ * NRV-78 NAPO FOR TEACHERS: Autocomplete does not work.
+ */
+function napo_common_update_7008() {
+  features_revert(array('napo_lesson' => array('views_view')));
+  features_revert(array('napo_msd' => array('views_view')));
+}
+
+/**
+ * NRV-196 URL - Learning with Napo instead of Using Napo.
+ */
+function napo_common_update_7009() {
+  features_revert(array('napo_lesson' => array('views_view')));
+  features_revert(array('napo_msd' => array('views_view')));
+  variable_set('napo_teachers_url', '/learning-with-napo/napo-for-teachers');
+  variable_set('napo_workplaces_url', '/learning-with-napo/napo-in-the-workplaces');
+}
+
+/**
+ * MDR-2918 Napo Revamp - Generate pdf (Napo Lessons/MSDs Activities).
+ */
+function napo_common_update_7010() {
+  module_enable(['print']);
+  features_revert(array('napo_lesson' => array('field_base', 'field_instance')));
+  features_revert(array('napo_msd' => array('field_base', 'field_instance')));
+  variable_set('napo_common_filter_by_language', TRUE);
+}

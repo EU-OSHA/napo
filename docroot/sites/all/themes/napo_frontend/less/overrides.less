@@ -81,6 +81,10 @@ html {
     }
   }
 }
+body{
+  font-size: 1.8rem;
+  color:black; 
+}
 body {
   // Fix horizontal scrolling on iOS devices.
   // http://drupal.org/node/1870076
@@ -676,4 +680,25 @@ table {
 
 .lang-dropdown-select-element.form-control.form-select{
   background-color: @input-bg-yellow;
+}
+
+
+/* Fix language items */
+
+html[lang=sk], html[lang=nl]{ 
+  .page--banner--block .detail--content--block .guidance-block .more-link{
+    padding-left: 3em;
+  }
+}
+
+html[lang=de], html[lang=el]{
+  .detail--section--block .detail--text--block .download--section--block ul li:last-child a{
+    font-size: 1.5rem;
+  }
+}
+
+@media all and (-ms-high-contrast:none){
+  *::-ms-backdrop, .header_top_bar #content_cart_summary_container a .content_cart_summary_count { 
+      padding-right: 45px !important; 
+    } /* IE11 */
 }

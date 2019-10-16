@@ -52,8 +52,8 @@ function napo_consortium_partner_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => 'footer',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'napo_frontend',
         'weight' => -30,
       ),

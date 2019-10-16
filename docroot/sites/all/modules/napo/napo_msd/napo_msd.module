@@ -1,0 +1,38 @@
+<?php
+/**
+ * @file
+ * Code for the Napo MSD feature.
+ */
+
+include_once 'napo_msd.features.inc';
+
+/**
+ * Implements hook_block_info().
+ */
+function napo_msd_block_info() {
+  $blocks = array();
+  $blocks['related_resources'] = array(
+    'info' => t('Related Resources'),
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function napo_msd_block_view($delta = '') {
+  $block = array();
+  switch($delta) {
+    case 'related_resources' :
+      $block['content'] = napo_msd_related_resources_block();
+      break;
+  }
+  return $block;
+}
+
+function napo_msd_related_resources_block() {
+  $block1 = block_load('views', 'msd_related_resources-block');
+  $block2 = block_load('views', 'conversation_started-block');
+  $blocks = _block_get_renderable_array(_block_render_blocks([$block1, $block2]));
+  return render($blocks);
+}

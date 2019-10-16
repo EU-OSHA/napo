@@ -260,3 +260,10 @@ function napo_film_update_7019() {
       ->execute();
   }
 }
+
+/**
+ * NRV-12 NAPO Home page development.
+ */
+function napo_film_update_7020() {
+  features_revert(array('napo_frontpage' => array('views_view')));
+}
