@@ -121,7 +121,7 @@
           </div>
         </div>
       <?php endif; ?>
-
+  <div class="nav-bar-separate absolute"></div>
 </header>
 <div class="nav-bar-separate"></div>
 <?php if (!empty($page['slider'])): ?>

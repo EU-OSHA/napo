@@ -9,6 +9,7 @@ body, html{
 	color: @link-color !important;
 }
 
+
 a:hover{
   -webkit-transition: all 0.6s; /* Safari */
   transition: all 0.6s;
@@ -113,8 +114,55 @@ a:hover{
 	}
 }
 
+.navbar-default{
+	.navbar-header{
+		a.logo{
+			img {
+				padding: 0 0.5rem 0.5rem 2rem;
+			}
+		} 
+	} 
+}
 //NRV-91 Language selector - round shape
 header{
+	&#navbar{
+		&.show-header{
+			position: fixed;
+			top: 0rem;
+		  -webkit-transition: all 0.6s; 
+		  transition: all 0.6s;
+		  z-index: 999999999;
+		  width: 100%;
+		  margin: 0;
+		  padding: 1rem 0;
+		  min-height: 9rem;
+		  &.responsive{
+		  	padding: 0 0 2rem 0 !important;
+		  	margin: 0 !important;
+		  }
+		  &.mobile{
+		  	padding: 0 0 2rem 0 !important;
+		  	margin: 0 !important;
+		  }
+		}
+		&.hide-header{
+			position: fixed;
+			top: -12rem;
+		  -webkit-transition: all 0.6s; 
+		  transition: all 0.6s;
+		  z-index: 999999999;
+		  width: 100%;
+		  &.responsive{
+				top: -22rem;
+		  }
+		}
+		.navbar-header{
+			padding-left: 2rem;
+		}
+		.menu--search--block{
+			padding-right: 2rem;
+		}
+	}
 	#block-lang-dropdown-language-content {
 		#lang_dropdown_form_language_content {
 			.form-type-select {
@@ -128,12 +176,17 @@ header{
 	.menu.nav.navbar-nav > li{
 		height: 100%;
 		padding: 0em 1em 0em 1em !important;
-	    vertical-align: middle;
-	    display: flex;
+		vertical-align: middle;
+		display: flex;
 		display: -webkit-box;
 		display: -webkit-flex;
 		display: -ms-flexbox;
-	    align-items: center;
+		align-items: center;
+		span{
+			.caret{
+		    margin: 0.5rem 0 0 0;
+			}
+		}
 	}
 }
 
@@ -182,6 +235,10 @@ h3{
 	filter: grayscale(100%);
 	height: 1rem;
 	opacity: 0.75;
+	&.absolute{
+		position: absolute;
+		bottom: 0;
+	}
 }
 .icon{
   width: 2.6rem;
@@ -1431,7 +1488,7 @@ a.resource-library-link{
 	  padding:0;
 	  &.navbar{
 			width: 100%;
-			padding:1rem 0 !important;
+			padding:1rem 0;
 			margin: 2rem 0;
 	  }
 	}
@@ -1690,6 +1747,14 @@ a.resource-library-link{
 	.sticky-menu{
 		padding: 1rem 0 0 !important;
 	}
+	header{
+		&#navbar{
+			.menu--search--block, 
+			.navbar-header{
+				padding: 0 !important;
+			}
+		}
+	} 
 	.sticky-menu .col-md-8 {
 	  -webkit-transition: all 0.3s;
 	  -moz-transition: all 0.3s;
@@ -1766,7 +1831,9 @@ a.resource-library-link{
 		}
 	}
 
-	.page-learning-with-napo-napo-for-teachers, .page-learning-with-napo-napo-in-the-workplace, .node-type-lesson, .node-type-msds-activities{
+	.page-learning-with-napo-napo-for-teachers, 
+	.page-learning-with-napo-napo-in-the-workplace, 
+	.node-type-lesson, .node-type-msds-activities{
 		h1{
 		  padding: 0 !important;
 		  margin: 1rem 1.5rem;
@@ -2054,8 +2121,13 @@ a.resource-library-link{
 	} 
 
 
-
 	/** menu **/
+	.container.navbar{
+		margin: 0 !important;
+		> div{
+			padding: 0 !important;
+		}
+	}
 	header .menu.nav.navbar-nav{
 		flex-direction: column;
 	}
@@ -2191,14 +2263,14 @@ a.resource-library-link{
 			  }
 			}	
 		}
-
 		.menu--search--block{
-		  margin: 9rem 0 0 !important;
-		  padding: 0;
+		  margin: 8rem 0 0 !important;
+		  padding: 0 !important;
 		  float: none !important;
 		  width: 100%;
 		  .navbar-collapse{
-		  	width: 100%;
+		  	width: 90% !important;
+		  	margin: 0 5%;
 		  	padding: 0;
 		  	overflow: hidden;
 				&.in{
@@ -2219,6 +2291,7 @@ a.resource-library-link{
 						border-bottom: 1px solid #CCC !important;
 						border-radius:0; 
 						text-align: center;
+						margin: 0 !important;	
 						&:first-child{
 							height:auto;
 							width: 100%;
@@ -2252,6 +2325,7 @@ a.resource-library-link{
 							}
 						}
 						&.open{
+							flex-direction: column;
 							.dropdown-menu{
 								display: none;
 								background: #FFF !important;
@@ -2266,11 +2340,15 @@ a.resource-library-link{
 							}
 						}
 						&.in, &.in.open{
-							overflow: hidden;							
-							span{
+							overflow: hidden;
+							flex-direction: column;												
+							> span{
 								color:@link-color;
 								background: #FFF;
 								border-bottom: 1px solid @link-color;
+								width: 100%;
+								display: block;
+								text-align: left;
 							}
 							.dropdown-menu{
 								background: #CCC !important;
@@ -2292,6 +2370,7 @@ a.resource-library-link{
 										color:@link-color !important;
 										background-color: #F2F2F2 !important;
 										padding: 2rem 1rem 1rem 1rem !important;
+										font-weight: normal !important;
 										&:hover{
 											padding: 2rem 1rem 1rem 1rem !important;
 										}
@@ -2407,7 +2486,7 @@ a.resource-library-link{
 			a.logo{
 				width: 100%;
 				img {
-				  width: 100% !important;
+				  width: 80% !important;
 				  margin: auto;
 				}
 			} 
