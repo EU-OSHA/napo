@@ -7,6 +7,18 @@ require_once 'theme/menu/menu.inc';
  */
 function napo_frontend_preprocess_block(&$vars) {
   // Use a bare template for the page's main content.
+  if ($vars['block_html_id'] == 'block-menu-block-1') {
+    $vars['classes_array'] = ['footer--info--menu'];
+  }
+  if ($vars['block_html_id'] == 'block-menu-block-2') {
+    $vars['classes_array'] = ['footer--social--block'];
+  }
+  if ($vars['block_html_id'] == 'block-views-consortium-partners-block') {
+    $vars['classes_array'] = ['consortium--partners--block'];
+  }
+  if ($vars['block_html_id'] == 'block-views-consortium-partners-block-1') {
+    $vars['classes_array'] = ['consortium--partners--block'];
+  }
   if ($vars['block_html_id'] == 'block-views-consortium-partners-block') {
     $vars['title_attributes_array']['class'][] = 'hidden-xs';
   }
@@ -87,6 +99,15 @@ function napo_frontend_text_resize_block() {
   }
 
   return render($content);
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function napo_frontend_preprocess_node(&$vars) {
+  if (variable_get('workplaces_list_entity_nid', 334) == $vars['nid']) {
+    $vars['theme_hook_suggestions'][] = 'node__list_entity';
+  }
 }
 
 /**

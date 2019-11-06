@@ -24,7 +24,7 @@ function napo_frontpage_default_fe_block_settings() {
     'roles' => array(),
     'themes' => array(
       'napo_frontend' => array(
-        'region' => 'header',
+        'region' => 'slider',
         'status' => 1,
         'theme' => 'napo_frontend',
         'weight' => -43,
@@ -64,7 +64,7 @@ function napo_frontpage_default_fe_block_settings() {
         'weight' => 0,
       ),
     ),
-    'title' => '<none>',
+    'title' => 'Learning with Napo',
     'visibility' => 1,
   );
 
@@ -83,7 +83,7 @@ function napo_frontpage_default_fe_block_settings() {
         'region' => 'slider',
         'status' => 1,
         'theme' => 'napo_frontend',
-        'weight' => 0,
+        'weight' => -44,
       ),
       'osha_admin' => array(
         'region' => '',

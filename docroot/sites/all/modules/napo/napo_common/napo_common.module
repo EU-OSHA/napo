@@ -4,14 +4,279 @@
  * Code for the Napo Common feature.
  */
 
+define('NAPO_TEACHERS_URL', variable_get('napo_teachers_url', '/learning-with-napo/napo-for-teachers'));
+define('NAPO_WORKPLACES_URL', variable_get('napo_workplaces_url', '/learning-with-napo/napo-in-the-workplace'));
+
+// using-napo/napo-workplaces => learning-with-napo/napo-in-the-workplace
+// using-napo/napo-for-teachers => learning-with-napo/napo-for-teachers
+
 include_once 'napo_common.features.inc';
 include_once 'napo_common.views.inc';
 
+function napo_common_lesson_pdf_access($node) {
+  if (user_access('edit any lesson_toolkit content') && $node->type == 'lesson') {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+function napo_common_activity_pdf_access($node) {
+  if (user_access('edit any lesson_toolkit content') && $node->type == 'msds_activities') {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+function napo_common_download_zip_access($node) {
+  if (($node->type == 'msds_activities') || ($node->type =='lesson')) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+/**
+ * Implements hook_admin_paths().
+ */
+function napo_common_admin_paths() {
+  $paths = array(
+    'node/*/lesson_pdf' => TRUE,
+    'node/*/activity_pdf' => TRUE,
+  );
+  return $paths;
+}
+
+function _napo_common_lesson_pdf_name($node, $language) {
+  $map = [
+    20 => 'Napo-lesson-Danger-Prohibition-signs',
+    21 => 'Napo-lesson-Mandatory-Rescue-signs',
+    29 => 'Napo-lesson-Be-body-wise-Skin',
+    30 => 'Napo-lesson-Be-body-wise-Back',
+    84 => 'Napo-lesson-Identification-risks-hazards',
+    85 => 'Napo-lesson-hazards-Intervention-prevention',
+
+    347 => 'Napo-in-the-workplace-activity-Check-your-posture',
+    348 => 'Napo-in-the-workplace-activity-Keep-moving-at-work',
+    349 => 'Napo-in-the-workplace-activity-Share-skills-and-experience',
+    350 => 'Napo-in-the-workplace-activity-Risk-assess-repetitive-work',
+    351 => 'Napo-in-the-workplace-activity-Split-up-heavy-loads',
+    352 => 'Napo-in-the-workplace-activity-Report-signs-MSDs-early',
+    353 => 'Napo-in-the-workplace-activity-Dont-twist-prevent-MSDs',
+    354 => 'Napo-in-the-workplace-activity-Dont-forget-handling-aids',
+    355 => 'Napo-in-the-workplace-activity-Customise-your-workstation',
+    356 => 'Napo-in-the-workplace-activity-Prevent-hand-arm-vibration',
+    357 => 'Napo-in-the-workplace-activity-Let-machine-take-strain',
+    358 => 'Napo-in-the-workplace-activity-Take-a-break',
+    359 => 'Napo-in-the-workplace-activity-Lift-and-carry-safely',
+    431 => 'Napo-in-the-workplace-activity-Know-early-signs-of-MSDs',
+  ];
+  $filename = $language . '_'  . $node->nid . '.pdf';
+  if (!empty($map[$node->nid])) {
+    $filename = $map[$node->nid] . '-' . $language . '.pdf';
+  }
+  return 'public://' . 'lessons/' . $filename;
+}
+
+/**
+ * Gennerate a PDF for a given Drupal path.
+ *
+ * @param string $path
+ *   path of the page to convert to PDF.
+ * @param array $query
+ *   (Optional) array of key/value pairs as used in the url() function for the
+ *   query.
+ * @param int $cid
+ *   (Optional) comment ID of the comment to render.
+ * @param string $pdf_filename
+ *   (Optional) filename of the generated PDF.
+ * @param string $view_mode
+ *   (Optional) view mode to be used when rendering the content.
+ *
+ * @return string|null
+ *   generated PDF page, or NULL in case of error
+ *
+ * @see print_pdf_controller()
+ */
+function osha_print_pdf_generate_path($path, $query = NULL, $cid = NULL, $pdf_filename = NULL, $view_mode = PRINT_VIEW_MODE) {
+  global $base_url;
+
+  $link = print_pdf_print_link();
+  $node = print_controller($path, $link['format'], $cid, $view_mode);
+  if ($node) {
+    // Call the tool's hook_pdf_tool_info(), to see if CSS must be expanded.
+    $pdf_tool = explode('|', variable_get('print_pdf_pdf_tool', PRINT_PDF_PDF_TOOL_DEFAULT));
+    $cache_enabled = variable_get('print_pdf_cache_enabled', PRINT_PDF_CACHE_ENABLED_DEFAULT);
+
+    $function = $pdf_tool[0] . '_pdf_tool_info';
+    $info = function_exists($function) ? $function() : array();
+    $expand = isset($info['expand_css']) ? $info['expand_css'] : FALSE;
+    $html = theme('print', array(
+      'node' => $node,
+      'query' => $query,
+      'expand_css' => $expand,
+      'format' => $link['format'],
+    ));
+    // Img elements must be set to absolute.
+    $pattern = '!<(img\s[^>]*?)>!is';
+    $html = preg_replace_callback($pattern, '_print_rewrite_urls', $html);
+
+    // Convert the a href elements, to make sure no relative links remain.
+    $pattern = '!<(a\s[^>]*?)>!is';
+    $html = preg_replace_callback($pattern, '_print_rewrite_urls', $html);
+    // And make anchor links relative again, to permit in-PDF navigation.
+    $html = preg_replace("!${base_url}/" . $link['path'] . '/.*?#!', '#', $html);
+
+    $meta = array(
+      'node' => $node,
+      'url' => url(drupal_get_path_alias(empty($node->nid) ? $node->path : "node/$node->nid"), array('absolute' => TRUE)),
+    );
+    if (isset($node->name)) {
+      $meta['name'] = $node->name;
+    }
+    if (isset($node->title)) {
+      $meta['title'] = $node->title;
+    }
+
+    $paper_size = isset($node->print_pdf_size) ? $node->print_pdf_size : NULL;
+    $page_orientation = isset($node->print_pdf_orientation) ? $node->print_pdf_orientation : NULL;
+
+    return print_pdf_generate_html($html, $meta, NULL, $paper_size, $page_orientation);
+  }
+  return NULL;
+}
+
+/**
+ * Form for downloading a field_video file in available formats.
+ */
+function napo_common_lesson_pdf_page($node) {
+  global $language;
+  if ($action = arg(3)) {
+    $options = [
+      'language' => $language->language,
+      'absolute' => TRUE,
+    ];
+    if ($action == 'pdf') {
+      $path  = url($language->language . '/node/' . $node->nid . '/generate_pdf/' . $language->language, $options);
+      file_get_contents($path);
+      if ($node->type == 'lesson') {
+        $path  = url($language->language . '/node/' . $node->nid . '/lesson_pdf/', $options);
+      }
+      else {
+        $path  = url($language->language . '/node/' . $node->nid . '/activity_pdf/', $options);
+      }
+      drupal_set_message(t($node->title . ' pdf has been generated.'));
+      drupal_goto($path, $options);
+    }
+    else {
+      $dest = _napo_common_lesson_pdf_name($node, $language->language);
+      module_load_include('inc', 'print_pdf', 'print_pdf.pages');
+      $pdf = osha_print_pdf_generate_path($node->nid, [], NULL, NULL);
+      $file_temp = file_save_data($pdf, $dest, FILE_EXISTS_REPLACE);
+      $file_temp->description = str_replace('.pdf', '', $file_temp->filename);
+
+      $node = node_load($node->nid);
+      if (!empty($file_temp)) {
+        $file_temp->status = 1;
+        $file_temp->display = 1;
+        if ($node->type == 'lesson') {
+          $node->field_file[$language->language][0] = (array) $file_temp;
+        }
+        else {
+          $node->field_activity[$language->language][0] = (array) $file_temp;
+        }
+        node_save($node);
+      }
+      if ($node->type == 'lesson') {
+        $path = url($language->language . '/node/' . $node->nid . '/lesson_pdf/', $options);
+      }
+      else {
+        $path = url($language->language . '/node/' . $node->nid . '/activity_pdf/', $options);
+      }
+      drupal_goto($path, $options);
+    }
+  }
+  if ($node->type == 'lesson') {
+    $form['intro']['#markup'] = variable_get('lesson_pdf_markup',
+      '<p>Please select the language version that you want to generate the lesson pdf, and click on the "Generate pdf" button in the corresponding column.<br>
+  Please remember that the pdf is generate using the published content of the lesson.<br>
+  Please, once the pdf is generate, check the layout to ensure that the lessons is displayed properly in the pdf file.</p>');
+  }
+  else {
+    $form['intro']['#markup'] = variable_get('activity_pdf_markup',
+      '<p>Please select the language version that you want to generate the activity pdf, and click on the "Generate pdf" button in the corresponding column.<br>
+  Please remember that the pdf is generate using the published content of the MSDs activity.<br>
+  Please, once the pdf is generate, check the layout to ensure that the MSD activity is displayed properly in the pdf file.</p>');
+  }
+
+  $header = [t('Language'), t('Actions'), t('Date of the PDF')];
+  $rows = [];
+  $installed = language_list();
+  foreach ($node->translations->data as $lang => $data) {
+    if ($data['status'] ==  0) {
+      continue;
+    }
+    $dest = _napo_common_lesson_pdf_name($node, $lang);
+    $date = '';
+    if (file_exists($dest)) {
+      $date = date('d-m-Y', filemtime($dest));
+    }
+    $rows[] = [
+      $installed[$lang]->name,
+      l(t('Generate PDF'), $lang . '/node/' . $node->nid . '/generate_pdf/pdf', [
+        'language' => $lang,
+        'absolute' => TRUE,
+        ]
+      ),
+      $date
+    ];
+  }
+  $form['rows']['#markup'] = theme('table', array(
+    'header' => $header,
+    'rows' => $rows,
+  ));
+  return $form;
+}
+
+
+/**
+ * Implements hook_permission().
+ */
+function napo_common_permission() {
+  return array(
+    'access generate pdf page' => [
+      'title' => t('Access generate pdf page'),
+      'description' => t('Allows a user to access generate pdf page.'),
+    ],
+  );
+}
 /**
  * Implements hook_menu().
  */
 function napo_common_menu() {
   $items = array();
+  $items['node/%node/activity_pdf'] = array(
+    'title' => 'Activity pdf',
+    'page callback' => 'napo_common_lesson_pdf_page',
+    'page arguments' => array(1),
+    'access callback' => 'napo_common_activity_pdf_access',
+    'access arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+  );
+  $items['node/%node/lesson_pdf'] = array(
+    'title' => 'Lesson pdf',
+    'page callback' => 'napo_common_lesson_pdf_page',
+    'page arguments' => array(1),
+    'access callback' => 'napo_common_lesson_pdf_access',
+    'access arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+  );
+  $items['node/%node/generate_pdf'] = array(
+    'title' => 'Lesson pdf',
+    'page callback' => 'napo_common_lesson_pdf_page',
+    'page arguments' => array(1),
+    'access callback' => 'napo_common_download_zip_access',
+    'access arguments' => array(1),
+    'type' => MENU_CALLBACK,
+  );
   $items['node/%node/download_video'] = array(
     'title' => 'Download video',
     'page callback' => 'napo_common_download_video_callback',
@@ -21,6 +286,34 @@ function napo_common_menu() {
     'type' => MENU_CALLBACK,
     'weight' => 4,
   );
+  $items['node/%node/related_resources'] = array(
+    'title' => 'Related resources',
+    'page callback' => 'napo_common_related_resources_callack',
+    'page arguments' => array(1),
+    'access callback' => 'napo_common_download_zip_access',
+    'access arguments' => array(1),
+    'type' => MENU_CALLBACK,
+    'weight' => 4,
+  );
+  $items['node/%node/guidance'] = array(
+    'title' => 'guidance',
+    'page callback' => 'napo_common_guidance_callack',
+    'page arguments' => array(1),
+    'access callback' => 'napo_common_download_zip_access',
+    'access arguments' => array(1),
+    'type' => MENU_CALLBACK,
+    'weight' => 4,
+  );
+  $items['node/%node/download_all'] = array(
+    'title' => 'Download all files',
+    'page callback' => 'napo_common_download_all_callback',
+    'page arguments' => array(1),
+    'access callback' => 'napo_common_download_zip_access',
+    'access arguments' => array(1),
+    'type' => MENU_CALLBACK,
+    'weight' => 4,
+  );
+
   return $items;
 }
 
@@ -588,6 +881,39 @@ function napo_common_archived_content_block_view() {
   return '';
 }
 
+function napo_common_field_formatter_info() {
+  return array(
+    'lesson_download' => array(
+      'label' => t('Lesson download'),
+      'description' => t('Lesson download block.'),
+      'field types' => array('file', 'image'),
+      'settings' => array(
+      ),
+    ),
+    'msd_starter' => array(
+      'label' => t('MSD starter'),
+      'description' => t('MSD starter file + description.'),
+      'field types' => array('file', 'image'),
+      'settings' => array(
+      ),
+    ),
+
+    'napo_introductory_text' => array(
+      'label' => t('napo introductory text'),
+      'field types' => array('text', 'text_long', 'text_with_summary'),
+      'settings' => array(
+      ),
+    ),
+
+    'napo_acordion' => array(
+      'label' => t('napo acordion'),
+      'field types' => array('text', 'text_long', 'text_with_summary'),
+      'settings' => array(
+      ),
+    ),
+  );
+}
+
 /**
  * Implements hook_field_formatter_info_alter().
  */
@@ -627,10 +953,245 @@ function napo_common_field_formatter_settings_summary($field, $instance, $view_m
   return title_field_formatter_settings_summary($field, $instance, $view_mode);
 }
 
+function _napo_common_resources_required_files($node) {
+  global $language;
+  $files = [];
+  if ($node->field_resources_required) {
+    foreach($node->field_resources_required[LANGUAGE_NONE] as $row) {
+      $resource = node_load($row['target_id']);
+      $wrapper = entity_metadata_wrapper('node', $resource);
+      $file = $wrapper->language($language->language)->field_file->value();
+      if ($file) {
+        $files[] = $file;
+      }
+    }
+  }
+  if (variable_get('allow_msds_resources_required', FALSE) && $node->field_msds_resources_required) {
+    foreach($node->field_resources_required[LANGUAGE_NONE] as $row) {
+      $resource = node_load($row['target_id']);
+      $wrapper = entity_metadata_wrapper('node', $resource);
+      $file = $wrapper->language($language->language)->field_file->value();
+      if ($file) {
+        $files[] = $file;
+      }
+    }
+  }
+  return $files;
+}
+
+function napo_common_related_resources_callack($node) {
+  $files = _napo_common_resources_required_files($node);
+  $archive_drupal_path = napo_common_archive_files($files, 'resources_required_' . rand(10,9999) . '.zip');
+  if ($archive_drupal_path) {
+    napo_common_download_archive($archive_drupal_path);
+  }
+  else {
+    drupal_set_message(t("There was an error downloading the related resources!"), 'error');
+    drupal_not_found();
+  }
+}
+
+function _napo_common_get_guidance_files($type) {
+  global $language;
+  if ($type == 'lesson') {
+    $nid = variable_get('teacher_guidance_nid', 407);
+    $node = node_load($nid);
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $files[] = $wrapper->language($language->language)->field_guidance_file->value();
+  }
+  else {
+    $nid = variable_get('facilitator_guidance_nid', 408);
+    $node = node_load($nid);
+    $wrapper = entity_metadata_wrapper('node', $node);
+    $files[] = $wrapper->language($language->language)->field_guidance_file->value();
+    $files[] = $wrapper->language($language->language)->field_activity_list_file->value();
+    $files[] = $wrapper->language($language->language)->field_menu->value();
+  }
+  return $files;
+}
+
+function napo_common_guidance_callack($node) {
+  $files = _napo_common_get_guidance_files($node->type);
+  $archive_drupal_path = napo_common_archive_files($files, 'guidance_' . rand(10,9999) . '.zip');
+  if ($archive_drupal_path) {
+    napo_common_download_archive($archive_drupal_path);
+  }
+  else {
+    drupal_set_message(t("There was an error downloading the files!"), 'error');
+    drupal_not_found();
+  }
+}
+
+function _napo_common_download_all_files($node) {
+  global $language;
+  $files = [];
+
+  $wrapper = entity_metadata_wrapper('node', $node);
+  if ($node->type == 'lesson') {
+    $lesson_video_nid = $node->field_lesson_video[LANGUAGE_NONE][0]['target_id'];
+    $file = $wrapper->language($language->language)->field_file->value();
+  }
+  else {
+    $lesson_video_nid = $node->field_msds_video[LANGUAGE_NONE][0]['target_id'];
+    $file = $wrapper->language($language->language)->field_activity->value();
+  }
+  if ($file) {
+    $files[] = $file;
+  }
+  if ($lesson_video_nid) {
+    $lesson_video = node_load($lesson_video_nid);
+    $wrapper = entity_metadata_wrapper('node', $lesson_video);
+    $files[] = $wrapper->language($language->language)->field_video->value()[0];
+  }
+  $resources = _napo_common_resources_required_files($node);
+  if ($resources) {
+    $files = array_merge($files, $resources);
+  }
+  $guidance_files = _napo_common_get_guidance_files($node->type);
+  if ($guidance_files) {
+    $files = array_merge($files, $guidance_files);
+  }
+  return $files;
+}
+
+function napo_common_archive_files($files, $basename, $drupal_dir_path = NAPO_FILM_DOWN_CENTER_PATH) {
+  if (!empty($files)) {
+    $dir_path = drupal_realpath($drupal_dir_path);
+    // Return if dir don't exists.
+    if (!file_prepare_directory($drupal_dir_path, FILE_CREATE_DIRECTORY)) {
+      watchdog('napo_film', 'The directory !dir could not be accessed!', array('!dir' => $drupal_dir_path), WATCHDOG_ERROR);
+      return NULL;
+    }
+    // Check if it's enough disks pace to create the archive.
+    $files_size = 0;
+    foreach ($files as $file) {
+      $files_size += $file['filesize'];
+      if (disk_free_space($dir_path) < $files_size) {
+        watchdog('napo_film', 'There is not enough space to create a zip with files of !size MB!',
+          array('!size' => $files_size / pow(1024, 2)), WATCHDOG_ERROR);
+        return NULL;
+      }
+    }
+
+    $pclzip_library = libraries_load('pclzip');
+    libraries_load_files($pclzip_library);
+    // Open the archive.
+    $archive_path = file_create_filename($basename, $dir_path);
+    $archive = new PclZip($archive_path);
+    $files_paths = array();
+    foreach ($files as $file) {
+      $files_paths[] = drupal_realpath($file['uri']);
+    }
+    $result = $archive->add($files_paths, PCLZIP_OPT_REMOVE_ALL_PATH, PCLZIP_OPT_TEMP_FILE_THRESHOLD, 10);
+    if (empty($result)) {
+      watchdog('napo_film', 'Empty result!', array(), WATCHDOG_ERROR);
+      return NULL;
+    }
+    // Return drupal scheme file path.
+    $archive_name = drupal_basename($archive_path);
+    $archive_drupal_path = $drupal_dir_path . '/' . $archive_name;
+    return $archive_drupal_path;
+  }
+  watchdog('napo_film', 'emptry files!', array(), WATCHDOG_ERROR);
+  return NULL;
+}
+
+function napo_common_download_archive($archive_drupal_path) {
+    if (!empty($archive_drupal_path)) {
+      $file = [];
+      $file['uri'] = $archive_drupal_path;
+      $file['filesize'] = filesize($archive_drupal_path);
+      $file['filemime'] = 'application/zip';
+      $headers = array(
+        'Content-Type'              => $file['filemime'],
+        'Content-Disposition'       => 'attachment; filename="' . drupal_basename($file['uri']) . '"',
+        'Content-Length'            => $file['filesize'],
+        'Content-Transfer-Encoding' => 'binary',
+        'Pragma'                    => 'no-cache',
+        'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
+        'Expires'                   => '0',
+        'Accept-Ranges'             => 'bytes',
+      );
+      file_transfer($file['uri'], $headers);
+    }
+}
+
+function napo_common_download_all_callback($node) {
+  $files = _napo_common_download_all_files($node);
+  $archive_drupal_path = napo_common_archive_files($files, 'download_' . rand(10,9999) . '.zip');
+  if ($archive_drupal_path) {
+    napo_common_download_archive($archive_drupal_path);
+  }
+  else {
+    drupal_set_message(t("There was an error downloading the files!"), 'error');
+    drupal_not_found();
+  }
+}
+
 /**
  * Implements hook_field_formatter_view().
  */
 function napo_common_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display) {
+  $element = array();
+
+  switch ($display['type']) {
+    case 'napo_acordion':
+      $display = 'none';
+      if (arg(2) == 'generate_pdf') {
+        $display = 'block';
+      }
+      foreach ($items as $delta => $item) {
+        $element[$delta] = array(
+          '#markup' => '<div class="acordion--block--item">'.
+            '<h3 class="acordion-content-title active">' . t($instance['label']) . '</h3>'.
+            '<div class="acordion-content-text" style="display: ' . $display . ';">' . $item['safe_value'] . '</div></div>',
+        );
+      }
+      return $element;
+      break;
+
+    case 'msd_starter':
+      foreach ($items as $delta => $item) {
+        $element[$delta] = array(
+          '#markup' => '<div class=""><a href="' . file_create_url($item['uri']) . '" target="_blank">'. $item['description'] . '</a></div>',
+        );
+      }
+      return $element;
+      break;
+
+    case 'lesson_download':
+      return $element;
+      break;
+
+    case 'napo_introductory_text':
+      $node = menu_get_object();
+      $nid = variable_get('teacher_guidance_nid', 407);
+      $guidance_title = t('Teacher guidance');
+      $guidance_text = variable_get('teacher_guidance_text', 'Do you need help to organise a learning activity in your classroom?');
+      if ($node->type == 'msds_activities') {
+        $nid = variable_get('facilitator_guidance_nid', 408);
+        $guidance_title = t('Facilitator guidance');
+        $guidance_text = variable_get('facilitator_guidance_text', 'Do you need help to organise a learning activity in your workplace?');
+      }
+      $guidance_href = url('node/' . $nid);
+      foreach ($items as $delta => $item) {
+        $element[$delta] = array(
+          '#markup' => '<div class="detail--content--block"><div class="text-block">
+          <p>' . $item['safe_value'].'</p>
+        </div>
+        <div class="guidance-block">
+          <p class="guidance-title">' . $guidance_title . '</p>
+          <p class="guidance-text">' . t($guidance_text) . '</p>
+          <p><a href="' . $guidance_href . '" class="more-link" target="_blank">' . t('Find out more here') . '</a></p>
+        </div></div>',
+        );
+      }
+      return $element;
+      break;
+
+  }
+
+
   // If is film/episode, use custom formatter.
   if ($entity_type == 'node' && $entity->type == 'napo_video') {
     $element = napo_film_field_formatter_view($entity_type, $entity, $field, $instance, $langcode, $items, $display);
@@ -648,6 +1209,51 @@ function napo_common_field_formatter_view($entity_type, $entity, $field, $instan
   }
 
   return $element;
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function napo_common_views_query_alter(&$view, &$query) {
+  global $language;
+  if (('napo_workplaces' == $view->name) || ('napo_for_teachers' == $view->name)) {
+    if (variable_get('napo_common_filter_by_language', TRUE)) {
+      foreach ($query->table_queue as $field_name => &$field) {
+        if (strpos($field_name, 'field_data_field_') !== 0) {
+          continue;
+        }
+        if (in_array($field_name, ['field_data_field_lesson_video', 'field_data_field_msds_video', 'field_data_field_tags'])) {
+          continue;
+        }
+        $field['join']->extra[] = [
+          'field' => 'language',
+          'value' => $language->language,
+        ];
+      }
+    }
+    if ($query->where[2]['conditions']) {
+      $key = 0;
+      $conditions = $query->where[2]['conditions'][$key]['field']->conditions();
+      if ($conditions) {
+        if ($conditions['#conjunction'] = 'AND') {
+          $db_or_and = db_and();
+        }
+        else {
+          $db_or_and = db_or();
+        }
+        foreach ($conditions as $condition) {
+          if (!is_array($condition)) {
+            continue;
+          }
+          $search = 'field_data_title_field.title_field_value';
+          $replace = $search . ", ' ', taxonomy_term_data_field_data_field_tags.name";
+          $condition['field'] = str_replace($search,$replace, $condition['field']);
+          $db_or_and->where($condition['field'], $condition['value']);
+        }
+        $query->where[2]['conditions'][$key]['field'] = $db_or_and;
+      }
+    }
+  }
 }
 
 /**
@@ -793,7 +1399,11 @@ function napo_common_back_button(&$vars){
       break;
 
     case 'lesson':
-      $vars['back_button'] = l(t('Back to Napo for teachers teachers'), '/using-napo/napo-for-teachers', $options);
+      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to Napo for teachers'), NAPO_TEACHERS_URL, []) . '</p>';
+      break;
+
+    case 'msds_activities':
+      $vars['back_button'] = '<p class="btn-back">' . l(t('Back to Napo in the workplace'), NAPO_WORKPLACES_URL, []) . '</p>';
       break;
 
     default:

@@ -17,3 +17,106 @@ function napo_frontpage_jcarousel_skin_info() {
   );
   return $skins;
 }
+
+/**
+ * Implements hook_block_info().
+ */
+function napo_frontpage_block_info() {
+  $blocks['napo_frontpage_story'] = array(
+    'info' => t('Napo\'s Story'),
+    'status' => 1,
+    'region' => 'header',
+    'visibility' => BLOCK_VISIBILITY_LISTED,
+    'pages' => '<front>',
+    'cache' => DRUPAL_NO_CACHE,
+    'weight' => -30,
+  );
+  return $blocks;
+}
+
+/**
+ * Implements hook_block_configure().
+ *
+ * This hook declares configuration options for blocks provided by this module.
+ */
+function napo_frontpage_block_configure($delta = '') {
+  $form = array();
+
+  switch ($delta) {
+    case 'napo_frontpage_story':
+      $form['napo_frontpage_story_link'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Page link',
+        '#size' => 60,
+        '#default_value' => variable_get('napo_frontpage_story_link', 'node/27'),
+      );
+      $form['napo_frontpage_story_title'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Block Title',
+        '#size' => 60,
+        '#default_value' => variable_get('napo_frontpage_story_title', 'Napo\'s Story'),
+      );
+      $form['napo_frontpage_story_text'] = array(
+        '#type' => 'textarea',
+        '#title' => 'Block intro text',
+        '#size' => 60,
+        '#default_value' => variable_get('napo_frontpage_story_text', '<p>Napo’s character has been created to educate european citizen about the risk that can occur at work or at home.</p>
+        <p>Learn how it has been created and what makes Napo a great educational material.</p>'),
+      );
+      $form['napo_frontpage_story_iframe'] = array(
+        '#type' => 'textfield',
+        '#title' => 'Iframe video URL',
+        '#size' => 60,
+        '#default_value' => variable_get('napo_frontpage_story_iframe', 'https://www.youtube.com/embed/QCQowf79bfU'),
+      );
+      break;
+  }
+
+  return $form;
+}
+
+/**
+ * Implements hook_block_save().
+ */
+function napo_frontpage_block_save($delta = '', $edit = array()) {
+  switch ($delta) {
+    case 'napo_frontpage_story':
+      variable_set('napo_frontpage_story_link', $edit['napo_frontpage_story_link']);
+      variable_set('napo_frontpage_story_title', $edit['napo_frontpage_story_title']);
+      variable_set('napo_frontpage_story_text', $edit['napo_frontpage_story_text']);
+      variable_set('napo_frontpage_story_iframe', $edit['napo_frontpage_story_iframe']);
+      break;
+  }
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function napo_frontpage_block_view($delta = '') {
+  switch ($delta) {
+    case 'napo_frontpage_story':
+      $block['subject'] = '<none>';
+      $link = variable_get('napo_frontpage_story_link', 'node/27');
+      $title = variable_get('napo_frontpage_story_title', 'The Napo Story');
+      $body = variable_get('napo_frontpage_story_text', '<p>Napo’s character has been created to educate european citizen about the risk that can occur at work or at home.</p>
+        <p>Learn how it has been created and what makes Napo a great educational material.</p>');
+      $iframe_src = variable_get('napo_frontpage_story_iframe', 'https://www.youtube.com/embed/QCQowf79bfU');
+      $markup = '<section class="story--block--section">
+  <div class="story--block">
+    <div class="story--item story--content--block">
+      <h2>' . l(t($title), $link) . '</h2>
+      <div class="content">' . t($body) . '
+        <p class="btn-story">' . l(t('See more'), $link) . '</p>
+      </div>
+    </div>
+    <div class="story--item story--media--block">
+      <iframe src="' . $iframe_src . '" frameborder="0" scrolling="no" align="left" width="601" height="344" enablejsapi="1" id="widget2"></iframe>
+    </div>
+  </div>
+</section>';
+      $block['content'] = $markup;
+      return $block;
+      break;
+  }
+  return array();
+}

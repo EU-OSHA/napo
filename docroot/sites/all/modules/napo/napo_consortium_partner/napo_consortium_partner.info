@@ -1,7 +1,7 @@
 name = Consortium Partner
 core = 7.x
 package = Napo
-version = 7.x-1.2
+version = 7.x-1.3
 project = napo_consortium_partner
 dependencies[] = ctools
 dependencies[] = features

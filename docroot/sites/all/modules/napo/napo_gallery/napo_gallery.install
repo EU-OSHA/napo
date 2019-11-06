@@ -45,3 +45,10 @@ function napo_gallery_update_7002() {
     field_delete_instance($existing_instance['field_napo_image'], TRUE);
   }
 }
+
+/**
+ * MDR-3098 Gallery items sorted by date.
+ */
+function napo_gallery_update_7003() {
+  features_revert(array('napo_gallery' => array('views_view')));
+}
