@@ -71,7 +71,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 11,
       ),
       'recommended_films' => array(
         'label' => 'hidden',
@@ -187,7 +187,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 2,
       ),
       'recommended_films' => array(
         'label' => 'above',
@@ -277,6 +277,12 @@ function napo_film_field_default_field_instances() {
         'settings' => array(),
         'type' => 'hidden',
         'weight' => 0,
+      ),
+      'osha_slideshow' => array(
+        'label' => 'inline',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 10,
       ),
       'recommended_films' => array(
         'label' => 'above',
@@ -372,7 +378,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 7,
       ),
       'recommended_films' => array(
         'label' => 'hidden',
@@ -509,7 +515,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 4,
       ),
       'recommended_films' => array(
         'label' => 'inline',
@@ -552,76 +558,6 @@ function napo_film_field_default_field_instances() {
       ),
       'type' => 'options_select',
       'weight' => 8,
-    ),
-  );
-
-  // Exported field_instance: 'node-napo_video-field_main_topic_category'.
-  $field_instances['node-napo_video-field_main_topic_category'] = array(
-    'bundle' => 'napo_video',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'i18n_taxonomy',
-        'settings' => array(),
-        'type' => 'i18n_taxonomy_term_reference_link',
-        'weight' => 27,
-      ),
-      'episode_full' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'episode_popup' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'film_main_video_teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'recommended_films' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'search_results' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_main_topic_category',
-    'label' => 'Main category',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => '',
-      ),
-      'type' => 'options_select',
-      'weight' => 9,
     ),
   );
 
@@ -672,7 +608,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 8,
       ),
       'recommended_films' => array(
         'label' => 'inline',
@@ -780,7 +716,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 3,
       ),
       'recommended_films' => array(
         'label' => 'inline',
@@ -890,7 +826,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 9,
       ),
       'recommended_films' => array(
         'label' => 'inline',
@@ -928,8 +864,10 @@ function napo_film_field_default_field_instances() {
     'widget' => array(
       'active' => 0,
       'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
+      'settings' => array(
+        'apply_chosen' => '',
+      ),
+      'type' => 'options_select',
       'weight' => 10,
     ),
   );
@@ -977,9 +915,15 @@ function napo_film_field_default_field_instances() {
         'weight' => 5,
       ),
       'osha_slideshow' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'label' => 'hidden',
+        'module' => 'videojs',
+        'settings' => array(
+          'height' => '',
+          'posterimage_field' => 'field_image',
+          'posterimage_style' => 'lesson_poster_image',
+          'width' => '',
+        ),
+        'type' => 'videojs',
         'weight' => 0,
       ),
       'recommended_films' => array(
@@ -1104,7 +1048,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 6,
       ),
       'recommended_films' => array(
         'label' => 'inline',
@@ -1252,7 +1196,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 5,
       ),
       'recommended_films' => array(
         'label' => 'hidden',
@@ -1417,7 +1361,7 @@ function napo_film_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 0,
+        'weight' => 1,
       ),
       'recommended_films' => array(
         'label' => 'hidden',
@@ -1564,7 +1508,6 @@ function napo_film_field_default_field_instances() {
   t('Categories');
   t('Image');
   t('Main Category');
-  t('Main category');
   t('Mark as outdated');
   t('Napo film');
   t('Publication date');

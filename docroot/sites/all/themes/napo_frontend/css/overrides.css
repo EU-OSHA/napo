@@ -3,7 +3,7 @@
   margin-right: 0px;
 }
 .navbar-default .navbar-header a.logo img {
-  width: 130% !important;
+  width: auto !important;
   max-width: inherit !important;
 }
 @media only screen and (max-width: 1199px) {
@@ -18,7 +18,7 @@
 }
 @media only screen and (max-width: 767px) {
   .navbar-default .navbar-header a.logo img {
-    width: 100% !important;
+    width: auto !important;
     max-width: 100% !important;
     height: auto;
   }
@@ -46,6 +46,10 @@ html.js fieldset.collapsed {
 }
 html.js input.form-autocomplete {
   background-image: none;
+}
+body {
+  font-size: 1.8rem;
+  color: #1f3695;
 }
 body {
   position: relative;
@@ -253,12 +257,12 @@ table tr.error {
 .control-group.error textarea,
 .control-group.error select,
 .control-group.error .uneditable-input {
-  color: #1F3695;
+  color: #1f3695;
   border: 1px solid transparent;
 }
 .control-group.error .help-block,
 .control-group.error .help-inline {
-  color: #000;
+  color: #000000;
 }
 .list-inline > li.first {
   padding-left: 0;
@@ -303,7 +307,7 @@ ul li.leaf {
 .password-indicator div {
   height: 100%;
   width: 0%;
-  background-color: #1F3695;
+  background-color: #1f3695;
 }
 input.password-confirm,
 input.password-field {
@@ -437,7 +441,7 @@ a .glyphicon-spin {
   display: block;
 }
 .tabs-below > .nav-tabs {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #dddddd;
 }
 .tabs-below > .nav-tabs > li {
   margin-top: -1px;
@@ -448,13 +452,13 @@ a .glyphicon-spin {
 }
 .tabs-below > .nav-tabs > li > a:hover,
 .tabs-below > .nav-tabs > li > a:focus {
-  border-top-color: #ddd;
+  border-top-color: #dddddd;
   border-bottom-color: transparent;
 }
 .tabs-below > .nav-tabs > .active > a,
 .tabs-below > .nav-tabs > .active > a:hover,
 .tabs-below > .nav-tabs > .active > a:focus {
-  border-color: transparent #ddd #ddd #ddd;
+  border-color: transparent #dddddd #dddddd #dddddd;
 }
 .tabs-left > .nav-tabs,
 .tabs-right > .nav-tabs {
@@ -484,7 +488,7 @@ a .glyphicon-spin {
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   overflow: hidden;
   padding: 10px 15px;
 }
@@ -497,12 +501,12 @@ a .glyphicon-spin {
 }
 .tabs-left > .nav-tabs > li > a:hover,
 .tabs-left > .nav-tabs > li > a:focus {
-  border-color: #eeeeee #ddd #eeeeee #eeeeee;
+  border-color: #eeeeee #dddddd #eeeeee #eeeeee;
 }
 .tabs-left > .nav-tabs > .active > a,
 .tabs-left > .nav-tabs > .active > a:hover,
 .tabs-left > .nav-tabs > .active > a:focus {
-  border-color: #ddd transparent #ddd #ddd;
+  border-color: #dddddd transparent #dddddd #dddddd;
   -webkit-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.05);
@@ -516,7 +520,7 @@ a .glyphicon-spin {
 }
 .tabs-right > .nav-tabs > li > a:hover,
 .tabs-right > .nav-tabs > li > a:focus {
-  border-color: #eeeeee #eeeeee #eeeeee #ddd;
+  border-color: #eeeeee #eeeeee #eeeeee #dddddd;
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
@@ -524,7 +528,7 @@ a .glyphicon-spin {
 .tabs-right > .nav-tabs > .active > a,
 .tabs-right > .nav-tabs > .active > a:hover,
 .tabs-right > .nav-tabs > .active > a:focus {
-  border-color: #ddd #ddd #ddd transparent;
+  border-color: #dddddd #dddddd #dddddd transparent;
 }
 th.checkbox,
 td.checkbox,
@@ -576,5 +580,5 @@ table .checkbox input[type="checkbox"] {
   color: #843534;
 }
 .lang-dropdown-select-element.form-control.form-select {
-  background-color: #F7E235;
+  background-color: #f7e235;
 }

@@ -206,7 +206,7 @@ function napo_film_strongarm() {
         'custom_settings' => TRUE,
       ),
       'osha_slideshow' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'full' => array(
         'custom_settings' => FALSE,

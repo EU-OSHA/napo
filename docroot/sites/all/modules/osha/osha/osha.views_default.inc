@@ -105,6 +105,10 @@ function osha_views_default_views() {
       'empty_column' => 0,
     ),
   );
+  /* Header: Global: Result summary */
+  $handler->display->display_options['header']['result']['id'] = 'result';
+  $handler->display->display_options['header']['result']['table'] = 'views';
+  $handler->display->display_options['header']['result']['field'] = 'result';
   /* Relationship: Content: Author */
   $handler->display->display_options['relationships']['uid']['id'] = 'uid';
   $handler->display->display_options['relationships']['uid']['table'] = 'node';
@@ -238,8 +242,11 @@ function osha_views_default_views() {
     'faq' => 'faq',
     'home_video' => 'home_video',
     'lesson' => 'lesson',
+    'lesson_resources' => 'lesson_resources',
     'lesson_toolkit' => 'lesson_toolkit',
     'lesson_video' => 'lesson_video',
+    'msds_activities' => 'msds_activities',
+    'msds_resources' => 'msds_resources',
     'napo_album' => 'napo_album',
     'napo_friend' => 'napo_friend',
     'napo_image' => 'napo_image',
@@ -261,6 +268,8 @@ function osha_views_default_views() {
     6 => 0,
     7 => 0,
     8 => 0,
+    9 => 0,
+    10 => 0,
   );
   $handler->display->display_options['filters']['type']['expose']['reduce'] = TRUE;
   /* Filter criterion: Content: Video Type (field_video_type) */
@@ -541,6 +550,7 @@ function osha_views_default_views() {
     t('‹ previous'),
     t('next ›'),
     t('last »'),
+    t('Displaying @start - @end of @total'),
     t('author'),
     t('term'),
     t('Translations'),

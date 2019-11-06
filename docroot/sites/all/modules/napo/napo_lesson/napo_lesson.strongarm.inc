@@ -160,6 +160,16 @@ function napo_lesson_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'ds_classes_regions';
+  $strongarm->value = 'detail--section--block
+detail--text--block
+acordion--block acordion--items--block
+download--section--block';
+  $export['ds_classes_regions'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_comment_filter_lesson';
   $strongarm->value = 0;
   $export['entity_translation_comment_filter_lesson'] = $strongarm;
@@ -361,7 +371,7 @@ function napo_lesson_strongarm() {
         'custom_settings' => TRUE,
       ),
       'full' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'rss' => array(
         'custom_settings' => FALSE,
@@ -376,7 +386,7 @@ function napo_lesson_strongarm() {
         'custom_settings' => FALSE,
       ),
       'print' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'token' => array(
         'custom_settings' => FALSE,
@@ -403,16 +413,16 @@ function napo_lesson_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '8',
+          'weight' => '15',
         ),
         'title' => array(
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '6',
+          'weight' => '13',
         ),
         'redirect' => array(
-          'weight' => '7',
+          'weight' => '14',
         ),
         'workbench_access' => array(
           'weight' => '4',
@@ -421,7 +431,7 @@ function napo_lesson_strongarm() {
           'weight' => '3',
         ),
         'xmlsitemap' => array(
-          'weight' => '30',
+          'weight' => '16',
         ),
       ),
       'display' => array(),
@@ -562,22 +572,22 @@ function napo_lesson_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'metatags' => array(
-          'weight' => '9',
+          'weight' => '8',
         ),
         'title' => array(
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '7',
         ),
         'redirect' => array(
-          'weight' => '7',
+          'weight' => '6',
         ),
         'language' => array(
           'weight' => '5',
         ),
         'xmlsitemap' => array(
-          'weight' => '10',
+          'weight' => '9',
         ),
       ),
       'display' => array(),
@@ -761,7 +771,7 @@ function napo_lesson_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_lesson_pattern';
-  $strongarm->value = 'using-napo/napo-for-teachers/[node:field-lesson-toolkit:title]/[node:title]';
+  $strongarm->value = 'learning-with-napo/napo-for-teachers/[node:field-lesson-toolkit:title]/[node:title]';
   $export['pathauto_node_lesson_pattern'] = $strongarm;
 
   $strongarm = new stdClass();

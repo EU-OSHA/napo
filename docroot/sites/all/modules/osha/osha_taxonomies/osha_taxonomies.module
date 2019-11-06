@@ -53,6 +53,154 @@ function osha_taxonomies_delete_main_subcategory() {
   }
 }
 
+function osha_taxonomies_import_tag_category() {
+  $new_tree =
+    ".Accident prevention
+  Accident prevention
+  Danger
+  Hidden hazards
+  Prevention
+  Site security
+  Slips, trips and falls
+.Ageing and OSH
+  Ageing and OSH
+Agriculture and forestry
+  Agriculture
+  Farming
+  Forestry
+Dangerous substances
+  Chemicals
+  Dust
+  Nanomaterials
+  Passive smoking
+Education
+  Mainstreaming OSH into education
+Emergencies and First Aid
+  Emergency
+  Emergency procedure
+  Emergency routes
+  First aid
+Environment
+  Cold weather
+Fire and explosion
+  Explosives
+  Fire
+Good OSH is good business
+  Cost of accidents
+Handling loads
+  Carrying loads
+  Heavy loads
+  Manual handling
+  Overhead loads
+  Safe loads
+HORECA
+  Catering
+ICT/digitalisation
+  Computer work
+  Mobile phones
+Leadership and worker participation
+  Behaviour
+  Communication
+  Improvisation
+  Induction
+  Job rotation
+  No control
+  Office work
+  Participation
+  Production
+  Safety culture
+  Maintenance
+Floor covering
+  Good housekeeping
+  Lock out
+  Machinery
+Musculoskeletal disorders (MSDs)
+  Ergonomics
+  Hand-arm vibration
+  Posture
+Noise
+  Hearing loss
+Personal protective equipment (PPE)
+  Footwear
+Physical risks
+  Cuts
+  Dehydration
+  Heat stress
+  Heat stroke
+  Metalwork
+  Pregnancy
+  Respiratory
+  Skin protection
+  Exhaustion
+Psychosocial risks and stress
+  Burnout
+  Confined spaces
+  Harassment
+  Heavy workload
+  Job uncertainty
+  Pressure
+  Relaxation
+Signs and labels
+  Compulsory signs
+  Emergency signs
+  Prohibition signs
+  Safety signs
+Transport
+  Fork lift trucks
+  Road safety
+  Road transport
+  Site transport
+Work environment
+  Leisure and lifestyle
+  Lighting
+  No smoking
+  Office safety
+  Safe routes";
+  $new_tree = explode("\n", $new_tree);
+
+  // STEP 1 (create new)
+  $name = 'tags';
+  $vocabulary = taxonomy_vocabulary_machine_name_load($name);
+  $tree = taxonomy_get_tree($vocabulary->vid);
+  $tags_map = [];
+  foreach ($tree as $i => $term) {
+    $tags_map[$term->tid] = $term;
+    $tags_map[$term->name] = $term->tid;
+  }
+
+  foreach($new_tree as $row) {
+    $name = trim($row);
+    if (empty($tags_map[$name])) {
+      $term = new stdClass();
+      $term->name = $term->name_field['en'][0]['value'] = $name;
+      $term->vid = $vocabulary->vid;
+      $term->language = 'en';
+      taxonomy_term_save($term);
+      $tags_map[$term->tid] = $term;
+      $tags_map[$term->name] = $term->tid;
+    }
+  }
+
+  // STEP 2 (set parents)
+
+  $main = '';
+  foreach($new_tree as $row) {
+    $name = trim($row);
+    if (strlen($row) == strlen($name)) {
+      $main = trim($row);
+    }
+    else {
+      $main_tid = $tags_map[$main];
+      $tid = $tags_map[$name];
+      $term = $tags_map[$tid];
+      if ($term->parents[0] != $main_tid) {
+        $term->parent = $main_tid;
+        taxonomy_term_save($term);
+      }
+    }
+  }
+}
+
 function osha_taxonomies_import_main_category() {
   $file = sprintf('%s/data/main_category.json', dirname(__FILE__));
   if (!is_readable($file)) {
@@ -136,53 +284,5 @@ function osha_taxonomies_import_main_category() {
         }
       }
     }
-  }
-}
-
-/**
- * Implements hook_form_alter().
- */
-function osha_taxonomies_form_alter(&$form, &$form_state, $form_id) {
-  if (!empty($form['field_main_topic_category'])) {
-    $def_main_tags = $form['field_main_topic_category'][LANGUAGE_NONE]['#default_value'];
-    $def_tags = $form['field_tags'][LANGUAGE_NONE]['#default_value'];
-    $tags = $form['field_tags'][LANGUAGE_NONE]['#options'];
-    $states = [];
-    $vocabulary = taxonomy_vocabulary_machine_name_load('main_category');
-    $terms = entity_load('taxonomy_term', FALSE, array('vid' => $vocabulary->vid));
-    $main_tag = [];
-    foreach ($terms as $term) {
-      foreach($term->field_tags[LANGUAGE_NONE] as $tag) {
-        if (!$def_main_tags &&
-          $def_tags &&
-          in_array($tag['tid'], $def_tags)
-        ) {
-          $main_tag[$term->name] = $term->name;
-        }
-        else {
-          $states['#edit-field-tags-und-' . $tag['tid']] = ['visible' => ['#edit-field-main-topic-category-und' => ['value' => $term->tid]]];
-        }
-        unset($tags[$tag['tid']]);
-      }
-    }
-
-    if (!$def_main_tags && $def_tags) {
-      drupal_set_message('Please select Main category ' . implode(', ', $main_tag));
-    }
-    $no_parent_tid = variable_get('no_parent_tid', 0);
-    foreach($tags as $tid => $name) {
-      if (in_array($tid, $def_tags)) {
-        drupal_set_message($name . ' without Main Category', 'error');
-      }
-      else {
-        $states['#edit-field-tags-und-' . $tid] = ['visible' => ['#edit-field-main-topic-category-und' => ['value' => $no_parent_tid]]];
-      }
-    }
-
-    $form['field_main_topic_category']['#attached']['library'][] = array('system', 'drupal.states');
-    $form['field_main_topic_category']['#attached']['js'][] = array(
-      'type' => 'setting',
-      'data' => array('states' => $states),
-    );
   }
 }
