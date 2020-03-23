@@ -15,6 +15,7 @@ a:hover {
   background: url('../images/background-cookies.png') repeat !important;
   position: fixed;
   height: auto !important;
+  z-index: 9999999999;
 }
 #sliding-popup .popup-content {
   margin: 0 auto;
