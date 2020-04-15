@@ -7633,10 +7633,6 @@ h4.modal-title {
 .content .field .field-item ul {
   padding-left: 0px;
 }
-#sliding-popup.sliding-popup-top {
-  height: 1% !important;
-  overflow: hidden;
-}
 .napo-film-video-download-form-title {
   color: transparent;
   background: url('../images/video-download-v2.png?v=2') no-repeat 10px 7px;
