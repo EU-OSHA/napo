@@ -121,3 +121,10 @@ function napo_common_update_7010() {
   features_revert(array('napo_msd' => array('field_base', 'field_instance')));
   variable_set('napo_common_filter_by_language', TRUE);
 }
+
+/**
+ * MDR-3642 Show featured videos in the same order as the nodequeue.
+ */
+function napo_common_update_7011() {
+  features_revert(array('napo_frontpage' => array('views_view')));
+}
