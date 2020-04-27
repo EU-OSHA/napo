@@ -17,6 +17,19 @@ function napo_common_views_handlers() {
 }
 
 /**
+ * Implements hook_views_data_alter().
+ */
+function napo_common_views_data_alter(&$data) {
+  $data['views']['in_queue'] = array(
+    'title' => t('In queue'),
+    'help' => t('Filter to ensure a node IS or IS NOT in the related queue'),
+    'sort' => array(
+      'handler' => 'entityqueue_handler_sort_in_queue',
+    ),
+  );
+}
+
+/**
  * Implements hook_views_data().
  */
 function napo_common_views_data() {
