@@ -235,7 +235,8 @@ jQuery(document).ready(function () {
 
 
 jQuery(document).ready(function () {
-    jQuery('#edit-search').attr('placeholder','Search...');
+    var placeholder = Drupal.t("Search");
+    jQuery('#edit-search').attr('placeholder',placeholder + '...');
 });
 
 
