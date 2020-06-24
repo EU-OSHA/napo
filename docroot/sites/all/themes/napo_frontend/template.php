@@ -92,10 +92,10 @@ function napo_frontend_text_resize_block() {
   $content['#markup'] = t('Set font size');
 
   if (variable_get('text_resize_reset_button', FALSE) == TRUE) {
-    $content['#markup'] .= '<sup>&#x2C4;</sup><a href="javascript:;" class="changer" id="text_resize_increase">A</a> <a href="javascript:;" class="changer" id="text_resize_reset">A</a> <sup>&#x2C5;</sup><a href="javascript:;" class="changer" id="text_resize_decrease">A</a> <div id="text_resize_clear"></div>';
+    $content['#markup'] .= t('<sup>&#x2C4;</sup><a href="javascript:;" class="changer" title="Bigger text" id="text_resize_increase">A</a> <a href="javascript:;" class="changer" id="text_resize_reset">A</a> <sup>&#x2C5;</sup><a href="javascript:;" class="changer" id="text_resize_decrease" title="Smaller text">A</a> <div id="text_resize_clear"></div>');
   }
   else {
-    $content['#markup'] .= '<sup>&#x2C4;</sup><a href="javascript:;" class="changer" id="text_resize_increase">A</a> <sup>&#x2C5;</sup><a href="javascript:;" class="changer" id="text_resize_decrease">A</a> <div id="text_resize_clear"></div>';
+    $content['#markup'] .= t('<sup>&#x2C4;</sup><a href="javascript:;" class="changer" title="Bigger text" id="text_resize_increase">A</a> <sup>&#x2C5;</sup><a href="javascript:;" class="changer" id="text_resize_decrease" title="Smaller text">A</a> <div id="text_resize_clear"></div>');
   }
 
   return render($content);
