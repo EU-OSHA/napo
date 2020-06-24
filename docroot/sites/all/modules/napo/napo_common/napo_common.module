@@ -1418,7 +1418,7 @@ function theme_napo_print_friendly_block() {
   );
 
   $content['#markup'] = t('Print friendly:');
-  $content['#markup'] .= t('&nbsp;<a title="Print page" href="javascript:if(window.print)window.print();"><span class="glyphicon glyphicon-print"></span></a>');
+  $content['#markup'] .= '&nbsp;<a href="javascript:if(window.print)window.print();"><span class="glyphicon glyphicon-print"></span></a>';
 
   return render($content);
 }
