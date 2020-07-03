@@ -289,6 +289,15 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['fields']['title_1']['label'] = '';
   $handler->display->display_options['fields']['title_1']['exclude'] = TRUE;
   $handler->display->display_options['fields']['title_1']['element_label_colon'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_field']['id'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['table'] = 'field_data_title_field';
+  $handler->display->display_options['fields']['title_field']['field'] = 'title_field';
+  $handler->display->display_options['fields']['title_field']['relationship'] = 'field_resources_related_target_id';
+  $handler->display->display_options['fields']['title_field']['label'] = '';
+  $handler->display->display_options['fields']['title_field']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title_field']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_field']['link_to_entity'] = 1;
   /* Field: Field: Tags */
   $handler->display->display_options['fields']['field_tags']['id'] = 'field_tags';
   $handler->display->display_options['fields']['field_tags']['table'] = 'field_data_field_tags';
@@ -305,7 +314,7 @@ function napo_msd_views_default_views() {
   $handler->display->display_options['fields']['nothing']['label'] = '';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '<a href="__link__">[field_image]</a>
 <div class="related-item-content">
-<h3>[title_1]</h3>
+<h3>[title_field]</h3>
 <p class="keyword-list">
 <span class="keyword-label"><label>Keyword:</label></span><span class="keyword-tag">[field_tags]</span>
 </p>
@@ -345,7 +354,7 @@ function napo_msd_views_default_views() {
     t('Block'),
     t('<a href="__link__">[field_image]</a>
 <div class="related-item-content">
-<h3>[title_1]</h3>
+<h3>[title_field]</h3>
 <p class="keyword-list">
 <span class="keyword-label"><label>Keyword:</label></span><span class="keyword-tag">[field_tags]</span>
 </p>
