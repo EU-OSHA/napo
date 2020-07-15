@@ -1135,12 +1135,8 @@ function drupal_prepare_form($form_id, &$form, &$form_state) {
  * Helper function to call form_set_error() if there is a token error.
  */
 function _drupal_invalid_token_set_form_error() {
-  $path = current_path();
-  $query = drupal_get_query_parameters();
-  $url = url($path, array('query' => $query));
-
   // Setting this error will cause the form to fail validation.
-  form_set_error('form_token', t('The form has become outdated. Copy any unsaved work in the form below and then <a href="@link">reload this page</a>.', array('@link' => $url)));
+  form_set_error('form_token', t('The form has become outdated. Press the back button, copy any unsaved work in the form, and then reload the page.'));
 }
 
 /**
