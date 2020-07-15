@@ -1177,6 +1177,11 @@ function drupal_validate_form($form_id, &$form, &$form_state) {
   if (!empty($form['#token'])) {
     if (!drupal_valid_token($form_state['values']['form_token'], $form['#token']) || !empty($form_state['invalid_token'])) {
       _drupal_invalid_token_set_form_error();
+      // Ignore all submitted values.
+      $form_state['input'] = array();
+      $_POST = array();
+      // Make sure file uploads do not get processed.
+      $_FILES = array();
       // Stop here and don't run any further validation handlers, because they
       // could invoke non-safe operations which opens the door for CSRF
       // vulnerabilities.
@@ -1848,6 +1853,9 @@ function form_builder($form_id, &$element, &$form_state) {
           _drupal_invalid_token_set_form_error();
           // This value is checked in _form_builder_handle_input_element().
           $form_state['invalid_token'] = TRUE;
+          // Ignore all submitted values.
+          $form_state['input'] = array();
+          $_POST = array();
           // Make sure file uploads do not get processed.
           $_FILES = array();
         }
