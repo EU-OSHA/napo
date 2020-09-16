@@ -1055,26 +1055,26 @@ function ldap_user_user_delete($account) {
  * @return default value for field user->ldap_user_provisioned_sid
  */
 function ldap_user_provisioned_sid_default($entity_type, $entity, $field, $instance, $langcode) {
-  return NULL;
+  return [];
 }
 
 /**
  * @return default value for field user->ldap_user_provisioned_sid
  */
 function ldap_user_puid_default($entity_type, $entity, $field, $instance, $langcode) {
-  return NULL;
+  return [];
 }
 /**
  * @return default value for field user->ldap_user_puid
  */
 function ldap_user_puid_property_default($entity_type, $entity, $field, $instance, $langcode) {
-  return NULL;
+  return [];
 }
 /**
  * @return default value for field user->ldap_user_dn
  */
 function ldap_user_dn_default($entity_type, $entity, $field, $instance, $langcode) {
-  return NULL;
+  return [];
 }
 
 /**

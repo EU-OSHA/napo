@@ -135,7 +135,9 @@ class SearchApiViewsQuery extends views_plugin_query {
    *   The order to sort items in - either 'ASC' or 'DESC'. Defaults to 'ASC'.
    */
   public function add_selector_orderby($selector, $order = 'ASC') {
-    $this->query->sort($selector, $order);
+    if (!$this->errors) {
+      $this->query->sort($selector, $order);
+    }
   }
 
   /**
@@ -213,7 +215,7 @@ class SearchApiViewsQuery extends views_plugin_query {
       '#default_value' => $this->options['search_api_bypass_access'],
     );
 
-    if ($this->index->getEntityType()) {
+    if ($this->index && $this->index->getEntityType()) {
       $form['entity_access'] = array(
         '#type' => 'checkbox',
         '#title' => t('Additional access checks on result entities'),
@@ -310,6 +312,9 @@ class SearchApiViewsQuery extends views_plugin_query {
     if (!empty($this->view->override_path) && strpos(current_path(), $this->view->override_path) !== 0) {
       $this->query->setOption('search_api_base_path', $this->view->override_path);
     }
+
+    // Save query information for Views UI.
+    $view->build_info['query'] = (string) $this->query;
   }
 
   /**
@@ -560,10 +565,7 @@ class SearchApiViewsQuery extends views_plugin_query {
     // If the results are entities, we pre-load them to make use of a multiple
     // load. (Otherwise, each result would be loaded individually.)
     if (!empty($load_items)) {
-//      $items = $this->index->loadItems(array_keys($load_items));
-      // Reverted this line as a temporary patch after update views to 7.x-1.20
-      // conflict with search_api_et loadItems() - returns no entities when no search word
-      $items = entity_load($type, array_keys($load_items));
+      $items = $this->index->loadItems(array_keys($load_items));
       foreach ($items as $id => $item) {
         $wrappers[$load_items[$id]] = $this->index->entityWrapper($item);
       }
