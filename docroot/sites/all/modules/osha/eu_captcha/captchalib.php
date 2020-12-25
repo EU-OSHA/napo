@@ -51,7 +51,13 @@ if (!defined('CAPTCHA_ADDITIONAL_HEADER'))
  * @return string - encoded request
  */
 function _captcha_qsencode($data) {
-    return drupal_http_build_query($data);
+    $req = "";
+    foreach ($data as $key => $value)
+        $req .= $key . '=' . urlencode(stripslashes($value)) . '&';
+
+    // Cut the last '&'
+    $req = substr($req, 0, strlen($req) - 1);
+    return $req;
 }
 
 /**
