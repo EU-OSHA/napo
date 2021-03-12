@@ -114,6 +114,28 @@ function napo_frontend_preprocess_node(&$vars) {
  * Implements hook_preprocess_page().
  */
 function napo_frontend_preprocess_page(&$vars) {
+
+  if (variable_get('google_no_index', FALSE)) {
+    $robots_noindex = array(
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'robots',
+        'content' => 'noindex',
+      ),
+    );
+    drupal_add_html_head($robots_noindex, 'no_index_robots');
+    $robots_noindex = array(
+      '#type' => 'html_tag',
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'googlebot',
+        'content' => 'noindex',
+      ),
+    );
+    drupal_add_html_head($robots_noindex, 'no_index_google');
+  }
+
   // Render the logo with theme image to provide alt, width and height attr.
   $logo_path = drupal_get_path('theme', 'napo_frontend') . '/logo.png';
   $image_info = image_get_info($logo_path);
