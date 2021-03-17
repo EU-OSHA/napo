@@ -1,0 +1,7 @@
+name = osha search
+description = Search customizations
+core = 7.x
+package = OSHA
+version = 7.x-3.11
+project = osha_search
+configure = admin/config/search/osha_search

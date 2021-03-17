@@ -1,0 +1,190 @@
+<?php
+/**
+ * @file
+ * Code for the osha_search feature.
+ */
+
+module_load_include('inc', 'osha_search', 'osha_search.admin');
+
+/**
+ * Implements hook_menu().
+ */
+function osha_search_menu() {
+  $items = array();
+  $items['search-autocomplete/%'] = array(
+    'page callback' => 'osha_search_autocomplete_callback',
+    'access callback' => TRUE,
+    'page arguments' => array(1),
+  );
+  $items['search-autocomplete'] = array(
+    'page callback' => 'osha_search_autocomplete_callback',
+    'access callback' => TRUE,
+  );
+  $items['admin/config/search/osha_search'] = array(
+    'title' => 'OSHA Search',
+    'description' => 'Config information for osha search',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('osha_search_admin_form'),
+    'access arguments' => array('administer site configuration'),
+  );
+  return $items;
+}
+
+/**
+ * Callback for search autocomplete ajax call. CW-220.
+ *
+ * When using search_autocomplete module.
+ */
+function osha_search_autocomplete_callback($search = '*') {
+  if (empty(arg(1)) && !empty($_REQUEST['term'])) {
+    $search = $_REQUEST['term'];
+  }
+  $search = check_plain($search);
+  global $language;
+  $lang = $language->language;
+  $allowed_bundles = variable_get('osha_search_bundles', array());
+  $bundles = node_type_get_types();
+
+  $index = search_api_index_load('default_multilingual_node_index');
+  $server = search_api_server_load('solr_server');
+  $connection = new SearchApiSolrConnection($server->options);
+
+  // Build params - group by bundle, 3 rows each.
+  $params = array(
+    'group' => 'true',
+    'group.field' => 'ss_type',
+    'group.limit' => variable_get('osha_search_ac_items_limit', 3),
+  );
+  $params['fq'][] = 'ss_search_api_language:"' . $lang . '"';
+  $params['fq'][] = 'is_status:"1"';
+  // Add condition for excluded bundles.
+  foreach ($bundles as $key => $bundle) {
+    if (empty($allowed_bundles[$key])) {
+      $params['fq'][] = '{!tag=ss_type}*:* AND -(ss_type:"' . $key . '")';
+    }
+  }
+  // Add publication date.
+  $now = new DateTime('now');
+  $now = $now->format('Y-m-d\TH:m:i\Z');
+  $params['fq'][] = '((ds_field_publication_date:[* TO "' . $now . '"]) OR (*:* AND -ds_field_publication_date:[* TO *]))';
+  // Add searchable fields.
+  $fields = $index->getFields();
+  //  $search_fields = $index->getFulltextFields();
+  $search_fields = variable_get('osha_search_ac_fields', array());
+  foreach ($search_fields as $field) {
+    $params['qf'][] = 'tm_' . $field . '^' . $fields[$field]['boost'];
+    $params['qf'][] = 'tm_und' . $field . '^' . $fields[$field]['boost'];
+    $params['qf'][] = 'tm_' . $lang . '_' . $field . '^' . $fields[$field]['boost'];
+  }
+  // Make the search.
+  $request = $connection->search($search, $params);
+
+  $data = json_decode($request->data);
+  $total_groups = count($data->grouped->ss_type->groups);
+  $total_items = $data->grouped->ss_type->matches;
+  $return = array();
+
+  $showing_categ = variable_get('osha_search_ac_categ_limit', 3);
+  $showing_items = variable_get('osha_search_ac_items_limit', 3);
+  $count_categ = 0;
+  $showed_items = 0;
+  $showed_categ = 0;
+  $total_on_showed_categ = 0;
+
+  foreach ($data->grouped->ss_type->groups as &$group) {
+    if ($count_categ++ < $showing_categ) {
+      $ret = osha_search_autocomplete_add_group($group, $lang, $showing_items, $search);
+      $showed_items += $ret['count'];
+      $showed_categ += ($ret['count']) ? 1 : 0;
+      $total_on_showed_categ += $group->doclist->numFound;
+      $return = array_merge($return, $ret['results']);
+    }
+    else {
+      break;
+    }
+  }
+
+  // Add extra link with search summery (see CW-220).
+  if (!empty($total_items) && $total_items - $total_on_showed_categ > 0) {
+    $text = t('@search_result more in @categories categories', array(
+      '@search_result' => $total_items - $total_on_showed_categ,
+      '@categories' => $total_groups - $showed_categ,
+    ));
+    $ac_item = array(
+      "link" => url('search', array(
+        'query' => array(
+          'search_block_form' => $search,
+        ),
+      )),
+      "value" => $text,
+      "fields" => array(
+        "search_link" => $text,
+      ),
+    );
+    $ac_item["group"] = array(
+      "group_id" => 'more_results',
+      "group_name" => t('More results'),
+    );
+    $return[] = $ac_item;
+  }
+  print_r(json_encode($return));
+  exit;
+}
+
+/**
+ * Format a group of results for search autocomplete response.
+ */
+function osha_search_autocomplete_add_group($group, $lang, $showing_items, $search, $see_all_path = 'search') {
+  $return = array();
+  $count_items = 0;
+  $bundles = node_type_get_types();
+  $in_this_categ = $group->doclist->numFound;
+  foreach ($group->doclist->docs as &$item) {
+    $count_items++;
+    $ac_item = array(
+      "link" => url('node/' . $item->is_nid),
+      "value" => current($item->{'tm_' . $lang . '_title_field'}),
+      "fields" => array(
+        "title_field" => current($item->{'tm_' . $lang . '_title_field'}),
+      ),
+    );
+    if (!empty($item->{'ss_field_wiki_page_url:url'})) {
+      $ac_item["link"] = $item->{'ss_field_wiki_page_url:url'};
+    }
+    if ($count_items == 1) {
+      $ac_item["group"] = array(
+        "group_id" => $item->ss_type,
+        "group_name" => t('@bundle', array(
+            '@bundle' => $bundles[$item->ss_type]->name,
+          )
+        ),
+      );
+    }
+    $return[] = $ac_item;
+    if ($count_items == $showing_items && $in_this_categ > $showing_items) {
+      $text = t('@search_result more in @bundle', array(
+        '@search_result' => $in_this_categ - $showing_items,
+        '@bundle' => $bundles[$group->groupValue]->name,
+      ));
+      $ac_item = array(
+        "link" => url($see_all_path,
+          array(
+            'query' => array(
+              'f' => array('type:' . $group->groupValue),
+              'search_block_form' => $search,
+            ),
+          )
+        ),
+        "value" => $text,
+        "fields" => array(
+          "search_type_link" => $text,
+        ),
+      );
+      $return[] = $ac_item;
+    }
+  }
+  return array(
+    'results' => $return,
+    'count' => $count_items,
+  );
+}
