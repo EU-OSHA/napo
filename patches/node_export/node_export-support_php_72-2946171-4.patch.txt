@@ -1,0 +1,50 @@
+diff --git a/node_export.module b/node_export.module
+index 74d51f4..6d14043 100644
+--- a/node_export.module
++++ b/node_export.module
+@@ -1002,13 +1002,6 @@ function node_export_get_menu($node) {
+  * Remove recursion problem from an object or array.
+  */
+ function node_export_remove_recursion($o) {
+-  static $replace;
+-  if (!isset($replace)) {
+-    $replace = create_function(
+-      '$m',
+-      '$r="\x00{$m[1]}ecursion_export_node_";return \'s:\'.strlen($r.$m[2]).\':"\'.$r.$m[2].\'";\';'
+-    );
+-  }
+   if (is_array($o) || is_object($o)) {
+     $re = '#(r|R):([0-9]+);#';
+     $serialize = serialize($o);
+@@ -1018,7 +1011,7 @@ function node_export_remove_recursion($o) {
+         $chunk = substr($serialize, $last, $pos - $last);
+         if (preg_match($re, $chunk)) {
+           $length = strlen($chunk);
+-          $chunk = preg_replace_callback($re, $replace, $chunk);
++          $chunk = preg_replace_callback($re, '_node_export_remove_recursion', $chunk);
+           $serialize = substr($serialize, 0, $last) . $chunk . substr($serialize, $last + ($pos - $last));
+           $pos += strlen($chunk) - $length;
+         }
+@@ -1028,13 +1021,21 @@ function node_export_remove_recursion($o) {
+         $last += 4 + $length;
+         $pos = $last;
+       }
+-      $serialize = substr($serialize, 0, $last) . preg_replace_callback($re, $replace, substr($serialize, $last));
++      $serialize = substr($serialize, 0, $last) . preg_replace_callback($re, '_node_export_remove_recursion', substr($serialize, $last));
+       $o = unserialize($serialize);
+     }
+   }
+   return $o;
+ }
+ 
++/**
++ * Callback function for preg_replace_callback() to remove recursion.
++ */
++function _node_export_remove_recursion($m) {
++  $r = "\x00{$m[1]}ecursion_export_node_";
++  return 's:' . strlen($r . $m[2]) . ':"' . $r . $m[2] . '";';
++}
++
+ /**
+  * Restore recursion to an object or array.
+  */
