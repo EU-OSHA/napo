@@ -271,6 +271,10 @@ class LdapServer {
    * Connect Method
    */
   function connect() {
+    if (!function_exists('ldap_connect')) {
+      watchdog('ldap_servers', 'PHP LDAP extension not found, aborting.');
+      return LDAP_NOT_SUPPORTED;
+    }
 
     if (!$con = ldap_connect($this->address, $this->port)) {
       watchdog('user', 'LDAP Connect failure to ' . $this->address . ':' . $this->port);

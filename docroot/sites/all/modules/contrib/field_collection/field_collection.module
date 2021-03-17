@@ -419,7 +419,8 @@ class FieldCollectionItemEntity extends Entity {
           $query->age(FIELD_LOAD_REVISION);
         }
         $result = $query->execute();
-        list($this->hostEntityType, $data) = each($result);
+        $this->hostEntityType = key($result);
+        $data = current($result);
 
         if ($this->isInUse()) {
           $this->hostEntityId = $data ? key($data) : FALSE;
@@ -446,14 +447,16 @@ class FieldCollectionItemEntity extends Entity {
   public function delta() {
     if (($entity = $this->hostEntity()) && isset($entity->{$this->field_name})) {
       foreach ($entity->{$this->field_name} as $langcode => &$data) {
-        foreach ($data as $delta => $item) {
-          if (isset($item['value']) && $item['value'] == $this->item_id) {
-            $this->langcode = $langcode;
-            return $delta;
-          }
-          elseif (isset($item['entity']) && $item['entity'] === $this) {
-            $this->langcode = $langcode;
-            return $delta;
+        if (!empty($data)) {
+          foreach ($data as $delta => $item) {
+            if (isset($item['value']) && $item['value'] == $this->item_id) {
+              $this->langcode = $langcode;
+              return $delta;
+            }
+            elseif (isset($item['entity']) && $item['entity'] === $this) {
+              $this->langcode = $langcode;
+              return $delta;
+            }
           }
         }
       }
